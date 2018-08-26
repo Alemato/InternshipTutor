@@ -162,7 +162,7 @@
                 </div>
                 <div class="col-12 col-md-5 col-lg-6">
                     <h4 class="testo-scuro">
-                    ${LuogoSvolgimento}
+                    ${LuogoEffettuazione}
                     </h4>
                 </div>
             </div>

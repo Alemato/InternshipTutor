@@ -106,6 +106,27 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>Lista-Convenzioni</servlet-name>
+        <servlet-class>controller.ListaConvenzioniController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Lista-Convenzioni</servlet-name>
+        <url-pattern>/listaconvenzioni</url-pattern>
+        <url-pattern>/ListaConvenzioni</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>SchedaAzienda</servlet-name>
+        <servlet-class>controller.SchedaAziendaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SchedaAzienda</servlet-name>
+        <url-pattern>/schedaazienda</url-pattern>
+        <url-pattern>/SchedaAzienda</url-pattern>
+    </servlet-mapping>
+
 
 
 

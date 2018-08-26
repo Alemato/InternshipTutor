@@ -20,9 +20,13 @@ public class Azienda {
     private Integer DurataConvenzione;
     private String ForoControversia;
     private Date DataConvenzione;
+    private Boolean Attivo;
+    private String Descrizione;
+    private String Link;
     private Integer User;
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
+
 
 
 
@@ -160,5 +164,29 @@ public class Azienda {
 
     public void setUpdateDate(Timestamp updateDate) {
         UpdateDate = updateDate;
+    }
+
+    public Boolean getAttivo() {
+        return Attivo;
+    }
+
+    public void setAttivo(Boolean attivo) {
+        Attivo = attivo;
+    }
+
+    public String getDescrizione() {
+        return Descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        Descrizione = descrizione;
+    }
+
+    public String getLink() {
+        return Link;
+    }
+
+    public void setLink(String link) {
+        Link = link;
     }
 }
