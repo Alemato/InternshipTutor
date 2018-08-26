@@ -30,24 +30,15 @@ public class SchedaTirocinioController  extends baseController{
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       try {
-           setpage(request, response);
+
+        setpage(request, response);
            TemplateController.process("scheda-tirocinio.ftl", datamodel, response, getServletContext());
-       }catch (Exception e){
-           e.printStackTrace();
-       }
-
-
-
-
-
 
     }
 
-    protected void setpage (HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException,DaoException {
+    protected void setpage (HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException {
         try {
-//            Integer Idtrof = Integer.parseInt((String)request.getParameter("ID"));
-            Integer Idtrof = 1;                                                           //ovviamente questo è solo per provare
+            Integer Idtrof = Integer.parseInt((String)request.getParameter("ID"));
             OffertaTirocinioDaoImp ofdao = new OffertaTirocinioDaoImp();
 
             OffertaTirocinio Oftr = ofdao.getOffertatrByID(Idtrof);

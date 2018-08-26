@@ -37,7 +37,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
 
             this.selectAllAzienda = connection.prepareStatement("SELECT * FROM azienda");
 
-            this.selectAllConvenzione = connection.prepareStatement("SELECT RagioneSociale," +
+            this.selectAllConvenzione = connection.prepareStatement("SELECT IDAzienda ,RagioneSociale," +
                     "NomeResponsabileConvenzione, CognomeResponsabileConvenzione," +
                     "TelefonoResponsabileConvenzione, EmailResponsabileConvenzione," +
                     "PathPDFConvenzione, DurataConvenzione,ForoControversia," +
@@ -186,6 +186,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             ResultSet resultSet = this.selectAllConvenzione.executeQuery();
             while (resultSet.next()) {
                 Azienda conven = new Azienda();
+                conven.setIDAzienda(resultSet.getInt("IDAzienda"));
                 conven.setRagioneSociale(resultSet.getString("RagioneSociale"));
                 conven.setNomeResponsabileConvenzione(resultSet.getString("NomeResponsabileConvenzione"));
                 conven.setCognomeResponsabileConvenzione(resultSet.getString("CognomeResponsabileConvenzione"));

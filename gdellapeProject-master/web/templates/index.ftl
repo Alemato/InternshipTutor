@@ -43,7 +43,7 @@
 
                 <div class="col-lg-5 radius-5 box-white border p-15">
 
-                    <h4><a href="#" class="uppercase"> ${OffertaTirocinio.titolo}</a></h4>
+                    <h4><a href="/tirocinio?ID=${OffertaTirocinio.IDOffertaTirocinio}" class="uppercase"> ${OffertaTirocinio.titolo}</a></h4>
 
                     <ul class="text-job list-inline mb-5">
                         <li>
@@ -92,19 +92,19 @@
                 <#list Convenzioni as Convenzione>
                 <div class="col-lg-5 radius-5 box-white border p-15">
 
-                    <h4><a href="#" class="uppercase">${Convenzione.ragioneSociale}(Spinoff
+                    <h4><a href="/SchedaAzienda?ID=${Convenzione.IDAzienda}" class="uppercase">${Convenzione.ragioneSociale}(Spinoff
                         Univ.
                         L&apos;Aquila)</a></h4>
 
                     <ul class="text-job list-inline mb-5">
                         <li>
-                            <a href="#">
+                            <a>
                                 <i class="fa fa-clock-o"></i>
                                 <span class="font-lato">${Convenzione.dataConvenzione}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/SchedaAzienda?ID=${Convenzione.IDAzienda}">
                                 <i class="fa fa-industry"></i>
                                 <span class="font-lato">${Convenzione.ragioneSociale}</span>
                             </a>
@@ -113,7 +113,7 @@
 
                     <p class="fs-13 mb-10">${Convenzione.descrizione}</p>
 
-                    <a href="#" class="btn btn-reveal btn-default b-0 btn-shadow-1">
+                    <a href="/SchedaAzienda?ID=${Convenzione.IDAzienda}" class="btn btn-reveal btn-default b-0 btn-shadow-1">
                         <i class="fa fa-plus"></i>
                         <span>Leggi di più</span>
                     </a>

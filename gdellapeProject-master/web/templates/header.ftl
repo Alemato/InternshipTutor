@@ -75,12 +75,12 @@
                             </a>
                         </li>
                         <li class="dropdown active">
-                            <a class="dropdown-toggle noicon" href="#">
+                            <a class="dropdown-toggle noicon" href="/listaconvenzioni">
                                 LISTA CONVENZIONI
                             </a>
                         </li>
                         <li class="dropdown active">
-                            <a class="dropdown-toggle noicon" href="#">
+                            <a class="dropdown-toggle noicon" href="informazioni.html">
                                 INFORMAZIONI
                             </a>
                         </li>
