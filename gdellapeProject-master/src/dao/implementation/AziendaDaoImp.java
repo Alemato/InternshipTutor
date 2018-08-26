@@ -53,7 +53,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         }
     }
 
-
+//ciao ciao
     public void setAzienda(Azienda azienda, User user) throws DaoException {
 
         try {
