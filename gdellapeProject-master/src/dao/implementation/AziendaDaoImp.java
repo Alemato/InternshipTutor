@@ -71,7 +71,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.insertAzienda.setInt(11, azienda.getDurataConvenzione());
             this.insertAzienda.setString(12, azienda.getForoControversia());
             this.insertAzienda.setDate(13, azienda.getDataConvenzione());
-            this,insertAzienda.setBoolean(14, azienda.getAttivo());
+            this.insertAzienda.setBoolean(14, azienda.getAttivo());
             this.insertAzienda.setString(15, azienda.getDescrizione());
             this.insertAzienda.setString(16, azienda.getLink());
             this.insertAzienda.setInt(17, user.getIDUser());
@@ -192,6 +192,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                 conven.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
                 conven.setForoControversia(resultSet.getString("ForoControversia"));
                 conven.setDataConvenzione(resultSet.getDate("DataConvenzione"));
+                conven.setDescrizione(resultSet.getString("Descrizione"));
                 conven.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
 
                 convenzioni.add(conven);

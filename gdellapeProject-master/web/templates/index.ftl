@@ -11,7 +11,7 @@
     <#include "importCss.ftl">
 </head>
 
-
+<body class="smoothscroll enable-animation">
 <div id="wrapper">
     <#include "header.ftl">
 <img class="img-fluid mt-140" src="/templates/imgs/internship.jpg">
@@ -111,10 +111,7 @@
                         </li>
                     </ul>
 
-                    <p class="fs-13 mb-10">La Gunpowder S.r.l., spinoff dell&rsquo;Universit&agrave; dell&rsquo;Aquila e
-                        registered partner
-                        Salesforce
-                    </p>
+                    <p class="fs-13 mb-10">${Convenzione.descrizione}</p>
 
                     <a href="#" class="btn btn-reveal btn-default b-0 btn-shadow-1">
                         <i class="fa fa-plus"></i>
@@ -244,6 +241,7 @@
     </footer>
     <!-- /FOOTER -->
 </div>
+</body>
 
 <#include "importScript.ftl">
 </html>
