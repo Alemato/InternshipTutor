@@ -9,11 +9,33 @@
         auth="Container"
         driverClassName="com.mysql.jdbc.Driver"
         url="jdbc:mysql://localhost/ingdelweb"
-        username="root"
-        password=""
+        username=" "
+        password=" "
         maxTotal="100"
         maxActive="10"
         maxIdle="5"
         maxWait="10000"
     />
 </Context>
+
+
+
+        <!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<Context path="/gdellapeProject-master">-->
+<!--&lt;!&ndash; Copiare il driver nella directory CATALINA_HOME/lib &ndash;&gt;-->
+<!--&lt;!&ndash; Se lo si mette in WEB-INF/lib non sarà visibile al common class loader usato per il pooling &ndash;&gt;-->
+<!--&lt;!&ndash; in tal caso non si potrà usare il pooler di Tomcat, ma uno esterno da aggiungere all'applicazione &ndash;&gt;-->
+<!--<Resource-->
+        <!--name="jdbc/webdb2"-->
+        <!--type="javax.sql.DataSource"-->
+        <!--auth="Container"-->
+        <!--driverClassName="com.mysql.jdbc.Driver"-->
+        <!--url="jdbc:mysql://localhost/ingdelweb"-->
+        <!--username="root"-->
+        <!--password=""-->
+        <!--maxTotal="100"-->
+        <!--maxActive="10"-->
+        <!--maxIdle="5"-->
+        <!--maxWait="10000"-->
+<!--/>-->
+<!--</Context>-->
