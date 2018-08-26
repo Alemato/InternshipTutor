@@ -20,6 +20,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement selectAllAzienda;
     private PreparedStatement selectAziendaByID;
     private PreparedStatement selectAllConvenzione;
+    private PreparedStatement selectLastFiveConvenzioni;
     private PreparedStatement selectAziendaByIDuser;
 
 
@@ -42,6 +43,9 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                     "TelefonoResponsabileConvenzione, EmailResponsabileConvenzione," +
                     "PathPDFConvenzione, DurataConvenzione,ForoControversia," +
                     "DataConvenzione, Descrizione, UpdateDate FROM azienda ORDER BY UpdateDate ASC");
+            //Query per le ultime 5 convenzioni stipulate
+
+            this.selectLastFiveConvenzioni = connection.prepareStatement("SELECT IDAzienda, RagioneSociale, DataConvenzione, Descrizione FROM azienda ORDER BY UpdateDate DESC LIMIT 5");
 
             this.insertAzienda = connection.prepareStatement("INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
                     "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
@@ -53,7 +57,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         }
     }
 
-//ciao ciao
+    //ciao ciao
     public void setAzienda(Azienda azienda, User user) throws DaoException {
 
         try {
@@ -110,7 +114,6 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                 azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
 
 
-
                 aziende.add(azienda);
 
             }
@@ -125,9 +128,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
 
-    public List<Azienda> getAllAzienda() throws DaoException
-
-    {
+    public List<Azienda> getAllAzienda() throws DaoException {
         List<Azienda> aziende = new ArrayList<Azienda>();
 
 
@@ -165,23 +166,16 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             return aziende;
 
 
-
         } catch (SQLException e) {
             throw new DaoException("Errore query", e);
         }
 
 
-
-
-
     }
 
-    public List<Azienda> getAllConvenzione() throws DaoException{
-
+    public List<Azienda> getAllConvenzione() throws DaoException {
         List<Azienda> convenzioni = new ArrayList<>();
-
         try {
-
             this.init();
             ResultSet resultSet = this.selectAllConvenzione.executeQuery();
             while (resultSet.next()) {
@@ -205,7 +199,25 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             return convenzioni;
 
 
+        } catch (SQLException e) {
+            throw new DaoException("Errore query", e);
+        }
+    }
 
+    public List<Azienda> getLastFiveConvenzioni() throws DaoException {
+        List<Azienda> lastfiveconvenzioni = new ArrayList<>();
+        try {
+            this.init();
+            ResultSet resultSet = this.selectLastFiveConvenzioni.executeQuery();
+            while (resultSet.next()) {
+                Azienda lastfivecoAzienda = new Azienda();
+                lastfivecoAzienda.setIDAzienda(resultSet.getInt("IDAzienda"));
+                lastfivecoAzienda.setRagioneSociale(resultSet.getString("RagioneSociale"));
+                lastfivecoAzienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
+                lastfivecoAzienda.setDescrizione(resultSet.getString("Descrizione"));
+                lastfiveconvenzioni.add(lastfivecoAzienda);
+            }
+            return lastfiveconvenzioni;
         } catch (SQLException e) {
             throw new DaoException("Errore query", e);
         }
@@ -279,7 +291,6 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
 
-
     public void destroy() throws DaoException {
 
         try {
@@ -288,6 +299,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.insertAzienda.close();
             this.selectAziendaByID.close();
             this.selectAllAzienda.close();
+            this.selectLastFiveConvenzioni.close();
 
 
             super.destroy();

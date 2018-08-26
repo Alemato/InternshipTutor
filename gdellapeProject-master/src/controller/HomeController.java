@@ -33,8 +33,11 @@ public class HomeController extends baseController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         super.init(request,response);
-        Convenz(request, response);
         OffTir(request, response);
+        //Convenz(request, response);
+        LastFiveConvenz(request, response);
+
+
 
         TemplateController.process("index.ftl", datamodel, response, getServletContext());
 
@@ -46,22 +49,15 @@ public class HomeController extends baseController {
             OffertaTirocinioDaoImp daooff = new OffertaTirocinioDaoImp();
             List<OffertaTirocinio> OfferteTirocini = daooff.getAllOffertatr();
             daooff.destroy();
-
-
-
-
-
-
             datamodel.put("OfferteTirocini",OfferteTirocini);
 
         } catch (Exception e) {
-
             e.printStackTrace();
 
         }
     }
 
-    protected void Convenz (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /*protected void Convenz (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try{
             AziendaDaoImp daoAzienda = new AziendaDaoImp();
@@ -72,6 +68,18 @@ public class HomeController extends baseController {
 
             datamodel.put("Convenzioni", Convenzioni);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }*/
+
+    protected void LastFiveConvenz (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try{
+            AziendaDaoImp azienda = new AziendaDaoImp();
+            List<Azienda> LastFiveConvenzioni = azienda.getLastFiveConvenzioni();
+            azienda.destroy();
+            datamodel.put("LastFiveConvenzioni", LastFiveConvenzioni);
         } catch (Exception e) {
             e.printStackTrace();
 

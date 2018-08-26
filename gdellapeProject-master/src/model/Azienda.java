@@ -28,8 +28,7 @@ public class Azienda {
     private Timestamp UpdateDate;
 
 
-
-
+    // GET DATA
     public Integer getIDAzienda() {
         return IDAzienda;
     }
@@ -74,6 +73,43 @@ public class Azienda {
         return PathPDFConvenzione;
     }
 
+    public Integer getDurataConvenzione() {
+        return DurataConvenzione;
+    }
+
+    public String getForoControversia() {
+        return ForoControversia;
+    }
+
+    public Date getDataConvenzione() {
+        return DataConvenzione;
+    }
+
+    public String getDescrizione() {
+        return Descrizione;
+    }
+
+    public String getLink() {
+        return Link;
+    }
+
+    public Timestamp getCreateDate() {
+        return CreateDate;
+    }
+
+    public Timestamp getUpdateDate() {
+        return UpdateDate;
+    }
+
+    public Integer getUser() {
+        return User;
+    }
+
+
+
+
+
+    // SET DATA
     public void setIDAzienda(Integer IDAzienda) {
         this.IDAzienda = IDAzienda;
     }
@@ -118,48 +154,28 @@ public class Azienda {
         PathPDFConvenzione = pathPDFConvenzione;
     }
 
-    public Integer getDurataConvenzione() {
-        return DurataConvenzione;
-    }
-
     public void setDurataConvenzione(Integer durataConvenzione) {
         DurataConvenzione = durataConvenzione;
-    }
-
-    public String getForoControversia() {
-        return ForoControversia;
     }
 
     public void setForoControversia(String foroControversia) {
         ForoControversia = foroControversia;
     }
 
-    public Date getDataConvenzione() {
-        return DataConvenzione;
-    }
-
     public void setDataConvenzione(Date dataConvenzione) {
         DataConvenzione = dataConvenzione;
     }
 
-    public Integer getUser() {
-        return User;
+    public void setDescrizione(String descrizione) {
+        Descrizione = descrizione;
     }
 
-    public void setUser(Integer user) {
-        User = user;
-    }
-
-    public Timestamp getCreateDate() {
-        return CreateDate;
+    public void setLink( String link) {
+         Link = link;
     }
 
     public void setCreateDate(Timestamp createDate) {
         CreateDate = createDate;
-    }
-
-    public Timestamp getUpdateDate() {
-        return UpdateDate;
     }
 
     public void setUpdateDate(Timestamp updateDate) {
@@ -174,19 +190,7 @@ public class Azienda {
         Attivo = attivo;
     }
 
-    public String getDescrizione() {
-        return Descrizione;
-    }
-
-    public void setDescrizione(String descrizione) {
-        Descrizione = descrizione;
-    }
-
-    public String getLink() {
-        return Link;
-    }
-
-    public void setLink(String link) {
-        Link = link;
+    public void setUser(Integer user) {
+        User = user;
     }
 }
