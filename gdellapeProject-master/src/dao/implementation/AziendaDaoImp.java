@@ -45,7 +45,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
 
             this.insertAzienda = connection.prepareStatement("INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
                     "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
-                    "EmailResponsabileConvenzione, PathPDFConvenzione,DurataConvenzione,ForoControversia,DataConvenzione,User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "EmailResponsabileConvenzione, PathPDFConvenzione,DurataConvenzione,ForoControversia,DataConvenzione, Attivo, Descrizione, Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
@@ -71,7 +71,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.insertAzienda.setInt(11, azienda.getDurataConvenzione());
             this.insertAzienda.setString(12, azienda.getForoControversia());
             this.insertAzienda.setDate(13, azienda.getDataConvenzione());
-            this.insertAzienda.setInt(14, user.getIDUser());
+            this,insertAzienda.setBoolean(14, azienda.getAttivo());
+            this.insertAzienda.setString(15, azienda.getDescrizione());
+            this.insertAzienda.setString(16, azienda.getLink());
+            this.insertAzienda.setInt(17, user.getIDUser());
             this.insertAzienda.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Errore esecuzione update", e);
@@ -149,6 +152,9 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                 azienda.setPathPDFConvenzione(resultSet.getString("PathPDFConvenzione"));
                 azienda.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
                 azienda.setForoControversia(resultSet.getString("ForoControversia"));
+                azienda.setAttivo(resultSet.getBoolean("Attivo"));
+                azienda.setDescrizione(resultSet.getString("Descrizione"));
+                azienda.setLink(resultSet.getString("Link"));
                 azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
                 azienda.setUser(resultSet.getInt("User"));
                 azienda.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
@@ -221,6 +227,9 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                 azienda.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
                 azienda.setForoControversia(resultSet.getString("ForoControversia"));
                 azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
+                azienda.setAttivo(resultSet.getBoolean("Attivo"));
+                azienda.setDescrizione(resultSet.getString("Descrizione"));
+                azienda.setLink(resultSet.getString("Link"));
 
             }
             return azienda;
@@ -251,6 +260,9 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                 azienda.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
                 azienda.setForoControversia(resultSet.getString("ForoControversia"));
                 azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
+                azienda.setAttivo(resultSet.getBoolean("Attivo"));
+                azienda.setDescrizione(resultSet.getString("Descrizione"));
+                azienda.setLink(resultSet.getString("Link"));
                 azienda.setUser(resultSet.getInt("User"));
                 azienda.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
 
