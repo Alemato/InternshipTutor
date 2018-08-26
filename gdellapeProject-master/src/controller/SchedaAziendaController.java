@@ -34,7 +34,19 @@ public class SchedaAziendaController extends baseController {
             daoAzienda.destroy();
 
 
-            datamodel.put("RagioneSociale",Azienda.getRagioneSociale() );
+            datamodel.put("RagioneSociale", Azienda.getRagioneSociale());
+            datamodel.put("Link", Azienda.getLink());
+            datamodel.put("Descrizione", Azienda.getDescrizione());
+            datamodel.put("IndirizzoSedeLegale", Azienda.getIndirizzoSedeLegale());
+            datamodel.put("CFiscalepiva", Azienda.getCFiscalePIva());
+            datamodel.put("NomeLegaleRappresentante", Azienda.getNomeLegaleRappresentante());
+            datamodel.put("CognomeLegaleRappresentante", Azienda.getCognomeLegaleRappresentante());
+            datamodel.put("NomeResponsabileConvenzione", Azienda.getNomeResponsabileConvenzione());
+            datamodel.put("CognomeResponsabileConvenzione", Azienda.getCognomeResponsabileConvenzione());
+            datamodel.put("TelefonoResponsabileConvenzione", Azienda.getTelefonoResponsabileConvenzione());
+            datamodel.put("EmailResponsabileConvenzione", Azienda.getEmailResponsabileConvenzione());
+            datamodel.put("ForoControversia", Azienda.getForoControversia());
+
 
         } catch (Exception e) {
             e.printStackTrace();

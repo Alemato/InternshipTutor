@@ -38,7 +38,6 @@
             <div class="linea-divisione mt-15 mb-25"></div>
             <div class="row justify-content-between mb-lg-5">
                 <!-- POST ITEMS -->
-                <#assign count = 0>
                 <#list OfferteTirocini as OffertaTirocinio>
 
                 <div class="col-lg-5 radius-5 box-white border p-15">
@@ -71,15 +70,7 @@
                     </a>
 
                 </div>
-                    <#assign count = count + 1>
-                    <#if count = 2>
-                        </div>
-                        <div class="row justify-content-between mb-lg-5">
-                        <#assign count = 0>
-                    </#if>
                 </#list>
-
-
                 <!-- /POST ITEMS -->
             </div>
 
@@ -88,7 +79,6 @@
             <div class="linea-divisione mt-15 mb-25"></div>
             <div class="row justify-content-between mb-lg-5">
                 <!-- POST ITEMS CONVENZIONI -->
-                <#assign count1 = 0>
                 <#list Convenzioni as Convenzione>
                 <div class="col-lg-5 radius-5 box-white border p-15">
 
@@ -119,12 +109,6 @@
                     </a>
 
                 </div>
-                    <#assign count1 = count1 + 1>
-                    <#if count1 = 2>
-                        </div>
-                        <div class="row justify-content-between mb-lg-5">
-                        <#assign count1 = 0>
-                    </#if>
                 </#list>
                 <!-- POST ITEMS CONVENZIONI -->
             </div>
