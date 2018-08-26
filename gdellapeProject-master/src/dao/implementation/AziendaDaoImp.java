@@ -41,7 +41,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                     "NomeResponsabileConvenzione, CognomeResponsabileConvenzione," +
                     "TelefonoResponsabileConvenzione, EmailResponsabileConvenzione," +
                     "PathPDFConvenzione, DurataConvenzione,ForoControversia," +
-                    "DataConvenzione, UpdateDate FROM azienda ORDER BY UpdateDate ASC");
+                    "DataConvenzione, Descrizione, UpdateDate FROM azienda ORDER BY UpdateDate ASC");
 
             this.insertAzienda = connection.prepareStatement("INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
                     "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
@@ -177,12 +177,15 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
     public List<Azienda> getAllConvenzione() throws DaoException{
-        List<Azienda> convenzioni = new ArrayList<Azienda>();
-        Azienda conven = new Azienda();
+
+        List<Azienda> convenzioni = new ArrayList<>();
+
         try {
+
             this.init();
             ResultSet resultSet = this.selectAllConvenzione.executeQuery();
             while (resultSet.next()) {
+                Azienda conven = new Azienda();
                 conven.setRagioneSociale(resultSet.getString("RagioneSociale"));
                 conven.setNomeResponsabileConvenzione(resultSet.getString("NomeResponsabileConvenzione"));
                 conven.setCognomeResponsabileConvenzione(resultSet.getString("CognomeResponsabileConvenzione"));
