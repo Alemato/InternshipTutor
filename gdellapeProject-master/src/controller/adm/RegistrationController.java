@@ -134,7 +134,7 @@ public class RegistrationController extends HttpServlet  {
 
                 AziendaDaoImp daoAzienda = new AziendaDaoImp();
 
-                daoAzienda.setAzienda(azienda, userconid);
+                daoAzienda.setRegisterazienda(azienda, userconid);
                 daoAzienda.destroy();
             }catch (Exception e){
                 e.printStackTrace();

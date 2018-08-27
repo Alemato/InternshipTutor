@@ -22,6 +22,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement selectAllConvenzione;
     private PreparedStatement selectLastFiveConvenzioni;
     private PreparedStatement selectAziendaByIDuser;
+    private PreparedStatement regAzienda;
 
 
     @Override
@@ -51,6 +52,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                     "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
                     "EmailResponsabileConvenzione, PathPDFConvenzione,DurataConvenzione,ForoControversia,DataConvenzione, Attivo, Descrizione, Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
+            this.regAzienda = connection.prepareStatement("INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
+                    "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
+                    "EmailResponsabileConvenzione,ForoControversia Descrizione, Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
 
@@ -72,10 +77,13 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.insertAzienda.setString(8, azienda.getTelefonoResponsabileConvenzione());
             this.insertAzienda.setString(9, azienda.getEmailResponsabileConvenzione());
             this.insertAzienda.setString(10, azienda.getPathPDFConvenzione());
-            this.insertAzienda.setInt(11, azienda.getDurataConvenzione());
+
+           this.insertAzienda.setInt(11, azienda.getDurataConvenzione());
+
             this.insertAzienda.setString(12, azienda.getForoControversia());
             this.insertAzienda.setDate(13, azienda.getDataConvenzione());
             this.insertAzienda.setBoolean(14, azienda.getAttivo());
+
             this.insertAzienda.setString(15, azienda.getDescrizione());
             this.insertAzienda.setString(16, azienda.getLink());
             this.insertAzienda.setInt(17, user.getIDUser());
@@ -84,6 +92,35 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             throw new DaoException("Errore esecuzione update", e);
         }
     }
+
+
+    public void setRegisterazienda(Azienda azienda, User user) throws DaoException {
+
+        try {
+            this.init();
+            this.regAzienda.setString(1, azienda.getRagioneSociale());
+            this.regAzienda.setString(2, azienda.getIndirizzoSedeLegale());
+            this.regAzienda.setString(3, azienda.getCFiscalePIva());
+            this.regAzienda.setString(4, azienda.getNomeLegaleRappresentante());
+            this.regAzienda.setString(5, azienda.getCognomeLegaleRappresentante());
+            this.regAzienda.setString(6, azienda.getNomeResponsabileConvenzione());
+            this.regAzienda.setString(7, azienda.getCognomeResponsabileConvenzione());
+            this.regAzienda.setString(8, azienda.getTelefonoResponsabileConvenzione());
+            this.regAzienda.setString(9, azienda.getEmailResponsabileConvenzione());
+
+            this.regAzienda.setString(10, azienda.getForoControversia());
+
+
+            this.regAzienda.setString(11, azienda.getDescrizione());
+            this.regAzienda.setString(12, azienda.getLink());
+            this.regAzienda.setInt(13, user.getIDUser());
+            this.regAzienda.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Errore esecuzione update", e);
+        }
+    }
+
+
 
     public List<Azienda> getAziendaByRS(String RS) throws DaoException {
 
@@ -300,6 +337,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.selectAziendaByID.close();
             this.selectAllAzienda.close();
             this.selectLastFiveConvenzioni.close();
+            this.regAzienda.close();
 
 
             super.destroy();
