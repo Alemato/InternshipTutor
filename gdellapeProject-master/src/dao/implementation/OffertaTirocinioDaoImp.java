@@ -176,7 +176,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
 
 
     public void setOffertatr(OffertaTirocinio tr) throws DaoException{
-        try{
+        try{this.init();
             insertOffertatr.setString(1,tr.getLuogoEffettuazione());
             insertOffertatr.setString(2,tr.getTitolo());
             insertOffertatr.setString(3,tr.getDescrizioneBreve());

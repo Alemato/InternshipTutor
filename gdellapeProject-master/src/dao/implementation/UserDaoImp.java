@@ -31,7 +31,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
 
             this.selectUserById = connection.prepareStatement("SELECT * FROM user WHERE IDuser = ?");
 
-            this.insertUser = connection.prepareStatement("INSERT INTO user(Email,Password,TipologiaAccount) VALUES (?,?,?,)");
+            this.insertUser = connection.prepareStatement("INSERT INTO user(Email,Password,TipologiaAccount) VALUES (?,?,?)");
 
             this.selectAllUser = connection.prepareStatement("SELECT * FROM user");
 

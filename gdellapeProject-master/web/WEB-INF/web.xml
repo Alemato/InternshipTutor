@@ -105,6 +105,18 @@
         <url-pattern>/Prove</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+    <servlet-name>registration</servlet-name>
+    <servlet-class>controller.adm.RegistrationController</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>registration</servlet-name>
+<url-pattern>/registration</url-pattern>
+<url-pattern>/Prove/registration</url-pattern>
+</servlet-mapping>
+
+
+
 
     <servlet>
         <servlet-name>Lista-Convenzioni</servlet-name>
@@ -148,7 +160,7 @@
 
 
 
-    <!-- Init Servlet -->
+        <!-- Init Servlet -->
     <welcome-file-list>
         <welcome-file>ConnectionFactory</welcome-file>
     </welcome-file-list>

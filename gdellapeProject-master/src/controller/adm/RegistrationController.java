@@ -1,6 +1,8 @@
 package controller.adm;
 
+
 import controller.sessionController.SingSessionContoller;
+import controller.utility.utility;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.TirocinanteDaoImp;
@@ -18,19 +20,91 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
+import java.util.HashMap;
 
 public class RegistrationController extends HttpServlet  {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    HashMap<String,Object> datamodel = new HashMap<>();
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        try {
+           this.Registration(request,response);
+       }catch ( Exception e){
+           e.printStackTrace();
+
+       }
+
+
+
+
 
     }
 
 
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
+
 
 
         }
-        protected void registrationAzienda(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException,DaoException
+
+        protected void Registration(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException,DaoException {
+            logged(request, response);
+            AccountEsistente(request, response);
+            String tipo = (String)request.getParameter("Tipologia");
+
+
+            if(tipo.equals("Tirocinante")) {
+                String nome = request.getParameter("Nome");
+                if (nome == null)
+                {
+                    halfRegistration(request, response);
+                }
+                else
+                    {
+                    registrationTirocinante(request,response);
+                    }
+            }
+            if(tipo.equals("Ente-Azienda"))
+            {
+                String azienda = request.getParameter("NomeAzienda");
+
+                if (azienda == null) {
+                    halfRegistration(request, response);
+                } else {
+                    registrationAzienda(request, response);
+                }
+            }
+            else{
+                //errore
+            }
+
+
+
+
+        }
+
+
+        protected void halfRegistration(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException {
+            String email = request.getParameter("Email");
+            String password = request.getParameter("Password");
+
+           //farei un check dei campi tipo validazione mail poi se e le password sono uguali ed se ha messo il tipo di account
+            if (email.isEmpty() || password.isEmpty()) {
+                //errore
+            }
+            datamodel.put("Email", email);
+            datamodel.put("Password", password);
+            String type = request.getParameter("Tipologia");
+            if (type.equals("Tirocinante")) {
+                TemplateController.process("registrazione_step2_tirocinante.ftl", datamodel, response, getServletContext());
+            } else {
+                TemplateController.process("registrazione_step2_azienda.ftl", datamodel, response, getServletContext());
+            }
+        }
+
+        protected void registrationAzienda(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
         {
             try {
 
@@ -61,8 +135,9 @@ public class RegistrationController extends HttpServlet  {
                 AziendaDaoImp daoAzienda = new AziendaDaoImp();
 
                 daoAzienda.setAzienda(azienda, userconid);
+                daoAzienda.destroy();
             }catch (Exception e){
-                //pagina di errore
+                e.printStackTrace();
             }
 
 
@@ -73,12 +148,17 @@ public class RegistrationController extends HttpServlet  {
 
 
         }
-        protected void AccountEsistente(HttpServletResponse response,HttpServletRequest request)throws IOException,ServletException,DaoException
-        {
+        protected void AccountEsistente(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException,DaoException
+        {try {
             SingSessionContoller session = SingSessionContoller.getInstance();
-            String email = (String)request.getParameter("Email");
-            if(session.isAccount(email)){
+            String email = (String) request.getParameter("Email");
+            if (session.isAccount(email)) {
                 //pagina di errore
+            }
+        }
+            catch(Exception e){
+            e.printStackTrace();
+
             }
 
 
@@ -94,7 +174,7 @@ public class RegistrationController extends HttpServlet  {
         }
 
         }
-    protected void registrationTirocinante(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException,DaoException {
+    protected void registrationTirocinante(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException {
         try {
 
 
@@ -110,13 +190,17 @@ public class RegistrationController extends HttpServlet  {
             tirocinante.setLuogoDiNascita(request.getParameter("LuogoNascita"));
             tirocinante.setProvinciaDiNascita(request.getParameter("ProvinciaNascita"));
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
             try {
-                Date parser = sdf.parse((String) request.getParameter("DataNascita"));
-                tirocinante.setDataDiNascita(parser);
+                java.util.Date parser = sdf.parse((String) request.getParameter("DataNascita"));
+                java.sql.Date sqldate = new java.sql.Date(parser.getTime());
+                tirocinante.setDataDiNascita(sqldate);
+                System.out.println(parser.toString());
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+
 
             tirocinante.setLuogoDiResidenza(request.getParameter("LuogoResidenza"));
             tirocinante.setProvinciaDiResidenza(request.getParameter("ProvinciaResidenza"));
@@ -128,31 +212,32 @@ public class RegistrationController extends HttpServlet  {
                 tirocinante.setCorsoDiLaurea(request.getParameter("StudenteCorsoLaurea"));
             }
 
-            String CKdipuni = (String) request.getParameter("CKDiplomaUniversitario");
-            if (CKdipuni.equals("1")) {
+            String CKdipuni = request.getParameter("CKDiplomaUniversitario");
+            if (CKdipuni != null) {
                 tirocinante.setDiplomaUniversitario(request.getParameter("DiplomaUniversitario"));
             }
 
 
             String CKlaureain = (String) request.getParameter("CKLaureaIn");
-            if (CKlaureain.equals("1")) {
+            if (CKdipuni != null) {
                 tirocinante.setLaureatoUniversitario(request.getParameter("LaureaIn"));
             }
 
             String CKdotRic = (String) request.getParameter("CKDottoratoRicerca");
-            if (CKdotRic.equals("1")) {
+            if (CKdipuni != null) {
                 tirocinante.setDottoratoDiRicerca(request.getParameter("DottoratoRicerca"));
             }
 
             String CKalSc = (String) request.getParameter("CKScuolaAltro");
-            if (CKalSc.equals("1")) {
+            if (CKdipuni != null) {
                 tirocinante.setScuolaAltro(request.getParameter("ScuolaAltro"));
             }
 
             String CKha = (String) request.getParameter("Handicap");
-            if (CKha.equals("Si")) {
+            if (CKdipuni != null
+                    ) {
                 tirocinante.setHandicap(true);
-            }
+            }else{tirocinante.setHandicap(false);}
 
 
             UserDaoImp daouser = new UserDaoImp();
@@ -169,10 +254,25 @@ public class RegistrationController extends HttpServlet  {
             TirocinanteDaoImp daotr = new TirocinanteDaoImp();
 
             daotr.setTirocinante(tirocinante);
+            daotr.destroy();
         } catch (Exception e) {
-            //pagina di errore
+            e.printStackTrace();
         }
     }
+    protected void halfControl(HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException{
+        String mail = request.getParameter("Email");
+        String Password = request.getParameter("Password");
+        String CPassword = request.getParameter("ConfermaPassword");
+        if(utility.isEmail(mail)&& Password.equals(CPassword)){
+
+
+        }else{ TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
+
+        }
+    }
+
+
+
 
 
 

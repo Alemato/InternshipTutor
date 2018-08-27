@@ -4,30 +4,15 @@
     <meta charset="UTF-8">
     <title>Registrazione - Parte 2</title>
 
-    <!-- mobile settings -->
-    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
-    <!--[if IE]>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-
-    <!-- WEB FONTS : use %7C instead of | (pipe) -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons%7COpen+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700"
-          rel="stylesheet" type="text/css"/>
-
-    <!-- CORE CSS -->
-    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-    <!-- THEME CSS -->
-    <link href="css/essentials.css" rel="stylesheet" type="text/css"/>
-    <link href="css/layout.css" rel="stylesheet" type="text/css"/>
-
+    <#include"importCss.ftl">
     <!-- PAGE LEVEL SCRIPTS -->
-    <link href="css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="/templates/css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="/templates/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="/templates/css/internshiptutor.css" rel="stylesheet" type="text/css">
 </head>
 <body class="smoothscroll enable-animation">
 <div class="w-1000 mx-auto">
-    <form id="form_registrazione" action="print.php" method="post" class="sky-form .validate boxed"
+    <form id="form_registrazione" action="/registration" method="post" class="sky-form .validate boxed"
           novalidate="novalidate">
 
         <header class="mb-50 fs-50 fw-100 text-center">Crea Il Tuo Account</header>
@@ -35,6 +20,11 @@
         <div id="Ente-Azienda" class="header-form mb-30"><i class="fa fa-balance-scale"></i>&nbsp; INFORMAZIONI ENTE /
             AZIENDA
         </div>
+        <fieldset name="step-1">
+            <input type="hidden" name="Email" value=${Email}>
+            <input type="hidden" name="Password" value=${Password}>
+            <input type="hidden" name="Tipologia" value="Ente-Azienda">
+        </fieldset>
         <fieldset name="Ente-Azienda">
 
             <div class="row">
@@ -144,11 +134,7 @@
 </div>
 
 <!-- JAVASCRIPT FILES -->
-<script>var plugin_path = 'plugins/';</script>
-<script src="plugins/jquery/jquery-3.3.1.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="plugins/bootstrap/js/bootstrap.js"></script>
-
+<#include "importScript.ftl">
 
 </body>
 </html>

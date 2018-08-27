@@ -31,7 +31,8 @@ public void init() throws DaoException {
         this.selectTirocinanteById = connection.prepareStatement("SELECT * FROM tirocinante WHERE IDTirociante = ?");
         this.selectTirocinanteByIDuser = connection.prepareStatement("SELECT * FROM tirocinante WHERE User = ?");
 
-        this.insertTirocinante = connection.prepareStatement("INSERT INTO tirociante(Nome,Cognome,LuogoDiNascita, DataDiNascita, LuogoDiResidenza,ProvinciaDiResidenza,ProvinciaDiNascita,CodeciFiscale,Telefono," +
+        this.insertTirocinante = connection.prepareStatement("INSERT INTO tirocinante(Nome,Cognome,LuogoDiNascita, DataDiNascita, LuogoDiResidenza,ProvinciaDiResidenza,ProvinciaDiNascita," +
+                "CodiceFiscale,Telefono," +
                 "CorsoDiLaurea,DiplomaUniversitario,Laureato,DottoratoDiRicerca,ScuolaAltro,Handicap,User) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
         this.selectAllTirocinante = connection.prepareStatement("SELECT * FROM tirociante");
@@ -80,6 +81,7 @@ public List<Tirocinante> getAllTirociante() throws DaoException{
 
 public void setTirocinante(Tirocinante tr) throws DaoException {
     try{
+        this.init();
         insertTirocinante.setString(1,tr.getNome());
         insertTirocinante.setString(2,tr.getCognome());
         insertTirocinante.setString(3,tr.getLuogoDiNascita());
@@ -97,6 +99,7 @@ public void setTirocinante(Tirocinante tr) throws DaoException {
         insertTirocinante.setString(14,tr.getScuolaAltro());
         insertTirocinante.setBoolean(15,tr.getHandicap());
         insertTirocinante.setInt(16,tr.getUser());
+        insertTirocinante.executeUpdate();
 
 
     }catch (SQLException e){
