@@ -120,7 +120,7 @@ public class RegistrationController extends HttpServlet  {
                 azienda.setIndirizzoSedeLegale((String) request.getParameter("SedeLegale"));
                 azienda.setCFiscalePIva((String) request.getParameter("PartitaIVA"));
                 azienda.setNomeLegaleRappresentante((String) request.getParameter("NomeRappresentante"));
-                azienda.setCognomeResponsabileConvenzione((String) request.getParameter("CognomeRappresentante"));
+                azienda.setCognomeLegaleRappresentante((String) request.getParameter("CognomeRappresentante"));
                 azienda.setNomeResponsabileConvenzione((String) request.getParameter("NomeResponsabile"));
                 azienda.setCognomeResponsabileConvenzione((String) request.getParameter("CognomeResponsabile"));
                 azienda.setTelefonoResponsabileConvenzione((String) request.getParameter("NumeroTelefonoResponsabile"));

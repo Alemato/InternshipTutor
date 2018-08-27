@@ -54,7 +54,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
 
             this.regAzienda = connection.prepareStatement("INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
                     "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
-                    "EmailResponsabileConvenzione,ForoControversia Descrizione, Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "EmailResponsabileConvenzione,ForoControversia, Descrizione, Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
