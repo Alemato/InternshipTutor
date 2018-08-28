@@ -21,8 +21,7 @@
 
 
     <!-- registration form -->
-    <form id="form_registrazione" action="/registration" method="post" class="sky-form .validate boxed"
-          novalidate="novalidate">
+    <form id="form_registrazione" action="/registration" method="post" class="sky-form validate boxed">
         <header class="mb-50 fs-50 fw-100 text-center">Crea Il Tuo Account</header>
 
         <div class="header-form"><i class="fa fa-lock"></i> INFORMAZIONI ACCESSO</div>

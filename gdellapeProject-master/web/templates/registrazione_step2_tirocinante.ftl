@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <#include"importCss.ftl">
+    <#include "importCss.ftl">
 
     <!-- PAGE LEVEL SCRIPTS -->
     <link href="/templates/css/internshiptutor.css" rel="stylesheet" type="text/css">
@@ -20,9 +20,9 @@
         <div id="Tirocinante" class="header-form mb-30"><i class="fa fa-user"></i> INFORMAZIONI
             PERSONALI TIROCINANTE
         </div>
-        <fieldset name="step-1">
+        <fieldset name="step-1" class="d-none">
             <input type="hidden" name="Email" value=${Email}>
-            <input type="hidden" name="Password" value=${Password}>
+            <input type="password" class="d-none" name="Password" value=${Password}>
             <input type="hidden" name="Tipologia" value="Tirocinante">
         </fieldset>
         <fieldset name="Tirocinante">
@@ -210,9 +210,11 @@
             <button type="submit" form="form_registrazione" class="btn btn-success btn-lg pull-right float-right"><i
                     class="fa fa-check"></i> Crea il tuo Account
             </button>
-            <button type="reset" form="form_registrazione" class="btn btn-red btn-lg pull-right float-left"><i
+            <a href="/registration">
+            <button type="button" form="form_registrazione" class="btn btn-red btn-lg pull-right float-left"><i
                     class="fa fa-times"></i> Annulla
             </button>
+            </a>
         </footer>
 
     </form>

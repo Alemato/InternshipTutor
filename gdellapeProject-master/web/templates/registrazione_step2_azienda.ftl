@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Registrazione - Parte 2</title>
 
-    <#include"importCss.ftl">
+    <#include "importCss.ftl">
     <!-- PAGE LEVEL SCRIPTS -->
     <link href="/templates/css/header-1.css" rel="stylesheet" type="text/css"/>
     <link href="/templates/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
@@ -20,16 +20,16 @@
         <div id="Ente-Azienda" class="header-form mb-30"><i class="fa fa-balance-scale"></i>&nbsp; INFORMAZIONI ENTE /
             AZIENDA
         </div>
-        <fieldset name="step-1">
+        <fieldset name="step-1" class="d-none">
             <input type="hidden" name="Email" value=${Email}>
-            <input type="hidden" name="Password" value=${Password}>
+            <input type="password" class="d-none" name="Password" value=${Password}>
             <input type="hidden" name="Tipologia" value="Ente-Azienda">
         </fieldset>
         <fieldset name="Ente-Azienda">
 
             <div class="row">
                 <div class="col-md-auto mt-6">
-                    <h4>L’Ente/Azienda:&nbsp;</h4>
+                    <h4>L&rsquo;Ente/Azienda:&nbsp;</h4>
                 </div>
                 <div class="col">
                     <label class="input">
@@ -126,9 +126,11 @@
             <button type="submit" form="form_registrazione" class="btn btn-success btn-lg pull-right float-right"><i
                     class="fa fa-check"></i> Crea il tuo Account
             </button>
+            <a href="/registration">
             <button type="reset" form="form_registrazione" class="btn btn-red btn-lg pull-right float-left"><i
                     class="fa fa-times"></i> Annulla
             </button>
+            </a>
         </footer>
     </form>
 </div>

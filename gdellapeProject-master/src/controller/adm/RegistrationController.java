@@ -52,58 +52,62 @@ public class RegistrationController extends HttpServlet  {
         protected void Registration(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException,DaoException {
             logged(request, response);
             AccountEsistente(request, response);
-            String tipo = (String)request.getParameter("Tipologia");
+            if (request.getParameterMap().containsKey("Tipologia")) {
 
-
-
-            if(tipo.equals("Tirocinante")) {
-                String nome = request.getParameter("Nome");
-                if (nome == null)
-                {
-                    halfRegistration(request, response);
-                }
-                else
+                String tipo = (String)request.getParameter("Tipologia");
+                if(tipo.equals("Tirocinante")) {
+                    String nome = request.getParameter("Nome");
+                    if (nome == null)
                     {
-                    registrationTirocinante(request,response);
+                        halfRegistration(request, response);
                     }
-            }
-            if(tipo.equals("Ente-Azienda"))
-            {
-                String azienda = request.getParameter("NomeAzienda");
-
-                if (azienda == null) {
-                    halfRegistration(request, response);
-                } else {
-                    registrationAzienda(request, response);
-
+                    else
+                    {
+                        registrationTirocinante(request,response);
+                    }
                 }
+                if(tipo.equals("Ente-Azienda"))
+                {
+                    String azienda = request.getParameter("NomeAzienda");
+
+                    if (azienda == null) {
+                        halfRegistration(request, response);
+                    } else {
+                        registrationAzienda(request, response);
+
+                    }
+                }
+            }else {
+                TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
             }
-            else{
-            }
-
-
-
-
         }
 
 
         protected void halfRegistration(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException {
-            String email = request.getParameter("Email");
-            String password = request.getParameter("Password");
+            if (request.getParameterMap().containsKey("Email") && request.getParameterMap().containsKey("Password") && request.getParameterMap().containsKey("Tipologia")) {
+                String email = request.getParameter("Email");
+                String password = request.getParameter("Password");
+                String type = request.getParameter("Tipologia");
 
-           //farei un check dei campi tipo validazione mail poi se e le password sono uguali ed se ha messo il tipo di account
-            if (email.isEmpty() || password.isEmpty()) {
-                //errore
+                datamodel.put("Email", email);
+                datamodel.put("Password", password);
+
+                if (type.equals("Tirocinante")) {
+                    TemplateController.process("registrazione_step2_tirocinante.ftl", datamodel, response, getServletContext());
+                }
+                if(type.equals("Ente-Azienda")){
+                    TemplateController.process("registrazione_step2_azienda.ftl", datamodel, response, getServletContext());
+                }
+            }else {
+                //Errore se non esistono Email,Password e Tipologia
             }
-            datamodel.put("Email", email);
-            datamodel.put("Password", password);
-            String type = request.getParameter("Tipologia");
-            if (type.equals("Tirocinante")) {
-                TemplateController.process("registrazione_step2_tirocinante.ftl", datamodel, response, getServletContext());
-            }
-            if(type.equals("Ente-azienda")){
-                TemplateController.process("registrazione_step2_azienda.ftl", datamodel, response, getServletContext());
-            }
+
+
+//           //farei un check dei campi tipo validazione mail poi se e le password sono uguali ed se ha messo il tipo di account
+//            if (email.isEmpty() || password.isEmpty()) {
+//                //errore
+//            }
+
         }
 
         protected void registrationAzienda(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
