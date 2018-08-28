@@ -33,7 +33,7 @@
     </section>
 
     <!-- SECTION CENTER -->
-    <section class="section-sm centrale border-top-section pl-20 pr-20">
+    <section id="contenuto-lista-tutoraggi" class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container p-0">
             <h2 class="fw-100 mb-5">Lista delle Offerte di tirocinio disponibili</h2>
             <h5>Questo canale raccoglie le offerte di tirocinio per studenti da parte di azende convenzionate con il
@@ -315,5 +315,6 @@
 
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
+<script src="templates/js/internshiptutor.js"></script>
 </body>
 </html>

@@ -1,4 +1,23 @@
 jQuery(window).ready(function () {
+
+    if(jQuery('#contenuto-lista-tutoraggi').length > 0){
+        $("#querystring ,#querystring-sm").css("display", "none");
+        console.log("display none");
+        $("#filtra, #filtra-sm").click(function () {
+            console.log("click");
+            if ($(this).hasClass("fa-plus-circle")) {
+                $("#filtra.fa-plus-circle,#filtra-sm.fa-plus-circle ").removeClass("fa-plus-circle").addClass("fa-minus-circle");
+                $("#querystring,#querystring-sm").fadeIn("slow");
+            }
+            else {
+                $("#filtra.fa-minus-circle,#filtra-sm.fa-minus-circle").removeClass("fa-minus-circle").addClass("fa-plus-circle");
+                $("#querystring, #querystring-sm").fadeOut("slow");
+            }
+        });
+
+    }
+
+
     if(jQuery('#form_registrazione').length > 0) {
 
         $("#Tipologia").change(function () {
