@@ -51,6 +51,17 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>controller.adm.LogoutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
         <servlet-name>index</servlet-name>
         <servlet-class>controller.adm.AccountController</servlet-class>
     </servlet>
@@ -97,7 +108,7 @@
 
     <servlet>
         <servlet-name>prove</servlet-name>
-        <servlet-class>controller.BackEndController</servlet-class>
+        <servlet-class>controller.adm.BackEndController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>prove</servlet-name>
@@ -137,6 +148,16 @@
         <servlet-name>SchedaAzienda</servlet-name>
         <url-pattern>/schedaazienda</url-pattern>
         <url-pattern>/SchedaAzienda</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>myaccount</servlet-name>
+        <servlet-class>controller.adm.BackEndController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>myaccount</servlet-name>
+        <url-pattern>/account</url-pattern>
+
     </servlet-mapping>
 
 
@@ -199,17 +220,7 @@
 
 
 
-    <!-- Servlet di logout -->
-    <servlet>
-        <servlet-name>Logout</servlet-name>
-        <servlet-class>controller.adm.Logout</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Logout</servlet-name>
-        <url-pattern>/Logout</url-pattern>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-    <!-- Fine Servlet di logout -->
+
 
     <!-- Servlet di ProfileManager -->
     <servlet>

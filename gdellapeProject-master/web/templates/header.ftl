@@ -14,10 +14,10 @@
                                 <li><a tabindex="-1" href="#"><i class="fa fa-history"></i> I MIEI
                                     TIROCINI</a></li>
                                 <li class="divider"></li>
-                                <li><a tabindex="-1" href="#"><i class="fa fa-cog"></i> IMPOSTAZIONI
+                                <li><a tabindex="-1" href="/account"><i class="fa fa-cog"></i> IMPOSTAZIONI
                                     DELL'ACCOUNT </a></li>
                                 <li class="divider"></li>
-                                <li><a tabindex="-1" href="#"><i class="glyphicon glyphicon-off"></i> logout
+                                <li><a tabindex="-1" href="/logout"><i class="glyphicon glyphicon-off"></i> logout
                                 </a></li>
                             </ul>
 
@@ -32,7 +32,7 @@
                     <#else>
                     <li class="hidden-xs-down" style="border-left: rgba(255,255,255,0.1) 1px solid;"><a href="/login">LOGIN</a></li>
 
-                    <li class="hidden-xs-down"><a href="registrazione.html">REGISTRAZIONE</a></li>
+                    <li class="hidden-xs-down"><a href="/registration">REGISTRAZIONE</a></li>
                     </ul>
                     </#if>
 

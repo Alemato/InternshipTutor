@@ -52,6 +52,8 @@ public class LoginController extends HttpServlet {
             String Mail = request.getParameter("Email");
             String pass = request.getParameter("Password");
 
+
+
             if (session.isAccount(Mail)) {
                 UserDaoImp dao = new UserDaoImp();
                 User user = dao.getUserByMail(Mail);
@@ -78,19 +80,15 @@ public class LoginController extends HttpServlet {
                             break;
 
                     }
-                    //login con successo
-                   try {
-                       RequestDispatcher rd = request.getRequestDispatcher("/Home");
-                       rd.include(request, response);
-
-                   }catch (Exception e){
+                    try {
+                        response.sendRedirect("/home");
+                    }catch (IOException e){
                         e.printStackTrace();
-                   }
+                    }
 
+                }else{TemplateController.process("login.ftl", datamodel, response, getServletContext());}
 
-
-                }
-            }
+            }else{TemplateController.process("login.ftl", datamodel, response, getServletContext());}
 
             String s = (String)request.getSession().getAttribute("Tipo");
             System.out.println(s);

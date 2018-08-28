@@ -66,7 +66,8 @@ public class SingSessionContoller {
     }
 
 
-    public void destroy(HttpSession session) {
+    public void destroy(HttpServletRequest request) {
+        HttpSession session= request.getSession();
         session.invalidate();
 
 
@@ -132,6 +133,7 @@ public class SingSessionContoller {
     }
     public boolean login(String mail , String password) throws DaoException{
         UserDaoImp dao = new UserDaoImp();
+
         User user = dao.getUserByMail(mail);
         if(user.getPassword().equals(password)){
             return true;

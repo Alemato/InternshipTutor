@@ -55,6 +55,7 @@ public class RegistrationController extends HttpServlet  {
             String tipo = (String)request.getParameter("Tipologia");
 
 
+
             if(tipo.equals("Tirocinante")) {
                 String nome = request.getParameter("Nome");
                 if (nome == null)
@@ -74,6 +75,7 @@ public class RegistrationController extends HttpServlet  {
                     halfRegistration(request, response);
                 } else {
                     registrationAzienda(request, response);
+
                 }
             }
             else{
@@ -136,6 +138,8 @@ public class RegistrationController extends HttpServlet  {
 
                 daoAzienda.setRegisterazienda(azienda, userconid);
                 daoAzienda.destroy();
+
+                response.sendRedirect("/home");
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -255,6 +259,7 @@ public class RegistrationController extends HttpServlet  {
 
             daotr.setTirocinante(tirocinante);
             daotr.destroy();
+            response.sendRedirect("/home");
         } catch (Exception e) {
             e.printStackTrace();
         }

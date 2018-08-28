@@ -4,121 +4,20 @@
     <meta charset="UTF-8">
     <title>Il mio Account</title>
 
-    <!-- mobile settings -->
-    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
-    <!--[if IE]>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-
-    <!-- WEB FONTS : use %7C instead of | (pipe) -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons%7COpen+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700"
-          rel="stylesheet" type="text/css"/>
-
-    <!-- CORE CSS -->
-    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-    <!-- THEME CSS -->
-    <link href="css/essentials.css" rel="stylesheet" type="text/css"/>
-    <link href="css/layout.css" rel="stylesheet" type="text/css"/>
+    <#include "importCss.ftl">
 
     <!-- PAGE LEVEL SCRIPTS -->
-    <link href="css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="/templates/css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="/templates/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="/templates/css/internshiptutor.css" rel="stylesheet" type="text/css">
 
 </head>
 <body class="smoothscroll enable-animation">
 <!-- wrapper -->
 <div id="wrapper">
-    <div id="header" class="navbar-toggleable-md  shadow-after-3 clearfix position-fixed">
-        <!-- TOP BAR-->
-        <div id="topBar" class="dark sticky">
-            <div class="container">
-
-                <!-- right -->
-                <ul class="top-links list-inline float-right has-topBar">
-                    <li>
-                        <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#"><i
-                                class="fa fa-user hidden-xs-down"></i> IL MIO ACCOUNT </a>
-                        <ul class="dropdown-menu float-right has-topBar">
-                            <li><a tabindex="-1" href="#"><i class="fa fa-history"></i> I MIEI
-                                TIROCINI</a></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" href="#"><i class="fa fa-cog"></i> IMPOSTAZIONI
-                                DELL'ACCOUNT </a></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" href="#"><i class="glyphicon glyphicon-off"></i> logout
-                            </a></li>
-                        </ul>
-                    </li>
-                    <li class="hidden-xs-down"><a href="#">LOGIN</a></li>
-                    <li class="hidden-xs-down"><a href="registrazione.html">REGISTRAZIONE</a></li>
-                </ul>
-
-                <!-- left -->
-                <ul class="top-links list-inline has-topBar">
-                    <li class="text-welcome hidden-xs-down p-10">Benvenuto, <strong>Mario Rossi</strong></li>
-                </ul>
-
-            </div>
-        </div>
-        <!-- /TOP BAR-->
-
-
-        <header id="topNav">
-            <div class="container">
-                <!-- Mobile Menu Button -->
-                <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-
-
-                <!-- Logo -->
-                <a class="logo float-left mb-5 mr-10scripts.jsscripts.js" href="index.html">
-                    <img src="imgs/interns.jpg" alt=""/>
-                </a>
-
-                <div class="navbar-collapse collapse nav-main-collapse submenu-dark">
-                    <nav class="nav-main">
-                        <ul id="topMain" class="nav nav-pills nav-main">
-                            <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="index.html">
-                                    HOME
-                                </a>
-                            </li>
-                            <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="offerte-tutoraggi.html">
-                                    LISTA OFFERTE TUTORAGGI
-                                </a>
-                            </li>
-                            <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="lista-convenzioni.html">
-                                    LISTA CONVENZIONI
-                                </a>
-                            </li>
-                            <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="informazioni.html">
-                                    INFORMAZIONI
-                                </a>
-                            </li>
-                            <form class="d-inline-block col-lg-12 col-xl-4 mb-lg-2">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" aria-label=""
-                                           placeholder="Cerca nell'intero del sito">
-                                    <span class="input-group-btn">
-                                            <button class="btn btn-primary material-ico" type="submit">
-                                                <i class="material-icons">search</i>
-                                            </button>
-                                        </span>
-                                </div>
-                            </form>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-    </div>
+    <#include "header.ftl">
     <section class="page-header page-header-md parallax parallax-3 mt-130"
-             style="background-image:url('imgs/imgpattern.jpg')">
+             style="background-image:url('/templates/imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
         <div class="container">
@@ -127,7 +26,7 @@
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/home">Home</a></li>
                 <li>Il mio account</li>
             </ol><!-- /breadcrumbs -->
 
@@ -140,7 +39,7 @@
                 <div class="col-12 col-lg-4 mb-15">
                 <a href="impostazione-account-tirocinante.html">
                     <div class="account-settings-item account-settings d-flex">
-                        <img src="imgs/sign-in-lock.png" class="h-90 float-left m-0">
+                        <img src="/templates/imgs/sign-in-lock.png" class="h-90 float-left m-0">
                         <div class="ml-10 mt-5 float-right">
                             <h4 class="Raleway text-uppercase fw-700 mb-5">Impostazioni Accout</h4>
                             <h6>Modifica il login, il nome e la password e tutti i tuo dati.</h6>
@@ -151,7 +50,7 @@
                 <div class="col-12 col-lg-4 mb-15">
                 <a href="tirocinio-tirocinante.html">
                     <div class="account-settings account-settings-item d-flex">
-                        <img src="imgs/internship-icon.png" class="h-90 w-90 float-left">
+                        <img src="/templates/imgs/internship-icon.png" class="h-90 w-90 float-left">
                         <div class="ml-10 mt-5 float-right">
                             <h4 class="Raleway text-uppercase fw-700 mb-5">Gestione Tirocinio</h4>
                             <h6>Gestione, visualizzazione stato richiesta del tirocinio scelto.</h6>
@@ -162,7 +61,7 @@
                 <div class="col-12 col-lg-4 mb-15">
                 <a href="moduli-tirocinante.html">
                     <div class="account-settings account-settings-item d-flex">
-                        <img src="imgs/forms.png" class="h-90 float-left mb-5 mr-10">
+                        <img src="/templates/imgs/forms.png" class="h-90 float-left mb-5 mr-10">
                         <div class="ml-10 mt-5 float-right">
                             <h4 class="Raleway text-uppercase fw-700 mb-5">Modulistica</h4>
                             <h6>Richiedi e visualizza i moduli necessari per iter burocratico</h6>
@@ -287,11 +186,8 @@
 
 
 <!-- JAVASCRIPT FILES -->
-<script>var plugin_path = 'plugins/';</script>
-<script src="plugins/jquery/jquery-3.3.1.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="plugins/bootstrap/js/bootstrap.js"></script>
-<script src="js/internshiptutor.js"></script>
+<#include "importScript.ftl">
+<script src="/templates/js/internshiptutor.js"></script>
 
 </body>
 </html>
