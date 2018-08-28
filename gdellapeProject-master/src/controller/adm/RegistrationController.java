@@ -79,7 +79,6 @@ public class RegistrationController extends HttpServlet  {
                 }
             }
             else{
-                //errore
             }
 
 
@@ -101,7 +100,8 @@ public class RegistrationController extends HttpServlet  {
             String type = request.getParameter("Tipologia");
             if (type.equals("Tirocinante")) {
                 TemplateController.process("registrazione_step2_tirocinante.ftl", datamodel, response, getServletContext());
-            } else {
+            }
+            if(type.equals("Ente-azienda")){
                 TemplateController.process("registrazione_step2_azienda.ftl", datamodel, response, getServletContext());
             }
         }
