@@ -20,12 +20,31 @@ public class Tirocinante {
     private String ScuolaAltro;
     private String DottoratoDiRicerca;
     private Boolean Handicap;
-
-
     private Integer User;
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
+    public Tirocinante() {
+        this.IDTirocinante = 0;
+        this.nome = null;
+        Cognome = null;
+        LuogoDiNascita = null;
+        LuogoDiResidenza = null;
+        ProvinciaDiNascita = null;
+        DataDiNascita = null;
+        ProvinciaDiResidenza = null;
+        CodiceFiscale = null;
+        Telefono = null;
+        CorsoDiLaurea = null;
+        DiplomaUniversitario = null;
+        LaureatoUniversitario = null;
+        ScuolaAltro = null;
+        DottoratoDiRicerca = null;
+        Handicap = null;
+        User = 0;
+        CreateDate = null;
+        UpdateDate = null;
+    }
 
     public Integer getIDTirocinante() {
         return IDTirocinante;

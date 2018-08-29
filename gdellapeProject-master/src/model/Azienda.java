@@ -1,8 +1,11 @@
 package model;
 
+import dao.data.DaoData;
+import dao.exception.DaoException;
 
 import java.sql.Timestamp;
 import java.sql.Date;
+
 
 public class Azienda {
 
@@ -27,6 +30,28 @@ public class Azienda {
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
+    public Azienda() {
+        this.IDAzienda = 0;
+        this.RagioneSociale = null;
+        this.IndirizzoSedeLegale = null;
+        this.CFiscalePIva = null;
+        this.NomeLegaleRappresentante = null;
+        this.CognomeLegaleRappresentante = null;
+        this.NomeResponsabileConvenzione = null;
+        this.CognomeResponsabileConvenzione = null;
+        this.TelefonoResponsabileConvenzione = null;
+        this.EmailResponsabileConvenzione = null;
+        this.PathPDFConvenzione = null;
+        this.DurataConvenzione = null;
+        this.ForoControversia = null;
+        this.DataConvenzione = null;
+        this.Attivo = false;
+        this.Descrizione = null;
+        this.Link = null;
+        this.User = 0;
+        this.CreateDate = null;
+        this.UpdateDate = null;
+    }
 
     // GET DATA
     public Integer getIDAzienda() {

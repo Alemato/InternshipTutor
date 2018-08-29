@@ -12,6 +12,16 @@ public class TutoreUniversitario {
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
+    public TutoreUniversitario() {
+        this.IDTutoreUni = 0;
+        Nome = null;
+        Cognome = null;
+        Telefono = null;
+        Email = null;
+        OffTirocinio = 0;
+        CreateDate = null;
+        UpdateDate = null;
+    }
 
     public Integer getIDTutoreUni() {
         return IDTutoreUni;

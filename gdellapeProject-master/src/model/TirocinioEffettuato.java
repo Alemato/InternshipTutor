@@ -15,7 +15,17 @@ public class TirocinioEffettuato {
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
-
+    public TirocinioEffettuato() {
+        this.IDTirocinioEffettuato = 0;
+        DataConsegnaModulo = null;
+        PeriodoEffettivoInizio = null;
+        PeriodoEffettivoFine = null;
+        RisultatoConseguito = null;
+        DescrizioneAttivitaSvolta = null;
+        RicTirocinio = 0;
+        CreateDate = null;
+        UpdateDate = null;
+    }
 
     public Integer getIDTirocinioEffettuato() {
         return IDTirocinioEffettuato;

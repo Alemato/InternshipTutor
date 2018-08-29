@@ -9,6 +9,14 @@ public class Admin {
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
+    public Admin() {
+        this.IDadmin = 0;
+        Nome = null;
+        Cognome = null;
+        User = 0;
+        CreateDate = null;
+        UpdateDate = null;
+    }
 
     public Integer getIDadmin() {
         return IDadmin;

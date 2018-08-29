@@ -35,8 +35,34 @@ public class OffertaTirocinio {
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
-
-
+    public OffertaTirocinio() {
+        this.IDOffertaTirocinio = 0;
+        LuogoEffettuazione = null;
+        Titolo = null;
+        DescrizioneBreve = null;
+        Descrizione = null;
+        Orario = null;
+        DurataOra = null;
+        DurataMesi = null;
+        PeriodoInizio = null;
+        PeriodoFine = null;
+        Modalita = null;
+        Obbiettivi = null;
+        Rimborsi = null;
+        Facilitazioni = null;
+        AziendaOspitante = null;
+        CodiceTirocinio = 0;
+        SettoreInserimento = null;
+        TempoAccessoLocaliAziendali = null;
+        NomeTutoreAziendale = null;
+        CognomeTutoreAziendale = null;
+        EmailTutoreAziendale = null;
+        TelefonoTutoreAzindale = null;
+        Azienda = 0;
+        TutoreUniversitario = 0;
+        CreateDate = null;
+        UpdateDate = null;
+    }
 
     public Timestamp getUpdateDate() {
         return UpdateDate;

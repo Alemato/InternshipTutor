@@ -11,6 +11,16 @@ public class RichiestaTirocinio {
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
+    public RichiestaTirocinio() {
+        this.IDricTironinio = 0;
+        DurataOre = 0;
+        this.CFU = 0;
+        OffertaTirocinio = 0;
+        Tirocinante = 0;
+        CreateDate = null;
+        UpdateDate = null;
+    }
+
     public Integer getOffertaTirocinio() {
         return OffertaTirocinio;
     }

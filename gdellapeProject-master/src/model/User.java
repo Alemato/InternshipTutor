@@ -6,7 +6,6 @@ import java.sql.Timestamp;
 
 public class User {
 
-
     private Integer IDUser ;
     private String Email ;
     private String Password;
@@ -14,7 +13,14 @@ public class User {
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
-
+    public User() {
+        this.IDUser = 0;
+        Email = null;
+        Password = null;
+        TipologiaAccount = 0;
+        CreateDate = null;
+        UpdateDate = null;
+    }
 
     public Integer getIDUser() {
         return IDUser;
