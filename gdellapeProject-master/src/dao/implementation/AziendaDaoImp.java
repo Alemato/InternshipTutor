@@ -23,6 +23,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement selectLastFiveConvenzioni;
     private PreparedStatement selectAziendaByIDuser;
     private PreparedStatement regAzienda;
+    private PreparedStatement updateAzienda;
 
 
     @Override
@@ -52,6 +53,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                     "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
                     "EmailResponsabileConvenzione, PathPDFConvenzione,DurataConvenzione,ForoControversia,DataConvenzione, Attivo, Descrizione, Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
+            this.updateAzienda = connection.prepareStatement("UPDATE azienda SET RagioneSociale = ? ,IndirizzoSedeLegale = ? ,CFiscalePIva = ?,NomeLegaleRappresentante = ?," +
+                    "CognomeLegaleRappresentante = ? ,NomeResponsabileConvenzione = ?,CognomeResponsabileConvenzione = ? ,TelefonoResponsabileConvenzione = ?," +
+                    "EmailResponsabileConvenzione = ?,ForoControversia = ?, Descrizione = ?, Link = ? WHERE IDAzienda = ? ");
+
             this.regAzienda = connection.prepareStatement("INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
                     "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
                     "EmailResponsabileConvenzione,ForoControversia, Descrizione, Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -63,7 +68,36 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
     //ciao ciao
-    public void setAzienda(Azienda azienda, User user) throws DaoException {
+    public void updateAzienda(Azienda azienda, User user) throws DaoException {
+
+        try {
+            this.init();
+            this.updateAzienda.setString(1, azienda.getRagioneSociale());
+            this.updateAzienda.setString(2, azienda.getIndirizzoSedeLegale());
+            this.updateAzienda.setString(3, azienda.getCFiscalePIva());
+            this.updateAzienda.setString(4, azienda.getNomeLegaleRappresentante());
+            this.updateAzienda.setString(5, azienda.getCognomeLegaleRappresentante());
+            this.updateAzienda.setString(6, azienda.getNomeResponsabileConvenzione());
+            this.updateAzienda.setString(7, azienda.getCognomeResponsabileConvenzione());
+            this.updateAzienda.setString(8, azienda.getTelefonoResponsabileConvenzione());
+            this.updateAzienda.setString(9, azienda.getEmailResponsabileConvenzione());
+
+
+
+            this.updateAzienda.setString(10, azienda.getForoControversia());
+
+
+
+            this.updateAzienda.setString(15, azienda.getDescrizione());
+            this.updateAzienda.setString(16, azienda.getLink());
+            this.updateAzienda.setString();
+            this.updateAzienda.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Errore esecuzione update", e);
+        }
+    }
+
+    public void setAzienda(Azienda azienda) throws DaoException {
 
         try {
             this.init();
@@ -78,7 +112,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.insertAzienda.setString(9, azienda.getEmailResponsabileConvenzione());
             this.insertAzienda.setString(10, azienda.getPathPDFConvenzione());
 
-           this.insertAzienda.setInt(11, azienda.getDurataConvenzione());
+            this.insertAzienda.setInt(11, azienda.getDurataConvenzione());
 
             this.insertAzienda.setString(12, azienda.getForoControversia());
             this.insertAzienda.setDate(13, azienda.getDataConvenzione());
@@ -86,12 +120,13 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
 
             this.insertAzienda.setString(15, azienda.getDescrizione());
             this.insertAzienda.setString(16, azienda.getLink());
-            this.insertAzienda.setInt(17, user.getIDUser());
+
             this.insertAzienda.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Errore esecuzione update", e);
         }
     }
+
 
 
     public void setRegisterazienda(Azienda azienda, User user) throws DaoException {
