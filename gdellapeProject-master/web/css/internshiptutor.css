@@ -52,7 +52,19 @@ section.border-top-section, .border-top-section {
     line-height: 24px;
 }
 
-/* Registrazione */
+h2 a {
+    color: #3072e0;
+}
+
+ul.blog-post-info{
+    font-size: 16px !important;
+}
+
+ul.blog-post-info li>a, ul.blog-post-info li i{
+    color: #3072e0 !important;
+}
+
+    /* Registrazione */
 
 .line-height-normal {
     line-height: normal !important;

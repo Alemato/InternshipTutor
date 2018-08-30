@@ -58,7 +58,7 @@
 
             <!-- Logo -->
             <a class="logo float-left mb-5 mr-10scripts.jsscripts.js" href="/home">
-                <img src="/templates/imgs/interns.jpg" alt=""/>
+                <img src="/imgs/interns.jpg" alt=""/>
             </a>
 
             <div class="navbar-collapse collapse nav-main-collapse submenu-dark">
