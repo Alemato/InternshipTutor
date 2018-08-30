@@ -159,6 +159,15 @@
         <url-pattern>/account</url-pattern>
 
     </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateAzienda</servlet-name>
+        <servlet-class>controller.adm.Azienda.ImpostazioneAccountAziendaleController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateAzienda</servlet-name>
+        <url-pattern>/UpdateAzienda</url-pattern>
+
+    </servlet-mapping>
 
 
 
@@ -181,7 +190,9 @@
 
 
 
-        <!-- Init Servlet -->
+
+
+    <!-- Init Servlet -->
     <welcome-file-list>
         <welcome-file>ConnectionFactory</welcome-file>
     </welcome-file-list>

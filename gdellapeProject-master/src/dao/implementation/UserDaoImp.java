@@ -19,6 +19,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement selectUserById;
     private PreparedStatement insertUser;
     private PreparedStatement selectAllUser;
+    private  PreparedStatement updateUser;
 
 
     @Override
@@ -34,6 +35,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
             this.insertUser = connection.prepareStatement("INSERT INTO user(Email,Password,TipologiaAccount) VALUES (?,?,?)");
 
             this.selectAllUser = connection.prepareStatement("SELECT * FROM user");
+            this.updateUser = connection.prepareStatement("UPDATE user SET Email = ?, Password = ? WHERE IDuser = ?");
 
         } catch (SQLException ex) {
          throw new DaoException("Error:PrepareStatement error", ex);
@@ -134,6 +136,22 @@ public class UserDaoImp extends DaoDataMySQLImpl {
 
         }
     }
+    public void update(User user) throws DaoException{
+        try{
+            this.init();
+            this.updateUser.setString(1,user.getEmail());
+            this.updateUser.setString(2,user.getPassword());
+            this.updateUser.setInt(3,user.getIDUser());
+            this.updateUser.executeUpdate();
+
+
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+
+        }
+    }
 
 
 
@@ -144,6 +162,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
             this.selectUserByEmail.close();
             this.insertUser.close();
             this.selectUserById.close();
+            this.updateUser.close();
 
 
             super.destroy();
