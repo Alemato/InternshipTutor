@@ -33,29 +33,27 @@ public class HomeController extends baseController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         super.init(request,response);
-        OffTir(request, response);
+        //OffTir(request, response);
         //Convenz(request, response);
+        LastFiveOfferte(request,response);
         LastFiveConvenz(request, response);
-
-
-
         TemplateController.process("index.ftl", datamodel, response, getServletContext());
 
 
     }
-    protected void OffTir (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        try {
-            OffertaTirocinioDaoImp daooff = new OffertaTirocinioDaoImp();
-            List<OffertaTirocinio> OfferteTirocini = daooff.getAllOffertatr();
-            daooff.destroy();
-            datamodel.put("OfferteTirocini",OfferteTirocini);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
-    }
+//    protected void OffTir (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//
+//        try {
+//            OffertaTirocinioDaoImp daooff = new OffertaTirocinioDaoImp();
+//            List<OffertaTirocinio> OfferteTirocini = daooff.getAllOffertatr();
+//            daooff.destroy();
+//            datamodel.put("OfferteTirocini",OfferteTirocini);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//
+//        }
+//    }
 
     /*protected void Convenz (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -73,6 +71,18 @@ public class HomeController extends baseController {
 
         }
     }*/
+
+    protected void LastFiveOfferte (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try{
+            OffertaTirocinioDaoImp offerta = new OffertaTirocinioDaoImp();
+            List<OffertaTirocinio> LastFiveOfferta = offerta.getLastFiveOfferte();
+            offerta.destroy();
+            datamodel.put("LastFiveOfferta",LastFiveOfferta);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
 
     protected void LastFiveConvenz (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
