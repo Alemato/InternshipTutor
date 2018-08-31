@@ -179,40 +179,40 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
     }
 
     public List<OffertaTirocinio> getLastFiveOfferte() throws DaoException{
-        List<OffertaTirocinio> Offerte = new ArrayList<OffertaTirocinio>();
-        OffertaTirocinio offerte = new OffertaTirocinio();
+        List<OffertaTirocinio> offerte = new ArrayList<OffertaTirocinio>();
         try {
             this.init();
             ResultSet resultSet = selectLastFiveOfferte.executeQuery();
             while (resultSet.next()){
-                offerte.setIDOffertaTirocinio(resultSet.getInt("IDOffertaTirocinio"));
-                offerte.setLuogoEffettuazione(resultSet.getString("LuogoEffettuazione"));
-                offerte.setTitolo(resultSet.getString("Titolo"));
-                offerte.setDescrizioneBreve(resultSet.getString("DescrizioneBreve"));
-                offerte.setDescrizione(resultSet.getString("Descrizione"));
-                offerte.setOrario(resultSet.getString("Orari"));
-                offerte.setDurataOra(resultSet.getInt("DurataOre"));
-                offerte.setDurataMesi(resultSet.getInt("DurataMesi"));
-                offerte.setPeriodoInizio(resultSet.getDate("PeriodoInizio"));
-                offerte.setPeriodoFine(resultSet.getDate("PeriodoFine"));
-                offerte.setModalita(resultSet.getString("Modalita"));
-                offerte.setObbiettivi(resultSet.getString("Obbiettivi"));
-                offerte.setRimborsi(resultSet.getString("Rimborsi"));
-                offerte.setFacilitazioni(resultSet.getString("Facilitazioni"));
-                offerte.setAziendaOspitante(resultSet.getString("AziendaOspitante"));
-                offerte.setCodiceTirocinio(resultSet.getInt("CodIdentTirocinio"));
-                offerte.setSettoreInserimento(resultSet.getString("SettoreInserimento"));
-                offerte.setTempoAccessoLocaliAziendali(resultSet.getString("TempoAccessoLocaliAziendali"));
-                offerte.setNomeTutoreAziendale(resultSet.getString("NomeTutoreAziendale"));
-                offerte.setCognomeTutoreAziendale(resultSet.getString("CognomeTutoreAziendale"));
-                offerte.setTelefonoTutoreAzindale(resultSet.getString("TelefonoTutoreAziendale"));
-                offerte.setEmailTutoreAziendale(resultSet.getString("EmailTutoreAziendale"));
-                offerte.setAzienda(resultSet.getInt("Azienda"));
-                offerte.setTutoreUniversitario(resultSet.getInt("TutoreUniversitario"));
-                offerte.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
-                Offerte.add(offerte);
+                OffertaTirocinio lastfiveOfferte = new OffertaTirocinio();
+                lastfiveOfferte.setIDOffertaTirocinio(resultSet.getInt("IDOffertaTirocinio"));
+                lastfiveOfferte.setLuogoEffettuazione(resultSet.getString("LuogoEffettuazione"));
+                lastfiveOfferte.setTitolo(resultSet.getString("Titolo"));
+                lastfiveOfferte.setDescrizioneBreve(resultSet.getString("DescrizioneBreve"));
+                lastfiveOfferte.setDescrizione(resultSet.getString("Descrizione"));
+                lastfiveOfferte.setOrario(resultSet.getString("Orari"));
+                lastfiveOfferte.setDurataOra(resultSet.getInt("DurataOre"));
+                lastfiveOfferte.setDurataMesi(resultSet.getInt("DurataMesi"));
+                lastfiveOfferte.setPeriodoInizio(resultSet.getDate("PeriodoInizio"));
+                lastfiveOfferte.setPeriodoFine(resultSet.getDate("PeriodoFine"));
+                lastfiveOfferte.setModalita(resultSet.getString("Modalita"));
+                lastfiveOfferte.setObbiettivi(resultSet.getString("Obbiettivi"));
+                lastfiveOfferte.setRimborsi(resultSet.getString("Rimborsi"));
+                lastfiveOfferte.setFacilitazioni(resultSet.getString("Facilitazioni"));
+                lastfiveOfferte.setAziendaOspitante(resultSet.getString("AziendaOspitante"));
+                lastfiveOfferte.setCodiceTirocinio(resultSet.getInt("CodIdentTirocinio"));
+                lastfiveOfferte.setSettoreInserimento(resultSet.getString("SettoreInserimento"));
+                lastfiveOfferte.setTempoAccessoLocaliAziendali(resultSet.getString("TempoAccessoLocaliAziendali"));
+                lastfiveOfferte.setNomeTutoreAziendale(resultSet.getString("NomeTutoreAziendale"));
+                lastfiveOfferte.setCognomeTutoreAziendale(resultSet.getString("CognomeTutoreAziendale"));
+                lastfiveOfferte.setTelefonoTutoreAzindale(resultSet.getString("TelefonoTutoreAziendale"));
+                lastfiveOfferte.setEmailTutoreAziendale(resultSet.getString("EmailTutoreAziendale"));
+                lastfiveOfferte.setAzienda(resultSet.getInt("Azienda"));
+                lastfiveOfferte.setTutoreUniversitario(resultSet.getInt("TutoreUniversitario"));
+                lastfiveOfferte.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
+                offerte.add(lastfiveOfferte);
             }
-            return Offerte;
+            return offerte;
         }catch (SQLException e){
             throw new DaoException("Errore query", e);
         }
