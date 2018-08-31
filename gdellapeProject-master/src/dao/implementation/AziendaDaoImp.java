@@ -68,7 +68,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
     //ciao ciao
-    public void updateAzienda(Azienda azienda, User user) throws DaoException {
+    public void updateAzienda(Azienda azienda) throws DaoException {
 
         try {
             this.init();
@@ -81,16 +81,11 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.updateAzienda.setString(7, azienda.getCognomeResponsabileConvenzione());
             this.updateAzienda.setString(8, azienda.getTelefonoResponsabileConvenzione());
             this.updateAzienda.setString(9, azienda.getEmailResponsabileConvenzione());
-
-
-
             this.updateAzienda.setString(10, azienda.getForoControversia());
+            this.updateAzienda.setString(11, azienda.getDescrizione());
+            this.updateAzienda.setString(12, azienda.getLink());
+            this.updateAzienda.setInt(13,azienda.getIDAzienda());
 
-
-
-            this.updateAzienda.setString(15, azienda.getDescrizione());
-            this.updateAzienda.setString(16, azienda.getLink());
-            this.updateAzienda.setString();
             this.updateAzienda.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Errore esecuzione update", e);

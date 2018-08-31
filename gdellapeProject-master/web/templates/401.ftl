@@ -1,77 +1,52 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Il mio Account</title>
-
+    <title>Accesso Negato</title>
     <#include "importCss.ftl">
-
     <!-- PAGE LEVEL SCRIPTS -->
-    <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="css/internshiptutor.css" rel="stylesheet" type="text/css">
 
 </head>
 <body class="smoothscroll enable-animation">
+
 <!-- wrapper -->
 <div id="wrapper">
-    <#include "header.ftl">
+<#include "header.ftl">
     <section class="page-header page-header-md parallax parallax-3 mt-130"
-             style="background-image:url('/imgs/imgpattern.jpg')">
+             style="background-image:url('imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
         <div class="container">
 
-            <h1>IL MIO ACCOUNT</h1>
+            <h1>ACCESSO NEGATO</h1>
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
-                <li><a href="/home">Home</a></li>
-                <li>Il mio account</li>
+                <li><a href="index.html">Home</a></li>
             </ol><!-- /breadcrumbs -->
 
         </div>
     </section>
 
-    <section class="section-sm centrale border-top-section pl-20 pr-20">
+    <!-- SECTION CENTER -->
+    <section class="section-sm centrale border-top-section">
         <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-12 col-lg-4 mb-15">
-                <a href="impostazione-account-tirocinante.html">
-                    <div class="account-settings-item account-settings d-flex">
-                        <img src="/imgs/sign-in-lock.png" class="h-90 float-left m-0">
-                        <div class="ml-10 mt-5 float-right">
-                            <h4 class="Raleway text-uppercase fw-700 mb-5">Impostazioni Accout</h4>
-                            <h6>Modifica il login, il nome e la password e tutti i tuo dati.</h6>
-                        </div>
-                    </div>
-                </a>
-                </div>
-                <div class="col-12 col-lg-4 mb-15">
-                <a href="tirocinio-tirocinante.html">
-                    <div class="account-settings account-settings-item d-flex">
-                        <img src="/imgs/internship-icon.png" class="h-90 w-90 float-left">
-                        <div class="ml-10 mt-5 float-right">
-                            <h4 class="Raleway text-uppercase fw-700 mb-5">Gestione Tirocinio</h4>
-                            <h6>Gestione, visualizzazione stato richiesta del tirocinio scelto.</h6>
-                        </div>
-                    </div>
-                </a>
-                </div>
-                <div class="col-12 col-lg-4 mb-15">
-                <a href="moduli-tirocinante.html">
-                    <div class="account-settings account-settings-item d-flex">
-                        <img src="/imgs/forms.png" class="h-90 float-left mb-5 mr-10">
-                        <div class="ml-10 mt-5 float-right">
-                            <h4 class="Raleway text-uppercase fw-700 mb-5">Modulistica</h4>
-                            <h6>Richiedi e visualizza i moduli necessari per iter burocratico</h6>
-                        </div>
-                    </div>
-                </a>
-                </div>
-            </div>
+            <h1 class="error-404 mb-15">401</h1>
+            <h1 class="text-center mb-20">Accesso Negato</h1>
+            <p class="fs-20 mb-10">Il server Web (che esegue il sito Web) ha riscontrato una condizione imprevista che
+                gli ha impedito di soddisfare la richiesta da parte del client per l'accesso all'URL richiesto.
+            </p>
+            <p class="fs-20 mb-10">Questo errore può essere risolto solo se si hanno le credenziali di accesso alla risorsa richiesta.
+            </p>
+            <p class="fs-20 mb-10">Contatta gli Amministratori per altre informazioni.</p>
+            <a class="fs-20 font-lato" href="index.html"><i class="glyphicon glyphicon-menu-left mr-10 fs-16"></i> Torna
+                alla Homepage adesso!</a>
         </div>
     </section>
+    <!-- /SECTION CENTER -->
 
     <!-- /FOOTER-->
     <footer id="footer">
@@ -183,11 +158,8 @@
 
 </div>
 
-
-
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
-<script src="/js/internshiptutor.js"></script>
 
 </body>
 </html>

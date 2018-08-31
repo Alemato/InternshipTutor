@@ -1,5 +1,6 @@
 package controller;
 
+import controller.sessionController.SingSessionContoller;
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
 import dao.implementation.TirocinanteDaoImp;
@@ -16,15 +17,6 @@ import java.io.IOException;
 public class SchedaTirocinioController  extends baseController{
 
 
-
-
-
-
-
-
-
-
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -32,6 +24,7 @@ public class SchedaTirocinioController  extends baseController{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         setpage(request, response);
+
            TemplateController.process("scheda-tirocinio.ftl", datamodel, response, getServletContext());
 
     }
@@ -49,6 +42,7 @@ public class SchedaTirocinioController  extends baseController{
             Integer Idoff = Oftr.getTutoreUniversitario();
             TutoreUniversitario tutuni = daotut.getTutoreUniByID(Idoff);
             daotut.destroy();
+
 
             datamodel.put("LuogoEffettuazione", Oftr.getLuogoEffettuazione());
             datamodel.put("Titolo",Oftr.getTitolo());
@@ -86,4 +80,5 @@ public class SchedaTirocinioController  extends baseController{
 
 
     }
+
 }

@@ -15,6 +15,7 @@ import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -54,7 +55,7 @@ public class SingSessionContoller {
 
         } else if (account instanceof Azienda) {
             Azienda azienda = (Azienda) account;
-            session.setAttribute("IDunivoco", azienda.getIDAzienda());
+            session.setAttribute("IDUnivoco", azienda.getIDAzienda());
             session.setAttribute("Tipo", "Azienda");
             session.setAttribute("Nome",azienda.getRagioneSociale());
         }
@@ -98,6 +99,7 @@ public class SingSessionContoller {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                break;
 
 
             case "Azienda":
@@ -188,6 +190,52 @@ public class SingSessionContoller {
         }
         return false;
     }
+   /* non fuziona bo vediamo
+    public User getUser(HttpServletRequest request,HttpServletResponse response)throws DaoException {
+
+
+
+        int IDuser;
+        User user = new User();
+        HttpSession session = getSession(request);
+        String tipo = (String) session.getAttribute("Tipo");
+        Object account = getAccount(request);
+        UserDaoImp dao = new UserDaoImp();
+
+
+        if (tipo.equals("Admin")) {
+
+            Admin admin = (Admin) account;
+            IDuser = admin.getUser();
+
+            user = dao.getUserByid(IDuser);
+            dao.destroy();
+        }
+
+        if (tipo.equals("Azienda")) {
+
+            Azienda azienda = (Azienda) account;
+            IDuser = azienda.getUser();
+
+            user = dao.getUserByid(IDuser);
+            dao.destroy();
+
+        }
+
+        if (tipo.equals("Tirocinante")) {
+
+            Tirocinante tirocinante = (Tirocinante) account;
+            IDuser = tirocinante.getUser();
+
+            user = dao.getUserByid(IDuser);
+            dao.destroy();
+
+
+        }
+        return user;
+
+    }*/
+
 
 
 

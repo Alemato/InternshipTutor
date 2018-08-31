@@ -42,7 +42,7 @@ public class BackEndController extends baseController {
 
 
         }else
-            {TemplateController.process("login.ftl", datamodel, response, getServletContext());}
+            {response.sendRedirect("/login");}
     }
 
 
