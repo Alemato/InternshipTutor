@@ -8,7 +8,7 @@
 <body class="smoothscroll enable-animation">
 <div id="wrapper">
     <#include "header.ftl">
-    <img class="img-fluid mt-140" src="/templates/imgs/internship.jpg">
+    <img class="img-fluid mt-140" src="/imgs/internship.jpg">
 
 
     <!-- SECTION HEADER TITLE-->

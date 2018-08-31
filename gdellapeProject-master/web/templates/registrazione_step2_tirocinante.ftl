@@ -7,7 +7,7 @@
     <#include "importCss.ftl">
 
     <!-- PAGE LEVEL SCRIPTS -->
-    <link href="/templates/css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
 </head>
 <body class="smoothscroll enable-animation">
 

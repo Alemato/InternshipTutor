@@ -90,8 +90,7 @@ public class LoginController extends HttpServlet {
 
             }else{TemplateController.process("login.ftl", datamodel, response, getServletContext());}
 
-            String s = (String)request.getSession().getAttribute("Tipo");
-            System.out.println(s);
+
 
 
 

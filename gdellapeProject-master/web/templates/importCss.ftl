@@ -8,14 +8,14 @@
           rel="stylesheet" type="text/css"/>
 
     <!-- CORE CSS -->
-    <link href="/templates/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
     <!-- THEME CSS -->
-    <link href="/templates/css/essentials.css" rel="stylesheet" type="text/css"/>
-    <link href="/templates/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/essentials.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout.css" rel="stylesheet" type="text/css"/>
 
  <!-- PAGE LEVEL SCRIPTS -->
-    <link href="/templates/css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="/templates/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="/templates/css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
 

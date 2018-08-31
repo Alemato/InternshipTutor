@@ -56,7 +56,7 @@
 
                 <!-- Logo -->
                 <a class="logo float-left" href="index.html">
-                    <img class="img-fluid" src="/templates/imgs/interns.jpg" alt=""/>
+                    <img class="img-fluid" src="/imgs/interns.jpg" alt=""/>
                 </a>
                 <div class="float-right col-10">
                     <nav class="nav-main">
@@ -129,7 +129,7 @@
             <div class="row justify-content-between">
                 <a class=" account-settings" href="impostazione-account.html">
                     <div class="account-settings-item d-flex">
-                        <img src="/templates/imgs/sign-in-lock.png" class="h-90 float-left m-0">
+                        <img src="/imgs/sign-in-lock.png" class="h-90 float-left m-0">
                         <div class="ml-10 mt-5 float-right">
                             <h4 class="Raleway text-uppercase fw-700 mb-5">Impostazioni Accout</h4>
                             <h6>Modifica il login, il nome, la password, ecc.</h6>
@@ -138,7 +138,7 @@
                 </a>
                 <a class=" account-settings" href="documentazione.html">
                     <div class="account-settings-item d-flex">
-                        <img src="/templates/imgs/document-icon.png" class="h-90 w-90 float-left">
+                        <img src="/imgs/document-icon.png" class="h-90 w-90 float-left">
                         <div class="ml-10 mt-5 float-right">
                             <h4 class="Raleway text-uppercase fw-700 mb-5">Documentazione</h4>
                             <h6>Scarica la documentazione precompilata.</h6>
@@ -147,7 +147,7 @@
                 </a>
                 <a class=" account-settings" href="gestione-tirocinio.html">
                     <div class="account-settings-item d-flex">
-                        <img src="/templates/imgs/internship-icon.png" class="h-90 float-left mb-5 mr-10">
+                        <img src="/imgs/internship-icon.png" class="h-90 float-left mb-5 mr-10">
                         <div class="ml-10 mt-5 float-right">
                             <h4 class="Raleway text-uppercase fw-700 mb-5">Gestionio Tirocinio</h4>
                             <h6>Gestionione della richiesta di tirocinio e visualizzazione dei dettagli del tirocinio scelto.</h6>

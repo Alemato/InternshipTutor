@@ -11,7 +11,7 @@
     <#include "header.ftl">
 
     <section class="page-header page-header-md parallax parallax-3 mt-130"
-             style="background-image:url('/templates/imgs/imgpattern.jpg')">
+             style="background-image:url('/imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
         <div class="container">

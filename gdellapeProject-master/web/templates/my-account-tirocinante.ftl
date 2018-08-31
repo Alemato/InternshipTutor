@@ -7,9 +7,9 @@
     <#include "importCss.ftl">
 
     <!-- PAGE LEVEL SCRIPTS -->
-    <link href="/templates/css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="/templates/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="/templates/css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -17,7 +17,7 @@
 <div id="wrapper">
     <#include "header.ftl">
     <section class="page-header page-header-md parallax parallax-3 mt-130"
-             style="background-image:url('/templates/imgs/imgpattern.jpg')">
+             style="background-image:url('/imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
         <div class="container">
@@ -39,7 +39,7 @@
                 <div class="col-12 col-lg-4 mb-15">
                 <a href="impostazione-account-tirocinante.html">
                     <div class="account-settings-item account-settings d-flex">
-                        <img src="/templates/imgs/sign-in-lock.png" class="h-90 float-left m-0">
+                        <img src="/imgs/sign-in-lock.png" class="h-90 float-left m-0">
                         <div class="ml-10 mt-5 float-right">
                             <h4 class="Raleway text-uppercase fw-700 mb-5">Impostazioni Accout</h4>
                             <h6>Modifica il login, il nome e la password e tutti i tuo dati.</h6>
@@ -50,7 +50,7 @@
                 <div class="col-12 col-lg-4 mb-15">
                 <a href="tirocinio-tirocinante.html">
                     <div class="account-settings account-settings-item d-flex">
-                        <img src="/templates/imgs/internship-icon.png" class="h-90 w-90 float-left">
+                        <img src="/imgs/internship-icon.png" class="h-90 w-90 float-left">
                         <div class="ml-10 mt-5 float-right">
                             <h4 class="Raleway text-uppercase fw-700 mb-5">Gestione Tirocinio</h4>
                             <h6>Gestione, visualizzazione stato richiesta del tirocinio scelto.</h6>
@@ -61,7 +61,7 @@
                 <div class="col-12 col-lg-4 mb-15">
                 <a href="moduli-tirocinante.html">
                     <div class="account-settings account-settings-item d-flex">
-                        <img src="/templates/imgs/forms.png" class="h-90 float-left mb-5 mr-10">
+                        <img src="/imgs/forms.png" class="h-90 float-left mb-5 mr-10">
                         <div class="ml-10 mt-5 float-right">
                             <h4 class="Raleway text-uppercase fw-700 mb-5">Modulistica</h4>
                             <h6>Richiedi e visualizza i moduli necessari per iter burocratico</h6>
@@ -187,7 +187,7 @@
 
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
-<script src="/templates/js/internshiptutor.js"></script>
+<script src="/js/internshiptutor.js"></script>
 
 </body>
 </html>

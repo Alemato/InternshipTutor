@@ -6,9 +6,9 @@
 
 <#include "importCss.ftl">
     <!-- PAGE LEVEL SCRIPTS -->
-    <link href="/templates/css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="/templates/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="/templates/css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
