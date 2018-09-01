@@ -8,11 +8,11 @@
 
     <context-param>
 
-    <param-name>data.source</param-name>
+        <param-name>data.source</param-name>
 
-    <param-value>java:comp/env/jdbc/webdb2</param-value>
+        <param-value>java:comp/env/jdbc/webdb2</param-value>
 
-</context-param>
+    </context-param>
 
     <context-param>
         <param-name>uploads.directory</param-name>
@@ -72,9 +72,6 @@
     </servlet-mapping>
 
 
-
-
-
     <servlet>
         <servlet-name>Home</servlet-name>
         <servlet-class>controller.HomeController</servlet-class>
@@ -117,16 +114,14 @@
     </servlet-mapping>
 
     <servlet>
-    <servlet-name>registration</servlet-name>
-    <servlet-class>controller.adm.RegistrationController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>registration</servlet-name>
-<url-pattern>/registration</url-pattern>
-<url-pattern>/Prove/registration</url-pattern>
-</servlet-mapping>
-
-
+        <servlet-name>registration</servlet-name>
+        <servlet-class>controller.adm.RegistrationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>/registration</url-pattern>
+        <url-pattern>/Prove/registration</url-pattern>
+    </servlet-mapping>
 
 
     <servlet>
@@ -170,42 +165,19 @@
     </servlet-mapping>
 
 
-</servlet-mapping>
-<servlet>
-<servlet-name>401</servlet-name>
-<servlet-class>controller.errori.Errore401Controller</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>401</servlet-name>
-<url-pattern>/401</url-pattern>
+    <!--</servlet-mapping>-->
+    <!--<servlet>-->
+    <!--<servlet-name>401</servlet-name>-->
+    <!--<servlet-class>controller.errori.Errore401Controller</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>401</servlet-name>-->
+    <!--<url-pattern>/401</url-pattern>-->
 
-</servlet-mapping>
-
-
+    <!--</servlet-mapping>-->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Init Servlet -->
+    <!-- Init Servlet -->
     <welcome-file-list>
         <welcome-file>ConnectionFactory</welcome-file>
     </welcome-file-list>
@@ -234,16 +206,11 @@
     </servlet-mapping>
 
 
-
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-
-
-
-
 
 
     <!-- Servlet di ProfileManager -->
@@ -594,9 +561,6 @@
         <param-name>tempfile.dir</param-name>
         <param-value>tmpfiles</param-value>
     </context-param>
-
-
-
 
 
     <!-- Servlet di  AddMaterial-->

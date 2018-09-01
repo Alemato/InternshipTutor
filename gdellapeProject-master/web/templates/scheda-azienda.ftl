@@ -48,7 +48,7 @@
                     <h4 class="uppercase testo-chiaro mb-5">Sito internet :</h4>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8 mb-15 mb-sm-5">
-                    <h4 class="testo-scuro"><a href="amazon.it">${Link}</a></h4>
+                    <h4 class="testo-scuro"><a href="${Link}">${RagioneSociale}</a></h4>
                 </div>
             </div>
 
@@ -152,7 +152,7 @@
 
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
-<script src="/templates/js/internshiptutor.js"></script>
+<script src="/js/internshiptutor.js"></script>
 
 
 </body>
