@@ -7,11 +7,14 @@ import model.TutoreUniversitario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
-   private PreparedStatement selectTutUniByID;
-   private  PreparedStatement selectAllTutUni;
-   private PreparedStatement insertTutUni;
+    private PreparedStatement selectTutUniByID;
+    private PreparedStatement selectAllTutUni;
+    private PreparedStatement insertTutUni;
+
     @Override
     public void init() throws DaoException {
         try {
@@ -22,8 +25,6 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
 
             this.selectAllTutUni = connection.prepareStatement("SELECT * FROM tutoreuniversitario ");
 
-
-
             this.insertTutUni = connection.prepareStatement("INSERT INTO tutoreuniversitario(Nome,Cognome,Telefono,Email) VALUES (?,?,?,?)");
 
         } catch (SQLException ex) {
@@ -31,13 +32,14 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
 
         }
     }
-    public TutoreUniversitario getTutoreUniByID(int ID)throws DaoException{
+
+    public TutoreUniversitario getTutoreUniByID(int ID) throws DaoException {
         TutoreUniversitario tutUni = new TutoreUniversitario();
         try {
             this.init();
-            this.selectTutUniByID.setInt(1,ID);
+            this.selectTutUniByID.setInt(1, ID);
             ResultSet resultSet = selectTutUniByID.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 tutUni.setIDTutoreUni(resultSet.getInt("IDTutoreUni"));
                 tutUni.setNome(resultSet.getString("Nome"));
                 tutUni.setCognome(resultSet.getString("Cognome"));
@@ -45,37 +47,35 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
                 tutUni.setEmail(resultSet.getString("Email"));
             }
             return tutUni;
-        }catch (SQLException e){
-            throw new DaoException("Errore query select id ",e);
+        } catch (SQLException e) {
+            throw new DaoException("Errore query select id ", e);
         }
 
     }
-    public void setTutoreUni(TutoreUniversitario tutUni)throws DaoException{
+
+    public void setTutoreUni(TutoreUniversitario tutUni) throws DaoException {
         try {
             this.init();
-            insertTutUni.setString(1,tutUni.getNome());
-            insertTutUni.setString(2,tutUni.getCognome());
-            insertTutUni.setString(3,tutUni.getTelefono());
+            insertTutUni.setString(1, tutUni.getNome());
+            insertTutUni.setString(2, tutUni.getCognome());
+            insertTutUni.setString(3, tutUni.getTelefono());
             insertTutUni.executeUpdate();
 
 
-
-
-        }catch (SQLException e){
-            throw new DaoException("Errore inserimento tut uni ",e);
+        } catch (SQLException e) {
+            throw new DaoException("Errore inserimento tut uni ", e);
         }
 
     }
+
     public void destroy() throws DaoException {
 
         try {
             super.destroy();
 
-           this.insertTutUni.close();
-           this.selectTutUniByID.close();
-           this.selectAllTutUni.close();
-
-
+            this.insertTutUni.close();
+            this.selectTutUniByID.close();
+            this.selectAllTutUni.close();
 
 
         } catch (SQLException ex) {

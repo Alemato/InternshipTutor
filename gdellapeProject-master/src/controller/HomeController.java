@@ -3,8 +3,10 @@ package controller;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.OffertaTirocinioDaoImp;
 
+import dao.implementation.TutoreUniversitarioDaoImp;
 import model.Azienda;
 import model.OffertaTirocinio;
+import model.TutoreUniversitario;
 import view.TemplateController;
 
 
@@ -16,14 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 import java.lang.String;
 
 public class HomeController extends baseController {
-
-
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,60 +30,36 @@ public class HomeController extends baseController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        super.init(request,response);
-        //OffTir(request, response);
-        //Convenz(request, response);
-        LastFiveOfferte(request,response);
+        super.init(request, response);
+        LastFiveOfferte(request, response);
         LastFiveConvenz(request, response);
         TemplateController.process("index.ftl", datamodel, response, getServletContext());
 
 
     }
-//    protected void OffTir (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//        try {
-//            OffertaTirocinioDaoImp daooff = new OffertaTirocinioDaoImp();
-//            List<OffertaTirocinio> OfferteTirocini = daooff.getAllOffertatr();
-//            daooff.destroy();
-//            datamodel.put("OfferteTirocini",OfferteTirocini);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//
-//        }
-//    }
 
-    /*protected void Convenz (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        try{
-            AziendaDaoImp daoAzienda = new AziendaDaoImp();
-            List<Azienda> Convenzioni = daoAzienda.getAllConvenzione();
-
-            daoAzienda.destroy();
-
-
-            datamodel.put("Convenzioni", Convenzioni);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
-    }*/
-
-    protected void LastFiveOfferte (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try{
+    protected void LastFiveOfferte(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
             OffertaTirocinioDaoImp offerta = new OffertaTirocinioDaoImp();
             List<OffertaTirocinio> LastFiveOfferta = offerta.getLastFiveOfferte();
             offerta.destroy();
-            datamodel.put("LastFiveOfferta",LastFiveOfferta);
+            datamodel.put("LastFiveOfferta", LastFiveOfferta);
+            TutoreUniversitarioDaoImp tutore = new TutoreUniversitarioDaoImp();
+            List<TutoreUniversitario> LastFiveTutore = new ArrayList<TutoreUniversitario>();
+            for (OffertaTirocinio element : LastFiveOfferta) {
+                LastFiveTutore.add(tutore.getTutoreUniByID(element.getTutoreUniversitario()));
+            }
+            tutore.destroy();
+            datamodel.put("LastFiveTutore",LastFiveTutore);
+
         } catch (Exception e) {
             e.printStackTrace();
 
         }
     }
 
-    protected void LastFiveConvenz (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try{
+    protected void LastFiveConvenz(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
             AziendaDaoImp azienda = new AziendaDaoImp();
             List<Azienda> LastFiveConvenzioni = azienda.getLastFiveConvenzioni();
             azienda.destroy();

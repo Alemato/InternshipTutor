@@ -20,7 +20,7 @@ public class SchedaAziendaController extends baseController {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        super.init(request,response);
         setAzienda(request,response);
         TemplateController.process("scheda-azienda.ftl", datamodel, response, getServletContext());
     }

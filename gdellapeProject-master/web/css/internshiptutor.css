@@ -60,7 +60,7 @@ ul.blog-post-info{
     font-size: 16px !important;
 }
 
-ul.blog-post-info li>a, ul.blog-post-info li i{
+ul.blog-post-info li>a, ul.blog-post-info li>a i{
     color: #3072e0 !important;
 }
 

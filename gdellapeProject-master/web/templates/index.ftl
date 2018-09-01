@@ -8,7 +8,7 @@
 <body class="smoothscroll enable-animation">
 <div id="wrapper">
     <#include "header.ftl">
-    <img class="img-fluid mt-140" src="/imgs/internship.jpg">
+    <img class="img-fluid mt-140" src="imgs/internship.jpg">
 
 
     <!-- SECTION HEADER TITLE-->
@@ -32,32 +32,35 @@
             <div class="linea-divisione mt-15 mb-25"></div>
         <div id="blog" class="clearfix blog-isotope blog-isotope-2">
                 <!-- POST ITEMS -->
-                <#list OfferteTirocini as OffertaTirocinio>
+                <#list LastFiveOfferta as OffertaTirocinio>
                 <div class="blog-post-item radius-5 box-white border p-15">
 
-                    <h4><a href="/tirocinio?ID=${OffertaTirocinio.IDOffertaTirocinio}" class="uppercase"> ${OffertaTirocinio.titolo}</a></h4>
+                    <h2><a href="/tirocinio?ID=${OffertaTirocinio.IDOffertaTirocinio}" class="uppercase"> ${OffertaTirocinio.titolo}</a></h2>
 
-                    <ul class="text-job list-inline mb-5">
+                    <ul class="blog-post-info list-inline">
                         <li>
-                            <a href="#">
                                 <i class="fa fa-clock-o"></i>
 
-                            <#--o il periodo di inizio o la data di publicazione-->
+                            <#--il periodo di inizio-->
 
                                 <span class="font-lato">${OffertaTirocinio.periodoInizio}</span>
-                            </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="schedaazienda?ID=${OffertaTirocinio.azienda}">
                                 <i class="fa fa-industry"></i>
                                 <span class="font-lato">${OffertaTirocinio.aziendaOspitante}</span>
                             </a>
                         </li>
                     </ul>
 
-                    <p class="fs-13 mb-10">${OffertaTirocinio.descrizioneBreve}</p>
+                    <p class="mb-10">${OffertaTirocinio.descrizioneBreve}</p>
 
-                    <a href="/tirocinio?nome=20" class="btn btn-reveal btn-default b-0 btn-shadow-1">
+                    <p>Per eventuali candidature o richieste di informazioni rivolgersi
+                        a: ${OffertaTirocinio.emailTutoreAziendale}</p>
+                    <p class="mb-15"><i class="fa fa-info-circle griggio"></i><b class="mr-5"> Contatto Interno:</b>${LastFiveTutore[OffertaTirocinio?index].nome} ${LastFiveTutore[OffertaTirocinio?index].cognome}<a class="ml-25" href="mailto:${LastFiveTutore[OffertaTirocinio?index].email}">${LastFiveTutore[OffertaTirocinio?index].email}</a></p>
+                    <p><i class="fa fa-info-circle griggio"></i>
+                        <b class="mr-5"> Contatto aziendale:</b> ${OffertaTirocinio.nomeTutoreAziendale} ${OffertaTirocinio.cognomeTutoreAziendale}<a class="ml-25" href="mailto:${OffertaTirocinio.emailTutoreAziendale}">${OffertaTirocinio.emailTutoreAziendale}</a></p>
+                    <a href="/tirocinio?ID=${OffertaTirocinio.IDOffertaTirocinio}" class="btn btn-reveal btn-default b-0 btn-shadow-1 mt-30">
                         <i class="fa fa-plus"></i>
                         <span>Leggi di pi&ugrave;</span>
                     </a>
@@ -75,15 +78,12 @@
             <!-- POST ITEMS CONVENZIONI -->
                 <#list LastFiveConvenzioni as LastFiveConvenzioni>
                 <div class="blog-post-item radius-5 box-white border p-15">
+                    <h2 class="mb-0"><a href="/SchedaAzienda?ID=${LastFiveConvenzioni.IDAzienda}" class="uppercase">${LastFiveConvenzioni.ragioneSociale}</a></h2>
 
-                    <h4 class="mb-0"><a href="/SchedaAzienda?ID=${LastFiveConvenzioni.IDAzienda}" class="uppercase">${LastFiveConvenzioni.ragioneSociale}</a></h4>
-
-                    <ul class="text-job list-inline mb-5">
+                    <ul class="blog-post-info list-inline">
                         <li class="pl-0">
-                            <a>
                                 <i class="fa fa-clock-o"></i>
                                 <span class="font-lato">${LastFiveConvenzioni.dataConvenzione}</span>
-                            </a>
                         </li>
                         <li>
                             <a href="/SchedaAzienda?ID=${LastFiveConvenzioni.IDAzienda}">
@@ -93,9 +93,9 @@
                         </li>
                     </ul>
 
-                    <p class="fs-13 mb-10">${LastFiveConvenzioni.descrizione}</p>
+                    <p class="mb-10">${LastFiveConvenzioni.descrizione}</p>
 
-                    <a href="/SchedaAzienda?ID=${LastFiveConvenzioni.IDAzienda}" class="btn btn-reveal btn-default b-0 btn-shadow-1">
+                    <a href="/SchedaAzienda?ID=${LastFiveConvenzioni.IDAzienda}" class="btn btn-reveal btn-default b-0 btn-shadow-1 mt-30">
                         <i class="fa fa-plus"></i>
                         <span>Leggi di pi&ugrave;</span>
                     </a>
