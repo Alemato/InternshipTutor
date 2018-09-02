@@ -164,17 +164,15 @@
 
     </servlet-mapping>
 
+    <servlet>
+    <servlet-name>401</servlet-name>
+    <servlet-class>controller.errori.Errore401Controller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>401</servlet-name>
+    <url-pattern>/401</url-pattern>
 
-    <!--</servlet-mapping>-->
-    <!--<servlet>-->
-    <!--<servlet-name>401</servlet-name>-->
-    <!--<servlet-class>controller.errori.Errore401Controller</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>401</servlet-name>-->
-    <!--<url-pattern>/401</url-pattern>-->
-
-    <!--</servlet-mapping>-->
+    </servlet-mapping>
 
 
     <!-- Init Servlet -->
