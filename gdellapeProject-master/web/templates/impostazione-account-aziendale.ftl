@@ -80,113 +80,6 @@
                     AZIENDA
                 </div>
                 <fieldset name="Ente-Azienda">
-
-                    <div class="row">
-                        <div class="col-md-auto mt-6">
-                            <h4>L’Ente/Azienda:&nbsp;</h4>
-                        </div>
-                        <div class="col">
-                            <label class="input">
-                                <input type="text" placeholder="Nome Ente / Azienda" name="NomeAzienda" value=${Azienda.ragioneSociale} required>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-auto mt-6">
-                            <h4>Con sede legale in (indirizzo): &nbsp;</h4>
-                        </div>
-                        <div class="col">
-                            <label class="input">
-                                <input type="text" placeholder="Indirizzo sede legale" name="SedeLegale" value=${Azienda.indirizzoSedeLegale} required>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-auto mt-6">
-                            <h4>Codice Fiscale (o Partita IVA): &nbsp;</h4>
-                        </div>
-                        <div class="col">
-                            <label class="input">
-                                <input type="text" placeholder="Codice Fiscale o Partita IVA" name="PartitaIVA"  value=${Azienda.cFiscalePIva} required>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-auto mt-6">
-                            <h4>Rappresentato da: &nbsp;</h4>
-                        </div>
-                        <div class="col-12 col-sm">
-                            <div class="row">
-                                <div class="col-6 col-sm-6">
-                                    <label class="input">
-                                        <input type="text" placeholder="Nome Rappresentante Aziendale" name="NomeRappresentante" value=${Azienda.nomeLegaleRappresentante}
-                                               required>
-                                    </label>
-                                </div>
-                                <div class="col-6 col-sm-6">
-                                    <label class="input">
-                                        <input type="text" placeholder="Cognome Rappresentante Aziendale"
-                                               name="CognomeRappresentante" value=${Azienda.cognomeLegaleRappresentante} required>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-auto mt-6">
-                            <h4>Nominativo responsabile dei tirocini: &nbsp;</h4>
-                        </div>
-                        <div class="col-12 col-sm">
-                            <div class="row">
-                                <div class="col-6 col-sm-6">
-                                    <label class="input">
-                                        <input type="text" placeholder="Nome Responsabile" name="NomeResponsabile"  value=${Azienda.nomeResponsabileConvenzione}
-                                                required>
-                                    </label>
-                                </div>
-                                <div class="col-6 col-sm-6">
-                                    <label class="input">
-                                        <input type="text" placeholder="Cognome Responsabile" name="CognomeResponsabile" value=${Azienda.cognomeResponsabileConvenzione}
-                                               required>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-auto mt-6">
-                            <h4>Numero di telefono del responsabile dei tirocini: &nbsp;</h4>
-                        </div>
-                        <div class="col">
-                            <label class="input">
-                                <input type="tel" placeholder="Numero di telefono" name="NumeroTelefonoResponsabile" value=${Azienda.telefonoResponsabileConvenzione}
-                                       required>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-auto mt-6">
-                            <h4>Indirizzo email del responsabile dei tirocini: &nbsp;</h4>
-                        </div>
-                        <div class="col-md-12 col-lg">
-                            <label class="input">
-                                <input type="email" placeholder="Email responsabile" name="EmailResponsabile" value=${Azienda.emailResponsabileConvenzione} required>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-auto mt-6">
-                            <h4>ForoControversia: &nbsp;</h4>
-                        </div>
-                        <div class="col-md-12 col-lg">
-                            <label class="input">
-                                <input type="text" placeholder="ForoControversia" name="ForoControversia" value=${Azienda.foroControversia} >
-                            </label>
-                        </div>
-                    </div>
-                </fieldset>
                 <div class="row">
                     <div class="col-md-auto mt-6">
                         <h4>Descrizione Azienda: &nbsp;</h4>
@@ -197,7 +90,6 @@
                         </label>
                     </div>
                 </div>
-                </fieldset>
                 <div class="row">
                     <div class="col-md-auto mt-6">
                         <h4>Link Azienda: &nbsp;</h4>
