@@ -313,6 +313,9 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                 azienda.setAttivo(resultSet.getBoolean("Attivo"));
                 azienda.setDescrizione(resultSet.getString("Descrizione"));
                 azienda.setLink(resultSet.getString("Link"));
+                azienda.setUser(resultSet.getInt("User"));
+                azienda.setCreateDate(resultSet.getTimestamp("CreateDate"));
+                azienda.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
 
             }
             return azienda;
