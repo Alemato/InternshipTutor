@@ -5,10 +5,6 @@
     <title>Offerte Tutoraggi</title>
 
 <#include "importCss.ftl">
-    <!-- PAGE LEVEL SCRIPTS -->
-    <link href="/templates/css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="/templates/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="/templates/css/internshiptutor.css" rel="stylesheet" type="text/css">
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -16,7 +12,7 @@
 <div id="wrapper">
    <#include "header.ftl">
     <section class="page-header page-header-md parallax parallax-3 mt-130"
-             style="background-image:url('/templates/imgs/imgpattern.jpg')">
+             style="background-image:url('/imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
         <div class="container">
@@ -25,7 +21,7 @@
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/home">Home</a></li>
                 <li>Lista Offerte Tutoraggi</li>
             </ol><!-- /breadcrumbs -->
 
@@ -315,6 +311,6 @@
 
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
-<script src="templates/js/internshiptutor.js"></script>
+<script src="js/internshiptutor.js"></script>
 </body>
 </html>

@@ -52,63 +52,65 @@
                     </label>
 
                     <label class="input">
-                        <p>Per modificare la tua password inserisci la precendente ed quella nuova nei due campi successivi </p>
+                        <p>Per modificare la tua password inserisci la precendente ed quella nuova nei due campi
+                            successivi </p>
                         <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password Attuale" name="Password"  >
+                        <input type="password" placeholder="Password Attuale" name="Password">
                         <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                             al tuo account</b>
                     </label>
                     <label class="input">
                         <p>Nuova Password</p>
                         <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password Nuova" name="PasswordNuova" >
+                        <input type="password" placeholder="Password Nuova" name="PasswordNuova">
                         <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                             al tuo account</b>
                     </label>
                     <label class="input">
                         <p>Ripeti Nuova Password</p>
                         <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password Nuova" name="PasswordNuova1" >
+                        <input type="password" placeholder="Password Nuova" name="PasswordNuova1">
                         <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                             al tuo account</b>
                     </label>
                 </fieldset>
 
 
-
-                <div id="Ente-Azienda" class="header-form mb-30"><i class="fa fa-balance-scale"></i>&nbsp; INFORMAZIONI ENTE /
+                <div id="Ente-Azienda" class="header-form mb-30"><i class="fa fa-balance-scale"></i>&nbsp; INFORMAZIONI
+                    ENTE /
                     AZIENDA
                 </div>
                 <fieldset name="Ente-Azienda">
-                <div class="row">
-                    <div class="col-md-auto mt-6">
-                        <h4>Descrizione Azienda: &nbsp;</h4>
+                    <div class="row">
+                        <div class="col-md-auto mt-6">
+                            <h4>Descrizione Azienda: &nbsp;</h4>
+                        </div>
+
+                        <textarea class="col-12 pt-5 mb-0 mr-10" rows="4" cols="1" name="Descrizione"
+                                  placeholder="Scrivi una descrizione dettagliata dell&apos;azienda">${Azienda.descrizione}</textarea>
+
                     </div>
-                    <div class="col-md-12 col-lg">
-                        <label class="input">
-                            <input type="text" placeholder="Descrizione" name="Descrizione" value=${Azienda.descrizione} >
-                        </label>
+                    <div class="row">
+                        <div class="col-md-auto mt-6">
+                            <h4>Link Azienda: &nbsp;</h4>
+                        </div>
+                        <div class="col-md-12 col-lg">
+                            <label class="input">
+                                <input type="text" placeholder="Link" name="Link" value=${Azienda.link}>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-auto mt-6">
-                        <h4>Link Azienda: &nbsp;</h4>
-                    </div>
-                    <div class="col-md-12 col-lg">
-                        <label class="input">
-                            <input type="text" placeholder="Link" name="Link" value=${Azienda.link} >
-                        </label>
-                    </div>
-                </div>
                 </fieldset>
 
 
                 <footer class="text-center text-sm-right">
-                    <button type="submit" form="form_modifica" class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
+                    <button type="submit" form="form_modifica"
+                            class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
                             class="fa fa-check"></i> Aggiorna
                     </button>
-                    <button type="reset" form="form_modifica" class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
-                            class="fa fa-times"></i> Annulla
+                    <button type="reset" form="form_modifica" class="btn btn-red btn-lg pull-right float-sm-left mb-20">
+                        <i
+                                class="fa fa-times"></i> Annulla
                     </button>
                 </footer>
 
