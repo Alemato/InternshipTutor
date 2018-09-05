@@ -15,7 +15,7 @@
 
 <!-- wrapper -->
 <div id="wrapper">
- <#include "header.ftl">
+    <#include "header.ftl">
 
     <section class="page-header page-header-md parallax parallax-3 mt-130"
              style="background-image:url('/imgs/imgpattern.jpg')">
