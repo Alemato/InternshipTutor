@@ -6,7 +6,7 @@
             <!-- right -->
         <ul class="top-links list-inline float-right has-topBar">
 
-                    <#if logged??>
+                    <#if logged>
                         <li>
                             <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#"><i
                                     class="fa fa-user hidden-xs-down"></i> IL MIO ACCOUNT </a>
