@@ -6,6 +6,7 @@ public class RichiestaTirocinio {
     private Integer IDricTironinio;
     private Integer DurataOre;
     private Integer CFU;
+    private Boolean Active;
     private Integer OffertaTirocinio;
     private Integer Tirocinante;
     private Timestamp CreateDate;
@@ -15,6 +16,7 @@ public class RichiestaTirocinio {
         this.IDricTironinio = 0;
         DurataOre = 0;
         this.CFU = 0;
+        Active = false;
         OffertaTirocinio = 0;
         Tirocinante = 0;
         CreateDate = null;
@@ -38,7 +40,13 @@ public class RichiestaTirocinio {
     }
 
 
+    public void setActive(Boolean active) {
+        Active = active;
+    }
 
+    public Boolean getActive() {
+        return Active;
+    }
 
 
     public Integer getIDricTironinio() {

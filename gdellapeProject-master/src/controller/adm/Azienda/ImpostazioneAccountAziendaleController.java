@@ -19,7 +19,8 @@ public class ImpostazioneAccountAziendaleController extends BackEndAziendaContro
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //ricaricadatiazienda(request,response);
+        importantimputareload(request,response);
+        ricaricadatiazienda(request,response);
 
     }
 
@@ -32,41 +33,39 @@ public class ImpostazioneAccountAziendaleController extends BackEndAziendaContro
 
     }
 
-    protected void ricaricadatiazienda(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,DaoException {
+    protected void ricaricadatiazienda(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        try {
            super.init(request, response);
            SingSessionContoller session = SingSessionContoller.getInstance();
            Azienda azienda = (Azienda) session.getAccount(request);
-           UserDaoImp dao = new UserDaoImp();
-           User user = dao.getUserByid(azienda.getIDAzienda());
-           dao.destroy();
 
-           if (!(request.getParameter("Password").isEmpty()) && !(request.getParameter("PasswordNuova").isEmpty()) && !(request.getParameter("PasswordNuova1").isEmpty())) {
-               changePassword(request, user);
+
+           UserDaoImp dao = new UserDaoImp();
+           User user = dao.getUserByid(azienda.getUser());
+
+
+
+           if (!(request.getParameter("Password").isEmpty())) {
+               changePassword(request,response, user);
            }
-           System.out.println(request.getParameterMap().containsKey("Email"));
+
            user.setEmail(request.getParameter("Email"));
 
-           azienda.setRagioneSociale(request.getParameter("NomeAzienda"));
-           azienda.setIndirizzoSedeLegale(request.getParameter("SedeLegale"));
-           azienda.setCFiscalePIva(request.getParameter("PartitaIVA"));
-           azienda.setNomeLegaleRappresentante(request.getParameter("NomeRappresentante"));
-           azienda.setCognomeLegaleRappresentante(request.getParameter("CognomeRappresentante"));
-           azienda.setNomeResponsabileConvenzione(request.getParameter("NomeResponsabile"));
-           azienda.setCognomeLegaleRappresentante(request.getParameter("CognomeResponsabile"));
-           azienda.setTelefonoResponsabileConvenzione(request.getParameter("NumeroTelefonoResponsabile"));
-           azienda.setEmailResponsabileConvenzione(request.getParameter("EmailResponsabile"));
-           azienda.setForoControversia(request.getParameter("ForoControversia"));
-           azienda.setDescrizione(request.getParameter("Descrizione"));
+
+           azienda.setDescrizione((String)request.getParameter("Descrizione"));
+
            azienda.setLink(request.getParameter("Link"));
-           UserDaoImp userdao = new UserDaoImp();
-           userdao.update(user);
-           userdao.destroy();
+
+
+           dao.update(user);
+           dao.destroy();
 
            AziendaDaoImp azdao = new AziendaDaoImp();
            azdao.updateAzienda(azienda);
            azdao.destroy();
            response.sendRedirect("/account");
+
+
        }catch (Exception e){
           e.printStackTrace();
 
@@ -80,45 +79,72 @@ public class ImpostazioneAccountAziendaleController extends BackEndAziendaContro
 
 
     }
-    protected void chagemail(HttpServletRequest request,User user) throws ServerException,IOException{
+
+    protected void changePassword(HttpServletRequest request,HttpServletResponse response,User user)throws ServerException,IOException{
         try {
-            String email = request.getParameter("Email");
-            user.setEmail(email);
-            UserDaoImp dao = new UserDaoImp();
-            dao.update(user);
-            dao.destroy();
+            String realpassword = user.getPassword();
+            String password = request.getParameter("Password");
+            String nuovaPassword = request.getParameter("PasswordNuova");
+            String nuovaPassword1 = request.getParameter("PasswordNuova1");
+            if(password.isEmpty() && nuovaPassword.isEmpty() && nuovaPassword1.isEmpty()){
+                reloadOldInfomation(request,response,"Rimpire Tutti i campi per cambire la password");
 
-        }catch (Exception e ){
+
+            }
+            else{
+                if(realpassword.equals(password)){
+
+                    if(nuovaPassword.equals(nuovaPassword1)){
+                        user.setPassword(nuovaPassword);
+                        try {
+                            UserDaoImp dao = new UserDaoImp();
+                            dao.update(user);
+                            dao.destroy();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                    }else{reloadOldInfomation(request,response,"Vecchia password non corretta");}
+                }else {reloadOldInfomation(request,response,"Le password sono differenti");}
+
+
+            }
+        }catch (Exception e){
             e.printStackTrace();
+
         }
+
+
     }
-    protected void changePassword(HttpServletRequest request,User user)throws ServerException,IOException{
-        String realpassword = user.getPassword();
-        String password = request.getParameter("Password");
-        String nuovaPassword = request.getParameter("PasswordNuova");
-        String nuovaPassword1 = request.getParameter("PasswordNuova1");
-        if(password.isEmpty() && nuovaPassword.isEmpty() && nuovaPassword1.isEmpty()){
+    protected void reloadOldInfomation(HttpServletRequest request,HttpServletResponse response,String errorMessage)throws ServletException,IOException{
+        Azienda azienda = new Azienda();
+        User user = new User();
+        user.setEmail(request.getParameter("Email"));
 
 
+        azienda.setDescrizione(request.getParameter("Descrizione"));
+        azienda.setLink(request.getParameter("Link"));
+        datamodel.put("Azienda",azienda);
+        datamodel.put("User",user);
+        datamodel.put("Message",errorMessage);
+        TemplateController.process("impostazione-account-aziendale.ftl", datamodel, response, getServletContext());
+    }
+
+    protected void importantimputareload(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+
+        if(request.getParameter("Email").isEmpty()){
+            reloadOldInfomation(request,response,"Immettere mail valida");
         }
-        else{
-            if(realpassword.equals(password)){
-
-                if(nuovaPassword.equals(nuovaPassword1)){
-                user.setPassword(nuovaPassword);
-                try {
-                    UserDaoImp dao = new UserDaoImp();
-                    dao.update(user);
-                    dao.destroy();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
-            }else{}
-        }else {}
 
 
-        }
+
+
+
+
+
+
+
+
 
     }
 
@@ -127,7 +153,7 @@ public class ImpostazioneAccountAziendaleController extends BackEndAziendaContro
         if (session.isValidSession(request)&& session.isAzienda(request)) {
             Azienda azienda = (Azienda) session.getAccount(request);
             UserDaoImp dao = new UserDaoImp();
-            User user = dao.getUserByid(azienda.getIDAzienda());
+            User user = dao.getUserByid(azienda.getUser());
             dao.destroy();
             datamodel.put("Azienda", azienda);
             datamodel.put("User",user);

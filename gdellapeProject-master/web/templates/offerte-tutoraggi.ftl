@@ -285,7 +285,7 @@
                         a: a.pasanisi@gp-start.it</p>
                     <p><i class="fa fa-info-circle griggio"></i><b> Contatto aziendale:</b> ${offerta.nomeTutoreAziendale} ${offerta.cognomeTutoreAziendale}
                         ${offerta.emailTutoreAziendale}</p>
-                    <a href="/tirocinio?ID=${offerta.iDOffertaTirocinio}" class="btn btn-reveal btn-default b-0 btn-shadow-1">
+                    <a href="/tirocinio?ID=${offerta.IDOffertaTirocinio}" class="btn btn-reveal btn-default b-0 btn-shadow-1">
                         <i class="fa fa-plus"></i>
                         <span>Leggi di pi&ugrave;</span>
                     </a>

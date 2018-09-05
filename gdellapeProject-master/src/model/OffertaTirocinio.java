@@ -35,6 +35,7 @@ public class OffertaTirocinio {
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
+
     public OffertaTirocinio() {
         this.IDOffertaTirocinio = 0;
         LuogoEffettuazione = null;

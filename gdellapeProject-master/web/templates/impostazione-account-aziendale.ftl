@@ -36,6 +36,10 @@
 
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
+            <#if Message??>
+                <#include "messaggio-errore.ftl">
+            </#if>
+
             <form id="form_modifica" action="UpdateAzienda" method="post" class="sky-form  boxed"
                   novalidate="novalidate">
 

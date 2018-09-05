@@ -82,7 +82,7 @@ public class SingSessionContoller {
 
 
     public Object getAccount(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
 
         String tipo = (String) session.getAttribute("Tipo");
         int id = (int) session.getAttribute("IDUnivoco");
@@ -123,10 +123,12 @@ public class SingSessionContoller {
                     return tr;
 
 
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;
+
 
 
         }
@@ -156,6 +158,13 @@ public class SingSessionContoller {
     public HttpSession getSession(HttpServletRequest request){
         if(isValidSession(request)){
             return request.getSession();
+        }else return null;
+    }
+    public Integer getUserId(HttpServletRequest request){
+        if(isValidSession(request)){
+             HttpSession session = request.getSession();
+             Integer id = Integer.parseInt((String)session.getAttribute("IDUnivoco"));
+             return id;
         }else return null;
     }
     public boolean isAdmin(HttpServletRequest request) {

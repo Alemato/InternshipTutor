@@ -165,14 +165,56 @@
     </servlet-mapping>
 
     <servlet>
-    <servlet-name>401</servlet-name>
-    <servlet-class>controller.errori.Errore401Controller</servlet-class>
+    <servlet-name>404</servlet-name>
+    <servlet-class>controller.errori.Errore404Controller</servlet-class>
     </servlet>
     <servlet-mapping>
-    <servlet-name>401</servlet-name>
-    <url-pattern>/401</url-pattern>
+    <servlet-name>404</servlet-name>
+    <url-pattern>/404</url-pattern>
 
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>500</servlet-name>
+        <servlet-class>controller.errori.Errore500Controller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>500</servlet-name>
+        <url-pattern>/500</url-pattern>
+
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>403</servlet-name>
+        <servlet-class>controller.errori.Errore403Controller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>403</servlet-name>
+        <url-pattern>/403</url-pattern>
+
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>401</servlet-name>
+        <servlet-class>controller.errori.Errore401Controller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>401</servlet-name>
+        <url-pattern>/401</url-pattern>
+
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>invioRichiesta</servlet-name>
+        <servlet-class>controller.errori.Errore401Controller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>invioRichiesta</servlet-name>
+        <url-pattern>/inviorichiesta</url-pattern>
+        <url-pattern>/InvioRichiesta</url-pattern>
+
+    </servlet-mapping>
+
 
 
     <!-- Init Servlet -->

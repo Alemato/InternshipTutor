@@ -289,8 +289,8 @@
                 </div>
             </div>
 
-            <form id="manda_iscrizione" method="get" action="#">
-                <input type="hidden" name="tirocinio" value="Aveja">
+            <form id="manda_iscrizione" method="post" action="inviorichiesta">
+                <input type="hidden" name="tirocinio" value=${IDTirocinio}>
                 <button type="submit" form="manda_iscrizione"
                         class="btn btn-blue b-blu btn-lg pull-right float-right"><i
                         class="fa fa-check"></i> Invia Domanda

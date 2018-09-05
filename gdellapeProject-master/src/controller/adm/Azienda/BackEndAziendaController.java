@@ -28,8 +28,14 @@ public class BackEndAziendaController extends baseController{
     }
 
     protected void init(HttpServletRequest request,HttpServletResponse response)throws IOException,ServerException{
-        accessLogin(request,response);
-        accessAzienda(request,response);
+      try {
+          super.init(request,response);
+          accessLogin(request,response);
+          accessAzienda(request,response);
+      }catch (Exception e){
+          e.printStackTrace();
+      }
+
 
     }
 }

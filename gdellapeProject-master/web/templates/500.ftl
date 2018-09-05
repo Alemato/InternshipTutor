@@ -3,22 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Errore Interno</title>
-    <!-- mobile settings -->
-    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
-    <!--[if IE]>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-
-    <!-- WEB FONTS : use %7C instead of | (pipe) -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons%7COpen+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700"
-          rel="stylesheet" type="text/css"/>
-
-    <!-- CORE CSS -->
-    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-    <!-- THEME CSS -->
-    <link href="css/essentials.css" rel="stylesheet" type="text/css"/>
-    <link href="css/layout.css" rel="stylesheet" type="text/css"/>
-
+   <#include "importCss.ftl">
     <!-- PAGE LEVEL SCRIPTS -->
     <link href="css/header-1.css" rel="stylesheet" type="text/css"/>
     <link href="css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
@@ -29,94 +14,7 @@
 
 <!-- wrapper -->
 <div id="wrapper">
-    <div id="header" class="navbar-toggleable-md  shadow-after-3 clearfix position-fixed">
-        <!-- TOP BAR-->
-        <div id="topBar" class="dark sticky">
-            <div class="container">
-
-                <!-- right -->
-                <ul class="top-links list-inline float-right has-topBar">
-                    <li>
-                        <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#"><i
-                                class="fa fa-user hidden-xs-down"></i> IL MIO ACCOUNT </a>
-                        <ul class="dropdown-menu float-right has-topBar">
-                            <li><a tabindex="-1" href="#"><i class="fa fa-history"></i> I MIEI
-                                TIROCINI</a></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" href="#"><i class="fa fa-cog"></i> IMPOSTAZIONI
-                                DELL'ACCOUNT </a></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" href="#"><i class="glyphicon glyphicon-off"></i> logout
-                            </a></li>
-                        </ul>
-                    </li>
-                    <li class="hidden-xs-down"><a href="#">LOGIN</a></li>
-                    <li class="hidden-xs-down"><a href="registrazione.html">REGISTRAZIONE</a></li>
-                </ul>
-
-                <!-- left -->
-                <ul class="top-links list-inline has-topBar">
-                    <li class="text-welcome hidden-xs-down p-10">Benvenuto, <strong>Mario Rossi</strong></li>
-                </ul>
-
-            </div>
-        </div>
-        <!-- /TOP BAR-->
-
-
-        <header id="topNav">
-            <div class="container">
-                <!-- Mobile Menu Button -->
-                <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-
-
-                <!-- Logo -->
-                <a class="logo float-left mb-5 mr-10scripts.jsscripts.js" href="index.html">
-                    <img src="imgs/interns.jpg" alt=""/>
-                </a>
-
-                <div class="navbar-collapse collapse nav-main-collapse submenu-dark">
-                    <nav class="nav-main">
-                        <ul id="topMain" class="nav nav-pills nav-main">
-                            <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="index.html">
-                                    HOME
-                                </a>
-                            </li>
-                            <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="offerte-tutoraggi.html">
-                                    LISTA OFFERTE TUTORAGGI
-                                </a>
-                            </li>
-                            <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="lista-convenzioni.html">
-                                    LISTA CONVENZIONI
-                                </a>
-                            </li>
-                            <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="informazioni.html">
-                                    INFORMAZIONI
-                                </a>
-                            </li>
-                            <form class="d-inline-block col-lg-12 col-xl-4 mb-lg-2">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" aria-label=""
-                                           placeholder="Cerca nell'intero del sito">
-                                    <span class="input-group-btn">
-                                            <button class="btn btn-primary material-ico" type="submit">
-                                                <i class="material-icons">search</i>
-                                            </button>
-                                        </span>
-                                </div>
-                            </form>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-    </div>
+    <#include "header.ftl">
     <section class="page-header page-header-md parallax parallax-3 mt-130"
              style="background-image:url('imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
@@ -264,11 +162,7 @@
 </div>
 
 <!-- JAVASCRIPT FILES -->
-<script>var plugin_path = 'plugins/';</script>
-<script src="plugins/jquery/jquery-3.3.1.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="plugins/bootstrap/js/bootstrap.js"></script>
-
+<#include "importScript.ftl">
 
 </body>
 </html>

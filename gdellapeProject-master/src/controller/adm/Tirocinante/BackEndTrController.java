@@ -21,7 +21,7 @@ public class BackEndTrController extends baseController {
         }
     }
     protected void init(HttpServletRequest request,HttpServletResponse response)throws ServerException,IOException{
-        try{
+        try{super.init(request,response);
             loginTirocinante(request,response);
             accessTirocinante(request,response);
         }catch (Exception e){

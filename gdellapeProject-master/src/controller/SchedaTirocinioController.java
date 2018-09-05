@@ -43,7 +43,7 @@ public class SchedaTirocinioController  extends baseController{
             TutoreUniversitario tutuni = daotut.getTutoreUniByID(Idoff);
             daotut.destroy();
 
-
+            datamodel.put("IDTirocinio",Idtrof);
             datamodel.put("LuogoEffettuazione", Oftr.getLuogoEffettuazione());
             datamodel.put("Titolo",Oftr.getTitolo());
             datamodel.put("DescrizioneBreve",Oftr.getDescrizioneBreve());
@@ -68,7 +68,7 @@ public class SchedaTirocinioController  extends baseController{
             datamodel.put("EmailTutUni",tutuni.getEmail());
 
 
-            datamodel.put("IDazienda",Oftr.getAzienda());
+
 
 
             }catch (Exception e){

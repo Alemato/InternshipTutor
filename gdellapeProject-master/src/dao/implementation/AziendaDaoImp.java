@@ -84,6 +84,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.updateAzienda.setString(10, azienda.getForoControversia());
             this.updateAzienda.setString(11, azienda.getDescrizione());
             this.updateAzienda.setString(12, azienda.getLink());
+            this.updateAzienda.setInt(13,azienda.getIDAzienda());
 
             this.updateAzienda.executeUpdate();
         } catch (SQLException e) {
