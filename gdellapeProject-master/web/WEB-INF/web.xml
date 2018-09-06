@@ -206,7 +206,7 @@
 
     <servlet>
         <servlet-name>invioRichiesta</servlet-name>
-        <servlet-class>controller.errori.Errore401Controller</servlet-class>
+        <servlet-class>controller.adm.Tirocinante.InvioRichiestaTrController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>invioRichiesta</servlet-name>

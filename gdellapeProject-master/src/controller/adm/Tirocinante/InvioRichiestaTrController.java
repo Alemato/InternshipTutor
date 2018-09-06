@@ -7,6 +7,7 @@ import dao.implementation.OffertaTirocinioDaoImp;
 import dao.implementation.RichiestaTirocinioDaoImp;
 import model.OffertaTirocinio;
 import model.RichiestaTirocinio;
+import model.Tirocinante;
 import view.TemplateController;
 
 import javax.servlet.ServletException;
@@ -16,8 +17,8 @@ import java.io.IOException;
 
 public class InvioRichiestaTrController extends BackEndTrController  {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        sendRichiestaTr(request,response);
+        super.init();
+        ifsend(request,response);
     }
 
 
@@ -31,27 +32,42 @@ public class InvioRichiestaTrController extends BackEndTrController  {
         try {
             super.init(request, response);
 
-            int idOfTr = Integer.parseInt(request.getParameter("Tirocinio"));
+            Integer idOfTr = Integer.parseInt(request.getParameter("Tirocinio"));
 
 
             SingSessionContoller session = SingSessionContoller.getInstance();
-            int idAccount = session.getUserId(request);
+            Tirocinante Account = (Tirocinante) session.getAccount(request);
 
 
             RichiestaTirocinio richiestaTirocinio = new RichiestaTirocinio();
-            richiestaTirocinio.setTirocinante(idAccount);
+            richiestaTirocinio.setTirocinante(Account.getIDTirocinante());
             richiestaTirocinio.setOffertaTirocinio(idOfTr);
 
             RichiestaTirocinioDaoImp rc = new RichiestaTirocinioDaoImp();
-            rc.setRichiestatr(richiestaTirocinio);
+            rc.firstRichiestatr(richiestaTirocinio);
+            rc.destroy();
+            response.sendRedirect("/home");
         }catch (Exception e){
             e.printStackTrace();
         }
 
 
-
-
-
     }
+    protected void ifsend(HttpServletRequest request, HttpServletResponse response){
+        try {
+            SingSessionContoller session = SingSessionContoller.getInstance();
+            Tirocinante tr = (Tirocinante) session.getAccount(request);
+            RichiestaTirocinioDaoImp dao = new RichiestaTirocinioDaoImp();
+            Boolean status = dao.ifAreactiveOfferteByTr(tr);
+            if(status){
+                String idOfferta = request.getParameter("Tirocinio");
+                response.sendRedirect("/Tirocinio?ID="+idOfferta);
+            }else{sendRichiestaTr(request,response);}
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

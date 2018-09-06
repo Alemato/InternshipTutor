@@ -85,7 +85,7 @@ public class SingSessionContoller {
         HttpSession session = request.getSession();
 
         String tipo = (String) session.getAttribute("Tipo");
-        int id = (int) session.getAttribute("IDUnivoco");
+        int id = (int)session.getAttribute("IDUnivoco");
 
         switch (tipo) {
             case "Admin":
@@ -116,10 +116,11 @@ public class SingSessionContoller {
                 }
                 break;
             case "Tirocinante":
+
                 try {
-                    TirocinanteDaoImp daoimp = new TirocinanteDaoImp();
-                    Tirocinante tr = daoimp.getTirocianteByID(id);
-                    daoimp.destroy();
+                    TirocinanteDaoImp daotr = new TirocinanteDaoImp();
+                    Tirocinante tr = daotr.getTirocianteByID(id);
+                    daotr.destroy();
                     return tr;
 
 
@@ -133,6 +134,8 @@ public class SingSessionContoller {
 
         }
         return null;
+
+
 
     }
     public boolean login(String mail , String password) throws DaoException{

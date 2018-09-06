@@ -28,7 +28,7 @@ public void init() throws DaoException {
         super.init();
 
 
-        this.selectTirocinanteById = connection.prepareStatement("SELECT * FROM tirocinante WHERE IDTirociante = ?");
+        this.selectTirocinanteById = connection.prepareStatement("SELECT * FROM tirocinante WHERE IDTirocinante = ?");
         this.selectTirocinanteByIDuser = connection.prepareStatement("SELECT * FROM tirocinante WHERE User = ?");
 
         this.insertTirocinante = connection.prepareStatement("INSERT INTO tirocinante(Nome,Cognome,LuogoDiNascita, DataDiNascita, LuogoDiResidenza,ProvinciaDiResidenza,ProvinciaDiNascita," +

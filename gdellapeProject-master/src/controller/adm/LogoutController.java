@@ -30,7 +30,7 @@ public class LogoutController extends baseController {
     protected void logout(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
         SingSessionContoller session = SingSessionContoller.getInstance();
         session.destroy(request);
-        TemplateController.process("index.ftl", datamodel, response, getServletContext());
+       response.sendRedirect("/home");
 
 
     }

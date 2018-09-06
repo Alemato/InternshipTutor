@@ -32,6 +32,9 @@
 <div id="wrapper">
 
     <#include "header.ftl">
+    <#if Message??>
+        <#include "messaggio-errore.ftl">
+    </#if>
 <#--<div id="header" class="navbar-toggleable-md  shadow-after-3 clearfix position-fixed">-->
 <#--<!-- TOP BAR&ndash;&gt;-->
 <#--<div id="topBar" class="dark sticky">-->
@@ -142,6 +145,9 @@
     <!-- SECTION CENTER -->
     <section class="section-sm centrale border-top-section">
         <div class="container p-0">
+            <#if Message??>
+                <#include "messaggio-errore.ftl">
+            </#if>
             <h2 class="uppercase fw-100 mb-15">Dettagli Tirocinio :<span
                     class="fw-600 ml-10">Tirocinio Presso ${AziendaOspitante}</span></h2>
             <div class="linea-divisione mt-0"></div>
@@ -290,7 +296,7 @@
             </div>
 
             <form id="manda_iscrizione" method="post" action="inviorichiesta">
-                <input type="hidden" name="tirocinio" value=${IDTirocinio}>
+                <input type="hidden" name="Tirocinio" value=${IDTirocinio}>
                 <button type="submit" form="manda_iscrizione"
                         class="btn btn-blue b-blu btn-lg pull-right float-right"><i
                         class="fa fa-check"></i> Invia Domanda
