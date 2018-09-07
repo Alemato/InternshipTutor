@@ -10,28 +10,29 @@ import java.io.IOException;
 import java.rmi.ServerException;
 
 public class BackEndAziendaController extends baseController{
-    protected void accessLogin(HttpServletRequest request, HttpServletResponse response)throws IOException,ServerException{
+    protected Boolean accessLogin(HttpServletRequest request, HttpServletResponse response)throws IOException,ServerException{
         SingSessionContoller session = SingSessionContoller.getInstance();
         if(!(session.isValidSession(request))){
 
                 response.sendRedirect("/login");
+                return false;
 
-        }
+        }else{return true;}
     }
-    protected void accessAzienda(HttpServletRequest request, HttpServletResponse response)throws IOException,ServerException{
+    protected Boolean accessAzienda(HttpServletRequest request, HttpServletResponse response)throws IOException,ServerException{
         SingSessionContoller session = SingSessionContoller.getInstance();
         if( !(session.isValidSession(request))){
 
             response.sendRedirect("/401");
+            return false;
 
-        }
+        }else{return true;}
     }
 
     protected void init(HttpServletRequest request,HttpServletResponse response)throws IOException,ServerException{
       try {
           super.init(request,response);
-          accessLogin(request,response);
-          accessAzienda(request,response);
+
       }catch (Exception e){
           e.printStackTrace();
       }

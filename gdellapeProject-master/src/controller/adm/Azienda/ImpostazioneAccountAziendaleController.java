@@ -19,17 +19,13 @@ public class ImpostazioneAccountAziendaleController extends BackEndAziendaContro
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        importantimputareload(request,response);
-        ricaricadatiazienda(request,response);
+        super.init(request,response);
+        serveletUpdateAzienda(request,response);
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            caricaAccount(request, response);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    serveltgetUpdateAzienda(request,response);
 
     }
 
@@ -130,11 +126,12 @@ public class ImpostazioneAccountAziendaleController extends BackEndAziendaContro
         TemplateController.process("impostazione-account-aziendale.ftl", datamodel, response, getServletContext());
     }
 
-    protected void importantimputareload(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+    protected Boolean importantimputareload(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
 
         if(request.getParameter("Email").isEmpty()){
             reloadOldInfomation(request,response,"Immettere mail valida");
-        }
+            return false;
+        }else{return true;}
 
 
 
@@ -159,6 +156,26 @@ public class ImpostazioneAccountAziendaleController extends BackEndAziendaContro
             datamodel.put("User",user);
             TemplateController.process("impostazione-account-aziendale.ftl", datamodel, response, getServletContext());
 
+        }
+    }
+    protected void serveletUpdateAzienda(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+        if(super.accessLogin(request,response)){
+            if(super.accessAzienda(request,response)){
+                if(importantimputareload(request,response)){
+                    ricaricadatiazienda(request,response);
+                }
+            }
+        }
+    }
+    protected void serveltgetUpdateAzienda(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+        try {
+            if(super.accessLogin(request,response)){
+                if(super.accessAzienda(request,response)){
+                    caricaAccount(request, response);
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

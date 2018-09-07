@@ -17,8 +17,8 @@ import java.io.IOException;
 
 public class InvioRichiestaTrController extends BackEndTrController  {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.init();
-        ifsend(request,response);
+        super.init(request,response);
+        Send(request,response);
     }
 
 
@@ -30,7 +30,7 @@ public class InvioRichiestaTrController extends BackEndTrController  {
     }
     protected void sendRichiestaTr(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
         try {
-            super.init(request, response);
+
 
             Integer idOfTr = Integer.parseInt(request.getParameter("Tirocinio"));
 
@@ -65,6 +65,13 @@ public class InvioRichiestaTrController extends BackEndTrController  {
             }else{sendRichiestaTr(request,response);}
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+    protected void Send(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+        if(super.loginTirocinante(request,response)){
+            if(super.accessTirocinante(request,response)){
+                ifsend(request,response);
+            }
         }
     }
 
