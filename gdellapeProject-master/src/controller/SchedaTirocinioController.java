@@ -1,10 +1,8 @@
 package controller;
 
 import controller.sessionController.SingSessionContoller;
-import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.RichiestaTirocinioDaoImp;
-import dao.implementation.TirocinanteDaoImp;
+import dao.implementation.TirocinioDaoImp;
 import dao.implementation.TutoreUniversitarioDaoImp;
 import model.OffertaTirocinio;
 import model.Tirocinante;
@@ -89,7 +87,7 @@ public class SchedaTirocinioController  extends baseController{
             if (session.isTirocinante(request)&& session.isValidSession(request)){
                 Tirocinante tr = (Tirocinante) session.getAccount(request);
 
-            RichiestaTirocinioDaoImp dao = new RichiestaTirocinioDaoImp();
+            TirocinioDaoImp dao = new TirocinioDaoImp();
             Boolean statusoldRC = dao.ifAreactiveOfferteByTr(tr);
             dao.destroy();
 

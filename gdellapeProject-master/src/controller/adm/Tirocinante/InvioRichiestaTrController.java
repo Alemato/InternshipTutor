@@ -1,14 +1,8 @@
 package controller.adm.Tirocinante;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import controller.baseController;
 import controller.sessionController.SingSessionContoller;
-import dao.exception.DaoException;
-import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.RichiestaTirocinioDaoImp;
-import model.OffertaTirocinio;
-import model.RichiestaTirocinio;
+import dao.implementation.TirocinioDaoImp;
+import model.Tirocinio;
 import model.Tirocinante;
-import view.TemplateController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -39,11 +33,11 @@ public class InvioRichiestaTrController extends BackEndTrController  {
             Tirocinante Account = (Tirocinante) session.getAccount(request);
 
 
-            RichiestaTirocinio richiestaTirocinio = new RichiestaTirocinio();
+            Tirocinio richiestaTirocinio = new Tirocinio();
             richiestaTirocinio.setTirocinante(Account.getIDTirocinante());
             richiestaTirocinio.setOffertaTirocinio(idOfTr);
 
-            RichiestaTirocinioDaoImp rc = new RichiestaTirocinioDaoImp();
+            TirocinioDaoImp rc = new TirocinioDaoImp();
             rc.firstRichiestatr(richiestaTirocinio);
             rc.destroy();
             response.sendRedirect("/home");
@@ -57,7 +51,7 @@ public class InvioRichiestaTrController extends BackEndTrController  {
         try {
             SingSessionContoller session = SingSessionContoller.getInstance();
             Tirocinante tr = (Tirocinante) session.getAccount(request);
-            RichiestaTirocinioDaoImp dao = new RichiestaTirocinioDaoImp();
+            TirocinioDaoImp dao = new TirocinioDaoImp();
             Boolean status = dao.ifAreactiveOfferteByTr(tr);
             if(status){
                 String idOfferta = request.getParameter("Tirocinio");
