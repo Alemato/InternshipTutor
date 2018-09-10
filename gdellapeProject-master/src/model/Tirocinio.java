@@ -15,6 +15,7 @@ public class Tirocinio {
     private Integer Stato;
     private Integer OffertaTirocinio;
     private Integer Tirocinante;
+    private Integer TutoreUniveritario;
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
@@ -32,6 +33,7 @@ public class Tirocinio {
         Tirocinante = 0;
         CreateDate = null;
         UpdateDate = null;
+        this.TutoreUniveritario = 0;
     }
 
     public Integer getOffertaTirocinio() {
@@ -91,6 +93,13 @@ public class Tirocinio {
 
     public void setUpdateDate(Timestamp updateDate) {
         UpdateDate = updateDate;
+    }
+    public Integer getTutoreUniveritario() {
+        return TutoreUniveritario;
+    }
+
+    public void setTutoreUniveritario(Integer tutoreUniveritario) {
+        TutoreUniveritario = tutoreUniveritario;
     }
 
     public Date getDataConsegnaModulo() {

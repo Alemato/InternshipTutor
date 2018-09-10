@@ -34,7 +34,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
 
             this.insertFisrtRichiesta = connection.prepareStatement("INSERT INTO richiestatirocinio(OffertaTirocinio,Tirocinante) VALUES (?,?)");
 
-            this.insertRichiestatr = connection.prepareStatement("INSERT INTO richiestatirocinio(DataConsegnaModulo,DurataOre,CFU,Stato,PeriodoEffettivoIniziale,PeriodoEffettivoFinale,RisultatoConseguito,DescrizioneAttivitaSvolta,OffertaTirocinio,Tirocinante) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            this.insertRichiestatr = connection.prepareStatement("INSERT INTO richiestatirocinio(DataConsegnaModulo,DurataOre,CFU,Stato,PeriodoEffettivoIniziale,PeriodoEffettivoFinale,RisultatoConseguito,DescrizioneAttivitaSvolta,OffertaTirocinio,Tirocinante,TutoreUniveristario) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
             this.selectActiveRichiestaByTR= connection.prepareStatement("SELECT * FROM richiestatirocinio WHERE Active = true AND Tirocinante = ? " );
 
@@ -57,6 +57,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
                 tr.setDurataOre(resultSet.getInt("DurataOre"));
                 tr.setCFU(resultSet.getInt("CFU"));
                 tr.setStato(resultSet.getInt("Stato"));
+                tr.setTutoreUniveritario(resultSet.getInt("TutoreUniversitario"));
                 tr.setPeriodoEffettivoIniziale(resultSet.getDate("PeriodoEffettivoIniziale"));
                 tr.setPeriodoEffettivoFinale(resultSet.getDate("PeriodoEffettivoFinale"));
                 tr.setRisultatoConseguito(resultSet.getString("RisultatoConseguito"));
@@ -86,6 +87,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
                 tr.setDurataOre(resultSet.getInt("DurataOre"));
                 tr.setCFU(resultSet.getInt("CFU"));
                 tr.setStato(resultSet.getInt("Stato"));
+                tr.setTutoreUniveritario(resultSet.getInt("TutoreUniversitario"));
                 tr.setPeriodoEffettivoIniziale(resultSet.getDate("PeriodoEffettivoIniziale"));
                 tr.setPeriodoEffettivoFinale(resultSet.getDate("PeriodoEffettivoFinale"));
                 tr.setRisultatoConseguito(resultSet.getString("RisultatoConseguito"));
@@ -117,6 +119,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             insertRichiestatr.setString(8, tr.getDescrizioneAttivitaSvolta());
             insertRichiestatr.setInt(9, tr.getOffertaTirocinio());
             insertRichiestatr.setInt(10, tr.getTirocinante());
+            insertRichiestatr.setInt(11,tr.getTutoreUniveritario());
             insertRichiestatr.executeUpdate();
 
 
