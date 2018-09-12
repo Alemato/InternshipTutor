@@ -177,6 +177,26 @@ public Tirocinante getTirocianteByID(int id) throws DaoException{
 
 
     }
+    public void destroy() throws DaoException {
+
+        try {
+
+            this.selectTirocinanteByIDuser.close();
+            this.selectTirocinanteById.close();
+            this.insertTirocinante.close();
+            this.selectAllTirocinante.close();
+
+
+            super.destroy();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+            throw new DaoException("Error destroy ", ex);
+
+
+        }
+    }
 
 }
 

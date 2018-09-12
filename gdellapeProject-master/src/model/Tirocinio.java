@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.sql.Date;
 
 public class Tirocinio {
-    private Integer IDricTironinio;
+    private Integer IDTirocinio;
     private Date DataConsegnaModulo;
     private Date PeriodoEffettivoIniziale;
     private Date PeriodoEffettivoFinale;
@@ -20,7 +20,7 @@ public class Tirocinio {
     private Timestamp UpdateDate;
 
     public Tirocinio() {
-        this.IDricTironinio = 0;
+        this.IDTirocinio = 0;
         DataConsegnaModulo = null;
         PeriodoEffettivoIniziale = null;
         PeriodoEffettivoFinale = null;
@@ -54,12 +54,12 @@ public class Tirocinio {
 
 
 
-    public Integer getIDricTironinio() {
-        return IDricTironinio;
+    public Integer getIDTirocinio() {
+        return IDTirocinio;
     }
 
-    public void setIDricTironinio(Integer IDricTironinio) {
-        this.IDricTironinio = IDricTironinio;
+    public void setIDTirocinio(Integer IDTirocinio) {
+        this.IDTirocinio = IDTirocinio;
     }
 
     public Integer getDurataOre() {

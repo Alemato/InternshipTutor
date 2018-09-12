@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Calendar;
 
@@ -81,59 +82,80 @@ public class SingSessionContoller {
     }
 
 
-    public Object getAccount(HttpServletRequest request) {
+
+
+
+    public Tirocinante getTirocinate(HttpServletRequest request,HttpServletResponse response)throws IOException {
+        Tirocinante tr = new Tirocinante();
+        try {
         HttpSession session = request.getSession();
 
-        String tipo = (String) session.getAttribute("Tipo");
+
         int id = (int)session.getAttribute("IDUnivoco");
-
-        switch (tipo) {
-            case "Admin":
-                try {
-                    AdminDaoImp daoImp = new AdminDaoImp();
-                    Admin admin = daoImp.getAdminByID(id);
-                    daoImp.destroy();
-                    return admin;
+        if(isTirocinante(request)){
 
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
+                TirocinanteDaoImp daotr = new TirocinanteDaoImp();
+                tr = daotr.getTirocianteByID(id);
+                daotr.destroy();
+        }else{
+            response.sendRedirect("/500");}
 
-
-            case "Azienda":
-
-                try {
-                    AziendaDaoImp daoImp = new AziendaDaoImp();
-                    Azienda az = daoImp.getAziendaByID(id);
-                    daoImp.destroy();
-                    return az;
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-            case "Tirocinante":
-
-                try {
-                    TirocinanteDaoImp daotr = new TirocinanteDaoImp();
-                    Tirocinante tr = daotr.getTirocianteByID(id);
-                    daotr.destroy();
-                    return tr;
-
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-
-
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return null;
+        return tr;
+
+
+
+    }
+
+
+
+    public Admin getAdmin(HttpServletRequest request,HttpServletResponse response)throws IOException {
+        Admin admin = new Admin();
+        try{
+        HttpSession session = request.getSession();
+
+
+        int id = (int)session.getAttribute("IDUnivoco");
+        if(isAdmin(request)){
+
+                AdminDaoImp daoImp = new AdminDaoImp();
+                admin = daoImp.getAdminByID(id);
+                daoImp.destroy();
+        }else{
+            response.sendRedirect("/500");}
+
+        } catch (Exception e) {
+        e.printStackTrace();
+    }
+        return admin;
+
+
+    }
+
+    public Azienda getAzienda(HttpServletRequest request,HttpServletResponse response)throws IOException {
+
+        Azienda az = new Azienda();
+        try{
+        HttpSession session = request.getSession();
+        int id = (int)session.getAttribute("IDUnivoco");
+        if(isAzienda(request)){
+
+
+
+                    AziendaDaoImp daoImp = new AziendaDaoImp();
+                    az = daoImp.getAziendaByID(id);
+                    daoImp.destroy();
+        }else{
+            response.sendRedirect("/500");}
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return az;
+
 
 
 
@@ -202,6 +224,7 @@ public class SingSessionContoller {
         }
         return false;
     }
+
    /* non fuziona bo vediamo
     public User getUser(HttpServletRequest request,HttpServletResponse response)throws DaoException {
 

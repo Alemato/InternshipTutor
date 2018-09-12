@@ -30,7 +30,7 @@ public class InvioRichiestaTrController extends BackEndTrController  {
 
 
             SingSessionContoller session = SingSessionContoller.getInstance();
-            Tirocinante Account = (Tirocinante) session.getAccount(request);
+            Tirocinante Account = session.getTirocinate(request,response);
 
 
             Tirocinio richiestaTirocinio = new Tirocinio();
@@ -50,13 +50,14 @@ public class InvioRichiestaTrController extends BackEndTrController  {
     protected void ifsend(HttpServletRequest request, HttpServletResponse response){
         try {
             SingSessionContoller session = SingSessionContoller.getInstance();
-            Tirocinante tr = (Tirocinante) session.getAccount(request);
+            Tirocinante tr = session.getTirocinate(request,response);
             TirocinioDaoImp dao = new TirocinioDaoImp();
-            Boolean status = dao.ifAreactiveOfferteByTr(tr);
+            Boolean status = dao.ifTirocinanteSendRichiesta(tr);
             if(status){
-                String idOfferta = request.getParameter("Tirocinio");
-                response.sendRedirect("/Tirocinio?ID="+idOfferta);
-            }else{sendRichiestaTr(request,response);}
+                sendRichiestaTr(request,response);
+
+            }else{ String idOfferta = request.getParameter("Tirocinio");
+                response.sendRedirect("/Tirocinio?ID="+idOfferta);}
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -33,7 +33,7 @@ public class ImpostazioneAccountAziendaleController extends BackEndAziendaContro
        try {
            super.init(request, response);
            SingSessionContoller session = SingSessionContoller.getInstance();
-           Azienda azienda = (Azienda) session.getAccount(request);
+           Azienda azienda = session.getAzienda(request,response);
 
 
            UserDaoImp dao = new UserDaoImp();
@@ -148,7 +148,7 @@ public class ImpostazioneAccountAziendaleController extends BackEndAziendaContro
     protected void caricaAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,DaoException {
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (session.isValidSession(request)&& session.isAzienda(request)) {
-            Azienda azienda = (Azienda) session.getAccount(request);
+            Azienda azienda = session.getAzienda(request,response);
             UserDaoImp dao = new UserDaoImp();
             User user = dao.getUserByid(azienda.getUser());
             dao.destroy();

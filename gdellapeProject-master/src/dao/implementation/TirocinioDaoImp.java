@@ -2,6 +2,7 @@ package dao.implementation;
 
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
+import model.OffertaTirocinio;
 import model.Tirocinio;
 
 import java.sql.PreparedStatement;
@@ -13,13 +14,17 @@ import java.util.List;
 import model.Azienda;
 import model.Tirocinante;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class TirocinioDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement selectRichiestatrByID;
     private PreparedStatement selectAllRichiestatr;
     private PreparedStatement insertRichiestatr;
     private PreparedStatement selectNOTActiveRTRbuyAzeinda;
     private PreparedStatement insertFisrtRichiesta;
-    private PreparedStatement selectActiveRichiestaByTR;
+    private PreparedStatement selectTrByStatoAndOfferta;
+    private PreparedStatement selectAllTrByOfferta;
+    private PreparedStatement ifinsertTirocinio;
 
 
     @Override
@@ -28,15 +33,18 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
 
             super.init();
 
-            this.selectRichiestatrByID = connection.prepareStatement("SELECT * FROM  richiestatirocinio WHERE IDRichiestaTirocinio = ?");
+            this.selectRichiestatrByID = connection.prepareStatement("SELECT * FROM  tirocinio WHERE IDRichiestaTirocinio = ?");
 
-            this.selectAllRichiestatr = connection.prepareStatement("SELECT * FROM richiestatirocinio ORDER BY UpdateDate ASC ");
+            this.selectAllRichiestatr = connection.prepareStatement("SELECT * FROM tirocinio ORDER BY UpdateDate ASC ");
 
-            this.insertFisrtRichiesta = connection.prepareStatement("INSERT INTO richiestatirocinio(OffertaTirocinio,Tirocinante) VALUES (?,?)");
+            this.insertFisrtRichiesta = connection.prepareStatement("INSERT INTO tirocinio(OffertaTirocinio,Tirocinante) VALUES (?,?)");
 
-            this.insertRichiestatr = connection.prepareStatement("INSERT INTO richiestatirocinio(DataConsegnaModulo,DurataOre,CFU,Stato,PeriodoEffettivoIniziale,PeriodoEffettivoFinale,RisultatoConseguito,DescrizioneAttivitaSvolta,OffertaTirocinio,Tirocinante,TutoreUniveristario) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            this.insertRichiestatr = connection.prepareStatement("INSERT INTO tirocinio(DataConsegnaModulo,DurataOre,CFU,Stato,PeriodoEffettivoIniziale,PeriodoEffettivoFinale,RisultatoConseguito,DescrizioneAttivitaSvolta,OffertaTirocinio,Tirocinante,TutoreUniveristario) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
-            this.selectActiveRichiestaByTR= connection.prepareStatement("SELECT * FROM richiestatirocinio WHERE Active = true AND Tirocinante = ? " );
+            this.selectTrByStatoAndOfferta= connection.prepareStatement("SELECT * FROM tirocinio WHERE Stato = ? AND OffertaTirocinio = ? " );
+            this.selectAllTrByOfferta = connection.prepareStatement("SELECT * FROM tirocinio WHERE OffertaTirocinio = ?");
+
+            this.ifinsertTirocinio = connection.prepareStatement("SELECT * FROM tirocinio WHERE Tirocinio = ? AND Stato > 2 ");
 
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
@@ -52,18 +60,20 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             ResultSet resultSet = selectRichiestatrByID.executeQuery();
             if(resultSet.next()){
 
-                tr.setIDricTironinio(resultSet.getInt("IDRichiestaTirocinio"));
+                tr.setIDTirocinio(resultSet.getInt("IDTirocinio"));
                 tr.setDataConsegnaModulo(resultSet.getDate("DataConsegnaModulo"));
                 tr.setDurataOre(resultSet.getInt("DurataOre"));
                 tr.setCFU(resultSet.getInt("CFU"));
                 tr.setStato(resultSet.getInt("Stato"));
-                tr.setTutoreUniveritario(resultSet.getInt("TutoreUniversitario"));
                 tr.setPeriodoEffettivoIniziale(resultSet.getDate("PeriodoEffettivoIniziale"));
                 tr.setPeriodoEffettivoFinale(resultSet.getDate("PeriodoEffettivoFinale"));
                 tr.setRisultatoConseguito(resultSet.getString("RisultatoConseguito"));
                 tr.setDescrizioneAttivitaSvolta(resultSet.getString("DescrizioneAttivitaSvolta"));
+                tr.setCreateDate(resultSet.getTimestamp("CreateDate"));
+                tr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
                 tr.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
                 tr.setTirocinante(resultSet.getInt("Tirocinante"));
+                tr.setTutoreUniveritario(resultSet.getInt("TutoreUniversitario"));
             }
             return tr;
 
@@ -72,28 +82,32 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         }
     }
 
-    public List<Tirocinio> getnotActiveByAzienda (Azienda azienda) throws DaoException{
+    public List<Tirocinio> gettrbyStatoandOfferta (OffertaTirocinio offerta,int stato) throws DaoException{
         try {this.init();
             List<Tirocinio> listRT = new ArrayList<>();
 
-            selectNOTActiveRTRbuyAzeinda.setInt(1,azienda.getIDAzienda());
-            ResultSet resultSet = selectNOTActiveRTRbuyAzeinda.executeQuery();
+            this.selectTrByStatoAndOfferta.setInt(1,stato);
+            this.selectTrByStatoAndOfferta.setInt(2,offerta.getIDOffertaTirocinio());
+            ResultSet resultSet = selectTrByStatoAndOfferta.executeQuery();
 
             while (resultSet.next()){
 
                 Tirocinio tr = new Tirocinio();
-                tr.setIDricTironinio(resultSet.getInt("IDRichiestaTirocinio"));
+                tr.setIDTirocinio(resultSet.getInt("IDTirocinio"));
                 tr.setDataConsegnaModulo(resultSet.getDate("DataConsegnaModulo"));
                 tr.setDurataOre(resultSet.getInt("DurataOre"));
                 tr.setCFU(resultSet.getInt("CFU"));
                 tr.setStato(resultSet.getInt("Stato"));
-                tr.setTutoreUniveritario(resultSet.getInt("TutoreUniversitario"));
                 tr.setPeriodoEffettivoIniziale(resultSet.getDate("PeriodoEffettivoIniziale"));
                 tr.setPeriodoEffettivoFinale(resultSet.getDate("PeriodoEffettivoFinale"));
                 tr.setRisultatoConseguito(resultSet.getString("RisultatoConseguito"));
                 tr.setDescrizioneAttivitaSvolta(resultSet.getString("DescrizioneAttivitaSvolta"));
+                tr.setCreateDate(resultSet.getTimestamp("CreateDate"));
+                tr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
                 tr.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
                 tr.setTirocinante(resultSet.getInt("Tirocinante"));
+                tr.setTutoreUniveritario(resultSet.getInt("TutoreUniversitario"));
+
 
                 listRT.add(tr);
             }
@@ -101,9 +115,59 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             return listRT;
 
         }catch (SQLException e){
-            throw new DaoException("Errore query lista tr active",e);
+            throw new DaoException("Errore query lista stato e offerta",e);
         }
     }
+
+
+    public List<Tirocinio> getTrByOfferta (OffertaTirocinio offertaTirocinio) throws DaoException{
+        try {this.init();
+            List<Tirocinio> listRT = new ArrayList<>();
+
+
+            this.selectAllTrByOfferta.setInt(1,  offertaTirocinio.getIDOffertaTirocinio());
+            ResultSet resultSet = selectAllTrByOfferta.executeQuery();
+
+            while (resultSet.next()){
+
+                Tirocinio tr = new Tirocinio();
+                tr.setIDTirocinio(resultSet.getInt("IDTirocinio"));
+                tr.setDataConsegnaModulo(resultSet.getDate("DataConsegnaModulo"));
+                tr.setDurataOre(resultSet.getInt("DurataOre"));
+                tr.setCFU(resultSet.getInt("CFU"));
+                tr.setStato(resultSet.getInt("Stato"));
+                tr.setPeriodoEffettivoIniziale(resultSet.getDate("PeriodoEffettivoIniziale"));
+                tr.setPeriodoEffettivoFinale(resultSet.getDate("PeriodoEffettivoFinale"));
+                tr.setRisultatoConseguito(resultSet.getString("RisultatoConseguito"));
+                tr.setDescrizioneAttivitaSvolta(resultSet.getString("DescrizioneAttivitaSvolta"));
+                tr.setCreateDate(resultSet.getTimestamp("CreateDate"));
+                tr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
+                tr.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
+                tr.setTirocinante(resultSet.getInt("Tirocinante"));
+                tr.setTutoreUniveritario(resultSet.getInt("TutoreUniversitario"));
+
+                listRT.add(tr);
+            }
+
+            return listRT;
+
+        }catch (SQLException e){
+            throw new DaoException("Errore query lista tr by offerta tr",e);
+        }
+    }
+    public boolean ifTirocinanteSendRichiesta(Tirocinante tr) throws DaoException{
+        try {
+            ifinsertTirocinio.setInt(1, tr.getIDTirocinante());
+            ResultSet resultSet = ifinsertTirocinio.executeQuery();
+            if(resultSet.next()){
+                return false;
+            }else{return true;}
+        }catch (SQLException e){
+            throw new DaoException("Problema data base",e);
+        }
+
+    }
+
 
 
     public void setRichiestatr(Tirocinio tr) throws DaoException {
@@ -142,26 +206,14 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
 
         }
     }
-    public boolean ifAreactiveOfferteByTr (Tirocinante tr) throws DaoException {
-        try {
-            this.init();
-            selectActiveRichiestaByTR.setInt(1,tr.getIDTirocinante());
-            ResultSet re = selectActiveRichiestaByTR.executeQuery();
-            if(re.next()){return true;}
-            else{return false;}
 
-            } catch (SQLException e) {
-            throw new DaoException("Errore controllo tabella", e);
-
-        }
-    }
 
 
     public void destroy() throws DaoException {
 
         try {
 
-            this.selectActiveRichiestaByTR.close();
+            this.selectTrByStatoAndOfferta.close();
             this.selectAllRichiestatr.close();
             this.selectRichiestatrByID.close();
             this.insertRichiestatr.close();

@@ -85,14 +85,14 @@ public class SchedaTirocinioController  extends baseController{
             SingSessionContoller session = SingSessionContoller.getInstance();
 
             if (session.isTirocinante(request)&& session.isValidSession(request)){
-                Tirocinante tr = (Tirocinante) session.getAccount(request);
+                Tirocinante tr = session.getTirocinate(request,response);
 
             TirocinioDaoImp dao = new TirocinioDaoImp();
-            Boolean statusoldRC = dao.ifAreactiveOfferteByTr(tr);
+            Boolean statusoldRC = dao.ifTirocinanteSendRichiesta(tr);
             dao.destroy();
 
             if(statusoldRC) {
-                datamodel.put("Message", "Non puoi Richiedene altri Tirocini mentre ne stai svogendo uno");
+                datamodel.put("Message", "Non puoi Richiedene altri Tirocini mentre ne stai svogendo uno o ne hai richiesto uno");
 
             }
         }
