@@ -4,22 +4,7 @@
     <meta charset="UTF-8">
     <title>Impostazioni Account</title>
 
-    <!-- mobile settings -->
-    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
-    <!--[if IE]>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-
-    <!-- WEB FONTS : use %7C instead of | (pipe) -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons%7COpen+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700"
-          rel="stylesheet" type="text/css"/>
-
-    <!-- CORE CSS -->
-    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-    <!-- THEME CSS -->
-    <link href="css/essentials.css" rel="stylesheet" type="text/css"/>
-    <link href="css/layout.css" rel="stylesheet" type="text/css"/>
-
+<#include "importCss.ftl">
     <!-- PAGE LEVEL SCRIPTS -->
     <link href="css/header-1.css" rel="stylesheet" type="text/css"/>
     <link href="css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
@@ -30,94 +15,7 @@
 
 <!-- wrapper -->
 <div id="wrapper">
-    <div id="header" class="navbar-toggleable-md  shadow-after-3 clearfix position-fixed">
-        <!-- TOP BAR-->
-        <div id="topBar" class="dark sticky">
-            <div class="container">
-
-                <!-- right -->
-                <ul class="top-links list-inline float-right has-topBar">
-                    <li>
-                        <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#"><i
-                                class="fa fa-user hidden-xs-down"></i> IL MIO ACCOUNT </a>
-                        <ul class="dropdown-menu float-right has-topBar">
-                            <li><a tabindex="-1" href="#"><i class="fa fa-history"></i> I MIEI
-                                TIROCINI</a></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" href="#"><i class="fa fa-cog"></i> IMPOSTAZIONI
-                                DELL'ACCOUNT </a></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" href="#"><i class="glyphicon glyphicon-off"></i> logout
-                            </a></li>
-                        </ul>
-                    </li>
-                    <li class="hidden-xs-down"><a href="#">LOGIN</a></li>
-                    <li class="hidden-xs-down"><a href="registrazione.html">REGISTRAZIONE</a></li>
-                </ul>
-
-                <!-- left -->
-                <ul class="top-links list-inline has-topBar">
-                    <li class="text-welcome hidden-xs-down p-10">Benvenuto, <strong>Mario Rossi</strong></li>
-                </ul>
-
-            </div>
-        </div>
-        <!-- /TOP BAR-->
-
-
-        <header id="topNav">
-            <div class="container">
-                <!-- Mobile Menu Button -->
-                <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-
-
-                <!-- Logo -->
-                <a class="logo float-left mb-5 mr-10scripts.jsscripts.js" href="index.html">
-                    <img src="imgs/interns.jpg" alt=""/>
-                </a>
-
-                <div class="navbar-collapse collapse nav-main-collapse submenu-dark">
-                    <nav class="nav-main">
-                        <ul id="topMain" class="nav nav-pills nav-main">
-                            <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="index.html">
-                                    HOME
-                                </a>
-                            </li>
-                            <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="offerte-tutoraggi.html">
-                                    LISTA OFFERTE TUTORAGGI
-                                </a>
-                            </li>
-                            <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="lista-convenzioni.html">
-                                    LISTA CONVENZIONI
-                                </a>
-                            </li>
-                            <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="informazioni.html">
-                                    INFORMAZIONI
-                                </a>
-                            </li>
-                            <form class="d-inline-block col-lg-12 col-xl-4 mb-lg-2">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" aria-label=""
-                                           placeholder="Cerca nell'intero del sito">
-                                    <span class="input-group-btn">
-                                            <button class="btn btn-primary material-ico" type="submit">
-                                                <i class="material-icons">search</i>
-                                            </button>
-                                        </span>
-                                </div>
-                            </form>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-    </div>
+    <#include "header.ftl">
 
     <section class="page-header page-header-md parallax parallax-3 mt-130"
              style="background-image:url('imgs/imgpattern.jpg')">
@@ -149,14 +47,28 @@
                     <label class="input">
                         <p> Indirizzo Email</p>
                         <i class="ico-append giu fa fa-envelope"></i>
-                        <input type="text" placeholder="Indirizzo Email" name="Email" value="francesco.totti@1a0.goal" required>
+                        <input type="text" placeholder="Indirizzo Email" name="Email" value=${User.email} required>
                         <b class="tooltip tooltip-bottom-right">Necessario per verificare il tuo account</b>
                     </label>
 
                     <label class="input">
                         <p> Password</p>
                         <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password" name="Password" required>
+                        <input type="password" placeholder="Password Attuale" name="Password" required>
+                        <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
+                            al tuo account</b>
+                    </label>
+                    <label class="input">
+                        <p> Password</p>
+                        <i class="ico-append giu fa fa-lock"></i>
+                        <input type="password" placeholder="Password Nuova" name="PasswordNuova" required>
+                        <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
+                            al tuo account</b>
+                    </label>
+                    <label class="input">
+                        <p> Password</p>
+                        <i class="ico-append giu fa fa-lock"></i>
+                        <input type="password" placeholder="Password Nuova" name="PasswordNuova1" required>
                         <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                             al tuo account</b>
                     </label>
@@ -173,12 +85,12 @@
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="text" placeholder="Nome" name="Nome" value="Francesco" required>
+                                <input type="text" placeholder="Nome" name="Nome" value=${Tirocinante.nome} required>
                             </label>
                         </div>
                         <div class="col col">
                             <label class="input">
-                                <input type="text" placeholder="Cognome" name="Cognome"  value="Totti" required>
+                                <input type="text" placeholder="Cognome" name="Cognome"  value=${Tirocinante.cognome} required>
                             </label>
                         </div>
                     </div>
@@ -191,7 +103,7 @@
                         <div class="col">
                             <label class="input">
                                 <i class="ico-append fa fa-map-o"></i>
-                                <input type="text" placeholder="Luogo di Nascita" name="LuogoNascita" value="Roma" required>
+                                <input type="text" placeholder="Luogo di Nascita" name="LuogoNascita" value=${Tirocinante.luogoDiNascita} required>
                             </label>
                         </div>
 
@@ -202,7 +114,7 @@
                         <div class="col-md-1">
                             <label class="input">
                                 <input type="text" class="masked" data-format="aa" placeholder="XX" name="ProvinciaNascita"
-                                        value="RM" required>
+                                        value=${Tirocinante.provinciaDiNascita} required>
                             </label>
                         </div>
 
@@ -213,7 +125,7 @@
 
                         <div class="col">
                             <label class="input">
-                                <input type="date" name="DataNascita" value="0001-01-01" required>
+                                <input type="date" name="DataNascita" value=${Tirocinante.dataDiNascita} required>
                             </label>
                         </div>
                     </div>
@@ -226,7 +138,7 @@
                         <div class="col">
                             <label class="input">
                                 <i class="ico-append fa fa-map-o"></i>
-                                <input type="text" placeholder="Luogo di Residenza" name="LuogoResidenza" value="Roma" required>
+                                <input type="text" placeholder="Luogo di Residenza" name="LuogoResidenza" value=${Tirocinante.luogoDiResidenza} required>
                             </label>
                         </div>
 
@@ -237,7 +149,7 @@
                         <div class="col-md-1">
                             <label class="input">
                                 <input type="text" class="masked" data-format="aa" data-placeholder="X" placeholder="XX"
-                                       name="ProvinciaResidenza"  value="RM" required>
+                                       name="ProvinciaResidenza"  value=${Tirocinante.provinciaDiResidenza} required>
                             </label>
                         </div>
 
@@ -251,7 +163,7 @@
                         <div class="col">
                             <label class="input mb-20">
                                 <input type="text" class="masked uppercase" data-format="****************" data-placeholder="X"
-                                       placeholder="Codice Fiscale" name="CodiceFiscale" value="asdqweruioks19shjdu" required>
+                                       placeholder="Codice Fiscale" name="CodiceFiscale" value=${Tirocinante.codiceFiscale} required>
                             </label>
                         </div>
 
@@ -263,7 +175,7 @@
                             <label class="input mb-20">
                                 <i class="ico-append fa fa-phone"></i>
                                 <input type="text" class="masked" data-format="999-9999999" data-placeholder="XXX-XXXXXXX"
-                                       placeholder="Numero di telefono" name="NumeroTelefono" value="123-1234567" required>
+                                       placeholder="Numero di telefono" name="NumeroTelefono" value=${Tirocinante.telefono} required>
                             </label>
                         </div>
 
@@ -275,53 +187,55 @@
 
                     <div class="row pr-15 pl-15 pr-15">
                         <label class="checkbox mt-6">
-                            <input type="checkbox" name="CKStudenteCorsoLaurea" value="1" checked="checked">
+                            <input type="checkbox" name="CKStudenteCorsoLaurea" value= "1" <#if Tirocinante.corsoDiLaurea??> checked="checked"</#if>>
                             <i></i> Studente Corso di Laurea in:
-                        </label>
+
 
                         <label class="input col">
-                            <input type="text" placeholder="Corso di Laurea" name="StudenteCorsoLaurea" value="scienze motorie">
+                            <input type="text" placeholder="Corso di Laurea" name="StudenteCorsoLaurea"  value = <#if Tirocinante.corsoDiLaurea??>  Tirocinante.corsoDiLaurea </#if>>
                         </label>
                     </div>
 
                     <div class="row pl-15 pr-15">
                         <label class="checkbox mt-6">
-                            <input type="checkbox" name="CKDiplomaUniversitario" value="1">
+                            <input type="checkbox" name="CKDiplomaUniversitario" value="1" <#if Tirocinante.diplomaUniversitario?? > checked="checked"</#if>>
                             <i></i> Diplomato. Diploma universitario in <em class="fw-100">(entro 12 mesi dal diploma)</em>
                             &nbsp;:
                         </label>
                         <label class="input col">
-                            <input type="text" placeholder="Diploma universitario" name="DiplomaUniversitario">
+                            <input type="text" placeholder="Diploma universitario" name="DiplomaUniversitario" <#if Tirocinante.diplomaUniversitario??> value=${Tirocinante.diplomaUniversitario} </#if>  >
                         </label>
                     </div>
 
                     <div class="row pl-15 pr-15">
                         <label class="checkbox mt-6">
-                            <input type="checkbox" name="CKLaureaIn" value="1">
+                            <input type="checkbox" name="CKLaureaIn" value="1" <#if Tirocinante.laureatoUniversitario?? > checked="checked" </#if>>
                             <i></i> Laureato. Laurea in <em class="fw-100">(entro 12 mesi dalla laurea)</em> &nbsp;:
                         </label>
                         <label class="input col">
-                            <input type="text" placeholder="Corso di Laurea" name="LaureaIn">
+                            <input type="text" placeholder="Corso di Laurea" name="LaureaIn" <#if Tirocinante.laureatoUniversitario??> value=${Tirocinante.laureatoUniversitario} </#if> >
                         </label>
                     </div>
 
                     <div class="row pl-15 pr-15">
                         <label class="checkbox mt-6">
-                            <input type="checkbox" name="CKDottoratoRicerca" value="1">
+                            <input type="checkbox" name="CKDottoratoRicerca" value="1" <#if Tirocinante.dottoratoDiRicerca??> checked="checked" </#if>>
                             <i></i> Dottorato di ricerca in:
                         </label>
                         <label class="input col">
-                            <input type="text" placeholder="Corso di Laurea" name="DottoratoRicerca">
+                            <input type="text" placeholder="Dottorato di ricerca" name="DottoratoRicerca" <#if Tirocinante.dottoratoDiRicerca??> value=${Tirocinante.dottoratoDiRicerca} </#if>  >
                         </label>
                     </div>
 
                     <div class="row pl-15 pr-15">
                         <label class="checkbox mt-6 pr-0">
-                            <input type="checkbox" name="CKScuolaAltro" value="1">
+                            <input type="checkbox" name="CKScuolaAltro" value="1"  <#if Tirocinante.scuolaAltro??> checked="checked" </#if> >
                             <i></i> Scuola o corso di perfezionamento o specializzazione in:
                         </label>
                         <label class="input col">
-                            <input type="text" placeholder="Corso di Laurea" name="ScuolaAltro">
+
+                            <input type="text" placeholder="Scuola o altro" name="ScuolaAltro" <#if Tirocinante.scuolaAltro??> value=${Tirocinante.scuolaAltro} </#if> >
+
                         </label>
                     </div>
 
@@ -469,10 +383,7 @@
 </div>
 
 <!-- JAVASCRIPT FILES -->
-<script>var plugin_path = 'plugins/';</script>
-<script src="plugins/jquery/jquery-3.3.1.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="plugins/bootstrap/js/bootstrap.js"></script>
+<#include "importScript.ftl">
 <script src="js/internshiptutor.js"></script>
 
 </body>

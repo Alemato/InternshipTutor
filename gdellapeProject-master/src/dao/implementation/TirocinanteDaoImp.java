@@ -17,7 +17,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
  private PreparedStatement selectAllTirocinante;
  private PreparedStatement insertTirocinante;
  private PreparedStatement selectTirocinanteByIDuser;
-
+    private PreparedStatement UpdateTirocinante;
 
 
 
@@ -34,8 +34,11 @@ public void init() throws DaoException {
         this.insertTirocinante = connection.prepareStatement("INSERT INTO tirocinante(Nome,Cognome,LuogoDiNascita, DataDiNascita, LuogoDiResidenza,ProvinciaDiResidenza,ProvinciaDiNascita," +
                 "CodiceFiscale,Telefono," +
                 "CorsoDiLaurea,DiplomaUniversitario,Laureato,DottoratoDiRicerca,ScuolaAltro,Handicap,User) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        this.UpdateTirocinante = connection.prepareStatement("UPDATE tirocinante SET  Nome = ? Cognome= ? LuogoDiNascita= ? DataDiNascita= ? LuogoDiResidenza= ? ProvinciaDiResidenza= ? ProvinciaDiNascita= ?" +
+                "CodiceFiscale = ?,Telefono =? ," +
+                "CorsoDiLaurea = ? DiplomaUniversitario = ? Laureato = ? DottoratoDiRicerca = ? ScuolaAltro = ? Handicap = ? User = ? WHERE IDTirocinante = ?");
 
-        this.selectAllTirocinante = connection.prepareStatement("SELECT * FROM tirociante");
+        this.selectAllTirocinante = connection.prepareStatement("SELECT * FROM tirocinante");
 
     } catch (SQLException ex) {
         throw new DaoException("Error:PrepareStatement error", ex);
@@ -80,32 +83,61 @@ public List<Tirocinante> getAllTirociante() throws DaoException{
 }
 
 public void setTirocinante(Tirocinante tr) throws DaoException {
-    try{
-        this.init();
-        insertTirocinante.setString(1,tr.getNome());
-        insertTirocinante.setString(2,tr.getCognome());
-        insertTirocinante.setString(3,tr.getLuogoDiNascita());
-        insertTirocinante.setDate(4,tr.getDataDiNascita());
-        insertTirocinante.setString(5,tr.getLuogoDiResidenza());
-        insertTirocinante.setString(6,tr.getProvinciaDiResidenza());
+        try{
+            this.init();
+            insertTirocinante.setString(1,tr.getNome());
+            insertTirocinante.setString(2,tr.getCognome());
+            insertTirocinante.setString(3,tr.getLuogoDiNascita());
+            insertTirocinante.setDate(4,tr.getDataDiNascita());
+            insertTirocinante.setString(5,tr.getLuogoDiResidenza());
+            insertTirocinante.setString(6,tr.getProvinciaDiResidenza());
 
-        insertTirocinante.setString(7,tr.getProvinciaDiNascita());
-        insertTirocinante.setString(8,tr.getCodiceFiscale());
-        insertTirocinante.setString(9,tr.getTelefono());
-        insertTirocinante.setString(10,tr.getCorsoDiLaurea());
-        insertTirocinante.setString(11,tr.getDiplomaUniversitario());
-        insertTirocinante.setString(12,tr.getLaureatoUniversitario());
-        insertTirocinante.setString(13,tr.getDottoratoDiRicerca());
-        insertTirocinante.setString(14,tr.getScuolaAltro());
-        insertTirocinante.setBoolean(15,tr.getHandicap());
-        insertTirocinante.setInt(16,tr.getUser());
-        insertTirocinante.executeUpdate();
+            insertTirocinante.setString(7,tr.getProvinciaDiNascita());
+            insertTirocinante.setString(8,tr.getCodiceFiscale());
+            insertTirocinante.setString(9,tr.getTelefono());
+            insertTirocinante.setString(10,tr.getCorsoDiLaurea());
+            insertTirocinante.setString(11,tr.getDiplomaUniversitario());
+            insertTirocinante.setString(12,tr.getLaureatoUniversitario());
+            insertTirocinante.setString(13,tr.getDottoratoDiRicerca());
+            insertTirocinante.setString(14,tr.getScuolaAltro());
+            insertTirocinante.setBoolean(15,tr.getHandicap());
+            insertTirocinante.setInt(16,tr.getUser());
+            insertTirocinante.executeUpdate();
 
 
-    }catch (SQLException e){
-        throw new DaoException("Errore inserimento",e);
+        }catch (SQLException e){
+            throw new DaoException("Errore inserimento",e);
+        }
     }
-}
+    public void setUpdate(Tirocinante tr) throws DaoException {
+        try{
+            this.init();
+            UpdateTirocinante.setString(1,tr.getNome());
+            UpdateTirocinante.setString(2,tr.getCognome());
+            UpdateTirocinante.setString(3,tr.getLuogoDiNascita());
+            UpdateTirocinante.setDate(4,tr.getDataDiNascita());
+            UpdateTirocinante.setString(5,tr.getLuogoDiResidenza());
+            UpdateTirocinante.setString(6,tr.getProvinciaDiResidenza());
+
+            UpdateTirocinante.setString(7,tr.getProvinciaDiNascita());
+            UpdateTirocinante.setString(8,tr.getCodiceFiscale());
+            UpdateTirocinante.setString(9,tr.getTelefono());
+            UpdateTirocinante.setString(10,tr.getCorsoDiLaurea());
+            UpdateTirocinante.setString(11,tr.getDiplomaUniversitario());
+            UpdateTirocinante.setString(12,tr.getLaureatoUniversitario());
+            UpdateTirocinante.setString(13,tr.getDottoratoDiRicerca());
+            UpdateTirocinante.setString(14,tr.getScuolaAltro());
+            UpdateTirocinante.setBoolean(15,tr.getHandicap());
+            UpdateTirocinante.setInt(16,tr.getUser());
+            UpdateTirocinante.setInt(17,tr.getIDTirocinante());
+            insertTirocinante.executeUpdate();
+
+
+        }catch (SQLException e){
+            throw new DaoException("Errore Tirocinante Update",e);
+        }
+    }
+
 public Tirocinante getTirocianteByID(int id) throws DaoException{
     try {
         this.init();

@@ -215,6 +215,17 @@
 
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>impostazionetr</servlet-name>
+        <servlet-class>controller.adm.Tirocinante.UpdateTirocinanteController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>impostazionetr</servlet-name>
+        <url-pattern>/impostazioneTirocinante</url-pattern>
+        <url-pattern>/impostazionetirocinante</url-pattern>
+
+    </servlet-mapping>
+
     <error-page>
         <error-code>401</error-code>
         <location>/401</location>

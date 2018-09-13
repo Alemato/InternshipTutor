@@ -225,51 +225,61 @@ public class SingSessionContoller {
         return false;
     }
 
-   /* non fuziona bo vediamo
-    public User getUser(HttpServletRequest request,HttpServletResponse response)throws DaoException {
-
-
-
-        int IDuser;
+   public User getUserTirocinante(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        SingSessionContoller session = SingSessionContoller.getInstance();
         User user = new User();
-        HttpSession session = getSession(request);
-        String tipo = (String) session.getAttribute("Tipo");
-        Object account = getAccount(request);
-        UserDaoImp dao = new UserDaoImp();
 
-
-        if (tipo.equals("Admin")) {
-
-            Admin admin = (Admin) account;
-            IDuser = admin.getUser();
-
-            user = dao.getUserByid(IDuser);
-            dao.destroy();
-        }
-
-        if (tipo.equals("Azienda")) {
-
-            Azienda azienda = (Azienda) account;
-            IDuser = azienda.getUser();
-
-            user = dao.getUserByid(IDuser);
+        Tirocinante tr = session.getTirocinate(request,response);
+        try {
+            UserDaoImp dao = new UserDaoImp();
+            user = dao.getUserByid(tr.getUser());
             dao.destroy();
 
-        }
-
-        if (tipo.equals("Tirocinante")) {
-
-            Tirocinante tirocinante = (Tirocinante) account;
-            IDuser = tirocinante.getUser();
-
-            user = dao.getUserByid(IDuser);
-            dao.destroy();
-
-
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return user;
 
-    }*/
+
+
+    }
+
+    public User getUserAzienda(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        SingSessionContoller session = SingSessionContoller.getInstance();
+        User user = new User();
+
+        Azienda az = session.getAzienda(request,response);
+        try {
+            UserDaoImp dao = new UserDaoImp();
+            user = dao.getUserByid(az.getUser());
+            dao.destroy();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return user;
+
+
+
+    }
+    public User getUserAdmin(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        SingSessionContoller session = SingSessionContoller.getInstance();
+        User user = new User();
+
+        Admin ad = session.getAdmin(request,response);
+        try {
+            UserDaoImp dao = new UserDaoImp();
+            user = dao.getUserByid(ad.getUser());
+            dao.destroy();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return user;
+
+
+
+    }
 
 
 
