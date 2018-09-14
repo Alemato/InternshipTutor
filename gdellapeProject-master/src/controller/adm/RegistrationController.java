@@ -198,7 +198,7 @@ public class RegistrationController extends HttpServlet  {
             tirocinante.setLuogoDiNascita(request.getParameter("LuogoNascita"));
             tirocinante.setProvinciaDiNascita(request.getParameter("ProvinciaNascita"));
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             try {
                 java.util.Date parser = sdf.parse((String) request.getParameter("DataNascita"));
                 java.sql.Date sqldate = new java.sql.Date(parser.getTime());
@@ -221,29 +221,28 @@ public class RegistrationController extends HttpServlet  {
             }
 
             String CKdipuni = request.getParameter("CKDiplomaUniversitario");
-            if (CKdipuni != null) {
+            if (CKdipuni.equals("1")) {
                 tirocinante.setDiplomaUniversitario(request.getParameter("DiplomaUniversitario"));
             }
 
 
             String CKlaureain = (String) request.getParameter("CKLaureaIn");
-            if (CKdipuni != null) {
+            if (CKlaureain.equals("1")) {
                 tirocinante.setLaureatoUniversitario(request.getParameter("LaureaIn"));
             }
 
             String CKdotRic = (String) request.getParameter("CKDottoratoRicerca");
-            if (CKdipuni != null) {
+            if (CKdotRic.equals("1")) {
                 tirocinante.setDottoratoDiRicerca(request.getParameter("DottoratoRicerca"));
             }
 
             String CKalSc = (String) request.getParameter("CKScuolaAltro");
-            if (CKdipuni != null) {
+            if (CKalSc.equals("1")) {
                 tirocinante.setScuolaAltro(request.getParameter("ScuolaAltro"));
             }
 
             String CKha = (String) request.getParameter("Handicap");
-            if (CKdipuni != null
-                    ) {
+            if (CKha.equals("1")) {
                 tirocinante.setHandicap(true);
             }else{tirocinante.setHandicap(false);}
 

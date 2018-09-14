@@ -37,7 +37,7 @@
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-12 col-lg-4 mb-15">
-                <a href="impostazione-account-tirocinante.html">
+                <a href="impostazionetirocinante">
                     <div class="account-settings-item account-settings d-flex">
                         <img src="/imgs/sign-in-lock.png" class="h-90 float-left m-0">
                         <div class="ml-10 mt-5 float-right">

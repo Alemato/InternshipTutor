@@ -40,14 +40,16 @@
                   novalidate="novalidate">
 
                 <header class="mb-50 fs-50 fw-100 text-center">Aggiorna i tuoi dati</header>
-
+            <#if Message??>
+            <#include "messaggio-errore.ftl">
+            </#if>
 
                 <div class="header-form"><i class="fa fa-lock"></i> INFORMAZIONI ACCESSO</div>
                 <fieldset name="Accesso">
                     <label class="input">
                         <p> Indirizzo Email</p>
                         <i class="ico-append giu fa fa-envelope"></i>
-                        <input type="text" placeholder="Indirizzo Email" name="Email" value=${User.email} required>
+                        <input type="text" placeholder="Indirizzo Email" name="Email" value="${User.email}" required>
                         <b class="tooltip tooltip-bottom-right">Necessario per verificare il tuo account</b>
                     </label>
 
@@ -85,12 +87,12 @@
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="text" placeholder="Nome" name="Nome" value=${Tirocinante.nome} required>
+                                <input type="text" placeholder="Nome" name="Nome" value="${Tirocinante.nome}" required>
                             </label>
                         </div>
                         <div class="col col">
                             <label class="input">
-                                <input type="text" placeholder="Cognome" name="Cognome"  value=${Tirocinante.cognome} required>
+                                <input type="text" placeholder="Cognome" name="Cognome"  value="${Tirocinante.cognome}" required>
                             </label>
                         </div>
                     </div>
@@ -103,7 +105,7 @@
                         <div class="col">
                             <label class="input">
                                 <i class="ico-append fa fa-map-o"></i>
-                                <input type="text" placeholder="Luogo di Nascita" name="LuogoNascita" value=${Tirocinante.luogoDiNascita} required>
+                                <input type="text" placeholder="Luogo di Nascita" name="LuogoNascita" value="${Tirocinante.luogoDiNascita}" required>
                             </label>
                         </div>
 
@@ -114,7 +116,7 @@
                         <div class="col-md-1">
                             <label class="input">
                                 <input type="text" class="masked" data-format="aa" placeholder="XX" name="ProvinciaNascita"
-                                        value=${Tirocinante.provinciaDiNascita} required>
+                                        value="${Tirocinante.provinciaDiNascita}" required>
                             </label>
                         </div>
 
@@ -125,7 +127,7 @@
 
                         <div class="col">
                             <label class="input">
-                                <input type="date" name="DataNascita" value=${Tirocinante.dataDiNascita} required>
+                                <input type="date" name="DataNascita" value="${Nascita}" required>
                             </label>
                         </div>
                     </div>
@@ -138,7 +140,7 @@
                         <div class="col">
                             <label class="input">
                                 <i class="ico-append fa fa-map-o"></i>
-                                <input type="text" placeholder="Luogo di Residenza" name="LuogoResidenza" value=${Tirocinante.luogoDiResidenza} required>
+                                <input type="text" placeholder="Luogo di Residenza" name="LuogoResidenza" value="${Tirocinante.luogoDiResidenza}" required>
                             </label>
                         </div>
 
@@ -149,7 +151,7 @@
                         <div class="col-md-1">
                             <label class="input">
                                 <input type="text" class="masked" data-format="aa" data-placeholder="X" placeholder="XX"
-                                       name="ProvinciaResidenza"  value=${Tirocinante.provinciaDiResidenza} required>
+                                       name="ProvinciaResidenza"  value="${Tirocinante.provinciaDiResidenza}" required>
                             </label>
                         </div>
 
@@ -163,7 +165,7 @@
                         <div class="col">
                             <label class="input mb-20">
                                 <input type="text" class="masked uppercase" data-format="****************" data-placeholder="X"
-                                       placeholder="Codice Fiscale" name="CodiceFiscale" value=${Tirocinante.codiceFiscale} required>
+                                       placeholder="Codice Fiscale" name="CodiceFiscale" value="${Tirocinante.codiceFiscale}" required>
                             </label>
                         </div>
 
@@ -175,7 +177,7 @@
                             <label class="input mb-20">
                                 <i class="ico-append fa fa-phone"></i>
                                 <input type="text" class="masked" data-format="999-9999999" data-placeholder="XXX-XXXXXXX"
-                                       placeholder="Numero di telefono" name="NumeroTelefono" value=${Tirocinante.telefono} required>
+                                       placeholder="Numero di telefono" name="NumeroTelefono" value="${Tirocinante.telefono}" required>
                             </label>
                         </div>
 
@@ -192,7 +194,7 @@
 
 
                         <label class="input col">
-                            <input type="text" placeholder="Corso di Laurea" name="StudenteCorsoLaurea"  value = <#if Tirocinante.corsoDiLaurea??>  Tirocinante.corsoDiLaurea </#if>>
+                            <input type="text" placeholder="Corso di Laurea" name="StudenteCorsoLaurea" <#if Tirocinante.corsoDiLaurea??>    value = "${Tirocinante.corsoDiLaurea}" </#if>>
                         </label>
                     </div>
 
@@ -203,7 +205,7 @@
                             &nbsp;:
                         </label>
                         <label class="input col">
-                            <input type="text" placeholder="Diploma universitario" name="DiplomaUniversitario" <#if Tirocinante.diplomaUniversitario??> value=${Tirocinante.diplomaUniversitario} </#if>  >
+                            <input type="text" placeholder="Diploma universitario" name="DiplomaUniversitario" <#if Tirocinante.diplomaUniversitario??> value= "${Tirocinante.diplomaUniversitario}" </#if>  >
                         </label>
                     </div>
 
@@ -213,7 +215,7 @@
                             <i></i> Laureato. Laurea in <em class="fw-100">(entro 12 mesi dalla laurea)</em> &nbsp;:
                         </label>
                         <label class="input col">
-                            <input type="text" placeholder="Corso di Laurea" name="LaureaIn" <#if Tirocinante.laureatoUniversitario??> value=${Tirocinante.laureatoUniversitario} </#if> >
+                            <input type="text" placeholder="Corso di Laurea" name="LaureaIn" <#if Tirocinante.laureatoUniversitario??> value="${Tirocinante.laureatoUniversitario}" </#if> >
                         </label>
                     </div>
 
@@ -223,7 +225,7 @@
                             <i></i> Dottorato di ricerca in:
                         </label>
                         <label class="input col">
-                            <input type="text" placeholder="Dottorato di ricerca" name="DottoratoRicerca" <#if Tirocinante.dottoratoDiRicerca??> value=${Tirocinante.dottoratoDiRicerca} </#if>  >
+                            <input type="text" placeholder="Dottorato di ricerca" name="DottoratoRicerca" <#if Tirocinante.dottoratoDiRicerca??> value="${Tirocinante.dottoratoDiRicerca}" </#if>  >
                         </label>
                     </div>
 
@@ -234,7 +236,7 @@
                         </label>
                         <label class="input col">
 
-                            <input type="text" placeholder="Scuola o altro" name="ScuolaAltro" <#if Tirocinante.scuolaAltro??> value=${Tirocinante.scuolaAltro} </#if> >
+                            <input type="text" placeholder="Scuola o altro" name="ScuolaAltro" <#if Tirocinante.scuolaAltro??> value="${Tirocinante.scuolaAltro}" </#if> >
 
                         </label>
                     </div>
