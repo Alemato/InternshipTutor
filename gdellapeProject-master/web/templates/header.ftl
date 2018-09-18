@@ -34,13 +34,15 @@
 
                     <li class="hidden-xs-down"><a href="/registration">REGISTRAZIONE</a></li>
                     </ul>
-                    </#if>
 
-            <!-- left -->
+                     <!-- left -->
             <ul class="top-links list-inline has-topBar">
                 <li class="text-welcome hidden-xs-down p-10">Benvenuto su Internship Tutor</li>
 
             </ul>
+                    </#if>
+
+
 
 
         </div>
