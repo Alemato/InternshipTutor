@@ -215,6 +215,29 @@
 
     </servlet-mapping>
 
+
+
+    <servlet>
+        <servlet-name>mailer</servlet-name>
+        <servlet-class>controller.SendManualMailController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mailer</servlet-name>
+        <url-pattern>/sendMail</url-pattern>
+        <url-pattern>/SendMail</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>reset-pwd</servlet-name>
+        <servlet-class>controller.ResetController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>reset-pwd</servlet-name>
+        <url-pattern>/reset</url-pattern>
+        <url-pattern>/Reset</url-pattern>
+    </servlet-mapping>
+
+
     <servlet>
         <servlet-name>impostazionetr</servlet-name>
         <servlet-class>controller.adm.Tirocinante.UpdateTirocinanteController</servlet-class>

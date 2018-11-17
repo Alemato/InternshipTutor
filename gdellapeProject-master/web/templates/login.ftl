@@ -32,7 +32,7 @@
             <label class="checkbox fs-14">
                 <input type="checkbox" name="ricordami" value="1">
                 <i></i>Ricordami
-                <a class="float-right fw-100" href="#"> Ho dimenticato la password ?</a>
+                <a class="float-right fw-100" href="/reset"> Ho dimenticato la password ?</a>
             </label>
         </fieldset>
 
@@ -45,7 +45,7 @@
             </button>
         </footer>
 
-        <h4 class="text-center mt-15 mb-25">Non hai un account? <a href="#">Registrati subito!</a></h4>
+        <h4 class="text-center mt-15 mb-25">Non hai un account? <a href="/registration">Registrati subito!</a></h4>
     </form>
 </div>
 

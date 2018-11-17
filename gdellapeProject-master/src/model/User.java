@@ -10,6 +10,7 @@ public class User {
     private String Email ;
     private String Password;
     private Integer TipologiaAccount;
+    private String Token;
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
@@ -18,6 +19,7 @@ public class User {
         Email = null;
         Password = null;
         TipologiaAccount = 0;
+        Token = null;
         CreateDate = null;
         UpdateDate = null;
     }
@@ -38,6 +40,18 @@ public class User {
         return TipologiaAccount;
     }
 
+    public String getToken(){
+        return Token;
+    }
+
+    public Timestamp getCreateDate() {
+        return CreateDate;
+    }
+
+    public Timestamp getUpdateDate() {
+        return UpdateDate;
+    }
+
     public void setIDUser(Integer IDUser) {
         this.IDUser = IDUser;
     }
@@ -54,6 +68,17 @@ public class User {
         TipologiaAccount = tipologiaAccount;
     }
 
+    public void setToken(String token){
+        Token = token;
+    }
+
+    public void setCreateDate(Timestamp createDate) {
+        CreateDate = createDate;
+    }
+
+    public void setUpdateDate(Timestamp updateDate) {
+        UpdateDate = updateDate;
+    }
 
 
     @Override
@@ -64,22 +89,6 @@ public class User {
                 ", Password='" + Password + '\'' +
                 ", TipologiaAccount='" + TipologiaAccount + '\'' +
                 '}';
-    }
-
-    public Timestamp getCreateDate() {
-        return CreateDate;
-    }
-
-    public void setCreateDate(Timestamp createDate) {
-        CreateDate = createDate;
-    }
-
-    public Timestamp getUpdateDate() {
-        return UpdateDate;
-    }
-
-    public void setUpdateDate(Timestamp updateDate) {
-        UpdateDate = updateDate;
     }
 }
 

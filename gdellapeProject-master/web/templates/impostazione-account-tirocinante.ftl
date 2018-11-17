@@ -128,6 +128,7 @@
                         <div class="col">
                             <label class="input">
                                 <input type="date" name="DataNascita" value="${Nascita}" required>
+                                <p>${Nascita}</p>
                             </label>
                         </div>
                     </div>
@@ -191,7 +192,7 @@
                         <label class="checkbox mt-6">
                             <input type="checkbox" name="CKStudenteCorsoLaurea" value= "1" <#if Tirocinante.corsoDiLaurea??> checked="checked"</#if>>
                             <i></i> Studente Corso di Laurea in:
-
+                        </label>
 
                         <label class="input col">
                             <input type="text" placeholder="Corso di Laurea" name="StudenteCorsoLaurea" <#if Tirocinante.corsoDiLaurea??>    value = "${Tirocinante.corsoDiLaurea}" </#if>>
