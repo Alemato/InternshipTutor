@@ -37,13 +37,13 @@
             <h1 class="error-404 mb-15">500</h1>
             <h1 class="text-center mb-20">Internal Server Error</h1>
             <p class="fs-20 mb-10">Il server Web (che esegue il sito Web) ha riscontrato una condizione imprevista che
-                gli ha impedito di soddisfare la richiesta da parte del client per l'accesso all'URL richiesto.
+                gli ha impedito di soddisfare la richiesta da parte del client per l&apos;accesso all&apos;URL richiesto.
             </p>
-            <p class="fs-20 mb-10">Questo errore può essere risolto solo mediante correzioni al software del server Web.
-                Non è un problema lato client.
+            <p class="fs-20 mb-10">Questo errore pu&ograve; essere risolto solo mediante correzioni al software del server Web.
+                Non &egrave; un problema lato client.
             </p>
             <p class="fs-20 mb-10">Spetta agli operatori del sito Web server individuare e analizzare i registri che
-                dovrebbero fornire ulteriori informazioni sull'errore. Contatta gli Amministratori per altre
+                dovrebbero fornire ulteriori informazioni sull&apos;errore. Contatta gli Amministratori per altre
                 informazioni.</p>
             <a class="fs-20 font-lato" href="/home"><i class="glyphicon glyphicon-menu-left mr-10 fs-16"></i> Torna
                 alla Homepage adesso!</a>

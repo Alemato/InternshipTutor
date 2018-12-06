@@ -37,7 +37,7 @@
         <div class="container">
             <h1 class="error-404">404</h1>
             <div class="col-8 mx-auto">
-            <h3 class="mb-10 col-auto">Siamo spiacenti, la pagina richiesta non è stata trovata!</h3>
+            <h3 class="mb-10 col-auto">Siamo spiacenti, la pagina richiesta non &egrave; stata trovata!</h3>
             <a class="fs-20 font-lato" href="/home"><i class="glyphicon glyphicon-menu-left mr-10 fs-16"></i> Torna alla  Homepage adesso!</a>
             </div>
         </div>

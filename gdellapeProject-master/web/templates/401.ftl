@@ -25,7 +25,7 @@
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/home">Home</a></li>
             </ol><!-- /breadcrumbs -->
 
         </div>
@@ -37,9 +37,9 @@
             <h1 class="error-404 mb-15">401</h1>
             <h1 class="text-center mb-20">Accesso Negato</h1>
             <p class="fs-20 mb-10">Il server Web (che esegue il sito Web) ha riscontrato una condizione imprevista che
-                gli ha impedito di soddisfare la richiesta da parte del client per l'accesso all'URL richiesto.
+                gli ha impedito di soddisfare la richiesta da parte del client per l&apos;accesso all&apos;URL richiesto.
             </p>
-            <p class="fs-20 mb-10">Questo errore può essere risolto solo se si hanno le credenziali di accesso alla risorsa richiesta.
+            <p class="fs-20 mb-10">Questo errore pu&ograve; essere risolto solo se si hanno le credenziali di accesso alla risorsa richiesta.
             </p>
             <p class="fs-20 mb-10">Contatta gli Amministratori per altre informazioni.</p>
             <a class="fs-20 font-lato" href="index.html"><i class="glyphicon glyphicon-menu-left mr-10 fs-16"></i> Torna
@@ -64,14 +64,14 @@
                         <div class="col-6 text-left py-5p">
 
                             <!-- Short Description -->
-                            <a href="http://univaq.it">Università degli Studi dell'Aquila</a>
+                            <a href="http://univaq.it">Universit&agrave; degli Studi dell&apos;Aquila</a>
                         </div>
                     </div>
                     <!-- Contact Address -->
                     <address>
                         <ul class="list-unstyled">
                             <li class="footer-sprite address">
-                                67100 L'Aquila, Coppito, Via Vetoio<br>
+                                67100 L&apos;Aquila, Coppito, Via Vetoio<br>
                             </li>
                             <li class="footer-sprite phone">
                                 Phone: +39 0862 433002
@@ -93,8 +93,8 @@
 
                     <!-- Newsletter Form -->
                     <h4 class="letter-spacing-1">INTERNSHIP TUTOR</h4>
-                    <p>Internship Tutor rappresenta un sistema web per la gestione dell'iter completo dei tirocini
-                        universitari del degli Studi dell'Aquila.</p>
+                    <p>Internship Tutor rappresenta un sistema web per la gestione dell&apos;iter completo dei tirocini
+                        universitari del degli Studi dell&apos;Aquila.</p>
                 </div>
 
 
@@ -104,7 +104,7 @@
                     <h4 class="letter-spacing-1">ULTIME OFFERTE PUBLICATE</h4>
                     <ul class="footer-posts list-unstyled">
                         <li>
-                            <a href="#">L'azienda PACARO srl, sede di Borgorose (RI), ricerca tirocinanti</a>
+                            <a href="#">L&apos;azienda PACARO srl, sede di Borgorose (RI), ricerca tirocinanti</a>
                             <small>29 June 2017</small>
                         </li>
                         <li>
@@ -126,7 +126,7 @@
                     <!-- Links -->
                     <h4 class="letter-spacing-1">LINK UTILI</h4>
                     <ul class="footer-links list-unstyled">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="/home">Home</a></li>
                         <li><a href="#">Lista Offerte Tuttoraggi</a></li>
                         <li><a href="#">Lista Convenzioni</a></li>
                         <li><a href="#">Contattaci</a></li>
