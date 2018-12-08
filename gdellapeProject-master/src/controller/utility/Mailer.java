@@ -10,7 +10,7 @@ public class Mailer {
     public static void send(String to,String subject,String msg){
 
         final String user="Internshiptutor";//change accordingly
-        final String pass="123456789ingweb";
+        final String pass="A123456789ingweb@";
         final String mail= "internshiptutor@matteifamily.net";
         Properties props = new Properties();
         props.put("mail.smtp.host", "matteifamily.net");//change accordingly
