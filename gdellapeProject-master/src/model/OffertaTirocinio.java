@@ -22,7 +22,7 @@ public class OffertaTirocinio {
 
     private String Facilitazioni;
     private String AziendaOspitante;
-    private Integer CodiceTirocinio;
+    private String CodiceTirocinio;
     private String SettoreInserimento;
     private String TempoAccessoLocaliAziendali;
     private String NomeTutoreAziendale;
@@ -52,7 +52,7 @@ public class OffertaTirocinio {
         Rimborsi = null;
         Facilitazioni = null;
         AziendaOspitante = null;
-        CodiceTirocinio = 0;
+        CodiceTirocinio = null;
         SettoreInserimento = null;
         TempoAccessoLocaliAziendali = null;
         NomeTutoreAziendale = null;
@@ -198,11 +198,11 @@ public class OffertaTirocinio {
         AziendaOspitante = aziendaOspitante;
     }
 
-    public Integer getCodiceTirocinio() {
+    public String getCodiceTirocinio() {
         return CodiceTirocinio;
     }
 
-    public void setCodiceTirocinio(Integer codiceTirocinio) {
+    public void setCodiceTirocinio(String codiceTirocinio) {
         CodiceTirocinio = codiceTirocinio;
     }
 

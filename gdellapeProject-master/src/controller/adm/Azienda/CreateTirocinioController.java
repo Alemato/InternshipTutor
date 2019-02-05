@@ -13,13 +13,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.SQLData;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CreateTirocinioController extends BackEndAziendaController{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+
 
 
 
@@ -100,16 +103,35 @@ public class CreateTirocinioController extends BackEndAziendaController{
         }else{   throw new IOException("I don't have orari");}
 
 
-        String durateore=request.getParameter("Durara_Ora");
-        String durMesi=request.getParameter("Durara_Mesi");
-        Date datainizio= utility.getDataToHTML(request.getParameter("Periodo_inizio"));
-        Date datefine=utility.getDataToHTML(request.getParameter("Periodo_fine"));
+        Integer durateore=Integer.parseInt(request.getParameter("Durara_Ora"));
+        of.setDurataOra(durateore);
+
+        Integer durMesi=Integer.parseInt(request.getParameter("Durara_Mesi"));
+        of.setDurataMesi(durMesi);
+
+       Date datainizio= Date.valueOf(request.getParameter("Periodo_inizio"));
+       of.setPeriodoInizio(datainizio);
+
+        Date datefine=Date.valueOf(request.getParameter("Periodo_fine"));
+       of.setPeriodoFine(datefine);
+
         String modalitasvol=request.getParameter("Modalita");
+        of.setModalita( modalitasvol);
+
         String Obiettivi=request.getParameter("Obiettivi");
+        of.setObbiettivi(Obiettivi);
+
         String rimborsi=request.getParameter("Rimborsi");
+        of.setRimborsi(rimborsi);
+
         String facilitazioni=request.getParameter("Facilitazioni");
+        of.setRimborsi(facilitazioni);
+
         String sede=request.getParameter("AziendaOspitante");
+        of.setLuogoEffettuazione(sede);
+
         String codice=request.getParameter("CodiceIdentTirocinio");
+        of.setCodiceTirocinio(codice);
         String settore=request.getParameter("SettoreInserimento");
         String tempiAccesso=request.getParameter("Tempi_Accesso_Locali");
         String nomeTuAz=request.getParameter("NomeTutoreAziendale");

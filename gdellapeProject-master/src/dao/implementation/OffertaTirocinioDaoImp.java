@@ -72,7 +72,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
                 oftr.setRimborsi(resultSet.getString("Rimborsi"));
                 oftr.setFacilitazioni(resultSet.getString("Facilitazioni"));
                 oftr.setAziendaOspitante(resultSet.getString("AziendaOspitante"));
-                oftr.setCodiceTirocinio(resultSet.getInt("CodIdentTirocinio"));
+                oftr.setCodiceTirocinio(resultSet.getString("CodIdentTirocinio"));
                 oftr.setSettoreInserimento(resultSet.getString("SettoreInserimento"));
                 oftr.setTempoAccessoLocaliAziendali(resultSet.getString("TempoAccessoLocaliAziendali"));
                 oftr.setNomeTutoreAziendale(resultSet.getString("NomeTutoreAziendale"));
@@ -115,7 +115,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
                 oftr.setRimborsi(resultSet.getString("Rimborsi"));
                 oftr.setFacilitazioni(resultSet.getString("Facilitazioni"));
                 oftr.setAziendaOspitante(resultSet.getString("AziendaOspitante"));
-                oftr.setCodiceTirocinio(resultSet.getInt("CodIdentTirocinio"));
+                oftr.setCodiceTirocinio(resultSet.getString("CodIdentTirocinio"));
                 oftr.setSettoreInserimento(resultSet.getString("SettoreInserimento"));
                 oftr.setTempoAccessoLocaliAziendali(resultSet.getString("TempoAccessoLocaliAziendali"));
                 oftr.setNomeTutoreAziendale(resultSet.getString("NomeTutoreAziendale"));
@@ -158,7 +158,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
                 oftr.setRimborsi(resultSet.getString("Rimborsi"));
                 oftr.setFacilitazioni(resultSet.getString("Facilitazioni"));
                 oftr.setAziendaOspitante(resultSet.getString("AziendaOspitante"));
-                oftr.setCodiceTirocinio(resultSet.getInt("CodIdentTirocinio"));
+                oftr.setCodiceTirocinio(resultSet.getString("CodIdentTirocinio"));
                 oftr.setSettoreInserimento(resultSet.getString("SettoreInserimento"));
                 oftr.setTempoAccessoLocaliAziendali(resultSet.getString("TempoAccessoLocaliAziendali"));
                 oftr.setNomeTutoreAziendale(resultSet.getString("NomeTutoreAziendale"));
@@ -200,7 +200,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
                 lastfiveOfferte.setRimborsi(resultSet.getString("Rimborsi"));
                 lastfiveOfferte.setFacilitazioni(resultSet.getString("Facilitazioni"));
                 lastfiveOfferte.setAziendaOspitante(resultSet.getString("AziendaOspitante"));
-                lastfiveOfferte.setCodiceTirocinio(resultSet.getInt("CodIdentTirocinio"));
+                lastfiveOfferte.setCodiceTirocinio(resultSet.getString("CodIdentTirocinio"));
                 lastfiveOfferte.setSettoreInserimento(resultSet.getString("SettoreInserimento"));
                 lastfiveOfferte.setTempoAccessoLocaliAziendali(resultSet.getString("TempoAccessoLocaliAziendali"));
                 lastfiveOfferte.setNomeTutoreAziendale(resultSet.getString("NomeTutoreAziendale"));
@@ -235,7 +235,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             insertOffertatr.setString(12, tr.getRimborsi());
             insertOffertatr.setString(13, tr.getFacilitazioni());
             insertOffertatr.setString(14, tr.getAziendaOspitante());
-            insertOffertatr.setInt(15, tr.getCodiceTirocinio());
+            insertOffertatr.setString(15, tr.getCodiceTirocinio());
             insertOffertatr.setString(16, tr.getSettoreInserimento());
             insertOffertatr.setString(17, tr.getTempoAccessoLocaliAziendali());
             insertOffertatr.setString(18, tr.getNomeTutoreAziendale());

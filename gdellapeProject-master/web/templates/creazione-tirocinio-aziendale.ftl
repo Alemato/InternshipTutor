@@ -121,7 +121,7 @@
     </section>
     <section id="centrale" class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
-            <form id="form_modifica" action="print.php" method="post" class="sky-form .validate boxed"
+            <form id="form_modifica" action="/Createtirocinio" method="post" class="sky-form .validate boxed"
                   novalidate="novalidate">
 
                 <header class="mb-50 fs-50 fw-100 text-center">Crea un'offerta di tirocinio</header>
