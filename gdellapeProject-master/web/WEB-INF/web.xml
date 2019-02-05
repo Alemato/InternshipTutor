@@ -17,7 +17,7 @@
     <context-param>
         <param-name>uploads.directory</param-name>
         <!-- Tomcat deve aver il permesso di scrittura su questa cartella-->
-        <param-value>/etc/apache-tomcat-8.5.14/download</param-value>
+        <param-value>C:/Users/valer/IdeaProjects/IngWEB/gdellapeProject-master/web/uploads</param-value>
     </context-param>
 
     <resource-ref>
@@ -285,10 +285,101 @@
         <url-pattern>/stampa</url-pattern>
 
     </servlet-mapping>
+    <servlet>
+        <servlet-name>createtirocinio</servlet-name>
+        <servlet-class>controller.adm.Azienda.CreateTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createtirocinio</servlet-name>
+        <url-pattern>/createtirocinio</url-pattern>
+        <url-pattern>/Createtirocinio</url-pattern>
+
+    </servlet-mapping>
+<!--servelt account admin-->
+    <servlet>
+        <servlet-name>admin</servlet-name>
+        <servlet-class>controller.adm.Admin.AccountAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin</servlet-name>
+        <url-pattern>/Admin</url-pattern>
+        <url-pattern>/admin</url-pattern>
+
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>richiesteconvenzioni</servlet-name>
+        <servlet-class>controller.adm.Admin.AdminRichiesteConvenzioniController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>richiesteconvenzioni</servlet-name>
+        <url-pattern>/Richisteconvezioni</url-pattern>
+        <url-pattern>/richisteconvezioni</url-pattern>
+
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>gestione-utenti</servlet-name>
+        <servlet-class>controller.adm.Admin.AdminGestioneUtentiController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>gestione-utenti</servlet-name>
+        <url-pattern>/gestione-utenti</url-pattern>
+        <url-pattern>/Gestione-utenti</url-pattern>
+
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>gestione-moduli</servlet-name>
+        <servlet-class>controller.adm.Admin.AdminGestioneModuliController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>gestione-moduli</servlet-name>
+        <url-pattern>/gestione-moduli</url-pattern>
+        <url-pattern>/Gestione-moduli</url-pattern>
+
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>gestione-account-admin</servlet-name>
+        <servlet-class>controller.adm.Admin.AdminGestioneAccountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>gestione-account-admin</servlet-name>
+        <url-pattern>/gestione-account</url-pattern>
+        <url-pattern>/Gestione-account</url-pattern>
+
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>accettaconv</servlet-name>
+        <servlet-class>controller.adm.Admin.AdminAccettaConvenzione</servlet-class>
+        <multipart-config>
+            <!--
+            <location>/tmp</location> temporary files location (DEF: "") -->
+            <max-file-size>20848820</max-file-size>
+            <!-- max size of accepted uploadd (DEF: unlimited!) -->
+            <max-request-size>418018841</max-request-size>
+            <!-- max size of multipart requests (may contain more files or data) (DEF: ulimited!) -->
+            <!-- <file-size-threshold>1048576</file-size-threshold> max size of files to hold in memory (without writing to temporary disk file) (DEF: 0) -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>accettaconv</servlet-name>
+        <url-pattern>/accetta</url-pattern>
+        <url-pattern>/Accetta</url-pattern>
+
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>moduloConvAzienda</servlet-name>
+        <servlet-class>controller.adm.Azienda.ModuloconvezioneController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>moduloConvAzienda</servlet-name>
+        <url-pattern>/convenzione</url-pattern>
+        <url-pattern>/Convenzione</url-pattern>
+
+    </servlet-mapping>
 
 
 
-
+    <!-- end servelt account admin-->
 
     <!-- Init Servlet -->
     <welcome-file-list>
@@ -837,15 +928,8 @@
     <!--fine servlet GetListBook-->
 
     <!--servlet AddBookByExisting-->
-    <servlet>
-        <servlet-name>AddBookByExisting</servlet-name>
-        <servlet-class>controller.adm.book.AddBookByExisting</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddBookByExisting</servlet-name>
-        <url-pattern>/AddBookByExisting</url-pattern>
-        <url-pattern>/addBookByExisting</url-pattern>
-    </servlet-mapping>
+
+
     <!--fine servlet GetListBook-->
 
 </web-app>

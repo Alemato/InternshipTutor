@@ -130,7 +130,7 @@ public class RegistrationController extends HttpServlet  {
                 azienda.setNomeResponsabileConvenzione((String) request.getParameter("NomeResponsabile"));
                 azienda.setCognomeResponsabileConvenzione((String) request.getParameter("CognomeResponsabile"));
                 azienda.setTelefonoResponsabileConvenzione((String) request.getParameter("NumeroTelefonoResponsabile"));
-                azienda.setEmailResponsabileConvenzione((String) request.getParameter("NumeroTelefonoResponsabile"));
+                azienda.setEmailResponsabileConvenzione((String) request.getParameter("EmailResponsabile"));
 
                 UserDaoImp daouser = new UserDaoImp();
 

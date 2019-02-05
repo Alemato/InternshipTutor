@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modulo Tirocinio</title>
+
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
+    <!--[if IE]>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+    <!-- WEB FONTS : use %7C instead of | (pipe) -->
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons%7COpen+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700"
+          rel="stylesheet" type="text/css"/>
+    <link href="httpshttps://fonts.googleapis.com/css?family=Taviraj:600" rel="stylesheet" type="text/css">
+
+    <!-- CORE CSS -->
+    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- THEME CSS -->
+    <link href="css/essentials.css" rel="stylesheet" type="text/css"/>
+    <link href="css/layout.css" rel="stylesheet" type="text/css"/>
+
+    <!-- PAGE LEVEL SCRIPTS -->
+    <link href="css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="css/print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+<body class="smoothscroll enable-animation">
+<!-- wrapper -->
+<div id="wrapper">
+    <div id="header" class="navbar-toggleable-md  shadow-after-3 clearfix position-fixed d-print-none">
+        <!-- TOP BAR-->
+        <div id="topBar" class="dark sticky">
+            <div class="container">
+
+                <!-- right -->
+                <ul class="top-links list-inline float-right has-topBar">
+                    <li>
+                        <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#"><i
+                                class="fa fa-user hidden-xs-down"></i> IL MIO ACCOUNT </a>
+                        <ul class="dropdown-menu float-right has-topBar">
+                            <li><a tabindex="-1" href="#"><i class="fa fa-history"></i> I MIEI
+                                TIROCINI</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href="#"><i class="fa fa-cog"></i> IMPOSTAZIONI
+                                DELL'ACCOUNT </a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href="#"><i class="glyphicon glyphicon-off"></i> logout
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="hidden-xs-down"><a href="#">LOGIN</a></li>
+                    <li class="hidden-xs-down"><a href="registrazione.html">REGISTRAZIONE</a></li>
+                </ul>
+
+                <!-- left -->
+                <ul class="top-links list-inline has-topBar">
+                    <li class="text-welcome hidden-xs-down p-10">Benvenuto, <strong>Mario Rossi</strong></li>
+                </ul>
+
+            </div>
+        </div>
+        <!-- /TOP BAR-->
+
+
+        <header id="topNav">
+            <div class="container">
+                <!-- Mobile Menu Button -->
+                <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+
+                <!-- Logo -->
+                <a class="logo float-left mb-5 mr-10scripts.jsscripts.js" href="index.html">
+                    <img src="imgs/interns.jpg" alt=""/>
+                </a>
+
+                <div class="navbar-collapse collapse nav-main-collapse submenu-dark">
+                    <nav class="nav-main">
+                        <ul id="topMain" class="nav nav-pills nav-main">
+                            <li class="dropdown active">
+                                <a class="dropdown-toggle noicon" href="index.html">
+                                    HOME
+                                </a>
+                            </li>
+                            <li class="dropdown active">
+                                <a class="dropdown-toggle noicon" href="offerte-tutoraggi.html">
+                                    LISTA OFFERTE TUTORAGGI
+                                </a>
+                            </li>
+                            <li class="dropdown active">
+                                <a class="dropdown-toggle noicon" href="lista-convenzioni.html">
+                                    LISTA CONVENZIONI
+                                </a>
+                            </li>
+                            <li class="dropdown active">
+                                <a class="dropdown-toggle noicon" href="informazioni.html">
+                                    INFORMAZIONI
+                                </a>
+                            </li>
+                            <form class="d-inline-block col-lg-12 col-xl-4 mb-lg-2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" aria-label=""
+                                           placeholder="Cerca nell'intero del sito">
+                                    <span class="input-group-btn">
+                                            <button class="btn btn-primary material-ico" type="submit">
+                                                <i class="material-icons">search</i>
+                                            </button>
+                                        </span>
+                                </div>
+                            </form>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+    </div>
+    <section class="page-header page-header-md parallax parallax-3 mt-130 d-print-none"
+             style="background-image:url('imgs/imgpattern.jpg')">
+        <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
+
+        <div class="container">
+
+            <h1 class="uppercase">Modulo termine Progetto Formativo e Di Orientamento</h1>
+
+            <!-- breadcrumbs -->
+            <ol class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li>Il mio account</li>
+            </ol><!-- /breadcrumbs -->
+
+        </div>
+    </section>
+
+    <section class="section-sm centrale border-top-section pl-20 pr-20">
+        <div class="container">
+            <form id="modulo_tirocinante" action="print.php" method="post" class="m-0">
+                <fieldset>
+                    <h1 class="text-center fw-100 d-print-none">Controlla i dati del modulo pre-compilato e clicca su stampa</h1>
+
+                    <div class="text-center d-none d-print-block">
+                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
+                        <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
+                        <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
+                        <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
+                    </div>
+                    <h6>(da compilare a cura dell'Azienda)</h6>
+                    <div class="row mb-0 mr-10 ">
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20">Ente/Azienda </h4>
+                        <input class="input-modulo col col-sm pl-0" type="text" name="NominativoEnte"
+                               value="Francesco Totti" placeholder="Nome Ente/Azienda">
+                    </div>
+
+                    <div class="row mb-25 mr-10 mt-15">
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Codice fiscale Ente/Azienda </h4>
+                        <input class="input-modulo col col-sm pl-0" type="text" name="Codice_fiscale"
+                               value="PPPPLT80R10M082K" placeholder="Codice fiscale">
+                    </div>
+
+                    <h3 class="col-auto col-sm-auto pl-0 mb-10">Tirocinante: </h3>
+
+                    <div class="row mb-5 mr-10">
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Cognome:</h4>
+                        <input class="input-modulo col col-sm-12 col-md pl-0 mb-0" type="text"
+                               name="Cognome_tirocinante" value="Totti" placeholder="Cognome del tirocinante">
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Nome</h4>
+                        <input class="input-modulo col col-sm-12 col-md pl-0 mb-0" type="text" name="Nome_tirocinante"
+                               value="Francesco" placeholder="Nome del tirocinante">
+                    </div>
+
+
+                    <h4 class="col-auto col-sm-auto mb-10 pl-0 fs-20 fw-400">(Codice identificativo tirocinio: Dipartimento, Corso di Laurea o diploma, anno, n progressivo, altro)</h4>
+                    <input class="input-modulo col-auto col-sm-auto pl-0 mr-20 mt-0 mb-25" type="text" name="Codice_tirocinio"
+                           value="ADFS12345678" placeholder="Codice del tirocinio">
+
+                    <h3 class="col-auto col-sm-auto pr-10 pl-0 mt-45 mb-10">Periodo del Tirocinio: </h3>
+
+                    <div class="row mb-0 mr-10">
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20">Dal</h4>
+                        <input class="input-modulo col col-sm pl-0" type="date" name="Data_inizio"
+                               value="2018-01-01" placeholder="Data di inizio tirocinio">
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20">al</h4>
+                        <input class="input-modulo col col-sm pl-0" type="date" name="Data_fine"
+                               value="2018-05-01" placeholder="Data di fine tirocinio">
+                    </div>
+
+                    <div class="row mb-0 mr-10 mt-15">
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Per un totale di </h4>
+                        <input class="input-modulo col-1 pl-0 text-center" type="number" name="Ore_totali"
+                               value="150" placeholder="ore totali">
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20  fw-400"> ore</h4>
+                    </div>
+
+                    <div class="row mb-0 mr-10">
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20">Sede di svolgimento del tirocinio</h4>
+                        <input class="input-modulo col col-sm pl-0" type="text" name="Sede_svolgimento"
+                               value="Avja srl" placeholder="Sede di svolgimento">
+                    </div>
+
+                    <h4 class="fs-20 mb-0">Descrizione attivita svolta:</h4>
+                    <textarea class="textarea-modulo col-12 pt-5 mb-15 mr-10" rows="4" cols="1" name="Descrizione_attivita_svolta"
+                              placeholder="descrivi in breve l&apos;attivit&agrave; svolte nel tirocinio"></textarea>
+
+                    <div class="row mb-0 mr-10">
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20">Si attesta che il/la Sig </h4>
+                        <input class="input-modulo col col-sm pl-0" type="text" name="Nome_cognome_tirocinante"
+                               value="Francesco Totti" placeholder="Nominativo tirocinante">
+                    </div>
+
+                    <h4 class="fs-20 mb-0">Ha effettuato i compiti affidatigli conseguendo il seguente risultato :</h4>
+                    <textarea class="textarea-modulo col-12 pt-5 mb-0 mr-10" rows="4" cols="1" name="risultato_tirocinio"
+                              placeholder="descrivi in breve il risultato del tirocinio"></textarea>
+
+                    <div class="row mb-25 mr-10">
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20">Data</h4>
+                        <input class="input-modulo col-2 col-sm-2 pl-0 text-center" type="date" name="Data_documento"
+                               value="2018-05-01" placeholder="Data">
+                    </div>
+
+                    <h4 class="d-none d-print-block">Firma del Tutor aziendale</h4>
+
+                    <div class="linea col-5 p-0 mt-25"></div>
+
+                    <footer class="mt-50 d-print-none">
+                        <button type="submit" form="modulo_tirocinante" class="btn btn-success btn-lg pull-right float-right" onclick="window.print();"><i
+                                class="fa fa-check"></i> Stampa
+                        </button>
+                        <button type="reset" form="modulo_tirocinante" class="btn btn-red btn-lg pull-right float-left"><i
+                                class="fa fa-times"></i> Annulla
+                        </button>
+                    </footer>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+    <!-- /FOOTER -->
+    <footer class="d-print-none" id="footer">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <!-- Footer Logo -->
+                            <img class="footer-logo" src="http://www.disim.univaq.it/didattica/img/logo_univaq.png"
+                                 alt=""/>
+                        </div>
+                        <div class="col-6 text-left py-5p">
+
+                            <!-- Short Description -->
+                            <a href="http://univaq.it">Università degli Studi dell'Aquila</a>
+                        </div>
+                    </div>
+                    <!-- Contact Address -->
+                    <address>
+                        <ul class="list-unstyled">
+                            <li class="footer-sprite address">
+                                67100 L'Aquila, Coppito, Via Vetoio<br>
+                            </li>
+                            <li class="footer-sprite phone">
+                                Phone: +39 0862 433002
+                            </li>
+                            <li class="footer-sprite phone">
+                                Phone: +39 0862 433180 (fax)
+                            </li>
+                            <li class="footer-sprite email">
+                                <a href="mailto:disim.sad@univaq.it">disim.sad@univaq.it</a>
+                            </li>
+                        </ul>
+                    </address>
+                    <!-- /Contact Address -->
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <!-- Newsletter Form -->
+                    <h4 class="letter-spacing-1">INTERNSHIP TUTOR</h4>
+                    <p>Internship Tutor rappresenta un sistema web per la gestione dell'iter completo dei tirocini
+                        universitari del degli Studi dell'Aquila.</p>
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <!-- Latest Blog Posts -->
+                    <h4 class="letter-spacing-1">ULTIME OFFERTE PUBLICATE</h4>
+                    <ul class="footer-posts list-unstyled">
+                        <li>
+                            <a href="#">L'azienda PACARO srl, sede di Borgorose (RI), ricerca tirocinanti</a>
+                            <small>29 June 2017</small>
+                        </li>
+                        <li>
+                            <a href="#">Tirocini e stage retributi presso la Gunpowder S.r.l. (Spinoff Univ.
+                                L'Aquila)</a>
+                            <small>29 June 2017</small>
+                        </li>
+                        <li>
+                            <a href="#">Tirocinio presso Aveja</a>
+                            <small>29 June 2017</small>
+                        </li>
+                    </ul>
+                    <!-- /Latest Blog Posts -->
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <!-- Links -->
+                    <h4 class="letter-spacing-1">LINK UTILI</h4>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Lista Offerte Tuttoraggi</a></li>
+                        <li><a href="#">Lista Convenzioni</a></li>
+                        <li><a href="#">Contattaci</a></li>
+                        <li><a href="#">Il Mio Accout</a></li>
+                        <li><a href="#">I Miei Tirocini</a></li>
+
+                    </ul>
+                    <!-- /Links -->
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            <div class="container">
+                <ul class="float-right m-0 list-inline mobile-block">
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li>&bull;</li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+                &copy; All Rights Reserved, INTERNSHIP TUTOR
+            </div>
+        </div>
+    </footer>
+    <!-- /FOOTER -->
+
+</div>
+
+<!-- JAVASCRIPT FILES -->
+<script>var plugin_path = 'plugins/';</script>
+<script src="plugins/jquery/jquery-3.3.1.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.js"></script>
+<script src="js/internshiptutor.js"></script>
+</body>
+</html>
