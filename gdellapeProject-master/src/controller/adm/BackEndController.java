@@ -27,7 +27,7 @@ public class BackEndController extends baseController {
 
 
             if (session.isAdmin(request)) {
-                //admin account
+
 
             }
             if (session.isTirocinante(request)) {

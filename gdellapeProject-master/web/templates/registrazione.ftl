@@ -77,7 +77,7 @@
 
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
-<script src="/templates/js/internshiptutor.js"></script>
+<script src="/js/internshiptutor.js"></script>
 
 </body>
 </html>
