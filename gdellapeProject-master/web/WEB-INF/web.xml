@@ -40,36 +40,6 @@
         <url-pattern>/Con</url-pattern>
     </servlet-mapping>
 
-    <!---->
-
-
-
-
-    <servlet>
-        <servlet-name>UploadServletConvenzioni</servlet-name>
-        <servlet-class>controller.utility.UploadServletConvenzioni</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UploadServletConvenzioni</servlet-name>
-        <url-pattern>/Upload</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>DownloadServlet</servlet-name>
-        <servlet-class>controller.utility.Download</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DownloadServlet</servlet-name>
-        <url-pattern>/Download</url-pattern>
-    </servlet-mapping>
-
-
-
-
-
-    <!---->
-
     <servlet>
         <servlet-name>login1</servlet-name>
         <servlet-class>controller.adm.LoginController</servlet-class>
