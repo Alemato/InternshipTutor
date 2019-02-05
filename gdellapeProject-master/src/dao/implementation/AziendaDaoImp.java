@@ -1,5 +1,6 @@
 package dao.implementation;
 
+import com.sun.corba.se.impl.protocol.INSServerRequestDispatcher;
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
 import model.Azienda;
@@ -84,7 +85,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.updateAzienda.setString(10, azienda.getForoControversia());
             this.updateAzienda.setString(11, azienda.getDescrizione());
             this.updateAzienda.setString(12, azienda.getLink());
-            this.updateAzienda.setInt(13,azienda.getIDAzienda());
+            this.updateAzienda.setInt(13, azienda.getIDAzienda());
 
             this.updateAzienda.executeUpdate();
         } catch (SQLException e) {
@@ -123,7 +124,6 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
 
-
     public void setRegisterazienda(Azienda azienda, User user) throws DaoException {
 
         try {
@@ -140,7 +140,6 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
 
             this.regAzienda.setString(10, azienda.getForoControversia());
 
-
             this.regAzienda.setString(11, azienda.getDescrizione());
             this.regAzienda.setString(12, azienda.getLink());
             this.regAzienda.setInt(13, user.getIDUser());
@@ -149,8 +148,6 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             throw new DaoException("Errore esecuzione update", e);
         }
     }
-
-
 
     public List<Azienda> getAziendaByRS(String RS) throws DaoException {
 
