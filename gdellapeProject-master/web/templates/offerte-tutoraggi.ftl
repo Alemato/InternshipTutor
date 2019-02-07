@@ -41,7 +41,7 @@
                         <i id="filtra" class="fa fa-plus-circle fs-25 pt-7 mr-10"></i>
                         <h3 class="mb-0">Filtra la lista dei tirocini</h3>
                     </div>
-                    <form id="querystring" class="pr-15 pl-15 m-0 mt-32" method="get" action="print.php">
+                    <form id="querystring" class="pr-15 pl-15 m-0 mt-32" method="get" action="/listaofferte">
                         <fieldset>
                             <div class="row justify-content-around">
                                 <div class="row col-auto mb-0">
@@ -49,10 +49,10 @@
                                     <label class="col">
                                         <!-- select -->
                                         <div class="fancy-form fancy-form-select">
-                                            <select class="form-control mr-15">
-                                                <option value="5">5 per pagina &nbsp;</option>
-                                                <option value="10">10 per pagina &nbsp;</option>
-                                                <option value="20">20 per pagina &nbsp;</option>
+                                            <select class="form-control mr-15" name="risultati">
+                                                <option value="4">4 per pagina &nbsp;</option>
+                                                <option value="8">8 per pagina &nbsp;</option>
+                                                <option value="16">16 per pagina &nbsp;</option>
                                             </select>
                                         </div>
                                     </label>
@@ -62,13 +62,11 @@
                                     <label class="col-auto">
                                         <!-- select -->
                                         <div class="fancy-form fancy-form-select">
-                                            <select class="form-control select2">
-                                                <option value="">Tutte le Aziende</option>
-                                                <option value="1">Dolci Aveja</option>
-                                                <option value="2">Gunpowder</option>
-                                                <option value="3">Tirocinio interno</option>
-                                                <option value="4">CONSEL - Consorzio ELIS</option>
-                                                <option value="5">PACARO Srl</option>
+                                            <select class="form-control select2" name="azienda">
+                                                <option>Tutte le Aziende</option>
+                                                <#list offerte as offerta>
+                                                <option value="${offerta.aziendaOspitante}">${offerta.aziendaOspitante}</option>
+                                                </#list>
                                             </select>
 
                                             <i class="fancy-arrow-"></i>
@@ -92,13 +90,11 @@
                                     <label class="col">
                                         <!-- select -->
                                         <div class="fancy-form fancy-form-select">
-                                            <select class="form-control select2">
-                                                <option value="">Tutte le sedi disponibili</option>
-                                                <option value="RM">Roma</option>
-                                                <option value="AQ">L'Aquila</option>
-                                                <option value="PE">Pescara</option>
-                                                <option value="CH">Chieti</option>
-                                                <option value="AN">Ancona</option>
+                                            <select class="form-control select2" name="sede">
+                                                <option >Tutte le sedi disponibili</option>
+                                                <#list offerte as offerta>
+                                                <option value="${offerta.luogoEffettuazione}">${offerta.luogoEffettuazione}</option>
+                                                </#list>
                                             </select>
 
                                             <i class="fancy-arrow-"></i>
@@ -110,16 +106,16 @@
                                     <h4 class="mt-9">Da :</h4>
                                     <label class="col input-group">
                                         <input type="date" name="datainizio"
-                                               value="2018-07-27"
-                                               min="2018-01-01" max="2018-12-31" class="form-control"/>
+
+                                               min="2018-01-01" max="2019-12-31" class="form-control"/>
                                     </label>
                                 </div>
                                 <div class="row col-4 mb-0">
                                     <h4 class="mt-9">A :</h4>
                                     <label class="col input-group pr-0">
-                                        <input type="date" name="datainizio"
-                                               value="2018-07-29"
-                                               min="2018-01-01" max="2018-12-31" class="form-control"/>
+                                        <input type="date" name="datafine"
+
+                                               min="2001-01-01" max="2019-12-31" class="form-control"/>
                                     </label>
                                 </div>
                             </div>
@@ -130,8 +126,8 @@
                                     class="btn btn-blue b-blu btn-lg pull-right float-right"><i
                                     class="fa fa-check"></i> Filtra
                             </button>
-                            <button type="reset" form="querystring" class="btn btn-red btn-lg pull-right float-left"><i
-                                    class="fa fa-times"></i> Annulla
+                            <button class="btn btn-red btn-lg pull-right float-left" href="/listaofferte"><i
+                                    class="fa fa-times" ></i> Annulla
                             </button>
                         </footer>
                     </form>
@@ -247,12 +243,10 @@
             <div class="row">
                 <!-- Pagination -->
                 <ul class="pagination col-auto mr-15 mt-5 pl-15">
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Tutto</a></li>
+                    <#list 1..numeroPagine as x>
+                        <#if x == 0 > <#break> </#if>
+                    <li class="page-item <#if numeroPagina == x> active </#if>"><a class="page-link" <#if numeroPagina != x> href="/listaofferte?pageid=${x}"</#if> >${x}</a></li>
+                    </#list>
                 </ul>
             </div>
             <div id="blog" class="clearfix blog-isotope blog-isotope-2">
