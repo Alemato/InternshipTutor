@@ -2,15 +2,13 @@ package controller.utility;
 
 import controller.baseController;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -20,39 +18,59 @@ import java.security.NoSuchAlgorithmException;
         maxRequestSize = 1024 * 1024 * 50)   // 50MB
 public class UploadPDF extends baseController {
 
-    // ...\out\artifacts\gdellapeProject_master_war_exploded\Convenzioni
-    private static final String SAVE_DIR = "Convenzioni";
+
+    public Boolean Upload(String savePath, Part part) throws SecurityException, IOException, NoSuchAlgorithmException {
 
 
-    public void Upload(HttpServletRequest request, HttpServletResponse response, String saveDir) throws ServletException, IOException, NoSuchAlgorithmException {
 
-        // ...\out\artifacts\gdellapeProject_master_war_exploded\savePath
-
-        String hex;
         MessageDigest md = MessageDigest.getInstance("MD5");
+        File uploaded_file = File.createTempFile("upload_", "", new File(getServletContext().getInitParameter("uploads.directory")));
+
+        try (InputStream is = part.getInputStream();
+             OutputStream os = new FileOutputStream(uploaded_file)) {
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = is.read(buffer)) > 0) {
+                //durante la copia, aggreghiamo i byte del file nel digest sha-1
+                //while copying, we aggregate the file bytes in the sha-1 digest
+                md.update(buffer, 0, read);
+                os.write(buffer, 0, read);
+            }
+        }
+        byte[] digest = md.digest();
+        String sdigest = "";
+        for (byte b : digest) {
+            sdigest += String.valueOf(b);
+        }
+
         // percorso assoluto dell'app
-        String appPath = request.getServletContext().getRealPath("");
+        // String appPath = request.getServletContext().getRealPath("");
         // percorso nel quale salvare il file
-        String savePath = appPath + File.separator + saveDir;
-        // creates the save directory if it does not exists
+        // String savePath = appPath + File.separator + saveDir;
         File fileSaveDir = new File(savePath);
-
-        // se volessimo salvarlo un un'altra directory
-        // File fileSaveDir = new File(saveDir);
-
+        // creo se non esiste la directory di destinazione
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdir();
         }
-        for (Part part : request.getParts()) {
-            String fileName = FileName(part);
-            // Check se il file è un PDF                   Da migliorare
-            if (fileName.endsWith(".pdf")) {
+        String fileName = FileName(part);
+        // Check se il file è un PDF                   Da migliorare
+        if (fileName.endsWith(".pdf")) {
+            fileName = new File(fileName).getName();
+            part.write(savePath + File.separator + fileName + sdigest);
 
-                fileName = new File(fileName).getName();
-                part.write(savePath + File.separator + fileName);
-
+            MessageDigest mdAfter = MessageDigest.getInstance("MD5");
+            String hexAfter = checksum(savePath + File.separator + fileName + sdigest, mdAfter);
+            if (sdigest.equals(hexAfter)) {
+                return true;
+            }
+            else{
+                Path path = FileSystems.getDefault().getPath(savePath, fileName + sdigest);
+               //delete file
+                Files.delete(path);
+                return false;
             }
         }
+        return false;
     }
 
     // estrae il nome del file
@@ -67,10 +85,10 @@ public class UploadPDF extends baseController {
         return "";
     }
 
-    private static String checksum(String filepath, MessageDigest md) throws IOException {
+    private static String checksum(String pathpath, MessageDigest md) throws IOException {
 
         // DigestInputStream is better, but you also can hash file like this.
-        try (InputStream fis = new FileInputStream(filepath)) {
+        try (InputStream fis = new FileInputStream(pathpath)) {
             byte[] buffer = new byte[1024];
             int nread;
             while ((nread = fis.read(buffer)) != -1) {
