@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Download extends baseController  {
+public class DownloadPDF extends baseController  {
 
 
     public void DownloadPDF( HttpServletRequest request, HttpServletResponse response, String filename, String saveDir ) throws IOException {
