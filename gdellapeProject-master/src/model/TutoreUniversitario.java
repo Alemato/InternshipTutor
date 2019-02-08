@@ -8,7 +8,6 @@ public class TutoreUniversitario {
     private String Cognome;
     private String Telefono;
     private String Email;
-    private Integer OffTirocinio;
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
@@ -18,7 +17,6 @@ public class TutoreUniversitario {
         Cognome = null;
         Telefono = null;
         Email = null;
-        OffTirocinio = 0;
         CreateDate = null;
         UpdateDate = null;
     }
@@ -61,14 +59,6 @@ public class TutoreUniversitario {
 
     public void setEmail(String email) {
         Email = email;
-    }
-
-    public Integer getOffTirocinio() {
-        return OffTirocinio;
-    }
-
-    public void setOffTirocinio(Integer offTirocinio) {
-        OffTirocinio = offTirocinio;
     }
 
     public Timestamp getCreateDate() {

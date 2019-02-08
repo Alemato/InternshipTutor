@@ -132,8 +132,13 @@
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="text" placeholder="Titolo" name="Titolo" required>
+                                <input type="text" placeholder="Titolo" name="Titolo" <#if ValueOfTitolo??> value="${ValueOfTitolo}" </#if> required>
                             </label>
+                            <#if ErroreTitolo??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreTitolo}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -145,7 +150,7 @@
                             <div class="fancy-form">
                                 <textarea rows="3" class="form-control form-control-1 word-count" data-maxlength="50"
                                           data-info="textarea-descrizione_breve" name="Descrizione_Breve"
-                                          placeholder="Scrivi una breve descrizione dell'offerta di tirocinio  questa descrizione apparirà nel anteprima del offerta">provaaaa</textarea>
+                                          placeholder="Scrivi una breve descrizione dell'offerta di tirocinio  questa descrizione apparirà nel anteprima del offerta"><#if ValueOfDescrizione_Breve??> ${ValueOfDescrizione_Breve} </#if></textarea>
                                 <i class="fa fa-font"><!-- icon --></i>
 
                                 <span class="fancy-hint fancy-hint-1 fs-11 text-muted">
@@ -156,6 +161,11 @@
 	                            </span>
 
                             </div>
+                            <#if ErroreDescrizione_Breve??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreDescrizione_Breve}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -167,7 +177,7 @@
                             <div class="fancy-form">
                                 <textarea rows="5" class="form-control form-control-1 word-count" data-maxlength="200"
                                           data-info="textarea-descrizione_completa" name="Descrizione_Completa"
-                                          placeholder="Scrivi una descrizione completa ed esaustiva dell'offerta di tirocinio">provaaaa</textarea>
+                                          placeholder="Scrivi una descrizione completa ed esaustiva dell'offerta di tirocinio"><#if ValueOfDescrizione_Completa??> ${ValueOfDescrizione_Completa} </#if></textarea>
                                 <i class="fa fa-font"><!-- icon --></i>
 
                                 <span class="fancy-hint fancy-hint-1 fs-11 text-muted">
@@ -178,6 +188,11 @@
 	                            </span>
 
                             </div>
+                            <#if ErroreDescrizione_Completa??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreDescrizione_Completa}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -188,8 +203,13 @@
                         <div class="col">
                             <label class="input">
                                 <input type="text" placeholder="esempio: 8:00 - 19:00 orario continuo" name="Orari"
-                                       required>
+                                        <#if ValueOfOrari??> value="${ValueOfOrari}" </#if> required>
                             </label>
+                            <#if ErroreOrari??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreOrari}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -200,8 +220,13 @@
                         <div class="col">
                             <label class="input">
                                 <input type="text" placeholder="ore" name="Durara_Ora"
-                                       required>
+                                    <#if ValueOfDurara_Ora??> value="${ValueOfDurara_Ora}" </#if> required>
                             </label>
+                            <#if ErroreDurara_Ora??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreDurara_Ora}
+                                </div>
+                            </#if>
                         </div>
                         <div class="col-md-auto mt-6">
                             <h4>Durata Mesi:&nbsp;</h4>
@@ -209,26 +234,41 @@
                         <div class="col">
                             <label class="input">
                                 <input type="text" placeholder="N Mesi" name="Durara_Mesi"
-                                       required>
+                                        <#if ValueOfDurara_Mesi??> value="${ValueOfDurara_Mesi}" </#if>   required>
                             </label>
+                            <#if ErroreDurara_Mesi??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreDurara_Mesi}
+                                </div>
+                            </#if>
                         </div>
                         <div class="col-md-auto mt-6">
                             <h4>Periodo Dall:&nbsp;</h4>
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="date" name="Periodo_inizio"
+                                <input type="date" name="Periodo_inizio" <#if ValueOfPeriodo_inizio??> value="${ValueOfPeriodo_inizio}" </#if>
                                        required>
                             </label>
+                            <#if ErrorePeriodo_inizio??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErrorePeriodo_inizio}
+                                </div>
+                            </#if>
                         </div>
                         <div class="col-md-auto mt-6">
                             <h4>All:&nbsp;</h4>
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="date"  name="Periodo_fine"
+                                <input type="date"  name="Periodo_fine" <#if ValueOfPeriodo_fine??> value="${ValueOfPeriodo_fine}" </#if>
                                        required>
                             </label>
+                            <#if ErrorePeriodo_fine??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErrorePeriodo_fine}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -238,9 +278,14 @@
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="text" placeholder="esempio: lavoro nel team aziendale" name="Modalita"
+                                <input type="text" placeholder="esempio: lavoro nel team aziendale" name="Modalita" <#if ValueOfModalita??> value="${ValueOfModalita}" </#if>
                                        required>
                             </label>
+                            <#if ErroreModalita??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreModalita}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -252,7 +297,7 @@
                             <div class="fancy-form">
                                 <textarea rows="5" class="form-control form-control-1 word-count" data-maxlength="200"
                                           data-info="textarea-obiettivi" name="Obiettivi"
-                                          placeholder="Scrivi una descrizione completa ed esaustiva degli obiettivi dell'offerta di tirocinio"></textarea>
+                                          placeholder="Scrivi una descrizione completa ed esaustiva degli obiettivi dell'offerta di tirocinio"><#if ValueOfObiettivi??> ${ValueOfObiettivi} </#if></textarea>
                                 <i class="fa fa-font"><!-- icon --></i>
 
                                 <span class="fancy-hint fancy-hint-1 fs-11 text-muted">
@@ -263,6 +308,11 @@
 	                            </span>
 
                             </div>
+                            <#if ErroreObiettivi??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreObiettivi}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -272,9 +322,14 @@
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="text" placeholder="esempio: eventuali rimborsi spese" name="Rimborsi"
+                                <input type="text" placeholder="esempio: eventuali rimborsi spese" name="Rimborsi" <#if ValueOfRimborsi??> value="${ValueOfRimborsi}" </#if>
                                        required>
                             </label>
+                            <#if ErroreRimborsi??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreRimborsi}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -284,9 +339,14 @@
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="text" placeholder="esempio: eventuali rimborsi spese" name="Facilitazioni"
+                                <input type="text" placeholder="esempio: eventuali rimborsi spese" name="Facilitazioni" <#if ValueOfFacilitazioni??> value="${ValueOfFacilitazioni}" </#if>
                                        required>
                             </label>
+                            <#if ErroreFacilitazioni??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreFacilitazioni}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -297,9 +357,14 @@
                         <div class="col">
                             <label class="input">
                                 <input type="text" placeholder="esempio: Presso l'azienda in via ..."
-                                       name="AziendaOspitante"
+                                       name="SedeTirocinio" <#if ValueOfSedeTirocinio??> value="${ValueOfSedeTirocinio}" </#if>
                                        required>
                             </label>
+                            <#if ErroreSedeTirocinio??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreSedeTirocinio}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -309,9 +374,14 @@
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="text" placeholder="esempio: DT0012151." name="CodiceIdentTirocinio"
+                                <input type="text" placeholder="esempio: DT0012151." name="CodiceIdentTirocinio" <#if ValueOfCodiceIdentTirocinio??> value="${ValueOfCodiceIdentTirocinio}" </#if>
                                        required>
                             </label>
+                            <#if ErroreCodiceIdentTirocinio??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreCodiceIdentTirocinio}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -321,9 +391,14 @@
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="text" placeholder="esempio: NON LO SO." name="SettoreInserimento"
+                                <input type="text" placeholder="esempio: NON LO SO." name="SettoreInserimento" <#if ValueOfSettoreInserimento??> value="${ValueOfSettoreInserimento}" </#if>
                                        required>
                             </label>
+                            <#if ErroreSettoreInserimento??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreSettoreInserimento}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -333,10 +408,15 @@
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="text" placeholder="Tempi_Accesso_Locali"
-                                       name="TempiAccessoLocaliAziendali"
+                                <input type="text" placeholder="Tempi Accesso Locali"
+                                       name="TempiAccessoLocaliAziendali" <#if ValueOfTempiAccessoLocaliAziendali??> value="${ValueOfTempiAccessoLocaliAziendali}" </#if>
                                        required>
                             </label>
+                            <#if ErroreTempiAccessoLocaliAziendali??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreTempiAccessoLocaliAziendali}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -347,9 +427,14 @@
                         <div class="col">
                             <label class="input">
                                 <input type="text" placeholder="Nome"
-                                       name="NomeTutoreAziendale"
+                                       name="NomeTutoreAziendale" <#if ValueOfNomeTutoreAziendale??> value="${ValueOfNomeTutoreAziendale}" </#if>
                                        required>
                             </label>
+                            <#if ErroreNomeTutoreAziendale??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreNomeTutoreAziendale}
+                                </div>
+                            </#if>
                         </div>
 
                         <div class="col-md-auto mt-6">
@@ -357,10 +442,15 @@
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="text" placeholder="Cognome"
-                                       name="CognomeTutoreAziendale"
+                                <input type="text" placeholder="Cognome."
+                                       name="CognomeTutoreAziendale" <#if ValueOfCognomeTutoreAziendale??> value="${ValueOfCognomeTutoreAziendale}" </#if>
                                        required>
                             </label>
+                            <#if ErroreCognomeTutoreAziendale??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreCognomeTutoreAziendale}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -371,9 +461,14 @@
                         <div class="col">
                             <label class="input">
                                 <input type="tel" placeholder="Telefono."
-                                       name="TelefonoTutoreAziendale"
+                                       name="TelefonoTutoreAziendale" <#if ValueOfTelefono??> value="${ValueOfTelefonoTutoreAziendale}" </#if>
                                        required>
                             </label>
+                            <#if ErroreTelefonoTutoreAziendale??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreTelefonoTutoreAziendale}
+                                </div>
+                            </#if>
                         </div>
 
                         <div class="col-md-auto mt-6">
@@ -382,9 +477,14 @@
                         <div class="col">
                             <label class="input">
                                 <input type="email" placeholder="Email."
-                                       name="EmailTutoreAziendale"
+                                       name="EmailTutoreAziendale" <#if ValueOfTelefono??> value="${ValueOfEmailTutoreAziendale}" </#if>
                                        required>
                             </label>
+                            <#if ErroreEmailTutoreAziendale??>
+                                <div class="alert alert-danger mb-30">
+                                    <strong>Attenzione!</strong>${ErroreEmailTutoreAziendale}
+                                </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -414,9 +514,14 @@
                             <div class="col">
                                 <label class="input">
                                     <input type="text" placeholder="Nome"
-                                           name="NomeTutoreUniversitario"
+                                           name="NomeTutoreUniversitario" <#if ValueOfNomeTutoreUniversitario??> value="${ValueOfNomeTutoreUniversitario}" </#if>
                                            required>
                                 </label>
+                                <#if ErroreNomeTutoreUniversitario??>
+                                    <div class="alert alert-danger mb-30">
+                                        <strong>Attenzione!</strong>${ErroreNomeTutoreUniversitario}
+                                    </div>
+                                </#if>
                             </div>
 
                             <div class="col-md-auto mt-6">
@@ -425,9 +530,14 @@
                             <div class="col">
                                 <label class="input">
                                     <input type="text" placeholder="Cognome"
-                                           name="CognomeTutoreUniversitario"
+                                           name="CognomeTutoreUniversitario" <#if ValueOfCognomeTutoreUniversitario??> value="${ValueOfCognomeTutoreUniversitario}" </#if>
                                            required>
                                 </label>
+                                <#if ErroreEmailTutoreAziendale??>
+                                    <div class="alert alert-danger mb-30">
+                                        <strong>Attenzione!</strong>${ErroreCognomeTutoreUniversitario}
+                                    </div>
+                                </#if>
                             </div>
                         </div>
 
@@ -438,9 +548,14 @@
                             <div class="col">
                                 <label class="input">
                                     <input type="tel" placeholder="Telefono."
-                                           name="TelefonoTutoreUniversitario"
+                                           name="TelefonoTutoreUniversitario" <#if ValueOfTTelefonoTutoreUniversitario??> value="${ValueOfTelefonoTutoreUniversitario}" </#if>
                                            required>
                                 </label>
+                                <#if ErroreTelefonoTutoreUniversitario??>
+                                    <div class="alert alert-danger mb-30">
+                                        <strong>Attenzione!</strong>${ErroreTelefonoTutoreUniversitario}
+                                    </div>
+                                </#if>
                             </div>
 
                             <div class="col-md-auto mt-6">
@@ -449,9 +564,14 @@
                             <div class="col">
                                 <label class="input">
                                     <input type="email" placeholder="Email."
-                                           name="EmailTutoreUniversitario"
+                                           name="EmailTutoreUniversitario" <#if ValueOfTelefono??> value="${ValueOfEmailTutoreUniversitario}" </#if>
                                            required>
                                 </label>
+                                <#if ErroreEmailTutoreUniversitario??>
+                                    <div class="alert alert-danger mb-30">
+                                        <strong>Attenzione!</strong>${ErroreEmailTutoreUniversitario}
+                                    </div>
+                                </#if>
                             </div>
                         </div>
                     </div>

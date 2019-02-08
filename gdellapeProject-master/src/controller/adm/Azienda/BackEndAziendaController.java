@@ -41,6 +41,7 @@ public class BackEndAziendaController extends baseController{
 
     }
 
+
     protected void init(HttpServletRequest request,HttpServletResponse response)throws IOException,ServerException{
       try {
           super.init(request,response);

@@ -18,25 +18,29 @@ import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class utility {
-    public static Boolean isEmail(String mail){
+    public static Boolean isEmail(String mail) {
 
         String email = "vivek.mitra@gmail.com";
         Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
         Matcher mat = pattern.matcher(email);
 
-        if(mat.matches()){
+        if (mat.matches()) {
 
             return true;
-        }else{
+        } else {
 
-           return false;
+            return false;
         }
-    }public static String action_upload(Part file, String path) throws IOException {
+    }
+
+    public static String action_upload(Part file, String path) throws IOException {
 
         File uploaded_file = File.createTempFile("upload_", ".pdf", new File(path));
 
@@ -44,44 +48,38 @@ public class utility {
              OutputStream os = new FileOutputStream(uploaded_file)) {
             byte[] buffer = new byte[1024];
             int read;
-            while ((read = is.read(buffer)) > 0)
-            {
+            while ((read = is.read(buffer)) > 0) {
                 os.write(buffer, 0, read);
             }
         }
         return uploaded_file.getName();
 
-    }public static Date getDataToHTML(String data )
-    {
-        Date date=new Date();
+    }
+
+    public static Date getDataToHTML(String data) {
+        Date date = new Date();
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             date = sdf.parse(data);
 
-        }catch (ParseException e)
-        {
+        } catch (ParseException e) {
 
             e.printStackTrace();
         }
         return date;
     }
-    private static void validazione(HttpServletRequest request, HttpServletResponse response, List<String> input)throws  ServletException ,IOException
-    {
-        for (String item:input)
-        {
-            if(request.getParameter(item)==null||request.getParameter(item).isEmpty())
-            {
-                throw new IOException("I don't have date " + item);
-            }
+
+    public static HashMap<String, Object> AddAllData(HttpServletRequest request, HttpServletResponse response, List<String> namedates) throws IOException, ServletException {
+        HashMap<String, Object> map = new HashMap<>();
+
+        for (String namedata : namedates) {
+            map.put("ValueOf" + namedata, request.getParameter(namedata));
         }
-
-    }
-
-
-
+        return map;
 
 
     }
+}
 
 
 

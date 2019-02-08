@@ -29,7 +29,7 @@ public class OffertaTirocinio {
 
     private String CognomeTutoreAziendale;
     private String EmailTutoreAziendale;
-    private  String TelefonoTutoreAzindale;
+    private String TelefonoTutoreAzindale;
     private Integer Azienda;
     private Integer TutoreUniversitario;
     private Timestamp CreateDate;
@@ -234,6 +234,8 @@ public class OffertaTirocinio {
         return CognomeTutoreAziendale;
     }
 
+
+
     public void setCognomeTutoreAziendale(String cognomeTutoreAziendale) {
         CognomeTutoreAziendale = cognomeTutoreAziendale;
     }
@@ -276,5 +278,36 @@ public class OffertaTirocinio {
 
     public void setCreateDate(Timestamp createDate) {
         CreateDate = createDate;
+    }
+    @Override
+    public String toString() {
+        return "OffertaTirocinio{" +
+                "IDOffertaTirocinio=" + IDOffertaTirocinio +
+                ", LuogoEffettuazione='" + LuogoEffettuazione + '\'' +
+                ", Titolo='" + Titolo + '\'' +
+                ", DescrizioneBreve='" + DescrizioneBreve + '\'' +
+                ", Descrizione='" + Descrizione + '\'' +
+                ", Orario='" + Orario + '\'' +
+                ", DurataOra=" + DurataOra +
+                ", DurataMesi=" + DurataMesi +
+                ", PeriodoInizio=" + PeriodoInizio +
+                ", PeriodoFine=" + PeriodoFine +
+                ", Modalita='" + Modalita + '\'' +
+                ", Obbiettivi='" + Obbiettivi + '\'' +
+                ", Rimborsi='" + Rimborsi + '\'' +
+                ", Facilitazioni='" + Facilitazioni + '\'' +
+                ", AziendaOspitante='" + AziendaOspitante + '\'' +
+                ", CodiceTirocinio='" + CodiceTirocinio + '\'' +
+                ", SettoreInserimento='" + SettoreInserimento + '\'' +
+                ", TempoAccessoLocaliAziendali='" + TempoAccessoLocaliAziendali + '\'' +
+                ", NomeTutoreAziendale='" + NomeTutoreAziendale + '\'' +
+                ", CognomeTutoreAziendale='" + CognomeTutoreAziendale + '\'' +
+                ", EmailTutoreAziendale='" + EmailTutoreAziendale + '\'' +
+                ", TelefonoTutoreAzindale='" + TelefonoTutoreAzindale + '\'' +
+                ", Azienda=" + Azienda +
+                ", TutoreUniversitario=" + TutoreUniversitario +
+                ", CreateDate=" + CreateDate +
+                ", UpdateDate=" + UpdateDate +
+                '}';
     }
 }
