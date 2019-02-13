@@ -40,41 +40,7 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar bg-light">
-            <div class="side-nav mb-60">
-                <ul class="list-group list-group-bordered list-group-noicon uppercase">
-                    <li class=""><a href="admin.html">HOME DASHBOARD</a></li>
-                    <li class="active"><a href="gestione-utenza-admin.html">GESTIONE UTENZA</a></li>
-                    <li class=""><a href="gestione-richieste-convenzioni-admin.html">GESTIONE RICHIESTE CONVENZIONE</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a class="dropdown-toggle" href="gestione-tirocinii-admin.html">GESTIONE TIROCINII</a>
-                        <ul>
-                            <li><a href="ultime-offerte-pubblicate-admin.html">ULTIME OFFERTE PUBBLICATE</a></li>
-                            <li class=""><a href="offerte-scadute-admin.html">OFFERTE SCADUTE</a></li>
-                            <li class=""><a href="tutte-offerte-pubblicate-admin.html">TUTTE LE OFFERTE PUBBLICATE</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <a class="dropdown-toggle" href="gestione-moduli-admin.html">GESTIONE MODULI</a>
-                        <ul>
-                            <li><a href="richieste-tirocinii-tirocinanti-admin.html">RICHIESTE TIROCINII TIROCINANTI</a>
-                            </li>
-                            <li><a href="richieste-convenzioni-aziendali-admmin.html">RICHIESTE CONVENZIONI
-                                    AZIENDALI</a>
-                            </li>
-                            <li><a href="modulo-tirocinio-fine-admin.html">MODULO TIROCINIO FINE</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class=""><a href="impostazione-account-admin.html">IMPOSTAZIONI ACCOUNT</a></li>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
+       <#include "../BackEndTemplates/sidebar.ftl">
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <noscript>
@@ -92,7 +58,7 @@
                     <i class="fa fa-table"></i> Tirocinanti
                 </div>
                 <div class="card-body">
-                    <form class="table-responsive" id="form_tirocinante" action="print.php" method="post">
+                    <div class="table-responsive" >
 
                         <table class="table table-striped table-bordered table-hover" id="datatable_tirocinante" width="100%"
                                cellspacing="0">
@@ -100,7 +66,6 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>Cognome</th>
-                                <th>Email</th>
                                 <th>Codice Fiscale</th>
                                 <th>Data Di Nascita</th>
                                 <th>Telefono</th>
@@ -114,7 +79,6 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>Cognome</th>
-                                <th>Email</th>
                                 <th>Codice Fiscale</th>
                                 <th>Data Di Nascita</th>
                                 <th>Telefono</th>
@@ -125,95 +89,44 @@
                             </tr>
                             </tfoot>
                             <tbody>
+                            <#list tirocinanti as tirocinante>
                             <tr>
-                                <td>Marco</td>
-                                <td>Polo</td>
-                                <td>marco.polo@navigare.oceano</td>
-                                <td>HGFCHGHGKHGCVHCVJHG</td>
-                                <td>01/01/1254</td>
-                                <td>12345678910</td>
-                                <td>NO</td>
+                                <td>${tirocinante.nome}</td>
+                                <td>${tirocinante.cognome}</td>
+                                <td>${tirocinante.codiceFiscale}</td>
+                                <td>${tirocinante.dataDiNascita}</td>
+                                <td>${tirocinante.telefono}</td>
+                                <td><#if tirocinante.handicap>yes<#else>no</#if> </td>
                                 <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        Utente
-                                    </button>
+                                    <form action="/show-tirocinante" method="post">
+                                        <input type="hidden" name="ID" value="${tirocinante.IDTirocinante}">
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
+                                            Utente
+                                        </button>
+                                    </form>
+
                                 </td>
                                 <td>
-                                    <a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
+
+                                        <a type="button" href="/modifica-tirociante?ID=${tirocinante.IDTirocinante}" class="btn btn-secondary"><i
                                                     class="fa fa-pencil-square-o"></i>
                                             Modifica
-                                        </button>
+                                        </a>
+                                </td>
+
+                                <td>
+                                    <a type="button" href="#" class="btn btn-danger">
+                                        <i class="fa fa-times"></i>
+                                        Elimina
                                     </a>
                                 </td>
-                                <td><input type="checkbox" class="checkboxes" name="Marco" value="1"/> <i
-                                            class="fa fa-times" style="color: red;"></i> Elimina
-                                </td>
                             </tr>
-                            <tr>
-                                <td>Mario</td>
-                                <td>Bianco</td>
-                                <td>mario.bianco@nero.brutto</td>
-                                <td>HGFCHGHGKHGCVHCVJHG</td>
-                                <td>01/01/2155</td>
-                                <td>12345678910</td>
-                                <td>SI</td>
-                                <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        Utente
-                                    </button>
-                                </td>
-                                <td>
-                                    <a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
-                                                    class="fa fa-pencil-square-o"></i>
-                                            Modifica
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><input type="checkbox" class="checkboxes" name="Marco" value="1"/> <i
-                                            class="fa fa-times" style="color: red;"></i> Elimina
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Edmund</td>
-                                <td>Charly</td>
-                                <td>Edmund.Charly@bob.usa</td>
-                                <td>HGFCHGHGKHGCVHCVJHG</td>
-                                <td>01/01/1994</td>
-                                <td>12345678910</td>
-                                <td>NO</td>
-                                <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        Utente
-                                    </button>
-                                </td>
-                                <td>
-                                    <a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
-                                                    class="fa fa-pencil-square-o"></i>
-                                            Modifica
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><input type="checkbox" class="checkboxes" name="Marco" value="1"/> <i
-                                            class="fa fa-times" style="color: red;"></i> Elimina
-                                </td>
-                            </tr>
+                            </#list>
+
                             </tbody>
                         </table>
 
-                        <footer class="text-center text-sm-right mt-25 ">
-                            <button type="submit" form="form_tirocinante"
-                                    class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
-                                        class="fa fa-check"></i> Aggiorna
-                            </button>
-                            <button type="reset" form="form_tirocinante"
-                                    class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
-                                        class="fa fa-times"></i> Annulla
-                            </button>
-                        </footer>
-                    </form>
+                    </div>
                 </div>
             </div>
 
@@ -258,81 +171,39 @@
                             </tr>
                             </tfoot>
                             <tbody>
+                            <#list aziende as azienda>
                             <tr>
-                                <td>Ferrari</td>
-                                <td>JHVDUJHJHUVDHJ</td>
-                                <td>Enzo</td>
-                                <td>Ferrari</td>
-                                <td>Mauro</td>
-                                <td>Rossi</td>
-                                <td>mauro.rossi@ferrari.it</td>
+                                <td>${azienda.ragioneSociale}</td>
+                                <td>${azienda.CFiscalePIva}</td>
+                                <td>${azienda.nomeLegaleRappresentante}</td>
+                                <td>${azienda.cognomeLegaleRappresentante}</td>
+                                <td>${azienda.nomeResponsabileConvenzione}</td>
+                                <td>${azienda.cognomeResponsabileConvenzione}</td>
+                                <td>${azienda.emailResponsabileConvenzione}</td>
                                 <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        Utente
-                                    </button>
+                                    <form action="/show-azienda" method="post">
+                                        <input type="hidden" name="ID" value="${azienda.IDAzienda}">
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
+                                            Utente
+                                        </button>
+                                    </form>
+
                                 </td>
                                 <td>
-                                    <a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
+                                  <form action="/modifica-azienda" method="get">
+                                      <input type="hidden" name="ID"  value="${azienda.IDAzienda}">
+                                      <button type="submit" class="btn btn-secondary"><i
                                                     class="fa fa-pencil-square-o"></i>
                                             Modifica
                                         </button>
-                                    </a>
+                                    </form>
                                 </td>
                                 <td><input type="checkbox" class="checkboxes" name="Marco" value="1"/> <i
                                             class="fa fa-times" style="color: red;"></i> Elimina
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Aveja</td>
-                                <td>JHVDUJHJHUVDHJ</td>
-                                <td>Enrico</td>
-                                <td>Ferani</td>
-                                <td>Marco</td>
-                                <td>Bianchi</td>
-                                <td>marco.bianchi@aveja.it</td>
-                                <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        Utente
-                                    </button>
-                                </td>
-                                <td>
-                                    <a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
-                                                    class="fa fa-pencil-square-o"></i>
-                                            Modifica
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><input type="checkbox" class="checkboxes" name="Marco" value="1"/> <i
-                                            class="fa fa-times" style="color: red;"></i> Elimina
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Brico</td>
-                                <td>JHVDUJHJHUVDHJ</td>
-                                <td>Marco</td>
-                                <td>Ginobili</td>
-                                <td>Andrea</td>
-                                <td>Blu</td>
-                                <td>andrea.blu@brico.it</td>
-                                <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        Utente
-                                    </button>
-                                </td>
-                                <td>
-                                    <a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
-                                                    class="fa fa-pencil-square-o"></i>
-                                            Modifica
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><input type="checkbox" class="checkboxes" name="Marco" value="1"/> <i
-                                            class="fa fa-times" style="color: red;"></i> Elimina
-                                </td>
-                            </tr>
+                            </#list>
+
                             </tbody>
                         </table>
                         <footer class="text-center text-sm-right mt-25 ">
@@ -425,11 +296,13 @@
                         </tr>
                         </tfoot>
                         <tbody>
-                        <tr>
-                            <td>Mauro</td>
-                            <td>Rossi</td>
-                            <td>147825369</td>
-                            <td>mauro.rossi@ferrari.it</td>
+                        <#list tutori as tutore >
+
+                            <tr>
+                            <td>${tutore.nome}</td>
+                            <td>${tutore.cognome}</td>
+                            <td>${tutore.telefono}</td>
+                            <td>${tutore.email}</td>
                             <td>
                                 <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
                                     Utente
@@ -447,53 +320,8 @@
                                 <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina Utente
                                 </button>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>Marco</td>
-                            <td>Bianchi</td>
-                            <td>147852369</td>
-                            <td>marco.bianchi@aveja.it</td>
-                            <td>
-                                <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                    Utente
-                                </button>
-                            </td>
-                            <td>
-                                <a href="print.php">
-                                    <button type="button" class="btn btn-secondary"><i
-                                                class="fa fa-pencil-square-o"></i>
-                                        Modifica
-                                    </button>
-                                </a>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina Utente
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Andrea</td>
-                            <td>Blu</td>
-                            <td>123456789</td>
-                            <td>andrea.blu@brico.it</td>
-                            <td>
-                                <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                    Utente
-                                </button>
-                            </td>
-                            <td>
-                                <a href="print.php">
-                                    <button type="button" class="btn btn-secondary"><i
-                                                class="fa fa-pencil-square-o"></i>
-                                        Modifica
-                                    </button>
-                                </a>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina Utente
-                                </button>
-                            </td>
-                        </tr>
+                            </tr>
+                        </#list>
                         </tbody>
                     </table>
                 </div>
@@ -551,7 +379,8 @@
                            cellspacing="0">
                         <thead>
                         <tr>
-                            <th>Email</th>
+                            <th>Nome</th>
+                            <th>Cognome</th>
                             <th>Visualizza</th>
                             <th>Modifica</th>
                             <th>Elimina</th>
@@ -559,15 +388,19 @@
                         </thead>
                         <tfoot>
                         <tr>
-                            <th>Email</th>
+                            <th>Nome</th>
+                            <th>Cognome</th>
                             <th>Visualizza</th>
                             <th>Modifica</th>
                             <th>Elimina</th>
                         </tr>
                         </tfoot>
                         <tbody>
+                        <#list listadmin as admin >
                         <tr>
-                            <td>mauro.rossi@ferrari.it</td>
+
+                            <td>${admin.nome}</td>
+                            <td>${admin.cognome}</td>
                             <td>
                                 <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
                                     Utente
@@ -586,46 +419,8 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>marco.bianchi@aveja.it</td>
-                            <td>
-                                <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                    Utente
-                                </button>
-                            </td>
-                            <td>
-                                <a href="print.php">
-                                    <button type="button" class="btn btn-secondary"><i
-                                                class="fa fa-pencil-square-o"></i>
-                                        Modifica
-                                    </button>
-                                </a>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina Utente
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>andrea.blu@brico.it</td>
-                            <td>
-                                <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                    Utente
-                                </button>
-                            </td>
-                            <td>
-                                <a href="print.php">
-                                    <button type="button" class="btn btn-secondary"><i
-                                                class="fa fa-pencil-square-o"></i>
-                                        Modifica
-                                    </button>
-                                </a>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina Utente
-                                </button>
-                            </td>
-                        </tr>
+                        </#list>
+
                         </tbody>
                     </table>
                 </div>
@@ -638,12 +433,12 @@
 <#include "../importScript.ftl">
 
 <!-- Script page -->
-<script src="plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables/js/dataTables.tableTools.min.js"></script>
-<script src="plugins/datatables/js/dataTables.colReorder.min.js"></script>
-<script src="plugins/datatables/js/dataTables.scroller.min.js"></script>
-<script src="plugins/datatables/dataTables.bootstrap.js"></script>
-<script src="plugins/select2/js/select2.full.min.js"></script>
+<script src="../../plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.tableTools.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.colReorder.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.scroller.min.js"></script>
+<script src="../../plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
 <script>
     function initTableTirocinanti() {
 

@@ -8,6 +8,8 @@ import model.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminDaoImp  extends DaoDataMySQLImpl {
 
@@ -15,6 +17,7 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
     private PreparedStatement selectAllAdmin;
     private PreparedStatement insertAdmin;
     private PreparedStatement selectAdminByIDuser;
+
 
     @Override
     public void init() throws DaoException {
@@ -81,6 +84,27 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
                 admin.setCognome(resultSet.getString("Cognome"));
             }
             return admin;
+
+        } catch (SQLException e) {
+            throw new DaoException("Errore query ", e);
+        }
+    }
+    public List<Admin> getAllAdmin() throws DaoException {
+        List<Admin> listadmin = new ArrayList<>();
+
+        try {
+            this.init();
+
+
+            ResultSet resultSet = selectAllAdmin.executeQuery();
+            if (resultSet.next()) {
+                Admin admin = new Admin();
+                admin.setIDadmin(resultSet.getInt("IDAdmin"));
+                admin.setNome(resultSet.getString("Nome"));
+                admin.setCognome(resultSet.getString("Cognome"));
+                listadmin.add(admin);
+            }
+            return listadmin;
 
         } catch (SQLException e) {
             throw new DaoException("Errore query ", e);
