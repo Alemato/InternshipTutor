@@ -14,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
         maxFileSize = 1024 * 1024 * 10,      // 10MB
         maxRequestSize = 1024 * 1024 * 50)   // 50MB
-public class UploadPDF extends baseController {
+public class UploadFilePDF extends baseController {
 
 
     public String UploadPDF(String savePath, Part part) throws IOException, NoSuchAlgorithmException, PdfException {
