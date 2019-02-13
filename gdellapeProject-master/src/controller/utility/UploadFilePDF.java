@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
@@ -17,11 +16,10 @@ import java.security.NoSuchAlgorithmException;
 public class UploadFilePDF extends baseController {
 
 
-    public String UploadPDF(String savePath, Part part) throws IOException, NoSuchAlgorithmException, PdfException {
+    public String UploadPDF(String savePath, Part part) throws IOException, PdfException {
 
         // ...\out\artifacts\gdellapeProject_master_war_exploded\savePath
 
-        MessageDigest md = MessageDigest.getInstance("MD5");
         // percorso assoluto dell'app
 //        String appPath = request.getServletContext().getRealPath("");
         // percorso nel quale salvare il file
