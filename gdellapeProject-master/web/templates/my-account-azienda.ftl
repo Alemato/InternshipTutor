@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>Il mio Account</title>
 
-<#include "importCss.ftl">
+    <#include "importCss.ftl">
     <!-- PAGE LEVEL SCRIPTS -->
-    <link href="/templates/css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="/templates/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="/templates/css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -16,7 +16,7 @@
 <div id="wrapper">
     <#include "header.ftl">
     <section class="page-header page-header-md parallax parallax-3 mt-130"
-             style="background-image:url('/templates/imgs/imgpattern.jpg')">
+             style="background-image:url('/imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
         <div class="container">
@@ -35,50 +35,44 @@
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
             <div class="row justify-content-between">
-                <div class="col-12 col-lg-6 mb-15">
-                    <a href="impostazione-account-aziendale.html">
-                        <div class="account-settings-item account-settings d-flex">
-                            <img src="/templates/imgs/sign-in-lock.png" class="h-95 w-95 float-left m-0">
-                            <div class="ml-10 mt-5 float-right">
-                                <h4 class="Raleway text-uppercase fw-700 mb-5">Impostazioni Accout</h4>
-                                <h6>Modifica il login, il nome e la password e tutti i tuo dati.</h6>
-                            </div>
+                <a class="account-settings-item account-settings mb-15 mr-25 col-12 col-lg-5 ml-lg-5" href="impostazione-account-aziendale.html">
+                    <div class="d-flex">
+                        <img src="/imgs/sign-in-lock.png" class="h-95 w-95 float-left m-0">
+                        <div class="ml-10 mt-5 float-right">
+                            <h4 class="Raleway text-uppercase fw-700 mb-5">Impostazioni Accout</h4>
+                            <h6 class="mb-0">Modifica il login, il nome e la password e tutti i tuo dati.</h6>
                         </div>
-                    </a>
-                </div>
-                <div class="col-12 col-lg-6 mb-15">
-                    <a href="tirocinio-aziendale.html">
-                        <div class="account-settings account-settings-item d-flex">
-                            <img src="/templates/imgs/internship-icon.png" class="h-85 w-85 float-left">
-                            <div class="ml-10 mt-5 float-right">
-                                <h4 class="Raleway text-uppercase fw-700 mb-5">Gestione Tirocinio</h4>
-                                <h6>Gestione, Creazione offerte di tirocinio.</h6>
-                            </div>
+                    </div>
+                </a>
+                <a class="account-settings account-settings-item mb-25 col-12 col-lg-5 mr-lg-5" href="tirocinio-aziendale.html">
+                    <div class="d-flex">
+                        <img src="/imgs/internship-icon.png" class="h-85 w-85 float-left">
+                        <div class="ml-10 mt-5 float-right">
+                            <h4 class="Raleway text-uppercase fw-700 mb-5">Gestione Tirocinio</h4>
+                            <h6 class="mb-0">Gestione, Creazione offerte di tirocinio.</h6>
                         </div>
-                    </a>
-                </div>
-                <div class="col-12 col-lg-6 mb-15">
-                    <a href="richieste-tirocinio-aziendale.html">
-                        <div class="account-settings account-settings-item d-flex">
-                            <img src="/templates/imgs/document-icon.png" class="h-85 w-85 float-left">
+                    </div>
+                </a>
+
+                <a class="account-settings account-settings-item col-12 col-lg-5 ml-lg-5" href="richieste-tirocinio-aziendale.html">
+                    <div class="d-flex">
+                            <img src="/imgs/document-icon.png" class="h-85 w-85 float-left">
                             <div class="ml-10 mt-5 float-right">
                                 <h4 class="Raleway text-uppercase fw-700 mb-5">Gestione Richieste di Tirocinio</h4>
-                                <h6>Gestione di tutte le richieste per tirocinii.</h6>
+                                <h6 class="mb-0">Gestione di tutte le richieste per tirocinii.</h6>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-lg-6 mb-15">
-                    <a href="moduli-aziendale.html">
-                        <div class="account-settings account-settings-item d-flex">
-                            <img src="/templates/imgs/forms.png" class="h-90 float-left mb-5 mr-10">
+                    </div>
+                </a>
+                <a class="account-settings account-settings-item col-12 col-lg-5 mr-lg-5" href="moduli-aziendale.html">
+                    <div class="d-flex">
+                            <img src="/imgs/forms.png" class="h-90 float-left mb-5 mr-10">
                             <div class="ml-10 mt-5 float-right">
                                 <h4 class="Raleway text-uppercase fw-700 mb-5">Modulistica</h4>
                                 <h6>Richiedi e visualizza i moduli necessari per iter burocratico</h6>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
+
             </div>
         </div>
     </section>
@@ -194,10 +188,9 @@
 </div>
 
 
-
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
-<script src="/templates/js/internshiptutor.js"></script>
+<script src="/js/internshiptutor.js"></script>
 
 </body>
 </html>
