@@ -71,7 +71,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.updateAzienda = connection.prepareStatement
                     ("UPDATE azienda SET RagioneSociale = ? ,IndirizzoSedeLegale = ? ,CFiscalePIva = ?,NomeLegaleRappresentante = ?," +
                             "CognomeLegaleRappresentante = ? ,NomeResponsabileConvenzione = ?,CognomeResponsabileConvenzione = ? ,TelefonoResponsabileConvenzione = ?," +
-                            "EmailResponsabileConvenzione = ?, PathPDFConvenzione=?,DurataConvenzione=?,ForoControversia = ?,DataConvenzione=?, Attivo=?, Descrizione = ?, Link = ? WHERE IDAzienda = ? ");
+                            "EmailResponsabileConvenzione = ?, PathPDFConvenzione=?,DurataConvenzione=?,ForoControversia = ?,DataConvenzione=?, Attivo=?, Descrizione=?, Link = ? WHERE IDAzienda = ? ");
 
             this.regAzienda = connection.prepareStatement
                     ("INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +

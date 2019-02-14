@@ -38,7 +38,7 @@ public void init() throws DaoException {
                 "CodiceFiscale = ?,Telefono =? ," +
                 "CorsoDiLaurea = ? DiplomaUniversitario = ? Laureato = ? DottoratoDiRicerca = ? ScuolaAltro = ? Handicap = ? User = ? WHERE IDTirocinante = ?");
 
-        this.selectAllTirocinante = connection.prepareStatement("SELECT * FROM tirocinante");
+        this.selectAllTirocinante = connection.prepareStatement("SELECT * FROM tirocinante ORDER BY UpdateDate ASC");
 
     } catch (SQLException ex) {
         throw new DaoException("Error:PrepareStatement error", ex);

@@ -24,8 +24,7 @@ import java.util.List;
 public class CreateTirocinioController extends BackEndAziendaController{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        //createtr(request,response);
-
+        makeform(request,response);
 
 
 
@@ -33,50 +32,104 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        gettutori(request,response);
         TemplateController.process("creazione-tirocinio-aziendale.ftl", datamodel, response, getServletContext());
 
     }
-    private void createtr(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
+    private void gettutori(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
+    {
+        try{
+            TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
+            List<TutoreUniversitario> tutori= dao.getAllTutUni();
+            dao.destroy();
+            datamodel.put("tutori",tutori);
+
+        }catch (DaoException e)
+        {
+            response.sendRedirect("/404");
+            e.printStackTrace();
+        }
+    }
+    private void createoftr(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException {
+        Azienda azienda = getAzienda(request, response);
+        if (validation(request, response)) {
+            OffertaTirocinio tr = getOfferta(request, response);
+            tr.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
+            tr.setAzienda(azienda.getIDAzienda());
+            tr.setAziendaOspitante(azienda.getRagioneSociale());
+            makeOffertaTr(request, response, tr);
+            response.sendRedirect("/home");
+        }
+    }
+    private void makeform(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
+    {
+        if(super.accessLogin(request,response)&&super.accessAzienda(request,response))
+        {
+            if(request.getParameter("TutoreUniversitario").equals("NEW"))
+            {
+                createOffAndTutUni(request,response);
+            }else{createoftr(request,response);}
+        }
+    }
+
+
+    private void createOffAndTutUni(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
     {
         try {
-            if (super.accessLogin(request, response) && accessAzienda(request, response) && getAzienda(request, response).getAttivo()) {
+
                 Azienda azienda = getAzienda(request, response);
-                OffertaTirocinio tr = validation(request, response);
-                if(tr !=null) {
-                    if (request.getParameter("TutoreUniversitario").equals("NEW")) {
-                        TutoreUniversitario tutuni = validationTutUni(request, response);
-                        if (tutuni != null) {
-                            TutoreUniversitario tutwithid = makeNewTutoreUni(request, response, tutuni);
-                            tr.setTutoreUniversitario(tutwithid.getIDTutoreUni());
-                        }
+                if (validation(request, response)&&validationTutUni(request, response))
+                {
+                    OffertaTirocinio tr = getOfferta(request, response);
 
-
-                    } else {
-                        tr.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
-                    }
-                }
-
-                if(tr!=null) {
+                    TutoreUniversitario tutuni = getTutoreUni(request, response);
+                    TutoreUniversitario tutwithid = makeNewTutoreUni(request, response, tutuni);
+                    tr.setTutoreUniversitario(tutwithid.getIDTutoreUni());
                     tr.setAzienda(azienda.getIDAzienda());
                     tr.setAziendaOspitante(azienda.getRagioneSociale());
                     makeOffertaTr(request, response, tr);
                     response.sendRedirect("/home");
                 }
-            }
+
         }catch (Exception e)
         { e.printStackTrace();}
 
 
     }
 
+    private OffertaTirocinio getOfferta(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
+    {  OffertaTirocinio of = new OffertaTirocinio();
+        of.setTitolo(request.getParameter("Titolo"));
+        of.setDescrizioneBreve(request.getParameter("Descrizione_Breve"));
+        of.setDescrizione(request.getParameter("Descrizione_Completa"));
+        of.setOrario(request.getParameter("Orari"));
+        of.setDurataOra(Integer.parseInt(request.getParameter("Durara_Ora")));
+        of.setDurataMesi(Integer.parseInt(request.getParameter("Durara_Mesi")));
+        of.setPeriodoInizio(Date.valueOf(request.getParameter("Periodo_inizio")));
+        of.setPeriodoFine(Date.valueOf(request.getParameter("Periodo_fine")));
+        of.setModalita(request.getParameter("Modalita"));
+        of.setObbiettivi(request.getParameter("Obiettivi"));
+        of.setRimborsi(request.getParameter("Rimborsi"));
+        of.setFacilitazioni(request.getParameter("Facilitazioni"));
+        of.setLuogoEffettuazione(request.getParameter("SedeTirocinio"));
+        of.setCodiceTirocinio(request.getParameter("CodiceIdentTirocinio"));
+        of.setSettoreInserimento(request.getParameter("SettoreInserimento"));
+        of.setTempoAccessoLocaliAziendali(request.getParameter("TempiAccessoLocaliAziendali"));
+        of.setNomeTutoreAziendale(request.getParameter("NomeTutoreAziendale"));
+        of.setCognomeTutoreAziendale(request.getParameter("CognomeTutoreAziendale"));
+        of.setTelefonoTutoreAzindale(request.getParameter("TelefonoTutoreAziendale"));
+        of.setEmailTutoreAziendale(request.getParameter("EmailTutoreAziendale"));
+        return of;
+
+    }
 
 
 
 
-    private OffertaTirocinio validation(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+    private Boolean validation(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
 
         HashMap<String,String> errori = new HashMap<>();
-        OffertaTirocinio of = new OffertaTirocinio();
+
 
         if (request.getParameter("Titolo")!=null) {
             String titolo = request.getParameter("Titolo");
@@ -90,7 +143,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
             {
                 errori.put("ErroreTitolo","Titolo troppo lungo");
             }
-            of.setTitolo(titolo);
+
 
         }else{ errori.put("Titolo Non Presente","Titolo non presente"); }
 
@@ -105,7 +158,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
                 } else if (descrBreve.length() > 200) {
                     errori.put("ErroreDescrizione_Breve", "Descrizione Breve troppo lunga");
                 }
-                of.setDescrizioneBreve(descrBreve);
+
 
             } else {
                 errori.put("ErroreDescrizione_Breve", "Descrizione Breve non Presente");
@@ -121,7 +174,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
                 }else if(descr.length()>1000)
                 {errori.put("ErroreDescrizione_Completa", "Descrizione troppo lunga");}
-                of.setDescrizione(descr);
+
 
             } else { errori.put("ErroreDescrizione_Completa", "Descrizione non Presente");}
 
@@ -137,7 +190,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
                 }else if(orari.length()>100)
                 {  errori.put("ErroreOrari", "Orari non presenti");}
 
-                of.setOrario(orari);
+
 
             } else { errori.put("ErroreOrari", "Orari non presenti"); }
 
@@ -152,7 +205,6 @@ public class CreateTirocinioController extends BackEndAziendaController{
             }else if(durateore >100000)
             {  errori.put("ErroreDurara_Ora", "Durata in ore non congrua");}
 
-            of.setDurataOra(durateore);
 
 
         } else { errori.put("ErroreDurara_Ora", "Durata in ore non presente");}
@@ -167,14 +219,14 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
                 }else if(durMesi >100000)
                 {  errori.put("ErroreDurara_Mesi", "Durata in mesi non congrua");}
-                    of.setDurataMesi(durMesi);
+
 
                 } else { errori.put("ErroreDurara_Mesi", "Durata in mesi non presente");}
 
         if (request.getParameter("Periodo_inizio") != null) {
 
             Date datainizio = Date.valueOf(request.getParameter("Periodo_inizio"));
-            of.setPeriodoInizio(datainizio);
+
 
         } else { errori.put("ErrorePeriodo_inizio", "Periodo inizio non presente");}
 
@@ -183,7 +235,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
         if (request.getParameter("Periodo_fine") != null) {
 
             Date datefine = Date.valueOf(request.getParameter("Periodo_fine"));
-            of.setPeriodoFine(datefine);
+
 
         } else { errori.put("ErrorePeriodo_fine", "Periodo fine non presente");}
 
@@ -197,7 +249,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
             }else if(modalitasvol.length() >500)
             {  errori.put("ErroreModalita", "Modalita di svolgimento troppo lungo");}
-            of.setModalita(modalitasvol);
+
 
 
         } else {  errori.put("ErroreModalita", "Modalita di svolgimento non presente");}
@@ -211,7 +263,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
             }else if(Obiettivi.length() >500)
             {  errori.put("ErroreObiettivi", "Obiettivi di svolgimento troppo lungo");}
-            of.setObbiettivi(Obiettivi);
+
 
 
         } else {  errori.put("ErroreObiettivi", "Obiettivi di svolgimento non presenti");}
@@ -226,7 +278,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
             }else if(rimborsi.length() >200)
             {  errori.put("ErroreRimborsi", "Rimborsi troppo lungo");}
-            of.setRimborsi(rimborsi);
+
 
 
         } else { errori.put("ErroreRimborsi", "Rimborsi non presenti");}
@@ -240,7 +292,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
             }else if(facilitazioni.length() >200)
             {  errori.put("ErroreFacilitazioni", "Facilitazioni troppo lungo");}
-            of.setFacilitazioni(facilitazioni);
+
 
 
         } else { errori.put("ErroreFacilitazioni", "Facilitazioni non presenti");}
@@ -255,7 +307,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
             }else if(sede.length() >200)
             {  errori.put("ErroreSedeTirocinio", "SedeTirocinio troppo lungo");}
-            of.setLuogoEffettuazione(sede);
+
 
 
         } else { errori.put("ErroreSedeTirocinio", "SedeTirocinio non presente");}
@@ -271,7 +323,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
             }else if(codice.length() >10)
             {  errori.put("ErroreCodiceIdentTirocinio", "Codice tirocinio troppo lungo");}
-            of.setCodiceTirocinio(codice);
+
 
 
         } else {  errori.put("ErroreCodiceIdentTirocinio", "Codice tirocinio non presente");}
@@ -285,7 +337,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
             }else if(settore.length() >100)
             {  errori.put("ErroreSettoreInserimento", "Settore Inserimento troppo lungo");}
-            of.setSettoreInserimento(settore);
+
 
 
         } else {errori.put("ErroreSettoreInserimento", "Settore Inserimento non presente");}
@@ -299,7 +351,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
             }else if(tempiAccesso.length() >100)
             {  errori.put("ErroreTempiAccessoLocaliAziendali", "Settore Inserimento troppo lungo");}
-            of.setTempoAccessoLocaliAziendali(tempiAccesso);
+
 
 
         } else { errori.put("ErroreSettoreInserimento", "Settore Inserimento non presente");}
@@ -313,7 +365,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
             }else if(nomeTuAz.length() >100)
             {  errori.put("ErroreNomeTutoreAziendale", "Nome Tutore aziendale troppo lungo");}
-            of.setNomeTutoreAziendale(nomeTuAz);
+
 
 
         } else { errori.put("ErroreNomeTutoreAziendale", "Nome Tutore aziendale non presente");}
@@ -327,7 +379,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
             }else if(cognomeTuAz.length() >100)
             {  errori.put("ErroreCognomeTutoreAziendale", "Cognome Tutore aziendale troppo lungo");}
-            of.setCognomeTutoreAziendale(cognomeTuAz);
+
 
 
         } else {  errori.put("ErroreCognomeTutoreAziendale", "Cognome Tutore aziendale non presente");}
@@ -342,7 +394,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
             }else if(telTutAz.length() >30)
             {  errori.put("ErroreTelefonoTutoreAziendale", "Telefono Tutore aziendale troppo lungo");}
-            of.setTelefonoTutoreAzindale(telTutAz);
+
 
 
         } else {   errori.put("ErroreTelefonoTutoreAziendale", "Telefono Tutore aziendale non presente");}
@@ -356,7 +408,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
             }else if(emailTutAz.length() >50)
             {  errori.put("ErroreEmailTutoreAziendale", "Email Tutore aziendale troppo lungo");}
-            of.setEmailTutoreAziendale(emailTutAz);
+
 
 
         } else { errori.put("ErroreEmailTutoreAziendale", "Email Tutore aziendale non presente");}
@@ -364,11 +416,12 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
         if(!(errori.isEmpty())){
             datamodel.putAll(errori);
-
+            datamodel.putAll(refreshPage(request,response));
             showformCreateoff(request,response);
-            return null;
+           return false;
         }
-        return of;
+        return true;
+
 
 
     }
@@ -395,9 +448,10 @@ public class CreateTirocinioController extends BackEndAziendaController{
 
     }
 
-    private TutoreUniversitario validationTutUni(HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException
-    {HashMap<String,String> errori = new HashMap<>();
-        TutoreUniversitario tutore= new TutoreUniversitario();
+    private Boolean validationTutUni(HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException
+    {
+        HashMap<String,String> errori = new HashMap<>();
+
 
         if (request.getParameter("NomeTutoreUniversitario")!=null) {
             String nomeTutUni =request.getParameter("NomeTutoreUniversitario");
@@ -411,7 +465,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
             {
                 errori.put("ErroreNomeTutoreUniversitario","Nome Tutore Aziendale troppo lungo");
             }
-            tutore.setNome(nomeTutUni);
+
 
         }else{ errori.put("ErroreNomeTutoreUniversitario","Nome Tutore Aziendale non presente");}
 
@@ -427,7 +481,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
             {
                 errori.put("ErroreCognomeTutoreUniversitario","Cognome Tutore Universitario troppo lungo");
             }
-            tutore.setCognome(cognomeTutUni);
+
 
         }else{ errori.put("ErroreCognomeTutoreUniversitario","Cognome Tutore Universitario non presente");}
 
@@ -445,7 +499,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
             {
                 errori.put("ErroreTelefonoTutoreUniversitario","Telefono Tutore Universitario troppo lungo");
             }
-            tutore.setTelefono(telefonoTutUni);
+
 
         }else{ errori.put("ErroreTelefonoTutoreUniversitario","Telefono Tutore Universitario non presente");}
 
@@ -461,7 +515,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
             {
                 errori.put("ErroreEmailTutoreUniversitario","Email Tutore Universitario troppo lungo");
             }
-            tutore.setEmail(EmailTutUni);
+
 
         }else{ errori.put("ErroreEmailTutoreUniversitario","Email Tutore Universitario non presente");}
 
@@ -470,10 +524,20 @@ public class CreateTirocinioController extends BackEndAziendaController{
             datamodel.putAll(errori);
             datamodel.putAll(refreshPage(request,response));
             showformCreateoff(request, response);
-            return null;
+            return false;
 
         }
+        return true;
 
+
+    }
+    private TutoreUniversitario getTutoreUni(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
+    {
+        TutoreUniversitario tutore= new TutoreUniversitario();
+        tutore.setNome(request.getParameter("NomeTutoreUniversitario"));
+        tutore.setCognome(request.getParameter("CognomeTutoreUniversitario"));
+        tutore.setTelefono(request.getParameter("TelefonoTutoreUniversitario"));
+        tutore.setEmail(request.getParameter("EmailTutoreUniversitario"));
         return tutore;
     }
 

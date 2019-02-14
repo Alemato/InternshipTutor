@@ -328,9 +328,10 @@
         <url-pattern>/richisteconvezioni</url-pattern>
 
     </servlet-mapping>
+
     <servlet>
         <servlet-name>gestione-utenti</servlet-name>
-        <servlet-class>controller.adm.Admin.AdminGestioneUtentiController</servlet-class>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.AdminGestioneUtentiController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>gestione-utenti</servlet-name>
@@ -388,7 +389,46 @@
         <url-pattern>/Convenzione</url-pattern>
 
     </servlet-mapping>
+    <servlet>
+        <servlet-name>show-tirociante</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowTirocinanteController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>show-tirociante</servlet-name>
+        <url-pattern>/show-tirocinante</url-pattern>
+        <url-pattern>/Show-tirociante</url-pattern>
 
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>modifica-tirocinante</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.ModificaTirocinanteController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>modifica-tirocinante</servlet-name>
+        <url-pattern>/modifica-tirocinante</url-pattern>
+        <url-pattern>/modifica-tirociante</url-pattern>
+
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>modifica-azienda</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.ModificaAziendaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>modifica-azienda</servlet-name>
+        <url-pattern>/modifica-azienda</url-pattern>
+        <url-pattern>/modifica-Azienda</url-pattern>
+
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>show-azienda</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAziendaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>show-azienda</servlet-name>
+        <url-pattern>/show-Azienda</url-pattern>
+        <url-pattern>/show-azienda</url-pattern>
+
+    </servlet-mapping>
 
     <!-- end servelt account admin-->
 

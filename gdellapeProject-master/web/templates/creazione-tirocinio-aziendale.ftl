@@ -495,10 +495,10 @@
                         <div class="col">
                             <div class="fancy-form fancy-form-select">
                                 <select id="TuroreUni" class="form-control select2" name="TutoreUniversitario">
-                                    <option value="0">Pippo 1</option>
-                                    <option value="1">Mario 1</option>
-                                    <option value="2">Mario 2</option>
-                                    <option value="3">Mario 3</option>
+                                  <#list tutori as tutore >
+                                    <option value="${tutore.id}">${tutore.nome}</option>
+                                    </#list>
+
                                     <option value="NEW">Altro</option>
                                 </select>
 
