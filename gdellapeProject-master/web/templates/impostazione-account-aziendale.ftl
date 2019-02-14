@@ -27,7 +27,7 @@
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/account">Account</a></li>
                 <li>Impostazione acccount</li>
             </ol><!-- /breadcrumbs -->
 
@@ -40,7 +40,7 @@
                 <#include "messaggio-errore.ftl">
             </#if>
 
-            <form id="form_modifica" action="UpdateAzienda" method="post" class="sky-form  boxed"
+            <form id="form_modifica" action="/account/impostazioni" method="post" class="sky-form  boxed"
                   novalidate="novalidate">
 
                 <header class="mb-50 fs-50 fw-100 text-center">Aggiorna i tuoi dati</header>
@@ -51,7 +51,7 @@
                     <label class="input">
                         <p> Indirizzo Email</p>
                         <i class="ico-append giu fa fa-envelope"></i>
-                        <input type="text" placeholder="Indirizzo Email" name="Email" value=${User.email} required>
+                        <input type="text" placeholder="Indirizzo Email" name="Email" value="" required>
                         <b class="tooltip tooltip-bottom-right">Necessario per verificare il tuo account</b>
                     </label>
 
@@ -91,7 +91,7 @@
                         </div>
 
                         <textarea class="col-12 pt-5 mb-0 mr-10" rows="4" cols="1" name="Descrizione"
-                                  placeholder="Scrivi una descrizione dettagliata dell&apos;azienda">${Azienda.descrizione}</textarea>
+                                  placeholder="Scrivi una descrizione dettagliata dell&apos;azienda">not</textarea>
 
                     </div>
                     <div class="row">
@@ -100,7 +100,7 @@
                         </div>
                         <div class="col-md-12 col-lg">
                             <label class="input">
-                                <input type="text" placeholder="Link" name="Link" value=${Azienda.link}>
+                                <input type="text" placeholder="Link" name="Link" value="">
                             </label>
                         </div>
                     </div>
@@ -234,7 +234,7 @@
 
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
-<script src="/js/internshiptutor.js"></script>
+<script src="../js/internshiptutor.js"></script>
 
 
 </body>

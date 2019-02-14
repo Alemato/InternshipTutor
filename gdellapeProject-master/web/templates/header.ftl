@@ -8,13 +8,13 @@
 
                     <#if logged>
                         <li>
-                            <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#"><i
+                            <a class="dropdown-toggle no-text-underline"  href="/account"><i
                                     class="fa fa-user hidden-xs-down"></i> IL MIO ACCOUNT </a>
                             <ul class="dropdown-menu float-right has-topBar">
                                 <li><a tabindex="-1" href="#"><i class="fa fa-history"></i> I MIEI
                                     TIROCINI</a></li>
                                 <li class="divider"></li>
-                                <li><a tabindex="-1" href="/account"><i class="fa fa-cog"></i> IMPOSTAZIONI
+                                <li><a tabindex="-1" href="/account/impostazioni"><i class="fa fa-cog"></i> IMPOSTAZIONI
                                     DELL'ACCOUNT </a></li>
                                 <li class="divider"></li>
                                 <li><a tabindex="-1" href="/logout"><i class="glyphicon glyphicon-off"></i> logout

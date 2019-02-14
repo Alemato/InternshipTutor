@@ -18,4 +18,5 @@
     <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
     <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
     <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
