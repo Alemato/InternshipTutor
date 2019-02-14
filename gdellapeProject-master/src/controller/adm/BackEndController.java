@@ -20,41 +20,22 @@ import java.io.IOException;
 
 public class BackEndController extends baseController {
 
-    protected void access(HttpServletRequest request, HttpServletResponse response) throws DaoException,IOException,SerialException {
-
-        SingSessionContoller session = SingSessionContoller.getInstance();
-        if (session.isValidSession(request)) {
-
-
-            if (session.isAdmin(request)) {
-
-
-            }
-            if (session.isTirocinante(request)) {
-                TemplateController.process("my-account-tirocinante.ftl", datamodel, response, getServletContext());
-
-
-            }
-            if (session.isAzienda(request)) {
-                TemplateController.process("my-account-azienda.ftl", datamodel, response, getServletContext());
-
-            }
-
-
-        }else
-            {response.sendRedirect("/login");}
-    }
-
-
-
-
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try{  super.init(request,response);
-            access(request,response);
 
-
-
+            switch ((int)request.getAttribute("tipo")) {
+                case 0: response.sendRedirect("/403");
+                    break;
+                case 1: response.sendRedirect("/admin");
+                    break;
+                case 2: TemplateController.process("my-account-tirocinante.ftl", datamodel, response, getServletContext());
+                    break;
+                case 3: TemplateController.process("my-account-azienda.ftl", datamodel, response, getServletContext());
+                    break;
+                default: response.sendRedirect("/500");
+                    break;
+            }
         }catch (Exception e){
             e.printStackTrace();
 

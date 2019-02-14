@@ -14,10 +14,8 @@ public class BackEndAziendaController extends baseController{
     protected Boolean accessLogin(HttpServletRequest request, HttpServletResponse response)throws IOException,ServerException{
         SingSessionContoller session = SingSessionContoller.getInstance();
         if(!(session.isValidSession(request))){
-
                 response.sendRedirect("/login");
                 return false;
-
         }else{return true;}
     }
     protected Boolean accessAzienda(HttpServletRequest request, HttpServletResponse response)throws IOException,ServerException{
