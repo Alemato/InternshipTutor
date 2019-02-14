@@ -51,7 +51,7 @@
                     <label class="input">
                         <p> Indirizzo Email</p>
                         <i class="ico-append giu fa fa-envelope"></i>
-                        <input type="text" placeholder="Indirizzo Email" name="Email" value="" required>
+                        <input type="text" placeholder="Indirizzo Email" name="Email" value="${email}" required>
                         <b class="tooltip tooltip-bottom-right">Necessario per verificare il tuo account</b>
                     </label>
 
@@ -91,7 +91,7 @@
                         </div>
 
                         <textarea class="col-12 pt-5 mb-0 mr-10" rows="4" cols="1" name="Descrizione"
-                                  placeholder="Scrivi una descrizione dettagliata dell&apos;azienda">not</textarea>
+                                  placeholder="Scrivi una descrizione dettagliata dell&apos;azienda">${descrizione}</textarea>
 
                     </div>
                     <div class="row">
@@ -100,7 +100,7 @@
                         </div>
                         <div class="col-md-12 col-lg">
                             <label class="input">
-                                <input type="text" placeholder="Link" name="Link" value="">
+                                <input type="text" placeholder="Link" name="Link" value="${link}">
                             </label>
                         </div>
                     </div>

@@ -40,7 +40,7 @@
     </filter>
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/account</url-pattern>
+        <url-pattern>/account/*</url-pattern>
     </filter-mapping>
     <!-- /filtri -->
 
@@ -170,12 +170,12 @@
 
     </servlet-mapping>
     <servlet>
-        <servlet-name>UpdateAzienda</servlet-name>
-        <servlet-class>controller.adm.Azienda.ImpostazioneAccountAziendaleController</servlet-class>
+        <servlet-name>ImpostazioniAzienda</servlet-name>
+        <servlet-class>controller.adm.ImpostazioniAzienda</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UpdateAzienda</servlet-name>
-        <url-pattern>/UpdateAzienda</url-pattern>
+        <servlet-name>ImpostazioniAzienda</servlet-name>
+        <url-pattern>/account/impostazioni</url-pattern>
 
     </servlet-mapping>
 
