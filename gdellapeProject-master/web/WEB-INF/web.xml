@@ -28,6 +28,21 @@
     </resource-ref>
 
     <display-name>gdellapeProject</display-name>
+    <!-- Init Servlet -->
+    <welcome-file-list>
+        <welcome-file>Home</welcome-file>
+    </welcome-file-list>
+    <!-- Fine Init Servlet -->
+    <!-- filtri -->
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/account</url-pattern>
+    </filter-mapping>
+    <!-- /filtri -->
 
     <!-- Servlet di home -->
     <servlet>
@@ -164,14 +179,14 @@
 
     </servlet-mapping>
 
-<!-- servlet errori-->
+    <!-- servlet errori-->
     <servlet>
-    <servlet-name>404</servlet-name>
-    <servlet-class>controller.errori.Errore404Controller</servlet-class>
+        <servlet-name>404</servlet-name>
+        <servlet-class>controller.errori.Errore404Controller</servlet-class>
     </servlet>
     <servlet-mapping>
-    <servlet-name>404</servlet-name>
-    <url-pattern>/404</url-pattern>
+        <servlet-name>404</servlet-name>
+        <url-pattern>/404</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -200,7 +215,7 @@
         <servlet-name>401</servlet-name>
         <url-pattern>/401</url-pattern>
     </servlet-mapping>
-<!-- /servlet errori-->
+    <!-- /servlet errori-->
 
     <servlet>
         <servlet-name>invioRichiesta</servlet-name>
@@ -212,7 +227,6 @@
         <url-pattern>/InvioRichiesta</url-pattern>
 
     </servlet-mapping>
-
 
 
     <servlet>
@@ -293,7 +307,7 @@
         <url-pattern>/Createtirocinio</url-pattern>
 
     </servlet-mapping>
-<!--servelt account admin-->
+    <!--servelt account admin-->
     <servlet>
         <servlet-name>admin</servlet-name>
         <servlet-class>controller.adm.Admin.AccountAdminController</servlet-class>
@@ -376,14 +390,9 @@
     </servlet-mapping>
 
 
-
     <!-- end servelt account admin-->
 
-    <!-- Init Servlet -->
-    <welcome-file-list>
-        <welcome-file>/home</welcome-file>
-    </welcome-file-list>
-    <!-- Fine Init Servlet -->
+
 
 
     <servlet>
