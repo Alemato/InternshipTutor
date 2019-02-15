@@ -29,6 +29,7 @@ public class ImpostazioniAzienda extends baseController {
     protected void caricaDatiAzineda(Azienda azienda, User user){
         datamodel.put("email", user.getEmail());
         datamodel.put("descrizione", azienda.getDescrizione());
+        System.out.println(azienda.getDescrizione());
         datamodel.put("link", azienda.getLink());
     }
 
