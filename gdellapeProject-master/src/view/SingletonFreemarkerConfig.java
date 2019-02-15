@@ -25,8 +25,10 @@ public enum SingletonFreemarkerConfig {
             //impostiamo l'encoding di default per l'input e l'output
             //set the default input and outpout encoding
             if (context.getInitParameter("view.encoding") != null) {
-                cfg.setOutputEncoding(context.getInitParameter("view.encoding"));
-                cfg.setDefaultEncoding(context.getInitParameter("view.encoding"));
+//                cfg.setOutputEncoding(context.getInitParameter("view.encoding"));
+//                cfg.setDefaultEncoding(context.getInitParameter("view.encoding"));
+                cfg.setOutputEncoding("UTF-8");
+                cfg.setDefaultEncoding("UTF-8");
             }
 
             //impostiamo la directory (relativa al contesto) da cui caricare i templates
