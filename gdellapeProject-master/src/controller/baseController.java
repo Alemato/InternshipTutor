@@ -23,6 +23,7 @@ public class baseController extends HttpServlet {
     }
 
     protected void init(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+        request.setCharacterEncoding("UTF-8");
         this.header(request,response);
 
     }
