@@ -23,10 +23,11 @@ public class TemplateController {
      * @param response risposta servlet
      * @param servlet_context contesto della servlet
      */
-    public static void process(String templateName, Map data, HttpServletResponse response, ServletContext servlet_context) {
+    public static void process(String templateName, Map data, HttpServletResponse response, ServletContext servlet_context ) {
 
         //setto il tipo del contenuto di ritorno
         response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         //ottengo oggetto cfg dal singleton
         Configuration cfg = SingletonFreemarkerConfig.INSTANCE.getCfg(servlet_context);
