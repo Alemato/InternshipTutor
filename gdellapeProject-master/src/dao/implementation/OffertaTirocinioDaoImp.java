@@ -83,7 +83,9 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
                 oftr.setTutoreUniversitario(resultSet.getInt("TutoreUniversitario"));
                 oftr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
 
-            }
+            }else{
+            throw new DaoException("Query con risultato vuoto");
+        }
             return oftr;
 
 

@@ -74,7 +74,9 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
                 tr.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
                 tr.setTirocinante(resultSet.getInt("Tirocinante"));
                 tr.setTutoreUniveritario(resultSet.getInt("TutoreUniversitario"));
-            }
+            }else{
+            throw new DaoException("Query con risultato vuoto");
+        }
             return tr;
 
         }catch (SQLException e){

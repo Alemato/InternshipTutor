@@ -198,6 +198,8 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                 azienda.setAttivo(resultSet.getBoolean("Attivo"));
                 azienda.setForoControversia(resultSet.getString("ForoControversia"));
 
+            }else{
+                throw new DaoException("Query con risultato vuoto");
             }
             return azienda;
 
@@ -331,7 +333,9 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                 azienda.setCreateDate(resultSet.getTimestamp("CreateDate"));
                 azienda.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
 
-            }
+            }else{
+            throw new DaoException("Query con risultato vuoto");
+        }
             return azienda;
         } catch (SQLException e) {
             throw new DaoException("Errore query azienda", e);
@@ -366,7 +370,9 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                 azienda.setUser(resultSet.getInt("User"));
                 azienda.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
 
-            }
+            }else{
+            throw new DaoException("Query con risultato vuoto");
+        }
             return azienda;
         } catch (SQLException e) {
             throw new DaoException("Errore query azienda", e);

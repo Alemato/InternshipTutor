@@ -66,7 +66,9 @@ public class UserDaoImp extends DaoDataMySQLImpl {
                 user.setToken(resultSet.getString("Token"));
                 user.setCreateDate(resultSet.getTimestamp("CreateDate"));
                 user.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
-            }
+            }else{
+            throw new DaoException("Query con risultato vuoto");
+        }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("Errore esecuzione query", e);
@@ -88,7 +90,9 @@ public class UserDaoImp extends DaoDataMySQLImpl {
                 user.setPassword(resultSet.getString("Password"));
                 user.setTipologiaAccount(resultSet.getInt("TipologiaAccount"));
 
-            }
+            }else{
+            throw new DaoException("Query con risultato vuoto");
+        }
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new DaoException("Errore esecuzione query", ex);
@@ -139,7 +143,9 @@ public class UserDaoImp extends DaoDataMySQLImpl {
                 user.setPassword(resultSet.getString("Password"));
                 user.setTipologiaAccount(resultSet.getInt("TipologiaAccount"));
 
-            }else {return null;}
+            }else{
+            throw new DaoException("Query con risultato vuoto");
+        }
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new DaoException("Errore esecuzione query", ex);

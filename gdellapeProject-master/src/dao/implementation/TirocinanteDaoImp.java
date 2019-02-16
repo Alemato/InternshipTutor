@@ -164,7 +164,9 @@ public Tirocinante getTirocianteByID(int id) throws DaoException{
             tirocinante.setHandicap(resultSet.getBoolean("Handicap"));
             tirocinante.setUser(resultSet.getInt("User"));
 
-        }
+        }else{
+        throw new DaoException("Query con risultato vuoto");
+    }
         return tirocinante;
 
 
@@ -199,6 +201,8 @@ public Tirocinante getTirocianteByID(int id) throws DaoException{
                 tirocinante.setUser(resultSet.getInt("User"));
 
 
+            }else{
+                throw new DaoException("Query con risultato vuoto");
             }
             return tirocinante;
 
