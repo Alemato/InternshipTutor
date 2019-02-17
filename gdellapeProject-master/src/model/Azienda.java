@@ -218,4 +218,30 @@ public class Azienda {
     public void setUser(Integer user) {
         User = user;
     }
+
+    @Override
+    public String toString() {
+        return "Azienda{" +
+                "IDAzienda=" + IDAzienda +
+                ", RagioneSociale='" + RagioneSociale + '\'' +
+                ", IndirizzoSedeLegale='" + IndirizzoSedeLegale + '\'' +
+                ", CFiscalePIva='" + CFiscalePIva + '\'' +
+                ", NomeLegaleRappresentante='" + NomeLegaleRappresentante + '\'' +
+                ", CognomeLegaleRappresentante='" + CognomeLegaleRappresentante + '\'' +
+                ", NomeResponsabileConvenzione='" + NomeResponsabileConvenzione + '\'' +
+                ", CognomeResponsabileConvenzione='" + CognomeResponsabileConvenzione + '\'' +
+                ", TelefonoResponsabileConvenzione='" + TelefonoResponsabileConvenzione + '\'' +
+                ", EmailResponsabileConvenzione='" + EmailResponsabileConvenzione + '\'' +
+                ", PathPDFConvenzione='" + PathPDFConvenzione + '\'' +
+                ", DurataConvenzione=" + DurataConvenzione +
+                ", ForoControversia='" + ForoControversia + '\'' +
+                ", DataConvenzione=" + DataConvenzione +
+                ", Attivo=" + Attivo +
+                ", Descrizione='" + Descrizione + '\'' +
+                ", Link='" + Link + '\'' +
+                ", User=" + User +
+                ", CreateDate=" + CreateDate +
+                ", UpdateDate=" + UpdateDate +
+                '}';
+    }
 }
