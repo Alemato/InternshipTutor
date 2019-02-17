@@ -178,13 +178,12 @@
 
     </servlet-mapping>
     <servlet>
-        <servlet-name>ImpostazioniAzienda</servlet-name>
-        <servlet-class>controller.adm.ImpostazioniAzienda</servlet-class>
+        <servlet-name>ImpostazioniAccount</servlet-name>
+        <servlet-class>controller.adm.BackEndImpostazioniAccountController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ImpostazioniAzienda</servlet-name>
+        <servlet-name>ImpostazioniAccount</servlet-name>
         <url-pattern>/account/impostazioni</url-pattern>
-
     </servlet-mapping>
 
     <!-- servlet errori-->
