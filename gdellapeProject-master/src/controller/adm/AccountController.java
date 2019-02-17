@@ -18,6 +18,7 @@ public class AccountController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("sto su AccountController");
         TemplateController.process("il-mio-account-tirocinante.ftl", datamodel, response, getServletContext());
     }
 }
