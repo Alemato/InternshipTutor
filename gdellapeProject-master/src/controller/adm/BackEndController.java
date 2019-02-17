@@ -1,27 +1,19 @@
 package controller.adm;
 
 import controller.baseController;
-import controller.sessionController.SingSessionContoller;
-import dao.exception.DaoException;
-import model.Admin;
-import model.Azienda;
-import model.Tirocinante;
-import org.apache.catalina.Session;
 import view.TemplateController;
 
-import javax.print.attribute.standard.RequestingUserName;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.sql.rowset.serial.SerialException;
+
 
 import java.io.IOException;
 
 public class BackEndController extends baseController {
 
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        System.out.println("sto su BackEndController");
         try{  super.init(request,response);
 
             switch ((int)request.getAttribute("tipo")) {
@@ -43,10 +35,5 @@ public class BackEndController extends baseController {
 
 
     }
-
-
-
-
-
 
 }
