@@ -28,5 +28,18 @@ public class BackEndImpostazioniAccountController extends baseController {
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
+        int tipo= (int)request.getAttribute("tipo");
+        if (tipo == 3){
+            ImpostazioniAccountAzienda az = new ImpostazioniAccountAzienda(request, response, getServletContext(), datamodel);
+            try {
+                az.post();
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
+        }else if (tipo == 2){
+            System.out.println("altro");
+        }else{
+            response.sendRedirect("/500");
+        }
     }
 }
