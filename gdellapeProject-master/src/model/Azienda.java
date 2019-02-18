@@ -5,6 +5,7 @@ import dao.exception.DaoException;
 
 import java.sql.Timestamp;
 import java.sql.Date;
+import java.util.Objects;
 
 
 public class Azienda {
@@ -243,5 +244,37 @@ public class Azienda {
                 ", CreateDate=" + CreateDate +
                 ", UpdateDate=" + UpdateDate +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Azienda azienda = (Azienda) o;
+        return IDAzienda.equals(azienda.IDAzienda) &&
+                RagioneSociale.equals(azienda.RagioneSociale) &&
+                IndirizzoSedeLegale.equals(azienda.IndirizzoSedeLegale) &&
+                CFiscalePIva.equals(azienda.CFiscalePIva) &&
+                NomeLegaleRappresentante.equals(azienda.NomeLegaleRappresentante) &&
+                CognomeLegaleRappresentante.equals(azienda.CognomeLegaleRappresentante) &&
+                NomeResponsabileConvenzione.equals(azienda.NomeResponsabileConvenzione) &&
+                CognomeResponsabileConvenzione.equals(azienda.CognomeResponsabileConvenzione) &&
+                TelefonoResponsabileConvenzione.equals(azienda.TelefonoResponsabileConvenzione) &&
+                EmailResponsabileConvenzione.equals(azienda.EmailResponsabileConvenzione) &&
+                PathPDFConvenzione.equals(azienda.PathPDFConvenzione) &&
+                DurataConvenzione.equals(azienda.DurataConvenzione) &&
+                ForoControversia.equals(azienda.ForoControversia) &&
+                DataConvenzione.equals(azienda.DataConvenzione) &&
+                Attivo.equals(azienda.Attivo) &&
+                Descrizione.equals(azienda.Descrizione) &&
+                Link.equals(azienda.Link) &&
+                User.equals(azienda.User) &&
+                CreateDate.equals(azienda.CreateDate) &&
+                UpdateDate.equals(azienda.UpdateDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(IDAzienda, RagioneSociale, IndirizzoSedeLegale, CFiscalePIva, NomeLegaleRappresentante, CognomeLegaleRappresentante, NomeResponsabileConvenzione, CognomeResponsabileConvenzione, TelefonoResponsabileConvenzione, EmailResponsabileConvenzione, PathPDFConvenzione, DurataConvenzione, ForoControversia, DataConvenzione, Attivo, Descrizione, Link, User, CreateDate, UpdateDate);
     }
 }

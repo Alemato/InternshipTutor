@@ -3,6 +3,7 @@ package model;
 import dao.data.DaoData;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 public class User {
 
@@ -90,7 +91,23 @@ public class User {
                 ", TipologiaAccount='" + TipologiaAccount + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return IDUser.equals(user.IDUser) &&
+                Email.equals(user.Email) &&
+                Password.equals(user.Password) &&
+                TipologiaAccount.equals(user.TipologiaAccount) &&
+                Token.equals(user.Token) &&
+                CreateDate.equals(user.CreateDate) &&
+                UpdateDate.equals(user.UpdateDate);
+    }
+
 }
+
 
 
 
