@@ -32,7 +32,6 @@ public class baseController extends HttpServlet {
         boolean logger = session.isValidSession(request);
         datamodel.put("logged",logger);
         if(logger){
-
                String Nome =(String)request.getSession().getAttribute("Nome");
                datamodel.put("Nome",Nome);
 
