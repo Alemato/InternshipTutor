@@ -48,33 +48,47 @@
 
                 <div class="header-form"><i class="fa fa-lock"></i> INFORMAZIONI ACCESSO</div>
                 <fieldset name="Accesso">
+                    <p><em>*</em> Campi necessari per effettuare le modifice</p>
                     <label class="input">
-                        <p> Indirizzo Email</p>
+                        <p><em>*</em>Indirizzo Email Attuale</p>
                         <i class="ico-append giu fa fa-envelope"></i>
-                        <input type="text" placeholder="Indirizzo Email" name="Email" value="${email}" required>
-                        <b class="tooltip tooltip-bottom-right">Necessario per verificare il tuo account</b>
+                        <input type="text" placeholder="Indirizzo Email" name="EmailAttuale" required>
+                        <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
                     </label>
 
                     <label class="input">
-                        <p>Per modificare la tua password inserisci la precendente ed quella nuova nei due campi
-                            successivi </p>
+                        <p><em>*</em>Password Attuale</p>
                         <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password Attuale" name="Password">
-                        <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
-                            al tuo account</b>
+                        <input type="password" placeholder="Password Attuale" name="PasswordAttuale" required>
+                        <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
                     </label>
+
+                    <label class="input">
+                        <p> Nuovo Indirizzo Email</p>
+                        <i class="ico-append giu fa fa-envelope"></i>
+                        <input type="text" placeholder="Indirizzo Email" name="Email">
+                        <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                    </label>
+
+                    <label class="input">
+                        <p> Ripeti il nuovo Indirizzo Email</p>
+                        <i class="ico-append giu fa fa-envelope"></i>
+                        <input type="text" placeholder="Indirizzo Email" name="EmailRipetuta">
+                        <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                    </label>
+
                     <label class="input">
                         <p>Nuova Password</p>
                         <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password Nuova" name="PasswordNuova">
-                        <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
+                        <input type="password" placeholder="Password Nuova" name="Password">
+                        <b class="tooltip tooltip-bottom-right">Necessario per il login, Solo caratteri e numeri latini, necessario per l&apos;accesso
                             al tuo account</b>
                     </label>
                     <label class="input">
-                        <p>Ripeti Nuova Password</p>
+                        <p>Ripeti la nuova Password</p>
                         <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password Nuova" name="PasswordNuova1">
-                        <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
+                        <input type="password" placeholder="Password Nuova" name="PasswordRipetuta">
+                        <b class="tooltip tooltip-bottom-right">Necessario per il login, Solo caratteri e numeri latini, necessario per l&apos;accesso
                             al tuo account</b>
                     </label>
                 </fieldset>
