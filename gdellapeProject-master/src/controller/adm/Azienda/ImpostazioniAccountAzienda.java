@@ -7,9 +7,10 @@ import dao.implementation.UserDaoImp;
 import model.Azienda;
 import model.User;
 import org.unbescape.html.HtmlEscape;
-import org.unbescape.javascript.JavaScriptEscape;
 import view.TemplateController;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -81,11 +82,22 @@ public class ImpostazioniAccountAzienda {
         return email.equals(user.getEmail());
     }
 
-    private void changeEmail(String emailAttuale, String email, String emailRipetuta){
+    private static boolean isValidEmailAddress(String email) {
+        boolean result = true;
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            result = false;
+        }
+        return result;
+    }
+
+    private void changeEmail(String email, String emailRipetuta){
         System.out.println("le email inserite sono " + email + " " + emailRipetuta);
         String emailAttuleDB = user.getEmail();
-        if (emailAttuleDB.equals(emailAttuale)){
-            if(email.equals(emailRipetuta)) {
+        if (email.equals(emailRipetuta)){
+            if(isValidEmailAddress(email)) {
                 if(!emailAttuleDB.equals(email)) {
                     System.out.println("Modifico l' email ");
                     user.setEmail(email); // setto la nuova email
@@ -94,10 +106,10 @@ public class ImpostazioniAccountAzienda {
                     System.out.println("l'email attuale coincide con quella del DB");
                 }
             } else{
-                System.out.println("l'email nuova non coincide con l'altra");
+                System.out.println("l'email non è valida");
             }
         } else{
-            System.out.println("l'email attuale non coincide con quella del DB");
+            System.out.println("l'email nuova non coincide con l'altra");
         }
     }
 
@@ -125,11 +137,10 @@ public class ImpostazioniAccountAzienda {
     private void changeDescizione(String email, String password, String
                                   newDescrizione){
         System.out.println("la descrizione inserita è: " + newDescrizione);
+        newDescrizione = HtmlEscape.escapeHtml5(newDescrizione); // Html Esceping
         if (checkEmail(email) && checkPassword(password)){
             if(!newDescrizione.equals(azienda.getDescrizione())){
                 System.out.println("Modifico Descrizione ");
-                newDescrizione = HtmlEscape.escapeHtml5(newDescrizione);
-                System.out.println(newDescrizione);
                 azienda.setDescrizione(newDescrizione);
                 checkModifica();
             } else {
@@ -167,7 +178,7 @@ public class ImpostazioniAccountAzienda {
 
                 // Modifico l'email primaria a cui segue l'INVALIDAZIONE DELLA SESSIONE
                 if(!request.getParameter("Email").isEmpty() && !request.getParameter("EmailRipetuta").isEmpty()) {
-                    changeEmail(emailAttuale, request.getParameter("Email"), request.getParameter("EmailRipetuta"));
+                    changeEmail(request.getParameter("Email"), request.getParameter("EmailRipetuta"));
                 }
                 else if (request.getParameter("Email").isEmpty()){
                     System.out.println("email nuova vuota");
