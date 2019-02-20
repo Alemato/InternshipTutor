@@ -13,7 +13,7 @@ import java.util.Map;
 
 
 public class baseController extends HttpServlet {
-    protected Map<String, Object> datamodel = new HashMap<>();
+    protected Map<String, Object> datamodel;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -24,6 +24,7 @@ public class baseController extends HttpServlet {
 
     protected void init(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
         request.setCharacterEncoding("UTF-8");
+        this.datamodel= new HashMap<>();
         this.header(request,response);
 
     }

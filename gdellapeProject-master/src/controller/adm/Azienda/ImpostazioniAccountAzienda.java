@@ -26,6 +26,8 @@ public class ImpostazioniAccountAzienda {
     private Boolean modificato;
     private Boolean sessionescaduta;
 
+    public void finalize(){System.out.println("object is garbage collected");}
+
     public ImpostazioniAccountAzienda(HttpServletRequest request, HttpServletResponse response, ServletContext context, Map<String, Object> datamodel){
         this.datamodel = datamodel;
         this.request = request;
@@ -275,7 +277,6 @@ public class ImpostazioniAccountAzienda {
         creaOggetti();
         scaricaDatiAzinedaDB(azienda,user);
         TemplateController.process("impostazione-account-aziendale.ftl", datamodel, response, context);
-        System.out.println(datamodel.toString());
     }
 
     public void post() throws IOException, DaoException {
@@ -283,8 +284,8 @@ public class ImpostazioniAccountAzienda {
         creaOggetti();
         updateAzienda();
         if(!sessionescaduta){
+            scaricaDatiAzinedaDB(azienda,user);
             TemplateController.process("impostazione-account-aziendale.ftl", datamodel, response, context);
-            System.out.println(datamodel.toString());
         }
     }
 }
