@@ -2,20 +2,19 @@ package controller.adm.Azienda;
 
 import controller.sessionController.SingSessionContoller;
 import dao.exception.DaoException;
-import dao.implementation.AziendaDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Azienda;
 import model.User;
 import org.unbescape.html.HtmlEscape;
 import view.TemplateController;
 
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
+
+import static controller.utility.Validation.isValidEmailAddress;
 
 public class ImpostazioniAccountAzienda {
     protected Map<String, Object> datamodel;
@@ -82,16 +81,6 @@ public class ImpostazioniAccountAzienda {
         return email.equals(user.getEmail());
     }
 
-    private static boolean isValidEmailAddress(String email) {
-        boolean result = true;
-        try {
-            InternetAddress emailAddr = new InternetAddress(email);
-            emailAddr.validate();
-        } catch (AddressException ex) {
-            result = false;
-        }
-        return result;
-    }
 
     private void changeEmail(String email, String emailRipetuta){
         System.out.println("le email inserite sono " + email + " " + emailRipetuta);
@@ -104,12 +93,18 @@ public class ImpostazioniAccountAzienda {
                     checkSessioneAndModifica(); // cambio le flag
                 } else{
                     System.out.println("l'email attuale coincide con quella del DB");
+                    String messaggio = HtmlEscape.escapeHtml5("l'email inserita coincide con quella del DB");
+                    datamodel.put("MesWarningEmail", messaggio);
                 }
             } else{
                 System.out.println("l'email non è valida");
+                String messaggio = HtmlEscape.escapeHtml5("l'email non è valida");
+                datamodel.put("MesErrorEmailValidation", messaggio);
             }
         } else{
             System.out.println("l'email nuova non coincide con l'altra");
+            String messaggio = HtmlEscape.escapeHtml5("l'email nuova non coincide con l'altra");
+            datamodel.put("MesErrorEmail", messaggio);
         }
     }
 
@@ -124,13 +119,19 @@ public class ImpostazioniAccountAzienda {
                     checkSessioneAndModifica(); // cambio le flag
                 }else {
                     System.out.println("la password nuova è identica alla Attuale");
+                    String messaggio = HtmlEscape.escapeHtml5("la password nuova è identica alla Attuale");
+                    datamodel.put("MesWarningPWD", messaggio);
                 }
 
             } else {
                 System.out.println("la password nuova non coincide con l'altra");
+                String messaggio = HtmlEscape.escapeHtml5("la password nuova non coincide con l'altra");
+                datamodel.put("MesErrorValidationPWD", messaggio);
             }
         }else {
             System.out.println("la password attuale non coincide con quella del DB");
+            String messaggio = HtmlEscape.escapeHtml5("la password attuale non coincide con quella del DB");
+            datamodel.put("MesErrorValidationPWD", messaggio);
         }
     }
 
@@ -145,8 +146,15 @@ public class ImpostazioniAccountAzienda {
                 checkModifica();
             } else {
                 System.out.println("la descrizione è uguale a prima");
+                String messaggio = HtmlEscape.escapeHtml5("la descrizione è uguale a prima");
+                datamodel.put("MesWarningDEC", messaggio);
             }
-        } else System.out.println("errore descrizione");
+        } else {
+            System.out.println("errore descrizione");
+            String messaggio = HtmlEscape.escapeHtml5("errore descrizione");
+            datamodel.put("MesErrorDEC", messaggio);
+        }
+
     }
 
     private void changeLink(String email, String password, String
@@ -159,8 +167,14 @@ public class ImpostazioniAccountAzienda {
                 checkModifica();
             }else {
                 System.out.println("il link è uguale a prima");
+                String messaggio = HtmlEscape.escapeHtml5("il link è uguale a prima");
+                datamodel.put("MesWarningLink", messaggio);
             }
-        }else System.out.println("errore linck");
+        }else {
+            System.out.println("errore linck");
+            String messaggio = HtmlEscape.escapeHtml5("errore linck");
+            datamodel.put("MesErrorLink", messaggio);
+        }
     }
 
     private void updateAzienda(){
@@ -169,8 +183,10 @@ public class ImpostazioniAccountAzienda {
         String passwordAttuale;
         String emailAttuale;
         // Verifico la presenza dell'email e della password Attuale che mi serve per sicurezza
-        if (request.getParameter("EmailAttuale").isEmpty() && request.getParameter("PasswordAttuale").isEmpty()){
+        if (request.getParameter("EmailAttuale").isEmpty() || request.getParameter("PasswordAttuale").isEmpty()){
             System.out.println("Modifiche non consentite manchano l'email o la password");
+            String messaggio = HtmlEscape.escapeHtml5("Modifiche non consentite manchano l'email o la password");
+            datamodel.put("MesError", messaggio);
         }else {
             emailAttuale = request.getParameter("EmailAttuale");
             passwordAttuale = request.getParameter("PasswordAttuale");
@@ -247,6 +263,8 @@ public class ImpostazioniAccountAzienda {
 
             } else {
                 System.out.println("Modifiche non consentite non conincidono l'email o la password email: " + emailAttuale + "  " + user.getEmail()  + "  password: "+ passwordAttuale + "  " + user.getPassword() );
+                String messaggio = HtmlEscape.escapeHtml5("Modifiche non consentite non conincidono l'email o la password email");
+                datamodel.put("MesError", messaggio);
             }
         }
 
@@ -257,11 +275,16 @@ public class ImpostazioniAccountAzienda {
         creaOggetti();
         scaricaDatiAzinedaDB(azienda,user);
         TemplateController.process("impostazione-account-aziendale.ftl", datamodel, response, context);
+        System.out.println(datamodel.toString());
     }
 
     public void post() throws IOException, DaoException {
         System.out.println(request.getMethod() + ' ' + request.getRequestURI()+" sto in ImpostazioniAccountAzienda");
         creaOggetti();
         updateAzienda();
+        if(!sessionescaduta){
+            TemplateController.process("impostazione-account-aziendale.ftl", datamodel, response, context);
+            System.out.println(datamodel.toString());
+        }
     }
 }

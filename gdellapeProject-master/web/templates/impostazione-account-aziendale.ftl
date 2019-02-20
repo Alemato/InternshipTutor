@@ -36,45 +36,104 @@
 
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
-            <#if Message??>
-                <#include "messaggio-errore.ftl">
-            </#if>
-
             <form id="form_modifica" action="/account/impostazioni" method="post" class="sky-form  boxed"
                   novalidate="novalidate">
-
                 <header class="mb-50 fs-50 fw-100 text-center">Aggiorna i tuoi dati</header>
-
-
                 <div class="header-form"><i class="fa fa-lock"></i> INFORMAZIONI ACCESSO</div>
                 <fieldset name="Accesso">
+                    <#if MesError??>
+                        <div class="alert alert-danger mb-30">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">×</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>ERRORE!</strong> ${MesError}
+                        </div>
+                    </#if>
+                    <label class="input">
+                        <#if MesError??>
+                            <p><em>*</em>&nbsp;Indirizzo Email Attuale</p>
+                            <i class="ico-append giu fa fa-envelope"></i>
+                            <input type="text" class="error" placeholder="Indirizzo Email" name="EmailAttuale" required>
+                            <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
+                            <#else>
+                                <p><em>*</em>&nbsp;Indirizzo Email Attuale</p>
+                                <i class="ico-append giu fa fa-envelope"></i>
+                                <input type="text" placeholder="Indirizzo Email" name="EmailAttuale" required>
+                                <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
+                        </#if>
+                    </label>
+
+                    <label class="input">
+                        <#if MesError??>
+                            <p><em>*</em>&nbsp;Password Attuale</p>
+                            <i class="ico-append giu fa fa-lock"></i>
+                            <input type="password" class="error" placeholder="Password Attuale" name="PasswordAttuale" required>
+                            <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
+                            <#else>
+                                <p><em>*</em>&nbsp;Password Attuale</p>
+                                <i class="ico-append giu fa fa-lock"></i>
+                                <input type="password" placeholder="Password Attuale" name="PasswordAttuale" required>
+                                <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
+                        </#if>
+                    </label>
+
                     <p><em>*</em> Campi necessari per effettuare le modifice</p>
-                    <label class="input">
-                        <p><em>*</em>Indirizzo Email Attuale</p>
-                        <i class="ico-append giu fa fa-envelope"></i>
-                        <input type="text" placeholder="Indirizzo Email" name="EmailAttuale" required>
-                        <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
-                    </label>
+
+                    <#if MesErrorEmail??>
+                        <div class="alert alert-danger mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">×</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>ERRORE!</strong> ${MesErrorEmail}
+                        </div>
+                    </#if>
+                    <#if MesErrorEmailValidation??>
+                        <div class="alert alert-danger mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">×</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>ERRORE!</strong> ${MesErrorEmailValidation}
+                        </div>
+                    </#if>
+                    <#if MesWarningEmail??>
+                        <div class="alert alert-warning mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">×</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>ERRORE!</strong> ${MesWarningEmail}
+                        </div>
+                    </#if>
 
                     <label class="input">
-                        <p><em>*</em>Password Attuale</p>
-                        <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password Attuale" name="PasswordAttuale" required>
-                        <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
+                        <#if MesErrorEmail??  || MesErrorEmailValidation?? || MesWarningEmail??>
+                            <p> Nuovo Indirizzo Email</p>
+                            <i class="ico-append giu fa fa-envelope"></i>
+                            <input type="text" class="error" placeholder="Indirizzo Email" name="Email">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                            <#else>
+                                <p> Nuovo Indirizzo Email</p>
+                                <i class="ico-append giu fa fa-envelope"></i>
+                                <input type="text" placeholder="Indirizzo Email" name="Email">
+                                <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                        </#if>
                     </label>
 
-                    <label class="input">
-                        <p> Nuovo Indirizzo Email</p>
-                        <i class="ico-append giu fa fa-envelope"></i>
-                        <input type="text" placeholder="Indirizzo Email" name="Email">
-                        <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
-                    </label>
-
-                    <label class="input">
-                        <p> Ripeti il nuovo Indirizzo Email</p>
-                        <i class="ico-append giu fa fa-envelope"></i>
-                        <input type="text" placeholder="Indirizzo Email" name="EmailRipetuta">
-                        <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                    <label class="input mb-30">
+                        <#if MesErrorEmail??  || MesErrorEmailValidation?? || MesWarningEmail??>
+                            <p> Ripeti il nuovo Indirizzo Email</p>
+                            <i class="ico-append giu fa fa-envelope"></i>
+                            <input type="text" class="error" placeholder="Indirizzo Email" name="EmailRipetuta">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                            <#else>
+                                <p> Ripeti il nuovo Indirizzo Email</p>
+                                <i class="ico-append giu fa fa-envelope"></i>
+                                <input type="text" placeholder="Indirizzo Email" name="EmailRipetuta">
+                                <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                        </#if>
                     </label>
 
                     <label class="input">
