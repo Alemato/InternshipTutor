@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import static java.lang.Character.*;
 
 public class Validation {
-    private Integer numChar(String s){
+    private static Integer numChar(String s){
         int charCount = 0;
         char temp;
         for( int i = 0; i < s.length( ); i++ )
@@ -20,7 +20,7 @@ public class Validation {
         return charCount;
     }
 
-    private Integer numDigit(String s){
+    private static Integer numDigit(String s){
         int charCount = 0;
         char temp;
         for( int i = 0; i < s.length( ); i++ )
@@ -33,7 +33,7 @@ public class Validation {
     }
 
 
-    private Integer numSpecialChar(String s){
+    private static Integer numSpecialChar(String s){
         int charCount = 0;
         char temp;
         for( int i = 0; i < s.length( ); i++ )
@@ -45,7 +45,7 @@ public class Validation {
         return charCount;
     }
 
-    private boolean EmailTrust(String email) {
+    private static boolean EmailTrust(String email) {
         boolean result = true;
         try {
             InternetAddress emailAddr = new InternetAddress(email);
@@ -56,7 +56,7 @@ public class Validation {
         return result;
     }
 
-    public boolean isValidEmailAddress (String email) {
+    public static boolean isValidEmailAddress(String email) {
         Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
         Matcher mat = pattern.matcher(email);
         if (EmailTrust(email)) {
