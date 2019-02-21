@@ -365,8 +365,18 @@
         <servlet-name>gestione-account-admin</servlet-name>
         <url-pattern>/gestione-account</url-pattern>
         <url-pattern>/Gestione-account</url-pattern>
-
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BackEndModuliController</servlet-name>
+        <servlet-class>controller.adm.BackEndModuliController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BackEndModuliController</servlet-name>
+        <url-pattern>/account/moduli</url-pattern>
+        <url-pattern>/Account/Moduli</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>accettaconv</servlet-name>
         <servlet-class>controller.adm.Admin.AdminAccettaConvenzione</servlet-class>
