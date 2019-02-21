@@ -17,7 +17,6 @@ public class BackEndImpostazioniAccountController extends baseController {
             ImpostazioniAccountAzienda az = new ImpostazioniAccountAzienda(request, response, getServletContext(), datamodel);
             try {
                 az.get();
-                datamodel=null;
             } catch (DaoException e) {
                 e.printStackTrace();
             }
@@ -34,7 +33,6 @@ public class BackEndImpostazioniAccountController extends baseController {
             ImpostazioniAccountAzienda az = new ImpostazioniAccountAzienda(request, response, getServletContext(), datamodel);
             try {
                 az.post();
-                datamodel=null;
             } catch (DaoException e) {
                 e.printStackTrace();
             }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Impostazioni account</title>
 
-  <#include "importCss.ftl">
+    <#include "importCss.ftl">
     <!-- PAGE LEVEL SCRIPTS -->
     <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
     <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
@@ -36,6 +36,15 @@
 
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
+            <#if ModApp??>
+                <div class="alert alert-success mb-30 fs-20">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Congratulazioni! </strong> ${ModApp}
+                </div>
+            </#if>
             <form id="form_modifica" action="/account/impostazioni" method="post" class="sky-form  boxed"
                   novalidate="novalidate">
                 <header class="mb-50 fs-50 fw-100 text-center">Aggiorna i tuoi dati</header>
@@ -56,11 +65,11 @@
                             <i class="ico-append giu fa fa-envelope"></i>
                             <input type="text" class="error" placeholder="Indirizzo Email" name="EmailAttuale" required>
                             <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
-                            <#else>
-                                <p><em>*</em>&nbsp;Indirizzo Email Attuale</p>
-                                <i class="ico-append giu fa fa-envelope"></i>
-                                <input type="text" placeholder="Indirizzo Email" name="EmailAttuale" required>
-                                <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
+                        <#else>
+                            <p><em>*</em>&nbsp;Indirizzo Email Attuale</p>
+                            <i class="ico-append giu fa fa-envelope"></i>
+                            <input type="text" placeholder="Indirizzo Email" name="EmailAttuale" required>
+                            <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
                         </#if>
                     </label>
 
@@ -68,13 +77,14 @@
                         <#if MesError??>
                             <p><em>*</em>&nbsp;Password Attuale</p>
                             <i class="ico-append giu fa fa-lock"></i>
-                            <input type="password" class="error" placeholder="Password Attuale" name="PasswordAttuale" required>
+                            <input type="password" class="error" placeholder="Password Attuale" name="PasswordAttuale"
+                                   required>
                             <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
-                            <#else>
-                                <p><em>*</em>&nbsp;Password Attuale</p>
-                                <i class="ico-append giu fa fa-lock"></i>
-                                <input type="password" placeholder="Password Attuale" name="PasswordAttuale" required>
-                                <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
+                        <#else>
+                            <p><em>*</em>&nbsp;Password Attuale</p>
+                            <i class="ico-append giu fa fa-lock"></i>
+                            <input type="password" placeholder="Password Attuale" name="PasswordAttuale" required>
+                            <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
                         </#if>
                     </label>
 
@@ -104,7 +114,7 @@
                                 <span aria-hidden="true">&times;</span>
                                 <span class="sr-only">Chiudi</span>
                             </button>
-                            <strong>ERRORE!</strong> ${MesWarningEmail}
+                            <strong>Attenzione!</strong> ${MesWarningEmail}
                         </div>
                     </#if>
 
@@ -114,11 +124,11 @@
                             <i class="ico-append giu fa fa-envelope"></i>
                             <input type="text" class="error" placeholder="Indirizzo Email" name="Email">
                             <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
-                            <#else>
-                                <p> Nuovo Indirizzo Email</p>
-                                <i class="ico-append giu fa fa-envelope"></i>
-                                <input type="text" placeholder="Indirizzo Email" name="Email">
-                                <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                        <#else>
+                            <p> Nuovo Indirizzo Email</p>
+                            <i class="ico-append giu fa fa-envelope"></i>
+                            <input type="text" placeholder="Indirizzo Email" name="Email">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
                         </#if>
                     </label>
 
@@ -128,27 +138,75 @@
                             <i class="ico-append giu fa fa-envelope"></i>
                             <input type="text" class="error" placeholder="Indirizzo Email" name="EmailRipetuta">
                             <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
-                            <#else>
-                                <p> Ripeti il nuovo Indirizzo Email</p>
-                                <i class="ico-append giu fa fa-envelope"></i>
-                                <input type="text" placeholder="Indirizzo Email" name="EmailRipetuta">
-                                <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                        <#else>
+                            <p> Ripeti il nuovo Indirizzo Email</p>
+                            <i class="ico-append giu fa fa-envelope"></i>
+                            <input type="text" placeholder="Indirizzo Email" name="EmailRipetuta">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
                         </#if>
                     </label>
 
+                    <#if MesErrorPWD??>
+                        <div class="alert alert-danger mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>ERRORE!</strong> ${MesErrorPWD}
+                        </div>
+                    </#if>
+                    <#if MesErrorValidationPWD??>
+                        <div class="alert alert-danger mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>ERRORE!</strong> ${MesErrorValidationPWD}
+                        </div>
+                    </#if>
+                    <#if MesWarningPWD??>
+                        <div class="alert alert-warning mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>Attenzione!</strong> ${MesWarningPWD}
+                        </div>
+                    </#if>
+
                     <label class="input">
-                        <p>Nuova Password</p>
-                        <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password Nuova" name="Password">
-                        <b class="tooltip tooltip-bottom-right">Necessario per il login, Solo caratteri e numeri latini, necessario per l&apos;accesso
-                            al tuo account</b>
+                        <#if MesErrorPWD??  || MesErrorValidationPWD?? || MesWarningPWD??>
+                            <p>Nuova Password</p>
+                            <i class="ico-append giu fa fa-lock"></i>
+                            <input type="password" class="error" placeholder="Password Nuova" name="Password">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login, Solo caratteri e numeri
+                                latini, necessario per l&apos;accesso
+                                al tuo account</b>
+                            <#else>
+                                <p>Nuova Password</p>
+                                <i class="ico-append giu fa fa-lock"></i>
+                                <input type="password" placeholder="Password Nuova" name="Password">
+                                <b class="tooltip tooltip-bottom-right">Necessario per il login, Solo caratteri e numeri
+                                    latini, necessario per l&apos;accesso
+                                    al tuo account</b>
+                        </#if>
                     </label>
                     <label class="input">
-                        <p>Ripeti la nuova Password</p>
-                        <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password Nuova" name="PasswordRipetuta">
-                        <b class="tooltip tooltip-bottom-right">Necessario per il login, Solo caratteri e numeri latini, necessario per l&apos;accesso
-                            al tuo account</b>
+                        <#if MesErrorPWD??  || MesErrorValidationPWD?? || MesWarningPWD??>
+                            <p>Ripeti la nuova Password</p>
+                            <i class="ico-append giu fa fa-lock"></i>
+                            <input type="password" class="error" placeholder="Password Nuova" name="PasswordRipetuta">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login, Solo caratteri e numeri latini,
+                                necessario per l&apos;accesso
+                                al tuo account</b>
+                            <#else>
+                                <p>Ripeti la nuova Password</p>
+                                <i class="ico-append giu fa fa-lock"></i>
+                                <input type="password" placeholder="Password Nuova" name="PasswordRipetuta">
+                                <b class="tooltip tooltip-bottom-right">Necessario per il login, Solo caratteri e numeri latini,
+                                    necessario per l&apos;accesso
+                                    al tuo account</b>
+                        </#if>
                     </label>
                 </fieldset>
 
@@ -158,6 +216,15 @@
                     AZIENDA
                 </div>
                 <fieldset name="Ente-Azienda">
+                    <#if MesWarningDEC??>
+                        <div class="alert alert-warning mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>Attenzione!</strong> ${MesWarningDEC}
+                        </div>
+                    </#if>
                     <div class="row">
                         <div class="col-md-auto mt-6">
                             <h4>Descrizione Azienda: &nbsp;</h4>
@@ -167,6 +234,15 @@
                                   placeholder="Scrivi una descrizione dettagliata dell&apos;azienda">${descrizione}</textarea>
 
                     </div>
+                    <#if MesWarningLink??>
+                        <div class="alert alert-warning mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>Attenzione!</strong> ${MesWarningLink}
+                        </div>
+                    </#if>
                     <div class="row">
                         <div class="col-md-auto mt-6">
                             <h4>Link Azienda: &nbsp;</h4>
@@ -183,7 +259,7 @@
                 <footer class="text-center text-sm-right">
                     <button type="submit" form="form_modifica"
                             class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
-                            class="fa fa-check"></i> Aggiorna
+                                class="fa fa-check"></i> Aggiorna
                     </button>
                     <button type="reset" form="form_modifica" class="btn btn-red btn-lg pull-right float-sm-left mb-20">
                         <i

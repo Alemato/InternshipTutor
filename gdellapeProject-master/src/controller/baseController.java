@@ -3,7 +3,6 @@ package controller;
 import controller.sessionController.SingSessionContoller;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +23,7 @@ public class baseController extends HttpServlet {
 
     protected void init(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
         request.setCharacterEncoding("UTF-8");
-        this.datamodel= new HashMap<>();
+        this.datamodel = new HashMap<>();
         this.header(request,response);
 
     }
@@ -40,6 +39,5 @@ public class baseController extends HttpServlet {
 
     }
 
-    //ciao ciao
 
 }
