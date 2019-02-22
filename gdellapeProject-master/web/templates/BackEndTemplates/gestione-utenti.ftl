@@ -394,7 +394,7 @@
                 <label class="input">
                     <p><em>*</em> Nome</p>
                     <i class="ico-append giu fa fa-envelope"></i>
-                    <input type="text"<#if ValueofNome??>class="error"</#if> placeholder="Nome" name="Nome" <#if ValueofNome??>value="${ValueofNome}"  </#if> required>
+                    <input type="text" <#if ValueofNome??>class="error"</#if> placeholder="Nome" name="Nome" <#if ValueofNome??>value="${ValueofNome}"  </#if> required>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                         al tuo account</b>
                 </label>
