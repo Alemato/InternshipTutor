@@ -23,6 +23,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
     private  PreparedStatement updateUser;
     private PreparedStatement selectUserByToken;
     private PreparedStatement setToken;
+    private PreparedStatement existIsMail;
 
 
     @Override
@@ -44,6 +45,8 @@ public class UserDaoImp extends DaoDataMySQLImpl {
             this.selectUserByToken = connection.prepareStatement("SELECT * FROM user WHERE Token = ?");
 
             this.setToken = connection.prepareStatement("UPDATE user SET Token = ? WHERE IDuser = ?");
+
+            this.existIsMail= connection.prepareStatement("SELECT * FROM user WHERE Email=?");
 
         } catch (SQLException ex) {
          throw new DaoException("Error:PrepareStatement error", ex);
@@ -197,6 +200,19 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    public boolean existIsMail(String mail) throws DaoException
+    {
+        try {
+            this.init();
+            this.existIsMail.setString(1,mail);
+            ResultSet resultSet=this.existIsMail.executeQuery();
+            return (resultSet.next());
+        }catch (SQLException e)
+        {
+            throw  new DaoException("Errore Query",e);
+        }
+    }
+
 
 
     public void destroy() throws DaoException {
@@ -207,6 +223,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
             this.insertUser.close();
             this.selectUserById.close();
             this.updateUser.close();
+            this.existIsMail.close();
 
 
             super.destroy();
