@@ -446,7 +446,56 @@
         <url-pattern>/show-azienda</url-pattern>
 
     </servlet-mapping>
+    <servlet>
+        <servlet-name>modifica-tutore</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.ModificaTutoreController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>modifica-tutore</servlet-name>
+        <url-pattern>/modifica-tutore</url-pattern>
+        <url-pattern>/modifica-Tutore</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>modifica-admin</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.ModificaAdmin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>modifica-admin</servlet-name>
+        <url-pattern>/modifica-Admin</url-pattern>
+        <url-pattern>/modifica-admin</url-pattern>
 
+    </servlet-mapping>
+<servlet>
+<servlet-name>TutteOfferteTr</servlet-name>
+<servlet-class>controller.adm.Admin.GestioneUtenza.OfferteTirocinioController</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>TutteOfferteTr</servlet-name>
+<url-pattern>/OfferteTirocinioAdmin</url-pattern>
+<url-pattern>/offertetirocinioadmin</url-pattern>
+
+</servlet-mapping>
+
+<servlet>
+<servlet-name>ModificaOffertaAdmin</servlet-name>
+<servlet-class>controller.adm.Admin.GestioneUtenza.ModificaOffertatrController</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>ModificaOffertaAdmin</servlet-name>
+<url-pattern>/ModificaOfferta</url-pattern>
+<url-pattern>/modificaofferta</url-pattern>
+
+</servlet-mapping>
+    <servlet>
+        <servlet-name>CreaAdmin</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.CreateAdmin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreaAdmin</servlet-name>
+        <url-pattern>/CreaAdmin</url-pattern>
+        <url-pattern>/creaadmin</url-pattern>
+
+    </servlet-mapping>
     <!-- end servelt account admin-->
 
 
