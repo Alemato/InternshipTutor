@@ -21,6 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static controller.utility.Validation.isStoredThisAddress;
+
 /**
  * Servlet che serve a creare un nuovo amministratore quindi dovrà anche creare un nuovo user
  */
@@ -31,8 +33,9 @@ public class CreateAdmin extends baseController {
         super.init(request,response);
         if(validationUserAndAdmin(request,response))
         {
-            insertUser(request,response);
-            insertAdmin(request,response);
+            //insertUser(request,response);
+            //insertAdmin(request,response);
+            System.out.println("vali");
             response.sendRedirect("/gestione-utenti");
         }
 
@@ -103,17 +106,17 @@ public class CreateAdmin extends baseController {
 
             Map<String, Object> map = new HashMap<>();
 
-            if (request.getParameter("Email") == null) {
+            if (request.getParameter("Email").isEmpty()) {
                 map.put("ErroreEmail", "Email non presente");
 
             } else if (!(Validation.isValidEmailAddress(request.getParameter("Email")))) {
                 map.put("ErroreEmail", "Email non conforme");
-            } else if (Validation.isStoredThisAddress(request.getParameter("Email"))) {
+            } else if (isStoredThisAddress(request.getParameter("Email"))) {
                 map.put("ErroreEmail", "Email gia presente");
             }
 
 
-            if (request.getParameter("Password") == null) {
+            if (request.getParameter("Password").isEmpty()) {
                 map.put("ErrorePassword", "Password Non Presente");
             } else if (!(request.getParameter("Password").equals(request.getParameter("ConfermaPassword")))) {
                 map.put("ErrorePassword", "Password differenti");
@@ -121,11 +124,11 @@ public class CreateAdmin extends baseController {
                 map.put("ErrorePassword", "Password troppo lunga");
             }
 
-            if (request.getParameter("ConfermaPassword") == null) {
+            if (request.getParameter("ConfermaPassword").isEmpty()) {
                 map.put("ErroreConfermaPassword", "Password Non Presente");
             }
 
-            if(request.getParameter("Nome")==null)
+            if(request.getParameter("Nome").isEmpty())
             {
                 map.put("ErroreNome","Nome non Presente");
 
@@ -134,7 +137,7 @@ public class CreateAdmin extends baseController {
                 map.put("ErroreNome","Nome troppo lungo");
             }
 
-            if(request.getParameter("Cognome")==null)
+            if(request.getParameter("Cognome").isEmpty())
             {
                 map.put("ErroreCognome","Cognome non Presente");
             }else if (request.getParameter("Cognome").length()>100)
@@ -183,7 +186,8 @@ public class CreateAdmin extends baseController {
         datamodel.putAll(utility.AddAllData(request,response,dati));
         //Carico gli avvisi per gli errori trovati
         datamodel.putAll(errori);
-        System.out.println(datamodel);
+        System.out.println("datamodel create admin");
+        System.out.println(datamodel.toString());
         AdminFillTable page = new AdminFillTable(datamodel,getServletContext(),request,response);
         page.makeget();
 

@@ -19,6 +19,7 @@ public class AdminGestioneUtentiController extends baseController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
+        System.out.println("admingestioneutenticontroller datamodel");
         System.out.println(datamodel.toString());
         AdminFillTable dato = new AdminFillTable(datamodel, getServletContext(), request, response);
         dato.makeget();
