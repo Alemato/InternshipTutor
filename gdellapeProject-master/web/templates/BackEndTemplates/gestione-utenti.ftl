@@ -279,7 +279,6 @@
                             <th>Cognome</th>
                             <th>Telefono</th>
                             <th>Email</th>
-                            <th>Visualizza</th>
                             <th>Modifica</th>
                             <th>Elimina</th>
                         </tr>
@@ -290,7 +289,6 @@
                             <th>Cognome</th>
                             <th>Telefono</th>
                             <th>Email</th>
-                            <th>Visualizza</th>
                             <th>Modifica</th>
                             <th>Elimina</th>
                         </tr>
@@ -303,18 +301,16 @@
                             <td>${tutore.cognome}</td>
                             <td>${tutore.telefono}</td>
                             <td>${tutore.email}</td>
+
                             <td>
-                                <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                    Utente
-                                </button>
-                            </td>
-                            <td>
-                                <a href="print.php">
-                                    <button type="button" class="btn btn-secondary"><i
+                                <form action="/modifica-tutore" method="get">
+
+                                <input type="hidden" name="ID" value="${tutore.IDTutoreUni}">
+                                    <button type="submit" class="btn btn-secondary"><i
                                                 class="fa fa-pencil-square-o"></i>
                                         Modifica
                                     </button>
-                                </a>
+                                </form>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina Utente
@@ -332,28 +328,89 @@
             </section>
             <h2><i class="fa fa-user-md"></i> Utenza di Tipo Amministratore</h2>
             <h3 class="mb-10">Crea Utente Aministratore</h3>
-            <form id="form_crea_admin" method="post" action="print.php" class="sky-form validate"
+            <form id="form_crea_admin" method="post" action="/creaadmin" class="sky-form validate"
                   novalidate="novalidate">
 
+                <#if ErroreEmail??>
+                    <div class="alert alert-warning mb-20">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Attenzione!</strong> ${ErroreEmail}
+                    </div>
+                    </#if>
                 <label class="input">
                     <p><em>*</em> Indirizzo Email</p>
                     <i class="ico-append giu fa fa-envelope"></i>
-                    <input type="text" placeholder="Indirizzo Email" name="Email" required>
+                    <input type="text" placeholder="Indirizzo Email"  <#if ErroreEmail??> class="error" </#if> name="Email" <#if ValueOfEmail??>value="${ValueOfEmail}"</#if> required>
                     <b class="tooltip tooltip-bottom-right">Necessario per verificare il tuo account</b>
                 </label>
 
+
+                    <#if ErrorePassword??>
+                        <div class="alert alert-warning mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${ErrorePassword}
+                        </div>
+                    </#if>
                 <label class="input">
                     <p><em>*</em> Password</p>
                     <i class="ico-append giu fa fa-lock"></i>
-                    <input type="password" placeholder="Password" name="Password" required>
+                    <input type="password" placeholder="Password"  <#if ErrorePassword??> class="error" </#if> name="Password" <#if ValueOfPassword??>value="${ValueOfPassword}" </#if> required>
+                    <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
+                        al tuo account</b>
+                </label>
+                <#if ErroreConfermaPassword??>
+                    <div class="alert alert-warning mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${ErroreConfermaPassword}
+                    </div>
+                </#if>
+                <label class="input mb-20">
+
+                    <p><em>*</em> Password</p>
+                    <i class="ico-append giu fa fa-lock"></i>
+                    <input type="password" placeholder="Conferma password"  <#if ErrorePassword??> class="error" </#if> name="ConfermaPassword" <#if ValueOfConfermaPassword??> value="${ValueOfConfermaPassword}" </#if> required>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                         al tuo account</b>
                 </label>
 
-                <label class="input mb-20">
-                    <p><em>*</em> Password</p>
-                    <i class="ico-append giu fa fa-lock"></i>
-                    <input type="password" placeholder="Conferma password" name="ConfermaPassword" required>
+                    <#if ErroreNome??>
+                        <div class="alert alert-warning mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${ErroreNome}
+                        </div>
+                    </#if>
+                <label class="input">
+                    <p><em>*</em> Nome</p>
+                    <i class="ico-append giu fa fa-envelope"></i>
+                    <input type="text" placeholder="Nome" name="Nome" <#if ValueofNome??>value="${ValueofNome}" </#if> required>
+                    <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
+                        al tuo account</b>
+                </label>
+                <#if ErroreCognome??>
+                    <div class="alert alert-warning mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${ErroreCognome}
+                    </div>
+                </#if>
+                <label class="input">
+                    <p><em>*</em>Cognome</p>
+                    <i class="ico-append giu fa fa-envelope"></i>
+                    <input type="text" placeholder="Cognome" name="Cognome" <#if ValueOfCognome??> value="${ValueOfCognome}"</#if> required>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                         al tuo account</b>
                 </label>
@@ -381,7 +438,6 @@
                         <tr>
                             <th>Nome</th>
                             <th>Cognome</th>
-                            <th>Visualizza</th>
                             <th>Modifica</th>
                             <th>Elimina</th>
                         </tr>
@@ -390,7 +446,6 @@
                         <tr>
                             <th>Nome</th>
                             <th>Cognome</th>
-                            <th>Visualizza</th>
                             <th>Modifica</th>
                             <th>Elimina</th>
                         </tr>
@@ -402,17 +457,13 @@
                             <td>${admin.nome}</td>
                             <td>${admin.cognome}</td>
                             <td>
-                                <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                    Utente
-                                </button>
-                            </td>
-                            <td>
-                                <a href="print.php">
-                                    <button type="button" class="btn btn-secondary"><i
+                                <form action="/modifica-admin" method="get">
+                                    <input type="hidden" value="${admin.IDadmin}" name="ID" >
+                                    <button type="submit" class="btn btn-secondary"><i
                                                 class="fa fa-pencil-square-o"></i>
                                         Modifica
                                     </button>
-                                </a>
+                                </form>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina Utente
