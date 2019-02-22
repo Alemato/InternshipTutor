@@ -1,5 +1,9 @@
 package controller.utility;
 
+import dao.exception.DaoException;
+import dao.implementation.OffertaTirocinioDaoImp;
+import dao.implementation.UserDaoImp;
+
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import java.util.regex.Matcher;
@@ -56,7 +60,8 @@ public class Validation {
         return result;
     }
 
-    public static boolean isValidEmailAddress(String email) {
+    public static boolean isValidEmailAddress(String email)
+    {
         Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
         Matcher mat = pattern.matcher(email);
         if (EmailTrust(email)) {
@@ -64,6 +69,14 @@ public class Validation {
         } else {
             return false;
         }
+    }
+    public static boolean isStoredThisAddress(String email) throws DaoException
+    {
+        UserDaoImp dao = new UserDaoImp();
+        boolean result= dao.existIsMail(email);
+        dao.destroy();
+        return result;
+
     }
 
 }
