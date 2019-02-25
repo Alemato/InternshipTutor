@@ -84,15 +84,15 @@
     </servlet-mapping>
 
 
-    <servlet>
-        <servlet-name>index</servlet-name>
-        <servlet-class>controller.adm.AccountController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
-        <url-pattern>/Account</url-pattern>
-    </servlet-mapping>
+    <!--<servlet>-->
+        <!--<servlet-name>index</servlet-name>-->
+        <!--<servlet-class>controller.adm.AccountController</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>index</servlet-name>-->
+        <!--<url-pattern>/index</url-pattern>-->
+        <!--<url-pattern>/Account</url-pattern>-->
+    <!--</servlet-mapping>-->
 
 
     <servlet>
@@ -175,8 +175,9 @@
     <servlet-mapping>
         <servlet-name>myaccount</servlet-name>
         <url-pattern>/account</url-pattern>
-
+        <url-pattern>/Account</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>ImpostazioniAccount</servlet-name>
         <servlet-class>controller.adm.BackEndImpostazioniAccountController</servlet-class>
@@ -184,7 +185,19 @@
     <servlet-mapping>
         <servlet-name>ImpostazioniAccount</servlet-name>
         <url-pattern>/account/impostazioni</url-pattern>
+        <url-pattern>/Account/Impostazioni</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BackEndModuliController</servlet-name>
+        <servlet-class>controller.adm.BackEndModuliController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BackEndModuliController</servlet-name>
+        <url-pattern>/account/moduli</url-pattern>
+        <url-pattern>/Account/Moduli</url-pattern>
+    </servlet-mapping>
+
 
     <!-- servlet errori-->
     <servlet>
@@ -365,16 +378,6 @@
         <servlet-name>gestione-account-admin</servlet-name>
         <url-pattern>/gestione-account</url-pattern>
         <url-pattern>/Gestione-account</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>BackEndModuliController</servlet-name>
-        <servlet-class>controller.adm.BackEndModuliController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>BackEndModuliController</servlet-name>
-        <url-pattern>/account/moduli</url-pattern>
-        <url-pattern>/Account/Moduli</url-pattern>
     </servlet-mapping>
 
     <servlet>

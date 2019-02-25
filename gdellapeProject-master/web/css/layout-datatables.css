@@ -3,7 +3,8 @@ div.dataTables_length label {
 	float: left;
 	text-align: left;
 	width:40%;
-	line-height:38px;
+	line-height:42px;
+	font-size: 20px;
 }
 div.dataTables_length label select,
 div.dataTables_length label .select2-container {
@@ -20,8 +21,9 @@ table thead .table-checkbox {
 
 div.dataTables_filter label {
 	font-weight: normal;
+	font-size: 20px;
 	float: right;
-	line-height:38px;
+	line-height:45px;
 }
 
 div.dataTables_filter input {
