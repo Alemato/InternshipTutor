@@ -96,12 +96,12 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
 
     public List<OffertaTirocinio> getOffertatrBYAzienda(Azienda az) throws DaoException {
         List<OffertaTirocinio> Offerte = new ArrayList<OffertaTirocinio>();
-        OffertaTirocinio oftr = new OffertaTirocinio();
         try {
             this.init();
             selectOffertetrByAzienda.setInt(1, az.getIDAzienda());
             ResultSet resultSet = selectOffertetrByAzienda.executeQuery();
             while (resultSet.next()) {
+                OffertaTirocinio oftr = new OffertaTirocinio();
                 oftr.setIDOffertaTirocinio(resultSet.getInt("IDOffertaTirocinio"));
                 oftr.setLuogoEffettuazione(resultSet.getString("LuogoEffettuazione"));
                 oftr.setTitolo(resultSet.getString("Titolo"));
