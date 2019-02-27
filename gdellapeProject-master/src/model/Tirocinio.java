@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Timestamp;
 import java.sql.Date;
+import java.util.Objects;
 
 public class Tirocinio {
     private Integer IDTirocinio;
@@ -148,5 +149,51 @@ public class Tirocinio {
 
     public void setStato(Integer stato) {
         Stato = stato;
+    }
+
+    @Override
+    public String toString() {
+        return "Tirocinio{" +
+                "IDTirocinio=" + IDTirocinio +
+                ", DataConsegnaModulo=" + DataConsegnaModulo +
+                ", PeriodoEffettivoIniziale=" + PeriodoEffettivoIniziale +
+                ", PeriodoEffettivoFinale=" + PeriodoEffettivoFinale +
+                ", RisultatoConseguito='" + RisultatoConseguito + '\'' +
+                ", DescrizioneAttivitaSvolta='" + DescrizioneAttivitaSvolta + '\'' +
+                ", DurataOre=" + DurataOre +
+                ", CFU=" + CFU +
+                ", Stato=" + Stato +
+                ", OffertaTirocinio=" + OffertaTirocinio +
+                ", Tirocinante=" + Tirocinante +
+                ", TutoreUniveritario=" + TutoreUniveritario +
+                ", CreateDate=" + CreateDate +
+                ", UpdateDate=" + UpdateDate +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tirocinio tirocinio = (Tirocinio) o;
+        return Objects.equals(IDTirocinio, tirocinio.IDTirocinio) &&
+                Objects.equals(DataConsegnaModulo, tirocinio.DataConsegnaModulo) &&
+                Objects.equals(PeriodoEffettivoIniziale, tirocinio.PeriodoEffettivoIniziale) &&
+                Objects.equals(PeriodoEffettivoFinale, tirocinio.PeriodoEffettivoFinale) &&
+                Objects.equals(RisultatoConseguito, tirocinio.RisultatoConseguito) &&
+                Objects.equals(DescrizioneAttivitaSvolta, tirocinio.DescrizioneAttivitaSvolta) &&
+                Objects.equals(DurataOre, tirocinio.DurataOre) &&
+                Objects.equals(CFU, tirocinio.CFU) &&
+                Objects.equals(Stato, tirocinio.Stato) &&
+                Objects.equals(OffertaTirocinio, tirocinio.OffertaTirocinio) &&
+                Objects.equals(Tirocinante, tirocinio.Tirocinante) &&
+                Objects.equals(TutoreUniveritario, tirocinio.TutoreUniveritario) &&
+                Objects.equals(CreateDate, tirocinio.CreateDate) &&
+                Objects.equals(UpdateDate, tirocinio.UpdateDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(IDTirocinio, DataConsegnaModulo, PeriodoEffettivoIniziale, PeriodoEffettivoFinale, RisultatoConseguito, DescrizioneAttivitaSvolta, DurataOre, CFU, Stato, OffertaTirocinio, Tirocinante, TutoreUniveritario, CreateDate, UpdateDate);
     }
 }

@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Timestamp;
 import java.sql.Date;
+import java.util.Objects;
 
 public class Tirocinante {
     private Integer IDTirocinante;
@@ -198,5 +199,59 @@ public class Tirocinante {
         UpdateDate = updateDate;
     }
 
+    @Override
+    public String toString() {
+        return "Tirocinante{" +
+                "IDTirocinante=" + IDTirocinante +
+                ", nome='" + nome + '\'' +
+                ", Cognome='" + Cognome + '\'' +
+                ", LuogoDiNascita='" + LuogoDiNascita + '\'' +
+                ", LuogoDiResidenza='" + LuogoDiResidenza + '\'' +
+                ", ProvinciaDiNascita='" + ProvinciaDiNascita + '\'' +
+                ", DataDiNascita=" + DataDiNascita +
+                ", ProvinciaDiResidenza='" + ProvinciaDiResidenza + '\'' +
+                ", CodiceFiscale='" + CodiceFiscale + '\'' +
+                ", Telefono='" + Telefono + '\'' +
+                ", CorsoDiLaurea='" + CorsoDiLaurea + '\'' +
+                ", DiplomaUniversitario='" + DiplomaUniversitario + '\'' +
+                ", LaureatoUniversitario='" + LaureatoUniversitario + '\'' +
+                ", ScuolaAltro='" + ScuolaAltro + '\'' +
+                ", DottoratoDiRicerca='" + DottoratoDiRicerca + '\'' +
+                ", Handicap=" + Handicap +
+                ", User=" + User +
+                ", CreateDate=" + CreateDate +
+                ", UpdateDate=" + UpdateDate +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tirocinante that = (Tirocinante) o;
+        return Objects.equals(IDTirocinante, that.IDTirocinante) &&
+                Objects.equals(nome, that.nome) &&
+                Objects.equals(Cognome, that.Cognome) &&
+                Objects.equals(LuogoDiNascita, that.LuogoDiNascita) &&
+                Objects.equals(LuogoDiResidenza, that.LuogoDiResidenza) &&
+                Objects.equals(ProvinciaDiNascita, that.ProvinciaDiNascita) &&
+                Objects.equals(DataDiNascita, that.DataDiNascita) &&
+                Objects.equals(ProvinciaDiResidenza, that.ProvinciaDiResidenza) &&
+                Objects.equals(CodiceFiscale, that.CodiceFiscale) &&
+                Objects.equals(Telefono, that.Telefono) &&
+                Objects.equals(CorsoDiLaurea, that.CorsoDiLaurea) &&
+                Objects.equals(DiplomaUniversitario, that.DiplomaUniversitario) &&
+                Objects.equals(LaureatoUniversitario, that.LaureatoUniversitario) &&
+                Objects.equals(ScuolaAltro, that.ScuolaAltro) &&
+                Objects.equals(DottoratoDiRicerca, that.DottoratoDiRicerca) &&
+                Objects.equals(Handicap, that.Handicap) &&
+                Objects.equals(User, that.User) &&
+                Objects.equals(CreateDate, that.CreateDate) &&
+                Objects.equals(UpdateDate, that.UpdateDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(IDTirocinante, nome, Cognome, LuogoDiNascita, LuogoDiResidenza, ProvinciaDiNascita, DataDiNascita, ProvinciaDiResidenza, CodiceFiscale, Telefono, CorsoDiLaurea, DiplomaUniversitario, LaureatoUniversitario, ScuolaAltro, DottoratoDiRicerca, Handicap, User, CreateDate, UpdateDate);
+    }
 }

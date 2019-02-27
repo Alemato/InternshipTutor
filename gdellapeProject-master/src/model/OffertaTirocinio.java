@@ -310,4 +310,5 @@ public class OffertaTirocinio {
                 ", UpdateDate=" + UpdateDate +
                 '}';
     }
+
 }
