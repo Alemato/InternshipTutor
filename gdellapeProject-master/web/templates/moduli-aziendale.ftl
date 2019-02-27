@@ -52,13 +52,13 @@
                     <tr>
                         <td>CONVENZIONE PER LO SVOLGIMENTO DI ATTIVITA&apos; DI TIROCINIO E DI ORIENTAMENTO</td>
                         <td>CONVENZIONE</td>
-                        <td>10/01/2018</td>
-                        <td>11/01/2018</td>
-                        <td><a href="modulo-convenzione-aziendale.html">
-                            <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Stampa
-                                Modulo
-                            </button>
-                        </a></td>
+                        <td>${DataConvenzione?date?string.short}</td>
+                        <td>${DataUpdate?date?string.short}</td>
+                        <td><a href="modulo/${IDConvenzione}">
+                                <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Stampa
+                                    Modulo
+                                </button>
+                            </a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -66,8 +66,9 @@
 
             <h1 class="mb-0">MODULI TIROCINI SVOLTI</h1>
             <div class="linea-divisione mt-15 mb-30"></div>
-            <form id="form_tirocinii_fine" action="print.php" method="post">
-                <table class="table table-responsive table-striped table-bordered bg-white table-hover border" id="datatable_2" width="100%"
+            <form id="form_tirocinii_fine" action="/account/moduli" method="post">
+                <table class="table table-responsive table-striped table-bordered bg-white table-hover border"
+                       id="datatable_2" width="100%"
                        cellspacing="0">
                     <thead>
                     <tr>
@@ -94,69 +95,63 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    <tr>
-                        <td>Tiger</td>
-                        <td>Nixon</td>
-                        <td>2011/04/25</td>
-                        <td>Tirocinio in corso</td>
-                        <td><input type="checkbox" class="checkboxes" name="fin_Tiger" value="1"/> <i
-                                class="fa fa-check" style="color: green;"></i> Tirocinio finito
-                        </td>
-                        <td>N/D</td>
-                        <td>N/D</td>
-                        <td>
-                            <button type="button" class="btn btn-outline-danger"><i class="fa fa-print"></i>Non
-                                disponibile
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Garrett</td>
-                        <td>Winters</td>
-                        <td>63</td>
-                        <td>Concluso il 2011/07/25</td>
-                        <td><input type="checkbox" class="checkboxes" name="fin_Garret" value="1" checked
-                                   disabled/> <i
-                                class="fa fa-check" style="color: green;"></i> Tirocinio finito
-                        </td>
-                        <td>10/01/2018</td>
-                        <td>11/01/2018</td>
-                        <td><a href="modulo-tirocinio-aziendale.html">
-                            <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Stampa
-                                Modulo
-                            </button>
-                        </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Ashton</td>
-                        <td>Cox</td>
-                        <td>66</td>
-                        <td>Concluso il 2009/01/12</td>
-                        <td><input type="checkbox" class="checkboxes" name="fin_Ashton" value="1" checked
-                                   disabled/> <i
-                                class="fa fa-check" style="color: green;"></i> Tirocinio finito
-                        </td>
-                        <td>10/01/2018</td>
-                        <td>11/01/2018</td>
-                        <td><a href="modulo-tirocinio-aziendale.html">
-                            <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Stampa
-                                Modulo
-                            </button>
-                        </a>
-                        </td>
-                    </tr>
+                    <#list Lista as Lista>
+                        <tr>
+                            <td>${Lista.tirocinante.nome}</td>
+                            <td>${Lista.tirocinante.cognome}</td>
+                            <td>${Lista.userMail}</td>
+                            <#if Lista.tirocinio.stato == 0>
+                                <td>Tirocinio in corso</td>
+                                <td><input type="checkbox" class="checkboxes"
+                                           name="fin_${Lista.tirocinante.nome}${Lista.tirocinante.cognome}${Lista.tirocinante.IDTirocinante}"
+                                           value="1"/> <i
+                                            class="fa fa-check" style="color: green;"></i> Tirocinio finito
+                                </td>
+                            <#else>
+                                <td>Tirocinio Concluso</td>
+                                <td><input type="checkbox" class="checkboxes"
+                                           name="fin_${Lista.tirocinante.nome}${Lista.tirocinante.cognome}${Lista.tirocinante.IDTirocinante}"
+                                           value="1" checked
+                                           disabled/> <i
+                                            class="fa fa-check" style="color: green;"></i> Tirocinio finito
+                                </td>
+                            </#if>
+                            <td>${Lista.tirocinio.createDate?date?string.short}</td>
+                            <td>${Lista.tirocinio.updateDate?date?string.short}</td>
+                            <#if Lista.tirocinio.stato == 0>
+                                <td>
+                                    <button type="button" class="btn btn-outline-danger"><i class="fa fa-print"></i>Non
+                                        disponibile
+                                    </button>
+                                </td>
+                            <#elseif Lista.tirocinio.stato == 1>
+                                <td><a href="#">
+                                        <button type="button" class="btn btn-outline-success"><i
+                                                    class="fa fa-print"></i>Stampa PDF
+                                        </button>
+                                    </a>
+                                </td>
+                            <#else>
+                                <td><a href="#">
+                                        <button type="button" class="btn btn-outline-success"><i
+                                                    class="fa fa-print"></i>Stampa Modulo
+                                        </button>
+                                    </a>
+                                </td>
+                            </#if>
+                        </tr>
+                    </#list>
                     </tbody>
                 </table>
 
                 <footer class="text-center text-sm-right mt-25 ">
                     <button type="submit" form="form_tirocinii_fine"
                             class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
-                            class="fa fa-check"></i> Aggiorna
+                                class="fa fa-check"></i> Aggiorna
                     </button>
                     <button type="reset" form="form_tirocinii_fine"
                             class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
-                            class="fa fa-times"></i> Annulla
+                                class="fa fa-times"></i> Annulla
                     </button>
                 </footer>
             </form>
