@@ -126,8 +126,31 @@ public class GestioneModuliAzienda {
             lista.add(mappa);
         }
         datamodel.put("Lista", lista);
-
     }
+
+    public void aggiornaFini(List<String> parametriFIN){
+        for(String param: parametriFIN){
+            String[] parts = param.split("-");
+            System.out.println(parts[0] + " " + parts[1] + " " + parts[2]+ " " + parts[3]);
+            String p = request.getParameter(param);
+            int idTirocinante = Integer.parseInt(parts[2]);
+            int idTirocinio = Integer.parseInt(parts[3]);
+            Tirocinio tiro = new Tirocinio();
+            Tirocinante tirocinante = new Tirocinante();
+            try {
+                TirocinioDaoImp daoTiro = new TirocinioDaoImp();
+                TirocinanteDaoImp daoTirocinante = new TirocinanteDaoImp();
+                tirocinante = daoTirocinante.getTirocianteByID(idTirocinante);
+                tiro = daoTiro.getRichiestatrByID(idTirocinio);
+                daoTiro.destroy();
+                daoTirocinante.destroy();
+            } catch (DaoException e){
+                e.printStackTrace();
+            }
+
+        }
+    }
+
     public void get(){
         ritornaAzienda(request,response);
         List<OffertaTirocinio> offert = ritornaOfferte();
@@ -149,6 +172,7 @@ public class GestioneModuliAzienda {
             }
         }
         System.out.println(parametri);
+        aggiornaFini(parametri);
     }
 
 }

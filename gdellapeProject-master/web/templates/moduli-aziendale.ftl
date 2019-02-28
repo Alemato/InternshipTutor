@@ -103,14 +103,14 @@
                             <#if Lista.tirocinio.stato == 0>
                                 <td>Tirocinio in corso</td>
                                 <td><input type="checkbox" class="checkboxes"
-                                           name="fin_${Lista.tirocinante.nome}${Lista.tirocinante.cognome}${Lista.tirocinante.IDTirocinante}"
+                                           name="fin_${Lista.tirocinante.nome}-${Lista.tirocinante.cognome}-${Lista.tirocinante.IDTirocinante}-${Lista.tirocinio.IDTirocinio}"
                                            value="1"/> <i
                                             class="fa fa-check" style="color: green;"></i> Tirocinio finito
                                 </td>
                             <#else>
                                 <td>Tirocinio Concluso</td>
                                 <td><input type="checkbox" class="checkboxes"
-                                           name="fin_${Lista.tirocinante.nome}${Lista.tirocinante.cognome}${Lista.tirocinante.IDTirocinante}"
+                                           name="fin_${Lista.tirocinante.nome}-${Lista.tirocinante.cognome}-${Lista.tirocinante.IDTirocinante}-${Lista.tirocinio.IDTirocinio}"
                                            value="1" checked
                                            disabled/> <i
                                             class="fa fa-check" style="color: green;"></i> Tirocinio finito
