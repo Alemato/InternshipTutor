@@ -33,7 +33,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
 
             super.init();
 
-            this.selectRichiestatrByID = connection.prepareStatement("SELECT * FROM  tirocinio WHERE IDRichiestaTirocinio = ?");
+            this.selectRichiestatrByID = connection.prepareStatement("SELECT * FROM  tirocinio WHERE IDTirocinio = ?");
 
             this.selectAllRichiestatr = connection.prepareStatement("SELECT * FROM tirocinio ORDER BY UpdateDate ASC ");
 
