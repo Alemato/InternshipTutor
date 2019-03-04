@@ -38,27 +38,53 @@
             <h1 class="mb-0">MODULO PER LA CONVENZIONE</h1>
             <div class="linea-divisione mt-15 mb-30"></div>
             <div class="table-responsive mb-30">
-                <table class="table table-bordered g-white text-center border">
+                <table class="table table-bordered g-white bg-white text-center border">
                     <thead>
                     <tr>
                         <th>Nome</th>
                         <th>Tipologia</th>
+                        <th>Data Convenzione</th>
+                        <#if GiorniScadenza??>
+                            <th>Gironi alla Scadenza</th>
+                        </#if>
                         <th>Data Creazione</th>
                         <th>Data Aggiornamento</th>
-                        <th>Stampa Modulo</th>
+                        <#if ConvenzioneScaduta>
+                            <th>Aggiorna Convenzione</th>
+                            <#else>
+                                <th>Stampa Modulo</th>
+                        </#if>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>CONVENZIONE PER LO SVOLGIMENTO DI ATTIVITA&apos; DI TIROCINIO E DI ORIENTAMENTO</td>
                         <td>CONVENZIONE</td>
+
                         <td>${DataConvenzione?date?string.short}</td>
+                        <#if GiorniScadenza??>
+                            <#if GiorniScadenza gt 1 >
+                                <td>${GiorniScadenza} giorni</td>
+                                <#else>
+                                    <td>${GiorniScadenza} giorno</td>
+                            </#if>
+                        </#if>
+                        <td>${DataCreate?date?string.short}</td>
                         <td>${DataUpdate?date?string.short}</td>
-                        <td><a href="modulo/${IDConvenzione}">
-                                <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Stampa
-                                    Modulo
-                                </button>
-                            </a></td>
+                        <#if ConvenzioneScaduta>
+                            <td><a href="/account/moduli/covenzione">
+                                    <button type="button" class="btn btn-outline-danger"><i class="fa fa-file"></i>Aggiorna
+                                        Modulo
+                                    </button>
+                                </a></td>
+                        <#else>
+                            <td><a href="/account/moduli/covenzione">
+                                    <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Stampa
+                                        Modulo
+                                    </button>
+                                </a></td>
+                        </#if>
+
                     </tr>
                     </tbody>
                 </table>
@@ -125,7 +151,7 @@
                                     </button>
                                 </td>
                             <#elseif Lista.tirocinio.stato == 1>
-                                <td><a href="#">
+                                <td><a href="/account/moduli">
                                         <button type="button" class="btn btn-outline-success"><i
                                                     class="fa fa-print"></i>Stampa PDF
                                         </button>

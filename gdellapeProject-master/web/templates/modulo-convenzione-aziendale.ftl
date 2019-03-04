@@ -6,10 +6,10 @@
 
     <#include "importCss.ftl">
     <!-- PAGE LEVEL SCRIPTS -->
-    <link href="css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="css/internshiptutor.css" rel="stylesheet" type="text/css">
-    <link href="css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="/css/print.css" rel="stylesheet" type="text/css" media="print">
 </head>
 <body class="smoothscroll enable-animation">
 <!-- wrapper -->
@@ -21,28 +21,45 @@
 
                 <!-- right -->
                 <ul class="top-links list-inline float-right has-topBar">
+
+                    <#if logged>
                     <li>
-                        <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#"><i
+                        <a class="dropdown-toggle no-text-underline"  href="/account"><i
                                     class="fa fa-user hidden-xs-down"></i> IL MIO ACCOUNT </a>
                         <ul class="dropdown-menu float-right has-topBar">
                             <li><a tabindex="-1" href="#"><i class="fa fa-history"></i> I MIEI
                                     TIROCINI</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="#"><i class="fa fa-cog"></i> IMPOSTAZIONI
+                            <li><a tabindex="-1" href="/account/impostazioni"><i class="fa fa-cog"></i> IMPOSTAZIONI
                                     DELL'ACCOUNT </a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="#"><i class="glyphicon glyphicon-off"></i> logout
+                            <li><a tabindex="-1" href="/logout"><i class="glyphicon glyphicon-off"></i> logout
                                 </a></li>
                         </ul>
-                    </li>
-                    <li class="hidden-xs-down"><a href="#">LOGIN</a></li>
-                    <li class="hidden-xs-down"><a href="registrazione.html">REGISTRAZIONE</a></li>
-                </ul>
 
+
+                    </li>
+                </ul>
                 <!-- left -->
                 <ul class="top-links list-inline has-topBar">
-                    <li class="text-welcome hidden-xs-down p-10">Benvenuto, <strong>Mario Rossi</strong></li>
+                    <li class="text-welcome hidden-xs-down p-10">Benvenuto, ${Nome}</li>
+
                 </ul>
+                <#else>
+                    <li class="hidden-xs-down" style="border-left: rgba(255,255,255,0.1) 1px solid;"><a href="/login">LOGIN</a></li>
+
+                    <li class="hidden-xs-down"><a href="/registration">REGISTRAZIONE</a></li>
+                    </ul>
+
+                    <!-- left -->
+                    <ul class="top-links list-inline has-topBar">
+                        <li class="text-welcome hidden-xs-down p-10">Benvenuto su Internship Tutor</li>
+
+                    </ul>
+                </#if>
+
+
+
 
             </div>
         </div>
@@ -58,25 +75,25 @@
 
 
                 <!-- Logo -->
-                <a class="logo float-left mb-5 mr-10scripts.jsscripts.js" href="index.html">
-                    <img src="imgs/interns.jpg" alt=""/>
+                <a class="logo float-left mb-5 mr-10scripts.jsscripts.js" href="/home">
+                    <img src="/imgs/interns.jpg" alt=""/>
                 </a>
 
                 <div class="navbar-collapse collapse nav-main-collapse submenu-dark">
                     <nav class="nav-main">
                         <ul id="topMain" class="nav nav-pills nav-main">
                             <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="index.html">
+                                <a class="dropdown-toggle noicon" href="/home">
                                     HOME
                                 </a>
                             </li>
                             <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="offerte-tutoraggi.html">
+                                <a class="dropdown-toggle noicon" href="/listaofferte">
                                     LISTA OFFERTE TUTORAGGI
                                 </a>
                             </li>
                             <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="lista-convenzioni.html">
+                                <a class="dropdown-toggle noicon" href="/listaconvenzioni">
                                     LISTA CONVENZIONI
                                 </a>
                             </li>
@@ -103,7 +120,7 @@
         </header>
     </div>
     <section class="page-header page-header-md parallax parallax-3 mt-130 d-print-none"
-             style="background-image:url('imgs/imgpattern.jpg')">
+             style="background-image:url('/imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
         <div class="container">
@@ -112,8 +129,8 @@
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li>Il mio account</li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/account">Il mio account</li>
             </ol><!-- /breadcrumbs -->
 
         </div>
@@ -127,7 +144,7 @@
                         stampa</h1>
 
                     <div class="text-center d-none d-print-block">
-                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
+                        <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                         <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                         <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
@@ -216,7 +233,7 @@
                     </ul>
 
                     <div class="text-center d-none d-print-block mr-10" style="page-break-before: always;">
-                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
+                        <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                         <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                         <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
@@ -285,7 +302,7 @@
 
 
                     <div class="text-center d-none d-print-block" style="page-break-before: always;">
-                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
+                        <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                         <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                         <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
@@ -359,7 +376,7 @@
 
 
                     <div class="text-center d-none d-print-block" style="page-break-before: always;">
-                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
+                        <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                         <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                         <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
@@ -432,7 +449,7 @@
 
 
                     <div class="text-center d-none d-print-block" style="page-break-before: always;">
-                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
+                        <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                         <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                         <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
@@ -533,7 +550,7 @@
                     <div class="linea col-5 p-0"></div>
 
                     <div class="text-center d-none d-print-block" style="page-break-before: always;">
-                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
+                        <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                         <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                         <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
@@ -549,7 +566,7 @@
                     <div class="row mb-25 mr-10 mt-100 mb-200">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">L&apos;Aquila, il </h4>
                         <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_documento"
-                               value="${data}">
+                               value="${dataoggi?date?iso_utc}">
                     </div>
 
                     <div class="container d-none d-print-block p-0">
@@ -569,7 +586,7 @@
                 </fieldset>
                 <footer class="mt-50 d-print-none">
                     <button type="submit" form="modulo_tirocinante"
-                            class="btn btn-success btn-lg pull-right float-right"  ><i
+                            class="btn btn-success btn-lg pull-right float-right" onclick="window.print();" ><i
                                 class="fa fa-check"></i> Stampa
                     </button>
                     <button type="reset" form="modulo_tirocinante" class="btn btn-red btn-lg pull-right float-left">
@@ -660,8 +677,8 @@
                     <!-- Links -->
                     <h4 class="letter-spacing-1">LINK UTILI</h4>
                     <ul class="footer-links list-unstyled">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Lista Offerte Tuttoraggi</a></li>
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/listaofferte">Lista Offerte Tuttoraggi</a></li>
                         <li><a href="#">Lista Convenzioni</a></li>
                         <li><a href="#">Contattaci</a></li>
                         <li><a href="#">Il Mio Accout</a></li>
@@ -694,7 +711,7 @@
 
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
-<script src="js/internshiptutor.js"></script>
+
 
 </body>
 </html>
