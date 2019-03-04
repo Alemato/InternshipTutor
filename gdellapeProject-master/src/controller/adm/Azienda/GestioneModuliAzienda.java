@@ -45,7 +45,7 @@ public class GestioneModuliAzienda {
         //TODO Implementare controllo data di convenzione
         datamodel.put("DataConvenzione", azienda.getDataConvenzione());
         datamodel.put("DataUpdate", azienda.getUpdateDate());
-        datamodel.put("IDConvenzione", azienda.getIDAzienda());
+        datamodel.put("DataCreate", azienda.getCreateDate());
     }
 
     private List<OffertaTirocinio> ritornaOfferte(){
@@ -128,7 +128,42 @@ public class GestioneModuliAzienda {
         datamodel.put("Lista", lista);
     }
 
-    public void aggiornaFini(List<String> parametriFIN){
+    private void checkScadenzaConvenzione(Azienda azienda){
+        int durata = azienda.getDurataConvenzione();
+        Date dataConvenzone = azienda.getDataConvenzione();
+        Calendar presente = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"),Locale.ITALY);
+        Calendar passato = Calendar.getInstance();
+        passato.setTime(dataConvenzone);
+        passato.add(Calendar.DAY_OF_MONTH, +durata);
+        //presente.set(2018,Calendar.SEPTEMBER,2);
+        System.out.println("data convenzione: "+ dataConvenzone + " durata: "+ durata + " scade il " + passato.getTime() + " oggi e" + presente.getTime() + " e scaduta: " + presente.after(passato));
+
+        if (presente.before(passato)){
+            // Get the represented date in milliseconds
+            long millis1 = presente.getTimeInMillis();
+            long millis2 = passato.getTimeInMillis();
+
+            // Calculate difference in milliseconds
+            long diff = millis2 - millis1;
+
+            long diffDays = diff / (24 * 60 * 60 * 1000);
+            System.out.println("In days: " + diffDays + " days.");
+            int ggAllaScadenza = (int) diffDays;
+            datamodel.put("GiorniScadenza", ggAllaScadenza);
+            datamodel.put("ConvenzioneScaduta", false );
+        } else {
+          datamodel.put("ConvenzioneScaduta", true );
+        }
+
+
+
+
+
+
+    }
+
+    private void aggiornaFini(List<String> parametriFIN){
+        //TODO finire di salvare i dati sul DB
         for(String param: parametriFIN){
             String[] parts = param.split("-");
             System.out.println(parts[0] + " " + parts[1] + " " + parts[2]+ " " + parts[3]);
@@ -147,7 +182,21 @@ public class GestioneModuliAzienda {
             } catch (DaoException e){
                 e.printStackTrace();
             }
+            if ((tirocinante.getNome().equals(parts[0].split("fin_")[1])) && (tirocinante.getCognome().equals(parts[1]))){
+                if(tiro.getTirocinante().equals(tirocinante.getIDTirocinante())){
+                    System.out.println("Si coincide");
+                    tiro.setStato(1);
+                    System.out.println("lo stato: " + tiro.getStato());
+//                    try {
+//                        TirocinioDaoImp daoTiro = new TirocinioDaoImp();
+//                        daoTiro.setRichiestatr(tiro);
+//                        daoTiro.destroy();
+//                    } catch (DaoException e){
+//                        e.printStackTrace();
+//                    }
 
+                }
+            }
         }
     }
 
@@ -158,6 +207,7 @@ public class GestioneModuliAzienda {
         List<Tirocinante> tirocinante = ritornaTirocinanti(tiro);
         creaDatamodel(tirocinante,offert,tiro);
         fillConvenzione();
+        checkScadenzaConvenzione(azienda);
         TemplateController.process("moduli-aziendale.ftl", datamodel, response, context);
     }
 

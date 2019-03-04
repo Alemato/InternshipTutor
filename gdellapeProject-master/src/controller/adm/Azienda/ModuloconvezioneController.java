@@ -37,7 +37,7 @@ public class ModuloconvezioneController extends BackEndAziendaController{
         System.out.println(dataconvezione);
         datamodel.put("data",dataconvezione);
         datamodel.put("azienda",azienda);
-        TemplateController.process("modulo-convezione-aziendale.ftl", datamodel, response, getServletContext());
+        TemplateController.process("modulo-convenzione-aziendale.ftl", datamodel, response, getServletContext());
 
     }
 
