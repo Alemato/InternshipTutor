@@ -2,6 +2,7 @@ package controller.adm.Azienda;
 
 import controller.baseController;
 import controller.sessionController.SingSessionContoller;
+import controller.utility.Validation;
 import model.Azienda;
 import view.TemplateController;
 
@@ -9,10 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
+import java.util.*;
 
 public class ConvenzioneController extends baseController {
     private Azienda azienda = new Azienda();
@@ -27,14 +25,12 @@ public class ConvenzioneController extends baseController {
     }
 
     private void gestioneRichiesta(HttpServletResponse response){
-        int durata = azienda.getDurataConvenzione();
-        Date dataConvenzone = azienda.getDataConvenzione();
-        Calendar presente = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
-        Calendar passato = Calendar.getInstance();
+        Map<String,Object> scadenza = Validation.scadenza(azienda.getDataConvenzione(), azienda.getDurataConvenzione());
+        Calendar presente = (Calendar) scadenza.get("presente");
+        Boolean scaduto = (Boolean) scadenza.get("scaduto");
+        //presente.set(2018,Calendar.SEPTEMBER,2);
         Date dataoggi = presente.getTime();
-        passato.setTime(dataConvenzone);
-        passato.add(Calendar.DAY_OF_MONTH, +durata);
-        if(presente.before(passato)){
+        if(!scaduto){
             System.out.println("la richiesta è di stampa o altro");
         }else {
             System.out.println("la richiesta è di tipo agg");
@@ -45,6 +41,7 @@ public class ConvenzioneController extends baseController {
 
     private void richiestaUpdate(Date dataoggi, HttpServletResponse response){
         System.out.println("richiesta agg convenzione");
+        datamodel.put("notview", true);
         datamodel.put("azienda", azienda);
         datamodel.put("dataoggi", dataoggi);
         TemplateController.process("modulo-convenzione-aziendale.ftl", datamodel, response , getServletContext());
