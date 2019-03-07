@@ -27,6 +27,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement selectAllPendentAzieda;
     private PreparedStatement ifaziendamakemodulo;
     private PreparedStatement makemodulo;
+    private PreparedStatement selectAllAziendaAttiva;
 
 
 
@@ -81,6 +82,8 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                     ("SELECT * FROM azienda WHERE  IDAzienda = ?");
             this.makemodulo = connection.prepareStatement
                     ("UPDATE azienda SET ModuloConvenzione=true WHERE  IDAzienda = ?");
+            this.selectAllAziendaAttiva = this.selectAllPendentAzieda = connection.prepareStatement
+                    ("SELECT * FROM azienda WHERE Attivo=1 ORDER BY UpdateDate ASC");
 
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
@@ -255,6 +258,49 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
 
     }
 
+    public List<Azienda> getAllAziendaAttiva() throws DaoException {
+        List<Azienda> aziende = new ArrayList<Azienda>();
+
+
+        try {
+            this.init();
+
+            ResultSet resultSet = this.selectAllAziendaAttiva.executeQuery();
+
+            while (resultSet.next()) {
+                Azienda azienda = new Azienda();
+                azienda.setIDAzienda(resultSet.getInt("IDAzienda"));
+                azienda.setRagioneSociale(resultSet.getString("RagioneSociale"));
+                azienda.setIndirizzoSedeLegale(resultSet.getString("IndirizzoSedeLegale"));
+                azienda.setCFiscalePIva(resultSet.getString("CFiscalepiva"));
+                azienda.setNomeLegaleRappresentante(resultSet.getString("NomeLegaleRappresentante"));
+                azienda.setCognomeLegaleRappresentante(resultSet.getString("CognomeLegaleRappresentante"));
+                azienda.setNomeResponsabileConvenzione(resultSet.getString("NomeResponsabileConvenzione"));
+                azienda.setCognomeResponsabileConvenzione(resultSet.getString("CognomeResponsabileConvenzione"));
+                azienda.setTelefonoResponsabileConvenzione(resultSet.getString("TelefonoResponsabileConvenzione"));
+                azienda.setEmailResponsabileConvenzione(resultSet.getString("EmailResponsabileConvenzione"));
+                azienda.setPathPDFConvenzione(resultSet.getString("PathPDFConvenzione"));
+                azienda.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
+                azienda.setForoControversia(resultSet.getString("ForoControversia"));
+                azienda.setAttivo(resultSet.getBoolean("Attivo"));
+                azienda.setDescrizione(resultSet.getString("Descrizione"));
+                azienda.setLink(resultSet.getString("Link"));
+                azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
+                azienda.setUser(resultSet.getInt("User"));
+                azienda.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
+                aziende.add(azienda);
+
+            }
+            return aziende;
+
+
+        } catch (SQLException e) {
+            throw new DaoException("Errore query Aziende Attive", e);
+        }
+
+
+    }
+
     public List<Azienda> getAllConvenzione() throws DaoException {
         List<Azienda> convenzioni = new ArrayList<>();
         try {
@@ -394,6 +440,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.ifaziendamakemodulo.close();
             this.updateAzienda.close();
             this.makemodulo.close();
+            this.selectAllAziendaAttiva.close();
 
 
             super.destroy();
