@@ -18,6 +18,7 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement insertTutUni;
     private PreparedStatement selectTutoreByMail;
     private PreparedStatement updateTutoreUni;
+    private PreparedStatement ismailarestored;
     @Override
     public void init() throws DaoException {
         try {
@@ -105,6 +106,21 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
 
 
     }
+
+    public Boolean isMailAreStored(String email) throws DaoException
+    {
+        try{
+            this.init();
+            this.selectTutoreByMail.setString(1, email);
+            ResultSet resultSet = this.selectTutoreByMail.executeQuery();
+            return (resultSet.next());
+
+        }catch (SQLException e)
+        {
+            throw new DaoException("Errore query select mail",e);
+
+        }
+    }
     public void UpdateTutoreUni(TutoreUniversitario tutore)throws DaoException
     {
         try
@@ -148,6 +164,7 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
             this.selectTutUniByID.close();
             this.selectAllTutUni.close();
             this.updateTutoreUni.close();
+            this.selectTutoreByMail.close();
 
 
         } catch (SQLException ex) {
