@@ -1,4 +1,4 @@
-<div id="header" class="navbar-toggleable-md  shadow-after-3 clearfix position-fixed <#if notview??> d-print-none</#if>">
+<div id="header" class="navbar-toggleable-md  shadow-after-3 clearfix position-fixed">
     <!-- TOP BAR-->
     <div id="topBar" class="dark sticky">
         <div class="container">

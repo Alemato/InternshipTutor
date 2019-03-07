@@ -25,6 +25,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement selectAllTrByOfferta;
     private PreparedStatement ifinsertTirocinio;
     private PreparedStatement selectAllTirocinioByStato;
+    private PreparedStatement selectOffertaTirByIDTirocinante;
 
 
     @Override
@@ -77,8 +78,8 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
                 tr.setTirocinante(resultSet.getInt("Tirocinante"));
                 tr.setTutoreUniveritario(resultSet.getInt("TutoreUniversitario"));
             }else{
-            throw new DaoException("Query con risultato vuoto");
-        }
+                throw new DaoException("Query con risultato vuoto");
+            }
             return tr;
 
         }catch (SQLException e){
@@ -207,6 +208,41 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
 
 
 
+    public List<Tirocinio> getOffertaTirByIDTirocinante(int IDTr) throws DaoException {
+        try {
+            this.init();
+            List<Tirocinio> listIDOff = new ArrayList<>();
+            this.selectOffertaTirByIDTirocinante.setInt(1, IDTr);
+            ResultSet resultSet = selectOffertaTirByIDTirocinante.executeQuery();
+            while (resultSet.next()){
+
+                Tirocinio tr = new Tirocinio();
+                tr.setIDTirocinio(resultSet.getInt("IDTirocinio"));
+                tr.setDataConsegnaModulo(resultSet.getDate("DataConsegnaModulo"));
+                tr.setDurataOre(resultSet.getInt("DurataOre"));
+                tr.setCFU(resultSet.getInt("CFU"));
+                tr.setStato(resultSet.getInt("Stato"));
+                tr.setPeriodoEffettivoIniziale(resultSet.getDate("PeriodoEffettivoIniziale"));
+                tr.setPeriodoEffettivoFinale(resultSet.getDate("PeriodoEffettivoFinale"));
+                tr.setRisultatoConseguito(resultSet.getString("RisultatoConseguito"));
+                tr.setDescrizioneAttivitaSvolta(resultSet.getString("DescrizioneAttivitaSvolta"));
+                tr.setCreateDate(resultSet.getTimestamp("CreateDate"));
+                tr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
+                tr.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
+                tr.setTirocinante(resultSet.getInt("Tirocinante"));
+                tr.setTutoreUniveritario(resultSet.getInt("TutoreUniversitario"));
+                listIDOff.add(tr);
+            }
+
+            return listIDOff;
+        }catch (SQLException e){
+            throw new DaoException("Errore query lista stato e offerta",e);
+        }
+    }
+
+
+
+
     public void setRichiestatr(Tirocinio tr) throws DaoException {
         try {
             this.init();
@@ -256,6 +292,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             this.insertRichiestatr.close();
             this.insertFisrtRichiesta.close();
             this.selectAllTirocinioByStato.close();
+            this.selectOffertaTirByIDTirocinante.close();
 
 
             super.destroy();

@@ -1,7 +1,6 @@
 package controller.adm.Azienda;
 
 import controller.sessionController.SingSessionContoller;
-import controller.utility.Validation;
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
 import dao.implementation.TirocinanteDaoImp;
@@ -46,7 +45,7 @@ public class GestioneModuliAzienda {
         //TODO Implementare controllo data di convenzione
         datamodel.put("DataConvenzione", azienda.getDataConvenzione());
         datamodel.put("DataUpdate", azienda.getUpdateDate());
-        datamodel.put("DataCreate", azienda.getCreateDate());
+        datamodel.put("IDConvenzione", azienda.getIDAzienda());
     }
 
     private List<OffertaTirocinio> ritornaOfferte(){
@@ -127,79 +126,8 @@ public class GestioneModuliAzienda {
             lista.add(mappa);
         }
         datamodel.put("Lista", lista);
-    }
-
-    private void checkScadenzaConvenzione(Azienda azienda){
-        Map<String,Object> scadenza = Validation.scadenza(azienda.getDataConvenzione(), azienda.getDurataConvenzione());
-        //presente.set(2018,Calendar.SEPTEMBER,2);
-        Calendar passato = (Calendar) scadenza.get("passato");
-        Calendar presente = (Calendar) scadenza.get("presente");
-        Boolean scaduto = (Boolean) scadenza.get("scaduto");
-        System.out.println("data convenzione: "+ azienda.getDataConvenzione() + " durata: "+ azienda.getDurataConvenzione() + " scade il " + passato.getTime() + " oggi e" + presente.getTime() + " e scaduta: " + scaduto);
-
-        //if (presente.before(passato)){
-        if (!scaduto){
-            // Get the represented date in milliseconds
-            long millis1 = presente.getTimeInMillis();
-            long millis2 = passato.getTimeInMillis();
-
-            // Calculate difference in milliseconds
-            long diff = millis2 - millis1;
-
-            long diffDays = diff / (24 * 60 * 60 * 1000);
-            System.out.println("In days: " + diffDays + " days.");
-            int ggAllaScadenza = (int) diffDays;
-            datamodel.put("GiorniScadenza", ggAllaScadenza);
-            datamodel.put("ConvenzioneScaduta", false );
-        } else {
-          datamodel.put("ConvenzioneScaduta", true );
-        }
-
-
-
-
-
 
     }
-
-    private void aggiornaFini(List<String> parametriFIN){
-        //TODO finire di salvare i dati sul DB
-        for(String param: parametriFIN){
-            String[] parts = param.split("-");
-            System.out.println(parts[0] + " " + parts[1] + " " + parts[2]+ " " + parts[3]);
-            String p = request.getParameter(param);
-            int idTirocinante = Integer.parseInt(parts[2]);
-            int idTirocinio = Integer.parseInt(parts[3]);
-            Tirocinio tiro = new Tirocinio();
-            Tirocinante tirocinante = new Tirocinante();
-            try {
-                TirocinioDaoImp daoTiro = new TirocinioDaoImp();
-                TirocinanteDaoImp daoTirocinante = new TirocinanteDaoImp();
-                tirocinante = daoTirocinante.getTirocianteByID(idTirocinante);
-                tiro = daoTiro.getRichiestatrByID(idTirocinio);
-                daoTiro.destroy();
-                daoTirocinante.destroy();
-            } catch (DaoException e){
-                e.printStackTrace();
-            }
-            if ((tirocinante.getNome().equals(parts[0].split("fin_")[1])) && (tirocinante.getCognome().equals(parts[1]))){
-                if(tiro.getTirocinante().equals(tirocinante.getIDTirocinante())){
-                    System.out.println("Si coincide");
-                    tiro.setStato(1);
-                    System.out.println("lo stato: " + tiro.getStato());
-//                    try {
-//                        TirocinioDaoImp daoTiro = new TirocinioDaoImp();
-//                        daoTiro.setRichiestatr(tiro);
-//                        daoTiro.destroy();
-//                    } catch (DaoException e){
-//                        e.printStackTrace();
-//                    }
-
-                }
-            }
-        }
-    }
-
     public void get(){
         ritornaAzienda(request,response);
         List<OffertaTirocinio> offert = ritornaOfferte();
@@ -207,7 +135,6 @@ public class GestioneModuliAzienda {
         List<Tirocinante> tirocinante = ritornaTirocinanti(tiro);
         creaDatamodel(tirocinante,offert,tiro);
         fillConvenzione();
-        checkScadenzaConvenzione(azienda);
         TemplateController.process("moduli-aziendale.ftl", datamodel, response, context);
     }
 
@@ -222,7 +149,6 @@ public class GestioneModuliAzienda {
             }
         }
         System.out.println(parametri);
-        aggiornaFini(parametri);
     }
 
 }
