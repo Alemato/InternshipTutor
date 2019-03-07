@@ -40,7 +40,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
 
             this.insertFisrtRichiesta = connection.prepareStatement("INSERT INTO tirocinio(OffertaTirocinio,Tirocinante) VALUES (?,?)");
 
-            this.insertRichiestatr = connection.prepareStatement("INSERT INTO tirocinio(DataConsegnaModulo,DurataOre,CFU,Stato,PeriodoEffettivoIniziale,PeriodoEffettivoFinale,RisultatoConseguito,DescrizioneAttivitaSvolta,OffertaTirocinio,Tirocinante,TutoreUniveristario) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            this.insertRichiestatr = connection.prepareStatement("INSERT INTO tirocinio(DataConsegnaModulo,DurataOre,CFU,Stato,PeriodoEffettivoIniziale,PeriodoEffettivoFinale,RisultatoConseguito,DescrizioneAttivitaSvolta,PdfTirocinante,PdfAzienda,PdfSegreteria ,OffertaTirocinio,Tirocinante,TutoreUniveristario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             this.selectTrByStatoAndOfferta= connection.prepareStatement("SELECT * FROM tirocinio WHERE Stato = ? AND OffertaTirocinio = ? " );
             this.selectAllTrByOfferta = connection.prepareStatement("SELECT * FROM tirocinio WHERE OffertaTirocinio = ?");
@@ -72,6 +72,10 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
                 tr.setPeriodoEffettivoFinale(resultSet.getDate("PeriodoEffettivoFinale"));
                 tr.setRisultatoConseguito(resultSet.getString("RisultatoConseguito"));
                 tr.setDescrizioneAttivitaSvolta(resultSet.getString("DescrizioneAttivitaSvolta"));
+                tr.setRisultatoConseguito(resultSet.getString("RisultatoSegreteria"));
+                tr.setPdfTirocinante(resultSet.getString("PdfTirocinante"));
+                tr.setPdfAzienda(resultSet.getString("PdfAzienda"));
+                tr.setPdfSegreteria(resultSet.getString("PdfSegreteria"));
                 tr.setCreateDate(resultSet.getTimestamp("CreateDate"));
                 tr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
                 tr.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
@@ -107,6 +111,10 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
                 tr.setPeriodoEffettivoFinale(resultSet.getDate("PeriodoEffettivoFinale"));
                 tr.setRisultatoConseguito(resultSet.getString("RisultatoConseguito"));
                 tr.setDescrizioneAttivitaSvolta(resultSet.getString("DescrizioneAttivitaSvolta"));
+                tr.setRisultatoConseguito(resultSet.getString("RisultatoSegreteria"));
+                tr.setPdfTirocinante(resultSet.getString("PdfTirocinante"));
+                tr.setPdfAzienda(resultSet.getString("PdfAzienda"));
+                tr.setPdfSegreteria(resultSet.getString("PdfSegreteria"));
                 tr.setCreateDate(resultSet.getTimestamp("CreateDate"));
                 tr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
                 tr.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
@@ -143,6 +151,10 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
                 tr.setPeriodoEffettivoFinale(resultSet.getDate("PeriodoEffettivoFinale"));
                 tr.setRisultatoConseguito(resultSet.getString("RisultatoConseguito"));
                 tr.setDescrizioneAttivitaSvolta(resultSet.getString("DescrizioneAttivitaSvolta"));
+                tr.setRisultatoConseguito(resultSet.getString("RisultatoSegreteria"));
+                tr.setPdfTirocinante(resultSet.getString("PdfTirocinante"));
+                tr.setPdfAzienda(resultSet.getString("PdfAzienda"));
+                tr.setPdfSegreteria(resultSet.getString("PdfSegreteria"));
                 tr.setCreateDate(resultSet.getTimestamp("CreateDate"));
                 tr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
                 tr.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
@@ -179,6 +191,10 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
                 tr.setPeriodoEffettivoFinale(resultSet.getDate("PeriodoEffettivoFinale"));
                 tr.setRisultatoConseguito(resultSet.getString("RisultatoConseguito"));
                 tr.setDescrizioneAttivitaSvolta(resultSet.getString("DescrizioneAttivitaSvolta"));
+                tr.setRisultatoConseguito(resultSet.getString("RisultatoSegreteria"));
+                tr.setPdfTirocinante(resultSet.getString("PdfTirocinante"));
+                tr.setPdfAzienda(resultSet.getString("PdfAzienda"));
+                tr.setPdfSegreteria(resultSet.getString("PdfSegreteria"));
                 tr.setCreateDate(resultSet.getTimestamp("CreateDate"));
                 tr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
                 tr.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
@@ -226,6 +242,9 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
                 tr.setPeriodoEffettivoFinale(resultSet.getDate("PeriodoEffettivoFinale"));
                 tr.setRisultatoConseguito(resultSet.getString("RisultatoConseguito"));
                 tr.setDescrizioneAttivitaSvolta(resultSet.getString("DescrizioneAttivitaSvolta"));
+                tr.setPdfTirocinante(resultSet.getString("PdfTirocinante"));
+                tr.setPdfAzienda(resultSet.getString("PdfAzienda"));
+                tr.setPdfSegreteria(resultSet.getString("PdfSegreteria"));
                 tr.setCreateDate(resultSet.getTimestamp("CreateDate"));
                 tr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
                 tr.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
@@ -254,9 +273,12 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             insertRichiestatr.setDate(6, tr.getPeriodoEffettivoFinale());
             insertRichiestatr.setString(7, tr.getRisultatoConseguito());
             insertRichiestatr.setString(8, tr.getDescrizioneAttivitaSvolta());
-            insertRichiestatr.setInt(9, tr.getOffertaTirocinio());
-            insertRichiestatr.setInt(10, tr.getTirocinante());
-            insertRichiestatr.setInt(11,tr.getTutoreUniveritario());
+            insertRichiestatr.setString(9,tr.getPdfTirocinante());
+            insertRichiestatr.setString(10,tr.getPdfAzienda());
+            insertRichiestatr.setString(11,tr.getPdfSegreteria());
+            insertRichiestatr.setInt(12, tr.getOffertaTirocinio());
+            insertRichiestatr.setInt(13, tr.getTirocinante());
+            insertRichiestatr.setInt(14,tr.getTutoreUniveritario());
             insertRichiestatr.executeUpdate();
 
 
