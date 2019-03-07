@@ -57,6 +57,9 @@ public class Tirocinio {
         DescrizioneAttivitaSvolta = null;
         DurataOre = 0;
         this.CFU = 0;
+        this.PdfAzienda=null;
+        this.PdfSegreteria=null;
+        this.PdfTirocinante=null;
         Stato = 0;
         OffertaTirocinio = 0;
         Tirocinante = 0;
