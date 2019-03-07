@@ -284,6 +284,7 @@ public class ImpostazioniAccountAzienda {
     }
 
     public void get() throws IOException, DaoException {
+        //TODO Inserire NomeResponsabileConvenzione CognomeResponsabileConvenzione TelefonoResponsabileConvenzione EmailResponsabileConvenzione
         System.out.println("---------------------------------------------------------");
         System.out.println("---------------------------------------------------------");
         System.out.println(request.getMethod() + ' ' + request.getRequestURI()+" sto in ImpostazioniAccountAzienda");
