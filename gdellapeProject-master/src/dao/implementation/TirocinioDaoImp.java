@@ -20,11 +20,11 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement selectRichiestatrByID;
     private PreparedStatement selectAllRichiestatr;
     private PreparedStatement insertRichiestatr;
-    private PreparedStatement selectNOTActiveRTRbuyAzeinda;
     private PreparedStatement insertFisrtRichiesta;
     private PreparedStatement selectTrByStatoAndOfferta;
     private PreparedStatement selectAllTrByOfferta;
     private PreparedStatement ifinsertTirocinio;
+    private PreparedStatement selectAllTirocinioByStato;
 
 
     @Override
@@ -45,6 +45,8 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             this.selectAllTrByOfferta = connection.prepareStatement("SELECT * FROM tirocinio WHERE OffertaTirocinio = ?");
 
             this.ifinsertTirocinio = connection.prepareStatement("SELECT * FROM tirocinio WHERE Tirocinio = ? AND Stato > 2 ");
+
+            this.selectAllTirocinioByStato=connection.prepareStatement("SELECT * FROM tirocinio WHERE Stato = ?");
 
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
@@ -121,14 +123,12 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         }
     }
 
-
-    public List<Tirocinio> getTrByOfferta (OffertaTirocinio offertaTirocinio) throws DaoException{
+    public List<Tirocinio> getTirociniByStato (Integer stato) throws DaoException{
         try {this.init();
             List<Tirocinio> listRT = new ArrayList<>();
 
-
-            this.selectAllTrByOfferta.setInt(1,  offertaTirocinio.getIDOffertaTirocinio());
-            ResultSet resultSet = selectAllTrByOfferta.executeQuery();
+            this.selectAllTirocinioByStato.setInt(1,stato);
+            ResultSet resultSet = selectAllTirocinioByStato.executeQuery();
 
             while (resultSet.next()){
 
@@ -148,6 +148,41 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
                 tr.setTirocinante(resultSet.getInt("Tirocinante"));
                 tr.setTutoreUniveritario(resultSet.getInt("TutoreUniversitario"));
 
+
+                listRT.add(tr);
+            }
+
+            return listRT;
+
+        }catch (SQLException e){
+            throw new DaoException("Errore query",e);
+        }
+    }
+
+
+    public List<Tirocinio> getTrByOfferta (OffertaTirocinio offertaTirocinio) throws DaoException{
+        try {
+            this.init();
+            List<Tirocinio> listRT = new ArrayList<>();
+            this.selectAllTrByOfferta.setInt(1,  offertaTirocinio.getIDOffertaTirocinio());
+            ResultSet resultSet = selectAllTrByOfferta.executeQuery();
+
+            while (resultSet.next()){
+                Tirocinio tr = new Tirocinio();
+                tr.setIDTirocinio(resultSet.getInt("IDTirocinio"));
+                tr.setDataConsegnaModulo(resultSet.getDate("DataConsegnaModulo"));
+                tr.setDurataOre(resultSet.getInt("DurataOre"));
+                tr.setCFU(resultSet.getInt("CFU"));
+                tr.setStato(resultSet.getInt("Stato"));
+                tr.setPeriodoEffettivoIniziale(resultSet.getDate("PeriodoEffettivoIniziale"));
+                tr.setPeriodoEffettivoFinale(resultSet.getDate("PeriodoEffettivoFinale"));
+                tr.setRisultatoConseguito(resultSet.getString("RisultatoConseguito"));
+                tr.setDescrizioneAttivitaSvolta(resultSet.getString("DescrizioneAttivitaSvolta"));
+                tr.setCreateDate(resultSet.getTimestamp("CreateDate"));
+                tr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
+                tr.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
+                tr.setTirocinante(resultSet.getInt("Tirocinante"));
+                tr.setTutoreUniveritario(resultSet.getInt("TutoreUniversitario"));
                 listRT.add(tr);
             }
 
@@ -220,6 +255,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             this.selectRichiestatrByID.close();
             this.insertRichiestatr.close();
             this.insertFisrtRichiesta.close();
+            this.selectAllTirocinioByStato.close();
 
 
             super.destroy();
