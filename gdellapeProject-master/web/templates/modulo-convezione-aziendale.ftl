@@ -6,10 +6,10 @@
 
     <#include "importCss.ftl">
     <!-- PAGE LEVEL SCRIPTS -->
-    <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
-    <link href="/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="css/print.css" rel="stylesheet" type="text/css" media="print">
 </head>
 <body class="smoothscroll enable-animation">
 <!-- wrapper -->
@@ -21,45 +21,28 @@
 
                 <!-- right -->
                 <ul class="top-links list-inline float-right has-topBar">
-
-                    <#if logged>
                     <li>
-                        <a class="dropdown-toggle no-text-underline"  href="/account"><i
+                        <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#"><i
                                     class="fa fa-user hidden-xs-down"></i> IL MIO ACCOUNT </a>
                         <ul class="dropdown-menu float-right has-topBar">
                             <li><a tabindex="-1" href="#"><i class="fa fa-history"></i> I MIEI
                                     TIROCINI</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="/account/impostazioni"><i class="fa fa-cog"></i> IMPOSTAZIONI
+                            <li><a tabindex="-1" href="#"><i class="fa fa-cog"></i> IMPOSTAZIONI
                                     DELL'ACCOUNT </a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="/logout"><i class="glyphicon glyphicon-off"></i> logout
+                            <li><a tabindex="-1" href="#"><i class="glyphicon glyphicon-off"></i> logout
                                 </a></li>
                         </ul>
-
-
                     </li>
+                    <li class="hidden-xs-down"><a href="#">LOGIN</a></li>
+                    <li class="hidden-xs-down"><a href="registrazione.html">REGISTRAZIONE</a></li>
                 </ul>
+
                 <!-- left -->
                 <ul class="top-links list-inline has-topBar">
-                    <li class="text-welcome hidden-xs-down p-10">Benvenuto, ${Nome}</li>
-
+                    <li class="text-welcome hidden-xs-down p-10">Benvenuto, <strong>Mario Rossi</strong></li>
                 </ul>
-                <#else>
-                    <li class="hidden-xs-down" style="border-left: rgba(255,255,255,0.1) 1px solid;"><a href="/login">LOGIN</a></li>
-
-                    <li class="hidden-xs-down"><a href="/registration">REGISTRAZIONE</a></li>
-                    </ul>
-
-                    <!-- left -->
-                    <ul class="top-links list-inline has-topBar">
-                        <li class="text-welcome hidden-xs-down p-10">Benvenuto su Internship Tutor</li>
-
-                    </ul>
-                </#if>
-
-
-
 
             </div>
         </div>
@@ -75,25 +58,25 @@
 
 
                 <!-- Logo -->
-                <a class="logo float-left mb-5 mr-10scripts.jsscripts.js" href="/home">
-                    <img src="/imgs/interns.jpg" alt=""/>
+                <a class="logo float-left mb-5 mr-10scripts.jsscripts.js" href="index.html">
+                    <img src="imgs/interns.jpg" alt=""/>
                 </a>
 
                 <div class="navbar-collapse collapse nav-main-collapse submenu-dark">
                     <nav class="nav-main">
                         <ul id="topMain" class="nav nav-pills nav-main">
                             <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="/home">
+                                <a class="dropdown-toggle noicon" href="index.html">
                                     HOME
                                 </a>
                             </li>
                             <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="/listaofferte">
+                                <a class="dropdown-toggle noicon" href="offerte-tutoraggi.html">
                                     LISTA OFFERTE TUTORAGGI
                                 </a>
                             </li>
                             <li class="dropdown active">
-                                <a class="dropdown-toggle noicon" href="/listaconvenzioni">
+                                <a class="dropdown-toggle noicon" href="lista-convenzioni.html">
                                     LISTA CONVENZIONI
                                 </a>
                             </li>
@@ -120,7 +103,7 @@
         </header>
     </div>
     <section class="page-header page-header-md parallax parallax-3 mt-130 d-print-none"
-             style="background-image:url('/imgs/imgpattern.jpg')">
+             style="background-image:url('imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
         <div class="container">
@@ -129,8 +112,8 @@
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
-                <li><a href="/">Home</a></li>
-                <li><a href="/account">Il mio account</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li>Il mio account</li>
             </ol><!-- /breadcrumbs -->
 
         </div>
@@ -144,7 +127,7 @@
                         stampa</h1>
 
                     <div class="text-center d-none d-print-block">
-                        <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
+                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                         <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                         <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
@@ -201,10 +184,12 @@
                     <div class="row mb-0 mr-10 ">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">rappresentato da </h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Rappresentante_legale_nome"
-                               value="${azienda.nomeLegaleRappresentante}" placeholder="Nome Rapresentante legale">
-
+                               value="${azienda.nomeLegaleRappresentante}" placeholder="Rapresentante legale">
+                    </div>
+                    <div class="row mb-0 mr-10 ">
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20">rappresentato da </h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Rappresentante_legale_cognome"
-                               value="${azienda.cognomeLegaleRappresentante}" placeholder="Cognome Rapresentante legale">
+                               value="${azienda.cognomeLegaleRappresentante}" placeholder="Rapresentante legale">
                     </div>
 
                     <h4 class="text-center mt-35 fs-20 mb-30 fw-400 d-none d-print-block">Premesso:</h4>
@@ -231,7 +216,7 @@
                     </ul>
 
                     <div class="text-center d-none d-print-block mr-10" style="page-break-before: always;">
-                        <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
+                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                         <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                         <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
@@ -300,7 +285,7 @@
 
 
                     <div class="text-center d-none d-print-block" style="page-break-before: always;">
-                        <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
+                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                         <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                         <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
@@ -374,7 +359,7 @@
 
 
                     <div class="text-center d-none d-print-block" style="page-break-before: always;">
-                        <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
+                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                         <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                         <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
@@ -447,7 +432,7 @@
 
 
                     <div class="text-center d-none d-print-block" style="page-break-before: always;">
-                        <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
+                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                         <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                         <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
@@ -548,7 +533,7 @@
                     <div class="linea col-5 p-0"></div>
 
                     <div class="text-center d-none d-print-block" style="page-break-before: always;">
-                        <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
+                        <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                         <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                         <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
@@ -564,7 +549,7 @@
                     <div class="row mb-25 mr-10 mt-100 mb-200">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">L&apos;Aquila, il </h4>
                         <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_documento"
-                               value="${dataoggi?date?iso_utc}">
+                               value="${data}">
                     </div>
 
                     <div class="container d-none d-print-block p-0">
@@ -584,7 +569,7 @@
                 </fieldset>
                 <footer class="mt-50 d-print-none">
                     <button type="submit" form="modulo_tirocinante"
-                            class="btn btn-success btn-lg pull-right float-right" onclick="window.print();" ><i
+                            class="btn btn-success btn-lg pull-right float-right"  ><i
                                 class="fa fa-check"></i> Stampa
                     </button>
                     <button type="reset" form="modulo_tirocinante" class="btn btn-red btn-lg pull-right float-left">
@@ -597,13 +582,119 @@
         </div>
     </section>
 
-<#include  "footer.ftl">
+    <!-- /FOOTER -->
+    <footer class="d-print-none" id="footer">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <!-- Footer Logo -->
+                            <img class="footer-logo" src="http://www.disim.univaq.it/didattica/img/logo_univaq.png"
+                                 alt=""/>
+                        </div>
+                        <div class="col-6 text-left py-5p">
+
+                            <!-- Short Description -->
+                            <a href="http://univaq.it">Universit&agrave; degli Studi dell&apos;Aquila</a>
+                        </div>
+                    </div>
+                    <!-- Contact Address -->
+                    <address>
+                        <ul class="list-unstyled">
+                            <li class="footer-sprite address">
+                                67100 L&apos;Aquila, Coppito, Via Vetoio<br>
+                            </li>
+                            <li class="footer-sprite phone">
+                                Phone: +39 0862 433002
+                            </li>
+                            <li class="footer-sprite phone">
+                                Phone: +39 0862 433180 (fax)
+                            </li>
+                            <li class="footer-sprite email">
+                                <a href="mailto:disim.sad@univaq.it">disim.sad@univaq.it</a>
+                            </li>
+                        </ul>
+                    </address>
+                    <!-- /Contact Address -->
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <!-- Newsletter Form -->
+                    <h4 class="letter-spacing-1">INTERNSHIP TUTOR</h4>
+                    <p>Internship Tutor rappresenta un sistema web per la gestione dell&apos;iter completo dei tirocini
+                        universitari del degli Studi dell&apos;Aquila.</p>
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <!-- Latest Blog Posts -->
+                    <h4 class="letter-spacing-1">ULTIME OFFERTE PUBLICATE</h4>
+                    <ul class="footer-posts list-unstyled">
+                        <li>
+                            <a href="#">L&apos;azienda PACARO srl, sede di Borgorose (RI), ricerca tirocinanti</a>
+                            <small>29 June 2017</small>
+                        </li>
+                        <li>
+                            <a href="#">Tirocini e stage retributi presso la Gunpowder S.r.l. (Spinoff Univ.
+                                L&apos;Aquila)</a>
+                            <small>29 June 2017</small>
+                        </li>
+                        <li>
+                            <a href="#">Tirocinio presso Aveja</a>
+                            <small>29 June 2017</small>
+                        </li>
+                    </ul>
+                    <!-- /Latest Blog Posts -->
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <!-- Links -->
+                    <h4 class="letter-spacing-1">LINK UTILI</h4>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Lista Offerte Tuttoraggi</a></li>
+                        <li><a href="#">Lista Convenzioni</a></li>
+                        <li><a href="#">Contattaci</a></li>
+                        <li><a href="#">Il Mio Accout</a></li>
+                        <li><a href="#">I Miei Tirocini</a></li>
+
+                    </ul>
+                    <!-- /Links -->
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            <div class="container">
+                <ul class="float-right m-0 list-inline mobile-block">
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li>&bull;</li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+                &copy; All Rights Reserved, INTERNSHIP TUTOR
+            </div>
+        </div>
+    </footer>
+    <!-- /FOOTER -->
 
 </div>
 
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
-
+<script src="js/internshiptutor.js"></script>
 
 </body>
 </html>
