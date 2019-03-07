@@ -1,6 +1,7 @@
 package controller.adm.Azienda;
 
 import controller.sessionController.SingSessionContoller;
+import controller.utility.Validation;
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
 import dao.implementation.TirocinanteDaoImp;
@@ -129,16 +130,15 @@ public class GestioneModuliAzienda {
     }
 
     private void checkScadenzaConvenzione(Azienda azienda){
-        int durata = azienda.getDurataConvenzione();
-        Date dataConvenzone = azienda.getDataConvenzione();
-        Calendar presente = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"),Locale.ITALY);
-        Calendar passato = Calendar.getInstance();
-        passato.setTime(dataConvenzone);
-        passato.add(Calendar.DAY_OF_MONTH, +durata);
+        Map<String,Object> scadenza = Validation.scadenza(azienda.getDataConvenzione(), azienda.getDurataConvenzione());
         //presente.set(2018,Calendar.SEPTEMBER,2);
-        System.out.println("data convenzione: "+ dataConvenzone + " durata: "+ durata + " scade il " + passato.getTime() + " oggi e" + presente.getTime() + " e scaduta: " + presente.after(passato));
+        Calendar passato = (Calendar) scadenza.get("passato");
+        Calendar presente = (Calendar) scadenza.get("presente");
+        Boolean scaduto = (Boolean) scadenza.get("scaduto");
+        System.out.println("data convenzione: "+ azienda.getDataConvenzione() + " durata: "+ azienda.getDurataConvenzione() + " scade il " + passato.getTime() + " oggi e" + presente.getTime() + " e scaduta: " + scaduto);
 
-        if (presente.before(passato)){
+        //if (presente.before(passato)){
+        if (!scaduto){
             // Get the represented date in milliseconds
             long millis1 = presente.getTimeInMillis();
             long millis2 = passato.getTimeInMillis();

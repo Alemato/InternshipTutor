@@ -1,5 +1,7 @@
+<#-- TODO implemntare inserimento dei dati
+-->
 <!-- /FOOTER-->
-    <footer id="footer">
+    <footer <#if notview??> class="d-print-none"</#if> id="footer">
         <div class="container">
 
             <div class="row">
