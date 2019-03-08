@@ -24,9 +24,7 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
     @Override
     public void init() throws DaoException {
         try {
-
             super.init();
-
 
             this.selectAdminByID = connection.prepareStatement("SELECT * FROM  admin WHERE IDAdmin = ?");
 
@@ -39,9 +37,23 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
             this.updateAdmin=connection.prepareStatement("UPDATE admin SET Nome=?,Cognome=? WHERE IDAdmin=?");
 
         } catch (SQLException ex) {
-            throw new DaoException("Error:PrepareStatement error", ex);
-
+            throw new DaoException("Error:PrepareStatement error ADMIN", ex);
         }
+    }
+
+    private void setAdminObject(ResultSet resultSet, Admin admin)throws DaoException{
+        try {
+            admin.setIDadmin(resultSet.getInt("IDAdmin"));
+            admin.setNome(resultSet.getString("Nome"));
+            admin.setCognome(resultSet.getString("Cognome"));
+            admin.setCreateDate(resultSet.getTimestamp("CreateDate"));
+            admin.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
+            admin.setUser(resultSet.getInt("User"));
+        } catch (SQLException e) {
+            throw new DaoException("Errore inserimento dati nel oggetto Admin, possibile errore query", e);
+        }
+
+
     }
 
     public void setAdmin(Admin admin, User user) throws DaoException {
@@ -52,7 +64,7 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
             this.insertAdmin.setInt(3, user.getIDUser());
             insertAdmin.executeUpdate();
         } catch (SQLException e) {
-            throw new DaoException("Errore inserimento", e);
+            throw new DaoException("Errore Set Admin", e);
         }
     }
     public void updateAdmin(Admin admin) throws DaoException {
@@ -67,27 +79,21 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
         }
     }
 
-    public Admin getAdminByID(int ID) throws DaoException {
+    public  Admin getAdminByID(int ID) throws DaoException {
         Admin admin = new Admin();
+        this.init();
         try {
-            this.init();
             this.selectAdminByID.setInt(1, ID);
             ResultSet resultSet = selectAdminByID.executeQuery();
             if (resultSet.next()) {
-                admin.setIDadmin(resultSet.getInt("IDAdmin"));
-                admin.setNome(resultSet.getString("Nome"));
-                admin.setCognome(resultSet.getString("Cognome"));
-                admin.setCreateDate(resultSet.getTimestamp("CreateDate"));
-                admin.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
-            }else
-                {
-                    throw new DaoException("Query Con Risultato Nullo");
-                }
-            return admin;
-
+                setAdminObject(resultSet,admin);
+            }else {
+                throw new DaoException("Query Con Risultato Nullo");
+            }
         } catch (SQLException e) {
             throw new DaoException("Errore query ", e);
         }
+        return admin;
     }
 
     public Admin getAdminByIDuser(int user) throws DaoException {
@@ -97,9 +103,7 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
             this.selectAdminByIDuser.setInt(1, user);
             ResultSet resultSet = selectAdminByIDuser.executeQuery();
             if (resultSet.next()) {
-                admin.setIDadmin(resultSet.getInt("IDAdmin"));
-                admin.setNome(resultSet.getString("Nome"));
-                admin.setCognome(resultSet.getString("Cognome"));
+                setAdminObject(resultSet,admin);
             }else
             {
                 throw new DaoException("Query Con Risultato Nullo");
@@ -112,17 +116,12 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
     }
     public List<Admin> getAllAdmin() throws DaoException {
         List<Admin> listadmin = new ArrayList<>();
-
         try {
             this.init();
-
-
             ResultSet resultSet = selectAllAdmin.executeQuery();
             if (resultSet.next()) {
                 Admin admin = new Admin();
-                admin.setIDadmin(resultSet.getInt("IDAdmin"));
-                admin.setNome(resultSet.getString("Nome"));
-                admin.setCognome(resultSet.getString("Cognome"));
+                setAdminObject(resultSet, admin);
                 listadmin.add(admin);
             }
             return listadmin;
@@ -134,23 +133,16 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
 
 
     public void destroy() throws DaoException {
-
         try {
-
             selectAdminByID.close();
             selectAllAdmin.close();
             insertAdmin.close();
             selectAdminByIDuser.close();
             updateAdmin.close();
-
             super.destroy();
-
         } catch (SQLException ex) {
             ex.printStackTrace();
-
             throw new DaoException("Error close connection ", ex);
-
-
         }
     }
 }
