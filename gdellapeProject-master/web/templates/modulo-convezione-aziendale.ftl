@@ -121,7 +121,7 @@
 
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
-            <form id="modulo_tirocinante" action="/convenzione" method="post" class="m-0">
+            <form id="modulo_tirocinante" action="/account/moduli/covenzione" method="post" class="m-0">
                 <fieldset>
                     <h1 class="text-center fw-100 d-print-none">Controlla i dati del modulo pre-compilato e clicca su
                         stampa</h1>

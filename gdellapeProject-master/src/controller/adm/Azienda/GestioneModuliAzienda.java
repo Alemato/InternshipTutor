@@ -1,6 +1,7 @@
 package controller.adm.Azienda;
 
 import controller.sessionController.SingSessionContoller;
+import controller.utility.Validation;
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
 import dao.implementation.TirocinanteDaoImp;
@@ -45,7 +46,7 @@ public class GestioneModuliAzienda {
         //TODO Implementare controllo data di convenzione
         datamodel.put("DataConvenzione", azienda.getDataConvenzione());
         datamodel.put("DataUpdate", azienda.getUpdateDate());
-        datamodel.put("IDConvenzione", azienda.getIDAzienda());
+        datamodel.put("DataCreate", azienda.getCreateDate());
     }
 
     private List<OffertaTirocinio> ritornaOfferte(){
