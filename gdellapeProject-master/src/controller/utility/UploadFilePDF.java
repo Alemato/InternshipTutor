@@ -15,7 +15,15 @@ import java.security.NoSuchAlgorithmException;
         maxRequestSize = 1024 * 1024 * 50)   // 50MB
 public class UploadFilePDF extends baseController {
 
-
+    /**
+     * @param savePath tutto il percorso del app + albero cartelle
+     *                 albero sara' ./PDF/tipologia_di_PDF(convernzione, tiro...)/ID_NomeUtente/fillePDF.pdf
+     * @param part file part
+     *             Part parto = request.getPart("NOME FORM");
+     * @return torna il nome del file che serve per caricare sul DB
+     * @throws IOException
+     * @throws PdfException
+     */
     public String UploadPDF(String savePath, Part part) throws IOException, PdfException {
 
         // ...\out\artifacts\gdellapeProject_master_war_exploded\savePath

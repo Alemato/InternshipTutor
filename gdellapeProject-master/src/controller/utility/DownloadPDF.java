@@ -12,6 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 public class DownloadPDF extends baseController  {
 
 
+    /**
+     * @param request  richiesta
+     * @param response risposta
+     * @param filename nome del file
+     * @param saveDir albero
+     *                albero sara' ./PDF/tipologia_di_PDF(convernzione, tiro...)/ID_NomeUtente/fillePDF.pdf
+     * @throws IOException
+     */
     public void DownloadPDF( HttpServletRequest request, HttpServletResponse response, String filename, String saveDir ) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
