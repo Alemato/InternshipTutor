@@ -6,8 +6,8 @@ import controller.baseController;
 import java.io.File;
 import java.io.IOException;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-import java.security.NoSuchAlgorithmException;
 
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
@@ -16,24 +16,23 @@ import java.security.NoSuchAlgorithmException;
 public class UploadFilePDF extends baseController {
 
     /**
-     * @param savePath tutto il percorso del app + albero cartelle
-     *                 albero sara' ./PDF/tipologia_di_PDF(convernzione, tiro...)/ID_NomeUtente/fillePDF.pdf
-     * @param part file part
-     *             Part parto = request.getPart("NOME FORM");
+     * @param request  richiesta
+     * @param savePath albero cartelle .\PDF\tipologia_di_PDF(convernzione, tirocinio...)/ID_NomeUtente/
+     *                 albero finale sara' .\out\artifacts\gdellapeProject_master_war_exploded\savePath\PDF\tipologia_di_PDF(convernzione, tirocinio...)\ID_NomeUtente\fillePDF.pdf
+     * @param part     variabile di tipo Part del file che si ricava tramite:
+     *                 Part parto = request.getPart("NOME FORM");
      * @return torna il nome del file che serve per caricare sul DB
      * @throws IOException
      * @throws PdfException
      */
-    public String UploadPDF(String savePath, Part part) throws IOException, PdfException {
+    public String UploadPDF(HttpServletRequest request, String savePath, Part part) throws IOException, PdfException {
 
         // ...\out\artifacts\gdellapeProject_master_war_exploded\savePath
 
         // percorso assoluto dell'app
-//        String appPath = request.getServletContext().getRealPath("");
-        // percorso nel quale salvare il file
-//        String savePath = appPath + File.separator + saveDir;
-        // creates the save directory if it does not exists
-        File fileSaveDir = new File(savePath);
+        String appPath = request.getServletContext().getRealPath("");
+        String completeSavePath = appPath + File.separator + savePath;
+        File fileSaveDir = new File(completeSavePath);
         // creo se non esiste la directory di destinazione
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdir();
@@ -44,10 +43,10 @@ public class UploadFilePDF extends baseController {
         if (!(fileName.endsWith(".pdf"))) {
             throw new PdfException("Errore: il file non è un PDF");
         }
-            fileName = new File(fileName).getName();
-            part.write(savePath + File.separator + fileName);
-            return fileName;
-        }
+        fileName = new File(fileName).getName();
+        part.write(completeSavePath + File.separator + fileName);
+        return fileName;
+    }
 
     // estrae il nome del file
     private String FileName(Part part) {
