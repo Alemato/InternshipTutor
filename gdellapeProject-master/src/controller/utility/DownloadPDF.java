@@ -9,18 +9,18 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class DownloadPDF extends baseController  {
+public class DownloadPDF extends baseController {
 
 
     /**
      * @param request  richiesta
      * @param response risposta
      * @param filename nome del file
-     * @param saveDir albero
-     *                albero sara' ./PDF/tipologia_di_PDF(convernzione, tiro...)/ID_NomeUtente/fillePDF.pdf
+     * @param saveDir  albero
+     *                 albero sara' ./PDF/tipologia_di_PDF(convernzione, tiro...)/ID_NomeUtente
      * @throws IOException
      */
-    public void DownloadPDF( HttpServletRequest request, HttpServletResponse response, String filename, String saveDir ) throws IOException {
+    public void DownloadPDF(HttpServletRequest request, HttpServletResponse response, String filename, String saveDir) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         response.setContentType("APPLICATION/OCTET-STREAM");
@@ -31,8 +31,7 @@ public class DownloadPDF extends baseController  {
                 + filename);
 
         int i;
-        while( (i = fileInputStream.read()) != -1 )
-        {
+        while ((i = fileInputStream.read()) != -1) {
             out.write(i);
         }
         fileInputStream.close();
