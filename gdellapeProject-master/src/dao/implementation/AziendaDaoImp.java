@@ -13,8 +13,8 @@ import java.util.List;
 
 public class AziendaDaoImp extends DaoDataMySQLImpl {
 
-    private PreparedStatement selectAziendaByNome;
-    //secondo me ci andrebbe un nome
+//    private PreparedStatement selectAziendaByNome;
+//    secondo me ci andrebbe un nome
     private PreparedStatement selectAziendaByRS;
     private PreparedStatement insertAzienda;
     private PreparedStatement selectAllAzienda;
@@ -25,9 +25,6 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement regAzienda;
     private PreparedStatement updateAzienda;
     private PreparedStatement selectAllPendentAzieda;
-    private PreparedStatement ifaziendamakemodulo;
-    private PreparedStatement makemodulo;
-
 
 
     @Override
@@ -52,35 +49,27 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                     ("SELECT * FROM azienda WHERE Attivo=0 AND ModuloConvenzione=1 ORDER BY UpdateDate ASC");
 
             this.selectAllConvenzione = connection.prepareStatement
-                    ("SELECT IDAzienda ,RagioneSociale," +
-                            "NomeResponsabileConvenzione, CognomeResponsabileConvenzione," +
-                            "TelefonoResponsabileConvenzione, EmailResponsabileConvenzione," +
-                            "PathPDFConvenzione, DurataConvenzione,ForoControversia," +
-                            "DataConvenzione, Descrizione, UpdateDate FROM azienda ORDER BY UpdateDate ASC");
+                    ("SELECT * FROM azienda ORDER BY UpdateDate ASC");
 
 
             this.selectLastFiveConvenzioni = connection.prepareStatement
-                    ("SELECT IDAzienda, RagioneSociale, DataConvenzione, Descrizione FROM azienda ORDER BY UpdateDate DESC LIMIT 5");
+                    ("SELECT * FROM azienda ORDER BY UpdateDate DESC LIMIT 5");
 
             this.insertAzienda = connection.prepareStatement
                     ("INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
                             "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
-                            "EmailResponsabileConvenzione, PathPDFConvenzione,DurataConvenzione,ForoControversia,DataConvenzione, Attivo, Descrizione, " +
-                            "Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                            "EmailResponsabileConvenzione, PathPDFConvenzione,DurataConvenzione,ForoControversia,DataConvenzione, Attivo, ModuloConvenzione, Descrizione, " +
+                            "Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             this.updateAzienda = connection.prepareStatement
                     ("UPDATE azienda SET RagioneSociale = ? ,IndirizzoSedeLegale = ? ,CFiscalePIva = ?,NomeLegaleRappresentante = ?," +
                             "CognomeLegaleRappresentante = ? ,NomeResponsabileConvenzione = ?,CognomeResponsabileConvenzione = ? ,TelefonoResponsabileConvenzione = ?," +
-                            "EmailResponsabileConvenzione = ?, PathPDFConvenzione=?,DurataConvenzione=?,ForoControversia = ?,DataConvenzione=?, Attivo=?, Descrizione=?, Link = ? WHERE IDAzienda = ? ");
+                            "EmailResponsabileConvenzione = ?, PathPDFConvenzione=?,DurataConvenzione=?,ForoControversia = ?,DataConvenzione=?, Attivo=?, ModuloConvenzione=?, Descrizione=?, Link = ? WHERE IDAzienda = ? ");
 
             this.regAzienda = connection.prepareStatement
                     ("INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
                             "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
                             "EmailResponsabileConvenzione,ForoControversia, Descrizione, Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            this.ifaziendamakemodulo = connection.prepareStatement
-                    ("SELECT * FROM azienda WHERE  IDAzienda = ?");
-            this.makemodulo = connection.prepareStatement
-                    ("UPDATE azienda SET ModuloConvenzione=true WHERE  IDAzienda = ?");
 
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
@@ -88,9 +77,54 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         }
     }
 
-    //ciao ciao
-    public void updateAzienda(Azienda azienda) throws DaoException {
 
+    private void setAziendaObject(Azienda azienda, ResultSet resultSet) throws DaoException {
+        try {
+            azienda.setIDAzienda(resultSet.getInt("IDAzienda"));
+            azienda.setRagioneSociale(resultSet.getString("RagioneSociale"));
+            azienda.setIndirizzoSedeLegale(resultSet.getString("IndirizzoSedeLegale"));
+            azienda.setCFiscalePIva(resultSet.getString("CFiscalePIva"));
+            azienda.setNomeLegaleRappresentante(resultSet.getString("NomeLegaleRappresentante"));
+            azienda.setCognomeLegaleRappresentante(resultSet.getString("CognomeLegaleRappresentante"));
+            azienda.setNomeResponsabileConvenzione(resultSet.getString("NomeResponsabileConvenzione"));
+            azienda.setCognomeResponsabileConvenzione(resultSet.getString("CognomeResponsabileConvenzione"));
+            azienda.setTelefonoResponsabileConvenzione(resultSet.getString("TelefonoResponsabileConvenzione"));
+            azienda.setEmailResponsabileConvenzione(resultSet.getString("EmailResponsabileConvenzione"));
+            azienda.setPathPDFConvenzione(resultSet.getString("PathPDFConvenzione"));
+            azienda.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
+            azienda.setForoControversia(resultSet.getString("ForoControversia"));
+            azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
+            azienda.setAttivo(resultSet.getBoolean("Attivo"));
+            azienda.setModuloConvenzione(resultSet.getBoolean("ModuloConvenzione"));
+            azienda.setDescrizione(resultSet.getString("Descrizione"));
+            azienda.setLink(resultSet.getString("Link"));
+            azienda.setCreateDate(resultSet.getTimestamp("CreateDate"));
+            azienda.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
+            azienda.setUser(resultSet.getInt("User"));
+        } catch (SQLException e) {
+            throw new DaoException("Errore nel creare oggetto Azienda", e);
+        }
+    }
+
+    private void setListAzienda(List<Azienda> aziende, ResultSet resultSet) throws DaoException {
+        try {
+            while (resultSet.next()) {
+                Azienda azienda = new Azienda();
+                setAziendaObject(azienda, resultSet);
+                aziende.add(azienda);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Errore nel creare Lista oggetti Azienda", e);
+        }
+    }
+
+
+    public void updateAzienda(Azienda azienda) throws DaoException {
+        /*
+        "UPDATE azienda SET RagioneSociale = ? ,IndirizzoSedeLegale = ? ,CFiscalePIva = ?,NomeLegaleRappresentante = ?," +
+        "CognomeLegaleRappresentante = ? ,NomeResponsabileConvenzione = ?,CognomeResponsabileConvenzione = ? ,TelefonoResponsabileConvenzione = ?," +
+        "EmailResponsabileConvenzione = ?, PathPDFConvenzione=?,DurataConvenzione=?,ForoControversia = ?,DataConvenzione=?, Attivo=?, ModuloConvenzione=?, Descrizione=?, Link = ? WHERE IDAzienda = ?
+         */
         try {
             this.init();
             this.updateAzienda.setString(1, azienda.getRagioneSociale());
@@ -107,10 +141,9 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.updateAzienda.setString(12, azienda.getForoControversia());
             this.updateAzienda.setDate(13, azienda.getDataConvenzione());
             this.updateAzienda.setBoolean(14, azienda.getAttivo());
-            this.updateAzienda.setString(15, azienda.getDescrizione());
-            this.updateAzienda.setString(16, azienda.getLink());
-            this.updateAzienda.setInt(17,azienda.getIDAzienda());
-
+            this.updateAzienda.setBoolean(15, azienda.getModuloConvenzione());
+            this.updateAzienda.setString(16, azienda.getDescrizione());
+            this.updateAzienda.setString(17, azienda.getLink());
             this.updateAzienda.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Errore esecuzione update", e);
@@ -118,7 +151,12 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
     public void setAzienda(Azienda azienda) throws DaoException {
-
+    /*
+    INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
+    "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
+    "EmailResponsabileConvenzione, PathPDFConvenzione,DurataConvenzione,ForoControversia,DataConvenzione, Attivo, ModuloConvenzione, Descrizione, " +
+    "Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+     */
         try {
             this.init();
             this.insertAzienda.setString(1, azienda.getRagioneSociale());
@@ -135,8 +173,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.insertAzienda.setString(12, azienda.getForoControversia());
             this.insertAzienda.setDate(13, azienda.getDataConvenzione());
             this.insertAzienda.setBoolean(14, azienda.getAttivo());
-            this.insertAzienda.setString(15, azienda.getDescrizione());
-            this.insertAzienda.setString(16, azienda.getLink());
+            this.insertAzienda.setBoolean(15, azienda.getModuloConvenzione());
+            this.insertAzienda.setString(16, azienda.getDescrizione());
+            this.insertAzienda.setString(17, azienda.getLink());
+            this.insertAzienda.setInt(18,azienda.getUser());
             this.insertAzienda.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Errore esecuzione update", e);
@@ -144,9 +184,12 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
 
-
     public void setRegisterazienda(Azienda azienda, User user) throws DaoException {
-
+        /*
+        INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
+        "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
+        "EmailResponsabileConvenzione,ForoControversia, Descrizione, Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+         */
         try {
             this.init();
             this.regAzienda.setString(1, azienda.getRagioneSociale());
@@ -169,41 +212,18 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
 
-
     public Azienda getAziendaByRS(String RS) throws DaoException {
-
-
         Azienda azienda = new Azienda();
-
         try {
             this.init();
             this.selectAziendaByRS.setString(1, RS);
             ResultSet resultSet = this.selectAziendaByRS.executeQuery();
-
-            if (resultSet.next())
-            {
-                azienda.setIDAzienda(resultSet.getInt("IDAzienda"));
-                azienda.setRagioneSociale(resultSet.getString("RagioneSociale"));
-                azienda.setIndirizzoSedeLegale(resultSet.getString("IndirizzoSedeLegale"));
-                azienda.setCFiscalePIva(resultSet.getString("CFiscalepiva"));
-                azienda.setNomeLegaleRappresentante(resultSet.getString("NomeLegaleRappresentante"));
-                azienda.setCognomeLegaleRappresentante(resultSet.getString("CognomeLegaleRappresentante"));
-                azienda.setNomeResponsabileConvenzione(resultSet.getString("NomeResponsabileConvenzione"));
-                azienda.setCognomeResponsabileConvenzione(resultSet.getString("CognomeResponsabileConvenzione"));
-                azienda.setTelefonoResponsabileConvenzione(resultSet.getString("TelefonoResponsabileConvenzione"));
-                azienda.setEmailResponsabileConvenzione(resultSet.getString("EmailResponsabileConvenzione"));
-                azienda.setPathPDFConvenzione(resultSet.getString("PathPDFConvenzione"));
-                azienda.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
-                azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
-                azienda.setAttivo(resultSet.getBoolean("Attivo"));
-                azienda.setForoControversia(resultSet.getString("ForoControversia"));
-
-            }else{
-                throw new DaoException("Query con risultato vuoto");
+            if (resultSet.next()) {
+                setAziendaObject(azienda, resultSet);
+            } else {
+                throw new DaoException("Query selectAziendaByRS con risultato vuoto");
             }
             return azienda;
-
-
         } catch (SQLException e) {
             throw new DaoException("Errore ", e);
         }
@@ -213,46 +233,15 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
 
 
     public List<Azienda> getAllAzienda() throws DaoException {
-        List<Azienda> aziende = new ArrayList<Azienda>();
-
-
+        List<Azienda> aziende = new ArrayList<>();
         try {
             this.init();
-
             ResultSet resultSet = this.selectAllAzienda.executeQuery();
-
-            while (resultSet.next()) {
-                Azienda azienda = new Azienda();
-                azienda.setIDAzienda(resultSet.getInt("IDAzienda"));
-                azienda.setRagioneSociale(resultSet.getString("RagioneSociale"));
-                azienda.setIndirizzoSedeLegale(resultSet.getString("IndirizzoSedeLegale"));
-                azienda.setCFiscalePIva(resultSet.getString("CFiscalepiva"));
-                azienda.setNomeLegaleRappresentante(resultSet.getString("NomeLegaleRappresentante"));
-                azienda.setCognomeLegaleRappresentante(resultSet.getString("CognomeLegaleRappresentante"));
-                azienda.setNomeResponsabileConvenzione(resultSet.getString("NomeResponsabileConvenzione"));
-                azienda.setCognomeResponsabileConvenzione(resultSet.getString("CognomeResponsabileConvenzione"));
-                azienda.setTelefonoResponsabileConvenzione(resultSet.getString("TelefonoResponsabileConvenzione"));
-                azienda.setEmailResponsabileConvenzione(resultSet.getString("EmailResponsabileConvenzione"));
-                azienda.setPathPDFConvenzione(resultSet.getString("PathPDFConvenzione"));
-                azienda.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
-                azienda.setForoControversia(resultSet.getString("ForoControversia"));
-                azienda.setAttivo(resultSet.getBoolean("Attivo"));
-                azienda.setDescrizione(resultSet.getString("Descrizione"));
-                azienda.setLink(resultSet.getString("Link"));
-                azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
-                azienda.setUser(resultSet.getInt("User"));
-                azienda.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
-                aziende.add(azienda);
-
-            }
+            setListAzienda(aziende, resultSet);
             return aziende;
-
-
         } catch (SQLException e) {
             throw new DaoException("Errore query", e);
         }
-
-
     }
 
     public List<Azienda> getAllConvenzione() throws DaoException {
@@ -260,27 +249,8 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         try {
             this.init();
             ResultSet resultSet = this.selectAllConvenzione.executeQuery();
-            while (resultSet.next()) {
-                Azienda conven = new Azienda();
-                conven.setIDAzienda(resultSet.getInt("IDAzienda"));
-                conven.setRagioneSociale(resultSet.getString("RagioneSociale"));
-                conven.setNomeResponsabileConvenzione(resultSet.getString("NomeResponsabileConvenzione"));
-                conven.setCognomeResponsabileConvenzione(resultSet.getString("CognomeResponsabileConvenzione"));
-                conven.setTelefonoResponsabileConvenzione(resultSet.getString("TelefonoResponsabileConvenzione"));
-                conven.setEmailResponsabileConvenzione(resultSet.getString("EmailResponsabileConvenzione"));
-                conven.setPathPDFConvenzione(resultSet.getString("PathPDFConvenzione"));
-                conven.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
-                conven.setForoControversia(resultSet.getString("ForoControversia"));
-                conven.setDataConvenzione(resultSet.getDate("DataConvenzione"));
-                conven.setDescrizione(resultSet.getString("Descrizione"));
-                conven.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
-
-                convenzioni.add(conven);
-
-            }
+            setListAzienda(convenzioni, resultSet);
             return convenzioni;
-
-
         } catch (SQLException e) {
             throw new DaoException("Errore query", e);
         }
@@ -291,14 +261,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         try {
             this.init();
             ResultSet resultSet = this.selectLastFiveConvenzioni.executeQuery();
-            while (resultSet.next()) {
-                Azienda lastfivecoAzienda = new Azienda();
-                lastfivecoAzienda.setIDAzienda(resultSet.getInt("IDAzienda"));
-                lastfivecoAzienda.setRagioneSociale(resultSet.getString("RagioneSociale"));
-                lastfivecoAzienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
-                lastfivecoAzienda.setDescrizione(resultSet.getString("Descrizione"));
-                lastfiveconvenzioni.add(lastfivecoAzienda);
-            }
+            setListAzienda(lastfiveconvenzioni, resultSet);
             return lastfiveconvenzioni;
         } catch (SQLException e) {
             throw new DaoException("Errore query", e);
@@ -312,30 +275,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.selectAziendaByID.setInt(1, ID);
             ResultSet resultSet = selectAziendaByID.executeQuery();
             if (resultSet.next()) {
-                azienda.setIDAzienda(resultSet.getInt("IDAzienda"));
-                azienda.setRagioneSociale(resultSet.getString("RagioneSociale"));
-                azienda.setIndirizzoSedeLegale(resultSet.getString("IndirizzoSedeLegale"));
-                azienda.setCFiscalePIva(resultSet.getString("CFiscalepiva"));
-                azienda.setNomeLegaleRappresentante(resultSet.getString("NomeLegaleRappresentante"));
-                azienda.setCognomeLegaleRappresentante(resultSet.getString("CognomeLegaleRappresentante"));
-                azienda.setNomeResponsabileConvenzione(resultSet.getString("NomeResponsabileConvenzione"));
-                azienda.setCognomeResponsabileConvenzione(resultSet.getString("CognomeResponsabileConvenzione"));
-                azienda.setTelefonoResponsabileConvenzione(resultSet.getString("TelefonoResponsabileConvenzione"));
-                azienda.setEmailResponsabileConvenzione(resultSet.getString("EmailResponsabileConvenzione"));
-                azienda.setPathPDFConvenzione(resultSet.getString("PathPDFConvenzione"));
-                azienda.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
-                azienda.setForoControversia(resultSet.getString("ForoControversia"));
-                azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
-                azienda.setAttivo(resultSet.getBoolean("Attivo"));
-                azienda.setDescrizione(resultSet.getString("Descrizione"));
-                azienda.setLink(resultSet.getString("Link"));
-                azienda.setUser(resultSet.getInt("User"));
-                azienda.setCreateDate(resultSet.getTimestamp("CreateDate"));
-                azienda.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
-
-            }else{
-            throw new DaoException("Query con risultato vuoto");
-        }
+                setAziendaObject(azienda, resultSet);
+            } else {
+                throw new DaoException("Query selectAziendaByID con risultato vuoto");
+            }
             return azienda;
         } catch (SQLException e) {
             throw new DaoException("Errore query azienda", e);
@@ -350,29 +293,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.selectAziendaByIDuser.setInt(1, ID);
             ResultSet resultSet = selectAziendaByIDuser.executeQuery();
             if (resultSet.next()) {
-                azienda.setIDAzienda(resultSet.getInt("IDAzienda"));
-                azienda.setRagioneSociale(resultSet.getString("RagioneSociale"));
-                azienda.setIndirizzoSedeLegale(resultSet.getString("IndirizzoSedeLegale"));
-                azienda.setCFiscalePIva(resultSet.getString("CFiscalepiva"));
-                azienda.setNomeLegaleRappresentante(resultSet.getString("NomeLegaleRappresentante"));
-                azienda.setCognomeLegaleRappresentante(resultSet.getString("CognomeLegaleRappresentante"));
-                azienda.setNomeResponsabileConvenzione(resultSet.getString("NomeResponsabileConvenzione"));
-                azienda.setCognomeResponsabileConvenzione(resultSet.getString("CognomeResponsabileConvenzione"));
-                azienda.setTelefonoResponsabileConvenzione(resultSet.getString("TelefonoResponsabileConvenzione"));
-                azienda.setEmailResponsabileConvenzione(resultSet.getString("EmailResponsabileConvenzione"));
-                azienda.setPathPDFConvenzione(resultSet.getString("PathPDFConvenzione"));
-                azienda.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
-                azienda.setForoControversia(resultSet.getString("ForoControversia"));
-                azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
-                azienda.setAttivo(resultSet.getBoolean("Attivo"));
-                azienda.setDescrizione(resultSet.getString("Descrizione"));
-                azienda.setLink(resultSet.getString("Link"));
-                azienda.setUser(resultSet.getInt("User"));
-                azienda.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
-
-            }else{
-            throw new DaoException("Query con risultato vuoto");
-        }
+                setAziendaObject(azienda, resultSet);
+            } else {
+                throw new DaoException("Query selectAziendaByIDuser con risultato vuoto");
+            }
             return azienda;
         } catch (SQLException e) {
             throw new DaoException("Errore query azienda", e);
@@ -380,109 +304,54 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
 
-    public void destroy() throws DaoException {
-
-        try {
-
-            this.selectAziendaByRS.close();
-            this.insertAzienda.close();
-            this.selectAziendaByID.close();
-            this.selectAllAzienda.close();
-            this.selectLastFiveConvenzioni.close();
-            this.regAzienda.close();
-            this.selectAllPendentAzieda.close();
-            this.ifaziendamakemodulo.close();
-            this.updateAzienda.close();
-            this.makemodulo.close();
-
-
-            super.destroy();
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-
-            throw new DaoException("Error destroy in azienda", ex);
-
-
-        }
-
-    }
     public List<Azienda> getAllAziendaPendenti() throws DaoException {
-        List<Azienda> aziende = new ArrayList<Azienda>();
-
-
+        List<Azienda> aziende = new ArrayList<>();
         try {
             this.init();
-
             ResultSet resultSet = this.selectAllPendentAzieda.executeQuery();
-
             while (resultSet.next()) {
                 Azienda azienda = new Azienda();
-
-                azienda.setIDAzienda(resultSet.getInt("IDAzienda"));
-                azienda.setRagioneSociale(resultSet.getString("RagioneSociale"));
-                azienda.setIndirizzoSedeLegale(resultSet.getString("IndirizzoSedeLegale"));
-                azienda.setCFiscalePIva(resultSet.getString("CFiscalepiva"));
-                azienda.setNomeLegaleRappresentante(resultSet.getString("NomeLegaleRappresentante"));
-                azienda.setCognomeLegaleRappresentante(resultSet.getString("CognomeLegaleRappresentante"));
-                azienda.setNomeResponsabileConvenzione(resultSet.getString("NomeResponsabileConvenzione"));
-                azienda.setCognomeResponsabileConvenzione(resultSet.getString("CognomeResponsabileConvenzione"));
-                azienda.setTelefonoResponsabileConvenzione(resultSet.getString("TelefonoResponsabileConvenzione"));
-                azienda.setEmailResponsabileConvenzione(resultSet.getString("EmailResponsabileConvenzione"));
-                azienda.setPathPDFConvenzione(resultSet.getString("PathPDFConvenzione"));
-                azienda.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
-                azienda.setForoControversia(resultSet.getString("ForoControversia"));
-                azienda.setAttivo(resultSet.getBoolean("Attivo"));
-                azienda.setDescrizione(resultSet.getString("Descrizione"));
-                azienda.setLink(resultSet.getString("Link"));
-                azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
-                azienda.setUser(resultSet.getInt("User"));
-                azienda.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
-
+                setAziendaObject(azienda, resultSet);
                 aziende.add(azienda);
-
             }
             return aziende;
-
-
         } catch (SQLException e) {
             throw new DaoException("Errore query", e);
         }
-
-
     }
+
+
     public boolean ifAziendaMakeModulo(Azienda azienda) throws DaoException {
-
-
         try {
             this.init();
-            this.ifaziendamakemodulo.setInt(1, azienda.getIDAzienda());
-            ResultSet resultSet = this.ifaziendamakemodulo.executeQuery();
-
-            if(resultSet.next()) {
-
+            this.selectAziendaByID.setInt(1, azienda.getIDAzienda());
+            ResultSet resultSet = this.selectAziendaByID.executeQuery();
+            if (resultSet.next()) {
                 return resultSet.getBoolean("ModuloConvenzione");
-            }else
-                {
-                    return false;
-
+            } else {
+                return false;
             }
-
-
-
         } catch (SQLException e) {
-            throw new DaoException("Errore query",e);
+            throw new DaoException("Errore query", e);
         }
     }
-    public void setMakemoduloConv(Azienda azienda)throws DaoException
-    {
-        try{
-            this.init();
-            this.makemodulo.setInt(1,azienda.getIDAzienda());
-            this.makemodulo.executeUpdate();
-        }catch (SQLException e)
-        {
-            throw new DaoException("Errore query",e);
+
+    public void destroy() throws DaoException {
+        try {
+            this.selectAziendaByRS.close();
+            this.insertAzienda.close();
+            this.selectAllAzienda.close();
+            this.selectAziendaByID.close();
+            this.selectAllConvenzione.close();
+            this.selectLastFiveConvenzioni.close();
+            this.selectAziendaByIDuser.close();
+            this.regAzienda.close();
+            this.updateAzienda.close();
+            this.selectAllPendentAzieda.close();
+            super.destroy();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new DaoException("Error destroy in azienda", ex);
         }
     }
 
