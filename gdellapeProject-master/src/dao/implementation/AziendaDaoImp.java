@@ -223,12 +223,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             } else {
                 throw new DaoException("Query selectAziendaByRS con risultato vuoto");
             }
-            return azienda;
         } catch (SQLException e) {
             throw new DaoException("Errore ", e);
         }
-
-
+        return azienda;
     }
 
 
@@ -238,10 +236,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.init();
             ResultSet resultSet = this.selectAllAzienda.executeQuery();
             setListAzienda(aziende, resultSet);
-            return aziende;
         } catch (SQLException e) {
             throw new DaoException("Errore query", e);
         }
+        return aziende;
     }
 
     public List<Azienda> getAllConvenzione() throws DaoException {
@@ -250,10 +248,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.init();
             ResultSet resultSet = this.selectAllConvenzione.executeQuery();
             setListAzienda(convenzioni, resultSet);
-            return convenzioni;
         } catch (SQLException e) {
             throw new DaoException("Errore query", e);
         }
+        return convenzioni;
     }
 
     public List<Azienda> getLastFiveConvenzioni() throws DaoException {
@@ -262,10 +260,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.init();
             ResultSet resultSet = this.selectLastFiveConvenzioni.executeQuery();
             setListAzienda(lastfiveconvenzioni, resultSet);
-            return lastfiveconvenzioni;
         } catch (SQLException e) {
             throw new DaoException("Errore query", e);
         }
+        return lastfiveconvenzioni;
     }
 
     public Azienda getAziendaByID(int ID) throws DaoException {
@@ -279,10 +277,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             } else {
                 throw new DaoException("Query selectAziendaByID con risultato vuoto");
             }
-            return azienda;
         } catch (SQLException e) {
             throw new DaoException("Errore query azienda", e);
         }
+        return azienda;
     }
 
 
@@ -297,10 +295,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             } else {
                 throw new DaoException("Query selectAziendaByIDuser con risultato vuoto");
             }
-            return azienda;
         } catch (SQLException e) {
             throw new DaoException("Errore query azienda", e);
         }
+        return azienda;
     }
 
 
@@ -314,10 +312,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                 setAziendaObject(azienda, resultSet);
                 aziende.add(azienda);
             }
-            return aziende;
         } catch (SQLException e) {
             throw new DaoException("Errore query", e);
         }
+        return aziende;
     }
 
 
