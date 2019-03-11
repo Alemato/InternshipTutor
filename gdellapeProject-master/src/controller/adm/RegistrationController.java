@@ -2,7 +2,7 @@ package controller.adm;
 
 
 import controller.sessionController.SingSessionContoller;
-import controller.utility.utility;
+import controller.utility.Utility;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.TirocinanteDaoImp;
@@ -17,10 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
 import java.util.HashMap;
 
 public class RegistrationController extends HttpServlet  {
@@ -271,7 +269,7 @@ public class RegistrationController extends HttpServlet  {
         String mail = request.getParameter("Email");
         String Password = request.getParameter("Password");
         String CPassword = request.getParameter("ConfermaPassword");
-        if(utility.isEmail(mail)&& Password.equals(CPassword)){
+        if(Utility.isEmail(mail)&& Password.equals(CPassword)){
 
 
         }else{ TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
