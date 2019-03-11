@@ -38,19 +38,12 @@ public class HomeController extends baseController {
 
     }
 
-    protected void LastFiveOfferte(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void LastFiveOfferte(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             OffertaTirocinioDaoImp offerta = new OffertaTirocinioDaoImp();
             List<OffertaTirocinio> LastFiveOfferta = offerta.getLastFiveOfferte();
             offerta.destroy();
             datamodel.put("LastFiveOfferta", LastFiveOfferta);
-            TutoreUniversitarioDaoImp tutore = new TutoreUniversitarioDaoImp();
-            List<TutoreUniversitario> LastFiveTutore = new ArrayList<TutoreUniversitario>();
-            for (OffertaTirocinio element : LastFiveOfferta) {
-                LastFiveTutore.add(tutore.getTutoreUniByID(element.getTutoreUniversitario()));
-            }
-            tutore.destroy();
-            datamodel.put("LastFiveTutore",LastFiveTutore);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,7 +51,7 @@ public class HomeController extends baseController {
         }
     }
 
-    protected void LastFiveConvenz(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void LastFiveConvenz(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             AziendaDaoImp azienda = new AziendaDaoImp();
             List<Azienda> LastFiveConvenzioni = azienda.getLastFiveConvenzioni();
