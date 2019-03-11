@@ -108,7 +108,7 @@
                                 </td>
                                 <td>
 
-                                        <a type="button" href="/modifica-tirociante?ID=${tirocinante.IDTirocinante}" class="btn btn-secondary"><i
+                                        <a type="button" href="/modifica-tirociante?IDTirocinante=${tirocinante.IDTirocinante}" class="btn btn-secondary"><i
                                                     class="fa fa-pencil-square-o"></i>
                                             Modifica
                                         </a>
@@ -224,33 +224,66 @@
             </section>
             <h2><i class="fa fa-graduation-cap"></i> Utenza di Tipo Tutori Universitari</h2>
             <h3 class="mb-10">Crea Utente Turore Universitario</h3>
-            <form id="form_crea_tutore_uni" method="post" action="print.php" class="sky-form validate"
+            <form id="form_crea_tutore_uni" method="post" action="/create-tutore" class="sky-form validate"
                   novalidate="novalidate">
+                <#if ErroreNomeTutore??>
+                    <div class="alert alert-warning mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${ErroreNomeTutore}
+                    </div>
+                </#if>
                 <label class="input">
                     <p><em>*</em> Nome</p>
                     <i class="ico-append giu fa fa-lock"></i>
-                    <input type="text" placeholder="Nome" name="Nome_tutore" required>
+                    <input type="text" <#if ErroreNomeTutore??> class="error" </#if> placeholder="Nome" name="Nome_tutore" <#if ValueOfNome_tutore??> value="${ValueOfNome_tutore}" </#if> required>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri</b>
                 </label>
-
+                <#if ErroreCognomeTutore??>
+                    <div class="alert alert-warning mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${ErroreCognomeTutore}
+                    </div>
+                </#if>
                 <label class="input mb-20">
                     <p><em>*</em> Cognome</p>
                     <i class="ico-append giu fa fa-lock"></i>
-                    <input type="text" placeholder="Cognome" name="Cognome_tutore" required>
+                    <input type="text" <#if ErroreCognomeTutore??> class="error" </#if> placeholder="Cognome" name="Cognome_tutore" <#if ValueOfCognome_tutore??> value="${ValueOfCognome_tutore}" </#if> required>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri</b>
                 </label>
-
+                <#if ErroreTelefonoTutore??>
+                    <div class="alert alert-warning mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${ErroreTelefonoTutore}
+                    </div>
+                </#if>
                 <label class="input mb-20">
                     <p><em>*</em> Numero di Telefono</p>
                     <i class="ico-append giu fa fa-lock"></i>
-                    <input type="tel" placeholder="Numero di Telefono" name="Numero_telefono_tutore" required>
+                    <input type="tel"  <#if ErroreTelefonoTutore??> class="error" </#if> placeholder="Numero di Telefono" name="Numero_telefono_tutore"  <#if ValueOfNumero_telefono_tutore??> value="${ValueOfNumero_telefono_tutore}" </#if> required>
                     <b class="tooltip tooltip-bottom-right">Solo numeri</b>
                 </label>
-
+                <#if ErroreEmailTutore??>
+                    <div class="alert alert-warning mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${ErroreEmailTutore}
+                    </div>
+                </#if>
                 <label class="input">
                     <p><em>*</em> Indirizzo Email</p>
                     <i class="ico-append giu fa fa-envelope"></i>
-                    <input type="email" placeholder="Indirizzo Email" name="Email_tutore" required>
+                    <input type="email" <#if ErroreEmailTutore??> class="error" </#if> placeholder="Indirizzo Email" name="Email_tutore" <#if ValueOfEmail_tutore??> value="${ValueOfEmail_tutore}" </#if> required>
                     <b class="tooltip tooltip-bottom-right">Necessario per essere contattato</b>
                 </label>
 
@@ -305,7 +338,7 @@
                             <td>
                                 <form action="/modifica-tutore" method="get">
 
-                                <input type="hidden" name="ID" value="${tutore.IDTutoreUni}">
+                                <input type="hidden" name="IDTutoreUni" value="${tutore.IDTutoreUni}">
                                     <button type="submit" class="btn btn-secondary"><i
                                                 class="fa fa-pencil-square-o"></i>
                                         Modifica
@@ -343,7 +376,7 @@
                 <label class="input">
                     <p><em>*</em> Indirizzo Email</p>
                     <i class="ico-append giu fa fa-envelope"></i>
-                    <input type="text" placeholder="Indirizzo Email"  <#if ErroreEmail??> class="error" </#if> name="Email" <#if ValueOfEmail??>value="${ValueOfEmail}"</#if> required>
+                    <input type="text"  <#if ErroreEmail??> class="error" </#if> placeholder="Indirizzo Email" name="Email" <#if ValueOfEmail??>value="${ValueOfEmail}"</#if> required>
                     <b class="tooltip tooltip-bottom-right">Necessario per verificare il tuo account</b>
                 </label>
 
@@ -360,7 +393,7 @@
                 <label class="input">
                     <p><em>*</em> Password</p>
                     <i class="ico-append giu fa fa-lock"></i>
-                    <input type="password" placeholder="Password"  <#if ErrorePassword??> class="error" </#if> name="Password" <#if ValueOfPassword??>value="${ValueOfPassword}" </#if> required>
+                    <input type="password" <#if ErrorePassword??> class="error" </#if> placeholder="Password"  name="Password" <#if ValueOfPassword??>value="${ValueOfPassword}" </#if> required>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                         al tuo account</b>
                 </label>
@@ -377,7 +410,7 @@
 
                     <p><em>*</em> Password</p>
                     <i class="ico-append giu fa fa-lock"></i>
-                    <input type="password" placeholder="Conferma password"  <#if ErrorePassword??> class="error" </#if> name="ConfermaPassword" <#if ValueOfConfermaPassword??> value="${ValueOfConfermaPassword}" </#if> required>
+                    <input type="password" <#if ErrorePassword??> class="error" </#if> placeholder="Conferma password"   name="ConfermaPassword" <#if ValueOfConfermaPassword??> value="${ValueOfConfermaPassword}" </#if> required>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                         al tuo account</b>
                 </label>
@@ -410,7 +443,7 @@
                 <label class="input">
                     <p><em>*</em>Cognome</p>
                     <i class="ico-append giu fa fa-envelope"></i>
-                    <input type="text" <#if ValueOfCognome??>class="error"</#if>placeholder="Cognome" name="Cognome" <#if ValueOfCognome??> value="${ValueOfCognome}"</#if> required>
+                    <input type="text" <#if ValueOfCognome??>class="error"</#if> placeholder="Cognome" name="Cognome" <#if ValueOfCognome??> value="${ValueOfCognome}"</#if> required>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                         al tuo account</b>
                 </label>

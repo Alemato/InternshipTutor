@@ -187,59 +187,27 @@
                                     </a>
                                 </td>
                             </tr>
+
+                            <#list Richieste as tirocinio,dati>
                             <tr>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>Aveja</td>
-                                <td>via marco polo 1, l&apos;aquila</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>12345678910</td>
-                                <td>Mario</td>
-                                <td>Rossi</td>
-                                <td>12345678910</td>
-                                <td>01/10/2018</td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        </button>
-                                    </a>
+                                <td>${dati[0]}</td>
+                                <td>${dati[1]}</td>
+                                <td>${dati[2]}</td>
+                                <td>${dati[3]}</td>
+                                <td>${dati[4]}</td>
+                                <td>${dati[5]}</td>
+                                <td>${dati[6]}</td>
+                                <td>${dati[7]}</td>
+                                <td>${dati[8]}</td>
+                                <td>${dati[9]}</td>
+                                <td>${dati[10]}</td>
+                                <td>${dati[11]}</td>
+                                <td>${tirocinio.createDate?date}</td>
+                                <td>
+                                    <a type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</a>
                                 </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
-                                                    class="fa fa-file-pdf-o"></i>Visualizza PDF
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <input type="file" name="file-2">
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>Aveja</td>
-                                <td>via marco polo 1, l&apos;aquila</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>12345678910</td>
-                                <td>Mario</td>
-                                <td>Rossi</td>
-                                <td>12345678910</td>
-                                <td>01/10/2018</td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-secondary" disabled><i
-                                                    class="fa fa-file-pdf-o"></i>PDF Non Disponibile
-                                        </button>
+                                <td>
+                                        <button type="button" class="btn btn-secondary" <#if pdfdisabled> <i class="fa fa-file-pdf-o"></i>PDF Non Disponibile</button> </#if>
                                     </a>
                                 </td>
                                 <td><a href="print.php">
@@ -247,6 +215,7 @@
                                     </a>
                                 </td>
                             </tr>
+                            </#list>
                             </tbody>
                         </table>
                         <footer class="text-center text-sm-right mt-25 ">
@@ -291,7 +260,7 @@
                             <tr>
                                 <th>Nome Ente/Azienda</th>
                                 <th>Sede Legale</th>
-                                <th>Codice Fiscale Tirocinante</th>
+                                <th>Codice Fiscale/Partita Iva</th>
                                 <th>Nome Tutore Aziendale</th>
                                 <th>Cognome Tutore Aziendale</th>
                                 <th>Data Richiesta</th>
@@ -324,65 +293,30 @@
                                     </a>
                                 </td>
                             </tr>
+                           <#list Aziende as azienda >
                             <tr>
-                                <td>Aveja</td>
-                                <td>via marco polo 1, l&apos;aquila</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>01/10/2018</td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        </button>
-                                    </a>
+                                <td>${azienda.nome}</td>
+                                <td>${azienda.indirizzoSedeLegale}</td>
+                                <td>${azienda.cFiscalePIva}</td>
+                                <td>${azienda.nomeResponsabileConvenzione}</td>
+                                <td>${azienda.cognomeResponsabileConvenzione}</td>
+                                <td>${azienda.dataConvenzione}</td>
+                                <td>
+                                    <a type="button" href="/#" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</a>
                                 </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
-                                                    class="fa fa-file-pdf-o"></i>Visualizza PDF
-                                        </button>
-                                    </a>
+                                <td>
+                                    <button type="button" class="btn btn-secondary"><iclass="fa fa-file-pdf-o"></i>Visualizza PDF</button>
                                 </td>
-                                <td><a href="print.php">
+                                <td>
+                                    <form action="/#" type="post">
                                         <input type="file" name="file-1">
-                                    </a>
+                                        <button type="submit" class="btn btn-file"><iclass="fa fa-file-pdf-o"></i>Modifica PDF</button>
+                                    </form>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Aveja</td>
-                                <td>via marco polo 1, l&apos;aquila</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>01/10/2018</td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-secondary" disabled><i
-                                                    class="fa fa-file-pdf-o"></i>PDF Non Disponibile
-                                        </button>
-                                    </a>
-                                </td>
-                                </td>
-                                <td><a href="print.php">
-                                        <input type="file" name="file-1">
-                                    </a>
-                                </td>
-                            </tr>
+                           </#list>
                             </tbody>
                         </table>
-                        <footer class="text-center text-sm-right mt-25 ">
-                            <button type="submit" form="pdf_convenzioni"
-                                    class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
-                                        class="fa fa-check"></i> Aggiorna
-                            </button>
-                            <button type="reset" form="pdf_convenzioni"
-                                    class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
-                                        class="fa fa-times"></i> Annulla
-                            </button>
-                        </footer>
                     </form>
                 </div>
             </div>
