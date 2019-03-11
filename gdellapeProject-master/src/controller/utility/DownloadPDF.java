@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DownloadPDF extends baseController {
 
-
     /**
      * @param request  richiesta
      * @param response risposta

@@ -1,7 +1,6 @@
 package controller.adm.Azienda;
 
 import controller.sessionController.SingSessionContoller;
-import controller.utility.Validation;
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
 import dao.implementation.TirocinanteDaoImp;
@@ -57,39 +56,39 @@ public class GestioneModuliAzienda {
             daoOfferte.destroy();
         }
         catch (DaoException e ){
+            System.out.println("errore offerte");
             e.printStackTrace();
         }
-        //System.out.println(offertaTirocinios.toString());
         return offertaTirocinios;
     }
 
     private List<Tirocinio> ritornaTirocinii(List<OffertaTirocinio> offertaTirocinios){
-        TirocinioDaoImp daoTirocinio = new TirocinioDaoImp();
         List<Tirocinio> listaTirocini = new ArrayList<>();
         for(OffertaTirocinio offertaTirocinio : offertaTirocinios){
             try {
+                TirocinioDaoImp daoTirocinio = new TirocinioDaoImp();
                 listaTirocini.addAll(daoTirocinio.getTrByOfferta(offertaTirocinio));
                 daoTirocinio.destroy();
             } catch (DaoException e) {
+                System.out.println("errore tirocinii");
                 e.printStackTrace();
             }
         }
-        //System.out.println(listaTirocini.toString());
         return listaTirocini;
     }
 
     private List<Tirocinante> ritornaTirocinanti(List<Tirocinio> listaTirocini) {
-        TirocinanteDaoImp daoTirocinante = new TirocinanteDaoImp();
         List<Tirocinante> listaTirocinanti = new ArrayList<>();
         for (Tirocinio tirocinio: listaTirocini){
             try {
+                TirocinanteDaoImp daoTirocinante = new TirocinanteDaoImp();
                 listaTirocinanti.add(daoTirocinante.getTirocianteByID(tirocinio.getTirocinante()));
                 daoTirocinante.destroy();
             } catch (DaoException e) {
+                System.out.println("errore tirocinanti");
                 e.printStackTrace();
             }
         }
-        //System.out.println(listaTirocinanti.toString());
         return  listaTirocinanti;
     }
 

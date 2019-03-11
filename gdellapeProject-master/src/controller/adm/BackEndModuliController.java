@@ -14,7 +14,6 @@ public class BackEndModuliController extends baseController {
         int tipo= (int)request.getAttribute("tipo");
         if (tipo == 3){
             System.out.println("Devo entra dentro la pagina del azienda");
-            //TemplateController.process("moduli-aziendale.ftl", datamodel, response, getServletContext());
             GestioneModuliAzienda moduliaz = new GestioneModuliAzienda(datamodel, request, response, getServletContext());
             System.out.println("creato");
             moduliaz.get();

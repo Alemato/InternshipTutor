@@ -95,12 +95,9 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
     private void setListTirocinio(List<Tirocinio> tirocinios, ResultSet resultSet) throws DaoException {
         try {
             while (resultSet.next()) {
-                System.out.println("creo oggetto");
                 Tirocinio tirocinio = new Tirocinio();
                 setTirocinioObject(tirocinio, resultSet);
-                System.out.println(tirocinio);
                 tirocinios.add(tirocinio);
-                System.out.println("list: "+ tirocinios);
             }
         } catch (SQLException e) {
             throw new DaoException("Errore nel creare Lista oggetti Azienda", e);
