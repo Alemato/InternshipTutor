@@ -29,7 +29,7 @@ public class SchedaTirocinioController  extends baseController{
 
     }
 
-    protected void setpage (HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException {
+    private void setpage (HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException {
         try {
             Integer Idtrof = Integer.parseInt((String)request.getParameter("ID"));
             OffertaTirocinioDaoImp ofdao = new OffertaTirocinioDaoImp();
@@ -38,10 +38,6 @@ public class SchedaTirocinioController  extends baseController{
 
             ofdao.destroy();
 
-            TutoreUniversitarioDaoImp daotut = new TutoreUniversitarioDaoImp();
-            Integer Idoff = Oftr.getTutoreUniversitario();
-            TutoreUniversitario tutuni = daotut.getTutoreUniByID(Idoff);
-            daotut.destroy();
 
             datamodel.put("IDTirocinio",Oftr.getIDOffertaTirocinio());
             datamodel.put("LuogoEffettuazione", Oftr.getLuogoEffettuazione());
@@ -62,10 +58,6 @@ public class SchedaTirocinioController  extends baseController{
             datamodel.put("TelRespAz",Oftr.getTelefonoTutoreAzindale());
             datamodel.put("EmailRespAZ",Oftr.getEmailTutoreAziendale());
 
-            datamodel.put("NomeTutUni",tutuni.getNome());
-            datamodel.put("CognomeTutUni",tutuni.getCognome());
-            datamodel.put("TelefonoTutUni",tutuni.getTelefono());
-            datamodel.put("EmailTutUni",tutuni.getEmail());
 
 
 
@@ -80,7 +72,7 @@ public class SchedaTirocinioController  extends baseController{
 
 
     }
-    protected void ifisendRichiesta(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+    private void ifisendRichiesta(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
         try {
             SingSessionContoller session = SingSessionContoller.getInstance();
 
@@ -88,7 +80,7 @@ public class SchedaTirocinioController  extends baseController{
                 Tirocinante tr = session.getTirocinate(request,response);
 
             TirocinioDaoImp dao = new TirocinioDaoImp();
-            Boolean statusoldRC = dao.ifTirocinanteSendRichiesta(tr);
+            boolean statusoldRC = dao.ifTirocinanteSendRichiesta(tr);
             dao.destroy();
 
             if(statusoldRC) {
