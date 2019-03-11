@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class utility {
+public class Utility {
     public static Boolean isEmail(String mail) {
 
         String email = "vivek.mitra@gmail.com";
