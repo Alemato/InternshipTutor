@@ -144,6 +144,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.updateAzienda.setBoolean(15, azienda.getModuloConvenzione());
             this.updateAzienda.setString(16, azienda.getDescrizione());
             this.updateAzienda.setString(17, azienda.getLink());
+            this.updateAzienda.setInt(18, azienda.getIDAzienda());
             this.updateAzienda.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Errore esecuzione update", e);
