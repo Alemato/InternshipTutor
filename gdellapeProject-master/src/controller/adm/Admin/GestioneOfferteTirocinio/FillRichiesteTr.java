@@ -258,7 +258,7 @@ public class FillRichiesteTr
         try
         {
             AziendaDaoImp dao = new AziendaDaoImp();
-           //TODO fai la query per stato
+           List<Azienda> aziende = dao.getAllAzienda();
             dao.destroy();
             return aziende;
 
