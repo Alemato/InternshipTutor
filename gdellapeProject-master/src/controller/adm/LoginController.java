@@ -1,7 +1,6 @@
 package controller.adm;
 
 import controller.sessionController.SingSessionContoller;
-import controller.utility.utility;
 import dao.exception.DaoException;
 import dao.implementation.AdminDaoImp;
 import dao.implementation.AziendaDaoImp;
@@ -13,9 +12,7 @@ import model.Tirocinante;
 import model.User;
 import view.TemplateController;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
