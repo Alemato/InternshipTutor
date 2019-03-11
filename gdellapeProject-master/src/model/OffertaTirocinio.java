@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 public class OffertaTirocinio {
     private Integer IDOffertaTirocinio;
@@ -31,7 +32,6 @@ public class OffertaTirocinio {
     private String EmailTutoreAziendale;
     private String TelefonoTutoreAzindale;
     private Integer Azienda;
-    private Integer TutoreUniversitario;
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
@@ -60,7 +60,6 @@ public class OffertaTirocinio {
         EmailTutoreAziendale = null;
         TelefonoTutoreAzindale = null;
         Azienda = 0;
-        TutoreUniversitario = 0;
         CreateDate = null;
         UpdateDate = null;
     }
@@ -264,13 +263,6 @@ public class OffertaTirocinio {
         Azienda = azienda;
     }
 
-    public Integer getTutoreUniversitario() {
-        return TutoreUniversitario;
-    }
-
-    public void setTutoreUniversitario(Integer tutoreUniversitario) {
-        TutoreUniversitario = tutoreUniversitario;
-    }
 
     public Timestamp getCreateDate() {
         return CreateDate;
@@ -305,10 +297,46 @@ public class OffertaTirocinio {
                 ", EmailTutoreAziendale='" + EmailTutoreAziendale + '\'' +
                 ", TelefonoTutoreAzindale='" + TelefonoTutoreAzindale + '\'' +
                 ", Azienda=" + Azienda +
-                ", TutoreUniversitario=" + TutoreUniversitario +
                 ", CreateDate=" + CreateDate +
                 ", UpdateDate=" + UpdateDate +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OffertaTirocinio)) return false;
+        OffertaTirocinio that = (OffertaTirocinio) o;
+        return Objects.equals(getIDOffertaTirocinio(), that.getIDOffertaTirocinio()) &&
+                Objects.equals(getLuogoEffettuazione(), that.getLuogoEffettuazione()) &&
+                Objects.equals(getTitolo(), that.getTitolo()) &&
+                Objects.equals(getDescrizioneBreve(), that.getDescrizioneBreve()) &&
+                Objects.equals(getDescrizione(), that.getDescrizione()) &&
+                Objects.equals(getOrario(), that.getOrario()) &&
+                Objects.equals(getDurataOra(), that.getDurataOra()) &&
+                Objects.equals(getDurataMesi(), that.getDurataMesi()) &&
+                Objects.equals(getPeriodoInizio(), that.getPeriodoInizio()) &&
+                Objects.equals(getPeriodoFine(), that.getPeriodoFine()) &&
+                Objects.equals(getModalita(), that.getModalita()) &&
+                Objects.equals(getObbiettivi(), that.getObbiettivi()) &&
+                Objects.equals(getRimborsi(), that.getRimborsi()) &&
+                Objects.equals(getFacilitazioni(), that.getFacilitazioni()) &&
+                Objects.equals(getAziendaOspitante(), that.getAziendaOspitante()) &&
+                Objects.equals(getCodiceTirocinio(), that.getCodiceTirocinio()) &&
+                Objects.equals(getSettoreInserimento(), that.getSettoreInserimento()) &&
+                Objects.equals(getTempoAccessoLocaliAziendali(), that.getTempoAccessoLocaliAziendali()) &&
+                Objects.equals(getNomeTutoreAziendale(), that.getNomeTutoreAziendale()) &&
+                Objects.equals(getCognomeTutoreAziendale(), that.getCognomeTutoreAziendale()) &&
+                Objects.equals(getEmailTutoreAziendale(), that.getEmailTutoreAziendale()) &&
+                Objects.equals(getTelefonoTutoreAzindale(), that.getTelefonoTutoreAzindale()) &&
+                Objects.equals(getAzienda(), that.getAzienda()) &&
+                Objects.equals(getCreateDate(), that.getCreateDate()) &&
+                Objects.equals(getUpdateDate(), that.getUpdateDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIDOffertaTirocinio(), getLuogoEffettuazione(), getTitolo(), getDescrizioneBreve(), getDescrizione(), getOrario(), getDurataOra(), getDurataMesi(), getPeriodoInizio(), getPeriodoFine(), getModalita(), getObbiettivi(), getRimborsi(), getFacilitazioni(), getAziendaOspitante(), getCodiceTirocinio(), getSettoreInserimento(), getTempoAccessoLocaliAziendali(), getNomeTutoreAziendale(), getCognomeTutoreAziendale(), getEmailTutoreAziendale(), getTelefonoTutoreAzindale(), getAzienda(), getCreateDate(), getUpdateDate());
     }
 
 }

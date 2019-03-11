@@ -42,7 +42,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             this.insertOffertatr = connection.prepareStatement("INSERT INTO offertatirocinio(LuogoEffettuazione,Titolo,DescrizioneBreve,Descrizione,Orari," +
                     "DurataOre,DurataMesi,PeriodoInizio,PeriodoFine,Modalita,Obbiettivi,Rimborsi,Facilitazioni,AziendaOspitante,CodIdentTirocinio,SettoreInserimento,TempoAccessoLocaliAziendali,NomeTutoreAziendale," +
                     "CognomeTutoreAziendale,TelefonoTutoreAziendale,EmailTutoreAziendale," +
-                    "Azienda,TutoreUniversitario  ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "Azienda  ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
@@ -80,7 +80,6 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
                 oftr.setTelefonoTutoreAzindale(resultSet.getString("TelefonoTutoreAziendale"));
                 oftr.setEmailTutoreAziendale(resultSet.getString("EmailTutoreAziendale"));
                 oftr.setAzienda(resultSet.getInt("Azienda"));
-                oftr.setTutoreUniversitario(resultSet.getInt("TutoreUniversitario"));
                 oftr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
 
             }else{
@@ -125,7 +124,6 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
                 oftr.setTelefonoTutoreAzindale(resultSet.getString("TelefonoTutoreAziendale"));
                 oftr.setEmailTutoreAziendale(resultSet.getString("EmailTutoreAziendale"));
                 oftr.setAzienda(resultSet.getInt("Azienda"));
-                oftr.setTutoreUniversitario(resultSet.getInt("TutoreUniversitario"));
                 oftr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
 
                 Offerte.add(oftr);
@@ -168,7 +166,6 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
                 oftr.setTelefonoTutoreAzindale(resultSet.getString("TelefonoTutoreAziendale"));
                 oftr.setEmailTutoreAziendale(resultSet.getString("EmailTutoreAziendale"));
                 oftr.setAzienda(resultSet.getInt("Azienda"));
-                oftr.setTutoreUniversitario(resultSet.getInt("TutoreUniversitario"));
                 oftr.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
                 Offerte.add(oftr);
             }
@@ -210,7 +207,6 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
                 lastfiveOfferte.setTelefonoTutoreAzindale(resultSet.getString("TelefonoTutoreAziendale"));
                 lastfiveOfferte.setEmailTutoreAziendale(resultSet.getString("EmailTutoreAziendale"));
                 lastfiveOfferte.setAzienda(resultSet.getInt("Azienda"));
-                lastfiveOfferte.setTutoreUniversitario(resultSet.getInt("TutoreUniversitario"));
                 lastfiveOfferte.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
                 offerte.add(lastfiveOfferte);
             }
@@ -245,7 +241,6 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             insertOffertatr.setString(20, tr.getTelefonoTutoreAzindale());
             insertOffertatr.setString(21, tr.getEmailTutoreAziendale());
             insertOffertatr.setInt(22, tr.getAzienda());
-            insertOffertatr.setInt(23, tr.getTutoreUniversitario());
             insertOffertatr.executeUpdate();
 
         } catch (SQLException e) {
