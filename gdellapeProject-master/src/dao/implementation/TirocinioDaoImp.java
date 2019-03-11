@@ -55,6 +55,8 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
 
             this.selectAllTirocinioByStato=connection.prepareStatement("SELECT * FROM tirocinio WHERE Stato = ?");
 
+            this.selectOffertaTirByIDTirocinante = connection.prepareStatement("SELECT * FROM tirocinio WHERE Tirocinante = ?");
+
             this.updateTirocinio = connection.prepareStatement("UPDATE tirocinio SET DataConsegnaModulo = ?," +
                     " DurataOre = ?, CFU = ?, Stato = ?, PeriodoEffettivoIniziale = ?, PeriodoEffettivoFinale = ?," +
                     " RisultatoConseguito = ?, DescrizioneAttivitaSvolta = ?, PdfTirocinante = ?, PdfAzienda = ?," +
@@ -84,7 +86,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             tirocinio.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
             tirocinio.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
             tirocinio.setTirocinante(resultSet.getInt("Tirocinante"));
-            tirocinio.setTutoreUniveritario(resultSet.getInt("TutoreUniveritario"));
+            tirocinio.setTutoreUniversitario(resultSet.getInt("TutoreUniversitario"));
         } catch (SQLException e){
             throw new DaoException("Errore nel creare oggetto Tirocinio", e);
         }
@@ -93,9 +95,12 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
     private void setListTirocinio(List<Tirocinio> tirocinios, ResultSet resultSet) throws DaoException {
         try {
             while (resultSet.next()) {
+                System.out.println("creo oggetto");
                 Tirocinio tirocinio = new Tirocinio();
                 setTirocinioObject(tirocinio, resultSet);
+                System.out.println(tirocinio);
                 tirocinios.add(tirocinio);
+                System.out.println("list: "+ tirocinios);
             }
         } catch (SQLException e) {
             throw new DaoException("Errore nel creare Lista oggetti Azienda", e);
@@ -151,10 +156,13 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
     public List<Tirocinio> getTrByOfferta (OffertaTirocinio offertaTirocinio) throws DaoException{
         List<Tirocinio> listRT = new ArrayList<>();
         try {
+            System.out.println("query inizio");
             this.init();
             this.selectAllTrByOfferta.setInt(1,  offertaTirocinio.getIDOffertaTirocinio());
             ResultSet resultSet = selectAllTrByOfferta.executeQuery();
             setListTirocinio(listRT,resultSet);
+            System.out.println("query fine");
+            System.out.println(listRT);
         } catch (SQLException e){
             throw new DaoException("Errore query lista tr by offerta tr",e);
         }
@@ -207,7 +215,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             insertRichiestatr.setString(11,tr.getPdfSegreteria());
             insertRichiestatr.setInt(12, tr.getOffertaTirocinio());
             insertRichiestatr.setInt(13, tr.getTirocinante());
-            insertRichiestatr.setInt(14,tr.getTutoreUniveritario());
+            insertRichiestatr.setInt(14,tr.getTutoreUniversitario());
             insertRichiestatr.executeUpdate();
 
 
@@ -257,7 +265,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         this.updateTirocinio.setTimestamp(13, tirocinio.getUpdateDate());
         this.updateTirocinio.setInt(14, tirocinio.getOffertaTirocinio());
         this.updateTirocinio.setInt(15, tirocinio.getTirocinante());
-        this.updateTirocinio.setInt(16, tirocinio.getTutoreUniveritario());
+        this.updateTirocinio.setInt(16, tirocinio.getTutoreUniversitario());
         this.updateTirocinio.setInt(17, tirocinio.getIDTirocinio());
         this.updateTirocinio.executeUpdate();
     } catch (SQLException e){

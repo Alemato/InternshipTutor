@@ -21,7 +21,7 @@ public class Tirocinio {
     private Timestamp UpdateDate;
     private Integer OffertaTirocinio;
     private Integer Tirocinante;
-    private Integer TutoreUniveritario;
+    private Integer TutoreUniversitario;
 
     public Tirocinio() {
         this.IDTirocinio = 0;
@@ -40,7 +40,7 @@ public class Tirocinio {
         this.UpdateDate = null;
         this.OffertaTirocinio = 0;
         this.Tirocinante = 0;
-        this.TutoreUniveritario = 0;
+        this.TutoreUniversitario = 0;
     }
 
     // GET DATA
@@ -110,8 +110,8 @@ public class Tirocinio {
         return Tirocinante;
     }
 
-    public Integer getTutoreUniveritario() {
-        return TutoreUniveritario;
+    public Integer getTutoreUniversitario() {
+        return TutoreUniversitario;
     }
 
     // SET DATA
@@ -180,8 +180,8 @@ public class Tirocinio {
         Tirocinante = tirocinante;
     }
 
-    public void setTutoreUniveritario(Integer tutoreUniveritario) {
-        TutoreUniveritario = tutoreUniveritario;
+    public void setTutoreUniversitario(Integer tutoreUniveritario) {
+        TutoreUniversitario = tutoreUniveritario;
     }
 
     @Override
@@ -205,12 +205,12 @@ public class Tirocinio {
                 UpdateDate.equals(tirocinio.UpdateDate) &&
                 OffertaTirocinio.equals(tirocinio.OffertaTirocinio) &&
                 Tirocinante.equals(tirocinio.Tirocinante) &&
-                TutoreUniveritario.equals(tirocinio.TutoreUniveritario);
+                TutoreUniversitario.equals(tirocinio.TutoreUniversitario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(IDTirocinio, DataConsegnaModulo, DurataOre, CFU, Stato, PeriodoEffettivoIniziale, PeriodoEffettivoFinale, RisultatoConseguito, DescrizioneAttivitaSvolta, PdfTirocinante, PdfAzienda, PdfSegreteria, CreateDate, UpdateDate, OffertaTirocinio, Tirocinante, TutoreUniveritario);
+        return Objects.hash(IDTirocinio, DataConsegnaModulo, DurataOre, CFU, Stato, PeriodoEffettivoIniziale, PeriodoEffettivoFinale, RisultatoConseguito, DescrizioneAttivitaSvolta, PdfTirocinante, PdfAzienda, PdfSegreteria, CreateDate, UpdateDate, OffertaTirocinio, Tirocinante, TutoreUniversitario);
     }
 
     @Override
@@ -232,7 +232,7 @@ public class Tirocinio {
                 ", UpdateDate=" + UpdateDate +
                 ", OffertaTirocinio=" + OffertaTirocinio +
                 ", Tirocinante=" + Tirocinante +
-                ", TutoreUniveritario=" + TutoreUniveritario +
+                ", TutoreUniveritario=" + TutoreUniversitario +
                 '}';
     }
 
