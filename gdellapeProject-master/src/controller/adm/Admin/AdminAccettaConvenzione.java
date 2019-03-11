@@ -1,13 +1,11 @@
 package controller.adm.Admin;
 
-import controller.utility.utility;
+import controller.utility.Utility;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
 import model.Azienda;
 
 import java.io.*;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -71,7 +69,7 @@ public class AdminAccettaConvenzione extends BackEndAdminController{
 
         Part file=request.getPart("pdf");
         String path=request.getServletContext().getInitParameter("uploads.directory");
-       String name= utility.action_upload(file,path);
+       String name= Utility.action_upload(file,path);
        azienda.setAttivo(true);
        azienda.setPathPDFConvenzione(name);
 
