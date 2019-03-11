@@ -2,7 +2,9 @@ package controller.utility;
 
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
+import dao.implementation.TutoreUniversitarioDaoImp;
 import dao.implementation.UserDaoImp;
+import model.TutoreUniversitario;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -99,6 +101,19 @@ public class Validation {
         dao.destroy();
         return result;
 
+    }
+    public static boolean isStoreThisMailTutore(String email) throws DaoException
+    {
+        TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
+        List<TutoreUniversitario> tutori = dao.getAllTutUni();
+        List<String> listemail= new ArrayList<>();
+        dao.destroy();
+        for (TutoreUniversitario tutore:tutori
+             ) { listemail.add(tutore.getEmail());
+
+        }
+
+        return listemail.contains(email);
     }
 
 }
