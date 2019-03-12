@@ -207,7 +207,7 @@
                                     <a type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</a>
                                 </td>
                                 <td>
-                                        <button type="button" class="btn btn-secondary" <#if pdfdisabled> <i class="fa fa-file-pdf-o"></i>PDF Non Disponibile</button> </#if>
+                                        <button type="button" class="btn btn-secondary" <#if pdfdisabled??> <i class="fa fa-file-pdf-o"></i>PDF Non Disponibile</button> </#if>
                                     </a>
                                 </td>
                                 <td><a href="print.php">
@@ -295,9 +295,9 @@
                             </tr>
                            <#list Aziende as azienda >
                             <tr>
-                                <td>${azienda.nome}</td>
+                                <td>${azienda.ragioneSociale}</td>
                                 <td>${azienda.indirizzoSedeLegale}</td>
-                                <td>${azienda.cFiscalePIva}</td>
+                                <td>${azienda.CFiscalePIva}</td>
                                 <td>${azienda.nomeResponsabileConvenzione}</td>
                                 <td>${azienda.cognomeResponsabileConvenzione}</td>
                                 <td>${azienda.dataConvenzione}</td>
