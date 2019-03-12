@@ -258,6 +258,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             this.selectOffertatrByID.close();
             this.selectAllOfferteditr.close();
             this.insertOffertatr.close();
+            this.selectLastFiveOfferte.close();
 
 
             super.destroy();
