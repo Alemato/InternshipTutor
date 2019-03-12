@@ -57,8 +57,8 @@ public class UserDaoImp extends DaoDataMySQLImpl {
 
     public  User getUserByToken(String token) throws DaoException{
         User user= new User();
+        this.init();
         try {
-            this.init();
             this.selectUserByToken.setString(1,token);
             ResultSet resultSet = this.selectUserByToken.executeQuery();
             if (resultSet.next()) {
@@ -82,9 +82,9 @@ public class UserDaoImp extends DaoDataMySQLImpl {
 //    @Override
     public User getUserByMail(String mail) throws DaoException {
         User user = new User();
-
+        this.init();
         try {
-            this.init();
+
             this.selectUserByEmail.setString(1,mail);
             ResultSet resultSet = this.selectUserByEmail.executeQuery();
             if (resultSet.next()) {
@@ -107,9 +107,9 @@ public class UserDaoImp extends DaoDataMySQLImpl {
 
     public List<User> getAllUser() throws DaoException {
         List<User> users = new ArrayList<User>();
-
+        this.init();
         try {
-            this.init();
+
 
             ResultSet resultSet = this.selectAllUser.executeQuery();
             while(resultSet.next()) {
@@ -135,11 +135,10 @@ public class UserDaoImp extends DaoDataMySQLImpl {
 
     public User getUserByid(int id) throws DaoException {
         User user = new User();
+        this.init();
         try {
-            this.init();
             this.selectUserById.setInt(1,id);
             ResultSet resultSet = this.selectUserById.executeQuery();
-           //dobbiamo vedere se è null
             if (resultSet.next()) {
                 user.setIDUser(resultSet.getInt("IDuser"));
                 user.setEmail(resultSet.getString("Email"));
@@ -200,17 +199,21 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         }
     }
 
-    public boolean existIsMail(String mail) throws DaoException
+    public Boolean existIsMail(String mail) throws DaoException
     {
+        boolean risultato = false;
         try {
             this.init();
             this.existIsMail.setString(1,mail);
             ResultSet resultSet=this.existIsMail.executeQuery();
-            return (resultSet.next());
+            risultato = resultSet.next();
         }catch (SQLException e)
         {
             throw  new DaoException("Errore Query",e);
+
         }
+        return risultato;
+
     }
 
 
@@ -220,12 +223,13 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         try {
 
             this.selectUserByEmail.close();
-            this.insertUser.close();
             this.selectUserById.close();
+            this.insertUser.close();
+            this.selectAllUser.close();
             this.updateUser.close();
+            this.selectUserByToken.close();
+            this.setToken.close();
             this.existIsMail.close();
-
-
             super.destroy();
 
         } catch (SQLException ex) {

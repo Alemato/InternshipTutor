@@ -41,8 +41,8 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
 
     public TutoreUniversitario getTutoreUniByID(int ID) throws DaoException {
         TutoreUniversitario tutUni = new TutoreUniversitario();
+        this.init();
         try {
-            this.init();
             this.selectTutUniByID.setInt(1, ID);
             ResultSet resultSet = selectTutUniByID.executeQuery();
             if (resultSet.next()) {
@@ -54,17 +54,17 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
             }else{
             throw new DaoException("Query con risultato vuoto");
         }
-            return tutUni;
+
         } catch (SQLException e) {
             throw new DaoException("Errore query select id ", e);
         }
+        return tutUni;
 
     }
     public List<TutoreUniversitario> getAllTutUni() throws DaoException {
-
+        List<TutoreUniversitario> tutori = new ArrayList<>();
+        this.init();
         try {
-            List<TutoreUniversitario> tutori = new ArrayList<>();
-            this.init();
             ResultSet resultSet = selectAllTutUni.executeQuery();
             while (resultSet.next()) {
                 TutoreUniversitario tutore = new TutoreUniversitario();
@@ -76,10 +76,11 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
 
                 tutori.add(tutore);
             }
-            return tutori;
+
         } catch (SQLException e) {
             throw new DaoException("Errore query select ALL ", e);
         }
+        return tutori;
 
     }
     public TutoreUniversitario getTutoreByEmail(String email)throws DaoException
@@ -96,20 +97,21 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
                 tutUni.setTelefono(resultSet.getString("Telefono"));
                 tutUni.setEmail(resultSet.getString("Email"));
             }else{
-        throw new DaoException("Query con risultato vuoto");
-    }
-            return tutUni;
+                throw new DaoException("Query con risultato vuoto");
+            }
+
         } catch (SQLException e) {
             throw new DaoException("Errore query select email ", e);
         }
+        return tutUni;
 
 
     }
     public void UpdateTutoreUni(TutoreUniversitario tutore)throws DaoException
     {
+        this.init();
         try
         {
-            this.init();
             this.updateTutoreUni.setString(1,tutore.getNome());
             this.updateTutoreUni.setString(2,tutore.getCognome());
             this.updateTutoreUni.setString(3,tutore.getTelefono());
@@ -131,8 +133,6 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
             insertTutUni.setString(3, tutUni.getTelefono());
             insertTutUni.setString(4, tutUni.getEmail());
             insertTutUni.executeUpdate();
-
-
         } catch (SQLException e) {
             throw new DaoException("Errore inserimento tut uni ", e);
         }
@@ -142,13 +142,11 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
     public void destroy() throws DaoException {
 
         try {
-            super.destroy();
-
             this.insertTutUni.close();
             this.selectTutUniByID.close();
             this.selectAllTutUni.close();
             this.updateTutoreUni.close();
-
+            super.destroy();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
