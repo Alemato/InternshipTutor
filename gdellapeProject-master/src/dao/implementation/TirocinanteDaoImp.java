@@ -63,7 +63,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
             tirocinante.setTelefono(resultSet.getString("Telefono"));
             tirocinante.setCorsoDiLaurea(resultSet.getString("CorsoDiLaurea"));
             tirocinante.setDiplomaUniversitario(resultSet.getString("DiplomaUniversitario"));
-            tirocinante.setLaureatoUniversitario(resultSet.getString("LaureatoUniversitario"));
+            tirocinante.setLaureatoUniversitario(resultSet.getString("Laureato"));
             tirocinante.setDottoratoDiRicerca(resultSet.getString("DottoratoDiRicerca"));
             tirocinante.setScuolaAltro(resultSet.getString("ScuolaAltro"));
             tirocinante.setHandicap(resultSet.getBoolean("Handicap"));
