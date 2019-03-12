@@ -6,222 +6,201 @@ import java.util.Objects;
 
 public class Tirocinante {
     private Integer IDTirocinante;
-    private String nome;
+    private String Nome;
     private String Cognome;
     private String LuogoDiNascita;
-    private String LuogoDiResidenza;
-    private String ProvinciaDiNascita;
     private Date DataDiNascita;
+    private String LuogoDiResidenza;
     private String ProvinciaDiResidenza;
+    private String ProvinciaDiNascita;
     private String CodiceFiscale;
     private String Telefono;
     private String CorsoDiLaurea;
     private String DiplomaUniversitario;
     private String LaureatoUniversitario;
-    private String ScuolaAltro;
     private String DottoratoDiRicerca;
+    private String ScuolaAltro;
     private Boolean Handicap;
-    private Integer User;
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
+    private Integer User;
 
     public Tirocinante() {
         this.IDTirocinante = 0;
-        this.nome = null;
-        Cognome = null;
-        LuogoDiNascita = null;
-        LuogoDiResidenza = null;
-        ProvinciaDiNascita = null;
-        DataDiNascita = null;
-        ProvinciaDiResidenza = null;
-        CodiceFiscale = null;
-        Telefono = null;
-        CorsoDiLaurea = null;
-        DiplomaUniversitario = null;
-        LaureatoUniversitario = null;
-        ScuolaAltro = null;
-        DottoratoDiRicerca = null;
-        Handicap = null;
-        User = 0;
-        CreateDate = null;
-        UpdateDate = null;
+        this.Nome = null;
+        this.Cognome = null;
+        this.LuogoDiNascita = null;
+        this.DataDiNascita = null;
+        this.LuogoDiResidenza = null;
+        this.ProvinciaDiResidenza = null;
+        this.ProvinciaDiNascita = null;
+        this.CodiceFiscale = null;
+        this.Telefono = null;
+        this.CorsoDiLaurea = null;
+        this.DiplomaUniversitario = null;
+        this.LaureatoUniversitario = null;
+        this.DottoratoDiRicerca = null;
+        this.ScuolaAltro = null;
+        this.Handicap = null;
+        this.CreateDate = null;
+        this.UpdateDate = null;
+        this.User = 0;
     }
 
+
+    // GET DATA
     public Integer getIDTirocinante() {
         return IDTirocinante;
     }
 
-    public void setIDTirocinante(Integer IDTirocinante) {
-        this.IDTirocinante = IDTirocinante;
-    }
-
     public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+        return Nome;
     }
 
     public String getCognome() {
         return Cognome;
     }
 
-    public void setCognome(String cognome) {
-        Cognome = cognome;
-    }
-
     public String getLuogoDiNascita() {
         return LuogoDiNascita;
-    }
-
-    public void setLuogoDiNascita(String luogoDiNascita) {
-        LuogoDiNascita = luogoDiNascita;
-    }
-
-    public String getProvinciaDiNascita() {
-        return ProvinciaDiNascita;
-    }
-
-    public void setProvinciaDiNascita(String provinciaDiNascita) {
-        ProvinciaDiNascita = provinciaDiNascita;
     }
 
     public Date getDataDiNascita() {
         return DataDiNascita;
     }
 
-    public void setDataDiNascita(Date dataDiNascita) {
-        DataDiNascita = dataDiNascita;
+    public String getLuogoDiResidenza() {
+        return LuogoDiResidenza;
     }
 
     public String getProvinciaDiResidenza() {
         return ProvinciaDiResidenza;
     }
 
-    public void setProvinciaDiResidenza(String provinciaDiResidenza) {
-        ProvinciaDiResidenza = provinciaDiResidenza;
+    public String getProvinciaDiNascita() {
+        return ProvinciaDiNascita;
     }
 
     public String getCodiceFiscale() {
         return CodiceFiscale;
     }
 
-    public void setCodiceFiscale(String codiceFiscale) {
-        CodiceFiscale = codiceFiscale;
-    }
-
     public String getTelefono() {
         return Telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        Telefono = telefono;
     }
 
     public String getCorsoDiLaurea() {
         return CorsoDiLaurea;
     }
 
-    public void setCorsoDiLaurea(String corsoDiLaurea) {
-        CorsoDiLaurea = corsoDiLaurea;
-    }
-
     public String getDiplomaUniversitario() {
         return DiplomaUniversitario;
-    }
-
-    public void setDiplomaUniversitario(String diplomaUniversitario) {
-        DiplomaUniversitario = diplomaUniversitario;
     }
 
     public String getLaureatoUniversitario() {
         return LaureatoUniversitario;
     }
 
-    public void setLaureatoUniversitario(String laureatoUniversitario) {
-        LaureatoUniversitario = laureatoUniversitario;
+    public String getDottoratoDiRicerca() {
+        return DottoratoDiRicerca;
     }
 
     public String getScuolaAltro() {
         return ScuolaAltro;
     }
 
-    public void setScuolaAltro(String scuolaAltro) {
-        ScuolaAltro = scuolaAltro;
-    }
-
-    public boolean getHandicap() {
+    public Boolean getHandicap() {
         return Handicap;
-    }
-
-    public void setHandicap(boolean handicap) {
-        Handicap = handicap;
-    }
-
-    public void setDottoratoDiRicerca(String dottoratoDiRicerca) {
-        DottoratoDiRicerca = dottoratoDiRicerca;
-    }
-
-    public void setLuogoDiResidenza(String luogoDiResidenza) {
-        LuogoDiResidenza = luogoDiResidenza;
-    }
-
-    public String getDottoratoDiRicerca() {
-        return DottoratoDiRicerca;
-    }
-
-    public String getLuogoDiResidenza() {
-        return LuogoDiResidenza;
-    }
-
-    public Integer getUser() {
-        return User;
-    }
-
-    public void setUser(Integer user) {
-        User = user;
     }
 
     public Timestamp getCreateDate() {
         return CreateDate;
     }
 
-    public void setCreateDate(Timestamp createDate) {
-        CreateDate = createDate;
-    }
-
     public Timestamp getUpdateDate() {
         return UpdateDate;
+    }
+
+    public Integer getUser() {
+        return User;
+    }
+
+    // SET DATA
+
+    public void setIDTirocinante(Integer IDTirocinante) {
+        this.IDTirocinante = IDTirocinante;
+    }
+
+    public void setNome(String nome) {
+        Nome = nome;
+    }
+
+    public void setCognome(String cognome) {
+        Cognome = cognome;
+    }
+
+    public void setLuogoDiNascita(String luogoDiNascita) {
+        LuogoDiNascita = luogoDiNascita;
+    }
+
+    public void setDataDiNascita(Date dataDiNascita) {
+        DataDiNascita = dataDiNascita;
+    }
+
+    public void setLuogoDiResidenza(String luogoDiResidenza) {
+        LuogoDiResidenza = luogoDiResidenza;
+    }
+
+    public void setProvinciaDiResidenza(String provinciaDiResidenza) {
+        ProvinciaDiResidenza = provinciaDiResidenza;
+    }
+
+    public void setProvinciaDiNascita(String provinciaDiNascita) {
+        ProvinciaDiNascita = provinciaDiNascita;
+    }
+
+    public void setCodiceFiscale(String codiceFiscale) {
+        CodiceFiscale = codiceFiscale;
+    }
+
+    public void setTelefono(String telefono) {
+        Telefono = telefono;
+    }
+
+    public void setCorsoDiLaurea(String corsoDiLaurea) {
+        CorsoDiLaurea = corsoDiLaurea;
+    }
+
+    public void setDiplomaUniversitario(String diplomaUniversitario) {
+        DiplomaUniversitario = diplomaUniversitario;
+    }
+
+    public void setLaureatoUniversitario(String laureatoUniversitario) {
+        LaureatoUniversitario = laureatoUniversitario;
+    }
+
+    public void setDottoratoDiRicerca(String dottoratoDiRicerca) {
+        DottoratoDiRicerca = dottoratoDiRicerca;
+    }
+
+    public void setScuolaAltro(String scuolaAltro) {
+        ScuolaAltro = scuolaAltro;
+    }
+
+    public void setHandicap(Boolean handicap) {
+        Handicap = handicap;
+    }
+
+    public void setCreateDate(Timestamp createDate) {
+        CreateDate = createDate;
     }
 
     public void setUpdateDate(Timestamp updateDate) {
         UpdateDate = updateDate;
     }
 
-    @Override
-    public String toString() {
-        return "Tirocinante{" +
-                "IDTirocinante=" + IDTirocinante +
-                ", nome='" + nome + '\'' +
-                ", Cognome='" + Cognome + '\'' +
-                ", LuogoDiNascita='" + LuogoDiNascita + '\'' +
-                ", LuogoDiResidenza='" + LuogoDiResidenza + '\'' +
-                ", ProvinciaDiNascita='" + ProvinciaDiNascita + '\'' +
-                ", DataDiNascita=" + DataDiNascita +
-                ", ProvinciaDiResidenza='" + ProvinciaDiResidenza + '\'' +
-                ", CodiceFiscale='" + CodiceFiscale + '\'' +
-                ", Telefono='" + Telefono + '\'' +
-                ", CorsoDiLaurea='" + CorsoDiLaurea + '\'' +
-                ", DiplomaUniversitario='" + DiplomaUniversitario + '\'' +
-                ", LaureatoUniversitario='" + LaureatoUniversitario + '\'' +
-                ", ScuolaAltro='" + ScuolaAltro + '\'' +
-                ", DottoratoDiRicerca='" + DottoratoDiRicerca + '\'' +
-                ", Handicap=" + Handicap +
-                ", User=" + User +
-                ", CreateDate=" + CreateDate +
-                ", UpdateDate=" + UpdateDate +
-                '}';
+    public void setUser(Integer user) {
+        User = user;
     }
 
     @Override
@@ -229,29 +208,54 @@ public class Tirocinante {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tirocinante that = (Tirocinante) o;
-        return Objects.equals(IDTirocinante, that.IDTirocinante) &&
-                Objects.equals(nome, that.nome) &&
-                Objects.equals(Cognome, that.Cognome) &&
-                Objects.equals(LuogoDiNascita, that.LuogoDiNascita) &&
-                Objects.equals(LuogoDiResidenza, that.LuogoDiResidenza) &&
-                Objects.equals(ProvinciaDiNascita, that.ProvinciaDiNascita) &&
-                Objects.equals(DataDiNascita, that.DataDiNascita) &&
-                Objects.equals(ProvinciaDiResidenza, that.ProvinciaDiResidenza) &&
-                Objects.equals(CodiceFiscale, that.CodiceFiscale) &&
-                Objects.equals(Telefono, that.Telefono) &&
+        return IDTirocinante.equals(that.IDTirocinante) &&
+                Nome.equals(that.Nome) &&
+                Cognome.equals(that.Cognome) &&
+                LuogoDiNascita.equals(that.LuogoDiNascita) &&
+                DataDiNascita.equals(that.DataDiNascita) &&
+                LuogoDiResidenza.equals(that.LuogoDiResidenza) &&
+                ProvinciaDiResidenza.equals(that.ProvinciaDiResidenza) &&
+                ProvinciaDiNascita.equals(that.ProvinciaDiNascita) &&
+                CodiceFiscale.equals(that.CodiceFiscale) &&
+                Telefono.equals(that.Telefono) &&
                 Objects.equals(CorsoDiLaurea, that.CorsoDiLaurea) &&
                 Objects.equals(DiplomaUniversitario, that.DiplomaUniversitario) &&
                 Objects.equals(LaureatoUniversitario, that.LaureatoUniversitario) &&
-                Objects.equals(ScuolaAltro, that.ScuolaAltro) &&
                 Objects.equals(DottoratoDiRicerca, that.DottoratoDiRicerca) &&
-                Objects.equals(Handicap, that.Handicap) &&
-                Objects.equals(User, that.User) &&
-                Objects.equals(CreateDate, that.CreateDate) &&
-                Objects.equals(UpdateDate, that.UpdateDate);
+                Objects.equals(ScuolaAltro, that.ScuolaAltro) &&
+                Handicap.equals(that.Handicap) &&
+                CreateDate.equals(that.CreateDate) &&
+                UpdateDate.equals(that.UpdateDate) &&
+                User.equals(that.User);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(IDTirocinante, nome, Cognome, LuogoDiNascita, LuogoDiResidenza, ProvinciaDiNascita, DataDiNascita, ProvinciaDiResidenza, CodiceFiscale, Telefono, CorsoDiLaurea, DiplomaUniversitario, LaureatoUniversitario, ScuolaAltro, DottoratoDiRicerca, Handicap, User, CreateDate, UpdateDate);
+        return Objects.hash(IDTirocinante, Nome, Cognome, LuogoDiNascita, DataDiNascita, LuogoDiResidenza, ProvinciaDiResidenza, ProvinciaDiNascita, CodiceFiscale, Telefono, CorsoDiLaurea, DiplomaUniversitario, LaureatoUniversitario, DottoratoDiRicerca, ScuolaAltro, Handicap, CreateDate, UpdateDate, User);
+    }
+
+    @Override
+    public String toString() {
+        return "Tirocinante{" +
+                "IDTirocinante=" + IDTirocinante +
+                ", Nome='" + Nome + '\'' +
+                ", Cognome='" + Cognome + '\'' +
+                ", LuogoDiNascita='" + LuogoDiNascita + '\'' +
+                ", DataDiNascita=" + DataDiNascita +
+                ", LuogoDiResidenza='" + LuogoDiResidenza + '\'' +
+                ", ProvinciaDiResidenza='" + ProvinciaDiResidenza + '\'' +
+                ", ProvinciaDiNascita='" + ProvinciaDiNascita + '\'' +
+                ", CodiceFiscale='" + CodiceFiscale + '\'' +
+                ", Telefono='" + Telefono + '\'' +
+                ", CorsoDiLaurea='" + CorsoDiLaurea + '\'' +
+                ", DiplomaUniversitario='" + DiplomaUniversitario + '\'' +
+                ", LaureatoUniversitario='" + LaureatoUniversitario + '\'' +
+                ", DottoratoDiRicerca='" + DottoratoDiRicerca + '\'' +
+                ", ScuolaAltro='" + ScuolaAltro + '\'' +
+                ", Handicap=" + Handicap +
+                ", CreateDate=" + CreateDate +
+                ", UpdateDate=" + UpdateDate +
+                ", User=" + User +
+                '}';
     }
 }

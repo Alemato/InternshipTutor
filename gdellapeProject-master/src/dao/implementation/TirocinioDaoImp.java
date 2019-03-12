@@ -100,7 +100,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
                 tirocinios.add(tirocinio);
             }
         } catch (SQLException e) {
-            throw new DaoException("Errore nel creare Lista oggetti Azienda", e);
+            throw new DaoException("Errore nel creare Lista oggetti Tirocinio", e);
         }
     }
     public Tirocinio getRichiestatrByID (int ID) throws DaoException{
