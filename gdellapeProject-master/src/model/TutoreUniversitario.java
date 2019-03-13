@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 public class TutoreUniversitario {
     private Integer IDTutoreUni;
@@ -13,67 +14,101 @@ public class TutoreUniversitario {
 
     public TutoreUniversitario() {
         this.IDTutoreUni = 0;
-        Nome = null;
-        Cognome = null;
-        Telefono = null;
-        Email = null;
-        CreateDate = null;
-        UpdateDate = null;
+        this.Nome = null;
+        this.Cognome = null;
+        this.Telefono = null;
+        this.Email = null;
+        this.CreateDate = null;
+        this.UpdateDate = null;
     }
 
+    //GET DATA
     public Integer getIDTutoreUni() {
         return IDTutoreUni;
-    }
-
-    public void setIDTutoreUni(Integer IDTutoreUni) {
-        this.IDTutoreUni = IDTutoreUni;
     }
 
     public String getNome() {
         return Nome;
     }
 
-    public void setNome(String nome) {
-        Nome = nome;
-    }
-
     public String getCognome() {
         return Cognome;
-    }
-
-    public void setCognome(String cognome) {
-        Cognome = cognome;
     }
 
     public String getTelefono() {
         return Telefono;
     }
 
-    public void setTelefono(String telefono) {
-        Telefono = telefono;
-    }
-
     public String getEmail() {
         return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
     }
 
     public Timestamp getCreateDate() {
         return CreateDate;
     }
 
-    public void setCreateDate(Timestamp createDate) {
-        CreateDate = createDate;
-    }
-
     public Timestamp getUpdateDate() {
         return UpdateDate;
     }
 
+    //SET DATA
+    public void setIDTutoreUni(Integer IDTutoreUni) {
+        this.IDTutoreUni = IDTutoreUni;
+    }
+
+    public void setNome(String nome) {
+        Nome = nome;
+    }
+
+    public void setCognome(String cognome) {
+        Cognome = cognome;
+    }
+
+    public void setTelefono(String telefono) {
+        Telefono = telefono;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public void setCreateDate(Timestamp createDate) {
+        CreateDate = createDate;
+    }
+
     public void setUpdateDate(Timestamp updateDate) {
         UpdateDate = updateDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TutoreUniversitario that = (TutoreUniversitario) o;
+        return IDTutoreUni.equals(that.IDTutoreUni) &&
+                Nome.equals(that.Nome) &&
+                Cognome.equals(that.Cognome) &&
+                Telefono.equals(that.Telefono) &&
+                Email.equals(that.Email) &&
+                CreateDate.equals(that.CreateDate) &&
+                UpdateDate.equals(that.UpdateDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(IDTutoreUni, Nome, Cognome, Telefono, Email, CreateDate, UpdateDate);
+    }
+
+    @Override
+    public String toString() {
+        return "TutoreUniversitario{" +
+                "IDTutoreUni=" + IDTutoreUni +
+                ", Nome='" + Nome + '\'' +
+                ", Cognome='" + Cognome + '\'' +
+                ", Telefono='" + Telefono + '\'' +
+                ", Email='" + Email + '\'' +
+                ", CreateDate=" + CreateDate +
+                ", UpdateDate=" + UpdateDate +
+                '}';
     }
 }

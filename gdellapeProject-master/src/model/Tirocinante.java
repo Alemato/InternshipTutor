@@ -17,7 +17,7 @@ public class Tirocinante {
     private String Telefono;
     private String CorsoDiLaurea;
     private String DiplomaUniversitario;
-    private String LaureatoUniversitario;
+    private String Laureato;
     private String DottoratoDiRicerca;
     private String ScuolaAltro;
     private Boolean Handicap;
@@ -38,7 +38,7 @@ public class Tirocinante {
         this.Telefono = null;
         this.CorsoDiLaurea = null;
         this.DiplomaUniversitario = null;
-        this.LaureatoUniversitario = null;
+        this.Laureato = null;
         this.DottoratoDiRicerca = null;
         this.ScuolaAltro = null;
         this.Handicap = null;
@@ -97,8 +97,8 @@ public class Tirocinante {
         return DiplomaUniversitario;
     }
 
-    public String getLaureatoUniversitario() {
-        return LaureatoUniversitario;
+    public String getLaureato() {
+        return Laureato;
     }
 
     public String getDottoratoDiRicerca() {
@@ -175,8 +175,8 @@ public class Tirocinante {
         DiplomaUniversitario = diplomaUniversitario;
     }
 
-    public void setLaureatoUniversitario(String laureatoUniversitario) {
-        LaureatoUniversitario = laureatoUniversitario;
+    public void setLaureato(String laureatoUniversitario) {
+        Laureato = laureatoUniversitario;
     }
 
     public void setDottoratoDiRicerca(String dottoratoDiRicerca) {
@@ -220,7 +220,7 @@ public class Tirocinante {
                 Telefono.equals(that.Telefono) &&
                 Objects.equals(CorsoDiLaurea, that.CorsoDiLaurea) &&
                 Objects.equals(DiplomaUniversitario, that.DiplomaUniversitario) &&
-                Objects.equals(LaureatoUniversitario, that.LaureatoUniversitario) &&
+                Objects.equals(Laureato, that.Laureato) &&
                 Objects.equals(DottoratoDiRicerca, that.DottoratoDiRicerca) &&
                 Objects.equals(ScuolaAltro, that.ScuolaAltro) &&
                 Handicap.equals(that.Handicap) &&
@@ -231,7 +231,7 @@ public class Tirocinante {
 
     @Override
     public int hashCode() {
-        return Objects.hash(IDTirocinante, Nome, Cognome, LuogoDiNascita, DataDiNascita, LuogoDiResidenza, ProvinciaDiResidenza, ProvinciaDiNascita, CodiceFiscale, Telefono, CorsoDiLaurea, DiplomaUniversitario, LaureatoUniversitario, DottoratoDiRicerca, ScuolaAltro, Handicap, CreateDate, UpdateDate, User);
+        return Objects.hash(IDTirocinante, Nome, Cognome, LuogoDiNascita, DataDiNascita, LuogoDiResidenza, ProvinciaDiResidenza, ProvinciaDiNascita, CodiceFiscale, Telefono, CorsoDiLaurea, DiplomaUniversitario, Laureato, DottoratoDiRicerca, ScuolaAltro, Handicap, CreateDate, UpdateDate, User);
     }
 
     @Override
@@ -249,7 +249,7 @@ public class Tirocinante {
                 ", Telefono='" + Telefono + '\'' +
                 ", CorsoDiLaurea='" + CorsoDiLaurea + '\'' +
                 ", DiplomaUniversitario='" + DiplomaUniversitario + '\'' +
-                ", LaureatoUniversitario='" + LaureatoUniversitario + '\'' +
+                ", LaureatoUniversitario='" + Laureato + '\'' +
                 ", DottoratoDiRicerca='" + DottoratoDiRicerca + '\'' +
                 ", ScuolaAltro='" + ScuolaAltro + '\'' +
                 ", Handicap=" + Handicap +
