@@ -112,7 +112,6 @@
                     <i class="fa fa-table"></i> Moduli di Richiesta Tirocinio dei Tirocinanti
                 </div>
                 <div class="card-body">
-                    <form id="pdf_tirocinante" method="post" action="print.php">
                         <table class="table table-responsive table-striped table-bordered table-hover"
                                id="datatable_ric_tiro" width="100%"
                                cellspacing="0">
@@ -131,9 +130,9 @@
                                 <th>Cognome Tutore Univeresitario</th>
                                 <th>Tel. Tutore Univeresitario</th>
                                 <th>Data Richiesta</th>
-                                <th>Visualizza Richiesta</th>
                                 <th>Visualizza PDF Caricato</th>
                                 <th>Carica/Soprascrivi PDF</th>
+                                <th>Cancella</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -151,42 +150,13 @@
                                 <th>Cognome Tutore Univeresitario</th>
                                 <th>Tel. Tutore Univeresitario</th>
                                 <th>Data Richiesta</th>
-                                <th>Visualizza Richiesta</th>
                                 <th>Visualizza PDF Caricato</th>
                                 <th>Carica/Soprascrivi PDF</th>
+                                <th>Cancella</th>
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>Aveja</td>
-                                <td>via marco polo 1, l&apos;aquila</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>12345678910</td>
-                                <td>Mario</td>
-                                <td>Rossi</td>
-                                <td>12345678910</td>
-                                <td>01/10/2018</td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
-                                                    class="fa fa-file-pdf-o"></i>Visualizza PDF
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <input type="file" name="file-1">
-                                    </a>
-                                </td>
-                            </tr>
+
 
                             <#list Richieste as tirocinio,dati>
                             <tr>
@@ -204,31 +174,26 @@
                                 <td>${dati[11]}</td>
                                 <td>${tirocinio.createDate?date}</td>
                                 <td>
-                                    <a type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</a>
+                                        <button type="button" class="btn btn-secondary" <#if (tirocinio.pdfTirocinante)??> <a type="button" href="/#" class="btn fa-file-pdf-o"> Visualizza PDF </a>  <#else><i class="fa fa-file-pdf-o"></i>PDF Non Disponibile </i> </#if>
                                 </td>
                                 <td>
-                                        <button type="button" class="btn btn-secondary" <#if pdfdisabled??> <i class="fa fa-file-pdf-o"></i>PDF Non Disponibile</button> </#if>
-                                    </a>
+                                    <form method="post" action="/#" >
+                                        <input type="hidden" name="IDtirocinio" value="${tirocinio.IDTirocinio}">
+                                        <input type="file" name="NewPDF">
+                                        <button type="submit" class="btn btn-primary float-right"> Modifica</button>
+                                    </form>
                                 </td>
-                                <td><a href="print.php">
-                                        <input type="file" name="file-3">
-                                    </a>
+                                <td>
+                                    <#--Specificare l'id del tirocinio da cancellare nell'url-->
+                                    <a type="button" href="/#" class="btn btn-danger"> Cancella</a>
+
                                 </td>
                             </tr>
                             </#list>
                             </tbody>
                         </table>
                         <footer class="text-center text-sm-right mt-25 ">
-                            <button type="submit" form="pdf_tirocinante"
-                                    class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
-                                        class="fa fa-check"></i> Aggiorna
-                            </button>
-                            <button type="reset" form="pdf_tirocinante"
-                                    class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
-                                        class="fa fa-times"></i> Annulla
-                            </button>
                         </footer>
-                    </form>
                 </div>
             </div>
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
@@ -239,7 +204,6 @@
                     <i class="fa fa-table"></i> Moduli di Richiesta di Convenzionamento Aziendale
                 </div>
                 <div class="card-body">
-                    <form id="pdf_convenzioni" method="post" action="print.php">
                         <table class="table table-responsive table-striped table-bordered table-hover"
                                id="datatable_ric_convenzioni" width="100%"
                                cellspacing="0">
@@ -270,29 +234,10 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr>
-                                <td>Aveja</td>
-                                <td>via marco polo 1, l&apos;aquila</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>01/10/2018</td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
-                                                    class="fa fa-file-pdf-o"></i>Visualizza PDF
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <input type="file" name="file-1">
-                                    </a>
-                                </td>
-                            </tr>
+
+                            <#if Aziende?has_content>
+
+
                            <#list Aziende as azienda >
                             <tr>
                                 <td>${azienda.ragioneSociale}</td>
@@ -300,24 +245,31 @@
                                 <td>${azienda.CFiscalePIva}</td>
                                 <td>${azienda.nomeResponsabileConvenzione}</td>
                                 <td>${azienda.cognomeResponsabileConvenzione}</td>
-                                <td>${azienda.dataConvenzione}</td>
+                                <td>${(azienda.dataConvenzione)?date}</td>
                                 <td>
                                     <a type="button" href="/#" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</a>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-secondary"><iclass="fa fa-file-pdf-o"></i>Visualizza PDF</button>
+                                    <#if (azienda.pathPDFConvenzione)??>
+                                        <button type="button" class="btn btn-secondary" >Visualizza PDF</button>
+                                        <#else>
+                                            <button type="button" class="btn btn-secondary" disabled> <iclass="fa fa-file-pdf-o"></i> PDF Non Presente</button>
+                                    </#if>
+
                                 </td>
                                 <td>
                                     <form action="/#" type="post">
                                         <input type="file" name="file-1">
-                                        <button type="submit" class="btn btn-file"><iclass="fa fa-file-pdf-o"></i>Modifica PDF</button>
+                                        <button type="submit" class="btn-sm btn-primary " ><iclass="fa fa-file-pdf-o"></i>Modifica PDF</button>
                                     </form>
                                 </td>
                             </tr>
                            </#list>
+
+                           </#if>
+
                             </tbody>
                         </table>
-                    </form>
                 </div>
             </div>
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
@@ -328,7 +280,6 @@
                     <i class="fa fa-table"></i> Moduli per Conclusione Tirocinii
                 </div>
                 <div class="card-body">
-                    <form id="pdf_fine_tirocinio" method="post" action="print.php">
                         <table class="table table-responsive table-striped table-bordered table-hover"
                                id="datatable_fine_tirocinio" width="100%"
                                cellspacing="0">
@@ -347,12 +298,16 @@
                                 <th>Cognome Tutore Univeresitario</th>
                                 <th>Tel. Tutore Univeresitario</th>
                                 <th>Data Richiesta</th>
+                                <th>Visualizza Modulo Richiesta Tirocinio (Tirocinante)</th>
+                                <th>Visualizza PDF Caricato (Tirocinante)</th>
+                                <th>Carica/Soprascrivi PDF (Tirocinante)</th>
                                 <th>Visualizza Modulo Conclusione Tirocinio (Azienda)</th>
                                 <th>Visualizza PDF Caricato (Azienda)</th>
                                 <th>Carica/Soprascrivi PDF (Azienda)</th>
                                 <th>Visualizza Modulo Conclusione Tirocinio (Segreteria)</th>
                                 <th>Visualizza PDF Caricato (Segreteria)</th>
                                 <th>Carica/Soprascrivi PDF (Segreteria)</th>
+                                <th>Cancella</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -370,17 +325,21 @@
                                 <th>Cognome Tutore Univeresitario</th>
                                 <th>Tel. Tutore Univeresitario</th>
                                 <th>Data Richiesta</th>
+                                <th>Visualizza Modulo Richiesta Tirocinio (Tirocinante)</th>
+                                <th>Visualizza PDF Caricato (Tirocinante)</th>
+                                <th>Carica/Soprascrivi PDF (Tirocinante)</th>
                                 <th>Visualizza Modulo Conclusione Tirocinio (Azienda)</th>
                                 <th>Visualizza PDF Caricato (Azienda)</th>
                                 <th>Carica/Soprascrivi PDF (Azienda)</th>
                                 <th>Visualizza Modulo Conclusione Tirocinio (Segreteria)</th>
                                 <th>Visualizza PDF Caricato (Segreteria)</th>
                                 <th>Carica/Soprascrivi PDF (Segreteria)</th>
+                                <th>Cancella</th>
                             </tr>
                             </tfoot>
                             <tbody>
-
-                            <#list Tirocinante as tirocinio,dati >
+                            <#if TirociniConclusi?has_content>
+                            <#list TirociniConclusi as tirocinio,dati >
                             <tr>
                                 <td>${dati[0]}</td>
                                 <td>${dati[1]}</td>
@@ -396,51 +355,74 @@
                                 <td>${dati[11]}</td>
                                 <td>${tirocinio.createDate?date}</td>
                                 <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                    </button>
+                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</button>
 
                                 </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
-                                                    class="fa fa-file-pdf-o"></i>Visualizza PDF
-                                        </button>
-                                    </a>
+                                <td>
+                                    <#if (tirocinio.pdfTirocinante)??>
+                                        <a type="button" class="btn btn-secondary" href="/#">  <i class="fa fa-file-pdf-o"> </i>Visualizza PDF</a>
+                                        <#else>
+                                            <button type="button" class="btn btn-secondary" disabled> <i class="fa fa-file-pdf-o"> </i>PDF Non Disponibile</button>
+                                    </#if>
+
+
                                 </td>
-                                <td><a href="print.php">
-                                        <input type="file" name="file-2">
-                                    </a>
+                                <td>
+                                    <form action="/#" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="IDTirocinio" value="${tirocinio.IDTirocinio}">
+                                    <input type="file" name="file-1">
+                                        <button type="submit" class="btn-sm btn-primary float-right">Modifica</button>
+                                    </form>
                                 </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        </button>
-                                    </a>
+                                <td>
+                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</button>
+
                                 </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
-                                                    class="fa fa-file-pdf-o"></i>Visualizza PDF
-                                        </button>
-                                    </a>
+                                <td>
+                                    <#if (tirocinio.pdfAzienda)??>
+                                        <a type="button" class="btn btn-secondary" href="/#">  <i class="fa fa-file-pdf-o"> </i>Visualizza PDF</a>
+                                    <#else>
+                                        <button type="button" class="btn btn-secondary" disabled> <i class="fa fa-file-pdf-o"> </i>PDF Non Disponibile</button>
+                                    </#if>
+
+
                                 </td>
-                                <td><a href="print.php">
-                                        <input type="file" name="file-2">
-                                    </a>
+                                <td>
+                                    <form action="/#" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="IDTirocinio" value="${tirocinio.IDTirocinio}">
+                                        <input type="file" name="file-1">
+                                        <button type="submit" class="btn-sm btn-primary float-right">Modifica</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</button>
+
+                                </td>
+                                <td>
+                                    <#if (tirocinio.pdfSegreteria)??>
+                                        <a type="button" class="btn btn-secondary" href="/#">  <i class="fa fa-file-pdf-o"> </i>Visualizza PDF</a>
+                                    <#else>
+                                        <button type="button" class="btn btn-secondary" disabled> <i class="fa fa-file-pdf-o"> </i>PDF Non Disponibile</button>
+                                    </#if>
+
+
+                                </td>
+                                <td>
+                                    <form action="/#" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="IDTirocinio" value="${tirocinio.IDTirocinio}">
+                                        <input type="file" name="file-1">
+                                        <button type="submit" class="btn-sm btn-primary float-right">Modifica</button>
+                                    </form>
                                 </td>
                             </tr>
                             </#list>
 
+                            </#if>
+
                             </tbody>
                         </table>
                         <footer class="text-center text-sm-right mt-25 ">
-                            <button type="submit" form="pdf_fine_tirocinio"
-                                    class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
-                                        class="fa fa-check"></i> Aggiorna
-                            </button>
-                            <button type="reset" form="pdf_fine_tirocinio"
-                                    class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
-                                        class="fa fa-times"></i> Annulla
-                            </button>
                         </footer>
-                    </form>
                 </div>
             </div>
         </main>
