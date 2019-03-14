@@ -2,6 +2,7 @@ package controller.adm;
 
 
 import controller.sessionController.SingSessionContoller;
+import controller.utility.SecurityHash;
 import controller.utility.Utility;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
@@ -117,7 +118,7 @@ public class RegistrationController extends HttpServlet  {
                 Azienda azienda = new Azienda();
 
                 user.setEmail((String) request.getParameter("Email"));
-                user.setPassword((String) request.getParameter("Password"));
+                user.setPassword(SecurityHash.SetHash(request.getParameter("Password")));
                 user.setTipologiaAccount(3);
 
                 azienda.setRagioneSociale((String) request.getParameter("NomeAzienda"));
@@ -188,7 +189,7 @@ public class RegistrationController extends HttpServlet  {
             Tirocinante tirocinante = new Tirocinante();
 
             user.setEmail((String) request.getParameter("Email"));
-            user.setPassword((String) request.getParameter("Password"));
+            user.setPassword(SecurityHash.SetHash(request.getParameter("Password")));
             user.setTipologiaAccount(2);
 
             tirocinante.setNome(request.getParameter("Nome"));
