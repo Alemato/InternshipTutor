@@ -1,6 +1,7 @@
 package controller.adm.Azienda;
 
 import controller.sessionController.SingSessionContoller;
+import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
 import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.TirocinioDaoImp;
@@ -11,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class GestioneTirociniaAziendaController extends BackEndAziendaController
     protected void fillTable(HttpServletRequest request,HttpServletResponse response)throws  ServletException,IOException{
 
     }
-    protected void fillTablePendenti(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException {
+    private void fillTablePendenti(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException {
         try {
             SingSessionContoller session = SingSessionContoller.getInstance();
             Azienda azienda = session.getAzienda(request,response);
@@ -75,6 +77,46 @@ public class GestioneTirociniaAziendaController extends BackEndAziendaController
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+    private void UpdateOfferta(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
+    {
+        try {
+            OffertaTirocinioDaoImp dao = new OffertaTirocinioDaoImp();
+            OffertaTirocinio of = dao.getOffertatrByID(Integer.parseInt(request.getParameter("ID")));
+            dao.destroy();
+            of.setTitolo(request.getParameter("Titolo"));
+            of.setDescrizioneBreve(request.getParameter("Descrizione_Breve"));
+            of.setDescrizione(request.getParameter("Descrizione_Completa"));
+            of.setOrari(request.getParameter("Orari"));
+            of.setDurataOre(Integer.parseInt(request.getParameter("Durara_Ora")));
+            of.setDurataMesi(Integer.parseInt(request.getParameter("Durara_Mesi")));
+            of.setPeriodoInizio(Date.valueOf(request.getParameter("Periodo_inizio")));
+            of.setPeriodoFine(Date.valueOf(request.getParameter("Periodo_fine")));
+            of.setModalita(request.getParameter("Modalita"));
+            of.setObbiettivi(request.getParameter("Obiettivi"));
+            of.setRimborsi(request.getParameter("Rimborsi"));
+            of.setFacilitazioni(request.getParameter("Facilitazioni"));
+            of.setLuogoEffettuazione(request.getParameter("SedeTirocinio"));
+            of.setCodIdentTirocinio(request.getParameter("CodiceIdentTirocinio"));
+            of.setSettoreInserimento(request.getParameter("SettoreInserimento"));
+            of.setTempoAccessoLocaliAziendali(request.getParameter("TempiAccessoLocaliAziendali"));
+            of.setNomeTutoreAziendale(request.getParameter("NomeTutoreAziendale"));
+            of.setCognomeTutoreAziendale(request.getParameter("CognomeTutoreAziendale"));
+            of.setTelefonoTutoreAziendale(request.getParameter("TelefonoTutoreAziendale"));
+            of.setEmailTutoreAziendale(request.getParameter("EmailTutoreAziendale"));
+
+            OffertaTirocinioDaoImp dao1 = new OffertaTirocinioDaoImp();
+            dao1.setOffertatr(of);
+            dao1.destroy();
+
+
+
+        }catch (DaoException e)
+        {
+            e.printStackTrace();
+            response.sendRedirect("/404");
+        }
+
     }
 
 }
