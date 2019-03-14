@@ -207,7 +207,7 @@
                                     <a type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</a>
                                 </td>
                                 <td>
-                                        <button type="button" class="btn btn-secondary" <#if pdfdisabled> <i class="fa fa-file-pdf-o"></i>PDF Non Disponibile</button> </#if>
+                                        <button type="button" class="btn btn-secondary" <#if pdfdisabled??> <i class="fa fa-file-pdf-o"></i>PDF Non Disponibile</button> </#if>
                                     </a>
                                 </td>
                                 <td><a href="print.php">
@@ -295,9 +295,9 @@
                             </tr>
                            <#list Aziende as azienda >
                             <tr>
-                                <td>${azienda.nome}</td>
+                                <td>${azienda.ragioneSociale}</td>
                                 <td>${azienda.indirizzoSedeLegale}</td>
-                                <td>${azienda.cFiscalePIva}</td>
+                                <td>${azienda.CFiscalePIva}</td>
                                 <td>${azienda.nomeResponsabileConvenzione}</td>
                                 <td>${azienda.cognomeResponsabileConvenzione}</td>
                                 <td>${azienda.dataConvenzione}</td>
@@ -379,69 +379,26 @@
                             </tr>
                             </tfoot>
                             <tbody>
+
+                            <#list Tirocinante as tirocinio,dati >
                             <tr>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>Aveja</td>
-                                <td>via marco polo 1, l&apos;aquila</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>12345678910</td>
-                                <td>Mario</td>
-                                <td>Rossi</td>
-                                <td>12345678910</td>
-                                <td>01/10/2018</td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
-                                                    class="fa fa-file-pdf-o"></i>Visualizza PDF
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <input type="file" name="file-1">
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-secondary"><i
-                                                    class="fa fa-file-pdf-o"></i>Visualizza PDF
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <input type="file" name="file-1">
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>Aveja</td>
-                                <td>via marco polo 1, l&apos;aquila</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>12345678910</td>
-                                <td>Mario</td>
-                                <td>Rossi</td>
-                                <td>12345678910</td>
-                                <td>01/10/2018</td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        </button>
-                                    </a>
+                                <td>${dati[0]}</td>
+                                <td>${dati[1]}</td>
+                                <td>${dati[2]}</td>
+                                <td>${dati[3]}</td>
+                                <td>${dati[4]}</td>
+                                <td>${dati[5]}</td>
+                                <td>${dati[6]}</td>
+                                <td>${dati[7]}</td>
+                                <td>${dati[8]}</td>
+                                <td>${dati[9]}</td>
+                                <td>${dati[10]}</td>
+                                <td>${dati[11]}</td>
+                                <td>${tirocinio.createDate?date}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
+                                    </button>
+
                                 </td>
                                 <td><a href="print.php">
                                         <button type="button" class="btn btn-secondary"><i
@@ -469,51 +426,8 @@
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>Aveja</td>
-                                <td>via marco polo 1, l&apos;aquila</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>mario</td>
-                                <td>rossi</td>
-                                <td>12345678910</td>
-                                <td>Mario</td>
-                                <td>Rossi</td>
-                                <td>12345678910</td>
-                                <td>01/10/2018</td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-secondary" disabled><i
-                                                    class="fa fa-file-pdf-o"></i>PDF Non Disponibile
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <input type="file" name="file-3">
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <button type="button" class="btn btn-secondary" disabled><i
-                                                    class="fa fa-file-pdf-o"></i>PDF Non Disponibile
-                                        </button>
-                                    </a>
-                                </td>
-                                <td><a href="print.php">
-                                        <input type="file" name="file-3">
-                                    </a>
-                                </td>
-                            </tr>
+                            </#list>
+
                             </tbody>
                         </table>
                         <footer class="text-center text-sm-right mt-25 ">

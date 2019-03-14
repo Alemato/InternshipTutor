@@ -20,7 +20,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement selectUserById;
     private PreparedStatement insertUser;
     private PreparedStatement selectAllUser;
-    private  PreparedStatement updateUser;
+    private PreparedStatement updateUser;
     private PreparedStatement selectUserByToken;
     private PreparedStatement setToken;
     private PreparedStatement existIsMail;
@@ -46,32 +46,52 @@ public class UserDaoImp extends DaoDataMySQLImpl {
 
             this.setToken = connection.prepareStatement("UPDATE user SET Token = ? WHERE IDuser = ?");
 
-            this.existIsMail= connection.prepareStatement("SELECT * FROM user WHERE Email=?");
+            this.existIsMail = connection.prepareStatement("SELECT * FROM user WHERE Email=?");
 
         } catch (SQLException ex) {
-         throw new DaoException("Error:PrepareStatement error", ex);
-
+            throw new DaoException("Error:PrepareStatement error", ex);
         }
     }
 
-
-    public  User getUserByToken(String token) throws DaoException{
-        User user= new User();
+    private void setUserObject(User user, ResultSet resultSet) throws DaoException {
         try {
-            this.init();
-            this.selectUserByToken.setString(1,token);
+            user.setIDUser(resultSet.getInt("IDUser"));
+            user.setEmail(resultSet.getString("Email"));
+            user.setPassword(resultSet.getString("Password"));
+            user.setTipologiaAccount(resultSet.getInt("TipologiaAccount"));
+            user.setToken(resultSet.getString("Token"));
+            user.setCreateDate(resultSet.getTimestamp("CreateDate"));
+            user.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("Errore nel creare oggetto User", e);
+        }
+    }
+    
+    private void setListOffertaTirocinio(List<User> users, ResultSet resultSet) throws DaoException {
+        try {
+            while (resultSet.next()) {
+                User user = new User();
+                setUserObject(user, resultSet);
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException("Errore nel creare Lista oggetti User", e);
+        }
+    }
+    
+    public User getUserByToken(String token) throws DaoException {
+        User user = new User();
+        this.init();
+        try {
+            this.selectUserByToken.setString(1, token);
             ResultSet resultSet = this.selectUserByToken.executeQuery();
             if (resultSet.next()) {
-                user.setIDUser(resultSet.getInt("IDuser"));
-                user.setEmail(resultSet.getString("Email"));
-                user.setPassword(resultSet.getString("Password"));
-                user.setTipologiaAccount(resultSet.getInt("TipologiaAccount"));
-                user.setToken(resultSet.getString("Token"));
-                user.setCreateDate(resultSet.getTimestamp("CreateDate"));
-                user.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
-            }else{
-            throw new DaoException("Query con risultato vuoto");
-        }
+                setUserObject(user, resultSet);
+            } else {
+                throw new DaoException("Query con risultato vuoto");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("Errore esecuzione query", e);
@@ -79,23 +99,19 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         return user;
     }
 
-//    @Override
+    //    @Override
     public User getUserByMail(String mail) throws DaoException {
         User user = new User();
-
+        this.init();
         try {
-            this.init();
-            this.selectUserByEmail.setString(1,mail);
+
+            this.selectUserByEmail.setString(1, mail);
             ResultSet resultSet = this.selectUserByEmail.executeQuery();
             if (resultSet.next()) {
-                user.setIDUser(resultSet.getInt("IDuser"));
-                user.setEmail(resultSet.getString("Email"));
-                user.setPassword(resultSet.getString("Password"));
-                user.setTipologiaAccount(resultSet.getInt("TipologiaAccount"));
-
-            }else{
-            throw new DaoException("Query con risultato vuoto");
-        }
+                setUserObject(user, resultSet);
+            } else {
+                throw new DaoException("Query con risultato vuoto");
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new DaoException("Errore esecuzione query", ex);
@@ -107,20 +123,10 @@ public class UserDaoImp extends DaoDataMySQLImpl {
 
     public List<User> getAllUser() throws DaoException {
         List<User> users = new ArrayList<User>();
-
+        this.init();
         try {
-            this.init();
-
             ResultSet resultSet = this.selectAllUser.executeQuery();
-            while(resultSet.next()) {
-                User user = new User();
-                user.setIDUser(resultSet.getInt("IDuser"));
-                user.setEmail(resultSet.getString("Email"));
-                user.setPassword(resultSet.getString("Password"));
-                user.setTipologiaAccount(resultSet.getInt("TipologiaAccount"));
-                users.add(user);
-
-            }
+            setListOffertaTirocinio(users, resultSet);
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new DaoException("Errore esecuzione query", ex);
@@ -131,24 +137,17 @@ public class UserDaoImp extends DaoDataMySQLImpl {
     }
 
 
-
-
     public User getUserByid(int id) throws DaoException {
         User user = new User();
+        this.init();
         try {
-            this.init();
-            this.selectUserById.setInt(1,id);
+            this.selectUserById.setInt(1, id);
             ResultSet resultSet = this.selectUserById.executeQuery();
-           //dobbiamo vedere se è null
             if (resultSet.next()) {
-                user.setIDUser(resultSet.getInt("IDuser"));
-                user.setEmail(resultSet.getString("Email"));
-                user.setPassword(resultSet.getString("Password"));
-                user.setTipologiaAccount(resultSet.getInt("TipologiaAccount"));
-
-            }else{
-            throw new DaoException("Query con risultato vuoto");
-        }
+                setUserObject(user, resultSet);
+            } else {
+                throw new DaoException("Query con risultato vuoto");
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new DaoException("Errore esecuzione query", ex);
@@ -157,6 +156,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         return user;
 
     }
+
     public void setUser(User user) throws DaoException {
 
         try {
@@ -174,11 +174,11 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         }
     }
 
-    public void setToken(User user) throws DaoException{
-        try{
+    public void setToken(User user) throws DaoException {
+        try {
             this.init();
             this.setToken.setString(1, user.getToken());
-            this.setToken.setInt(2,user.getIDUser());
+            this.setToken.setInt(2, user.getIDUser());
             this.setToken.executeUpdate();
 
         } catch (SQLException e) {
@@ -186,55 +186,51 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         }
     }
 
-    public void update(User user) throws DaoException{
-        try{
+    public void update(User user) throws DaoException {
+        try {
             this.init();
-            this.updateUser.setString(1,user.getEmail());
-            this.updateUser.setString(2,user.getPassword());
-            this.updateUser.setInt(3,user.getIDUser());
+            this.updateUser.setString(1, user.getEmail());
+            this.updateUser.setString(2, user.getPassword());
+            this.updateUser.setInt(3, user.getIDUser());
             this.updateUser.executeUpdate();
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
 
         }
     }
 
-    public boolean existIsMail(String mail) throws DaoException
-    {
+    public Boolean existIsMail(String mail) throws DaoException {
+        boolean risultato = false;
         try {
             this.init();
-            this.existIsMail.setString(1,mail);
-            ResultSet resultSet=this.existIsMail.executeQuery();
-            return (resultSet.next());
-        }catch (SQLException e)
-        {
-            throw  new DaoException("Errore Query",e);
+            this.existIsMail.setString(1, mail);
+            ResultSet resultSet = this.existIsMail.executeQuery();
+            risultato = resultSet.next();
+        } catch (SQLException e) {
+            throw new DaoException("Errore Query", e);
+
         }
+        return risultato;
+
     }
 
 
-
     public void destroy() throws DaoException {
-
         try {
-
             this.selectUserByEmail.close();
-            this.insertUser.close();
             this.selectUserById.close();
+            this.insertUser.close();
+            this.selectAllUser.close();
             this.updateUser.close();
+            this.selectUserByToken.close();
+            this.setToken.close();
             this.existIsMail.close();
-
-
             super.destroy();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-
             throw new DaoException("Error destroy in BookDao", ex);
-
-
         }
-
     }
 }

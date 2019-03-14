@@ -63,7 +63,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
             tirocinante.setTelefono(resultSet.getString("Telefono"));
             tirocinante.setCorsoDiLaurea(resultSet.getString("CorsoDiLaurea"));
             tirocinante.setDiplomaUniversitario(resultSet.getString("DiplomaUniversitario"));
-            tirocinante.setLaureatoUniversitario(resultSet.getString("LaureatoUniversitario"));
+            tirocinante.setLaureato(resultSet.getString("Laureato"));
             tirocinante.setDottoratoDiRicerca(resultSet.getString("DottoratoDiRicerca"));
             tirocinante.setScuolaAltro(resultSet.getString("ScuolaAltro"));
             tirocinante.setHandicap(resultSet.getBoolean("Handicap"));
@@ -114,7 +114,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
             insertTirocinante.setString(9, tr.getTelefono());
             insertTirocinante.setString(10, tr.getCorsoDiLaurea());
             insertTirocinante.setString(11, tr.getDiplomaUniversitario());
-            insertTirocinante.setString(12, tr.getLaureatoUniversitario());
+            insertTirocinante.setString(12, tr.getLaureato());
             insertTirocinante.setString(13, tr.getDottoratoDiRicerca());
             insertTirocinante.setString(14, tr.getScuolaAltro());
             insertTirocinante.setBoolean(15, tr.getHandicap());
@@ -141,7 +141,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
             updateTirocinante.setString(9, tr.getTelefono());
             updateTirocinante.setString(10, tr.getCorsoDiLaurea());
             updateTirocinante.setString(11, tr.getDiplomaUniversitario());
-            updateTirocinante.setString(12, tr.getLaureatoUniversitario());
+            updateTirocinante.setString(12, tr.getLaureato());
             updateTirocinante.setString(13, tr.getDottoratoDiRicerca());
             updateTirocinante.setString(14, tr.getScuolaAltro());
             updateTirocinante.setBoolean(15, tr.getHandicap());

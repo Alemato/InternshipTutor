@@ -9,6 +9,12 @@ public class Tirocinio {
     private Date DataConsegnaModulo;
     private Integer DurataOre;
     private Integer CFU;
+    /**
+     * Lo stato può essere:
+     * 0=il tirocinante ha fatto la richiesta ma l'azienda non ancora accetta la sua richieta
+     * 1=L'azienda accetta la richiesta e comincia il tirocinio
+     * 2=L'azienda dichiara finito il tirocinio
+     */
     private Integer Stato;
     private Date PeriodoEffettivoIniziale;
     private Date PeriodoEffettivoFinale;
@@ -44,6 +50,7 @@ public class Tirocinio {
     }
 
     // GET DATA
+
 
 
     public Integer getIDTirocinio() {

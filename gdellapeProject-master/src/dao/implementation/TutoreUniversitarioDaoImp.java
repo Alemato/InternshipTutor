@@ -18,6 +18,7 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement insertTutUni;
     private PreparedStatement selectTutoreByMail;
     private PreparedStatement updateTutoreUni;
+
     @Override
     public void init() throws DaoException {
         try {
@@ -30,95 +31,105 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
 
             this.insertTutUni = connection.prepareStatement("INSERT INTO tutoreuniversitario(Nome,Cognome,Telefono,Email) VALUES (?,?,?,?)");
 
-            this.selectTutoreByMail=connection.prepareStatement("SELECT * FROM tutoreuniversitario WHERE Email = ?");
+            this.selectTutoreByMail = connection.prepareStatement("SELECT * FROM tutoreuniversitario WHERE Email = ?");
 
-            this.updateTutoreUni=connection.prepareStatement("UPDATE tutoreuniversitario SET Nome=?,Cognome=?,Telefono=?,Email=? WHERE IDTutoreUni = ?");
+            this.updateTutoreUni = connection.prepareStatement("UPDATE tutoreuniversitario SET Nome=?,Cognome=?,Telefono=?,Email=? WHERE IDTutoreUni = ?");
+
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
 
         }
     }
 
+    private void setTutoreUniversitarioObject(TutoreUniversitario tutore, ResultSet resultSet) throws DaoException {
+        try {
+            tutore.setIDTutoreUni(resultSet.getInt("IDTutoreUni"));
+            tutore.setNome(resultSet.getString("Nome"));
+            tutore.setCognome(resultSet.getString("Cognome"));
+            tutore.setTelefono(resultSet.getString("Telefono"));
+            tutore.setEmail(resultSet.getString("Email"));
+            tutore.setCreateDate(resultSet.getTimestamp("CreateDate"));
+            tutore.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
+        } catch (SQLException e) {
+            throw new DaoException("Errore nel creare oggetto Tirocinate", e);
+        }
+    }
+
+    private void setListTirocinante(List<TutoreUniversitario> tutoreUniversitarios, ResultSet resultSet) throws DaoException {
+        try {
+            while (resultSet.next()) {
+                TutoreUniversitario tutoreUniversitario = new TutoreUniversitario();
+                setTutoreUniversitarioObject(tutoreUniversitario, resultSet);
+                tutoreUniversitarios.add(tutoreUniversitario);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Errore nel creare Lista oggetti Tirocinate", e);
+        }
+    }
+
     public TutoreUniversitario getTutoreUniByID(int ID) throws DaoException {
         TutoreUniversitario tutUni = new TutoreUniversitario();
+        this.init();
         try {
-            this.init();
             this.selectTutUniByID.setInt(1, ID);
             ResultSet resultSet = selectTutUniByID.executeQuery();
             if (resultSet.next()) {
-                tutUni.setIDTutoreUni(resultSet.getInt("IDTutoreUni"));
-                tutUni.setNome(resultSet.getString("Nome"));
-                tutUni.setCognome(resultSet.getString("Cognome"));
-                tutUni.setTelefono(resultSet.getString("Telefono"));
-                tutUni.setEmail(resultSet.getString("Email"));
-            }else{
-            throw new DaoException("Query con risultato vuoto");
-        }
-            return tutUni;
+                setTutoreUniversitarioObject(tutUni, resultSet);
+            } else {
+                throw new DaoException("Query con risultato vuoto");
+            }
+
         } catch (SQLException e) {
             throw new DaoException("Errore query select id ", e);
         }
+        return tutUni;
 
     }
+
     public List<TutoreUniversitario> getAllTutUni() throws DaoException {
-
+        List<TutoreUniversitario> tutori = new ArrayList<>();
+        this.init();
         try {
-            List<TutoreUniversitario> tutori = new ArrayList<>();
-            this.init();
             ResultSet resultSet = selectAllTutUni.executeQuery();
-            while (resultSet.next()) {
-                TutoreUniversitario tutore = new TutoreUniversitario();
-                tutore.setIDTutoreUni(resultSet.getInt("IDTutoreUni"));
-                tutore.setNome(resultSet.getString("Nome"));
-                tutore.setCognome(resultSet.getString("Cognome"));
-                tutore.setTelefono(resultSet.getString("Telefono"));
-                tutore.setEmail(resultSet.getString("Email"));
-
-                tutori.add(tutore);
-            }
-            return tutori;
+            setListTirocinante(tutori, resultSet);
         } catch (SQLException e) {
             throw new DaoException("Errore query select ALL ", e);
         }
+        return tutori;
 
     }
-    public TutoreUniversitario getTutoreByEmail(String email)throws DaoException
-    {
+
+    public TutoreUniversitario getTutoreByEmail(String email) throws DaoException {
         TutoreUniversitario tutUni = new TutoreUniversitario();
         try {
             this.init();
             this.selectTutoreByMail.setString(1, email);
-            ResultSet resultSet =selectTutoreByMail.executeQuery();
+            ResultSet resultSet = selectTutoreByMail.executeQuery();
             if (resultSet.next()) {
-                tutUni.setIDTutoreUni(resultSet.getInt("IDTutoreUni"));
-                tutUni.setNome(resultSet.getString("Nome"));
-                tutUni.setCognome(resultSet.getString("Cognome"));
-                tutUni.setTelefono(resultSet.getString("Telefono"));
-                tutUni.setEmail(resultSet.getString("Email"));
-            }else{
-        throw new DaoException("Query con risultato vuoto");
-    }
-            return tutUni;
+                setTutoreUniversitarioObject(tutUni, resultSet);
+            } else {
+                throw new DaoException("Query con risultato vuoto");
+            }
+
         } catch (SQLException e) {
             throw new DaoException("Errore query select email ", e);
         }
+        return tutUni;
 
 
     }
-    public void UpdateTutoreUni(TutoreUniversitario tutore)throws DaoException
-    {
-        try
-        {
-            this.init();
-            this.updateTutoreUni.setString(1,tutore.getNome());
-            this.updateTutoreUni.setString(2,tutore.getCognome());
-            this.updateTutoreUni.setString(3,tutore.getTelefono());
-            this.updateTutoreUni.setString(4,tutore.getEmail());
-            this.updateTutoreUni.setInt(5,tutore.getIDTutoreUni());
+
+    public void UpdateTutoreUni(TutoreUniversitario tutore) throws DaoException {
+        this.init();
+        try {
+            this.updateTutoreUni.setString(1, tutore.getNome());
+            this.updateTutoreUni.setString(2, tutore.getCognome());
+            this.updateTutoreUni.setString(3, tutore.getTelefono());
+            this.updateTutoreUni.setString(4, tutore.getEmail());
+            this.updateTutoreUni.setInt(5, tutore.getIDTutoreUni());
             this.updateTutoreUni.executeUpdate();
 
-        }catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new DaoException("Errore Update Tirocinante", e);
         }
     }
@@ -131,8 +142,6 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
             insertTutUni.setString(3, tutUni.getTelefono());
             insertTutUni.setString(4, tutUni.getEmail());
             insertTutUni.executeUpdate();
-
-
         } catch (SQLException e) {
             throw new DaoException("Errore inserimento tut uni ", e);
         }
@@ -142,20 +151,15 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
     public void destroy() throws DaoException {
 
         try {
-            super.destroy();
-
-            this.insertTutUni.close();
             this.selectTutUniByID.close();
             this.selectAllTutUni.close();
+            this.insertTutUni.close();
+            this.selectTutoreByMail.close();
             this.updateTutoreUni.close();
-
-
+            super.destroy();
         } catch (SQLException ex) {
             ex.printStackTrace();
-
             throw new DaoException("Error destroy in Offerta tr", ex);
-
-
         }
 
     }
