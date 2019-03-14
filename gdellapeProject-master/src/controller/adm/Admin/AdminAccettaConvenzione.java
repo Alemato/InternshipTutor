@@ -1,5 +1,6 @@
 package controller.adm.Admin;
 
+import controller.utility.HtmlEntities;
 import controller.utility.Utility;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
@@ -13,7 +14,7 @@ import javax.servlet.http.Part;
 
 public class AdminAccettaConvenzione extends BackEndAdminController{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       validate(request,response);
+
 
     }
 
@@ -22,69 +23,39 @@ public class AdminAccettaConvenzione extends BackEndAdminController{
 
     }
 
-    private void validate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
-        try {
-            String name = request.getParameter("nome");
-            Integer stato = Integer.parseInt(request.getParameter("stato"));
-            AziendaDaoImp dao = new AziendaDaoImp();
-            Azienda azienda = dao.getAziendaByRS(name);
-            dao.destroy();
-            AziendaDaoImp dao1 = new AziendaDaoImp();
-            boolean make=dao1.ifAziendaMakeModulo(azienda);
-            dao1.destroy();
-            System.out.println(azienda.getAttivo());
-            if ((!(azienda.getAttivo()))&&make) {
 
-                activeUser(request, response, azienda);
 
-            } else {
-                response.sendRedirect("/400");
 
-            }
-        }
-        catch(DaoException e)
+
+    private Boolean validate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,DaoException
+    {//nel caso l'id non appartenga a nessuno si creerà una eccezione di tipo DaoException
+        boolean errore = false;
+
+        if(request.getParameter("IDAzienda").isEmpty())
         {
-            response.sendRedirect("/400");
-        }
-    }
-
-    private void notActiveUser(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
-    {
-
-    }
-
-    /**
-     * Attivo azienda in modo che essa posso pubblicare tirocini ed
-      * @param request
-     * @param response
-     * @param azienda
-     * @throws ServletException
-     * @throws IOException
-     */
-
-    private void activeUser(HttpServletRequest request,HttpServletResponse response,Azienda azienda) throws ServletException,IOException
-    {
-        try {
-
-        Part file=request.getPart("pdf");
-        String path=request.getServletContext().getInitParameter("uploads.directory");
-       String name= Utility.action_upload(file,path);
-       azienda.setAttivo(true);
-       azienda.setPathPDFConvenzione(name);
-
-        AziendaDaoImp dao= new AziendaDaoImp();
-            dao.updateAzienda(azienda);
-            dao.destroy();
-
-
-            response.sendRedirect("/richisteconvezioni");
-        }
-        catch(DaoException e)
+            errore=true;
+        }else if(request.getParameter("stato").isEmpty())
         {
-            response.sendRedirect("/400");
+            errore=true;
+        }else if(!(request.getParameter("stato").equals("accetta")||request.getParameter("stato").equals("declina")))
+        {
+            errore=true;
         }
+
+        if(errore==true)
+        {
+            //mandalo in 404
+        }else{
+            //funzione che accetta o decline cabimbiando lo stato
+            //
+        }
+
+        return errore;
+
+
     }
+
+
 
 
 
