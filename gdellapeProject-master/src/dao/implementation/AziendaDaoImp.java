@@ -94,7 +94,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             azienda.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
             azienda.setForoControversia(resultSet.getString("ForoControversia"));
             azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
-            azienda.setAttivo(resultSet.getBoolean("Attivo"));
+            azienda.setAttivo(resultSet.getInt("Attivo"));
             azienda.setModuloConvenzione(resultSet.getBoolean("ModuloConvenzione"));
             azienda.setDescrizione(resultSet.getString("Descrizione"));
             azienda.setLink(resultSet.getString("Link"));
@@ -140,7 +140,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.updateAzienda.setInt(11, azienda.getDurataConvenzione());
             this.updateAzienda.setString(12, azienda.getForoControversia());
             this.updateAzienda.setDate(13, azienda.getDataConvenzione());
-            this.updateAzienda.setBoolean(14, azienda.getAttivo());
+            this.updateAzienda.setInt(14, azienda.getAttivo());
             this.updateAzienda.setBoolean(15, azienda.getModuloConvenzione());
             this.updateAzienda.setString(16, azienda.getDescrizione());
             this.updateAzienda.setString(17, azienda.getLink());
@@ -173,7 +173,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.insertAzienda.setInt(11, azienda.getDurataConvenzione());
             this.insertAzienda.setString(12, azienda.getForoControversia());
             this.insertAzienda.setDate(13, azienda.getDataConvenzione());
-            this.insertAzienda.setBoolean(14, azienda.getAttivo());
+            this.insertAzienda.setInt(14, azienda.getAttivo());
             this.insertAzienda.setBoolean(15, azienda.getModuloConvenzione());
             this.insertAzienda.setString(16, azienda.getDescrizione());
             this.insertAzienda.setString(17, azienda.getLink());

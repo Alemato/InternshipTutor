@@ -34,7 +34,7 @@ public class AdminAccettaConvenzione extends BackEndAdminController{
             boolean make=dao1.ifAziendaMakeModulo(azienda);
             dao1.destroy();
             System.out.println(azienda.getAttivo());
-            if ((!(azienda.getAttivo()))&&make) {
+            if (!(azienda.getAttivo()==0)&&make) {
 
                 activeUser(request, response, azienda);
 
@@ -70,7 +70,7 @@ public class AdminAccettaConvenzione extends BackEndAdminController{
         Part file=request.getPart("pdf");
         String path=request.getServletContext().getInitParameter("uploads.directory");
        String name= Utility.action_upload(file,path);
-       azienda.setAttivo(true);
+       azienda.setAttivo(1);
        azienda.setPathPDFConvenzione(name);
 
         AziendaDaoImp dao= new AziendaDaoImp();
