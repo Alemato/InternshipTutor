@@ -32,7 +32,7 @@
             <div class="linea-divisione mt-15 mb-25"></div>
         <div id="blog" class="clearfix blog-isotope blog-isotope-2">
                 <!-- POST ITEMS -->
-                <#list LastFiveOfferta as OffertaTirocinio>
+                <#list LastFiveOfferta  as  OffertaTirocinio>
                 <div class="blog-post-item radius-5 box-white border p-15">
 
                     <h2><a href="/tirocinio?ID=${OffertaTirocinio.IDOffertaTirocinio}" class="uppercase"> ${OffertaTirocinio.titolo}</a></h2>
@@ -57,9 +57,7 @@
 
                     <p>Per eventuali candidature o richieste di informazioni rivolgersi
                         a: ${OffertaTirocinio.emailTutoreAziendale}</p>
-                    <p class="mb-15"><i class="fa fa-info-circle griggio"></i><b class="mr-5"> Contatto Interno:</b>${LastFiveTutore[OffertaTirocinio?index].nome} ${LastFiveTutore[OffertaTirocinio?index].cognome}<a class="ml-25" href="mailto:${LastFiveTutore[OffertaTirocinio?index].email}">${LastFiveTutore[OffertaTirocinio?index].email}</a></p>
-                    <p><i class="fa fa-info-circle griggio"></i>
-                        <b class="mr-5"> Contatto aziendale:</b> ${OffertaTirocinio.nomeTutoreAziendale} ${OffertaTirocinio.cognomeTutoreAziendale}<a class="ml-25" href="mailto:${OffertaTirocinio.emailTutoreAziendale}">${OffertaTirocinio.emailTutoreAziendale}</a></p>
+                       <p> <b class="mr-5"> Contatto aziendale:</b> ${OffertaTirocinio.nomeTutoreAziendale} ${OffertaTirocinio.cognomeTutoreAziendale}<a class="ml-25" href="mailto:${OffertaTirocinio.emailTutoreAziendale}">${OffertaTirocinio.emailTutoreAziendale}</a></p>
                     <a href="/tirocinio?ID=${OffertaTirocinio.IDOffertaTirocinio}" class="btn btn-reveal btn-default b-0 btn-shadow-1 mt-30">
                         <i class="fa fa-plus"></i>
                         <span>Leggi di pi&ugrave;</span>
@@ -76,26 +74,26 @@
             <div class="linea-divisione mt-15 mb-25"></div>
             <div id="blog" class="clearfix blog-isotope blog-isotope-2">
             <!-- POST ITEMS CONVENZIONI -->
-                <#list LastFiveConvenzioni as LastFiveConvenzioni>
+                <#list LastFiveConvenzioni as Convenzioni>
                 <div class="blog-post-item radius-5 box-white border p-15">
-                    <h2 class="mb-0"><a href="/SchedaAzienda?ID=${LastFiveConvenzioni.IDAzienda}" class="uppercase">${LastFiveConvenzioni.ragioneSociale}</a></h2>
+                    <h2 class="mb-0"><a href="/SchedaAzienda?ID=${Convenzioni.IDAzienda}" class="uppercase">${Convenzioni.ragioneSociale}</a></h2>
 
                     <ul class="blog-post-info list-inline">
                         <li class="pl-0">
                                 <i class="fa fa-clock-o"></i>
-                                <span class="font-lato">${LastFiveConvenzioni.dataConvenzione}</span>
+                                <span class="font-lato">${Convenzioni.dataConvenzione}</span>
                         </li>
                         <li>
-                            <a href="/SchedaAzienda?ID=${LastFiveConvenzioni.IDAzienda}">
+                            <a href="/SchedaAzienda?ID=${Convenzioni.IDAzienda}">
                                 <i class="fa fa-industry"></i>
-                                <span class="font-lato">${LastFiveConvenzioni.ragioneSociale}</span>
+                                <span class="font-lato">${Convenzioni.ragioneSociale}</span>
                             </a>
                         </li>
                     </ul>
 
-                    <p class="mb-10">${LastFiveConvenzioni.descrizione}</p>
+                    <p class="mb-10">${Convenzioni.descrizione}</p>
 
-                    <a href="/SchedaAzienda?ID=${LastFiveConvenzioni.IDAzienda}" class="btn btn-reveal btn-default b-0 btn-shadow-1 mt-30">
+                    <a href="/SchedaAzienda?ID=${Convenzioni.IDAzienda}" class="btn btn-reveal btn-default b-0 btn-shadow-1 mt-30">
                         <i class="fa fa-plus"></i>
                         <span>Leggi di pi&ugrave;</span>
                     </a>
