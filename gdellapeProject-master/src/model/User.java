@@ -17,13 +17,15 @@ public class User {
 
     public User() {
         this.IDUser = 0;
-        Email = null;
-        Password = null;
-        TipologiaAccount = 0;
-        Token = null;
-        CreateDate = null;
-        UpdateDate = null;
+        this.Email = null;
+        this.Password = null;
+        this.TipologiaAccount = 0;
+        this.Token = null;
+        this.CreateDate = null;
+        this.UpdateDate = null;
     }
+    // GET DATA
+
 
     public Integer getIDUser() {
         return IDUser;
@@ -41,7 +43,7 @@ public class User {
         return TipologiaAccount;
     }
 
-    public String getToken(){
+    public String getToken() {
         return Token;
     }
 
@@ -52,6 +54,8 @@ public class User {
     public Timestamp getUpdateDate() {
         return UpdateDate;
     }
+
+    // SET DATA
 
     public void setIDUser(Integer IDUser) {
         this.IDUser = IDUser;
@@ -69,7 +73,7 @@ public class User {
         TipologiaAccount = tipologiaAccount;
     }
 
-    public void setToken(String token){
+    public void setToken(String token) {
         Token = token;
     }
 
@@ -81,17 +85,6 @@ public class User {
         UpdateDate = updateDate;
     }
 
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "ID=" + IDUser +
-                ", email='" + Email + '\'' +
-                ", Password='" + Password + '\'' +
-                ", TipologiaAccount='" + TipologiaAccount + '\'' +
-                '}';
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,11 +94,28 @@ public class User {
                 Email.equals(user.Email) &&
                 Password.equals(user.Password) &&
                 TipologiaAccount.equals(user.TipologiaAccount) &&
-                Token.equals(user.Token) &&
+                Objects.equals(Token, user.Token) &&
                 CreateDate.equals(user.CreateDate) &&
                 UpdateDate.equals(user.UpdateDate);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(IDUser, Email, Password, TipologiaAccount, Token, CreateDate, UpdateDate);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "IDUser=" + IDUser +
+                ", Email='" + Email + '\'' +
+                ", Password='" + Password + '\'' +
+                ", TipologiaAccount=" + TipologiaAccount +
+                ", Token='" + Token + '\'' +
+                ", CreateDate=" + CreateDate +
+                ", UpdateDate=" + UpdateDate +
+                '}';
+    }
 }
 
 
