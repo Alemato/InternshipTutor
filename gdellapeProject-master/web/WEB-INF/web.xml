@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
@@ -35,12 +35,12 @@
     <!-- Fine Init Servlet -->
     <!-- filtri -->
     <!--<filter>-->
-        <!--<filter-name>Utf8</filter-name>-->
-        <!--<filter-class>filter.Utf8</filter-class>-->
+    <!--<filter-name>Utf8</filter-name>-->
+    <!--<filter-class>filter.Utf8</filter-class>-->
     <!--</filter>-->
     <!--<filter-mapping>-->
-        <!--<filter-name>Utf8</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
+    <!--<filter-name>Utf8</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
     <!--</filter-mapping>-->
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
@@ -85,13 +85,13 @@
 
 
     <!--<servlet>-->
-        <!--<servlet-name>index</servlet-name>-->
-        <!--<servlet-class>controller.adm.AccountController</servlet-class>-->
+    <!--<servlet-name>index</servlet-name>-->
+    <!--<servlet-class>controller.adm.AccountController</servlet-class>-->
     <!--</servlet>-->
     <!--<servlet-mapping>-->
-        <!--<servlet-name>index</servlet-name>-->
-        <!--<url-pattern>/index</url-pattern>-->
-        <!--<url-pattern>/Account</url-pattern>-->
+    <!--<servlet-name>index</servlet-name>-->
+    <!--<url-pattern>/index</url-pattern>-->
+    <!--<url-pattern>/Account</url-pattern>-->
     <!--</servlet-mapping>-->
 
 
@@ -280,6 +280,16 @@
         <url-pattern>/impostazionetirocinante</url-pattern>
 
     </servlet-mapping>
+<!-- TODO eliminare SETPWD-->
+    <servlet>
+        <servlet-name>SetPWD</servlet-name>
+        <servlet-class>controller.SetPWD</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SetPWD</servlet-name>
+        <url-pattern>/setpwd</url-pattern>
+        <url-pattern>/setPWD</url-pattern>
+    </servlet-mapping>
 
     <error-page>
         <error-code>401</error-code>
@@ -399,16 +409,16 @@
         <url-pattern>/Accetta</url-pattern>
 
     </servlet-mapping>
-    <servlet>
-        <servlet-name>moduloConvAzienda</servlet-name>
-        <servlet-class>controller.adm.Azienda.ModuloconvezioneController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>moduloConvAzienda</servlet-name>
-        <url-pattern>/convenzione</url-pattern>
-        <url-pattern>/Convenzione</url-pattern>
+    <!--<servlet>-->
+    <!--<servlet-name>moduloConvAzienda</servlet-name>-->
+    <!--<servlet-class>controller.adm.Azienda.ModuloconvezioneController</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>moduloConvAzienda</servlet-name>-->
+    <!--<url-pattern>/convenzione</url-pattern>-->
+    <!--<url-pattern>/Convenzione</url-pattern>-->
 
-    </servlet-mapping>
+    <!--</servlet-mapping>-->
     <servlet>
         <servlet-name>show-tirociante</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneUtenza.ShowTirocinanteController</servlet-class>
@@ -449,46 +459,46 @@
         <url-pattern>/show-azienda</url-pattern>
 
     </servlet-mapping>
-    <servlet>
-        <servlet-name>modifica-tutore</servlet-name>
-        <servlet-class>controller.adm.Admin.GestioneUtenza.ModificaTutoreController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>modifica-tutore</servlet-name>
-        <url-pattern>/modifica-tutore</url-pattern>
-        <url-pattern>/modifica-Tutore</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>modifica-admin</servlet-name>
-        <servlet-class>controller.adm.Admin.GestioneUtenza.ModificaAdmin</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>modifica-admin</servlet-name>
-        <url-pattern>/modifica-Admin</url-pattern>
-        <url-pattern>/modifica-admin</url-pattern>
+    <!--<servlet>-->
+    <!--<servlet-name>modifica-tutore</servlet-name>-->
+    <!--<servlet-class>controller.adm.Admin.GestioneUtenza.ModificaTutoreController</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>modifica-tutore</servlet-name>-->
+    <!--<url-pattern>/modifica-tutore</url-pattern>-->
+    <!--<url-pattern>/modifica-Tutore</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!--<servlet>-->
+    <!--<servlet-name>modifica-admin</servlet-name>-->
+    <!--<servlet-class>controller.adm.Admin.GestioneUtenza.ModificaAdmin</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>modifica-admin</servlet-name>-->
+    <!--<url-pattern>/modifica-Admin</url-pattern>-->
+    <!--<url-pattern>/modifica-admin</url-pattern>-->
 
-    </servlet-mapping>
-<servlet>
-<servlet-name>TutteOfferteTr</servlet-name>
-<servlet-class>controller.adm.Admin.GestioneUtenza.OfferteTirocinioController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>TutteOfferteTr</servlet-name>
-<url-pattern>/OfferteTirocinioAdmin</url-pattern>
-<url-pattern>/offertetirocinioadmin</url-pattern>
+    <!--</servlet-mapping>-->
+    <!--<servlet>-->
+    <!--<servlet-name>TutteOfferteTr</servlet-name>-->
+    <!--<servlet-class>controller.adm.Admin.GestioneUtenza.OfferteTirocinioController</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>TutteOfferteTr</servlet-name>-->
+    <!--<url-pattern>/OfferteTirocinioAdmin</url-pattern>-->
+    <!--<url-pattern>/offertetirocinioadmin</url-pattern>-->
 
-</servlet-mapping>
+    <!--</servlet-mapping>-->
 
-<servlet>
-<servlet-name>ModificaOffertaAdmin</servlet-name>
-<servlet-class>controller.adm.Admin.GestioneUtenza.ModificaOffertatrController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>ModificaOffertaAdmin</servlet-name>
-<url-pattern>/ModificaOfferta</url-pattern>
-<url-pattern>/modificaofferta</url-pattern>
+    <!--<servlet>-->
+    <!--<servlet-name>ModificaOffertaAdmin</servlet-name>-->
+    <!--<servlet-class>controller.adm.Admin.GestioneUtenza.ModificaOffertatrController</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>ModificaOffertaAdmin</servlet-name>-->
+    <!--<url-pattern>/ModificaOfferta</url-pattern>-->
+    <!--<url-pattern>/modificaofferta</url-pattern>-->
 
-</servlet-mapping>
+    <!--</servlet-mapping>-->
     <servlet>
         <servlet-name>CreaAdmin</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneUtenza.CreateAdmin</servlet-class>
@@ -500,8 +510,6 @@
 
     </servlet-mapping>
     <!-- end servelt account admin-->
-
-
 
 
     <servlet>
