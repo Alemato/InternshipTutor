@@ -1,7 +1,7 @@
 package controller.adm.Azienda;
 
 import controller.sessionController.SingSessionContoller;
-import controller.utility.utility;
+import controller.utility.Utility;
 import dao.exception.DaoException;
 import dao.implementation.*;
 import model.*;
@@ -102,8 +102,8 @@ public class CreateTirocinioController extends BackEndAziendaController{
         of.setTitolo(request.getParameter("Titolo"));
         of.setDescrizioneBreve(request.getParameter("Descrizione_Breve"));
         of.setDescrizione(request.getParameter("Descrizione_Completa"));
-        of.setOrario(request.getParameter("Orari"));
-        of.setDurataOra(Integer.parseInt(request.getParameter("Durara_Ora")));
+        of.setOrari(request.getParameter("Orari"));
+        of.setDurataOre(Integer.parseInt(request.getParameter("Durara_Ore")));
         of.setDurataMesi(Integer.parseInt(request.getParameter("Durara_Mesi")));
         of.setPeriodoInizio(Date.valueOf(request.getParameter("Periodo_inizio")));
         of.setPeriodoFine(Date.valueOf(request.getParameter("Periodo_fine")));
@@ -112,12 +112,12 @@ public class CreateTirocinioController extends BackEndAziendaController{
         of.setRimborsi(request.getParameter("Rimborsi"));
         of.setFacilitazioni(request.getParameter("Facilitazioni"));
         of.setLuogoEffettuazione(request.getParameter("SedeTirocinio"));
-        of.setCodiceTirocinio(request.getParameter("CodiceIdentTirocinio"));
+        of.setCodIdentTirocinio(request.getParameter("CodiceIdentTirocinio"));
         of.setSettoreInserimento(request.getParameter("SettoreInserimento"));
         of.setTempoAccessoLocaliAziendali(request.getParameter("TempiAccessoLocaliAziendali"));
         of.setNomeTutoreAziendale(request.getParameter("NomeTutoreAziendale"));
         of.setCognomeTutoreAziendale(request.getParameter("CognomeTutoreAziendale"));
-        of.setTelefonoTutoreAzindale(request.getParameter("TelefonoTutoreAziendale"));
+        of.setTelefonoTutoreAziendale(request.getParameter("TelefonoTutoreAziendale"));
         of.setEmailTutoreAziendale(request.getParameter("EmailTutoreAziendale"));
         return of;
 
@@ -569,7 +569,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
             String param =(String)e.nextElement();
             lista.add(param);
         }
-        return utility.AddAllData(request,response,lista);
+        return Utility.AddAllData(request,response,lista);
 
     }
 

@@ -21,7 +21,6 @@ public class ConnectionFactory extends HttpServlet {
     public Connection getConnection() throws SQLException {
 
 
-
         // cosi non usi il pooler di tomcat
         Connection conn = null;
         String connectionUrl = "jdbc:mysql://localhost:3306/student";

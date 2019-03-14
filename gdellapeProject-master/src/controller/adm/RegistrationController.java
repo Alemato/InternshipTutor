@@ -226,7 +226,7 @@ public class RegistrationController extends HttpServlet  {
 
             String CKlaureain = (String) request.getParameter("CKLaureaIn");
             if (CKlaureain.equals("1")) {
-                tirocinante.setLaureatoUniversitario(request.getParameter("LaureaIn"));
+                tirocinante.setLaureato(request.getParameter("LaureaIn"));
             }
 
             String CKdotRic = (String) request.getParameter("CKDottoratoRicerca");

@@ -10,8 +10,8 @@ public class OffertaTirocinio {
     private String Titolo;
     private String DescrizioneBreve;
     private String Descrizione;
-    private String Orario;
-    private Integer DurataOra;
+    private String Orari;
+    private Integer DurataOre;
     private Integer DurataMesi;
     //s - a String object representing a date in in the format "yyyy-[m]m-[d]d". The leading zero for mm and dd may also be omitted.
     private Date PeriodoInizio;
@@ -21,12 +21,12 @@ public class OffertaTirocinio {
     private String Rimborsi;
     private String Facilitazioni;
     private String AziendaOspitante;
-    private String CodiceTirocinio;
+    private String CodIdentTirocinio;
     private String SettoreInserimento;
     private String TempoAccessoLocaliAziendali;
     private String NomeTutoreAziendale;
     private String CognomeTutoreAziendale;
-    private String TelefonoTutoreAzindale;
+    private String TelefonoTutoreAziendale;
     private String EmailTutoreAziendale;
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
@@ -40,8 +40,8 @@ public class OffertaTirocinio {
         this.Titolo = null;
         this.DescrizioneBreve = null;
         this.Descrizione = null;
-        this.Orario = null;
-        this.DurataOra = null;
+        this.Orari = null;
+        this.DurataOre = null;
         this.DurataMesi = null;
         this.PeriodoInizio = null;
         this.PeriodoFine = null;
@@ -50,12 +50,12 @@ public class OffertaTirocinio {
         this.Rimborsi = null;
         this.Facilitazioni = null;
         this.AziendaOspitante = null;
-        this.CodiceTirocinio = null;
+        this.CodIdentTirocinio = null;
         this.SettoreInserimento = null;
         this.TempoAccessoLocaliAziendali = null;
         this.NomeTutoreAziendale = null;
         this.CognomeTutoreAziendale = null;
-        this.TelefonoTutoreAzindale = null;
+        this.TelefonoTutoreAziendale = null;
         this.EmailTutoreAziendale = null;
         this.CreateDate = null;
         this.UpdateDate = null;
@@ -86,12 +86,12 @@ public class OffertaTirocinio {
         return Descrizione;
     }
 
-    public String getOrario() {
-        return Orario;
+    public String getOrari() {
+        return Orari;
     }
 
-    public Integer getDurataOra() {
-        return DurataOra;
+    public Integer getDurataOre() {
+        return DurataOre;
     }
 
     public Integer getDurataMesi() {
@@ -126,8 +126,8 @@ public class OffertaTirocinio {
         return AziendaOspitante;
     }
 
-    public String getCodiceTirocinio() {
-        return CodiceTirocinio;
+    public String getCodIdentTirocinio() {
+        return CodIdentTirocinio;
     }
 
     public String getSettoreInserimento() {
@@ -146,8 +146,8 @@ public class OffertaTirocinio {
         return CognomeTutoreAziendale;
     }
 
-    public String getTelefonoTutoreAzindale() {
-        return TelefonoTutoreAzindale;
+    public String getTelefonoTutoreAziendale() {
+        return TelefonoTutoreAziendale;
     }
 
     public String getEmailTutoreAziendale() {
@@ -192,12 +192,12 @@ public class OffertaTirocinio {
         Descrizione = descrizione;
     }
 
-    public void setOrario(String orario) {
-        Orario = orario;
+    public void setOrari(String orari) {
+        Orari = orari;
     }
 
-    public void setDurataOra(Integer durataOra) {
-        DurataOra = durataOra;
+    public void setDurataOre(Integer durataOre) {
+        DurataOre = durataOre;
     }
 
     public void setDurataMesi(Integer durataMesi) {
@@ -232,8 +232,8 @@ public class OffertaTirocinio {
         AziendaOspitante = aziendaOspitante;
     }
 
-    public void setCodiceTirocinio(String codiceTirocinio) {
-        CodiceTirocinio = codiceTirocinio;
+    public void setCodIdentTirocinio(String codIdentTirocinio) {
+        CodIdentTirocinio = codIdentTirocinio;
     }
 
     public void setSettoreInserimento(String settoreInserimento) {
@@ -252,8 +252,8 @@ public class OffertaTirocinio {
         CognomeTutoreAziendale = cognomeTutoreAziendale;
     }
 
-    public void setTelefonoTutoreAzindale(String telefonoTutoreAzindale) {
-        TelefonoTutoreAzindale = telefonoTutoreAzindale;
+    public void setTelefonoTutoreAziendale(String telefonoTutoreAziendale) {
+        TelefonoTutoreAziendale = telefonoTutoreAziendale;
     }
 
     public void setEmailTutoreAziendale(String emailTutoreAziendale) {
@@ -286,8 +286,8 @@ public class OffertaTirocinio {
                 Titolo.equals(that.Titolo) &&
                 DescrizioneBreve.equals(that.DescrizioneBreve) &&
                 Descrizione.equals(that.Descrizione) &&
-                Orario.equals(that.Orario) &&
-                DurataOra.equals(that.DurataOra) &&
+                Orari.equals(that.Orari) &&
+                DurataOre.equals(that.DurataOre) &&
                 DurataMesi.equals(that.DurataMesi) &&
                 PeriodoInizio.equals(that.PeriodoInizio) &&
                 PeriodoFine.equals(that.PeriodoFine) &&
@@ -296,12 +296,12 @@ public class OffertaTirocinio {
                 Objects.equals(Rimborsi, that.Rimborsi) &&
                 Objects.equals(Facilitazioni, that.Facilitazioni) &&
                 AziendaOspitante.equals(that.AziendaOspitante) &&
-                CodiceTirocinio.equals(that.CodiceTirocinio) &&
+                CodIdentTirocinio.equals(that.CodIdentTirocinio) &&
                 SettoreInserimento.equals(that.SettoreInserimento) &&
                 TempoAccessoLocaliAziendali.equals(that.TempoAccessoLocaliAziendali) &&
                 NomeTutoreAziendale.equals(that.NomeTutoreAziendale) &&
                 CognomeTutoreAziendale.equals(that.CognomeTutoreAziendale) &&
-                TelefonoTutoreAzindale.equals(that.TelefonoTutoreAzindale) &&
+                TelefonoTutoreAziendale.equals(that.TelefonoTutoreAziendale) &&
                 EmailTutoreAziendale.equals(that.EmailTutoreAziendale) &&
                 CreateDate.equals(that.CreateDate) &&
                 UpdateDate.equals(that.UpdateDate) &&
@@ -311,7 +311,7 @@ public class OffertaTirocinio {
 
     @Override
     public int hashCode() {
-        return Objects.hash(IDOffertaTirocinio, LuogoEffettuazione, Titolo, DescrizioneBreve, Descrizione, Orario, DurataOra, DurataMesi, PeriodoInizio, PeriodoFine, Modalita, Obbiettivi, Rimborsi, Facilitazioni, AziendaOspitante, CodiceTirocinio, SettoreInserimento, TempoAccessoLocaliAziendali, NomeTutoreAziendale, CognomeTutoreAziendale, TelefonoTutoreAzindale, EmailTutoreAziendale, CreateDate, UpdateDate, Azienda, TutoreUniversitario);
+        return Objects.hash(IDOffertaTirocinio, LuogoEffettuazione, Titolo, DescrizioneBreve, Descrizione, Orari, DurataOre, DurataMesi, PeriodoInizio, PeriodoFine, Modalita, Obbiettivi, Rimborsi, Facilitazioni, AziendaOspitante, CodIdentTirocinio, SettoreInserimento, TempoAccessoLocaliAziendali, NomeTutoreAziendale, CognomeTutoreAziendale, TelefonoTutoreAziendale, EmailTutoreAziendale, CreateDate, UpdateDate, Azienda, TutoreUniversitario);
     }
 
     @Override
@@ -322,8 +322,8 @@ public class OffertaTirocinio {
                 ", Titolo='" + Titolo + '\'' +
                 ", DescrizioneBreve='" + DescrizioneBreve + '\'' +
                 ", Descrizione='" + Descrizione + '\'' +
-                ", Orario='" + Orario + '\'' +
-                ", DurataOra=" + DurataOra +
+                ", Orario='" + Orari + '\'' +
+                ", DurataOra=" + DurataOre +
                 ", DurataMesi=" + DurataMesi +
                 ", PeriodoInizio=" + PeriodoInizio +
                 ", PeriodoFine=" + PeriodoFine +
@@ -332,12 +332,12 @@ public class OffertaTirocinio {
                 ", Rimborsi='" + Rimborsi + '\'' +
                 ", Facilitazioni='" + Facilitazioni + '\'' +
                 ", AziendaOspitante='" + AziendaOspitante + '\'' +
-                ", CodiceTirocinio='" + CodiceTirocinio + '\'' +
+                ", CodiceTirocinio='" + CodIdentTirocinio + '\'' +
                 ", SettoreInserimento='" + SettoreInserimento + '\'' +
                 ", TempoAccessoLocaliAziendali='" + TempoAccessoLocaliAziendali + '\'' +
                 ", NomeTutoreAziendale='" + NomeTutoreAziendale + '\'' +
                 ", CognomeTutoreAziendale='" + CognomeTutoreAziendale + '\'' +
-                ", TelefonoTutoreAzindale='" + TelefonoTutoreAzindale + '\'' +
+                ", TelefonoTutoreAziendale='" + TelefonoTutoreAziendale + '\'' +
                 ", EmailTutoreAziendale='" + EmailTutoreAziendale + '\'' +
                 ", CreateDate=" + CreateDate +
                 ", UpdateDate=" + UpdateDate +

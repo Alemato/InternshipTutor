@@ -33,7 +33,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
 
             this.selectOffertetrByAzienda = connection.prepareStatement("SELECT * FROM offertatirocinio WHERE  Azienda = ? ORDER BY UpdateDate ASC ");
 
-            this.selectLastFiveOfferte = connection.prepareStatement("SELECT * FROM `offertatirocinio` ORDER BY UpdateDate ASC LIMIT 5");
+            this.selectLastFiveOfferte = connection.prepareStatement("SELECT * FROM offertatirocinio ORDER BY UpdateDate ASC LIMIT 5");
 
             this.insertOffertatr = connection.prepareStatement("INSERT INTO offertatirocinio(LuogoEffettuazione," +
                     "Titolo,DescrizioneBreve,Descrizione,Orari,DurataOre,DurataMesi,PeriodoInizio,PeriodoFine," +
@@ -54,8 +54,8 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             offertaTirocinio.setTitolo(resultSet.getString("Titolo"));
             offertaTirocinio.setDescrizioneBreve(resultSet.getString("DescrizioneBreve"));
             offertaTirocinio.setDescrizione(resultSet.getString("Descrizione"));
-            offertaTirocinio.setOrario(resultSet.getString("Orario"));
-            offertaTirocinio.setDurataOra(resultSet.getInt("DurataOra"));
+            offertaTirocinio.setOrari(resultSet.getString("Orari"));
+            offertaTirocinio.setDurataOre(resultSet.getInt("DurataOre"));
             offertaTirocinio.setDurataMesi(resultSet.getInt("DurataMesi"));
             offertaTirocinio.setPeriodoInizio(resultSet.getDate("PeriodoInizio"));
             offertaTirocinio.setPeriodoFine(resultSet.getDate("PeriodoFine"));
@@ -64,12 +64,12 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             offertaTirocinio.setRimborsi(resultSet.getString("Rimborsi"));
             offertaTirocinio.setFacilitazioni(resultSet.getString("Facilitazioni"));
             offertaTirocinio.setAziendaOspitante(resultSet.getString("AziendaOspitante"));
-            offertaTirocinio.setCodiceTirocinio(resultSet.getString("CodiceTirocinio"));
+            offertaTirocinio.setCodIdentTirocinio(resultSet.getString("CodIdentTirocinio"));
             offertaTirocinio.setSettoreInserimento(resultSet.getString("SettoreInserimento"));
             offertaTirocinio.setTempoAccessoLocaliAziendali(resultSet.getString("TempoAccessoLocaliAziendali"));
             offertaTirocinio.setNomeTutoreAziendale(resultSet.getString("NomeTutoreAziendale"));
             offertaTirocinio.setCognomeTutoreAziendale(resultSet.getString("CognomeTutoreAziendale"));
-            offertaTirocinio.setTelefonoTutoreAzindale(resultSet.getString("TelefonoTutoreAzindale"));
+            offertaTirocinio.setTelefonoTutoreAziendale(resultSet.getString("TelefonoTutoreAziendale"));
             offertaTirocinio.setEmailTutoreAziendale(resultSet.getString("EmailTutoreAziendale"));
             offertaTirocinio.setCreateDate(resultSet.getTimestamp("CreateDate"));
             offertaTirocinio.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
@@ -163,8 +163,8 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             insertOffertatr.setString(2, tr.getTitolo());
             insertOffertatr.setString(3, tr.getDescrizioneBreve());
             insertOffertatr.setString(4, tr.getDescrizione());
-            insertOffertatr.setString(5, tr.getOrario());
-            insertOffertatr.setInt(6, tr.getDurataOra());
+            insertOffertatr.setString(5, tr.getOrari());
+            insertOffertatr.setInt(6, tr.getDurataOre());
             insertOffertatr.setInt(7, tr.getDurataMesi());
             insertOffertatr.setDate(8, tr.getPeriodoInizio());
             insertOffertatr.setDate(9, tr.getPeriodoFine());
@@ -173,12 +173,12 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             insertOffertatr.setString(12, tr.getRimborsi());
             insertOffertatr.setString(13, tr.getFacilitazioni());
             insertOffertatr.setString(14, tr.getAziendaOspitante());
-            insertOffertatr.setString(15, tr.getCodiceTirocinio());
+            insertOffertatr.setString(15, tr.getCodIdentTirocinio());
             insertOffertatr.setString(16, tr.getSettoreInserimento());
             insertOffertatr.setString(17, tr.getTempoAccessoLocaliAziendali());
             insertOffertatr.setString(18, tr.getNomeTutoreAziendale());
             insertOffertatr.setString(19, tr.getCognomeTutoreAziendale());
-            insertOffertatr.setString(20, tr.getTelefonoTutoreAzindale());
+            insertOffertatr.setString(20, tr.getTelefonoTutoreAziendale());
             insertOffertatr.setString(21, tr.getEmailTutoreAziendale());
             insertOffertatr.setInt(22, tr.getAzienda());
             insertOffertatr.setInt(23, tr.getTutoreUniversitario());

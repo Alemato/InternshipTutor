@@ -213,7 +213,7 @@ public class FillRichiesteTr {
                 //carico cognome tut aziendale pos 7
                 dati.add(of.getCognomeTutoreAziendale());
                 //carico telefono tut azienddle pos 8
-                dati.add(of.getTelefonoTutoreAzindale());
+                dati.add(of.getTelefonoTutoreAziendale());
             } else {
                 //Carico il nome della azienda nella posizone 3
                 dati.add("Azienda non presente");

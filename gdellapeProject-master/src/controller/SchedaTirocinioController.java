@@ -44,7 +44,7 @@ public class SchedaTirocinioController  extends baseController{
             datamodel.put("Titolo",Oftr.getTitolo());
             datamodel.put("DescrizioneBreve",Oftr.getDescrizioneBreve());
             datamodel.put("Descrizione",Oftr.getDescrizione());
-            datamodel.put("Orario",Oftr.getOrario());
+            datamodel.put("Orario",Oftr.getOrari());
 
             datamodel.put("PeriodoInizio",Oftr.getPeriodoInizio());
             datamodel.put("PeriodoFine",Oftr.getPeriodoFine());
@@ -55,7 +55,7 @@ public class SchedaTirocinioController  extends baseController{
             datamodel.put("AziendaOspitante",Oftr.getAziendaOspitante());
             datamodel.put("NomeRespAz",Oftr.getNomeTutoreAziendale());
             datamodel.put("CognomeRepAz",Oftr.getCognomeTutoreAziendale());
-            datamodel.put("TelRespAz",Oftr.getTelefonoTutoreAzindale());
+            datamodel.put("TelRespAz",Oftr.getTelefonoTutoreAziendale());
             datamodel.put("EmailRespAZ",Oftr.getEmailTutoreAziendale());
 
 
