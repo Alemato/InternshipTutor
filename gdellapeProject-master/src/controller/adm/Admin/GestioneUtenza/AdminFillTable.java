@@ -24,87 +24,87 @@ import java.util.Map;
 
 /**
  * @author MasterSlave
- *
  */
 public class AdminFillTable {
 
-    private Map<String,Object> datamodel;
+    private Map<String, Object> datamodel;
     private ServletContext servletContext;
     private HttpServletRequest request;
     private HttpServletResponse response;
 
-    public AdminFillTable(Map<String, Object> datamodel, ServletContext sr, HttpServletRequest request, HttpServletResponse response)
-    {
-        this.datamodel=datamodel;
-        this.servletContext=sr;
-        this.request=request;
-        this.response=response;
+
+   public AdminFillTable(Map<String, Object> datamodel, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
+        this.datamodel = datamodel;
+        this.servletContext = servletContext;
+        this.request = request;
+        this.response = response;
     }
 
-    private AdminFillTable(){}
 
 
-    private void filltableTirocinante()throws IOException
-    {
-        List<Tirocinante> tirocinate;
-        try{
-            TirocinanteDaoImp dao= new TirocinanteDaoImp();
+    private void filltableTirocinante() throws IOException {
+        List<Tirocinante> tirocinate = new ArrayList<>();
+        try {
+            TirocinanteDaoImp dao = new TirocinanteDaoImp();
             tirocinate = dao.getAllTirociante();
             dao.destroy();
-            datamodel.put("tirocinanti",tirocinate);
-        }catch (DaoException e)
-        {
+
+        } catch (DaoException e) {
             response.sendRedirect("/404");
             e.printStackTrace();
         }
+        datamodel.put("tirocinanti", tirocinate);
 
     }
-    private void fillAziendaTable () throws IOException
-    {
+
+    private void fillAziendaTable() throws IOException {
+        List<Azienda> aziende = new ArrayList<>();
         try {
-            List<Azienda> aziende = new ArrayList<>();
             AziendaDaoImp dao = new AziendaDaoImp();
-            aziende= dao.getAllAzienda();
+            aziende = dao.getAllAzienda();
             dao.destroy();
-            datamodel.put("aziende",aziende);
-        }catch (DaoException e)
-        { e.printStackTrace();
-            response.sendRedirect("/404");}
+
+        } catch (DaoException e) {
+            e.printStackTrace();
+            response.sendRedirect("/404");
+        }
+        datamodel.put("aziende", aziende);
     }
 
-    private void fillTutUniTable()throws IOException
-    {
-        try{
-            List<TutoreUniversitario> tutori = new ArrayList<>();
+
+    private void fillTutUniTable() throws IOException {
+        List<TutoreUniversitario> tutori = new ArrayList<>();
+        try {
+
             TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
-            tutori= dao.getAllTutUni();
+            tutori = dao.getAllTutUni();
             dao.destroy();
-            datamodel.put("tutori",tutori);
 
-        }catch (DaoException e)
-        {
+
+        } catch (DaoException e) {
             e.printStackTrace();
             response.sendRedirect("/404");
         }
+        datamodel.put("tutori", tutori);
     }
-    private void fillTableAdmin()throws IOException
-    {
-        try{
-            List<Admin> gliadmin = new ArrayList<>();
+
+    private void fillTableAdmin() throws IOException {
+        List<Admin> gliadmin = new ArrayList<>();
+        try {
+
             AdminDaoImp dao = new AdminDaoImp();
-            gliadmin=dao.getAllAdmin();
+            gliadmin = dao.getAllAdmin();
             dao.destroy();
-            datamodel.put("listadmin",gliadmin);
 
-        }catch (DaoException e)
-        {
+
+        } catch (DaoException e) {
             e.printStackTrace();
             response.sendRedirect("/404");
         }
+        datamodel.put("listadmin", gliadmin);
     }
 
-    public void makeget() throws IOException,ServletException
-    {
+    public void makeget() throws IOException, ServletException {
         filltableTirocinante();
         fillAziendaTable();
         fillTableAdmin();

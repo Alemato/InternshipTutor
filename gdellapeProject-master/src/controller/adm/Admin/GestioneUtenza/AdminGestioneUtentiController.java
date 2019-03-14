@@ -10,9 +10,10 @@ import java.io.IOException;
 
 
 public class AdminGestioneUtentiController extends baseController {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
-        AdminFillTable dato = new AdminFillTable(datamodel, getServletContext(), request, response);
+        AdminFillTable dato = new AdminFillTable(datamodel,getServletContext(),request,response);
         dato.makeget();
 
     }
