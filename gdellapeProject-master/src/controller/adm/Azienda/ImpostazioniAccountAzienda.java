@@ -199,8 +199,8 @@ public class ImpostazioniAccountAzienda {
         }else {
             emailAttuale = request.getParameter("EmailAttuale");
             passwordAttuale = request.getParameter("PasswordAttuale");
-            if(emailAttuale.equals(userAttuale.getEmail()) && passwordAttuale.equals(userAttuale.getPassword())){
-
+//            if(emailAttuale.equals(userAttuale.getEmail()) && passwordAttuale.equals(userAttuale.getPassword())){
+            if(emailAttuale.equals(userAttuale.getEmail()) && SecurityHash.equals(passwordAttuale, userAttuale)){
                 // Modifico l'email primaria a cui segue l'INVALIDAZIONE DELLA SESSIONE
                 if(!request.getParameter("Email").isEmpty() && !request.getParameter("EmailRipetuta").isEmpty()) {
                     changeEmail(request.getParameter("Email"), request.getParameter("EmailRipetuta"));
