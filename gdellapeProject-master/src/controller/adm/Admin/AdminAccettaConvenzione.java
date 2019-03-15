@@ -1,6 +1,7 @@
 package controller.adm.Admin;
 
-import controller.utility.Utility;
+import controller.adm.Admin.GestioneUtenza.AdminFillTable;
+import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
 import model.Azienda;
@@ -9,83 +10,74 @@ import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 public class AdminAccettaConvenzione extends BackEndAdminController{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       validate(request,response);
+
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        modificaAzienda(request,response);
 
 
     }
 
-    private void validate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    private Boolean validate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        boolean result=true;
+        if(request.getParameter("IDUser").isEmpty())
+        {
+            result=false;
+        }else if(request.getParameter("stato").isEmpty())
+        {
+            result=false;
+        }else if(!(request.getParameter("stato").equals("accetta") || request.getParameter("stato").equals("declina")))
+        {
+            result=false;
+        }
+
+       return result;
+
+
+    }
+
+    private void cambiaStato(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException,DaoException
+    {
+        String stato= request.getParameter("stato");
+
+       AziendaDaoImp dao = new AziendaDaoImp();
+       Azienda azienda= dao.getAziendaByID(Integer.parseInt(request.getParameter("IDUser")));
+       dao.destroy();
+
+       if(stato.equals("accetta"))
+       {
+           //caso in cui admin accetta la convenzione
+           azienda.setAttivo(1);
+       }else{
+           //caso in cui admin delclina la convenzione
+           azienda.setAttivo(2);
+           azienda.setPathPDFConvenzione(null);
+       }
+        AziendaDaoImp dao1=new AziendaDaoImp();
+        dao1.updateAzienda(azienda);
+        dao1.destroy();
+
+    }
+
+
+    private void modificaAzienda(HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException {
         try {
-            String name = request.getParameter("nome");
-            Integer stato = Integer.parseInt(request.getParameter("stato"));
-            AziendaDaoImp dao = new AziendaDaoImp();
-            Azienda azienda = dao.getAziendaByRS(name);
-            dao.destroy();
-            AziendaDaoImp dao1 = new AziendaDaoImp();
-            boolean make=dao1.ifAziendaMakeModulo(azienda);
-            dao1.destroy();
-            System.out.println(azienda.getAttivo());
-            if (!(azienda.getAttivo()==0)&&make) {
-
-                activeUser(request, response, azienda);
-
-            } else {
-                response.sendRedirect("/400");
+            if (validate(request, response)) {
+                cambiaStato(request,response);
 
             }
-        }
-        catch(DaoException e)
+        }catch (DaoException e)
         {
-            response.sendRedirect("/400");
+            e.printStackTrace();
+            response.sendRedirect("/404");
         }
     }
-
-    private void notActiveUser(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
-    {
-
-    }
-
-    /**
-     * Attivo azienda in modo che essa posso pubblicare tirocini ed
-      * @param request
-     * @param response
-     * @param azienda
-     * @throws ServletException
-     * @throws IOException
-     */
-
-    private void activeUser(HttpServletRequest request,HttpServletResponse response,Azienda azienda) throws ServletException,IOException
-    {
-        try {
-
-        Part file=request.getPart("pdf");
-        String path=request.getServletContext().getInitParameter("uploads.directory");
-       String name= Utility.action_upload(file,path);
-       azienda.setAttivo(1);
-       azienda.setPathPDFConvenzione(name);
-
-        AziendaDaoImp dao= new AziendaDaoImp();
-            dao.updateAzienda(azienda);
-            dao.destroy();
-
-
-            response.sendRedirect("/richisteconvezioni");
-        }
-        catch(DaoException e)
-        {
-            response.sendRedirect("/400");
-        }
-    }
-
 
 
 }
