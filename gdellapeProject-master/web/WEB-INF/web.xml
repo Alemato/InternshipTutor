@@ -509,6 +509,18 @@
         <url-pattern>/creaadmin</url-pattern>
 
     </servlet-mapping>
+
+
+<servlet>
+<servlet-name>CreaTutoreUni</servlet-name>
+<servlet-class>controller.adm.Admin.GestioneUtenza.CreateTutoreUni</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>CreaTutoreUni</servlet-name>
+<url-pattern>/Create-tutore</url-pattern>
+<url-pattern>/create-tutore</url-pattern>
+
+</servlet-mapping>
     <!-- end servelt account admin-->
 
 
