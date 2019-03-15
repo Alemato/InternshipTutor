@@ -21,7 +21,9 @@ public class AdminGestioneModuliController extends baseController {
         super.init(request,response);
         FillRichiesteTr tr = new FillRichiesteTr();
         datamodel.putAll(tr.fill(request,response));
+        System.out.println(datamodel);
         TemplateController.process("BackEndTemplates/gestione-moduli.ftl", datamodel, response, getServletContext());
+        System.out.println(datamodel);
     }
 
 
