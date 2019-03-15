@@ -46,7 +46,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                     ("SELECT * FROM azienda");
 
             this.selectAllPendentAzieda = connection.prepareStatement
-                    ("SELECT * FROM azienda WHERE Attivo=0 AND ModuloConvenzione=1 ORDER BY UpdateDate ASC");
+                    ("SELECT * FROM azienda WHERE Attivo=0 ORDER BY UpdateDate ASC");
 
             this.selectAllConvenzione = connection.prepareStatement
                     ("SELECT * FROM azienda ORDER BY UpdateDate ASC");
