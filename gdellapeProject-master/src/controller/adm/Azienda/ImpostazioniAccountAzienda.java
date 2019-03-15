@@ -1,6 +1,7 @@
 package controller.adm.Azienda;
 
 import controller.sessionController.SingSessionContoller;
+import controller.utility.SecurityHash;
 import dao.exception.DaoException;
 import dao.implementation.UserDaoImp;
 import model.Azienda;
@@ -87,7 +88,7 @@ public class ImpostazioniAccountAzienda {
     }
 
     private Boolean checkPassword(String password){
-        return password.equals(user.getPassword());
+        return SecurityHash.equals(password, user);
     }
 
     private Boolean checkEmail(String email){
@@ -125,11 +126,15 @@ public class ImpostazioniAccountAzienda {
 
     private void changePassword(String password, String passwordRipetuta, String passwordAttuale){
         System.out.println("le pwd inserite sono " + password + " " + passwordRipetuta);
-        String passwordAttualeDB = user.getPassword();
-        if (passwordAttualeDB.equals(passwordAttuale)){
+
+        //String passwordAttualeDB = user.getPassword();
+        //if (passwordAttualeDB.equals(passwordAttuale)){
+        if(SecurityHash.equals(passwordAttuale, user)){
             if(password.equals(passwordRipetuta)) {
-                if (!passwordAttualeDB.equals(password)){
-                    user.setEmail(password); // setto la nuova password
+                //if (!passwordAttualeDB.equals(password)){
+                if(!SecurityHash.equals(password, user)){
+                    //user.setEmail(password); // setto la nuova password
+                    user.setPassword(SecurityHash.SetHash(password));
                     System.out.println("Modifico la pwd");
                     checkSessioneAndModifica(); // cambio le flag
                 }else {
