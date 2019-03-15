@@ -243,7 +243,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         return aziende;
     }
 
-    public List<Azienda> getAllAziendeAttive() throws DaoException {
+    public List<Azienda> getAllAziendaAttive() throws DaoException {
         List<Azienda> convenzioni = new ArrayList<>();
         try {
             this.init();
