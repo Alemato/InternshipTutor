@@ -419,6 +419,28 @@
     <!--<url-pattern>/Convenzione</url-pattern>-->
 
     <!--</servlet-mapping>-->
+
+    <servlet>
+    <servlet-name>PdfView</servlet-name>
+    <servlet-class>controller.adm.PdfView</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>PdfView</servlet-name>
+    <url-pattern>/pdfview/*</url-pattern>
+    <url-pattern>/PDFVIEW/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ProvaViewPDF</servlet-name>
+        <servlet-class>controller.adm.ProvaViewPDF</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProvaViewPDF</servlet-name>
+        <url-pattern>/prova/pdf</url-pattern>
+        <url-pattern>/prova/Pdf</url-pattern>
+    </servlet-mapping>
+
+
     <servlet>
         <servlet-name>show-tirociante</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneUtenza.ShowTirocinanteController</servlet-class>
