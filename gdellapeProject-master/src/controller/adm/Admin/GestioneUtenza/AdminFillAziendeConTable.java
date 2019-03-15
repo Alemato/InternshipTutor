@@ -51,7 +51,40 @@ public class AdminFillAziendeConTable {
         try {
 
             datamodel.put("AziendaAttiva", getAziendeAttiva());
-            datamodel.put("AziendaPendente", getAziendePendenti());
+            datamodel.put("AziendaPendenti", getAziendePendenti());
+
+            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl.ftl", datamodel, response, servletContext);
+        }catch (DaoException e)
+        {
+            e.printStackTrace();
+            response.sendRedirect("/404");
+        }
+
+
+    }
+
+    public void makegetSucces(String message) throws IOException, ServletException {
+
+        try {
+            datamodel.put("WarningSucess",message);
+            datamodel.put("AziendaAttiva", getAziendeAttiva());
+            datamodel.put("AziendaPendenti", getAziendePendenti());
+
+            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl.ftl", datamodel, response, servletContext);
+        }catch (DaoException e)
+        {
+            e.printStackTrace();
+            response.sendRedirect("/404");
+        }
+
+
+    }
+    public void makegetInsuccess(String message) throws IOException, ServletException {
+
+        try {
+            datamodel.put("WarningInsuccess",message);
+            datamodel.put("AziendaAttiva", getAziendeAttiva());
+            datamodel.put("AziendaPendenti", getAziendePendenti());
 
             TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl.ftl", datamodel, response, servletContext);
         }catch (DaoException e)
