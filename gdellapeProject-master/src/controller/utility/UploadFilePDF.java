@@ -17,15 +17,17 @@ public class UploadFilePDF extends baseController {
 
     /**
      * @param request  richiesta
-     * @param savePath albero cartelle .\PDF\tipologia_di_PDF(convernzione, tirocinio...)/ID_NomeUtente/
-     *                 albero finale sara' .\out\artifacts\gdellapeProject_master_war_exploded\savePath\PDF\tipologia_di_PDF(convernzione, tirocinio...)\ID_NomeUtente\fillePDF.pdf
+     * @param savePath albero cartelle Convenzione ./PDF/Covenzione/IDAzienda/NOMEPDF.pdf
+     *                 albero cartelle Richiesta di tirocinio ./PDF/RichestaTirocinio/IDTirocinio/IDTirocininate/NOMEPDF.pdf
+     *                 albero cartella Fine Tirocinio Azienda ./PDF/FineTirocinio/IDTirocinio/IDTirocininante/NOMEPDF.pdf
+     *                 albero cartella Segreteria ./PDF/Segreteria/IDTirocinio/IDTirocininante/NOMEPDF.pdf
      * @param part     variabile di tipo Part del file che si ricava tramite:
      *                 Part parto = request.getPart("NOME FORM");
      * @return torna il nome del file che serve per caricare sul DB
      * @throws IOException
      * @throws PdfException
      */
-    public String UploadPDF(HttpServletRequest request, String savePath, Part part) throws IOException, PdfException {
+    public String uploadPDF(HttpServletRequest request, String savePath, Part part) throws IOException, PdfException {
 
         // ...\out\artifacts\gdellapeProject_master_war_exploded\savePath
 
@@ -37,7 +39,7 @@ public class UploadFilePDF extends baseController {
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdir();
         }
-        String fileName = FileName(part);
+        String fileName = fileName(part);
         // Check se il file è un PDF
 
         if (!(fileName.endsWith(".pdf"))) {
@@ -49,7 +51,7 @@ public class UploadFilePDF extends baseController {
     }
 
     // estrae il nome del file
-    private String FileName(Part part) {
+    private String fileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         String[] items = contentDisp.split(";");
         for (String s : items) {

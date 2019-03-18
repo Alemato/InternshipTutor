@@ -49,6 +49,8 @@
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
         <url-pattern>/account/*</url-pattern>
+        <url-pattern>/pdfview/convenzione/*</url-pattern>
+        <url-pattern>/pdfview/convenzione</url-pattern>
     </filter-mapping>
     <!-- /filtri -->
 
@@ -280,7 +282,7 @@
         <url-pattern>/impostazionetirocinante</url-pattern>
 
     </servlet-mapping>
-<!-- TODO eliminare SETPWD-->
+    <!-- TODO eliminare SETPWD-->
     <servlet>
         <servlet-name>SetPWD</servlet-name>
         <servlet-class>controller.SetPWD</servlet-class>
@@ -421,13 +423,23 @@
     <!--</servlet-mapping>-->
 
     <servlet>
-    <servlet-name>PdfView</servlet-name>
-    <servlet-class>controller.adm.PdfView</servlet-class>
+        <servlet-name>PdfView</servlet-name>
+        <servlet-class>controller.adm.PdfView</servlet-class>
     </servlet>
     <servlet-mapping>
-    <servlet-name>PdfView</servlet-name>
-    <url-pattern>/pdfview/*</url-pattern>
-    <url-pattern>/PDFVIEW/*</url-pattern>
+        <servlet-name>PdfView</servlet-name>
+        <url-pattern>/pdfview/</url-pattern>
+        <url-pattern>/PDFVIEW/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PdfViewConvenzione</servlet-name>
+        <servlet-class>controller.adm.PdfViewConvenzione</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfViewConvenzione</servlet-name>
+        <url-pattern>/pdfview/convenzione</url-pattern>
+        <url-pattern>/PDFVIEW/convenzione</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -533,16 +545,16 @@
     </servlet-mapping>
 
 
-<servlet>
-<servlet-name>CreaTutoreUni</servlet-name>
-<servlet-class>controller.adm.Admin.GestioneUtenza.CreateTutoreUni</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>CreaTutoreUni</servlet-name>
-<url-pattern>/Create-tutore</url-pattern>
-<url-pattern>/create-tutore</url-pattern>
+    <servlet>
+        <servlet-name>CreaTutoreUni</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.CreateTutoreUni</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreaTutoreUni</servlet-name>
+        <url-pattern>/Create-tutore</url-pattern>
+        <url-pattern>/create-tutore</url-pattern>
 
-</servlet-mapping>
+    </servlet-mapping>
     <!-- end servelt account admin-->
 
 
