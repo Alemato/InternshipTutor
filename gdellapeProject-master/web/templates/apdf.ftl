@@ -30,7 +30,7 @@
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="border bg-white p-30 radius-5">
             <#--<h1 class="mb-30 fs-50 fw-100 text-center border-bottom">MODULO CONVENZIONE</h1>-->
-            <embed src="/pdfview/" type="application/pdf" style="height: -webkit-fill-available; width: -webkit-fill-available;">
+            <embed src="/pdfview/convenzione?id=1" type="application/pdf" style="height: -webkit-fill-available; width: -webkit-fill-available;">
         </div>
     </section>
 
