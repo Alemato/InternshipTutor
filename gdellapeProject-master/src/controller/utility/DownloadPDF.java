@@ -16,7 +16,10 @@ public class DownloadPDF extends baseController {
      * @param response risposta
      * @param filename nome del file
      * @param saveDir  albero
-     *                 albero sara' ./PDF/tipologia_di_PDF(convernzione, tiro...)/ID_NomeUtente
+     *                 albero cartelle Convenzione ./PDF/Covenzione/IDAzienda/NOMEPDF.pdf
+     *                 albero cartelle Richiesta di tirocinio ./PDF/RichesteTirocinio/IDTirocinio/IDTirocininate/NOMEPDF.pdf
+     *                 albero cartella Fine Tirocinio Azienda ./PDF/FineTirocinio/IDTirocinio/IDTirocininante/NOMEPDF.pdf
+     *                 albero cartella Segreteria ./PDF/Segreteria/IDTirocinio/IDTirocininante/NOMEPDF.pdf
      * @throws IOException
      */
     public void DownloadPDF(HttpServletRequest request, HttpServletResponse response, String filename, String saveDir) throws IOException {
