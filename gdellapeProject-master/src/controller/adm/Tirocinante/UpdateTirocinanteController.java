@@ -91,7 +91,7 @@ public class UpdateTirocinanteController extends BackEndTrController {
             tirocinante.setTelefono(request.getParameter("NumeroTelefono"));
             tirocinante.setCorsoDiLaurea(request.getParameter("StudenteCorsoLaurea"));
             tirocinante.setDiplomaUniversitario(request.getParameter("DiplomaUniversitario"));
-            tirocinante.setLaureatoUniversitario(request.getParameter("LaureaIn"));
+            tirocinante.setLaureato(request.getParameter("LaureaIn"));
             tirocinante.setDottoratoDiRicerca(request.getParameter("DottoratoRicerca"));
             tirocinante.setScuolaAltro(request.getParameter("ScuolaAltro"));
 
@@ -159,7 +159,7 @@ public class UpdateTirocinanteController extends BackEndTrController {
 
             String CKlaureain = (String) request.getParameter("CKLaureaIn");
             if (CKlaureain.equals("1")) {
-                tirocinante.setLaureatoUniversitario(request.getParameter("LaureaIn"));
+                tirocinante.setLaureato(request.getParameter("LaureaIn"));
             }
 
             String CKdotRic = (String) request.getParameter("CKDottoratoRicerca");

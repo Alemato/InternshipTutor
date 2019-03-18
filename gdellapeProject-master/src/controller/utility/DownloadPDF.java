@@ -22,9 +22,9 @@ public class DownloadPDF extends baseController {
     public void DownloadPDF(HttpServletRequest request, HttpServletResponse response, String filename, String saveDir) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        response.setContentType("APPLICATION/OCTET-STREAM");
-        response.setHeader("Content-Disposition", "attachment; filename=\""
-                + filename + "\"");
+        response.setContentType("application/pdf");
+//        response.setHeader("Content-Disposition", "attachment; filename=\""
+//                + filename + "\"");
         String appPath = request.getServletContext().getRealPath("");
         FileInputStream fileInputStream = new FileInputStream(appPath + File.separator + saveDir + File.separator
                 + filename);

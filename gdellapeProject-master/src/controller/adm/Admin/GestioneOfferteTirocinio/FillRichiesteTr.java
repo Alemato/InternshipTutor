@@ -2,6 +2,7 @@ package controller.adm.Admin.GestioneOfferteTirocinio;
 
 import dao.exception.DaoException;
 import dao.implementation.*;
+import freemarker.template.utility.DateUtil;
 import model.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -29,70 +30,47 @@ public class FillRichiesteTr {
 
     }
 
-    /**
-     * La funzione prende tutti i tirocini che hanno sono nello stato di offerta richiesta
-     *
-     * @param request
-     * @param response
-     * @return
-     * @throws IOException
-     * @throws ServletException
-     */
 
-    private List<Tirocinio> getTirocini(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private List<Tirocinio> getTirocini(HttpServletRequest request, HttpServletResponse response) throws DaoException {
         List<Tirocinio> tirocini = new ArrayList<>();
-        try {
             TirocinioDaoImp dao = new TirocinioDaoImp();
             tirocini = dao.getTirociniByStato(0);
             dao.destroy();
 
-        } catch (DaoException e) {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
         return tirocini;
 
     }
 
 
-    private Map<Integer, OffertaTirocinio> getOfferteTirocinio(HttpServletResponse response) throws IOException, ServletException {
+    private Map<Integer, OffertaTirocinio> getOfferteTirocinio(HttpServletResponse response) throws DaoException{
         Map<Integer, OffertaTirocinio> mapOfferta = new HashMap<>();
-        try {
+
             OffertaTirocinioDaoImp dao = new OffertaTirocinioDaoImp();
             List<OffertaTirocinio> offerte = dao.getAllOffertatr();
             dao.destroy();
             for (OffertaTirocinio oftr : offerte) {
                 mapOfferta.put(oftr.getIDOffertaTirocinio(), oftr);
             }
-        } catch (DaoException e) {
-            e.printStackTrace();
-            response.sendRedirect("/404");
 
-        }
         return mapOfferta;
     }
 
 
-    private Map<Integer, TutoreUniversitario> getTutoriUni(HttpServletResponse response) throws IOException, ServletException {
+    private Map<Integer, TutoreUniversitario> getTutoriUni(HttpServletResponse response) throws DaoException
+    {
         Map<Integer, TutoreUniversitario> maptutori = new HashMap<>();
-        try {
             TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
             List<TutoreUniversitario> tutUni = dao.getAllTutUni();
             dao.destroy();
             for (TutoreUniversitario tutore : tutUni) {
                 maptutori.put(tutore.getIDTutoreUni(), tutore);
             }
-        } catch (DaoException e) {
-            e.printStackTrace();
-            response.sendRedirect("/404");
 
-        }
         return maptutori;
     }
 
-    private Map<Integer, Tirocinante> getTirocinante(HttpServletResponse response) throws IOException, ServletException {
+    private Map<Integer, Tirocinante> getTirocinante(HttpServletResponse response) throws DaoException {
         Map<Integer, Tirocinante> maptirocinate = new HashMap<>();
-        try {
             TirocinanteDaoImp dao = new TirocinanteDaoImp();
             List<Tirocinante> tirocinantes = dao.getAllTirociante();
             dao.destroy();
@@ -100,71 +78,40 @@ public class FillRichiesteTr {
             for (Tirocinante tirocinante : tirocinantes) {
                 maptirocinate.put(tirocinante.getIDTirocinante(), tirocinante);
             }
-        } catch (DaoException e) {
-            e.printStackTrace();
-            response.sendRedirect("/404");
 
-        }
         return maptirocinate;
     }
 
-    private Map<Integer, Azienda> getAziende(HttpServletResponse response) throws IOException, ServletException {
+    private Map<Integer, Azienda> getAziende(HttpServletResponse response) throws DaoException {
         Map<Integer, Azienda> mapAzienda = new HashMap<>();
-        try {
+
             AziendaDaoImp dao = new AziendaDaoImp();
             List<Azienda> aziende = dao.getAllAzienda();
             dao.destroy();
             for (Azienda azienda : aziende) {
                 mapAzienda.put(azienda.getIDAzienda(), azienda);
             }
-        } catch (DaoException e) {
-            e.printStackTrace();
-            response.sendRedirect("/404");
 
-        }
         return mapAzienda;
     }
 
 
 
 
-
-
-
-    private List<Azienda> fillTableRichieste(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<Azienda> aziende = new ArrayList<>();
-        try {
-            AziendaDaoImp dao = new AziendaDaoImp();
-            aziende = dao.getAllAzienda();
-            dao.destroy();
-        } catch (DaoException e) {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-
-        }
-        return aziende;
-    }
-
-
-    private List<Tirocinio> getTirociniConclusi(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
+    private List<Tirocinio> getTirociniConclusi(HttpServletRequest request,HttpServletResponse response)throws DaoException
     {
         List<Tirocinio> tirocini= new ArrayList<>();
-        try
-        {
+
             TirocinioDaoImp dao = new TirocinioDaoImp();
             tirocini = dao.getTirociniByStato(2);
             dao.destroy();
 
-        }catch (DaoException e)
-        {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
+
         return tirocini;
     }
 
 
-    private Map<Tirocinio,List<String>> getCampiTabelle(List<Tirocinio> tirocini,HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
+    private Map<Tirocinio,List<String>> getCampiTabelle(List<Tirocinio> tirocini,HttpServletRequest request,HttpServletResponse response) throws DaoException
     {
         Map<Tirocinio,List<String>> table = new HashMap<>();
 
@@ -213,7 +160,7 @@ public class FillRichiesteTr {
                 //carico cognome tut aziendale pos 7
                 dati.add(of.getCognomeTutoreAziendale());
                 //carico telefono tut azienddle pos 8
-                dati.add(of.getTelefonoTutoreAzindale());
+                dati.add(of.getTelefonoTutoreAziendale());
             } else {
                 //Carico il nome della azienda nella posizone 3
                 dati.add("Azienda non presente");
@@ -258,42 +205,53 @@ public class FillRichiesteTr {
     public Map<String, Object> fill(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         //make big map to add in data model
         Map<String, Object> data = new HashMap<>();
-
-        // add the date to fill table OfferteTirocinio
-        List<Tirocinio> richisteTr= getTirocini(request,response);
-        data.put("Richieste", getCampiTabelle(richisteTr,request, response));
-        System.out.println(data.get("Richieste"));
+        try {
 
 
-
-        // add the date to fill table Gestione convenzionamento aziende
-        data.put("Aziende", getAziende(response));
-        System.out.println(data.get("Aziende"));
-
-
+            // add the date to fill table OfferteTirocinio
+            List<Tirocinio> richisteTr = getTirocini(request, response);
+            data.put("Richieste", getCampiTabelle(richisteTr, request, response));
+            System.out.println(data.get("Richieste"));
 
 
-        // add the data to fill table Gestione tirocinii Conclusi
-        List<Tirocinio> trconclusi=getTirociniConclusi(request,response);
-        data.put("TirociniConclusi",getCampiTabelle(trconclusi,request,response));
-        System.out.println(data.get("TirociniConclusi"));
+            // add the date to fill table Gestione convenzionamento aziende
+            AziendaDaoImp dao = new AziendaDaoImp();
+            List<Azienda> aziendas = dao.getAllAzienda();
+            dao.destroy();
+            data.put("Aziende", aziendas);
+            System.out.println(data.get("Aziende"));
+
+
+            // add the data to fill table Gestione tirocinii Conclusi
+            List<Tirocinio> trconclusi = getTirociniConclusi(request, response);
+            data.put("TirociniConclusi", getCampiTabelle(trconclusi, request, response));
+            System.out.println(data.get("TirociniConclusi"));
+        }catch (DaoException e)
+        {
+            e.printStackTrace();
+
+        }
 
         return data;
     }
 
-    public Map<String,Object> showTirocinioSingolo(Tirocinio tr,HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException
+    public Map<String,Object> showTirocinioSingolo(Tirocinio tr,HttpServletRequest request,HttpServletResponse response)throws IOException
     {
         Map<String,Object> map = new HashMap<>();
-        //per il riutilizzo della funzione getCampiTabella creo una lista con un solo elemento in modo che mi torni una
-        //mappa con solo un elemento ad il suo interno da poter mostrare al admin
-        List<Tirocinio> listTR= new ArrayList<>();
-        listTR.add(tr);
+        try {
+            //per il riutilizzo della funzione getCampiTabella creo una lista con un solo elemento in modo che mi torni una
+            //mappa con solo un elemento ad il suo interno da poter mostrare al admin
+            List<Tirocinio> listTR = new ArrayList<>();
+            listTR.add(tr);
 
 
-        Map<Tirocinio,List<String>> map1 = getCampiTabelle(listTR,request,response);
+            Map<Tirocinio, List<String>> map1 = getCampiTabelle(listTR, request, response);
 
-        map.put("dati",map1.get(tr));
-        map.put("Tirocinio",tr);
+            map.put("dati", map1.get(tr));
+            map.put("Tirocinio", tr);
+        }catch (DaoException e) {
+            e.printStackTrace();
+        }
 
         return map;
     }

@@ -1,6 +1,7 @@
 package controller.sessionController;
 
 import com.sun.deploy.net.HttpRequest;
+import controller.utility.SecurityHash;
 import dao.exception.DaoException;
 import dao.implementation.AdminDaoImp;
 import dao.implementation.AziendaDaoImp;
@@ -164,12 +165,11 @@ public class SingSessionContoller {
         UserDaoImp dao = new UserDaoImp();
 
         User user = dao.getUserByMail(mail);
-        if(user.getPassword().equals(password)){
-            return true;
-
-        }else {return false;}
-
-
+//        if(user.getPassword().equals(password)){
+//            return true;
+//
+//        }else {return false;}
+        return SecurityHash.equals(password, user);
     }
     public boolean isAccount(String mail) throws DaoException{
 

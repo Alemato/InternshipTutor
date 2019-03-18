@@ -32,7 +32,7 @@ public class HomeController extends baseController {
 
         super.init(request, response);
         LastFiveOfferte(request, response);
-        LastFiveConvenz(request, response);
+        LastFiveConvenzioni(request, response);
         TemplateController.process("index.ftl", datamodel, response, getServletContext());
 
 
@@ -47,11 +47,11 @@ public class HomeController extends baseController {
 
         } catch (Exception e) {
             e.printStackTrace();
-
+            response.sendRedirect("/404");
         }
     }
 
-    private void LastFiveConvenz(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void LastFiveConvenzioni(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             AziendaDaoImp azienda = new AziendaDaoImp();
             List<Azienda> LastFiveConvenzioni = azienda.getLastFiveConvenzioni();
@@ -59,6 +59,7 @@ public class HomeController extends baseController {
             datamodel.put("LastFiveConvenzioni", LastFiveConvenzioni);
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect("/404");
 
         }
     }

@@ -5,15 +5,14 @@ import java.util.regex.*;
 
 /**
  * This class offers methods to decode and encode html entities.
+ *
  * @author Michael Yagudaev
  * @version 1.2 April 9, 2011
  */
-public class HtmlEntities
-{
+public class HtmlEntities {
     private static Map<String, Character> map = new LinkedHashMap<String, Character>();
 
-    static
-    {
+    static {
         map.put("&quot;", (char) 34);
         map.put("&amp;", (char) 38);
         map.put("&lt;", (char) 60);
@@ -119,33 +118,31 @@ public class HtmlEntities
     /**
      * Find the Html Entity and convert it back to a regular character if the
      * entity exists, otherwise return the same string.
+     *
      * @param str
      * @return Character represented by HTML Entity or the same string if unknown entity.
      */
-    private static String fromHtmlEntity(String str)
-    {
+    private static String fromHtmlEntity(String str) {
         Character ch = map.get(str);
-        return ( ch != null ) ? ch.toString() : str;
+        return (ch != null) ? ch.toString() : str;
     }
 
     /**
      * Finds the value and returns the key that corresponds to that value. If value not found
      * returns null.
+     *
      * @param value The value to be found.
      * @return The key corresponding to the value that was found or null if value not found.
      */
-    private static String findValue(char value)
-    {
+    private static String findValue(char value) {
         Set<String> keySet = map.keySet();
         Iterator<String> i = keySet.iterator();
         String key = i.next(); // key
         boolean found = false;
         String result = null;
 
-        while(i.hasNext() && !found)
-        {
-            if(map.get(key).charValue() == value)
-            {
+        while (i.hasNext() && !found) {
+            if (map.get(key).charValue() == value) {
                 found = true;
                 result = key;
             }
@@ -158,27 +155,23 @@ public class HtmlEntities
 
     /**
      * Converts special characters in ASCII into html entities (e.g. & -> &amp;)
+     *
      * @param encode The string to be encoded.
      * @return The encoded string with HTML entities.
      */
-    public static String encode(String encode)
-    {
+    public static String encode(String encode) {
         StringBuilder str = new StringBuilder(encode);
         String key;
         int i = 0;
 
         // loop over all the characters in the string
-        while(i < str.length())
-        {
+        while (i < str.length()) {
             // try matching a character to an entity
             key = findValue(str.charAt(i));
-            if(key != null)
-            {
+            if (key != null) {
                 str.replace(i, i + 1, key);
                 i += key.length();
-            }
-            else
-            {
+            } else {
                 i++;
             }
         }
@@ -188,18 +181,17 @@ public class HtmlEntities
 
     /**
      * Converts html entities (e.g. &amp;) into real characters (ASCII characters, e.g. &amp; -> &)
+     *
      * @param decode A string to be decoded.
      * @return The string decoded with no HTML entities.
      */
-    public static String decode(String decode)
-    {
+    public static String decode(String decode) {
         StringBuilder str = new StringBuilder(decode);
         Matcher m = Pattern.compile("&[A-Za-z]+;").matcher(str);
         String replaceStr = null;
 
         int matchPointer = 0;
-        while (m.find(matchPointer))
-        {
+        while (m.find(matchPointer)) {
             // check if we have a corresponding key in our map
             replaceStr = fromHtmlEntity(m.group());
             str.replace(m.start(), m.end(), replaceStr);

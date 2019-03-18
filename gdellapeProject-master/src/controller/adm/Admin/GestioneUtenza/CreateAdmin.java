@@ -4,7 +4,7 @@ import controller.adm.Admin.BackEndAdminController;
 import controller.adm.Azienda.BackEndAziendaController;
 import controller.baseController;
 import controller.utility.Validation;
-import controller.utility.utility;
+import controller.utility.Utility;
 import dao.exception.DaoException;
 import dao.implementation.AdminDaoImp;
 import dao.implementation.UserDaoImp;
@@ -183,7 +183,7 @@ public class CreateAdmin extends baseController {
         }
 
         //ricarico i vecchi dati immessi nella form
-        datamodel.putAll(utility.AddAllData(request,response,dati));
+        datamodel.putAll(Utility.AddAllData(request,response,dati));
         //Carico gli avvisi per gli errori trovati
         datamodel.putAll(errori);
         System.out.println("datamodel create admin");

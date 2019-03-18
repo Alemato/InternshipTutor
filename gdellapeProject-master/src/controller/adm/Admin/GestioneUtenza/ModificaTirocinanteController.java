@@ -145,7 +145,7 @@ public class ModificaTirocinanteController extends BackEndAziendaController{
             }
             if(!(request.getParameter("laureatouniversitario")==null))
             {
-                tr.setLaureatoUniversitario(request.getParameter("laureatouniversitario"));
+                tr.setLaureato(request.getParameter("laureatouniversitario"));
             }
             if(!(request.getParameter("scuolaaltro")==null))
             {

@@ -1,6 +1,7 @@
 package controller.adm.Azienda;
 
 import controller.sessionController.SingSessionContoller;
+import controller.utility.SecurityHash;
 import dao.exception.DaoException;
 import dao.implementation.UserDaoImp;
 import model.Azienda;
@@ -87,7 +88,7 @@ public class ImpostazioniAccountAzienda {
     }
 
     private Boolean checkPassword(String password){
-        return password.equals(user.getPassword());
+        return SecurityHash.equals(password, user);
     }
 
     private Boolean checkEmail(String email){
@@ -125,11 +126,15 @@ public class ImpostazioniAccountAzienda {
 
     private void changePassword(String password, String passwordRipetuta, String passwordAttuale){
         System.out.println("le pwd inserite sono " + password + " " + passwordRipetuta);
-        String passwordAttualeDB = user.getPassword();
-        if (passwordAttualeDB.equals(passwordAttuale)){
+
+        //String passwordAttualeDB = user.getPassword();
+        //if (passwordAttualeDB.equals(passwordAttuale)){
+        if(SecurityHash.equals(passwordAttuale, user)){
             if(password.equals(passwordRipetuta)) {
-                if (!passwordAttualeDB.equals(password)){
-                    user.setEmail(password); // setto la nuova password
+                //if (!passwordAttualeDB.equals(password)){
+                if(!SecurityHash.equals(password, user)){
+                    //user.setEmail(password); // setto la nuova password
+                    user.setPassword(SecurityHash.SetHash(password));
                     System.out.println("Modifico la pwd");
                     checkSessioneAndModifica(); // cambio le flag
                 }else {
@@ -194,8 +199,8 @@ public class ImpostazioniAccountAzienda {
         }else {
             emailAttuale = request.getParameter("EmailAttuale");
             passwordAttuale = request.getParameter("PasswordAttuale");
-            if(emailAttuale.equals(userAttuale.getEmail()) && passwordAttuale.equals(userAttuale.getPassword())){
-
+//            if(emailAttuale.equals(userAttuale.getEmail()) && passwordAttuale.equals(userAttuale.getPassword())){
+            if(emailAttuale.equals(userAttuale.getEmail()) && SecurityHash.equals(passwordAttuale, userAttuale)){
                 // Modifico l'email primaria a cui segue l'INVALIDAZIONE DELLA SESSIONE
                 if(!request.getParameter("Email").isEmpty() && !request.getParameter("EmailRipetuta").isEmpty()) {
                     changeEmail(request.getParameter("Email"), request.getParameter("EmailRipetuta"));

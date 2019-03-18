@@ -1,7 +1,7 @@
 package controller.adm.Azienda;
 
 import controller.sessionController.SingSessionContoller;
-import controller.utility.utility;
+import controller.utility.Utility;
 import dao.exception.DaoException;
 import dao.implementation.*;
 import model.*;
@@ -24,7 +24,7 @@ import java.util.List;
 public class CreateTirocinioController extends BackEndAziendaController{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        makeform(request,response);
+        //makeform(request,response);
 
 
 
@@ -50,60 +50,60 @@ public class CreateTirocinioController extends BackEndAziendaController{
             e.printStackTrace();
         }
     }
-    private void createoftr(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException {
-        Azienda azienda = getAzienda(request, response);
-        if (validation(request, response)) {
-            OffertaTirocinio tr = getOfferta(request, response);
-            tr.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
-            tr.setAzienda(azienda.getIDAzienda());
-            tr.setAziendaOspitante(azienda.getRagioneSociale());
-            makeOffertaTr(request, response, tr);
-            response.sendRedirect("/home");
-        }
-    }
-    private void makeform(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
-    {
-        if(super.accessLogin(request,response)&&super.accessAzienda(request,response))
-        {
-            if(request.getParameter("TutoreUniversitario").equals("NEW"))
-            {
-                createOffAndTutUni(request,response);
-            }else{createoftr(request,response);}
-        }
-    }
+//    private void createoftr(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException {
+//        Azienda azienda = getAzienda(request, response);
+//        if (validation(request, response)) {
+//            OffertaTirocinio tr = getOfferta(request, response);
+//            tr.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
+//            tr.setAzienda(azienda.getIDAzienda());
+//            tr.setAziendaOspitante(azienda.getRagioneSociale());
+//            makeOffertaTr(request, response, tr);
+//            response.sendRedirect("/home");
+//        }
+//    }
+//    private void makeform(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
+//    {
+//        if(super.accessLogin(request,response)&&super.accessAzienda(request,response))
+//        {
+//            if(request.getParameter("TutoreUniversitario").equals("NEW"))
+//            {
+//                createOffAndTutUni(request,response);
+//            }else{createoftr(request,response);}
+//        }
+//    }
 
 
-    private void createOffAndTutUni(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
-    {
-        try {
+//    private void createOffAndTutUni(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
+//    {
+//        try {
+//
+//                Azienda azienda = getAzienda(request, response);
+//                if (validation(request, response)&&validationTutUni(request, response))
+//                {
+//                    OffertaTirocinio tr = getOfferta(request, response);
+//
+//                    TutoreUniversitario tutuni = getTutoreUni(request, response);
+//                    TutoreUniversitario tutwithid = makeNewTutoreUni(request, response, tutuni);
+//                    tr.setTutoreUniversitario(tutwithid.getIDTutoreUni());
+//                    tr.setAzienda(azienda.getIDAzienda());
+//                    tr.setAziendaOspitante(azienda.getRagioneSociale());
+//                    makeOffertaTr(request, response, tr);
+//                    response.sendRedirect("/home");
+//                }
+//
+//        }catch (Exception e)
+//        { e.printStackTrace();}
 
-                Azienda azienda = getAzienda(request, response);
-                if (validation(request, response)&&validationTutUni(request, response))
-                {
-                    OffertaTirocinio tr = getOfferta(request, response);
 
-                    TutoreUniversitario tutuni = getTutoreUni(request, response);
-                    TutoreUniversitario tutwithid = makeNewTutoreUni(request, response, tutuni);
-                    tr.setTutoreUniversitario(tutwithid.getIDTutoreUni());
-                    tr.setAzienda(azienda.getIDAzienda());
-                    tr.setAziendaOspitante(azienda.getRagioneSociale());
-                    makeOffertaTr(request, response, tr);
-                    response.sendRedirect("/home");
-                }
-
-        }catch (Exception e)
-        { e.printStackTrace();}
-
-
-    }
+//    }
 
     private OffertaTirocinio getOfferta(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
     {  OffertaTirocinio of = new OffertaTirocinio();
         of.setTitolo(request.getParameter("Titolo"));
         of.setDescrizioneBreve(request.getParameter("Descrizione_Breve"));
         of.setDescrizione(request.getParameter("Descrizione_Completa"));
-        of.setOrario(request.getParameter("Orari"));
-        of.setDurataOra(Integer.parseInt(request.getParameter("Durara_Ora")));
+        of.setOrari(request.getParameter("Orari"));
+        of.setDurataOre(Integer.parseInt(request.getParameter("Durara_Ore")));
         of.setDurataMesi(Integer.parseInt(request.getParameter("Durara_Mesi")));
         of.setPeriodoInizio(Date.valueOf(request.getParameter("Periodo_inizio")));
         of.setPeriodoFine(Date.valueOf(request.getParameter("Periodo_fine")));
@@ -112,12 +112,12 @@ public class CreateTirocinioController extends BackEndAziendaController{
         of.setRimborsi(request.getParameter("Rimborsi"));
         of.setFacilitazioni(request.getParameter("Facilitazioni"));
         of.setLuogoEffettuazione(request.getParameter("SedeTirocinio"));
-        of.setCodiceTirocinio(request.getParameter("CodiceIdentTirocinio"));
+        of.setCodIdentTirocinio(request.getParameter("CodiceIdentTirocinio"));
         of.setSettoreInserimento(request.getParameter("SettoreInserimento"));
         of.setTempoAccessoLocaliAziendali(request.getParameter("TempiAccessoLocaliAziendali"));
         of.setNomeTutoreAziendale(request.getParameter("NomeTutoreAziendale"));
         of.setCognomeTutoreAziendale(request.getParameter("CognomeTutoreAziendale"));
-        of.setTelefonoTutoreAzindale(request.getParameter("TelefonoTutoreAziendale"));
+        of.setTelefonoTutoreAziendale(request.getParameter("TelefonoTutoreAziendale"));
         of.setEmailTutoreAziendale(request.getParameter("EmailTutoreAziendale"));
         return of;
 
@@ -569,7 +569,7 @@ public class CreateTirocinioController extends BackEndAziendaController{
             String param =(String)e.nextElement();
             lista.add(param);
         }
-        return utility.AddAllData(request,response,lista);
+        return Utility.AddAllData(request,response,lista);
 
     }
 

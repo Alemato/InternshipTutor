@@ -1,16 +1,19 @@
-package controller.adm.Admin;
+package controller.adm.Admin.GestioneUtenza;
 
-import controller.adm.Admin.GestioneOfferteTirocinio.FillRichiesteTr;
 import controller.adm.Azienda.BackEndAziendaController;
 import controller.baseController;
+import dao.exception.DaoException;
+import dao.implementation.AziendaDaoImp;
+import model.Azienda;
 import view.TemplateController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-public class AdminGestioneModuliController extends baseController {
+public class AdminRichiesteConvenzioniController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
@@ -18,13 +21,15 @@ public class AdminGestioneModuliController extends baseController {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
         super.init(request,response);
-        FillRichiesteTr tr = new FillRichiesteTr();
-        datamodel.putAll(tr.fill(request,response));
-        System.out.println(datamodel);
-        TemplateController.process("BackEndTemplates/gestione-moduli.ftl", datamodel, response, getServletContext());
-        System.out.println(datamodel);
+        AdminFillAziendeConTable objectFunction= new AdminFillAziendeConTable(datamodel,getServletContext(),request,response);
+        objectFunction.makeget();
+
+
     }
+
 
 
 }

@@ -19,7 +19,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement insertAzienda;
     private PreparedStatement selectAllAzienda;
     private PreparedStatement selectAziendaByID;
-    private PreparedStatement selectAllConvenzione;
+    private PreparedStatement selectAllAziendaAttiva;
     private PreparedStatement selectLastFiveConvenzioni;
     private PreparedStatement selectAziendaByIDuser;
     private PreparedStatement regAzienda;
@@ -46,10 +46,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                     ("SELECT * FROM azienda");
 
             this.selectAllPendentAzieda = connection.prepareStatement
-                    ("SELECT * FROM azienda WHERE Attivo=0 AND ModuloConvenzione=1 ORDER BY UpdateDate ASC");
+                    ("SELECT * FROM azienda WHERE Attivo=0 ORDER BY UpdateDate ASC");
 
-            this.selectAllConvenzione = connection.prepareStatement
-                    ("SELECT * FROM azienda ORDER BY UpdateDate ASC");
+            this.selectAllAziendaAttiva = connection.prepareStatement
+                    ("SELECT * FROM azienda WHERE Attivo=1 ORDER BY UpdateDate ASC");
 
 
             this.selectLastFiveConvenzioni = connection.prepareStatement
@@ -94,7 +94,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             azienda.setDurataConvenzione(resultSet.getInt("DurataConvenzione"));
             azienda.setForoControversia(resultSet.getString("ForoControversia"));
             azienda.setDataConvenzione(resultSet.getDate("DataConvenzione"));
-            azienda.setAttivo(resultSet.getBoolean("Attivo"));
+            azienda.setAttivo(resultSet.getInt("Attivo"));
             azienda.setModuloConvenzione(resultSet.getBoolean("ModuloConvenzione"));
             azienda.setDescrizione(resultSet.getString("Descrizione"));
             azienda.setLink(resultSet.getString("Link"));
@@ -140,7 +140,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.updateAzienda.setInt(11, azienda.getDurataConvenzione());
             this.updateAzienda.setString(12, azienda.getForoControversia());
             this.updateAzienda.setDate(13, azienda.getDataConvenzione());
-            this.updateAzienda.setBoolean(14, azienda.getAttivo());
+            this.updateAzienda.setInt(14, azienda.getAttivo());
             this.updateAzienda.setBoolean(15, azienda.getModuloConvenzione());
             this.updateAzienda.setString(16, azienda.getDescrizione());
             this.updateAzienda.setString(17, azienda.getLink());
@@ -173,7 +173,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.insertAzienda.setInt(11, azienda.getDurataConvenzione());
             this.insertAzienda.setString(12, azienda.getForoControversia());
             this.insertAzienda.setDate(13, azienda.getDataConvenzione());
-            this.insertAzienda.setBoolean(14, azienda.getAttivo());
+            this.insertAzienda.setInt(14, azienda.getAttivo());
             this.insertAzienda.setBoolean(15, azienda.getModuloConvenzione());
             this.insertAzienda.setString(16, azienda.getDescrizione());
             this.insertAzienda.setString(17, azienda.getLink());
@@ -243,11 +243,11 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         return aziende;
     }
 
-    public List<Azienda> getAllConvenzione() throws DaoException {
+    public List<Azienda> getAllAziendaAttive() throws DaoException {
         List<Azienda> convenzioni = new ArrayList<>();
         try {
             this.init();
-            ResultSet resultSet = this.selectAllConvenzione.executeQuery();
+            ResultSet resultSet = this.selectAllAziendaAttiva.executeQuery();
             setListAzienda(convenzioni, resultSet);
         } catch (SQLException e) {
             throw new DaoException("Errore query", e);
@@ -341,7 +341,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.insertAzienda.close();
             this.selectAllAzienda.close();
             this.selectAziendaByID.close();
-            this.selectAllConvenzione.close();
+            this.selectAllAziendaAttiva.close();
             this.selectLastFiveConvenzioni.close();
             this.selectAziendaByIDuser.close();
             this.regAzienda.close();

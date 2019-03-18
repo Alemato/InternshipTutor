@@ -24,7 +24,7 @@ public class Azienda {
     private Integer DurataConvenzione;
     private String ForoControversia;
     private Date DataConvenzione;
-    private Boolean Attivo;
+    private Integer Attivo;
     private Boolean ModuloConvenzione;
     private String Descrizione;
     private String Link;
@@ -47,7 +47,7 @@ public class Azienda {
         this.DurataConvenzione = null;
         this.ForoControversia = null;
         this.DataConvenzione = null;
-        this.Attivo = false;
+        this.Attivo = 0;
         this.ModuloConvenzione = false;
         this.Descrizione = null;
         this.Link = null;
@@ -113,7 +113,7 @@ public class Azienda {
         return DataConvenzione;
     }
 
-    public Boolean getAttivo() {
+    public Integer getAttivo() {
         return Attivo;
     }
 
@@ -200,7 +200,7 @@ public class Azienda {
         this.DataConvenzione = dataConvenzione;
     }
 
-    public void setAttivo(Boolean attivo) {
+    public void setAttivo(int attivo) {
         this.Attivo = attivo;
     }
 
