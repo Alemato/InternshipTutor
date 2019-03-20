@@ -282,7 +282,7 @@
         <url-pattern>/impostazionetirocinante</url-pattern>
 
     </servlet-mapping>
-    <!-- TODO eliminare SETPWD-->
+<!-- TODO eliminare SETPWD-->
     <servlet>
         <servlet-name>SetPWD</servlet-name>
         <servlet-class>controller.SetPWD</servlet-class>
@@ -352,7 +352,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>richiesteconvenzioni</servlet-name>
-        <servlet-class>controller.adm.Admin.AdminRichiesteConvenzioniController</servlet-class>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.AdminRichiesteConvenzioniController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>richiesteconvenzioni</servlet-name>
@@ -363,7 +363,7 @@
 
     <servlet>
         <servlet-name>gestione-utenti</servlet-name>
-        <servlet-class>controller.adm.Admin.GestioneUtenza.AdminGestioneUtentiController</servlet-class>
+        <servlet-class>controller.adm.Admin.AdminAccettaConvenzione$AdminGestioneUtentiController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>gestione-utenti</servlet-name>
@@ -395,15 +395,6 @@
     <servlet>
         <servlet-name>accettaconv</servlet-name>
         <servlet-class>controller.adm.Admin.AdminAccettaConvenzione</servlet-class>
-        <multipart-config>
-            <!--
-            <location>/tmp</location> temporary files location (DEF: "") -->
-            <max-file-size>20848820</max-file-size>
-            <!-- max size of accepted uploadd (DEF: unlimited!) -->
-            <max-request-size>418018841</max-request-size>
-            <!-- max size of multipart requests (may contain more files or data) (DEF: ulimited!) -->
-            <!-- <file-size-threshold>1048576</file-size-threshold> max size of files to hold in memory (without writing to temporary disk file) (DEF: 0) -->
-        </multipart-config>
     </servlet>
     <servlet-mapping>
         <servlet-name>accettaconv</servlet-name>
@@ -545,16 +536,30 @@
     </servlet-mapping>
 
 
+<servlet>
+<servlet-name>CreaTutoreUni</servlet-name>
+<servlet-class>controller.adm.Admin.GestioneUtenza.CreateTutoreUni</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>CreaTutoreUni</servlet-name>
+<url-pattern>/Create-tutore</url-pattern>
+<url-pattern>/create-tutore</url-pattern>
+
+</servlet-mapping>
+
     <servlet>
-        <servlet-name>CreaTutoreUni</servlet-name>
-        <servlet-class>controller.adm.Admin.GestioneUtenza.CreateTutoreUni</servlet-class>
+        <servlet-name>ModificaConvenzioneAziendale</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneModuli.ModificaModuloConvezioneAziendaController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CreaTutoreUni</servlet-name>
-        <url-pattern>/Create-tutore</url-pattern>
-        <url-pattern>/create-tutore</url-pattern>
+        <servlet-name>ModificaConvenzioneAziendale</servlet-name>
+        <url-pattern>/modifica-convezione</url-pattern>
+        <url-pattern>/Modifica-Convenzione</url-pattern>
 
     </servlet-mapping>
+
+
+
     <!-- end servelt account admin-->
 
 
