@@ -53,7 +53,7 @@ public class AdminFillAziendeConTable {
             datamodel.put("AziendaAttiva", getAziendeAttiva());
             datamodel.put("AziendaPendenti", getAziendePendenti());
 
-            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl.ftl", datamodel, response, servletContext);
+            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
         }catch (DaoException e)
         {
             e.printStackTrace();
@@ -70,7 +70,7 @@ public class AdminFillAziendeConTable {
             datamodel.put("AziendaAttiva", getAziendeAttiva());
             datamodel.put("AziendaPendenti", getAziendePendenti());
 
-            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl.ftl", datamodel, response, servletContext);
+            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
         }catch (DaoException e)
         {
             e.printStackTrace();
@@ -86,7 +86,7 @@ public class AdminFillAziendeConTable {
             datamodel.put("AziendaAttiva", getAziendeAttiva());
             datamodel.put("AziendaPendenti", getAziendePendenti());
 
-            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl.ftl", datamodel, response, servletContext);
+            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
         }catch (DaoException e)
         {
             e.printStackTrace();
