@@ -37,32 +37,67 @@
         <div class="container">
             <h1 class="mb-0">MODULO PER LA CONVENZIONE</h1>
             <div class="linea-divisione mt-15 mb-30"></div>
-            <div class="table-responsive mb-30">
-                <table class="table table-bordered g-white text-center border">
-                    <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Tipologia</th>
-                        <th>Data Creazione</th>
-                        <th>Data Aggiornamento</th>
-                        <th>Stampa Modulo</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>CONVENZIONE PER LO SVOLGIMENTO DI ATTIVITA&apos; DI TIROCINIO E DI ORIENTAMENTO</td>
-                        <td>CONVENZIONE</td>
-                        <td>${DataConvenzione?date?string.short}</td>
-                        <td>${DataUpdate?date?string.short}</td>
-                        <td><a href="modulo/${IDConvenzione}">
-                                <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Stampa
-                                    Modulo
-                                </button>
-                            </a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <#if CreaConvenzione??>
+                <div class="alert alert-warning mb-30">
+                    <strong>Attenzione non hai creato una richiesta di convenzione!</strong>
+                    <br> Per creare una richiesta <a href="/account/moduli/convenzione">clicca qui</a>
+                </div>
+                <#else>
+                    <div class="table-responsive mb-30">
+                        <table class="table table-bordered g-white text-center border">
+                            <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Tipologia</th>
+                                <th>Data Convenzione</th>
+                                <#if GiorniScadenza??>
+                                    <th>Giorni alla scadenza</th>
+                                </#if>
+                                <th>Data Aggiornamento Convenzione</th>
+                                <#if ConvenzioneScaduta?? && ConvenzioneScaduta>
+                                    <th>Aggiorna richiesta</th>
+                                <#else>
+                                    <th>Stampa Modulo</th>
+                                </#if>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>CONVENZIONE PER LO SVOLGIMENTO DI ATTIVITA&apos; DI TIROCINIO E DI ORIENTAMENTO</td>
+                                <td>CONVENZIONE</td>
+                                <td>${DataConvenzione?date?string.short}</td>
+                                <#if GiorniScadenza??>
+                                    <td>${GiorniScadenza}</td>
+                                </#if>
+                                <td>${DataUpdate?date?string.short}</td>
+                                <#if ConvenzioneScaduta??>
+                                    <#if ConvenzioneScaduta>
+                                        <td>
+                                            <a href="/account/moduli/convenzione/${IDConvenzione}">
+                                                <button type="button" class="btn btn-outline-danger"><i class="fa fa-edit"></i>Richiedi Convenzione
+                                                </button>
+                                            </a>
+                                        </td>
+                                    <#else>
+                                        <td><a href="/account/moduli/convenzione/${IDConvenzione}">
+                                                <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Stampa
+                                                    Modulo
+                                                </button>
+                                            </a></td>
+                                    </#if>
+                                <#else>
+                                    <td><a href="/account/moduli/convenzione/${IDConvenzione}">
+                                            <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Stampa
+                                                Modulo
+                                            </button>
+                                        </a></td>
+                                </#if>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </#if>
+
 
             <h1 class="mb-0">MODULI TIROCINI SVOLTI</h1>
             <div class="linea-divisione mt-15 mb-30"></div>
@@ -125,14 +160,14 @@
                                     </button>
                                 </td>
                             <#elseif Lista.tirocinio.stato == 1>
-                                <td><a href="#">
+                                <td><a href="/account/moduli/tirocinio/${Lista.tirocinante.IDTirocinante}">
                                         <button type="button" class="btn btn-outline-success"><i
                                                     class="fa fa-print"></i>Stampa PDF
                                         </button>
                                     </a>
                                 </td>
                             <#else>
-                                <td><a href="#">
+                                <td><a href="/account/moduli/tirocinio/${Lista.tirocinante.IDTirocinante}">
                                         <button type="button" class="btn btn-outline-success"><i
                                                     class="fa fa-print"></i>Stampa Modulo
                                         </button>
@@ -164,12 +199,12 @@
 <#include "importScript.ftl">
 
 <!-- Script page -->
-<script src="../plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="../plugins/datatables/js/dataTables.tableTools.min.js"></script>
-<script src="../plugins/datatables/js/dataTables.colReorder.min.js"></script>
-<script src="../plugins/datatables/js/dataTables.scroller.min.js"></script>
-<script src="../plugins/datatables/dataTables.bootstrap.js"></script>
-<script src="../plugins/select2/js/select2.full.min.js"></script>
+<script src="/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatables/js/dataTables.tableTools.min.js"></script>
+<script src="/plugins/datatables/js/dataTables.colReorder.min.js"></script>
+<script src="/plugins/datatables/js/dataTables.scroller.min.js"></script>
+<script src="/plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="/plugins/select2/js/select2.full.min.js"></script>
 <script>
     function initTableAccettati() {
 

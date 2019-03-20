@@ -8,6 +8,7 @@ import model.TutoreUniversitario;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import java.io.File;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,6 +16,13 @@ import java.util.regex.Pattern;
 import static java.lang.Character.*;
 
 public class Validation {
+
+    public static Boolean fileDirValidation(String appPath, String saveDir, String filename){
+        File dir = new File(appPath+saveDir);
+        File file = new File(appPath + saveDir + File.separator + filename);
+        return dir.exists() && dir.isDirectory() && file.exists() && file.isFile();
+    }
+
     /**
      * inserisco la data e giorni da quella data per la scadenza e mi da una mappa con
      * con calPresente "presente", calPassato "passato", BoleanScaduto "scaduto"
