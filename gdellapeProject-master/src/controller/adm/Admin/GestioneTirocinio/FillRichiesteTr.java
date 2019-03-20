@@ -1,8 +1,7 @@
-package controller.adm.Admin.GestioneOfferteTirocinio;
+package controller.adm.Admin.GestioneTirocinio;
 
 import dao.exception.DaoException;
 import dao.implementation.*;
-import freemarker.template.utility.DateUtil;
 import model.*;
 
 import javax.servlet.http.HttpServletResponse;
