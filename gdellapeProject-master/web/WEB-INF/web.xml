@@ -559,6 +559,18 @@
     </servlet-mapping>
 
 
+<servlet>
+<servlet-name>UpdatePdfAdmin</servlet-name>
+<servlet-class>controller.adm.Admin.GestioneModuli.CaricaPDFConvenzione</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>UpdatePdfAdmin</servlet-name>
+<url-pattern>/caricaConvenzione</url-pattern>
+<url-pattern>/CaricaConvenzione</url-pattern>
+
+</servlet-mapping>
+
+
 
     <!-- end servelt account admin-->
 
