@@ -19,7 +19,7 @@ public class UploadFilePDF extends baseController {
      * @param request  richiesta
      * @param savePath albero cartelle Convenzione ./PDF/Covenzione/IDAzienda/NOMEPDF.pdf
      *                 albero cartelle Richiesta di tirocinio ./PDF/RichestaTirocinio/IDTirocinio/IDTirocininate/NOMEPDF.pdf
-     *                 albero cartella Fine Tirocinio Azienda ./PDF/FineTirocinio/IDTirocinio/IDTirocininante/NOMEPDF.pdf
+     *                 albero cartella Fine Tirocinio Azienda ./PDF/FineTirocinioAzienda/IDTirocinio/IDTirocininante/NOMEPDF.pdf
      *                 albero cartella Segreteria ./PDF/Segreteria/IDTirocinio/IDTirocininante/NOMEPDF.pdf
      * @param part     variabile di tipo Part del file che si ricava tramite:
      *                 Part parto = request.getPart("NOME FORM");
