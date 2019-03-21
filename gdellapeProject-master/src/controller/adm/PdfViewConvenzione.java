@@ -30,7 +30,11 @@ public class PdfViewConvenzione extends baseController {
                 try {
                     azienda = aziendaDaoImp.getAziendaByID(Integer.parseInt(partiQuery[1]));
                     aziendaDaoImp.destroy();
-                    return azienda.getPathPDFConvenzione() != null && !azienda.getPathPDFConvenzione().isEmpty();
+                    if(azienda.getPathPDFConvenzione() != null){
+                        return !azienda.getPathPDFConvenzione().isEmpty();
+                    } else {
+                        return false;
+                    }
                 } catch (DaoException e) {
                     return false;
                 }
