@@ -54,77 +54,78 @@ public class PdfViewRichiestaTirocinio extends baseController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
-        boolean accessoproibito = false;
-        boolean errorNotFound = false;
-        boolean trovato = false;
-        if (!request.getAttribute("tipo").equals(0)){
-            if (request.getParameterMap().containsKey("id")) {
-                int idTirocinio = Integer.parseInt(request.getParameter("id"));
-                Tirocinio tirocinio = new Tirocinio();
-                TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
-                try {
-                    tirocinio = tirocinioDaoImp.getRichiestatrByID(idTirocinio);
-                    tirocinioDaoImp.destroy();
-                } catch (DaoException e) {
-                    errorNotFound = true;
-                }
-
-                // TEST per vedere se l'Azienda e quella giusta
-                if (request.getAttribute("tipo").equals(3) && !errorNotFound){
-                    SingSessionContoller session = SingSessionContoller.getInstance();
-                    Azienda az = new Azienda();
-                    az = session.getAzienda(request, response);
-                    OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
-                    List<OffertaTirocinio> offertaTirocinios = new ArrayList<>();
-                    try {
-                        offertaTirocinios = offertaTirocinioDaoImp.getOffertatrBYAzienda(az);
-                        offertaTirocinioDaoImp.destroy();
-                        for(OffertaTirocinio offertaTirocinio : offertaTirocinios){
-                            if(tirocinio.getOffertaTirocinio().equals(offertaTirocinio.getIDOffertaTirocinio())){
-                                trovato = true;
-                                break;
-                            }
-                        }
-                    } catch (DaoException e) {
-                        errorNotFound = true;
-                    }
-                }
-
-                // TEST per verdere se il tirocinante e quello giusto
-                if (request.getAttribute("tipo").equals(2) && !errorNotFound){
-                    SingSessionContoller session = SingSessionContoller.getInstance();
-                    Tirocinante tirocinante = new Tirocinante();
-                    tirocinante = session.getTirocinate(request, response);
-                    trovato = tirocinante.getIDTirocinante().equals(tirocinio.getTirocinante());
-                }
-
-                if(!errorNotFound && trovato){
-                    String filename = tirocinio.getPdfTirocinante();
-                    String saveDir = "PDF" + File.separator + "RichestaTirocinio" + tirocinio.getIDTirocinio() + File.separator + tirocinio.getTirocinante();
-                    DownloadPDF d = new DownloadPDF();
-                    Boolean riuscito = d.DownloadPDF(request, response, filename, saveDir);
-                    if (!riuscito){
-                        errorNotFound = true;
-                    }
-                }
-            } else {
-                errorNotFound = true;
-            }
-        } else {
-            accessoproibito = true;
-        }
-
-        if (accessoproibito && !trovato){
-            System.out.println("riporto 403 accesso non autorizzato non hai le credenziali giuste ");
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/403");
-            dispatcher.forward(request, response);
-        }
-
-        if (errorNotFound && !accessoproibito){
-            System.out.println("riporto 404");
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/404");
-            dispatcher.forward(request, response);
-        }
-
+        PdfView pdfView = new PdfView((Integer) request.getAttribute("tipo"),"RichestaTirocinio", getServletContext());
+        pdfView.processaRichiesta(request, response);
+//        boolean accessoproibito = false;
+//        boolean errorNotFound = false;
+//        boolean trovato = false;
+//        if (!request.getAttribute("tipo").equals(0)){
+//            if (request.getParameterMap().containsKey("id")) {
+//                int idTirocinio = Integer.parseInt(request.getParameter("id"));
+//                Tirocinio tirocinio = new Tirocinio();
+//                TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
+//                try {
+//                    tirocinio = tirocinioDaoImp.getRichiestatrByID(idTirocinio);
+//                    tirocinioDaoImp.destroy();
+//                } catch (DaoException e) {
+//                    errorNotFound = true;
+//                }
+//
+//                // TEST per vedere se l'Azienda e quella giusta
+//                if (request.getAttribute("tipo").equals(3) && !errorNotFound){
+//                    SingSessionContoller session = SingSessionContoller.getInstance();
+//                    Azienda az = new Azienda();
+//                    az = session.getAzienda(request, response);
+//                    OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
+//                    List<OffertaTirocinio> offertaTirocinios = new ArrayList<>();
+//                    try {
+//                        offertaTirocinios = offertaTirocinioDaoImp.getOffertatrBYAzienda(az);
+//                        offertaTirocinioDaoImp.destroy();
+//                        for(OffertaTirocinio offertaTirocinio : offertaTirocinios){
+//                            if(tirocinio.getOffertaTirocinio().equals(offertaTirocinio.getIDOffertaTirocinio())){
+//                                trovato = true;
+//                                break;
+//                            }
+//                        }
+//                    } catch (DaoException e) {
+//                        errorNotFound = true;
+//                    }
+//                }
+//
+//                // TEST per verdere se il tirocinante e quello giusto
+//                if (request.getAttribute("tipo").equals(2) && !errorNotFound){
+//                    SingSessionContoller session = SingSessionContoller.getInstance();
+//                    Tirocinante tirocinante = new Tirocinante();
+//                    tirocinante = session.getTirocinate(request, response);
+//                    trovato = tirocinante.getIDTirocinante().equals(tirocinio.getTirocinante());
+//                }
+//
+//                if(!errorNotFound && trovato){
+//                    String filename = tirocinio.getPdfTirocinante();
+//                    String saveDir = "PDF" + File.separator + "RichestaTirocinio" + tirocinio.getIDTirocinio() + File.separator + tirocinio.getTirocinante();
+//                    DownloadPDF d = new DownloadPDF();
+//                    Boolean riuscito = d.DownloadPDF(request, response, filename, saveDir);
+//                    if (!riuscito){
+//                        errorNotFound = true;
+//                    }
+//                }
+//            } else {
+//                errorNotFound = true;
+//            }
+//        } else {
+//            accessoproibito = true;
+//        }
+//
+//        if (accessoproibito && !trovato){
+//            System.out.println("riporto 403 accesso non autorizzato non hai le credenziali giuste ");
+//            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/403");
+//            dispatcher.forward(request, response);
+//        }
+//
+//        if (errorNotFound && !accessoproibito){
+//            System.out.println("riporto 404");
+//            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/404");
+//            dispatcher.forward(request, response);
+//        }
     }
 }

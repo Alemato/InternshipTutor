@@ -50,48 +50,50 @@ public class PdfViewConvenzione extends baseController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
-        if (request.getAttribute("tipo").equals(1) || request.getAttribute("tipo").equals(3)) {
-            Boolean accessoproibito = false;
-            if (request.getParameterMap().containsKey("id")) {
-                if (request.getAttribute("tipo").equals(3)){
-                    SingSessionContoller sessionContoller = SingSessionContoller.getInstance();
-                    Azienda azienda1 = sessionContoller.getAzienda(request, response);
-                    if (!azienda1.getIDAzienda().equals(Integer.parseInt(request.getParameter("id")))){
-                        accessoproibito = true;
-                        System.out.println("riporto 403 accesso non autorizzato azinda con id diverso ");
-                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/403");
-                        dispatcher.forward(request, response);
-                    }
-                }
-                int id = Integer.parseInt(request.getParameter("id"));
-                AziendaDaoImp aziendaDaoImp = new AziendaDaoImp();
-                Azienda azienda = new Azienda();
-                try {
-                    azienda = aziendaDaoImp.getAziendaByID(id);
-                    aziendaDaoImp.destroy();
-                } catch (DaoException e) {
-                    e.printStackTrace();
-                }
-                if (!accessoproibito) {
-                    String filename = azienda.getPathPDFConvenzione();
-                    String saveDir = "PDF" + File.separator + "Convenzione" + File.separator + id;
-                    DownloadPDF d = new DownloadPDF();
-                    Boolean riuscito = d.DownloadPDF(request, response, filename, saveDir);
-                    if (!riuscito) {
-                        System.out.println("riporto 404 per errore pdf");
-                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/404");
-                        dispatcher.forward(request, response);
-                    } else {
-                        System.out.println("riporto 404");
-                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/404");
-                        dispatcher.forward(request, response);
-                    }
-                }
-            }
-        }else {
-            System.out.println("riporto 403 accesso non autorizzato non hai le credenziali giuste ");
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/403");
-            dispatcher.forward(request, response);
-        }
+        PdfView pdfView = new PdfView((Integer) request.getAttribute("tipo"),"Convenzione", getServletContext());
+        pdfView.processaRichiestaConvenzione(request, response);
+//        if (request.getAttribute("tipo").equals(1) || request.getAttribute("tipo").equals(3)) {
+//            Boolean accessoproibito = false;
+//            if (request.getParameterMap().containsKey("id")) {
+//                if (request.getAttribute("tipo").equals(3)){
+//                    SingSessionContoller sessionContoller = SingSessionContoller.getInstance();
+//                    Azienda azienda1 = sessionContoller.getAzienda(request, response);
+//                    if (!azienda1.getIDAzienda().equals(Integer.parseInt(request.getParameter("id")))){
+//                        accessoproibito = true;
+//                        System.out.println("riporto 403 accesso non autorizzato azinda con id diverso ");
+//                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/403");
+//                        dispatcher.forward(request, response);
+//                    }
+//                }
+//                int id = Integer.parseInt(request.getParameter("id"));
+//                AziendaDaoImp aziendaDaoImp = new AziendaDaoImp();
+//                Azienda azienda = new Azienda();
+//                try {
+//                    azienda = aziendaDaoImp.getAziendaByID(id);
+//                    aziendaDaoImp.destroy();
+//                } catch (DaoException e) {
+//                    e.printStackTrace();
+//                }
+//                if (!accessoproibito) {
+//                    String filename = azienda.getPathPDFConvenzione();
+//                    String saveDir = "PDF" + File.separator + "Convenzione" + File.separator + id;
+//                    DownloadPDF d = new DownloadPDF();
+//                    Boolean riuscito = d.DownloadPDF(request, response, filename, saveDir);
+//                    if (!riuscito) {
+//                        System.out.println("riporto 404 per errore pdf");
+//                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/404");
+//                        dispatcher.forward(request, response);
+//                    } else {
+//                        System.out.println("riporto 404");
+//                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/404");
+//                        dispatcher.forward(request, response);
+//                    }
+//                }
+//            }
+//        }else {
+//            System.out.println("riporto 403 accesso non autorizzato non hai le credenziali giuste ");
+//            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/403");
+//            dispatcher.forward(request, response);
+//        }
     }
 }
