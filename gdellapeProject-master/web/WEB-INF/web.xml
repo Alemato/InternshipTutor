@@ -51,6 +51,7 @@
         <url-pattern>/account/*</url-pattern>
         <url-pattern>/pdfview/convenzione</url-pattern>
         <url-pattern>/pdfview/richiestatirocinio</url-pattern>
+        <url-pattern>/pdfview/finetirocinioazienda</url-pattern>
     </filter-mapping>
     <!-- /filtri -->
 
@@ -414,11 +415,11 @@
     <!--</servlet-mapping>-->
 
     <servlet>
-        <servlet-name>PdfView</servlet-name>
-        <servlet-class>controller.adm.PdfView</servlet-class>
+        <servlet-name>PdfViewProva</servlet-name>
+        <servlet-class>controller.adm.PdfViewProva</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>PdfView</servlet-name>
+        <servlet-name>PdfViewProva</servlet-name>
         <url-pattern>/pdfview/</url-pattern>
         <url-pattern>/PDFVIEW/</url-pattern>
     </servlet-mapping>
@@ -441,6 +442,16 @@
         <servlet-name>PdfViewRichiestaTirocinio</servlet-name>
         <url-pattern>/pdfview/richiestatirocinio</url-pattern>
         <url-pattern>/PDFVIEW/richiestatirocinio</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PdfViewFineTirocinioAzienda</servlet-name>
+        <servlet-class>controller.adm.PdfViewFineTirocinioAzienda</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfViewFineTirocinioAzienda</servlet-name>
+        <url-pattern>/pdfview/finetirocinioazienda</url-pattern>
+        <url-pattern>/PDFVIEW/finetirocinioazienda</url-pattern>
     </servlet-mapping>
 
     <servlet>
