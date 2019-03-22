@@ -1,6 +1,6 @@
 package controller.adm.Admin;
 
-import controller.adm.Admin.GestioneOfferteTirocinio.FillRichiesteTr;
+//import controller.adm.Admin.GestioneOfferteTirocinio.FillRichiesteTr;
 import controller.adm.Azienda.BackEndAziendaController;
 import controller.baseController;
 import view.TemplateController;
@@ -19,11 +19,11 @@ public class AdminGestioneModuliController extends baseController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request,response);
-        FillRichiesteTr tr = new FillRichiesteTr();
-        datamodel.putAll(tr.fill(request,response));
-        System.out.println(datamodel);
-        TemplateController.process("BackEndTemplates/gestione-moduli.ftl", datamodel, response, getServletContext());
-        System.out.println(datamodel);
+//        FillRichiesteTr tr = new FillRichiesteTr();
+//        datamodel.putAll(tr.fill(request,response));
+//        System.out.println(datamodel);
+//        TemplateController.process("BackEndTemplates/gestione-moduli.ftl", datamodel, response, getServletContext());
+//        System.out.println(datamodel);
     }
 
 
