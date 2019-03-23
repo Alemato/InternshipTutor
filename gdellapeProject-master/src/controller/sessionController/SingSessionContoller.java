@@ -144,11 +144,9 @@ public class SingSessionContoller {
         int id = (int)session.getAttribute("IDUnivoco");
         if(isAzienda(request)){
 
-
-
-                    AziendaDaoImp daoImp = new AziendaDaoImp();
-                    az = daoImp.getAziendaByID(id);
-                    daoImp.destroy();
+            AziendaDaoImp daoImp = new AziendaDaoImp();
+            az = daoImp.getAziendaByID(id);
+            daoImp.destroy();
         }else{
             response.sendRedirect("/500");}
 

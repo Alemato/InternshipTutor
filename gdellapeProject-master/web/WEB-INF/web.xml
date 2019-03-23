@@ -362,7 +362,7 @@
 
     <servlet>
         <servlet-name>gestione-utenti</servlet-name>
-        <servlet-class>controller.adm.Admin.AdminAccettaConvenzione$AdminGestioneUtentiController</servlet-class>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.AdminRichiesteConvenzioniController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>gestione-utenti</servlet-name>
@@ -576,28 +576,28 @@
 
 </servlet-mapping>
 
-    <servlet>
-        <servlet-name>ModificaConvenzioneAziendale</servlet-name>
-        <servlet-class>controller.adm.Admin.GestioneModuli.ModificaModuloConvezioneAziendaController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ModificaConvenzioneAziendale</servlet-name>
-        <url-pattern>/modifica-convezione</url-pattern>
-        <url-pattern>/Modifica-Convenzione</url-pattern>
-
-    </servlet-mapping>
 
 
 <servlet>
-<servlet-name>UpdatePdfAdmin</servlet-name>
-<servlet-class>controller.adm.Admin.GestioneModuli.CaricaPDFConvenzione</servlet-class>
+<servlet-name>VediRichiesta</servlet-name>
+<servlet-class>controller.adm.Admin.GestioneModuli.VisualizzaModuloRichietaTirocinioController</servlet-class>
 </servlet>
 <servlet-mapping>
-<servlet-name>UpdatePdfAdmin</servlet-name>
-<url-pattern>/caricaConvenzione</url-pattern>
-<url-pattern>/CaricaConvenzione</url-pattern>
-
+<servlet-name>VediRichiesta</servlet-name>
+<url-pattern>/modulo-richista</url-pattern>
+<url-pattern>/Modulo-Richiesta</url-pattern>
 </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VediModuloAzienda</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneModuli.VisualizzaModuloAziendaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VediModuloAzienda</servlet-name>
+        <url-pattern>/modulo-azienda</url-pattern>
+        <url-pattern>/modulo-Azienda</url-pattern>
+
+    </servlet-mapping>
 
 
 

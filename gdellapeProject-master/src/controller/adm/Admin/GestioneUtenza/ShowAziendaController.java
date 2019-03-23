@@ -1,6 +1,8 @@
 package controller.adm.Admin.GestioneUtenza;
 
+import controller.adm.Admin.BackEndAdminController;
 import controller.adm.Azienda.BackEndAziendaController;
+import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.TirocinanteDaoImp;
@@ -16,11 +18,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-public class ShowAziendaController extends BackEndAziendaController{
+public class ShowAziendaController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        getAziendaAndUser(request, response);
-        TemplateController.process("BackEndTemplates/show-Azienda.ftl", datamodel, response, getServletContext());
+        Azienda az = BackEndAdminController.getAzienda(request,response,Integer.parseInt(request.getParameter("ID")));
+       datamodel.put("azienda",az );
+       datamodel.put("user",BackEndAdminController.getUser(request,response,az.getUser()));
+       TemplateController.process("BackEndTemplates/show-Azienda.ftl", datamodel, response, getServletContext());
 
 
 
@@ -33,24 +37,7 @@ public class ShowAziendaController extends BackEndAziendaController{
 
 
     }
-    private void getAziendaAndUser(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
-    {
-        try {
-            int idaz = Integer.parseInt(request.getParameter("ID"));
-            AziendaDaoImp dao = new AziendaDaoImp();
-            Azienda az=dao.getAziendaByID(idaz);
-            dao.destroy();
-            UserDaoImp dao1 = new UserDaoImp();
-            User user = dao1.getUserByid(az.getUser());
-            dao1.destroy();
-            datamodel.put("azienda",az);
-            datamodel.put("user",user);
-        }catch (DaoException e)
-        {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
-    }
+
 
 
 
