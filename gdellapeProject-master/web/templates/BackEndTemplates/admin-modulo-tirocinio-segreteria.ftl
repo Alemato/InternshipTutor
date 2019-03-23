@@ -102,70 +102,39 @@
 
             <section class="section-sm centrale border-top-section pl-20 pr-20">
 
-                    <fieldset>
 
-                            <div class="row mb-0 mr-10 ">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Ente/Azienda </h4>
-                                <h4>${dato[0]}</h4>
+                <div class="row mb-0 mr-10 ">
+                    <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Previa effetuazione di opportune verifiche e colloquio svoltosi in data </h4>
+                    <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_colloquio"
+                           value="2018-01-01" placeholder="data">
+                </div>
 
-                            </div>
+                <h4 class="col-auto col-sm-auto p-0 fs-20 fw-400 mb-35">Si attesta che il </h4>
 
-                            <div class="row mb-25 mr-10 mt-15">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Codice fiscale Ente/Azienda </h4>
-                                <h4>${dato[1]}</h4>
+                <h3 class="col-auto col-sm-auto pl-0 mb-35">Tirocinante: </h3>
 
-                            </div>
+                <div class="row mb-5 mr-10 mb-35">
+                    <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Cognome:</h4>
+                    <h4>${tirocinante.nome}</h4>
+                    <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Nome</h4>
+                    <input class="input-modulo col col-sm-12 col-md pl-0 mb-0" type="text" name="Nome_tirocinante"
+                           value="Francesco" placeholder="Nome del tirocinante">
+                </div>
 
-                            <h3 class="col-auto col-sm-auto pl-0 mb-10">Tirocinante: </h3>
-
-                            <div class="row mb-5 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Cognome:</h4>
-                                <h4>${dato[2]}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Nome</h4>
-                                <h4>${dato[3]}</h4>
-                            </div>
+                <h4 class="col-auto col-sm-auto p-0 fs-20 fw-400 mt-25">Ha svolto il tirocinio con esito </h4>
+                <input class="input-modulo col col-sm-12 col-md pl-0 mb-25" type="text" name="Esito_tirocinio" placeholder="Esito del tirocinio">
 
 
-                            <h4>(Codice identificativo tirocinio: Dipartimento, Corso di Laurea o diploma, anno, n progressivo, altro)</h4>
-                        <h4>${dato[4]}</h4>
+                <h4 class="col-auto col-sm-auto p-0 fs-20">Crediti Formativi riconosciuti </h4>
+                <h4>${tirocinio.CFU}</h4>
 
-                            <h3 class="col-auto col-sm-auto pr-10 pl-0 mt-45 mb-10">Periodo del Tirocinio: </h3>
+                <div class="row mb-25 mr-10 mt-50">
+                    <h4 class="col-auto col-sm-auto pr-10 fs-20">L&apos;Aquila il </h4>
+                    <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_documento"
+                           value="2018-05-01" placeholder="Data">
+                </div>
 
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Dal</h4>
-                                <h4>${dato[5]?date?string("yyyy-MM-dd")}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">al</h4>
-                                <h4>${dato[6]?date?string("yyyy-MM-dd")}</h4>
-                            </div>
 
-                            <div class="row mb-0 mr-10 mt-15">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Per un totale di </h4>
-                                <h4>${dato[7]}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20  fw-400"> ore</h4>
-                            </div>
-
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Sede di svolgimento del tirocinio</h4>
-                               <h4>${dato[8]}</h4>
-                            </div>
-
-                            <h4 class="fs-20 mb-0">Descrizione attivita svolta:</h4>
-                            <h4>${dato[9]}</h4>
-
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Si attesta che il/la Sig </h4>
-                                <h4>${dato[3]} ${dato[2]}</h4>
-                            </div>
-
-                            <h4 class="fs-20 mb-0">Ha effettuato i compiti affidatigli conseguendo il seguente risultato :</h4>
-                            <h4>${dato[10]}</h4>
-
-                            <div class="row mb-25 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Data</h4>
-                               <h4>${dato[11]?date?string("yyyy-MM-dd")}</h4>
-                            </div>
-
-                        </fieldset>
             </section>
 
         </main>
