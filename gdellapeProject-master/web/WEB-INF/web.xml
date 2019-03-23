@@ -49,9 +49,7 @@
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
         <url-pattern>/account/*</url-pattern>
-        <url-pattern>/pdfview/convenzione</url-pattern>
-        <url-pattern>/pdfview/richiestatirocinio</url-pattern>
-        <url-pattern>/pdfview/finetirocinioazienda</url-pattern>
+        <url-pattern>/pdfview/*</url-pattern>
     </filter-mapping>
     <!-- /filtri -->
 
@@ -452,6 +450,16 @@
         <servlet-name>PdfViewFineTirocinioAzienda</servlet-name>
         <url-pattern>/pdfview/finetirocinioazienda</url-pattern>
         <url-pattern>/PDFVIEW/finetirocinioazienda</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PdfViewSegreteria</servlet-name>
+        <servlet-class>controller.adm.PdfViewSegreteria</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfViewSegreteria</servlet-name>
+        <url-pattern>/pdfview/segreteria</url-pattern>
+        <url-pattern>/PDFVIEW/segreteria</url-pattern>
     </servlet-mapping>
 
     <servlet>
