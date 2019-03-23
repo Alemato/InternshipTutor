@@ -33,10 +33,10 @@ class PdfView {
 
     /**
      * @param tipoAccount inserire il tipo con (Integer) request.getAttribute("tipo")
-     * @param tipoPdf inserire il tipo tra: RichestaTirocinio, FineTirocinioAzienda, Segreteria, Convenzione
+     * @param tipoPdf inserire il tipo tra: RichiestaTirocinio, FineTirocinioAzienda, Segreteria, Convenzione
      * @param context inserire il context con getServletContext()
      */
-    PdfView(int tipoAccount, String tipoPdf, ServletContext context) {
+    public PdfView(int tipoAccount, String tipoPdf, ServletContext context) {
         this.tipoAccount = tipoAccount;
         this.tipoPdf = tipoPdf;
         this.context = context;
@@ -45,6 +45,29 @@ class PdfView {
         this.trovato = false;
         this.tirocinio = new Tirocinio();
         this.azienda = new Azienda();
+    }
+
+    /**
+     * Creazione URL per Richieste di tipo: RichiestaTirocinio, FineTirocinioAzienda, Segreteria
+     * @param tirocinio inserire oggetto tirocinio
+     * @return stringa url da inserire nel tag <enbed>
+     */
+    public String createURL(Tirocinio tirocinio){
+        this.tirocinio = tirocinio;
+        String Url = "/pdfview/"+this.tipoPdf.toLowerCase()+"?id="+this.tirocinio.getIDTirocinio();
+        return Url;
+    }
+
+
+    /**
+     * Creazione URL per Richieste di tipo: Convenzione
+     * @param azienda inserire oggetto Azienda
+     * @return stringa url da inserire nel tag <enbed>
+     */
+    public String createURLConvenzione(Azienda azienda){
+        this.azienda=azienda;
+        String Url = "/pdfview/"+this.tipoPdf.toLowerCase()+"?id="+this.azienda.getIDAzienda();
+        return Url;
     }
 
     private void inviaPDF(HttpServletResponse response, HttpServletRequest request, String filename, String saveDir) throws IOException {
@@ -61,7 +84,7 @@ class PdfView {
     private void inviaRisposta(HttpServletResponse response, HttpServletRequest request) throws IOException, ServletException {
         String filename;
         String saveDir;
-        if(this.tipoPdf.equals("RichestaTirocinio")){
+        if(this.tipoPdf.equals("RichiestaTirocinio")){
             if(!this.errorNotFound && this.trovato){
                 filename = this.tirocinio.getPdfTirocinante();
                 saveDir = "PDF" + File.separator + this.tipoPdf + File.separator + this.tirocinio.getIDTirocinio() + File.separator + tirocinio.getTirocinante();
@@ -101,14 +124,14 @@ class PdfView {
     }
 
     /**
-     * Metodo che processa le richieste di tipo: RichestaTirocinio, FineTirocinioAzienda, Segreteria
+     * Metodo che processa le richieste di tipo: RichiestaTirocinio, FineTirocinioAzienda, Segreteria
      * @param request inserire request
      * @param response inserire response
      * @throws IOException nulla
      * @throws ServletException nulla
      */
-    void processaRichiesta(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (this.tipoPdf.equals("RichestaTirocinio") || this.tipoPdf.equals("FineTirocinioAzienda") || this.tipoPdf.equals("Segreteria")){
+    public void processaRichiesta(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if (this.tipoPdf.equals("RichiestaTirocinio") || this.tipoPdf.equals("FineTirocinioAzienda") || this.tipoPdf.equals("Segreteria")){
             if (this.tipoAccount != 0){
                 if (request.getParameterMap().containsKey("id")) {
                     int idTirocinio = Integer.parseInt(request.getParameter("id"));
@@ -160,7 +183,7 @@ class PdfView {
             }
             inviaRisposta(response, request);
         }else {
-            System.out.println("La richiesta non è di tipo: RichestaTirocinio o FineTirocinioAzienda o Segreteria ");
+            System.out.println("La richiesta non è di tipo: RichiestaTirocinio o FineTirocinioAzienda o Segreteria ");
             RequestDispatcher dispatcher = this.context.getRequestDispatcher("/500");
             dispatcher.forward(request, response);
         }
@@ -173,7 +196,7 @@ class PdfView {
      * @throws ServletException nulla
      * @throws IOException nulla
      */
-    void processaRichiestaConvenzione(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void processaRichiestaConvenzione(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (this.tipoPdf.equals("Convenzione")){
             // Test per vedere se è Azienda o Admin
             if(this.tipoAccount == 1 || this.tipoAccount == 3){
