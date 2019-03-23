@@ -173,6 +173,7 @@
                                         <a type="button" href="/Modifica-Convenzione?IDAzienda=${azienda.IDAzienda}" class="btn btn-secondary"> Modifica</a>
                                     </td>
                                     <td>
+                                        <#--TODO fai il link in web-->
                                         <#if (azienda.PathPDFConvenzione)??>
                                             <h4>Azione non disponibile</h4>
                                             <#else>
@@ -278,7 +279,7 @@
                                     <a type="button" href="/#" class="btn btn-primary"> Visualizza</a>
                                 </td>
                                 <td>
-                                    <a type="button" href="/#" class="btn btn-secondary"> Modifica</a>
+                                    <a type="button" href="/modifica-convezione?IDAzienda=${azienda.IDAzienda}" class="btn btn-secondary"> Modifica</a>
                                 </td>
                                 <td>
                                     <#if (azienda.PathPDFConvenzione)??>
@@ -292,7 +293,7 @@
                                     </#if>
                                 </td>
                                 <td>
-                                    <form action="#" method="post">
+                                    <form action="/accetta" method="post">
                                         <input type="hidden" name="stato" value="declina">
                                         <input type="hidden" name="IDAzienda" value="${azienda.IDAzienda}">
                                         <input  type="submit" class="btn btn-red" value="Elimina">

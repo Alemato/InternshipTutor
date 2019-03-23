@@ -364,7 +364,7 @@
 
     <servlet>
         <servlet-name>gestione-utenti</servlet-name>
-        <servlet-class>controller.adm.Admin.AdminAccettaConvenzione$AdminGestioneUtentiController</servlet-class>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.AdminRichiesteConvenzioniController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>gestione-utenti</servlet-name>
@@ -568,26 +568,16 @@
 
 </servlet-mapping>
 
-    <servlet>
-        <servlet-name>ModificaConvenzioneAziendale</servlet-name>
-        <servlet-class>controller.adm.Admin.GestioneModuli.ModificaModuloConvezioneAziendaController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ModificaConvenzioneAziendale</servlet-name>
-        <url-pattern>/modifica-convezione</url-pattern>
-        <url-pattern>/Modifica-Convenzione</url-pattern>
-
-    </servlet-mapping>
 
 
 <servlet>
-<servlet-name>UpdatePdfAdmin</servlet-name>
-<servlet-class>controller.adm.Admin.GestioneModuli.CaricaPDFConvenzione</servlet-class>
+<servlet-name>VediConvezione</servlet-name>
+<servlet-class>controller.adm.Admin.GestioneModuli.VisualizzaModuloRichietaTirocinioController</servlet-class>
 </servlet>
 <servlet-mapping>
-<servlet-name>UpdatePdfAdmin</servlet-name>
-<url-pattern>/caricaConvenzione</url-pattern>
-<url-pattern>/CaricaConvenzione</url-pattern>
+<servlet-name>VediConvezione</servlet-name>
+<url-pattern>/admin-convenzione</url-pattern>
+<url-pattern>/Admin-Convenzione</url-pattern>
 
 </servlet-mapping>
 

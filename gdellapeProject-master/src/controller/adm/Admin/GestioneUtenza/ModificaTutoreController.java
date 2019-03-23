@@ -1,0 +1,180 @@
+package controller.adm.Admin.GestioneUtenza;
+
+import com.sun.org.apache.regexp.internal.RE;
+import controller.adm.Admin.BackEndAdminController;
+import controller.adm.Azienda.BackEndAziendaController;
+import controller.baseController;
+import controller.utility.Utility;
+import controller.utility.Validation;
+import dao.exception.DaoException;
+import dao.implementation.TirocinanteDaoImp;
+import dao.implementation.TutoreUniversitarioDaoImp;
+import dao.implementation.UserDaoImp;
+import model.Tirocinante;
+import model.TutoreUniversitario;
+import model.User;
+import view.TemplateController;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.*;
+
+
+public class ModificaTutoreController extends baseController {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        super.init(request,response);
+        updateTutore(request,response);
+
+
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        super.init(request,response);
+        fillForm(request,response);
+
+
+
+
+    }
+
+
+    private void fillForm(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
+    {
+        datamodel.put("tutore", BackEndAdminController.getTutoreUni(request, response,Integer.parseInt(request.getParameter("IDTutoreUni"))));
+        TemplateController.process("BackEndTemplates/modifica-tutoreuni.ftl", datamodel, response, getServletContext());
+
+    }
+
+    private void updateTutore(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
+    {
+        TutoreUniversitario tutore = BackEndAdminController.getTutoreUni(request,response,Integer.parseInt(request.getParameter("IDTutoreUni")));
+        if(validation(request,response,tutore))
+        {
+//            storeTutoreUni(request,response,tutore);
+//            response.sendRedirect("/gestione-utenti");
+            System.out.println("Salvataggio avvenuto correttamente");
+        }
+    }
+
+
+
+    private Boolean validation(HttpServletRequest request,HttpServletResponse response,TutoreUniversitario tutore)throws ServletException,IOException {
+       try {
+           Map<String, Object> errori = new HashMap<>();
+
+           if (request.getParameter("email").isEmpty()) {
+               errori.put("ErroreEmail", "Nome non presente");
+
+           } else if (!(Validation.isValidEmailAddress(request.getParameter("email")))) {
+               errori.put("ErroreEmail", "Nome non congrua");
+
+           } else if ((Validation.isStoreThisMailTutore(request.getParameter("email"))) && !(request.getParameter("email").equals(tutore.getEmail()))) {
+               errori.put("ErroreEmail", "Email gia presente");
+           }
+
+
+           if (request.getParameter("nome").isEmpty()) {
+               errori.put("ErroreNome", "Nome non presente");
+           } else if (request.getParameter("nome").length() > 50) {
+               errori.put("ErroreNome", "Nome troppo lungo");
+           }
+
+           if (request.getParameter("cognome").isEmpty()) {
+               errori.put("ErroreCognome", "Cognome non presente");
+           } else if (request.getParameter("cognome").length() > 50) {
+               errori.put("ErroreCognome", "Cognome troppo lungo");
+           }
+
+           if (request.getParameter("telefono").isEmpty()) {
+               errori.put("ErroreTelefono", "Telefono non presente");
+           } else if (request.getParameter("telefono").length() != 10) {
+               errori.put("ErroreTelefono", "Telefono non contruo");
+           }
+
+           if (errori.isEmpty()) {
+               System.out.println("Validazione NON in errore");
+               return true;
+           } else {
+               System.out.println("Validazione in errore");
+               refreshPage(request, response, errori);
+               return false;
+           }
+       }catch (DaoException e)
+       {
+           response.sendRedirect("/404");
+           return false;
+       }
+    }
+
+    private void refreshPage(HttpServletRequest request,HttpServletResponse response,Map<String,Object> errori)throws ServletException,IOException
+    {
+        List<String> dati = new ArrayList<>();
+
+        if(!(errori.containsKey("ErroreEmail")))
+        {
+            dati.add("email");
+        }
+        if(!(errori.containsKey("ErroreNome")))
+        {
+            dati.add("nome");
+        }
+
+
+        if(!(errori.containsKey("ErroreCognome")))
+        {
+            dati.add("cognome");
+        }
+
+        if(!(errori.containsKey("ErroreTelefono")))
+        {
+            dati.add("telefono");
+        }
+
+        datamodel.putAll(errori);
+
+        datamodel.put("WarningGenerico","Le modifiche apportate non sono state salvate");
+
+        datamodel.putAll(Utility.AddAllData(request,response,dati));
+
+        fillForm(request,response);
+
+
+    }
+
+
+
+
+   private void storeTutoreUni(HttpServletRequest request,HttpServletResponse response,TutoreUniversitario tutore)throws IOException,ServletException
+    {
+        try {
+
+            tutore.setNome(request.getParameter("nome"));
+            tutore.setCognome(request.getParameter("cognome"));
+            tutore.setEmail(request.getParameter("email"));
+            tutore.setTelefono(request.getParameter("telefono"));
+
+            TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
+           dao.UpdateTutoreUni(tutore);
+           dao.destroy();
+            response.sendRedirect("/gestione-utenti");
+        }catch (DaoException e)
+        {
+            e.printStackTrace();
+            response.sendRedirect("/404");
+        }
+
+
+
+    }
+
+
+
+
+
+}

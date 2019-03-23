@@ -52,6 +52,28 @@
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
             </section>
             <h2><i class="fa fa-user"></i> Utenza di Tipo Tirocinanti</h2>
+            <#if WarningSucess??>
+                <#if WarningSuccess??>
+                    <div class="alert alert-success mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${WarningSuccess}
+                    </div>
+                </#if>
+            </#if>
+            <#if WarningInsuccess??>
+                <#if WarningInsuccess??>
+                    <div class="alert alert-danger mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${WarningInsuccess}
+                    </div>
+                </#if>
+            </#if>
             <h3>Lista Tirocinanti</h3>
             <div class="card">
                 <div class="card-header">
@@ -59,7 +81,6 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive" >
-
                         <table class="table table-striped table-bordered table-hover" id="datatable_tirocinante" width="100%"
                                cellspacing="0">
                             <thead>
@@ -139,7 +160,6 @@
                     <i class="fa fa-table"></i> Aziende
                 </div>
                 <div class="card-body">
-                    <form class="table-responsive" id="form_azienda" action="print.php" method="post">
                         <table class="table table-striped table-bordered table-hover" id="datatable_azienda" width="100%"
                                cellspacing="0">
                             <thead>
@@ -183,8 +203,8 @@
                                 <td>
                                     <form action="/show-azienda" method="post">
                                         <input type="hidden" name="ID" value="${azienda.IDAzienda}">
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                            Utente
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-file-text"></i>
+                                            Visualizza Utente
                                         </button>
                                     </form>
 
@@ -192,14 +212,14 @@
                                 <td>
                                   <form action="/modifica-azienda" method="get">
                                       <input type="hidden" name="ID"  value="${azienda.IDAzienda}">
-                                      <button type="submit" class="btn btn-secondary"><i
-                                                    class="fa fa-pencil-square-o"></i>
+                                      <button type="submit" class="btn btn-secondary">
+                                          <i class="fa fa-pencil-square-o"></i>
                                             Modifica
                                         </button>
                                     </form>
                                 </td>
-                                <td><input type="checkbox" class="checkboxes" name="Marco" value="1"/> <i
-                                            class="fa fa-times" style="color: red;"></i> Elimina
+                                <td>
+                                    <a type="button" class="btn btn-danger"> Elimina</a>
                                 </td>
                             </tr>
                             </#list>
@@ -207,16 +227,7 @@
                             </tbody>
                         </table>
                         <footer class="text-center text-sm-right mt-25 ">
-                            <button type="submit" form="form_azienda"
-                                    class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
-                                        class="fa fa-check"></i> Aggiorna
-                            </button>
-                            <button type="reset" form="form_azienda"
-                                    class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
-                                        class="fa fa-times"></i> Annulla
-                            </button>
                         </footer>
-                    </form>
                 </div>
             </div>
 

@@ -1,6 +1,8 @@
 package controller.adm.Admin.GestioneUtenza;
 
+import controller.adm.Admin.BackEndAdminController;
 import controller.adm.Azienda.BackEndAziendaController;
+import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.UserDaoImp;
@@ -16,10 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-public class ShowTirocinanteController extends BackEndAziendaController{
+public class ShowTirocinanteController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        getTirocinanteAndUser(request,response);
+        Tirocinante tr = BackEndAdminController.getTirocinante(request,response,Integer.parseInt(request.getParameter("ID")));
+        datamodel.put("tirocinante",tr);
+        datamodel.put("user",BackEndAdminController.getUser(request,response,tr.getUser()));
         TemplateController.process("BackEndTemplates/show-tirocinante.ftl", datamodel, response, getServletContext());
 
 
@@ -33,24 +37,7 @@ public class ShowTirocinanteController extends BackEndAziendaController{
 
 
     }
-    private void getTirocinanteAndUser(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
-    {
-        try {
-            int idtr = Integer.parseInt(request.getParameter("ID"));
-            TirocinanteDaoImp dao = new TirocinanteDaoImp();
-            Tirocinante tr = dao.getTirocianteByID(idtr);
-            dao.destroy();
-            UserDaoImp dao1=new UserDaoImp();
-            User user= dao1.getUserByid(tr.getIDTirocinante());
-            dao1.destroy();
-            datamodel.put("user",user);
-            datamodel.put("tirocinante", tr);
-        }catch (DaoException e)
-        {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
-    }
+
 
 
 
