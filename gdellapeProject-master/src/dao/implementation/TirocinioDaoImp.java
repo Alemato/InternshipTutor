@@ -3,6 +3,7 @@ package dao.implementation;
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
 import model.OffertaTirocinio;
+import model.Tirocinante;
 import model.Tirocinio;
 
 import java.sql.PreparedStatement;
@@ -10,11 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import model.Azienda;
-import model.Tirocinante;
-
-import javax.servlet.http.HttpServletRequest;
 
 public class TirocinioDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement selectRichiestatrByID;
@@ -42,26 +38,28 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             // TODO controllare utilità e funzionalità
             this.insertFisrtRichiesta = connection.prepareStatement("INSERT INTO tirocinio(OffertaTirocinio,Tirocinante) VALUES (?,?)");
 
-            this.insertRichiestatr = connection.prepareStatement("INSERT INTO tirocinio(DataConsegnaModulo," +
+            this.insertRichiestatr = connection.prepareStatement("INSERT INTO tirocinio(DataConsegnaModuloRichiesta," +
                     "DurataOre,CFU,Stato,PeriodoEffettivoIniziale,PeriodoEffettivoFinale,RisultatoConseguito," +
-                    "DescrizioneAttivitaSvolta,PdfTirocinante,PdfAzienda,PdfSegreteria ,OffertaTirocinio," +
-                    "Tirocinante,TutoreUniversitario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "DescrizioneAttivitaSvolta,PdfTirocinante,PdfAzienda,DataConsegnaModuloAzienda,PdfSegreteria," +
+                    "DataConsegnaModuloSegreteria,DataColloquioSegreteria, EsitoTirocinio,CreditiRiconosciuti," +
+                    "OffertaTirocinio,Tirocinante,TutoreUniversitario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-            this.selectTrByStatoAndOfferta= connection.prepareStatement("SELECT * FROM tirocinio WHERE Stato = ? AND OffertaTirocinio = ? " );
+            this.selectTrByStatoAndOfferta = connection.prepareStatement("SELECT * FROM tirocinio WHERE Stato = ? AND OffertaTirocinio = ? ");
 
             this.selectAllTrByOfferta = connection.prepareStatement("SELECT * FROM tirocinio WHERE OffertaTirocinio = ?");
 
             this.ifinsertTirocinio = connection.prepareStatement("SELECT * FROM tirocinio WHERE Tirocinio = ? AND Stato > 2 ");
 
-            this.selectAllTirocinioByStato=connection.prepareStatement("SELECT * FROM tirocinio WHERE Stato = ?");
+            this.selectAllTirocinioByStato = connection.prepareStatement("SELECT * FROM tirocinio WHERE Stato = ?");
 
             this.selectOffertaTirByIDTirocinante = connection.prepareStatement("SELECT * FROM tirocinio WHERE Tirocinante = ?");
 
-            this.updateTirocinio = connection.prepareStatement("UPDATE tirocinio SET DataConsegnaModulo = ?," +
+            this.updateTirocinio = connection.prepareStatement("UPDATE tirocinio SET DataConsegnaModuloRichiesta = ?," +
                     " DurataOre = ?, CFU = ?, Stato = ?, PeriodoEffettivoIniziale = ?, PeriodoEffettivoFinale = ?," +
                     " RisultatoConseguito = ?, DescrizioneAttivitaSvolta = ?, PdfTirocinante = ?, PdfAzienda = ?," +
-                    " PdfSegreteria = ?, CreateDate = ?, UpdateDate = ?, OffertaTirocinio = ?, Tirocinante = ?, " +
-                    " TutoreUniversitario = ? WHERE  IDTirocinio = ?");
+                    " DataConsegnaModuloAzienda = ?, PdfSegreteria = ?, DataConsegnaModuloSegreteria = ?," +
+                    " DataColloquioSegreteria = ?, EsitoTirocinio = ?, CreditiRiconosciuti = ?, CreateDate = ?," +
+                    " UpdateDate = ?, OffertaTirocinio = ?, Tirocinante = ?, TutoreUniversitario = ? WHERE  IDTirocinio = ?");
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
 
@@ -69,9 +67,9 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
     }
 
     private void setTirocinioObject(Tirocinio tirocinio, ResultSet resultSet) throws DaoException {
-        try{
+        try {
             tirocinio.setIDTirocinio(resultSet.getInt("IDTirocinio"));
-            tirocinio.setDataConsegnaModulo(resultSet.getDate("DataConsegnaModulo"));
+            tirocinio.setDataConsegnaModuloRichiesta(resultSet.getDate("DataConsegnaModuloRichiesta"));
             tirocinio.setDurataOre(resultSet.getInt("DurataOre"));
             tirocinio.setCFU(resultSet.getInt("CFU"));
             tirocinio.setStato(resultSet.getInt("Stato"));
@@ -81,13 +79,18 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             tirocinio.setDescrizioneAttivitaSvolta(resultSet.getString("DescrizioneAttivitaSvolta"));
             tirocinio.setPdfTirocinante(resultSet.getString("PdfTirocinante"));
             tirocinio.setPdfAzienda(resultSet.getString("PdfAzienda"));
+            tirocinio.setDataConsegnaModuloAzienda(resultSet.getDate("DataConsegnaModuloAzienda"));
             tirocinio.setPdfSegreteria(resultSet.getString("PdfSegreteria"));
+            tirocinio.setDataConsegnaModuloSegreteria(resultSet.getDate("DataConsegnaModuloSegreteria"));
+            tirocinio.setDataColloquioSegreteria(resultSet.getDate("DataColloquioSegreteria"));
+            tirocinio.setEsitoTirocinio(resultSet.getString("EsitoTirocinio"));
+            tirocinio.setCreditiRiconosciuti(resultSet.getInt("CreditiRiconosciuti"));
             tirocinio.setCreateDate(resultSet.getTimestamp("CreateDate"));
             tirocinio.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
             tirocinio.setOffertaTirocinio(resultSet.getInt("OffertaTirocinio"));
             tirocinio.setTirocinante(resultSet.getInt("Tirocinante"));
             tirocinio.setTutoreUniversitario(resultSet.getInt("TutoreUniversitario"));
-        } catch (SQLException e){
+        } catch (SQLException e) {
             throw new DaoException("Errore nel creare oggetto Tirocinio", e);
         }
     }
@@ -103,81 +106,81 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             throw new DaoException("Errore nel creare Lista oggetti Tirocinio", e);
         }
     }
-    public Tirocinio getRichiestatrByID (int ID) throws DaoException{
+
+    public Tirocinio getRichiestatrByID(int ID) throws DaoException {
         try {
             this.init();
             Tirocinio tr = new Tirocinio();
-            selectRichiestatrByID.setInt(1,ID);
+            selectRichiestatrByID.setInt(1, ID);
             ResultSet resultSet = selectRichiestatrByID.executeQuery();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 setTirocinioObject(tr, resultSet);
-            }else{
+            } else {
                 throw new DaoException("Query con risultato vuoto");
             }
             return tr;
 
-        }catch (SQLException e){
-            throw new DaoException("Errore query dato",e);
+        } catch (SQLException e) {
+            throw new DaoException("Errore query dato", e);
         }
     }
 
-    public List<Tirocinio> gettrbyStatoandOfferta (OffertaTirocinio offerta,int stato) throws DaoException{
+    public List<Tirocinio> gettrbyStatoandOfferta(OffertaTirocinio offerta, int stato) throws DaoException {
         List<Tirocinio> listRT = new ArrayList<>();
         try {
             this.init();
-            this.selectTrByStatoAndOfferta.setInt(1,stato);
-            this.selectTrByStatoAndOfferta.setInt(2,offerta.getIDOffertaTirocinio());
+            this.selectTrByStatoAndOfferta.setInt(1, stato);
+            this.selectTrByStatoAndOfferta.setInt(2, offerta.getIDOffertaTirocinio());
             ResultSet resultSet = selectTrByStatoAndOfferta.executeQuery();
-            setListTirocinio(listRT,resultSet);
+            setListTirocinio(listRT, resultSet);
 
-        } catch (SQLException e){
-            throw new DaoException("Errore query lista stato e offerta",e);
+        } catch (SQLException e) {
+            throw new DaoException("Errore query lista stato e offerta", e);
         }
         return listRT;
     }
 
-    public List<Tirocinio> getTirociniByStato (Integer stato) throws DaoException{
+    public List<Tirocinio> getTirociniByStato(Integer stato) throws DaoException {
         List<Tirocinio> listRT = new ArrayList<>();
         try {
             this.init();
-            this.selectAllTirocinioByStato.setInt(1,stato);
+            this.selectAllTirocinioByStato.setInt(1, stato);
             ResultSet resultSet = selectAllTirocinioByStato.executeQuery();
-            setListTirocinio(listRT,resultSet);
-        } catch (SQLException e){
-            throw new DaoException("Errore query",e);
+            setListTirocinio(listRT, resultSet);
+        } catch (SQLException e) {
+            throw new DaoException("Errore query", e);
         }
         return listRT;
     }
 
 
-    public List<Tirocinio> getTrByOfferta (OffertaTirocinio offertaTirocinio) throws DaoException{
+    public List<Tirocinio> getTrByOfferta(OffertaTirocinio offertaTirocinio) throws DaoException {
         List<Tirocinio> listRT = new ArrayList<>();
         try {
             System.out.println("query inizio");
             this.init();
-            this.selectAllTrByOfferta.setInt(1,  offertaTirocinio.getIDOffertaTirocinio());
+            this.selectAllTrByOfferta.setInt(1, offertaTirocinio.getIDOffertaTirocinio());
             ResultSet resultSet = selectAllTrByOfferta.executeQuery();
-            setListTirocinio(listRT,resultSet);
+            setListTirocinio(listRT, resultSet);
             System.out.println("query fine");
             System.out.println(listRT);
-        } catch (SQLException e){
-            throw new DaoException("Errore query lista tr by offerta tr",e);
+        } catch (SQLException e) {
+            throw new DaoException("Errore query lista tr by offerta tr", e);
         }
         return listRT;
     }
 
 
-    public boolean ifTirocinanteSendRichiesta(Tirocinante tr) throws DaoException{
+    public boolean ifTirocinanteSendRichiesta(Tirocinante tr) throws DaoException {
         try {
             ifinsertTirocinio.setInt(1, tr.getIDTirocinante());
             ResultSet resultSet = ifinsertTirocinio.executeQuery();
             return !resultSet.next();
-        }catch (SQLException e){
-            throw new DaoException("Problema data base",e);
+        } catch (SQLException e) {
+            throw new DaoException("Problema data base", e);
         }
 
     }
-
 
 
     public List<Tirocinio> getOffertaTirByIDTirocinante(int IDTr) throws DaoException {
@@ -186,33 +189,42 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             this.init();
             this.selectOffertaTirByIDTirocinante.setInt(1, IDTr);
             ResultSet resultSet = selectOffertaTirByIDTirocinante.executeQuery();
-            setListTirocinio(listIDOff,resultSet);
-        }catch (SQLException e){
-            throw new DaoException("Errore query lista stato e offerta",e);
+            setListTirocinio(listIDOff, resultSet);
+        } catch (SQLException e) {
+            throw new DaoException("Errore query lista stato e offerta", e);
         }
         return listIDOff;
     }
 
 
-
-
-    public void setRichiestatr(Tirocinio tr) throws DaoException {
+    public void setRichiestatr(Tirocinio tirocinio) throws DaoException {
+//        INSERT INTO tirocinio(DataConsegnaModuloRichiesta,
+//                DurataOre,CFU,Stato,PeriodoEffettivoIniziale,PeriodoEffettivoFinale,RisultatoConseguito,
+//                DescrizioneAttivitaSvolta,PdfTirocinante,PdfAzienda,DataConsegnaModuloAzienda,PdfSegreteria,
+//                DataConsegnaModuloSegreteria,DataColloquioSegreteria, EsitoTirocinio,CreditiRiconosciuti,
+//                OffertaTirocinio,Tirocinante,TutoreUniversitario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
         try {
             this.init();
-            insertRichiestatr.setDate(1, tr.getDataConsegnaModulo());
-            insertRichiestatr.setInt(2, tr.getDurataOre());
-            insertRichiestatr.setInt(3, tr.getCFU());
-            insertRichiestatr.setInt(4,tr.getStato());
-            insertRichiestatr.setDate(5, tr.getPeriodoEffettivoIniziale());
-            insertRichiestatr.setDate(6, tr.getPeriodoEffettivoFinale());
-            insertRichiestatr.setString(7, tr.getRisultatoConseguito());
-            insertRichiestatr.setString(8, tr.getDescrizioneAttivitaSvolta());
-            insertRichiestatr.setString(9,tr.getPdfTirocinante());
-            insertRichiestatr.setString(10,tr.getPdfAzienda());
-            insertRichiestatr.setString(11,tr.getPdfSegreteria());
-            insertRichiestatr.setInt(12, tr.getOffertaTirocinio());
-            insertRichiestatr.setInt(13, tr.getTirocinante());
-            insertRichiestatr.setInt(14,tr.getTutoreUniversitario());
+            insertRichiestatr.setDate(1, tirocinio.getDataConsegnaModuloRichiesta());
+            insertRichiestatr.setInt(2, tirocinio.getDurataOre());
+            insertRichiestatr.setInt(3, tirocinio.getCFU());
+            insertRichiestatr.setInt(4, tirocinio.getStato());
+            insertRichiestatr.setDate(5, tirocinio.getPeriodoEffettivoIniziale());
+            insertRichiestatr.setDate(6, tirocinio.getPeriodoEffettivoFinale());
+            insertRichiestatr.setString(7, tirocinio.getRisultatoConseguito());
+            insertRichiestatr.setString(8, tirocinio.getDescrizioneAttivitaSvolta());
+            insertRichiestatr.setString(9, tirocinio.getPdfTirocinante());
+            insertRichiestatr.setString(10, tirocinio.getPdfAzienda());
+            insertRichiestatr.setDate(11, tirocinio.getDataConsegnaModuloAzienda());
+            insertRichiestatr.setString(12, tirocinio.getPdfSegreteria());
+            insertRichiestatr.setDate(13, tirocinio.getDataConsegnaModuloSegreteria());
+            insertRichiestatr.setDate(14, tirocinio.getDataColloquioSegreteria());
+            insertRichiestatr.setString(15, tirocinio.getEsitoTirocinio());
+            insertRichiestatr.setInt(16, tirocinio.getCreditiRiconosciuti());
+            insertRichiestatr.setInt(17, tirocinio.getOffertaTirocinio());
+            insertRichiestatr.setInt(18, tirocinio.getTirocinante());
+            insertRichiestatr.setInt(19, tirocinio.getTutoreUniversitario());
+            insertRichiestatr.executeUpdate();
             insertRichiestatr.executeUpdate();
 
 
@@ -237,37 +249,41 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         }
     }
 
-    public void setUpdateTirocinio(Tirocinio tirocinio) throws DaoException{
-    /*
-    UPDATE tirocinio SET DataConsegnaModulo = ?," +
-                    " DurataOre = ?, CFU = ?, Stato = ?, PeriodoEffettivoIniziale = ?, PeriodoEffettivoFinale = ?," +
-                    " RisultatoConseguito = ?, DescrizioneAttivitaSvolta = ?, PdfTirocinante = ?, PdfAzienda = ?," +
-                    " PdfSegreteria = ?, CreateDate = ?, UpdateDate = ?, OffertaTirocinio = ?, Tirocinante = ?, " +
-                    " TutoreUniversitario = ? WHERE  IDTirocinio = ?
-     */
-    try{
-        this.init();
-        this.updateTirocinio.setDate(1, tirocinio.getDataConsegnaModulo());
-        this.updateTirocinio.setInt(2, tirocinio.getDurataOre());
-        this.updateTirocinio.setInt(3, tirocinio.getCFU());
-        this.updateTirocinio.setInt(4,tirocinio.getStato());
-        this.updateTirocinio.setDate(5, tirocinio.getPeriodoEffettivoIniziale());
-        this.updateTirocinio.setDate(6, tirocinio.getPeriodoEffettivoFinale());
-        this.updateTirocinio.setString(7, tirocinio.getRisultatoConseguito());
-        this.updateTirocinio.setString(8, tirocinio.getDescrizioneAttivitaSvolta());
-        this.updateTirocinio.setString(9, tirocinio.getPdfTirocinante());
-        this.updateTirocinio.setString(10, tirocinio.getPdfAzienda());
-        this.updateTirocinio.setString(11, tirocinio.getPdfSegreteria());
-        this.updateTirocinio.setTimestamp(12, tirocinio.getCreateDate());
-        this.updateTirocinio.setTimestamp(13, tirocinio.getUpdateDate());
-        this.updateTirocinio.setInt(14, tirocinio.getOffertaTirocinio());
-        this.updateTirocinio.setInt(15, tirocinio.getTirocinante());
-        this.updateTirocinio.setInt(16, tirocinio.getTutoreUniversitario());
-        this.updateTirocinio.setInt(17, tirocinio.getIDTirocinio());
-        this.updateTirocinio.executeUpdate();
-    } catch (SQLException e){
-        throw new DaoException("Errore esecuzione update", e);
-    }
+    public void setUpdateTirocinio(Tirocinio tirocinio) throws DaoException {
+//        UPDATE tirocinio SET DataConsegnaModuloRichiesta = ?,
+//                 DurataOre = ?, CFU = ?, Stato = ?, PeriodoEffettivoIniziale = ?, PeriodoEffettivoFinale = ?,
+//                 RisultatoConseguito = ?, DescrizioneAttivitaSvolta = ?, PdfTirocinante = ?, PdfAzienda = ?,
+//                 DataConsegnaModuloAzienda = ?, PdfSegreteria = ?, DataConsegnaModuloSegreteria = ?,
+//                 DataColloquioSegreteria = ?, EsitoTirocinio = ?, CreditiRiconosciuti = ?, CreateDate = ?,
+//                 UpdateDate = ?, OffertaTirocinio = ?, Tirocinante = ?, TutoreUniversitario = ? WHERE  IDTirocinio = ?
+        try {
+            this.init();
+            this.updateTirocinio.setDate(1, tirocinio.getDataConsegnaModuloRichiesta());
+            this.updateTirocinio.setInt(2, tirocinio.getDurataOre());
+            this.updateTirocinio.setInt(3, tirocinio.getCFU());
+            this.updateTirocinio.setInt(4, tirocinio.getStato());
+            this.updateTirocinio.setDate(5, tirocinio.getPeriodoEffettivoIniziale());
+            this.updateTirocinio.setDate(6, tirocinio.getPeriodoEffettivoFinale());
+            this.updateTirocinio.setString(7, tirocinio.getRisultatoConseguito());
+            this.updateTirocinio.setString(8, tirocinio.getDescrizioneAttivitaSvolta());
+            this.updateTirocinio.setString(9, tirocinio.getPdfTirocinante());
+            this.updateTirocinio.setString(10, tirocinio.getPdfAzienda());
+            this.updateTirocinio.setDate(11, tirocinio.getDataConsegnaModuloAzienda());
+            this.updateTirocinio.setString(12, tirocinio.getPdfSegreteria());
+            this.updateTirocinio.setDate(13, tirocinio.getDataConsegnaModuloSegreteria());
+            this.updateTirocinio.setDate(14, tirocinio.getDataColloquioSegreteria());
+            this.updateTirocinio.setString(15, tirocinio.getEsitoTirocinio());
+            this.updateTirocinio.setInt(16, tirocinio.getCreditiRiconosciuti());
+            this.updateTirocinio.setTimestamp(17, tirocinio.getCreateDate());
+            this.updateTirocinio.setTimestamp(18, tirocinio.getUpdateDate());
+            this.updateTirocinio.setInt(19, tirocinio.getOffertaTirocinio());
+            this.updateTirocinio.setInt(20, tirocinio.getTirocinante());
+            this.updateTirocinio.setInt(21, tirocinio.getTutoreUniversitario());
+            this.updateTirocinio.setInt(22, tirocinio.getIDTirocinio());
+            this.updateTirocinio.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Errore esecuzione update", e);
+        }
 
     }
 
