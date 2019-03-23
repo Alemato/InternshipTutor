@@ -579,15 +579,25 @@
 
 
 <servlet>
-<servlet-name>VediConvezione</servlet-name>
+<servlet-name>VediRichiesta</servlet-name>
 <servlet-class>controller.adm.Admin.GestioneModuli.VisualizzaModuloRichietaTirocinioController</servlet-class>
 </servlet>
 <servlet-mapping>
-<servlet-name>VediConvezione</servlet-name>
-<url-pattern>/admin-convenzione</url-pattern>
-<url-pattern>/Admin-Convenzione</url-pattern>
-
+<servlet-name>VediRichiesta</servlet-name>
+<url-pattern>/modulo-richista</url-pattern>
+<url-pattern>/Modulo-Richiesta</url-pattern>
 </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VediModuloAzienda</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneModuli.VisualizzaModuloAziendaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VediModuloAzienda</servlet-name>
+        <url-pattern>/modulo-azienda</url-pattern>
+        <url-pattern>/modulo-Azienda</url-pattern>
+
+    </servlet-mapping>
 
 
 
