@@ -102,70 +102,49 @@
 
             <section class="section-sm centrale border-top-section pl-20 pr-20">
 
-                    <fieldset>
+
 
                             <div class="row mb-0 mr-10 ">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Ente/Azienda </h4>
-                                <h4>${dato[0]}</h4>
-
+                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Ente/Azienda : </h4>
+                                <h4>${azienda.ragioneSociale}</h4>
                             </div>
 
-                            <div class="row mb-25 mr-10 mt-15">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Codice fiscale Ente/Azienda </h4>
-                                <h4>${dato[1]}</h4>
-
-                            </div>
-
-                            <h3 class="col-auto col-sm-auto pl-0 mb-10">Tirocinante: </h3>
-
-                            <div class="row mb-5 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Cognome:</h4>
-                                <h4>${dato[2]}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Nome</h4>
-                                <h4>${dato[3]}</h4>
-                            </div>
-
-
-                            <h4>(Codice identificativo tirocinio: Dipartimento, Corso di Laurea o diploma, anno, n progressivo, altro)</h4>
-                        <h4>${dato[4]}</h4>
-
-                            <h3 class="col-auto col-sm-auto pr-10 pl-0 mt-45 mb-10">Periodo del Tirocinio: </h3>
-
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Dal</h4>
-                                <h4>${dato[5]?date?string("yyyy-MM-dd")}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">al</h4>
-                                <h4>${dato[6]?date?string("yyyy-MM-dd")}</h4>
-                            </div>
-
-                            <div class="row mb-0 mr-10 mt-15">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Per un totale di </h4>
-                                <h4>${dato[7]}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20  fw-400"> ore</h4>
+                            <div class="row mb-0 mr-10 ">
+                                <h4 class="col-auto col-sm-auto pr-10 fs-20">con sede legale in (indirizzo) : </h4>
+                                <h4>${azienda.indirizzoSedeLegale}</h4>
                             </div>
 
                             <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Sede di svolgimento del tirocinio</h4>
-                               <h4>${dato[8]}</h4>
+                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Codice Fiscale (o Partita IVA) : </h4>
+                                <h4>${azienda.CFiscalePIva} </h4>
                             </div>
 
-                            <h4 class="fs-20 mb-0">Descrizione attivita svolta:</h4>
-                            <h4>${dato[9]}</h4>
 
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Si attesta che il/la Sig </h4>
-                                <h4>${dato[3]} ${dato[2]}</h4>
+                            <div class="row mb-0 mr-10 ">
+                                <h4 class="col-auto col-sm-auto pr-10 fs-20">rappresentato da :</h4>
+                                <h4> ${azienda.nomeLegaleRappresentante}</h4>
+                            </div>
+                            <div class="row mb-0 mr-10 ">
+                                <h4 class="col-auto col-sm-auto pr-10 fs-20">rappresentato da : </h4>
+                                <h4>${azienda.cognomeLegaleRappresentante}</h4>
                             </div>
 
-                            <h4 class="fs-20 mb-0">Ha effettuato i compiti affidatigli conseguendo il seguente risultato :</h4>
-                            <h4>${dato[10]}</h4>
 
-                            <div class="row mb-25 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Data</h4>
-                               <h4>${dato[11]?date?string("yyyy-MM-dd")}</h4>
+                            <div class="row mb-0 mr-10 d-print-none">
+                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Ruolo del foro competente : </h4>
+                                <h4>${azienda.foroControversia}</h4>
+                            </div>
+                            <div class="row mb-0 mr-10 d-print-none">
+                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Durata convenzione: </h4>
+                                <h4>${azienda.durataConvenzione}</h4>
+                            </div>
+                            <div class="row mb-0 mr-10 d-print-none">
+                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Data Convenzione: </h4>
+                                <h4>${azienda.dataConvenzione?date?string("dd/MM/yyyy")}</h4>
                             </div>
 
-                        </fieldset>
+
+
             </section>
 
         </main>

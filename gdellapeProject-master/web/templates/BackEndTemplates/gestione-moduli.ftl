@@ -108,26 +108,22 @@
             </section>
             <h2>Tirocinii</h2>
             <#if WarningSuccess??>
-                <#if WarningSucces??>
-                    <div class="alert alert-success mb-20">
+                <div class="alert alert-success mb-20">
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Chiudi</span>
                         </button>
                         <strong>Attenzione!</strong> ${WarningSuccess}
                     </div>
-                </#if>
             </#if>
             <#if WarningInsuccess??>
-                <#if WarningInsuccess??>
-                    <div class="alert alert-danger mb-20">
+                <div class="alert alert-danger mb-20">
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Chiudi</span>
                         </button>
                         <strong>Attenzione!</strong> ${WarningInsuccess}
-                    </div>
-                </#if>
+                </div>
             </#if>
             <div class="card">
                 <div class="card-header">
@@ -195,21 +191,28 @@
                                 <td>${dati[9]}</td>
                                 <td>${dati[10]}</td>
                                 <td>${dati[11]}</td>
-                                <td>${tirocinio.createDate?date}</td>
+                                <td>${tirocinio.createDate?date?string("dd-MM-yyyy")}</td>
                                 <td>
-                                    <a type="button" href="/#" class="btn btn-primary"> Visualizza</a>
-                                </td>
+                                <#if (tirocinio.pdfTirocinante)??>
+                                    <a type="button" href="/#" class="btn btn-primary"> <i class="fa fa-file-text"></i> Visualizza</a>
+                                <#else>
+                                    <button class="btn btn-primary"> <i class="fa fa-file-text"></i> Non disponibile</button>
+                                </#if>
+                                    </td>
                                 <td>
-
-                                    <button type="button" class="btn btn-secondary" <#if (tirocinio.pdfTirocinante)??> <a type="button" href="/#" class="btn fa-file-pdf-o"> Visualizza PDF </a>
+                                    <#if (tirocinio.pdfTirocinante)??>
+                                        <a type="button" class="btn btn-secondary" href="/#"> Visualizza PDF </a>
                                     <#else>
-                                        <i class="fa fa-file-pdf-o"></i>PDF Non Disponibile </i> </#if>
+                                        <button type="button" class="btn btn-secondary" disabled> <i class="fa fa-file-pdf-o"></i> PDF Non Presente</button>
+                                    </#if>
 
                                 </td>
                                 <td>
-                                    <#--Specificare l'id del tirocinio da cancellare nell'url-->
-                                    <a type="button" href="/#" class="btn btn-blue"> Invalida PDF</a>
-
+                                    <#if (tirocinio.pdfTirocinante)??>
+                                        <a type="button" href="/#" class="btn btn-danger"> <i class="fa fa-file-pdf-o"></i> Invalida PDF</a>
+                                        <#else>
+                                            <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
+                                    </#if>
                                 </td>
 
                             </tr>
@@ -243,7 +246,7 @@
                                 <th>Visualizza Richiesta</th>
                                 <th>Visualizza PDF Richiesta</th>
                                 <th>Invalida PDF</th>
-                                <th>Cancella Convenzione</th>
+
 
                             </tr>
                             </thead>
@@ -258,7 +261,7 @@
                                 <th>Visualizza Richiesta</th>
                                 <th>Visualizza PDF Richiesta</th>
                                 <th>Invalida PDF</th>
-                                <th>Cancella Convenzione</th>
+
                             </tr>
                             </tfoot>
                             <tbody>
@@ -273,23 +276,29 @@
                                 <td>${azienda.CFiscalePIva}</td>
                                 <td>${azienda.nomeResponsabileConvenzione}</td>
                                 <td>${azienda.cognomeResponsabileConvenzione}</td>
-                                <td>${(azienda.dataConvenzione)?date}</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary" href="/#">Visualizza</button>
-                                </td>
+                                <td>${azienda.dataConvenzione?date?string("dd-MM-yyyy")}</td>
                                 <td>
                                     <#if (azienda.pathPDFConvenzione)??>
-                                        <button type="button" class="btn btn-secondary" >Visualizza PDF</button>
+                                        <a type="button" class="btn btn-success" href="/#"> <i class="fa fa-file-text"></i> Visualizza</a>
                                         <#else>
-                                            <button type="button" class="btn btn-secondary" disabled> <iclass="fa fa-file-pdf-o"></i> PDF Non Presente</button>
+                                            <button type="button" class="btn btn-success" disabled> <i class="fa fa-file-text"></i> Non disponibile</button>
                                     </#if>
 
                                 </td>
                                 <td>
-                                    <a type="button" href="/#" class="btn btn-danger"> Invalida</a>
+                                    <#if (azienda.pathPDFConvenzione)??>
+                                        <a type="button" class="btn btn-primary"  href="/#"> <i class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
+                                        <#else>
+                                            <button class="btn btn-primary" disabled> <i class="fa fa-file-pdf-o"></i> PDF Non Presente</button>
+                                    </#if>
+
                                 </td>
                                 <td>
-                                    <a type="button" href="/#" class="btn btn-success">Cancella convenzione</a>
+                               <#if (azienda.pathPDFConvenzione)??>
+                                    <a type="button" href="/#" class="btn btn-danger"> Invalida</a>
+                               <#else>
+                                   <button class="btn btn-danger" disabled> Non Diponibile</button>
+                               </#if>
                                 </td>
 
                             </tr>
@@ -330,7 +339,6 @@
 
                                 <th>Visualizza Modulo Richiesta Tirocinio (Tirocinante)</th>
                                 <th>Visualizza PDF Caricato (Tirocinante)</th>
-                                <th>Invalida PDF (Tirocinante)</th>
 
                                 <th>Visualizza Modulo Conclusione Tirocinio (Azienda)</th>
                                 <th>Visualizza PDF Caricato (Azienda)</th>
@@ -362,7 +370,6 @@
 
                                 <th>Visualizza Modulo Richiesta Tirocinio (Tirocinante)</th>
                                 <th>Visualizza PDF Caricato (Tirocinante)</th>
-                                <th>Invalida PDF (Tirocinante)</th>
 
                                 <th>Visualizza Modulo Conclusione Tirocinio (Azienda)</th>
                                 <th>Visualizza PDF Caricato (Azienda)</th>
@@ -391,32 +398,22 @@
                                 <td>${dati[9]}</td>
                                 <td>${dati[10]}</td>
                                 <td>${dati[11]}</td>
-                                <td>${tirocinio.createDate?date}</td>
+                                <td>${tirocinio.createDate?date?string("dd-MM-yyyy")}</td>
 
 
                                 <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</button>
-
+                                    <a type="button" class="btn btn-success" href="/#"><i class="fa fa-file-text"></i>Visualizza</a>
                                 </td>
                                 <td>
-                                    <#if (tirocinio.pdfTirocinante)??>
-                                        <a type="button" class="btn btn-secondary" href="/#">  <i class="fa fa-file-pdf-o"> </i>Visualizza PDF</a>
-                                        <#else>
-                                            <button type="button" class="btn btn-secondary" disabled> <i class="fa fa-file-pdf-o"> </i>PDF Non Disponibile</button>
+                                    <a type="button" class="btn btn-secondary" href="/#">  <i class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
+                                </td>
+                                <td>
+                                    <#if (tirocinio.pdfAzienda)??>
+                                        <a type="button" class="btn btn-success" href="/#">  <i class="fa fa-file-text"> </i>Visualizza</a>
+                                    <#else>
+                                        <button type="button" class="btn btn-success" disabled> <i class="fa fa-file-text"> </i>Non Disponibile</button>
                                     </#if>
                                 </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-file-text"></i>Invalida</button>
-
-                                </td>
-
-
-
-                                <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</button>
-
-                                </td>
-
                                 <td>
                                     <#if (tirocinio.pdfAzienda)??>
                                         <a type="button" class="btn btn-secondary" href="/#">  <i class="fa fa-file-pdf-o"> </i>Visualizza PDF</a>
@@ -426,15 +423,20 @@
 
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-file-text"></i>Invalida</button>
+                                <#if (tirocinio.pdfAzienda)??>
+                                    <a type="button" href="/#" class="btn btn-danger"><i class="fa fa-file-text"></i>Invalida</a>
+                                    <#else>
+                                        <button type="button" class="btn btn-danger" disabled><i class="fa fa-file-text"></i>Azione non disponibile</button>
+                                    </#if>
 
                                 </td>
-
-
-
-
                                 <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</button>
+                                <#if (tirocinio.pdfSegreteria)??>
+                                    <a type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza</a>
+                                <#else>
+                                    <button type="button" class="btn btn-success" disabled><i class="fa fa-file-text"></i> Azione non disponibile</button>
+                                </#if>
+
 
                                 </td>
                                 <td>
@@ -446,11 +448,11 @@
 
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-secondary"> <i class="fa fa-file-pdf-o"> </i>Modifica PDF</button>
+                                    <button type="button" class="btn btn-secondary"> <i class="fa fa-file-pdf-o"> </i>Crea/Modifica PDF</button>
                                 </td>
                                 <td>
                                     <a <#if (tirocinio.pdfSegreteria)??>
-                                        <h4>Azione non disponibile</h4>
+                                        <a type="button" href="/#" class="btn btn-primary" disabled> Azione non disponibile</a>
                                     <#else>
                                         <a type="button" href="/#" class="btn btn-primary"> Carica</a>
                                     </#if>
