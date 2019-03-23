@@ -61,7 +61,7 @@
 
 </nav>
 <div class="container-fluid d-print-none">
-    <div class="row d-print-none">
+    <v class="row d-print-none">
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar bg-light d-print-none">
             <div class="side-nav mb-60">
                 <ul class="list-group list-group-bordered list-group-noicon uppercase">
@@ -98,100 +98,74 @@
         </nav>
 
 
-        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 d-print-none">
+        <main class="col-sm-10 offset-sm-1 col-md-11 offset-md-2 pt-3 d-print-none">
 
             <section class="section-sm centrale border-top-section pl-20 pr-20">
-                <div class="container">
-                    <form id="modulo_tirocinante" action="print.php" method="post" class="m-0" d>
-                        <fieldset>
-                            <h1 class="text-center fw-100 d-print-none">Controlla i dati del modulo pre-compilato e clicca su stampa</h1>
 
-                            <div class="text-center d-none d-print-block">
-                                <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
-                                <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
-                                <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
-                                <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
-                            </div>
-                            <h6>(da compilare a cura dell'Azienda)</h6>
+                    <fieldset>
+
                             <div class="row mb-0 mr-10 ">
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20">Ente/Azienda </h4>
-                                <input class="input-modulo col col-sm pl-0" type="text" name="NominativoEnte"
-                                       value="${dato[0]}" placeholder="Nome Ente/Azienda" disabled>
+                                <h4>${dato[0]}</h4>
+
                             </div>
 
                             <div class="row mb-25 mr-10 mt-15">
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Codice fiscale Ente/Azienda </h4>
-                                <input class="input-modulo col col-sm pl-0" type="text" name="Codice_fiscale"
-                                       value="${dato[1]}" placeholder="Codice fiscale" disabled>
+                                <h4>${dato[1]}</h4>
+
                             </div>
 
                             <h3 class="col-auto col-sm-auto pl-0 mb-10">Tirocinante: </h3>
 
                             <div class="row mb-5 mr-10">
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Cognome:</h4>
-                                <input class="input-modulo col col-sm-12 col-md pl-0 mb-0" type="text"
-                                       name="Cognome_tirocinante" value="${dato[2]}" disabled  >
+                                <h4>${dato[2]}</h4>
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Nome</h4>
-                                <input class="input-modulo col col-sm-12 col-md pl-0 mb-0" type="text" name="Nome_tirocinante"
-                                       value="${dato[3]}" disabled>
+                                <h4>${dato[3]}</h4>
                             </div>
 
 
-                            <h4 class="col-auto col-sm-auto mb-10 pl-0 fs-20 fw-400">(Codice identificativo tirocinio: Dipartimento, Corso di Laurea o diploma, anno, n progressivo, altro)</h4>
-                            <input class="input-modulo col-auto col-sm-auto pl-0 mr-20 mt-0 mb-25" type="text" name="Codice_tirocinio"
-                                   value="${dato[4]}">
+                            <h4>(Codice identificativo tirocinio: Dipartimento, Corso di Laurea o diploma, anno, n progressivo, altro)</h4>
+                        <h4>${dato[4]}</h4>
 
                             <h3 class="col-auto col-sm-auto pr-10 pl-0 mt-45 mb-10">Periodo del Tirocinio: </h3>
 
                             <div class="row mb-0 mr-10">
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20">Dal</h4>
-                                <input class="input-modulo col col-sm pl-0" type="date" name="Data_inizio"
-                                       value="${dato[5]?date?string("yyyy-MM-dd")}" disabled>
+                                <h4>${dato[5]?date?string("yyyy-MM-dd")}</h4>
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20">al</h4>
-                                <input class="input-modulo col col-sm pl-0" type="date" name="Data_fine"
-                                       value="${dato[6]?date?string("yyyy-MM-dd")}" disabled>
+                                <h4>${dato[6]?date?string("yyyy-MM-dd")}</h4>
                             </div>
 
                             <div class="row mb-0 mr-10 mt-15">
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Per un totale di </h4>
-                                <input class="input-modulo col-1 pl-0 text-center" type="number" name="Ore_totali"
-                                       value="${dato[7]}" disabled>
+                                <h4>${dato[7]}</h4>
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20  fw-400"> ore</h4>
                             </div>
 
                             <div class="row mb-0 mr-10">
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20">Sede di svolgimento del tirocinio</h4>
-                                <input class="input-modulo col col-sm pl-0" type="text" name="Sede_svolgimento"
-                                       value="${dato[8]}" disabled>
+                               <h4>${dato[8]}</h4>
                             </div>
 
                             <h4 class="fs-20 mb-0">Descrizione attivita svolta:</h4>
-                            <textarea class="textarea-modulo col-12 pt-5 mb-15 mr-10" rows="4" cols="1" name="Descrizione_attivita_svolta" disabled>${dato[9]}</textarea>
+                            <h4>${dato[9]}</h4>
 
                             <div class="row mb-0 mr-10">
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20">Si attesta che il/la Sig </h4>
-                                <input class="input-modulo col col-sm pl-0" type="text" name="Nome_cognome_tirocinante"
-                                       value="${dato[3]} ${dato[2]}" disabled>
+                                <h4>${dato[3]} ${dato[2]}</h4>
                             </div>
 
                             <h4 class="fs-20 mb-0">Ha effettuato i compiti affidatigli conseguendo il seguente risultato :</h4>
-                            <textarea class="textarea-modulo col-12 pt-5 mb-0 mr-10" rows="4" cols="1" name="risultato_tirocinio" disabled > ${dato[10]}</textarea>
+                            <h4>${dato[10]}</h4>
 
                             <div class="row mb-25 mr-10">
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20">Data</h4>
-                                <input class="input-modulo col-2 col-sm-2 pl-0 text-center" type="date" name="Data_documento"
-                                       value="${dato[11]?date?string("yyyy-MM-dd")}" disabled>
+                               <h4>${dato[11]?date?string("yyyy-MM-dd")}</h4>
                             </div>
 
-                            <h4 class="d-none d-print-block">Firma del Tutor aziendale</h4>
-
-                            <div class="linea col-5 p-0 mt-25"></div>
-
-                            <footer class="mt-50 d-print-none">
-                            </footer>
                         </fieldset>
-                    </form>
-                </div>
             </section>
 
         </main>
