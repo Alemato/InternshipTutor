@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Tirocinio {
     private Integer IDTirocinio;
-    private Date DataConsegnaModulo;
+    private Date DataConsegnaModuloRichiesta;
     private Integer DurataOre;
     private Integer CFU;
     /**
@@ -22,7 +22,12 @@ public class Tirocinio {
     private String DescrizioneAttivitaSvolta;
     private String PdfTirocinante;
     private String PdfAzienda;
+    private Date DataConsegnaModuloAzienda;
     private String PdfSegreteria;
+    private Date DataConsegnaModuloSegreteria;
+    private Date DataColloquioSegreteria;
+    private String EsitoTirocinio;
+    private Integer CreditiRiconosciuti;
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
     private Integer OffertaTirocinio;
@@ -31,7 +36,7 @@ public class Tirocinio {
 
     public Tirocinio() {
         this.IDTirocinio = 0;
-        this.DataConsegnaModulo = null;
+        this.DataConsegnaModuloRichiesta = null;
         this.DurataOre = 0;
         this.CFU = 0;
         this.Stato = 0;
@@ -41,7 +46,12 @@ public class Tirocinio {
         this.DescrizioneAttivitaSvolta = null;
         this.PdfTirocinante=null;
         this.PdfAzienda=null;
+        this.DataConsegnaModuloAzienda=null;
         this.PdfSegreteria=null;
+        this.DataConsegnaModuloSegreteria = null;
+        this.DataColloquioSegreteria =null;
+        this.EsitoTirocinio =null;
+        this.CreditiRiconosciuti =null;
         this.CreateDate = null;
         this.UpdateDate = null;
         this.OffertaTirocinio = 0;
@@ -51,14 +61,12 @@ public class Tirocinio {
 
     // GET DATA
 
-
-
     public Integer getIDTirocinio() {
         return IDTirocinio;
     }
 
-    public Date getDataConsegnaModulo() {
-        return DataConsegnaModulo;
+    public Date getDataConsegnaModuloRichiesta() {
+        return DataConsegnaModuloRichiesta;
     }
 
     public Integer getDurataOre() {
@@ -97,8 +105,28 @@ public class Tirocinio {
         return PdfAzienda;
     }
 
+    public Date getDataConsegnaModuloAzienda() {
+        return DataConsegnaModuloAzienda;
+    }
+
     public String getPdfSegreteria() {
         return PdfSegreteria;
+    }
+
+    public Date getDataConsegnaModuloSegreteria() {
+        return DataConsegnaModuloSegreteria;
+    }
+
+    public Date getDataColloquioSegreteria() {
+        return DataColloquioSegreteria;
+    }
+
+    public String getEsitoTirocinio() {
+        return EsitoTirocinio;
+    }
+
+    public Integer getCreditiRiconosciuti() {
+        return CreditiRiconosciuti;
     }
 
     public Timestamp getCreateDate() {
@@ -127,8 +155,8 @@ public class Tirocinio {
         this.IDTirocinio = IDTirocinio;
     }
 
-    public void setDataConsegnaModulo(Date dataConsegnaModulo) {
-        DataConsegnaModulo = dataConsegnaModulo;
+    public void setDataConsegnaModuloRichiesta(Date dataConsegnaModuloRichiesta) {
+        DataConsegnaModuloRichiesta = dataConsegnaModuloRichiesta;
     }
 
     public void setDurataOre(Integer durataOre) {
@@ -167,8 +195,28 @@ public class Tirocinio {
         PdfAzienda = pdfAzienda;
     }
 
+    public void setDataConsegnaModuloAzienda(Date dataConsegnaModuloAzienda) {
+        DataConsegnaModuloAzienda = dataConsegnaModuloAzienda;
+    }
+
     public void setPdfSegreteria(String pdfSegreteria) {
         PdfSegreteria = pdfSegreteria;
+    }
+
+    public void setDataConsegnaModuloSegreteria(Date dataConsegnaModuloSegreteria) {
+        DataConsegnaModuloSegreteria = dataConsegnaModuloSegreteria;
+    }
+
+    public void setDataColloquioSegreteria(Date dataColloquioSegreteria) {
+        DataColloquioSegreteria = dataColloquioSegreteria;
+    }
+
+    public void setEsitoTirocinio(String esitoTirocinio) {
+        EsitoTirocinio = esitoTirocinio;
+    }
+
+    public void setCreditiRiconosciuti(Integer creditiRiconosciuti) {
+        CreditiRiconosciuti = creditiRiconosciuti;
     }
 
     public void setCreateDate(Timestamp createDate) {
@@ -187,8 +235,8 @@ public class Tirocinio {
         Tirocinante = tirocinante;
     }
 
-    public void setTutoreUniversitario(Integer tutoreUniveritario) {
-        TutoreUniversitario = tutoreUniveritario;
+    public void setTutoreUniversitario(Integer tutoreUniversitario) {
+        TutoreUniversitario = tutoreUniversitario;
     }
 
     @Override
@@ -197,7 +245,7 @@ public class Tirocinio {
         if (o == null || getClass() != o.getClass()) return false;
         Tirocinio tirocinio = (Tirocinio) o;
         return IDTirocinio.equals(tirocinio.IDTirocinio) &&
-                Objects.equals(DataConsegnaModulo, tirocinio.DataConsegnaModulo) &&
+                Objects.equals(DataConsegnaModuloRichiesta, tirocinio.DataConsegnaModuloRichiesta) &&
                 DurataOre.equals(tirocinio.DurataOre) &&
                 CFU.equals(tirocinio.CFU) &&
                 Stato.equals(tirocinio.Stato) &&
@@ -207,7 +255,12 @@ public class Tirocinio {
                 Objects.equals(DescrizioneAttivitaSvolta, tirocinio.DescrizioneAttivitaSvolta) &&
                 Objects.equals(PdfTirocinante, tirocinio.PdfTirocinante) &&
                 Objects.equals(PdfAzienda, tirocinio.PdfAzienda) &&
+                Objects.equals(DataConsegnaModuloAzienda, tirocinio.DataConsegnaModuloAzienda) &&
                 Objects.equals(PdfSegreteria, tirocinio.PdfSegreteria) &&
+                Objects.equals(DataConsegnaModuloSegreteria, tirocinio.DataConsegnaModuloSegreteria) &&
+                Objects.equals(DataColloquioSegreteria, tirocinio.DataColloquioSegreteria) &&
+                Objects.equals(EsitoTirocinio, tirocinio.EsitoTirocinio) &&
+                Objects.equals(CreditiRiconosciuti, tirocinio.CreditiRiconosciuti) &&
                 CreateDate.equals(tirocinio.CreateDate) &&
                 UpdateDate.equals(tirocinio.UpdateDate) &&
                 OffertaTirocinio.equals(tirocinio.OffertaTirocinio) &&
@@ -217,14 +270,14 @@ public class Tirocinio {
 
     @Override
     public int hashCode() {
-        return Objects.hash(IDTirocinio, DataConsegnaModulo, DurataOre, CFU, Stato, PeriodoEffettivoIniziale, PeriodoEffettivoFinale, RisultatoConseguito, DescrizioneAttivitaSvolta, PdfTirocinante, PdfAzienda, PdfSegreteria, CreateDate, UpdateDate, OffertaTirocinio, Tirocinante, TutoreUniversitario);
+        return Objects.hash(IDTirocinio, DataConsegnaModuloRichiesta, DurataOre, CFU, Stato, PeriodoEffettivoIniziale, PeriodoEffettivoFinale, RisultatoConseguito, DescrizioneAttivitaSvolta, PdfTirocinante, PdfAzienda, DataConsegnaModuloAzienda, PdfSegreteria, DataConsegnaModuloSegreteria, DataColloquioSegreteria, EsitoTirocinio, CreditiRiconosciuti, CreateDate, UpdateDate, OffertaTirocinio, Tirocinante, TutoreUniversitario);
     }
 
     @Override
     public String toString() {
         return "Tirocinio{" +
                 "IDTirocinio=" + IDTirocinio +
-                ", DataConsegnaModulo=" + DataConsegnaModulo +
+                ", DataConsegnaModuloRichiesta=" + DataConsegnaModuloRichiesta +
                 ", DurataOre=" + DurataOre +
                 ", CFU=" + CFU +
                 ", Stato=" + Stato +
@@ -234,13 +287,17 @@ public class Tirocinio {
                 ", DescrizioneAttivitaSvolta='" + DescrizioneAttivitaSvolta + '\'' +
                 ", PdfTirocinante='" + PdfTirocinante + '\'' +
                 ", PdfAzienda='" + PdfAzienda + '\'' +
+                ", DataConsegnaModuloAzienda=" + DataConsegnaModuloAzienda +
                 ", PdfSegreteria='" + PdfSegreteria + '\'' +
+                ", DataConsegnaModuloSegreteria=" + DataConsegnaModuloSegreteria +
+                ", DataColloquioSegreteria=" + DataColloquioSegreteria +
+                ", EsitoTirocinio='" + EsitoTirocinio + '\'' +
+                ", CreditiRiconosciuti=" + CreditiRiconosciuti +
                 ", CreateDate=" + CreateDate +
                 ", UpdateDate=" + UpdateDate +
                 ", OffertaTirocinio=" + OffertaTirocinio +
                 ", Tirocinante=" + Tirocinante +
-                ", TutoreUniveritario=" + TutoreUniversitario +
+                ", TutoreUniversitario=" + TutoreUniversitario +
                 '}';
     }
-
 }
