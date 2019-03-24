@@ -40,7 +40,7 @@ public class VisualizzaModuloRichietaTirocinioController extends baseController 
             dao.destroy();
 
             TirocinanteDaoImp dao1 = new TirocinanteDaoImp();
-            tirocinante = dao1.getTirocianteByID(tr.getIDTirocinio());
+            tirocinante = dao1.getTirocianteByID(tr.getTirocinante());
             dao1.destroy();
 
             OffertaTirocinioDaoImp dao2 =new OffertaTirocinioDaoImp();

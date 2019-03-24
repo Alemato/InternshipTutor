@@ -31,51 +31,20 @@ public class VisualizzaModuloSegreteriaTirocinioController extends baseControlle
     }
     private void fillModulo(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
     {
-       Tirocinante tirocinante =new Tirocinante();
-       List<String> dati = new ArrayList<>();
+       Tirocinante tirocinante = new Tirocinante();
+       Tirocinio tr = new Tirocinio();
         try{
             TirocinioDaoImp dao = new TirocinioDaoImp();
-            Tirocinio tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
+            tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
             dao.destroy();
 
             TirocinanteDaoImp dao1 = new TirocinanteDaoImp();
-            tirocinante = dao1.getTirocianteByID(tr.getIDTirocinio());
+            tirocinante = dao1.getTirocianteByID(tr.getTirocinante());
             dao1.destroy();
 
-            OffertaTirocinioDaoImp dao2 =new OffertaTirocinioDaoImp();
-            OffertaTirocinio offerta = dao2.getOffertatrByID(tr.getOffertaTirocinio());
-            dao2.destroy();
-
-            AziendaDaoImp dao3 = new AziendaDaoImp();
-            Azienda azienda = dao3.getAziendaByID(offerta.getAzienda());
-            dao3.destroy();
-
-            TutoreUniversitarioDaoImp dao4=new TutoreUniversitarioDaoImp();
-            TutoreUniversitario tutuni = dao4.getTutoreUniByID(tr.getTutoreUniversitario());
-            dao4.destroy();
-
-            dati.add(azienda.getRagioneSociale());
-            dati.add(offerta.getLuogoEffettuazione());
-            dati.add(offerta.getSettoreInserimento());
-            dati.add(offerta.getTempoAccessoLocaliAziendali());
-            dati.add(offerta.getDurataMesi().toString());
-            dati.add(tr.getPeriodoEffettivoIniziale().toString());
-            dati.add(tr.getPeriodoEffettivoFinale().toString());
-            dati.add(tr.getDurataOre().toString());
-            dati.add(tr.getCFU().toString());
-            dati.add(tutuni.getNome());
-            dati.add(tutuni.getCognome());
-            dati.add(tutuni.getTelefono());
-            dati.add(offerta.getNomeTutoreAziendale());
-            dati.add(offerta.getCognomeTutoreAziendale());
-            dati.add(offerta.getTelefonoTutoreAziendale());
-            dati.add(offerta.getObbiettivi());
-            dati.add(offerta.getModalita());
-            dati.add(offerta.getFacilitazioni());
-
             datamodel.put("tirocinante",tirocinante);
-            datamodel.put("dato",dati);
-            TemplateController.process("BackEndTemplates/admin-modulo-tirocinio-tirocinante.ftl", datamodel, response, getServletContext());
+            datamodel.put("tirocinio",tr);
+            TemplateController.process("BackEndTemplates/admin-modulo-tirocinio-segreteria.ftl", datamodel, response, getServletContext());
 
         }catch (DaoException e)
         {

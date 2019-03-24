@@ -38,7 +38,7 @@ public class VisualizzaModuloAziendaTirocinioController extends baseController {
             dao.destroy();
 
             TirocinanteDaoImp dao1 = new TirocinanteDaoImp();
-            Tirocinante tirocinante = dao1.getTirocianteByID(tr.getIDTirocinio());
+            Tirocinante tirocinante = dao1.getTirocianteByID(tr.getTirocinante());
             dao1.destroy();
 
             OffertaTirocinioDaoImp dao2 =new OffertaTirocinioDaoImp();
@@ -76,7 +76,7 @@ public class VisualizzaModuloAziendaTirocinioController extends baseController {
             //dato posizione 10
             dati.add(tr.getRisultatoConseguito());
             //dato posizione 11
-            dati.add(tr.getDataConsegnaModulo());
+            dati.add(tr.getDataConsegnaModuloAzienda());
             datamodel.put("dato",dati);
             TemplateController.process("BackEndTemplates/admin-modulo-tirocinio-azienda.ftl", datamodel, response, getServletContext());
 
