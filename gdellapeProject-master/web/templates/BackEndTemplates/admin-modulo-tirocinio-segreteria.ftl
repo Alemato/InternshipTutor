@@ -105,8 +105,7 @@
 
                 <div class="row mb-0 mr-10 ">
                     <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Previa effetuazione di opportune verifiche e colloquio svoltosi in data </h4>
-                    <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_colloquio"
-                           value="2018-01-01" placeholder="data">
+                    <h4>${tirocinio.dataColloquioSegreteria} </h4>
                 </div>
 
                 <h4 class="col-auto col-sm-auto p-0 fs-20 fw-400 mb-35">Si attesta che il </h4>
@@ -115,23 +114,20 @@
 
                 <div class="row mb-5 mr-10 mb-35">
                     <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Cognome:</h4>
-                    <h4>${tirocinante.nome}</h4>
+                    <h4>${tirocinio.cognome} </h4>
                     <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Nome</h4>
-                    <input class="input-modulo col col-sm-12 col-md pl-0 mb-0" type="text" name="Nome_tirocinante"
-                           value="Francesco" placeholder="Nome del tirocinante">
+                    <h4>${tirocinante.nome}</h4>
                 </div>
 
                 <h4 class="col-auto col-sm-auto p-0 fs-20 fw-400 mt-25">Ha svolto il tirocinio con esito </h4>
-                <input class="input-modulo col col-sm-12 col-md pl-0 mb-25" type="text" name="Esito_tirocinio" placeholder="Esito del tirocinio">
-
+                <h4>${tirocinio.esitoTirocinio} </h4>
 
                 <h4 class="col-auto col-sm-auto p-0 fs-20">Crediti Formativi riconosciuti </h4>
                 <h4>${tirocinio.CFU}</h4>
 
                 <div class="row mb-25 mr-10 mt-50">
                     <h4 class="col-auto col-sm-auto pr-10 fs-20">L&apos;Aquila il </h4>
-                    <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_documento"
-                           value="2018-05-01" placeholder="Data">
+                    <h4>${tirocinio.dataConsegnaModuloSegreteria} </h4>
                 </div>
 
 

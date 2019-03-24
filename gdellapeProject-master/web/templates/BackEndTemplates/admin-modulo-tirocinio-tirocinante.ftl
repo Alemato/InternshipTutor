@@ -205,7 +205,6 @@
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">al</h4>
                                 <h4>${dato[6]}</h4>
                             </div>
-                            <h4>(con possibilit&agrave; di prologa entro i limiti massimi previsti dalla normativa vigente)</h4>
 
                             <div class="row mb-25 mr-10">
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20">numero ore di tirocinio </h4>
@@ -241,9 +240,7 @@
                             <h4 class="fs-20 mb-0">Modalità:</h4>
                             <h4> ${dato[16]} </h4>
 
-                            <h4 class="col-12 mt-35 fs-20 pl-0 mb-0">Facilitazioni previste: sussidio di formazione e servizi
-                                aziendali
-                                (mensa)</h4>
+                            <h4 class="col-12 mt-35 fs-20 pl-0 mb-0">Facilitazioni previste: sussidio di formazione e servizi aziendali (mensa)</h4>
                             <h4> ${dato[17]} </h4>
 
                         </fieldset>
