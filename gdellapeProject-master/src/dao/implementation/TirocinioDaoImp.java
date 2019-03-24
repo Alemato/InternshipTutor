@@ -249,7 +249,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         }
     }
 
-    public void setUpdateTirocinio(Tirocinio tirocinio) throws DaoException {
+    public void updateTirocinio(Tirocinio tirocinio) throws DaoException {
 //        UPDATE tirocinio SET DataConsegnaModuloRichiesta = ?,
 //                 DurataOre = ?, CFU = ?, Stato = ?, PeriodoEffettivoIniziale = ?, PeriodoEffettivoFinale = ?,
 //                 RisultatoConseguito = ?, DescrizioneAttivitaSvolta = ?, PdfTirocinante = ?, PdfAzienda = ?,
