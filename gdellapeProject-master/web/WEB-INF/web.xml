@@ -199,6 +199,16 @@
         <url-pattern>/Account/Moduli</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AziendaConvenzioneController</servlet-name>
+        <servlet-class>controller.adm.Azienda.ConvenzioneController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AziendaConvenzioneController</servlet-name>
+        <url-pattern>/account/moduli/convenzione</url-pattern>
+        <url-pattern>/Account/Moduli/Convenzione</url-pattern>
+    </servlet-mapping>
+
 
     <!-- servlet errori-->
     <servlet>

@@ -1,5 +1,5 @@
 <!-- /FOOTER-->
-    <footer id="footer">
+    <footer id="footer" <#if notview?? ><#if notview>class="d-print-none"</#if></#if>>
         <div class="container">
 
             <div class="row">
