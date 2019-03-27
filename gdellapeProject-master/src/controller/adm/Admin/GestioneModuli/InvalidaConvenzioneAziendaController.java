@@ -26,42 +26,25 @@ public class InvalidaConvenzioneAziendaController extends baseController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        super.init(request,response);
-        invalidaConvezione(request,response);
-
+        makeGet(request,response);
 
     }
-    private void invalidaConvezione(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
+
+    private void makeGet(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
     {
-        try{
-            AziendaDaoImp dao  = new AziendaDaoImp();
-            Azienda azienda = dao.getAziendaByID(Integer.parseInt(request.getParameter("IDAzienda")));
-            dao.destroy();
-            FillGestioniModuli page = new FillGestioniModuli(request,response,getServletContext(),datamodel);
-            if(!(azienda.getPathPDFConvenzione().isEmpty())&&(azienda.getAttivo().equals(2)))
-            {
-                azienda.setPathPDFConvenzione(null);
-                azienda.setDataConvenzione(null);
-                azienda.setAttivo(0);
-                AziendaDaoImp dao2=new AziendaDaoImp();
-                dao2.updateAzienda(azienda);
-                dao2.destroy();
-                //TODO Manda mail per avvisare che la convenzione è scaduta
-                page.makegetWithSuccess("Invalidazione della convenzione per l'azienda"+azienda.getRagioneSociale()+" andata a buon fine");
-
-            }else{
-                page.makegetWithInsuccess("Invalidazione della convenzione per l'azienda"+azienda.getRagioneSociale()+" andata in errore");
-
-            }
-
-
+        try {
+            super.init(request, response);
+            InvalidaConvenzioneAzienda page = new InvalidaConvenzioneAzienda(datamodel, getServletContext(), request, response);
+            page.invalidaConvezioneModuli();
         }catch (DaoException e)
         {
             e.printStackTrace();
-            response.sendRedirect("/404");
+            response.sendRedirect("/500");
         }
-
     }
+
+
+
 
 
 
