@@ -52,7 +52,6 @@
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
             </section>
             <h2><i class="fa fa-user"></i> Utenza di Tipo Tirocinanti</h2>
-            <#if WarningSucess??>
                 <#if WarningSuccess??>
                     <div class="alert alert-success mb-20">
                         <button type="button" class="close" data-dismiss="alert">
@@ -62,9 +61,7 @@
                         <strong>Attenzione!</strong> ${WarningSuccess}
                     </div>
                 </#if>
-            </#if>
             <#if WarningInsuccess??>
-                <#if WarningInsuccess??>
                     <div class="alert alert-danger mb-20">
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
@@ -73,7 +70,6 @@
                         <strong>Attenzione!</strong> ${WarningInsuccess}
                     </div>
                 </#if>
-            </#if>
             <h3>Lista Tirocinanti</h3>
             <div class="card">
                 <div class="card-header">
@@ -92,8 +88,7 @@
                                 <th>Telefono</th>
                                 <th>Portatore Handicap</th>
                                 <th>Visualizza</th>
-                                <th>Modifica</th>
-                                <th>Elimina</th>
+                                <th>Reimposta account</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -105,8 +100,7 @@
                                 <th>Telefono</th>
                                 <th>Portatore Handicap</th>
                                 <th>Visualizza</th>
-                                <th>Modifica</th>
-                                <th>Elimina</th>
+                                <th>Reimposta account</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -128,19 +122,10 @@
 
                                 </td>
                                 <td>
-
-                                        <a type="button" href="/modifica-tirociante?IDTirocinante=${tirocinante.IDTirocinante}" class="btn btn-secondary"><i
-                                                    class="fa fa-pencil-square-o"></i>
-                                            Modifica
-                                        </a>
+                                    <a type="button" href="/reimposta-User?IDUser=${tirocinante.user}" class="btn btn-secondary">
+                                        <i class="fa fa-pencil-square-o"></i>Reimposta Password</a>
                                 </td>
 
-                                <td>
-                                    <a type="button" href="#" class="btn btn-danger">
-                                        <i class="fa fa-times"></i>
-                                        Elimina
-                                    </a>
-                                </td>
                             </tr>
                             </#list>
 
@@ -172,8 +157,8 @@
                                 <th>Cognome Responsabile</th>
                                 <th>Email Responsabile</th>
                                 <th>Visualizza</th>
-                                <th>Modifica</th>
-                                <th>Elimina</th>
+                                <th>Reimposta account</th>
+                                <th>Disattiva</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -186,8 +171,8 @@
                                 <th>Cognome Responsabile</th>
                                 <th>Email Responsabile</th>
                                 <th>Visualizza</th>
-                                <th>Modifica</th>
-                                <th>Elimina</th>
+                                <th>Reimposta account</th>
+                                <th>Disattiva</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -210,16 +195,17 @@
 
                                 </td>
                                 <td>
-                                  <form action="/modifica-azienda" method="get">
-                                      <input type="hidden" name="ID"  value="${azienda.IDAzienda}">
-                                      <button type="submit" class="btn btn-secondary">
-                                          <i class="fa fa-pencil-square-o"></i>
-                                            Modifica
-                                        </button>
-                                    </form>
+                                  <a class="btn btn-success" href="/reimposta-user?IDUser=${azienda.user}">
+                                      <i class="fa fa-pencil-square-o"></i> Reimposta </a>
                                 </td>
                                 <td>
-                                    <a type="button" class="btn btn-danger"> Elimina</a>
+                                    <#if azienda.attivo==1>
+                                        <a type="button" class="btn btn-danger" href="/disattiva-azienda?IDAzienda=${azienda.IDAzienda}"> Disattiva</a>
+                                        <#else>
+                                        <button class="btn btn-danger" disabled>Azienda Disattivata</button>
+                                    </#if>
+
+
                                 </td>
                             </tr>
                             </#list>
@@ -323,8 +309,8 @@
                             <th>Cognome</th>
                             <th>Telefono</th>
                             <th>Email</th>
-                            <th>Modifica</th>
-                            <th>Elimina</th>
+                            <th>Reimposta account</th>
+                            <th>Disattiva</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -333,8 +319,8 @@
                             <th>Cognome</th>
                             <th>Telefono</th>
                             <th>Email</th>
-                            <th>Modifica</th>
-                            <th>Elimina</th>
+                            <th>Reimposta account</th>
+                            <th>Disattiva</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -347,17 +333,16 @@
                             <td>${tutore.email}</td>
 
                             <td>
-                                <form action="/modifica-tutore" method="get">
 
-                                <input type="hidden" name="IDTutoreUni" value="${tutore.IDTutoreUni}">
-                                    <button type="submit" class="btn btn-secondary"><i
-                                                class="fa fa-pencil-square-o"></i>
-                                        Modifica
-                                    </button>
-                                </form>
+
+                                <a type="button"  class="btn btn-secondary" href="/modifica-tutore?IDTutoreUni=${tutore.IDTutoreUni}">
+                                    <i class="fa fa-pencil-square-o"></i> Modifica </a>
+
+
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina Utente
+                                <#--TODO Mettere una flag nel dp per la disattivazione-->
+                                <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Disattiva Tutore
                                 </button>
                             </td>
                             </tr>
@@ -482,7 +467,7 @@
                         <tr>
                             <th>Nome</th>
                             <th>Cognome</th>
-                            <th>Modifica</th>
+                            <th>Reimposta account</th>
                             <th>Elimina</th>
                         </tr>
                         </thead>
@@ -490,7 +475,7 @@
                         <tr>
                             <th>Nome</th>
                             <th>Cognome</th>
-                            <th>Modifica</th>
+                            <th>Reimposta account</th>
                             <th>Elimina</th>
                         </tr>
                         </tfoot>
@@ -501,10 +486,8 @@
                             <td>${admin.nome}</td>
                             <td>${admin.cognome}</td>
                             <td>
-                                <form action="/modifica-admin" method="get">
-                                    <input type="hidden" value="${admin.IDadmin}" name="ID" >
-                                    <button type="submit" class="btn btn-secondary"><i
-                                                class="fa fa-pencil-square-o"></i>
+                                <form action="/reimposta-User?IDUser=${admin.user}" method="get">
+                                    <button type="submit" class="btn btn-secondary"> <i class="fa fa-pencil-square-o"></i>
                                         Modifica
                                     </button>
                                 </form>
