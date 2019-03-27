@@ -33,14 +33,14 @@ public class AdminFillTable {
     private HttpServletResponse response;
 
 
-    AdminFillTable(Map<String, Object> datamodel, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
+   public AdminFillTable(Map<String, Object> datamodel, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
         this.datamodel = datamodel;
         this.servletContext = servletContext;
         this.request = request;
         this.response = response;
     }
 
-    void makeGet() throws IOException, ServletException,DaoException
+    public void makeGet() throws IOException, ServletException,DaoException
     {
 
         filltableTirocinante();
@@ -54,7 +54,7 @@ public class AdminFillTable {
 
     }
 
-    void makeSuccessGet(String message) throws IOException,ServletException,DaoException
+    public void makeSuccessGet(String message) throws IOException,ServletException,DaoException
     {
 
         filltableTirocinante();
@@ -67,7 +67,7 @@ public class AdminFillTable {
 
     }
 
-    void makeInsuccessGet(String message) throws IOException,ServletException,DaoException
+   public void makeInsuccessGet(String message) throws IOException,ServletException,DaoException
     {
 
             filltableTirocinante();

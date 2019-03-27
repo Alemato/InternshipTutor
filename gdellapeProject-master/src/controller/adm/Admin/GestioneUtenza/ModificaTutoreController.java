@@ -35,8 +35,21 @@ public class ModificaTutoreController extends baseController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        super.init(request,response);
-        fillForm(request,response);
+       makeGet(request,response);
+
+
+
+    }
+    private void makeGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        try {
+            super.init(request, response);
+            fillForm(request, response);
+        }catch (DaoException e)
+        {
+            e.printStackTrace();
+            response.sendRedirect("/500");
+        }
 
 
 
@@ -44,21 +57,34 @@ public class ModificaTutoreController extends baseController {
     }
 
 
-    private void fillForm(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
+    private void fillForm(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException,DaoException
     {
-        datamodel.put("tutore", BackEndAdminController.getTutoreUni(request, response,Integer.parseInt(request.getParameter("IDTutoreUni"))));
+        TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
+        TutoreUniversitario tutore = dao.getTutoreUniByID(Integer.parseInt(request.getParameter("IDTutoreUni")));
+        dao.destroy();
+        datamodel.put("tutore", tutore);
         TemplateController.process("BackEndTemplates/modifica-tutoreuni.ftl", datamodel, response, getServletContext());
 
     }
 
     private void updateTutore(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
     {
-        TutoreUniversitario tutore = BackEndAdminController.getTutoreUni(request,response,Integer.parseInt(request.getParameter("IDTutoreUni")));
-        if(validation(request,response,tutore))
-        {
-//            storeTutoreUni(request,response,tutore);
-//            response.sendRedirect("/gestione-utenti");
-            System.out.println("Salvataggio avvenuto correttamente");
+        try {
+
+            TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
+            TutoreUniversitario tutore = dao.getTutoreUniByID(Integer.parseInt(request.getParameter("IDTutoreUni")));
+            dao.destroy();
+            if (validation(request, response, tutore)) {
+            storeTutoreUni(request,response,tutore);
+                //redirigo sulla pagina di gestione utenti
+                AdminFillTable page =new AdminFillTable(datamodel,getServletContext(),request,response);
+                page.makeSuccessGet("Il Tutore "+tutore.getNome()+" "+tutore.getCognome()+" e stato modifica corettamente" );
+
+            }
+        }catch (DaoException e) {
+            e.printStackTrace();
+            response.sendRedirect("/500");
+
         }
     }
 
@@ -112,7 +138,7 @@ public class ModificaTutoreController extends baseController {
        }
     }
 
-    private void refreshPage(HttpServletRequest request,HttpServletResponse response,Map<String,Object> errori)throws ServletException,IOException
+    private void refreshPage(HttpServletRequest request,HttpServletResponse response,Map<String,Object> errori)throws ServletException,IOException,DaoException
     {
         List<String> dati = new ArrayList<>();
 
@@ -150,24 +176,21 @@ public class ModificaTutoreController extends baseController {
 
 
 
-   private void storeTutoreUni(HttpServletRequest request,HttpServletResponse response,TutoreUniversitario tutore)throws IOException,ServletException
+   private void storeTutoreUni(HttpServletRequest request,HttpServletResponse response,TutoreUniversitario tutore)throws IOException,ServletException,DaoException
     {
-        try {
 
             tutore.setNome(request.getParameter("nome"));
             tutore.setCognome(request.getParameter("cognome"));
             tutore.setEmail(request.getParameter("email"));
             tutore.setTelefono(request.getParameter("telefono"));
 
-            TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
-           dao.UpdateTutoreUni(tutore);
-           dao.destroy();
-            response.sendRedirect("/gestione-utenti");
-        }catch (DaoException e)
-        {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
+            System.out.println(tutore.toString());
+
+//            TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
+//           dao.UpdateTutoreUni(tutore);
+//           dao.destroy();
+
+
 
 
 

@@ -21,7 +21,7 @@ public class AdminFillAziendeConTable {
     private HttpServletResponse response;
 
 
-    public AdminFillAziendeConTable(Map<String, Object> datamodel, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
+     AdminFillAziendeConTable(Map<String, Object> datamodel, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
         this.datamodel = datamodel;
         this.servletContext = servletContext;
         this.request = request;
@@ -46,52 +46,36 @@ public class AdminFillAziendeConTable {
         return aziende;
     }
 
-    public void makeget() throws IOException, ServletException {
+    void makeget() throws IOException, ServletException,DaoException {
 
-        try {
+
 
             datamodel.put("AziendaAttiva", getAziendeAttiva());
             datamodel.put("AziendaPendenti", getAziendePendenti());
 
             TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
-        }catch (DaoException e)
-        {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
+     }
+
+    public void makegetSucces(String message) throws IOException, ServletException,DaoException {
 
 
-    }
-
-    public void makegetSucces(String message) throws IOException, ServletException {
-
-        try {
             datamodel.put("WarningSucess",message);
             datamodel.put("AziendaAttiva", getAziendeAttiva());
             datamodel.put("AziendaPendenti", getAziendePendenti());
 
             TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
-        }catch (DaoException e)
-        {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
 
 
     }
-    public void makegetInsuccess(String message) throws IOException, ServletException {
+    public void makegetInsuccess(String message) throws IOException, ServletException,DaoException {
 
-        try {
+
             datamodel.put("WarningInsuccess",message);
             datamodel.put("AziendaAttiva", getAziendeAttiva());
             datamodel.put("AziendaPendenti", getAziendePendenti());
 
             TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
-        }catch (DaoException e)
-        {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
+
 
 
     }

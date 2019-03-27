@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class ModificaAdmin extends baseController {
+public class ModificaAdminController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UpdateAdmin(request,response);
 

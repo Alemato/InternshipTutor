@@ -23,17 +23,11 @@ import static controller.utility.Validation.isStoredThisAddress;
  * Servlet che serve a creare un nuovo amministratore quindi dovrà anche creare un nuovo user
  */
 
-public class CreateAdmin extends baseController {
+public class CreateAdminController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        super.init(request,response);
-        if(validationUserAndAdmin(request,response))
-        {
-            //insertUser(request,response);
-            //insertAdmin(request,response);
-            System.out.println("vali");
-            response.sendRedirect("/gestione-utenti");
-        }
+        insertNewUser(request,response);
+
 
 
 
@@ -47,15 +41,32 @@ public class CreateAdmin extends baseController {
 
 
     }
-
-
-
-
-
-
-    private void insertUser(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
+    private void insertNewUser(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
     {
-        try{
+        try {
+            super.init(request, response);
+            if (validationUserAndAdmin(request, response)) {
+                //insertUser(request,response);
+                //insertAdmin(request,response);
+                System.out.println("vali");
+                response.sendRedirect("/gestione-utenti");
+            }
+        }catch (DaoException e)
+        {
+            e.printStackTrace();
+            response.sendRedirect("/500");
+        }
+
+
+    }
+
+
+
+
+
+
+    private void storeUser(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException,DaoException
+    {
             User user =new User();
             user.setEmail(request.getParameter("Email"));
             user.setPassword(request.getParameter("Password"));
@@ -65,16 +76,10 @@ public class CreateAdmin extends baseController {
             dao.setUser(user);
             dao.destroy();
 
-        }
-        catch (DaoException e)
-        {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
+
     }
-    private void insertAdmin(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
+    private void insertAdmin(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException,DaoException
     {
-        try{
            UserDaoImp dao = new UserDaoImp();
            User user=dao.getUserByMail(request.getParameter("Email"));
            dao.destroy();
@@ -89,16 +94,11 @@ public class CreateAdmin extends baseController {
            dao1.setUser(user);
            dao1.destroy();
 
-        }
-        catch (DaoException e)
-        {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
+
+
     }
-    private Boolean validationUserAndAdmin(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
+    private Boolean validationUserAndAdmin(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException,DaoException
     {
-        try {
 
             Map<String, Object> map = new HashMap<>();
 
@@ -148,16 +148,11 @@ public class CreateAdmin extends baseController {
                 refreshPage(request, response, map);
                 return false;
             }
-        }catch (DaoException e)
-        {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-            return false;
-        }
+
 
     }
 
-    private void refreshPage(HttpServletRequest request,HttpServletResponse response,Map<String,Object> errori)throws IOException,ServletException
+    private void refreshPage(HttpServletRequest request,HttpServletResponse response,Map<String,Object> errori)throws IOException,ServletException,DaoException
     {
         System.out.println("Sto ricaricando l'errore");
 
@@ -184,8 +179,9 @@ public class CreateAdmin extends baseController {
         datamodel.putAll(errori);
         System.out.println("datamodel create admin");
         System.out.println(datamodel.toString());
+
         AdminFillTable page = new AdminFillTable(datamodel,getServletContext(),request,response);
-        page.makeget();
+        page.makeInsuccessGet("Errore inserimento del nuovo admin");
 
     }
 
