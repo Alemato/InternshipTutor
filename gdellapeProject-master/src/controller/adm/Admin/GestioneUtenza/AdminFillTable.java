@@ -33,14 +33,14 @@ public class AdminFillTable {
     private HttpServletResponse response;
 
 
-   public AdminFillTable(Map<String, Object> datamodel, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
+    AdminFillTable(Map<String, Object> datamodel, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
         this.datamodel = datamodel;
         this.servletContext = servletContext;
         this.request = request;
         this.response = response;
     }
 
-    public void makeGet() throws IOException, ServletException,DaoException
+    void makeGet() throws IOException, ServletException,DaoException
     {
 
         filltableTirocinante();
@@ -54,22 +54,20 @@ public class AdminFillTable {
 
     }
 
-    public void makeSuccessGet(String message) throws IOException,ServletException,DaoException
+    void makeSuccessGet(String message) throws IOException,ServletException,DaoException
     {
-        try {
+
         filltableTirocinante();
         fillAziendaTable();
         fillTableAdmin();
         fillTutUniTable();
         datamodel.put("WarningSuccess",message);
+
         TemplateController.process("BackEndTemplates/gestione-utenti.ftl", datamodel, response, servletContext);
-        }catch (DaoException e)
-        {
-            e.printStackTrace();
-            response.sendRedirect("/500");
-        }
+
     }
-    public void makeInsuccessGet(String message) throws IOException,ServletException,DaoException
+
+    void makeInsuccessGet(String message) throws IOException,ServletException,DaoException
     {
 
             filltableTirocinante();
@@ -77,6 +75,7 @@ public class AdminFillTable {
             fillTableAdmin();
             fillTutUniTable();
             datamodel.put("WarningInsuccess", message);
+
             TemplateController.process("BackEndTemplates/gestione-utenti.ftl", datamodel, response, servletContext);
 
     }
