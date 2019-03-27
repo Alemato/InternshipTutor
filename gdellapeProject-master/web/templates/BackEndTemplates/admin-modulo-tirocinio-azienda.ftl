@@ -48,7 +48,7 @@
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
         <li class=""><a href="admin.html">HOME DASHBOARD</a></li>
-        <li class="active"><a href="gestione-moduli-admin.html"><b>GESTIONE MODULO: ${azienda.ragioneSociale}</b></a></li>
+        <li class="active"><a href="gestione-moduli-admin.html"><b>GESTIONE MODULO: ${dato[0]}</b></a></li>
     </ol>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -104,65 +104,62 @@
 
                     <fieldset>
 
-                            <div class="row mb-0 mr-10 ">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Ente/Azienda </h4>
-                                <h4>${dato[0]}</h4>
+                            <div class="row">
+                                <h4>Ente/Azienda :</h4>
+                                <h4>&nbsp;${dato[0]}</h4>
 
                             </div>
 
-                            <div class="row mb-25 mr-10 mt-15">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Codice fiscale Ente/Azienda </h4>
-                                <h4>${dato[1]}</h4>
+                            <div class="row">
+                                <h4>Codice fiscale Ente/Azienda : </h4>
+                                <h4>&nbsp;${dato[1]}</h4>
 
                             </div>
-
-                            <h3 class="col-auto col-sm-auto pl-0 mb-10">Tirocinante: </h3>
-
-                            <div class="row mb-5 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Cognome:</h4>
-                                <h4>${dato[2]}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Nome</h4>
-                                <h4>${dato[3]}</h4>
+                        <div class="row">
+                            <h4 >Tirocinante: </h4>
+                            <h4>&nbsp; ${dato[2]}</h4>
+                            <h4>&nbsp;${dato[3]}</h4>
                             </div>
 
 
-                            <h4>(Codice identificativo tirocinio: Dipartimento, Corso di Laurea o diploma, anno, n progressivo, altro)</h4>
-                        <h4>${dato[4]}</h4>
+                        <div class="row" >
+                            <h4>(Codice identificativo tirocinio: Dipartimento, Corso di Laurea o diploma, anno, n progressivo, altro) : </h4>
+                            <h4>&nbsp;${dato[4]}</h4>
+                        </div>
+                        <div class="row">
+                            <h4 class="">Periodo del Tirocinio: </h4>
+                            <h4>Dal</h4>
+                            <h4> &nbsp; ${dato[5]?date?string("yyyy-MM-dd")}</h4>
+                            <h4>&nbsp;al</h4>
+                            <h4>&nbsp;${dato[6]?date?string("yyyy-MM-dd")}</h4>
+                        </div>
 
-                            <h3 class="col-auto col-sm-auto pr-10 pl-0 mt-45 mb-10">Periodo del Tirocinio: </h3>
-
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Dal</h4>
-                                <h4>${dato[5]?date?string("yyyy-MM-dd")}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">al</h4>
-                                <h4>${dato[6]?date?string("yyyy-MM-dd")}</h4>
+                            <div class="row">
+                                <h4>Per un totale di </h4>
+                                <h4>&nbsp;${dato[7]}</h4>
+                                <h4>&nbsp;ore</h4>
                             </div>
 
-                            <div class="row mb-0 mr-10 mt-15">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Per un totale di </h4>
-                                <h4>${dato[7]}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20  fw-400"> ore</h4>
+                            <div class="row">
+                                <h4>Sede di svolgimento del tirocinio :</h4>
+                               <h4>&nbsp; ${dato[8]}</h4>
                             </div>
+                        <div class="row">
+                            <h4>Descrizione attivita svolta :</h4>
+                            <h4>&nbsp;${dato[9]}</h4>
+                        </div>
 
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Sede di svolgimento del tirocinio</h4>
-                               <h4>${dato[8]}</h4>
+                            <div class="row">
+                                <h4 class="">Si attesta che il/la Sig :</h4>
+                                <h4>&nbsp;${dato[3]} &nbsp; ${dato[2]}</h4>
                             </div>
-
-                            <h4 class="fs-20 mb-0">Descrizione attivita svolta:</h4>
-                            <h4>${dato[9]}</h4>
-
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Si attesta che il/la Sig </h4>
-                                <h4>${dato[3]} ${dato[2]}</h4>
-                            </div>
-
-                            <h4 class="fs-20 mb-0">Ha effettuato i compiti affidatigli conseguendo il seguente risultato :</h4>
-                            <h4>${dato[10]}</h4>
-
-                            <div class="row mb-25 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Data</h4>
-                               <h4>${dato[11]?date?string("yyyy-MM-dd")}</h4>
+                        <div class="row">
+                            <h4>Ha effettuato i compiti affidatigli conseguendo il seguente risultato :</h4>
+                            <h4>&nbsp;${dato[10]}</h4>
+                        </div>
+                            <div class="row">
+                                <h4>Data</h4>
+                               <h4>&nbsp;${dato[11]?date?string("yyyy-MM-dd")}</h4>
                             </div>
 
                         </fieldset>

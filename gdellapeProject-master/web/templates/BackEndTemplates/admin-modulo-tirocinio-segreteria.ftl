@@ -103,31 +103,27 @@
             <section class="section-sm centrale border-top-section pl-20 pr-20">
 
 
-                <div class="row mb-0 mr-10 ">
-                    <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Previa effetuazione di opportune verifiche e colloquio svoltosi in data </h4>
-                    <h4>${tirocinio.dataColloquioSegreteria} </h4>
+              <div class="row">
+                <h4>Previa effetuazione di opportune verifiche e colloquio svoltosi in data :  </h4>
+                <h4>&nbsp; ${tirocinio.dataColloquioSegreteria?date?string("dd-MM-yyyy")} </h4>
+              </div>
+                <div class="row">
+                <h4>Tirocinante: </h4>
+                        <h4> &nbsp;${tirocinante.cognome} </h4>
+                        <h4> &nbsp;${tirocinante.nome}</h4>
+                </div>
+                <div class="row">
+                    <h4>Ha svolto il tirocinio con esito : </h4>
+                    <h4> &nbsp;${tirocinio.esitoTirocinio} </h4>
                 </div>
 
-                <h4 class="col-auto col-sm-auto p-0 fs-20 fw-400 mb-35">Si attesta che il </h4>
-
-                <h3 class="col-auto col-sm-auto pl-0 mb-35">Tirocinante: </h3>
-
-                <div class="row mb-5 mr-10 mb-35">
-                    <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Cognome:</h4>
-                    <h4>${tirocinio.cognome} </h4>
-                    <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Nome</h4>
-                    <h4>${tirocinante.nome}</h4>
+                <div class="row">
+                <h4>Crediti Formativi riconosciuti :  </h4>
+                <h4>&nbsp;${tirocinio.CFU}</h4>
                 </div>
-
-                <h4 class="col-auto col-sm-auto p-0 fs-20 fw-400 mt-25">Ha svolto il tirocinio con esito </h4>
-                <h4>${tirocinio.esitoTirocinio} </h4>
-
-                <h4 class="col-auto col-sm-auto p-0 fs-20">Crediti Formativi riconosciuti </h4>
-                <h4>${tirocinio.CFU}</h4>
-
-                <div class="row mb-25 mr-10 mt-50">
-                    <h4 class="col-auto col-sm-auto pr-10 fs-20">L&apos;Aquila il </h4>
-                    <h4>${tirocinio.dataConsegnaModuloSegreteria} </h4>
+                <div class="row">
+                    <h4>L&apos;Aquila il : </h4>
+                    <h4>&nbsp;${tirocinio.dataConsegnaModuloSegreteria?date?string("dd-MM-yyyy")} </h4>
                 </div>
 
 

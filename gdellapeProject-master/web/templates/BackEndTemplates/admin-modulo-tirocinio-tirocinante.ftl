@@ -99,155 +99,153 @@
 
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 d-print-none">
-            <section class="section-sm centrale border-top-section pl-20 pr-20">
-                <div class="container">
-                    <form id="modulo_tirocinante"  method="post" class="m-0">
-                        <fieldset>
-                            
-                            <div class="row mb-0 mr-10 ">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Nominativo del tirocinante </h4>
-                                <h4> ${tirocinante.nome} ${tirocinante.cognome}  </h4>
+            <div class="container-fluid">
+            <fieldset>
+
+                            <div class="row">
+                                <h4>Nominativo del tirocinante :</h4>
+                                <h4> &nbsp; ${tirocinante.nome} &nbsp; ${tirocinante.cognome}  </h4>
                             </div>
 
-                            <div class="row mb-0 mr-10">
+                            <div class="row">
                                 <h4>Nato a </h4>
-                                <h4>${tirocinante.luogoDiNascita}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Prov</h4>
+                                <h4> &nbsp; ${tirocinante.luogoDiNascita}</h4>
+                                <h4>&nbsp; Prov</h4>
+                                <h4>&nbsp; ${tirocinante.provinciaDiNascita}</h4>
+                                <h4>&nbsp; il</h4>
+                                <h4>&nbsp; ${tirocinante.dataDiNascita?date?string("dd")} </h4>
+                                <h4>&nbsp; /</h4>
+                                <h4>&nbsp; ${tirocinante.dataDiNascita?date?string("MM")} </h4>
+                                <h4>&nbsp; /</h4>
+                                <h4>&nbsp; ${tirocinante.dataDiNascita?date?string("yyyy")} </h4>
+                            </div>
+
+                            <div class="row">
+                                <h4>Residente in :</h4>
+                                <h4>&nbsp;${tirocinante.luogoDiResidenza} </h4>
+                                <h4>&nbsp;Prov (</h4>
                                 <h4>${tirocinante.provinciaDiNascita}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">il</h4>
-                                <h4> ${tirocinante.dataDiNascita?date?string("dd")} </h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">/</h4>
-                                <h4>${tirocinante.dataDiNascita?date?string("MM")} </h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">/</h4>
-                                <h4>${tirocinante.dataDiNascita?date?string("yyyy")} </h4>
+                                <h4>)</h4>
                             </div>
 
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Residente in</h4>
-                                <h4>${tirocinante.luogoDiResidenza} </h4>
-                                <h4 class="col-auto col-sm-auto fs-20 pr-0">Prov (</h4>
-                                <h4>${tirocinante.provinciaDiNascita} </h4>
-                                <h4 class="col-1 col-sm-1 pr-10 fs-20 pl-0">)</h4>
+                            <div class="row">
+                                <h4>Codice fiscale :</h4>
+                                <h4>&nbsp;${tirocinante.codiceFiscale}</h4>
                             </div>
 
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Codice fiscale</h4>
-                                <h4>${tirocinante.codiceFiscale}</h4>
-                            </div>
-
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Telefono</h4>
-                                <h4> ${tirocinante.telefono}</h4>
+                            <div class="row">
+                                <h4>Telefono : </h4>
+                                <h4>&nbsp;${tirocinante.telefono}</h4>
                             </div>
 
 
-                            <div class="row mb-25 pl-15 mr-10">
-                                    <h4> Studente Corso di Laurea in:</h4>
+                            <div class="row">
 
-                                <h4><#if tirocinante.corsoDiLaurea?has_content> ${tirocinante.corsoDiLaurea}</#if>  </h4>
+                                <h4> Studente Corso di Laurea in:</h4>
+                                <h4> &nbsp;<#if tirocinante.corsoDiLaurea?has_content> ${tirocinante.corsoDiLaurea}</#if>  </h4>
                             </div>
 
-                            <div class="row mb-0 pl-15 mr-10">
+                            <div class="row">
 
                                 <h4> Diplomato. Diploma universitario in:</h4>
-                                <h4><#if tirocinante.diplomaUniversitario?has_content>${tirocinante.diplomaUniversitario}</#if>  </h4>
+                                <h4>&nbsp;<#if tirocinante.diplomaUniversitario?has_content>${tirocinante.diplomaUniversitario}</#if>  </h4>
                             </div>
                             <h4>(entro 12 mesi dal diploma)</h4>
 
-                            <div class="row mb-0 pl-15 mr-10">
+                            <div class="row">
                                 <h4> Laureato. Laurea in: </h4>
-                                <h4> <#if tirocinante.laureato?has_content> ${tirocinante.laureato}</#if></h4>
+                                <h4>&nbsp; <#if tirocinante.laureato?has_content> ${tirocinante.laureato}</#if></h4>
                             </div>
                             <h4>(entro 12 mesi dalla laurea)</h4>
 
-                            <div class="row mb-25 pl-15 mr-10">
+                            <div class="row">
 
                                 <h4> Dottorato di ricerca in:</h4>
 
-                                <h4><#if tirocinante.DottoratoDiRicerca?has_content> ${tirocinante.DottoratoDiRicerca} </#if> </h4>
+                                <h4>&nbsp;<#if tirocinante.DottoratoDiRicerca?has_content> ${tirocinante.DottoratoDiRicerca} </#if> </h4>
                             </div>
 
-                            <div class="row mb-25 pl-15 mr-10">
-                                    <h4>Scuola o corso di perfezionamento o specializzazione in:</h4>
+                            <div class="row">
+                                    <h4>Scuola o corso di perfezionamento o specializzazione in :</h4>
 
-                                <h4><#if tirocinante.ScuolaAltro?has_content> ${tirocinante.ScuolaAltro} </#if></h4>
+                                <h4>&nbsp;<#if tirocinante.ScuolaAltro?has_content> ${tirocinante.ScuolaAltro} </#if></h4>
                             </div>
 
                             <h4>handicap: <#if tirocinante.handicap==true> SI <#else> NO</#if> </h4>
 
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Ente/Azienda ospitante</h4>
-                                <h4>${dato[0]}</h4>
+                            <div class="row">
+                                <h4>Ente/Azienda ospitante :</h4>
+                                <h4>&nbsp;${dato[0]}</h4>
                             </div>
 
-                            <div class="row mb-0 breack-print mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Luogo di effettuazione del tirocinio</h4>
-                                <h4>${dato[1]}</h4>
+                            <div class="row">
+                                <h4>Luogo di effettuazione del tirocinio :</h4>
+                                <h4>&nbsp;${dato[1]}</h4>
                             </div>
 
 
 
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Settore di inserimento</h4>
-                                <h4>${dato[2]}</h4>
+                            <div class="row">
+                                <h4>Settore di inserimento : </h4>
+                                <h4>&nbsp;${dato[2]}</h4>
                             </div>
 
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Tempi di accesso ai locali aziendali</h4>
-                                <h4>${dato[3]}</h4>
+                            <div class="row">
+                                <h4>Tempi di accesso ai locali aziendali :</h4>
+                                <h4>&nbsp;${dato[3]}</h4>
                             </div>
 
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Periodo di tirocinio n.</h4>
-                                <h4>${dato[4]}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">mesi dal</h4>
-                                <h4>${dato[5]}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">al</h4>
-                                <h4>${dato[6]}</h4>
+                            <div class="row">
+                                <h4>Periodo di tirocinio n.</h4>
+                                <h4>&nbsp;${dato[4]}</h4>
+                                <h4>&nbsp;mesi dal</h4>
+                                <h4>&nbsp;${dato[5]}</h4>
+                                <h4>&nbsp;al</h4>
+                                <h4>&nbsp;${dato[6]}</h4>
                             </div>
 
-                            <div class="row mb-25 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">numero ore di tirocinio </h4>
+                            <div class="row">
+                                <h4 >numero ore di tirocinio : </h4>
                                 <h4>${dato[7]}</h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">per il conseguimento di n.</h4>
+                                <h4>per il conseguimento di n.</h4>
                                 <h4>${dato[8]} </h4>
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">CFU</h4>
+                                <h4>CFU</h4>
+
                             </div>
 
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Tutore universitario</h4>
-                                <h4>${dato[9]} ${dato[10]}</h4>
+                            <div class="row">
+                                <h4>Tutore universitario : </h4>
+                                <h4> &nbsp;${dato[9]} ${dato[10]}</h4>
                             </div>
 
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Telefono</h4>
-                                <h4>${dato[11]} </h4>
+                            <div class="row">
+                                <h4>Telefono :</h4>
+                                <h4> &nbsp; ${dato[11]} </h4>
                             </div>
 
-                            <div class="row mb-0 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Tutore Aziendale</h4>
-                                <h4>${dato[12]} ${dato[13]} </h4>
+                            <div class="row">
+                                <h4>Tutore Aziendale :</h4>
+                                <h4>&nbsp;${dato[12]} &nbsp;${dato[13]} </h4>
                             </div>
 
-                            <div class="row mb-25 mr-10">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">Telefono</h4>
-                                <h4>${dato[14]}</h4>
+                            <div class="row">
+                                <h4>Telefono : </h4>
+                                <h4>&nbsp;${dato[14]}</h4>
                             </div>
-
-                            <h4 class="fs-20 mb-0">Obiettivi del tirocinio:</h4>
-                            <h4> ${dato[15]}</h4>
-
+                            <div class="row">
+                            <h4>Obiettivi del tirocinio:</h4>
+                            <h4> &nbsp;${dato[15]}</h4>
+                            </div>
+                            <div class="row">
                             <h4 class="fs-20 mb-0">Modalità:</h4>
-                            <h4> ${dato[16]} </h4>
-
-                            <h4 class="col-12 mt-35 fs-20 pl-0 mb-0">Facilitazioni previste: sussidio di formazione e servizi aziendali (mensa)</h4>
-                            <h4> ${dato[17]} </h4>
-
+                            <h4>&nbsp; ${dato[16]} </h4>
+                            </div>
+                            <div class="row">
+                            <h4>Facilitazioni previste:</h4>
+                            <h4>&nbsp; ${dato[17]} </h4>
+                            </div>
                         </fieldset>
-                    </form>
-                </div>
-            </section>
-
+            </div>
         </main>
     </div>
 </div>
