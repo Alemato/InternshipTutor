@@ -9,6 +9,7 @@ public class TutoreUniversitario {
     private String Cognome;
     private String Telefono;
     private String Email;
+    private Boolean Attivo;
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
 
@@ -18,6 +19,7 @@ public class TutoreUniversitario {
         this.Cognome = null;
         this.Telefono = null;
         this.Email = null;
+        this.Attivo = true;
         this.CreateDate = null;
         this.UpdateDate = null;
     }
@@ -41,6 +43,10 @@ public class TutoreUniversitario {
 
     public String getEmail() {
         return Email;
+    }
+
+    public Boolean getAttivo() {
+        return Attivo;
     }
 
     public Timestamp getCreateDate() {
@@ -72,6 +78,10 @@ public class TutoreUniversitario {
         Email = email;
     }
 
+    public void setAttivo(Boolean attivo) {
+        Attivo = attivo;
+    }
+
     public void setCreateDate(Timestamp createDate) {
         CreateDate = createDate;
     }
@@ -90,13 +100,14 @@ public class TutoreUniversitario {
                 Cognome.equals(that.Cognome) &&
                 Telefono.equals(that.Telefono) &&
                 Email.equals(that.Email) &&
+                Attivo.equals(that.Attivo) &&
                 CreateDate.equals(that.CreateDate) &&
                 UpdateDate.equals(that.UpdateDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(IDTutoreUni, Nome, Cognome, Telefono, Email, CreateDate, UpdateDate);
+        return Objects.hash(IDTutoreUni, Nome, Cognome, Telefono, Email, Attivo, CreateDate, UpdateDate);
     }
 
     @Override
@@ -107,6 +118,7 @@ public class TutoreUniversitario {
                 ", Cognome='" + Cognome + '\'' +
                 ", Telefono='" + Telefono + '\'' +
                 ", Email='" + Email + '\'' +
+                ", Attivo='" + Attivo + '\'' +
                 ", CreateDate=" + CreateDate +
                 ", UpdateDate=" + UpdateDate +
                 '}';
