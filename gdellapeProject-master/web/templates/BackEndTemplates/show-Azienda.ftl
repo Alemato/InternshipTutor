@@ -41,7 +41,7 @@
     <div class="row">
        <#include "../BackEndTemplates/sidebar.ftl">
 
-
+        <#--TODO controlla solo le barre e gli url con il filtro-->
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
 
             <noscript>
@@ -55,49 +55,67 @@
             </section>
             <div class="col">
                 <div class="row">
-                    <h2>Email : ${user.email}</h2>
+                    <h4>Email : ${user.email}</h4>
                 </div>
                 <div class="row">
-                    <h2>Nome : ${azienda.ragioneSociale}</h2>
+                    <h4>Nome : ${azienda.ragioneSociale}</h4>
                 </div>
                 <div class="row">
-                    <h2>Cognome : ${azienda.indirizzoSedeLegale}</h2>
-                </div>
-                <div class="row">
-                    <h2>Codice Fiscale o Partita iva : ${azienda.CFiscalePIva}</h2>
-                </div>
-                <div class="row">
-                    <h2>Nome Legale Rappresentante : ${azienda.nomeLegaleRappresentante}</h2>
-                </div>
-                <div class="row">
-                    <h2>Cognome legale Rappresentante : ${azienda.cognomeLegaleRappresentante}</h2>
-                </div>
-                <div class="row">
-                    <h2> Nome Responsabile Convenzione: ${azienda.nomeResponsabileConvenzione}</h2>
-                </div>
-                <div class="row">
-                    <h2>Cognome Responsabile Convenzione : ${azienda.cognomeResponsabileConvenzione}</h2>
-                </div>
-                <div class="row">
-                    <h2> Telefono Responsabile Convenzione : ${azienda.telefonoResponsabileConvenzione}</h2>
-                </div>
-                <div class="row">
-                    <h2>Email Responsabile Convenzione : ${azienda.emailResponsabileConvenzione}</h2>
+                    <h4>Cognome : ${azienda.indirizzoSedeLegale}</h4>
                 </div>
 
                 <div class="row">
-                    <h2>Durata Convenzione : ${azienda.durataConvenzione}</h2>
-                </div>
-                <div class="row">
-                    <h2>Foro Controversie : ${azienda.foroControversia}</h2>
-                </div>
-                <div class="row">
-                    <h2>Descrizione Azienda : ${azienda.descrizione}</h2>
-                </div>
-                <div class="row">
-                    <h2>Link Azienda : ${azienda.link}</h2>
+                    <h4>Codice Fiscale o Partita iva : ${azienda.CFiscalePIva}</h4>
                 </div>
 
+                <div class="row">
+                    <h4>Nome Legale Rappresentante : ${azienda.nomeLegaleRappresentante}</h4>
+                </div>
+                <div class="row">
+                    <h4>Cognome legale Rappresentante : ${azienda.cognomeLegaleRappresentante}</h4>
+                </div>
+                <#if azienda.nomeResponsabileConvenzione?has_content>
+                <div class="row">
+                    <h4> Nome Responsabile Convenzione: ${azienda.nomeResponsabileConvenzione}</h4>
+                </div>
+                </#if>
+                <#if azienda.cognomeResponsabileConvenzione?has_content>
+                <div class="row">
+                    <h4>Cognome Responsabile Convenzione : ${azienda.cognomeResponsabileConvenzione}</h4>
+                </div>
+                </#if>
+                <#if azienda.telefonoResponsabileConvenzione?has_content>
+                <div class="row">
+                    <h4> Telefono Responsabile Convenzione : ${azienda.telefonoResponsabileConvenzione}</h4>
+                </div>
+                </#if>
+                <#if azienda.emailResponsabileConvenzione?has_content>
+                <div class="row">
+                    <h4>Email Responsabile Convenzione : ${azienda.emailResponsabileConvenzione}</h4>
+                </div>
+                </#if>
+                <#if azienda.durataConvenzione?has_content>
+                <div class="row">
+                    <h4>Durata Convenzione : ${azienda.durataConvenzione}</h4>
+                </div>
+
+                </#if>
+                <#if azienda.foroControversia?has_content>
+                <div class="row">
+                    <h4>Foro Controversie : ${azienda.foroControversia}</h4>
+                </div>
+                </#if>
+                <#if azienda.descrizione?has_content>
+                <div class="row">
+                    <h4>Descrizione Azienda : ${azienda.descrizione}</h4>
+                </div>
+                </#if>
+                <#if azienda.link?has_content>
+                <div class="row">
+                    <h4>Link Azienda : ${azienda.link}</h4>
+                </div>
+                </#if>
+<
 
 
             </div>
