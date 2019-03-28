@@ -21,11 +21,6 @@ import java.io.IOException;
 public class ShowTirocinanteController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        Tirocinante tr = BackEndAdminController.getTirocinante(request,response,Integer.parseInt(request.getParameter("ID")));
-        datamodel.put("tirocinante",tr);
-        datamodel.put("user",BackEndAdminController.getUser(request,response,tr.getUser()));
-        TemplateController.process("BackEndTemplates/show-tirocinante.ftl", datamodel, response, getServletContext());
-
 
 
     }
@@ -33,7 +28,28 @@ public class ShowTirocinanteController extends baseController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 
+        showTirocinante(request,response);
 
+
+    }
+
+    private void showTirocinante(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
+    {
+        super.init(request,response);
+        try{
+            TirocinanteDaoImp dao= new TirocinanteDaoImp();
+            Tirocinante tr= dao.getTirocianteByID(Integer.parseInt(request.getParameter("IDTirocinante")));
+            dao.destroy();
+            datamodel.put("tirocinante",tr);
+            datamodel.put("user",BackEndAdminController.getUser(request,response,tr.getUser()));
+            TemplateController.process("BackEndTemplates/show-tirocinante.ftl", datamodel, response, getServletContext());
+
+
+        }catch (DaoException e)
+        {
+            e.printStackTrace();
+            response.sendRedirect("/500");
+        }
 
 
     }

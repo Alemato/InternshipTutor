@@ -40,7 +40,7 @@
 <div class="container-fluid">
     <div class="row">
        <#include "../BackEndTemplates/sidebar.ftl">
-
+        <#--TODO controlla solo le barre e gli url con il filtro-->
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
 
@@ -55,54 +55,63 @@
             </section>
             <div class="col">
                 <div class="row">
-                    <h2>Email : ${user.email}</h2>
+                    <h4>Email : ${user.email}</h4>
                 </div>
                 <div class="row">
-                    <h2>Nome : ${tirocinante.nome}</h2>
+                    <h4>Nome : ${tirocinante.nome}</h4>
                 </div>
                 <div class="row">
-                    <h2>Cognome : ${tirocinante.cognome}</h2>
+                    <h4>Cognome : ${tirocinante.cognome}</h4>
                 </div>
                 <div class="row">
-                    <h2>Luogo di Nascità : ${tirocinante.luogoDiNascita}</h2>
+                    <h4>Luogo di Nascità : ${tirocinante.luogoDiNascita}</h4>
                 </div>
                 <div class="row">
-                    <h2>Risiede : ${tirocinante.luogoDiResidenza}</h2>
+                    <h4>Risiede : ${tirocinante.luogoDiResidenza}</h4>
                 </div>
                 <div class="row">
-                    <h2>Procincia di Nascità : ${tirocinante.ProvinciaDiNascita}</h2>
+                    <h4>Procincia di Nascità : ${tirocinante.ProvinciaDiNascita}</h4>
                 </div>
                 <div class="row">
-                    <h2>Data di nascità : ${tirocinante.dataDiNascita}</h2>
+                    <h4>Data di nascità : ${tirocinante.dataDiNascita}</h4>
                 </div>
                 <div class="row">
-                    <h2>Provincia di residenza : ${tirocinante.provinciaDiResidenza}</h2>
+                    <h4>Provincia di residenza : ${tirocinante.provinciaDiResidenza}</h4>
                 </div>
                 <div class="row">
-                    <h2> Codice fiscale : ${tirocinante.codiceFiscale}</h2>
+                    <h4> Codice fiscale : ${tirocinante.codiceFiscale}</h4>
                 </div>
                 <div class="row">
-                    <h2>Telefono : ${tirocinante.telefono}</h2>
+                    <h4>Telefono : ${tirocinante.telefono}</h4>
                 </div>
+                <#if tirocinante.corsoDiLaurea?has_content>
+                <div class="row">
+                    <h4>Corso Di Laurea : ${tirocinante.corsoDiLaurea}</h4>
+                </div>
+                </#if>
+                <#if tirocinante.diplomaUniversitario?has_content>
+                <div class="row">
+                    <h4>Diploma Universitario : ${tirocinante.diplomaUniversitario}</h4>
+                </div>
+                </#if>
+                <#if tirocinante.laureatoUniversitario?has_content>
+                <div class="row">
+                    <h4>Laurea : ${tirocinante.laureatoUniversitario}</h4>
+                </div>
+                </#if>
+                <#if tirocinante.scuolaAltro?has_content>
+                <div class="row">
+                    <h4>Scuola o Altro : ${tirocinante.scuolaAltro}</h4>
+                </div>
+                </#if>
 
+                <#if tirocinante.dottoratoDiRicerca?has_content>
                 <div class="row">
-                    <h2>Corso Di Laurea : ${tirocinante.corsoDiLaurea}</h2>
+                    <h4> Dottorato  : ${tirocinante.dottoratoDiRicerca}</h4>
                 </div>
+                </#if>
                 <div class="row">
-                    <h2>Diploma Universitario : ${tirocinante.diplomaUniversitario}</h2>
-                </div>
-                <div class="row">
-                    <h2>Laurea : ${tirocinante.laureatoUniversitario}</h2>
-                </div>
-                <div class="row">
-                    <h2>Scuola o Altro : ${tirocinante.scuolaAltro}</h2>
-                </div>
-
-                <div class="row">
-                    <h2> Dottorato  : ${tirocinante.dottoratoDiRicerca}</h2>
-                </div>
-                <div class="row">
-                    <h2>HandiCap : <#if tirocinante.handicap> yes <#else> no</#if> </h2>
+                    <h4>HandiCap : <#if tirocinante.handicap> yes <#else> no</#if> </h4>
                 </div>
 
 
