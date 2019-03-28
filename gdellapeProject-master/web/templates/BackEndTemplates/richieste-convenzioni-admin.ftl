@@ -126,9 +126,8 @@
                                 <th>Email Responsabile</th>
                                 <th>Data Richiesta</th>
                                 <th>Visualizza Richiesta</th>
-                                <th>Modifica Richiesta</th>
-                                <th>Carica PDF Convenzione</th>
-                                <th>Accetta Richiesta</th>
+                                <th>Visualizza PDF</th>
+                                <th>Accetta Richiesta </th>
                                 <th>Declina richiesta</th>
                             </tr>
                             </thead>
@@ -144,9 +143,8 @@
                                 <th>Tel. Responsabile</th>
                                 <th>Email Responsabile</th>
                                 <th>Data Richiesta</th>
-                                <th>Visualizza Richiesta</th>
-                                <th>Modifica Richiesta</th>
-                                <th>Carica PDF Convenzione</th>
+                                <th>Modulo Richiesta</th>
+                                <th>Visualizza PDF</th>
                                 <th>Accetta Richiesta </th>
                                 <th>Declina richiesta</th>
                             </tr>
@@ -165,27 +163,18 @@
                                     <td>${azienda.telefonoResponsabileConvenzione}</td>
                                     <td>${azienda.emailResponsabileConvenzione}</td>
 
-                                    <td>${azienda.createDate?date?string("yyyy-MM-dd")}</td>
+                                    <td> <#if azienda.pathPDFConvenzione?has_content > ${azienda.dataConvenzione?date?string("yyyy-MM-dd")}
+                                        <#else> convenzione non ancora richiesta </#if></td>
                                     <td>
-                                        <a type="button" href="/#" class="btn btn-primary"> Visualizza</a>
-                                    </td>
-                                    <td>
-                                        <a type="button" href="/Modifica-Convenzione?IDAzienda=${azienda.IDAzienda}" class="btn btn-secondary"> Modifica</a>
-                                    </td>
-                                    <td>
-                                        <#--TODO fai il link in web-->
-                                        <#if (azienda.PathPDFConvenzione)??>
-                                            <h4>Azione non disponibile</h4>
-                                            <#else>
-                                                <form action="/#" method="post" enctype="multipart/form-data">
-                                                    <input type="hidden" name="IDAzienda" value="${azienda.IDAzienda}">
-                                                    <input type="file" name="PDFConvenzione">
-                                                    <button type="submit" class="btn btn-primary">Carica</button>
-                                                </form>
+                                        <#if (azienda.pathPDFConvenzione)??> <a type="button" href="/#" class="btn btn-primary"> Visualizza</a>
+                                        <#else>
+                                            <button type="button" class="btn btn-primary" disabled> Modulo</button>
                                         </#if>
 
                                     </td>
-
+                                    <td>
+                                        <a type="button" href="/#" class="btn btn-secondary"> Visualizza PDF</a>
+                                    </td>
                                     <td>
 
                                         <form action="/Accetta"  method="post" enctype="multipart/form-data">
@@ -237,8 +226,6 @@
                             <th>Email Responsabile</th>
                             <th>Data Richiesta</th>
                             <th>Visualizza Convenzione</th>
-                            <th>Modifica Convenzione</th>
-                            <th>Carica PDF convenzione</th>
                             <th>Elimina Convenzione</th>
                         </tr>
                         </thead>
@@ -255,8 +242,6 @@
                             <th>Email Responsabile</th>
                             <th>Data Richiesta</th>
                             <th>Visualizza Convenzione</th>
-                            <th>Modifica Convenzione</th>
-                            <th>Carica PDF convenzione</th>
                             <th>Elimina Convenzione</th>
                         </tr>
                         </tfoot>
@@ -274,30 +259,20 @@
                                 <td>${azienda.telefonoResponsabileConvenzione}</td>
                                 <td>${azienda.emailResponsabileConvenzione}</td>
 
-                                <td>${azienda.createDate}</td>
+                                <td>${azienda.createDate?date?string("dd-MM-yyyy")}</td>
                                 <td>
-                                    <a type="button" href="/#" class="btn btn-primary"> Visualizza</a>
+                                    <a type="button" href="/convezione-azienda?IDAzienda=${azienda.IDAzienda}" class="btn btn-primary"> Visualizza</a>
+                                </td>
+
+                                <td>
+
+                                    <a  type="button" class="btn btn-primary" href="/#"><i class="fa-file-pdf-o"></i> Visualizza PDF</a>
+
                                 </td>
                                 <td>
-                                    <a type="button" href="/modifica-convezione?IDAzienda=${azienda.IDAzienda}" class="btn btn-secondary"> Modifica</a>
-                                </td>
-                                <td>
-                                    <#if (azienda.PathPDFConvenzione)??>
-                                        <h4>Azione non disponibile</h4>
-                                    <#else>
-                                        <form action="/#" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="IDAzienda" value="${azienda.IDAzienda}">
-                                            <input type="file" name="PDFConvenzione">
-                                            <button type="submit" class="btn btn-primary">Carica</button>
-                                        </form>
-                                    </#if>
-                                </td>
-                                <td>
-                                    <form action="/accetta" method="post">
-                                        <input type="hidden" name="stato" value="declina">
-                                        <input type="hidden" name="IDAzienda" value="${azienda.IDAzienda}">
-                                        <input  type="submit" class="btn btn-red" value="Elimina">
-                                    </form>
+                                  <#--TODO FAI LA SERVELT PER RICARE questa pagina-->
+                                        <a  type="button" class="btn btn-danger" href="/disattiva-azienda"><i class="fa-file-pdf-o"></i>Elimina </a>
+
 
                                 </td>
                             </tr>

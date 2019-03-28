@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-public class AdminFillAziendeConTable {
+public class AdminFillRichiesteAndAttive {
 
     private Map<String, Object> datamodel;
     private ServletContext servletContext;
@@ -21,13 +21,13 @@ public class AdminFillAziendeConTable {
     private HttpServletResponse response;
 
 
-     AdminFillAziendeConTable(Map<String, Object> datamodel, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
+    public AdminFillRichiesteAndAttive(Map<String, Object> datamodel, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
         this.datamodel = datamodel;
         this.servletContext = servletContext;
         this.request = request;
         this.response = response;
     }
-    private AdminFillAziendeConTable()
+    private AdminFillRichiesteAndAttive()
     {}
 
     private List<Azienda> getAziendePendenti() throws DaoException
@@ -46,7 +46,7 @@ public class AdminFillAziendeConTable {
         return aziende;
     }
 
-    void makeget() throws IOException, ServletException,DaoException {
+     public void makeget() throws IOException, ServletException,DaoException {
 
 
 
@@ -56,7 +56,7 @@ public class AdminFillAziendeConTable {
             TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
      }
 
-    public void makegetSucces(String message) throws IOException, ServletException,DaoException {
+    public void makegetSuccess(String message) throws IOException, ServletException,DaoException {
 
 
             datamodel.put("WarningSucess",message);
