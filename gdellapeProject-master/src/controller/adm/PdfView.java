@@ -21,7 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-class PdfView {
+public class PdfView {
     private boolean accessoProibito;
     private boolean errorNotFound;
     private boolean trovato;
@@ -65,7 +65,7 @@ class PdfView {
      * @return stringa url da inserire nel tag <enbed>
      */
     public String createURLConvenzione(Azienda azienda){
-        this.azienda=azienda;
+        this.azienda = azienda;
         String Url = "/pdfview/"+this.tipoPdf.toLowerCase()+"?id="+this.azienda.getIDAzienda();
         return Url;
     }
