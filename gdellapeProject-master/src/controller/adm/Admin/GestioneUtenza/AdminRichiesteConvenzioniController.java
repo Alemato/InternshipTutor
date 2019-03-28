@@ -27,7 +27,7 @@ public class AdminRichiesteConvenzioniController extends baseController {
     {
         try {
             super.init(request, response);
-            AdminFillAziendeConTable objectFunction = new AdminFillAziendeConTable(datamodel, getServletContext(), request, response);
+            AdminFillRichiesteAndAttive objectFunction = new AdminFillRichiesteAndAttive(datamodel, getServletContext(), request, response);
             objectFunction.makeget();
         }catch (DaoException e)
         {

@@ -2,6 +2,7 @@ package controller.adm.Admin.GestioneModuli;
 
 
 import controller.adm.Admin.GestioneTirocinio.FillGestioniModuli;
+import controller.adm.Admin.GestioneUtenza.AdminFillTable;
 import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
@@ -22,7 +23,7 @@ public class InvalidaConvenzioneAzienda  {
     private HttpServletRequest request;
     private HttpServletResponse response;
 
-    InvalidaConvenzioneAzienda(Map<String, Object> datamodel, ServletContext context, HttpServletRequest request, HttpServletResponse response) {
+    public InvalidaConvenzioneAzienda(Map<String, Object> datamodel, ServletContext context, HttpServletRequest request, HttpServletResponse response) {
         this.datamodel = datamodel;
         this.context = context;
         this.request = request;
@@ -30,7 +31,7 @@ public class InvalidaConvenzioneAzienda  {
     }
 
 
-    void invalidaConvezioneModuli()throws ServletException,IOException,DaoException
+   public void invalidaConvezioneModuli()throws ServletException,IOException,DaoException
     {
 
             AziendaDaoImp dao = new AziendaDaoImp();
@@ -50,6 +51,30 @@ public class InvalidaConvenzioneAzienda  {
 
             } else {
                 page.makegetWithInsuccess("Invalidazione della convenzione per l'azienda " + azienda.getRagioneSociale() + " andata in errore");
+
+            }
+        }
+
+
+    public void invalidaConvenzioneUtente() throws ServletException,IOException,DaoException
+        {
+            AziendaDaoImp dao = new AziendaDaoImp();
+            Azienda azienda = dao.getAziendaByID(Integer.parseInt(request.getParameter("IDAzienda")));
+            dao.destroy();
+           AdminFillTable page = new AdminFillTable(datamodel,context,request,response);
+            if (azienda.getAttivo() == 1) {
+//                azienda.setPathPDFConvenzione(null);
+//                azienda.setDataConvenzione(null);
+//                azienda.setAttivo(0);
+//                AziendaDaoImp dao2=new AziendaDaoImp();
+//                dao2.updateAzienda(azienda);
+//                dao2.destroy();
+                //TODO Manda mail per avvisare che la convenzione è scaduta
+
+                page.makeSuccessGet("L'azienda "+azienda.getRagioneSociale()+" ora non può piu operare lui sito");
+
+            } else {
+                page.makeInsuccessGet("Operazione di invalidazione dell'azienda "+azienda.getRagioneSociale()+"non ha funzionato");
 
             }
         }
