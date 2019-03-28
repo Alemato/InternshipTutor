@@ -642,6 +642,17 @@
 
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>statoTutoreUni</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.StatoTutoreUniversitarioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>statoTutoreUni</servlet-name>
+        <url-pattern>/stato-tutore</url-pattern>
+        <url-pattern>/Stato-Tutore</url-pattern>
+
+    </servlet-mapping>
+
 
     <!-- end servelt account admin-->
 
