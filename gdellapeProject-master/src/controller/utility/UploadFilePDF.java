@@ -19,7 +19,7 @@ public class UploadFilePDF extends baseController {
      * @param request  richiesta
      * @param savePath albero cartelle Convenzione ./PDF/Covenzione/IDAzienda/NOMEPDF.pdf
      *                 albero cartelle Richiesta di tirocinio ./PDF/RichestaTirocinio/IDTirocinio/IDTirocininate/NOMEPDF.pdf
-     *                 albero cartella Fine Tirocinio Azienda ./PDF/FineTirocinio/IDTirocinio/IDTirocininante/NOMEPDF.pdf
+     *                 albero cartella Fine Tirocinio Azienda ./PDF/FineTirocinioAzienda/IDTirocinio/IDTirocininante/NOMEPDF.pdf
      *                 albero cartella Segreteria ./PDF/Segreteria/IDTirocinio/IDTirocininante/NOMEPDF.pdf
      * @param part     variabile di tipo Part del file che si ricava tramite:
      *                 Part parto = request.getPart("NOME FORM");
@@ -27,7 +27,7 @@ public class UploadFilePDF extends baseController {
      * @throws IOException
      * @throws PdfException
      */
-    public String uploadPDF(HttpServletRequest request, String savePath, Part part) throws IOException, PdfException {
+    public String uploadPDF(HttpServletRequest request, String savePath, Part part) throws PdfException {
 
         // ...\out\artifacts\gdellapeProject_master_war_exploded\savePath
 
@@ -46,7 +46,12 @@ public class UploadFilePDF extends baseController {
             throw new PdfException("Errore: il file non è un PDF");
         }
         fileName = new File(fileName).getName();
-        part.write(completeSavePath + File.separator + fileName);
+        try {
+            part.write(completeSavePath + File.separator + fileName);
+        } catch (IOException e) {
+            e.getCause();
+            return "";
+        }
         return fileName;
     }
 

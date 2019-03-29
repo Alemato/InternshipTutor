@@ -40,79 +40,85 @@ public class AdminFillTable {
         this.response = response;
     }
 
+    public void makeGet() throws IOException, ServletException,DaoException
+    {
 
-
-    private void filltableTirocinante() throws IOException {
-        List<Tirocinante> tirocinate = new ArrayList<>();
-        try {
-            TirocinanteDaoImp dao = new TirocinanteDaoImp();
-            tirocinate = dao.getAllTirociante();
-            dao.destroy();
-
-        } catch (DaoException e) {
-            response.sendRedirect("/404");
-            e.printStackTrace();
-        }
-        datamodel.put("tirocinanti", tirocinate);
-
-    }
-
-    private void fillAziendaTable() throws IOException {
-        List<Azienda> aziende = new ArrayList<>();
-        try {
-            AziendaDaoImp dao = new AziendaDaoImp();
-            aziende = dao.getAllAzienda();
-            dao.destroy();
-
-        } catch (DaoException e) {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
-        datamodel.put("aziende", aziende);
-    }
-
-
-    private void fillTutUniTable() throws IOException {
-        List<TutoreUniversitario> tutori = new ArrayList<>();
-        try {
-
-            TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
-            tutori = dao.getAllTutUni();
-            dao.destroy();
-
-
-        } catch (DaoException e) {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
-        datamodel.put("tutori", tutori);
-    }
-
-    private void fillTableAdmin() throws IOException {
-        List<Admin> gliadmin = new ArrayList<>();
-        try {
-
-            AdminDaoImp dao = new AdminDaoImp();
-            gliadmin = dao.getAllAdmin();
-            dao.destroy();
-
-
-        } catch (DaoException e) {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
-        datamodel.put("listadmin", gliadmin);
-    }
-
-    public void makeget() throws IOException, ServletException {
         filltableTirocinante();
         fillAziendaTable();
         fillTableAdmin();
         fillTutUniTable();
+
         TemplateController.process("BackEndTemplates/gestione-utenti.ftl", datamodel, response, servletContext);
 
 
+
     }
+
+    public void makeSuccessGet(String message) throws IOException,ServletException,DaoException
+    {
+
+        filltableTirocinante();
+        fillAziendaTable();
+        fillTableAdmin();
+        fillTutUniTable();
+        datamodel.put("WarningSuccess",message);
+
+        TemplateController.process("BackEndTemplates/gestione-utenti.ftl", datamodel, response, servletContext);
+
+    }
+
+   public void makeInsuccessGet(String message) throws IOException,ServletException,DaoException
+    {
+
+            filltableTirocinante();
+            fillAziendaTable();
+            fillTableAdmin();
+            fillTutUniTable();
+            datamodel.put("WarningInsuccess", message);
+
+            TemplateController.process("BackEndTemplates/gestione-utenti.ftl", datamodel, response, servletContext);
+
+    }
+
+
+
+    private void filltableTirocinante() throws IOException,DaoException {
+        List<Tirocinante> tirocinate = new ArrayList<>();
+        TirocinanteDaoImp dao = new TirocinanteDaoImp();
+        tirocinate = dao.getAllTirociante();
+        dao.destroy();
+        datamodel.put("tirocinanti", tirocinate);
+
+    }
+
+    private void fillAziendaTable() throws IOException,DaoException {
+        List<Azienda> aziende = new ArrayList<>();
+        AziendaDaoImp dao = new AziendaDaoImp();
+        aziende = dao.getAllAzienda();
+        dao.destroy();
+        datamodel.put("aziende", aziende);
+    }
+
+
+    private void fillTutUniTable() throws IOException,DaoException {
+        List<TutoreUniversitario> tutori = new ArrayList<>();
+        TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
+        tutori = dao.getAllTutUni();
+        dao.destroy();
+        datamodel.put("tutori", tutori);
+    }
+
+    private void fillTableAdmin() throws IOException,DaoException{
+        List<Admin> gliadmin = new ArrayList<>();
+
+        AdminDaoImp dao = new AdminDaoImp();
+        gliadmin = dao.getAllAdmin();
+        dao.destroy();
+        datamodel.put("listadmin", gliadmin);
+    }
+
+
+
 
 
 }

@@ -41,7 +41,7 @@
 <div class="container-fluid">
     <div class="row">
        <#include "../BackEndTemplates/sidebar.ftl">
-
+<#--TODO controlla solo le barre e gli url con il filtro-->
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <noscript>
                 <div class="alert alert-danger mb-10 mt-10">
@@ -52,6 +52,24 @@
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
             </section>
             <h2><i class="fa fa-user"></i> Utenza di Tipo Tirocinanti</h2>
+                <#if WarningSuccess??>
+                    <div class="alert alert-success mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${WarningSuccess}
+                    </div>
+                </#if>
+            <#if WarningInsuccess??>
+                    <div class="alert alert-danger mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${WarningInsuccess}
+                    </div>
+                </#if>
             <h3>Lista Tirocinanti</h3>
             <div class="card">
                 <div class="card-header">
@@ -59,7 +77,6 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive" >
-
                         <table class="table table-striped table-bordered table-hover" id="datatable_tirocinante" width="100%"
                                cellspacing="0">
                             <thead>
@@ -71,8 +88,7 @@
                                 <th>Telefono</th>
                                 <th>Portatore Handicap</th>
                                 <th>Visualizza</th>
-                                <th>Modifica</th>
-                                <th>Elimina</th>
+                                <th>Cambia Email</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -84,8 +100,7 @@
                                 <th>Telefono</th>
                                 <th>Portatore Handicap</th>
                                 <th>Visualizza</th>
-                                <th>Modifica</th>
-                                <th>Elimina</th>
+                                <th>Cambia Email</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -94,32 +109,22 @@
                                 <td>${tirocinante.nome}</td>
                                 <td>${tirocinante.cognome}</td>
                                 <td>${tirocinante.codiceFiscale}</td>
-                                <td>${tirocinante.dataDiNascita}</td>
+                                <td>${tirocinante.dataDiNascita?date?string("dd-MM-yyyy")}</td>
                                 <td>${tirocinante.telefono}</td>
                                 <td><#if tirocinante.handicap>yes<#else>no</#if> </td>
                                 <td>
-                                    <form action="/show-tirocinante" method="post">
-                                        <input type="hidden" name="ID" value="${tirocinante.IDTirocinante}">
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                            Utente
-                                        </button>
-                                    </form>
 
-                                </td>
-                                <td>
-
-                                        <a type="button" href="/modifica-tirociante?IDTirocinante=${tirocinante.IDTirocinante}" class="btn btn-secondary"><i
-                                                    class="fa fa-pencil-square-o"></i>
-                                            Modifica
-                                        </a>
-                                </td>
-
-                                <td>
-                                    <a type="button" href="#" class="btn btn-danger">
-                                        <i class="fa fa-times"></i>
-                                        Elimina
+                                    <a type="button" class="btn btn-primary" href="/show-tirocinante?IDTirocinante=${tirocinante.IDTirocinante}">
+                                        <i class="fa fa-file-text"></i>Visualizza Utente
                                     </a>
+
+
                                 </td>
+                                <td>
+                                    <a type="button" href="/reimposta-User?IDUser=${tirocinante.user}" class="btn btn-secondary">
+                                        <i class="fa fa-pencil-square-o"></i>Cambia</a>
+                                </td>
+
                             </tr>
                             </#list>
 
@@ -139,7 +144,6 @@
                     <i class="fa fa-table"></i> Aziende
                 </div>
                 <div class="card-body">
-                    <form class="table-responsive" id="form_azienda" action="print.php" method="post">
                         <table class="table table-striped table-bordered table-hover" id="datatable_azienda" width="100%"
                                cellspacing="0">
                             <thead>
@@ -152,8 +156,8 @@
                                 <th>Cognome Responsabile</th>
                                 <th>Email Responsabile</th>
                                 <th>Visualizza</th>
-                                <th>Modifica</th>
-                                <th>Elimina</th>
+                                <th>Cambia Mail</th>
+                                <th>Disattiva</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -166,8 +170,8 @@
                                 <th>Cognome Responsabile</th>
                                 <th>Email Responsabile</th>
                                 <th>Visualizza</th>
-                                <th>Modifica</th>
-                                <th>Elimina</th>
+                                <th>Cambia Mail</th>
+                                <th>Disattiva</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -181,25 +185,22 @@
                                 <td>${azienda.cognomeResponsabileConvenzione}</td>
                                 <td>${azienda.emailResponsabileConvenzione}</td>
                                 <td>
-                                    <form action="/show-azienda" method="post">
-                                        <input type="hidden" name="ID" value="${azienda.IDAzienda}">
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                            Utente
-                                        </button>
-                                    </form>
+
+                                        <a type="button" class="btn btn-success" href="/show-azienda?IDAzienda=${azienda.IDAzienda}"><i class="fa fa-file-text"></i>Visualizza Utente</a>
 
                                 </td>
                                 <td>
-                                  <form action="/modifica-azienda" method="get">
-                                      <input type="hidden" name="ID"  value="${azienda.IDAzienda}">
-                                      <button type="submit" class="btn btn-secondary"><i
-                                                    class="fa fa-pencil-square-o"></i>
-                                            Modifica
-                                        </button>
-                                    </form>
+                                  <a class="btn btn-secondary" href="/reimposta-user?IDUser=${azienda.user}">
+                                      <i class="fa fa-pencil-square-o"></i> Cambia </a>
                                 </td>
-                                <td><input type="checkbox" class="checkboxes" name="Marco" value="1"/> <i
-                                            class="fa fa-times" style="color: red;"></i> Elimina
+                                <td>
+                                    <#if azienda.attivo==1>
+                                        <a type="button" class="btn btn-danger" href="/disattiva-azienda?IDAzienda=${azienda.IDAzienda}"> Disattiva</a>
+                                        <#else>
+                                        <button class="btn btn-danger" disabled>Azienda Disattivata</button>
+                                    </#if>
+
+
                                 </td>
                             </tr>
                             </#list>
@@ -207,16 +208,7 @@
                             </tbody>
                         </table>
                         <footer class="text-center text-sm-right mt-25 ">
-                            <button type="submit" form="form_azienda"
-                                    class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
-                                        class="fa fa-check"></i> Aggiorna
-                            </button>
-                            <button type="reset" form="form_azienda"
-                                    class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
-                                        class="fa fa-times"></i> Annulla
-                            </button>
                         </footer>
-                    </form>
                 </div>
             </div>
 
@@ -312,8 +304,8 @@
                             <th>Cognome</th>
                             <th>Telefono</th>
                             <th>Email</th>
-                            <th>Modifica</th>
-                            <th>Elimina</th>
+                            <th>Reimposta account</th>
+                            <th>Disattiva</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -322,8 +314,8 @@
                             <th>Cognome</th>
                             <th>Telefono</th>
                             <th>Email</th>
-                            <th>Modifica</th>
-                            <th>Elimina</th>
+                            <th>Reimposta account</th>
+                            <th>Disattiva</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -336,18 +328,23 @@
                             <td>${tutore.email}</td>
 
                             <td>
-                                <form action="/modifica-tutore" method="get">
 
-                                <input type="hidden" name="IDTutoreUni" value="${tutore.IDTutoreUni}">
-                                    <button type="submit" class="btn btn-secondary"><i
-                                                class="fa fa-pencil-square-o"></i>
-                                        Modifica
-                                    </button>
-                                </form>
+
+                                <a type="button"  class="btn btn-secondary" href="/modifica-tutore?IDTutoreUni=${tutore.IDTutoreUni}">
+                                    <i class="fa fa-pencil-square-o"></i> Modifica </a>
+
+
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina Utente
-                                </button>
+
+                                <#if tutore.attivo==true>
+
+                                <a type="button" class="btn btn-danger" href="/stato-tutore?IDTutoreUni=${tutore.IDTutoreUni}&stato=0"><i class="fa fa-times"></i>Disattiva Tutore
+                                </a>
+                                <#else>
+                                <a type="button" class="btn btn-danger" href="/stato-tutore?IDTutoreUni=${tutore.IDTutoreUni}&stato=1"><i class="fa fa-times"></i>Attiva Tutore</a>
+
+                                </#if>
                             </td>
                             </tr>
                         </#list>
@@ -471,16 +468,13 @@
                         <tr>
                             <th>Nome</th>
                             <th>Cognome</th>
-                            <th>Modifica</th>
-                            <th>Elimina</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th>Nome</th>
                             <th>Cognome</th>
-                            <th>Modifica</th>
-                            <th>Elimina</th>
+
                         </tr>
                         </tfoot>
                         <tbody>
@@ -489,19 +483,7 @@
 
                             <td>${admin.nome}</td>
                             <td>${admin.cognome}</td>
-                            <td>
-                                <form action="/modifica-admin" method="get">
-                                    <input type="hidden" value="${admin.IDadmin}" name="ID" >
-                                    <button type="submit" class="btn btn-secondary"><i
-                                                class="fa fa-pencil-square-o"></i>
-                                        Modifica
-                                    </button>
-                                </form>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina Utente
-                                </button>
-                            </td>
+
                         </tr>
                         </#list>
 

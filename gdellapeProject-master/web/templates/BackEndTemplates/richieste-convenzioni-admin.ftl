@@ -78,10 +78,31 @@
                     <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
-
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
             </section>
             <h2>Richieste di Convenzioni Aziendali Pendenti</h2>
+            <#if WarningSucess??>
+                <#if WarningSuccess??>
+                    <div class="alert alert-success mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${WarningSuccess}
+                    </div>
+                </#if>
+            </#if>
+            <#if WarningInsuccess??>
+                <#if WarningInsuccess??>
+                    <div class="alert alert-danger mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${WarningInsuccess}
+                    </div>
+                </#if>
+            </#if>
             <h3>Lista Richieste</h3>
             <div class="card">
                 <div class="card-header">
@@ -104,7 +125,9 @@
                                 <th>Tel. Responsabile</th>
                                 <th>Email Responsabile</th>
                                 <th>Data Richiesta</th>
-                                <th>Carica PDF e accetta </th>
+                                <th>Visualizza Richiesta</th>
+                                <th>Visualizza PDF</th>
+                                <th>Accetta Richiesta </th>
                                 <th>Declina richiesta</th>
                             </tr>
                             </thead>
@@ -120,44 +143,14 @@
                                 <th>Tel. Responsabile</th>
                                 <th>Email Responsabile</th>
                                 <th>Data Richiesta</th>
-                                <th>Carica PDF e accetta </th>
+                                <th>Modulo Richiesta</th>
+                                <th>Visualizza PDF</th>
+                                <th>Accetta Richiesta </th>
                                 <th>Declina richiesta</th>
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr>
-
-                                <td>Aveja</td>
-                                <td>l'aquila, via vai 1</td>
-                                <td>DSKJHFBSDKBFKJBDASF</td>
-                                <td>Mario</td>
-                                <td>Rossi</td>
-                                <td>Marco</td>
-                                <td>Bianchi</td>
-                                <td>12345678910</td>
-                                <td>marco.bianchi@h.it</td>
-
-                                <td>01/10/2018</td>
-
-                                <td>
-
-                                    <form action="/Accetta"  method="post" enctype="multipart/form-data">
-                                        <input type="file"  name="filetoupload" id="filetoupload">
-                                        <input type="hidden" name="state" value="1">
-                                        <input type="hidden" name="nome" value="12345">
-                                        <input  type="submit" class="btn btn-green" value="Accetta">
-                                    </form>
-                                </td>
-                                <td>
-                                    <form action="#" method="post">
-                                        <input type="hidden" name="state" value="0">
-                                        <input type="hidden" name="nome" value="12345">
-                                        <input  type="submit" class="btn btn-red" value="Declina">
-                                    </form>
-
-                                </td>
-                            </tr>
-                            <#list aziende as azienda>
+                            <#list AziendaPendenti as azienda>
                                 <tr>
 
                                     <td>${azienda.ragioneSociale}</td>
@@ -170,21 +163,30 @@
                                     <td>${azienda.telefonoResponsabileConvenzione}</td>
                                     <td>${azienda.emailResponsabileConvenzione}</td>
 
-                                    <td>${azienda.createDate}</td>
+                                    <td> <#if azienda.pathPDFConvenzione?has_content > ${azienda.dataConvenzione?date?string("yyyy-MM-dd")}
+                                        <#else> convenzione non ancora richiesta </#if></td>
+                                    <td>
+                                        <#if (azienda.pathPDFConvenzione)??> <a type="button" href="/#" class="btn btn-primary"> Visualizza</a>
+                                        <#else>
+                                            <button type="button" class="btn btn-primary" disabled> Modulo</button>
+                                        </#if>
 
+                                    </td>
+                                    <td>
+                                        <a type="button" href="/#" class="btn btn-secondary"> Visualizza PDF</a>
+                                    </td>
                                     <td>
 
                                         <form action="/Accetta"  method="post" enctype="multipart/form-data">
-                                            <input type="file"  name="filetoupload" id="filetoupload">
-                                            <input type="hidden" name="state" value="1">
-                                            <input type="hidden" name="nome" value="${azienda.ragioneSociale}">
+                                            <input type="hidden" name="stato" value="rifiuta">
+                                            <input type="hidden" name="IDAzienda" value="${azienda.IDAzienda}">
                                             <input  type="submit" class="btn btn-green" value="Accetta">
                                         </form>
                                     </td>
                                     <td>
-                                        <form action="#" method="post">
-                                            <input type="hidden" name="state" value="0">
-                                            <input type="hidden" name="nome" value="${azienda.ragioneSociale}">
+                                        <form action="/accetta" method="post">
+                                            <input type="hidden" name="stato" value="declina">
+                                            <input type="hidden" name="IDAzienda" value="${azienda.IDAzienda}">
                                             <input  type="submit" class="btn btn-red" value="Declina">
                                         </form>
 
@@ -196,15 +198,6 @@
                         </table>
 
                         <footer class="text-center text-sm-right mt-25 ">
-
-                            <button type="submit" form="form_rispondi"
-                                    class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
-                                        class="fa fa-check"></i> Aggiorna
-                            </button>
-                            <button type="reset" form="form_rispondi"
-                                    class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
-                                        class="fa fa-times"></i> Annulla
-                            </button>
                         </footer>
                     </div>
                 </div>
@@ -232,9 +225,8 @@
                             <th>Tel. Responsabile</th>
                             <th>Email Responsabile</th>
                             <th>Data Richiesta</th>
-                            <th>Visualizza richiesta</th>
-                            <th>Modifica richiesta</th>
-                            <th>Elimina richiesta</th>
+                            <th>Visualizza Convenzione</th>
+                            <th>Elimina Convenzione</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -249,97 +241,43 @@
                             <th>Tel. Responsabile</th>
                             <th>Email Responsabile</th>
                             <th>Data Richiesta</th>
-                            <th>Visualizza richiesta</th>
-                            <th>Modifica richiesta</th>
-                            <th>Elimina richiesta</th>
+                            <th>Visualizza Convenzione</th>
+                            <th>Elimina Convenzione</th>
                         </tr>
                         </tfoot>
                         <tbody>
-                        <tr>
-                            <td>Aveja</td>
-                            <td>l'aquila, via vai 1</td>
-                            <td>DSKJHFBSDKBFKJBDASF</td>
-                            <td>Mario</td>
-                            <td>Rossi</td>
-                            <td>Marco</td>
-                            <td>Bianchi</td>
-                            <td>12345678910</td>
-                            <td>marco.bianchi@h.it</td>
-                            <td>01/10/2018</td>
-                            <td><a href="print.php">
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                    </button>
-                                </a>
-                            </td>
-                            <td><a href="print.php">
-                                    <button type="button" class="btn btn-secondary"><i
-                                                class="fa fa-pencil-square-o"></i>Modifica
-                                    </button>
-                                </a>
-                            </td>
-                            <td><a href="print.php">
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ferrari</td>
-                            <td>l'aquila, via vai 1</td>
-                            <td>DSKJHFBSDKBFKJBDASF</td>
-                            <td>Mario</td>
-                            <td>Rossi</td>
-                            <td>Marco</td>
-                            <td>Bianchi</td>
-                            <td>12345678910</td>
-                            <td>marco.bianchi@h.it</td>
-                            <td>01/10/2018</td>
-                            <td><a href="print.php">
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                    </button>
-                                </a>
-                            </td>
-                            <td><a href="print.php">
-                                    <button type="button" class="btn btn-secondary"><i
-                                                class="fa fa-pencil-square-o"></i>Modifica
-                                    </button>
-                                </a>
-                            </td>
-                            <td><a href="print.php">
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina
-                                    </button>
-                                </a>
-                            </td>
+                        <#list AziendaAttive as azienda>
+                            <tr>
 
-                        </tr>
-                        <tr>
-                            <td>IKEA</td>
-                            <td>l'aquila, via vai 1</td>
-                            <td>DSKJHFBSDKBFKJBDASF</td>
-                            <td>Mario</td>
-                            <td>Rossi</td>
-                            <td>Marco</td>
-                            <td>Bianchi</td>
-                            <td>12345678910</td>
-                            <td>marco.bianchi@h.it</td>
-                            <td>01/10/2018</td>
-                            <td><a href="print.php">
-                                    <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                                    </button>
-                                </a>
-                            </td>
-                            <td><a href="print.php">
-                                    <button type="button" class="btn btn-secondary"><i
-                                                class="fa fa-pencil-square-o"></i>Modifica
-                                    </button>
-                                </a>
-                            </td>
-                            <td><a href="print.php">
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
+                                <td>${azienda.ragioneSociale}</td>
+                                <td>${azienda.indirizzoSedeLegale}</td>
+                                <td>${azienda.CFiscalePIva}</td>
+                                <td>${azienda.nomeLegaleRappresentante}</td>
+                                <td>${azienda.cognomeLegaleRappresentante}</td>
+                                <td>${azienda.nomeResponsabileConvenzione}</td>
+                                <td>${azienda.cognomeResponsabileConvenzione}</td>
+                                <td>${azienda.telefonoResponsabileConvenzione}</td>
+                                <td>${azienda.emailResponsabileConvenzione}</td>
+
+                                <td>${azienda.createDate?date?string("dd-MM-yyyy")}</td>
+                                <td>
+                                    <a type="button" href="/convezione-azienda?IDAzienda=${azienda.IDAzienda}" class="btn btn-primary"> Visualizza</a>
+                                </td>
+
+                                <td>
+
+                                    <a  type="button" class="btn btn-primary" href="/#"><i class="fa-file-pdf-o"></i> Visualizza PDF</a>
+
+                                </td>
+                                <td>
+                                  <#--TODO FAI LA SERVELT PER RICARE questa pagina-->
+                                        <a  type="button" class="btn btn-danger" href="/disattiva-azienda"><i class="fa-file-pdf-o"></i>Elimina </a>
+
+
+                                </td>
+                            </tr>
+                        </#list>
+
                         </tbody>
                     </table>
                 </div>

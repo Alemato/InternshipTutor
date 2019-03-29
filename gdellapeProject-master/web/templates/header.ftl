@@ -1,10 +1,11 @@
-<div id="header" class="navbar-toggleable-md  shadow-after-3 clearfix position-fixed">
+<div id="header" class="navbar-toggleable-md  shadow-after-3 clearfix position-fixed <#if notview?? ><#if notview>d-print-none</#if></#if>">
     <!-- TOP BAR-->
     <div id="topBar" class="dark sticky">
         <div class="container">
 
             <!-- right -->
         <ul class="top-links list-inline float-right has-topBar">
+
 
                     <#if logged>
                         <li>

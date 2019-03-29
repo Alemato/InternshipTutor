@@ -2920,7 +2920,7 @@ blockquote cite:after {
 
 /* Border colors 
 
-   Use with another border utility that sets border-width and style 
+   Use with another border Utility that sets border-width and style
    i.e .border { border-width: 1px; border-style: solid !important; }     
 */
 .border-navy {

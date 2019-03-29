@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class PdfViewConvenzione extends baseController {
+public class PdfViewRichiestaTirocinio extends baseController {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
@@ -16,7 +16,7 @@ public class PdfViewConvenzione extends baseController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
-        PdfView pdfView = new PdfView((Integer) request.getAttribute("tipo"),"Convenzione", getServletContext());
-        pdfView.processaRichiestaConvenzione(request, response);
+        PdfView pdfView = new PdfView((Integer) request.getAttribute("tipo"),"RichiestaTirocinio", getServletContext());
+        pdfView.processaRichiesta(request, response);
     }
 }

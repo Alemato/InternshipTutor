@@ -1,6 +1,8 @@
 package controller.adm.Admin.GestioneUtenza;
 
+import controller.adm.Admin.BackEndAdminController;
 import controller.adm.Azienda.BackEndAziendaController;
+import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.TirocinanteDaoImp;
@@ -16,11 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-public class ShowAziendaController extends BackEndAziendaController{
+public class ShowAziendaController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        getAziendaAndUser(request, response);
-        TemplateController.process("BackEndTemplates/show-Azienda.ftl", datamodel, response, getServletContext());
+
 
 
 
@@ -30,27 +31,28 @@ public class ShowAziendaController extends BackEndAziendaController{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 
-
+        showAzienda(request,response);
 
     }
-    private void getAziendaAndUser(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
+
+    private void showAzienda(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
     {
+        super.init(request,response);
         try {
-            int idaz = Integer.parseInt(request.getParameter("ID"));
             AziendaDaoImp dao = new AziendaDaoImp();
-            Azienda az=dao.getAziendaByID(idaz);
+            Azienda az = dao.getAziendaByID(Integer.parseInt(request.getParameter("IDAzienda")));
             dao.destroy();
-            UserDaoImp dao1 = new UserDaoImp();
-            User user = dao1.getUserByid(az.getUser());
-            dao1.destroy();
-            datamodel.put("azienda",az);
-            datamodel.put("user",user);
+
+            datamodel.put("azienda", az);
+            datamodel.put("user", BackEndAdminController.getUser(request, response, az.getUser()));
+            TemplateController.process("BackEndTemplates/show-Azienda.ftl", datamodel, response, getServletContext());
         }catch (DaoException e)
         {
             e.printStackTrace();
-            response.sendRedirect("/404");
+            response.sendRedirect("/500");
         }
     }
+
 
 
 

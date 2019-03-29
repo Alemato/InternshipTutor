@@ -208,6 +208,9 @@ public class GestioneModuliAzienda {
         TemplateController.process("moduli-aziendale.ftl", datamodel, response, context);
     }
 
+    /**
+     *  Faccio il post solo per settare i tirocini finiti
+     */
     public void post() {
         Map params = request.getParameterMap();
         List<String> parametri = new ArrayList<String>();
