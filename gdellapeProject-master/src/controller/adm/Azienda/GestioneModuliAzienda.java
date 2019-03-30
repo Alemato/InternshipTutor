@@ -130,7 +130,9 @@ public class GestioneModuliAzienda {
                     break;
                 }
             }
-            lista.add(mappa);
+            if (tirocinio.getStato().equals(1)||tirocinio.getStato().equals(2)){
+                lista.add(mappa);
+            }
         }
         datamodel.put("Lista", lista);
     }
@@ -177,11 +179,15 @@ public class GestioneModuliAzienda {
     }
 
     private void aggiornaFini(List<String> parametriFIN) throws ServletException, IOException {
-        //TODO finire di salvare i dati sul DB
         for (String param : parametriFIN) {
             String[] parts = param.split("-");
-            System.out.println(parts[0] + " " + parts[1] + " " + parts[2] + " " + parts[3]);
+            for (String part: parts) {
+                System.out.println(part);
+            }
             String p = request.getParameter(param);
+            String[] nomeParts= parts[0].split("fin_");
+            String nomeTirocinante = nomeParts[1];
+            String cognomeTirocinante = parts[1];
             int idTirocinante = Integer.parseInt(parts[2]);
             int idTirocinio = Integer.parseInt(parts[3]);
             Tirocinio tiro = new Tirocinio();
@@ -195,7 +201,12 @@ public class GestioneModuliAzienda {
                 daoTirocinante.destroy();
             } catch (DaoException e) {
                 e.printStackTrace();
-                datamodel.put("Throwable", "problemi con la lista dei tirocinanti sul db");
+                request.setAttribute("MessaggioErrore", "problemi db: lista tirocinii e tirocinante");
+                er500(request, response);
+                this.error = true;
+            }
+            if(!tirocinante.getNome().equals(nomeTirocinante)||!tirocinante.getCognome().equals(cognomeTirocinante)||!p.equals("1")){
+                request.setAttribute("MessaggioErrore", "problemi con oggetto tirocinate");
                 er500(request, response);
                 this.error = true;
             }
@@ -203,15 +214,15 @@ public class GestioneModuliAzienda {
                 if ((tirocinante.getNome().equals(parts[0].split("fin_")[1])) && (tirocinante.getCognome().equals(parts[1]))) {
                     if (tiro.getTirocinante().equals(tirocinante.getIDTirocinante())) {
                         System.out.println("Si coincide");
-                        tiro.setStato(1);
+                        tiro.setStato(2);
                         System.out.println("lo stato: " + tiro.getStato());
                         try {
                             TirocinioDaoImp daoTiro = new TirocinioDaoImp();
-                            daoTiro.setRichiestatr(tiro);
+                            daoTiro.updateTirocinio(tiro);
                             daoTiro.destroy();
                         } catch (DaoException e) {
                             e.printStackTrace();
-                            datamodel.put("Throwable", "problemi con il set della richiesta fin sul db");
+                            request.setAttribute("MessaggioErrore", "problemi con il set della richiesta fin sul db");
                             er500(request, response);
                             this.error = true;
                         }
@@ -237,6 +248,7 @@ public class GestioneModuliAzienda {
      * Faccio il post solo per settare i tirocini finiti
      */
     public void post() throws ServletException, IOException {
+        //TODO implementare l'upload del pdf https://docs.oracle.com/javaee/6/tutorial/doc/glraq.html
         Map params = request.getParameterMap();
         List<String> parametri = new ArrayList<String>();
         for (Object o : params.keySet()) {
@@ -248,6 +260,7 @@ public class GestioneModuliAzienda {
         }
         System.out.println(parametri);
         aggiornaFini(parametri);
+        this.get();
     }
 
 }
