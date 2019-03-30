@@ -185,14 +185,14 @@
                                 </td>
                             <#elseif Lista.tirocinio.stato == 2>
                                 <#if Lista.tirocinio.pdfAzienda??>
-                                    <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinante.IDTirocinante}">
+                                    <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinio.IDTirocinio}">
                                             <button type="button" class="btn btn-outline-success"><i
                                                         class="fa fa-print"></i>Stampa PDF
                                             </button>
                                         </a>
                                     </td>
                                 <#else>
-                                    <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinante.IDTirocinante}">
+                                    <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinio.IDTirocinio}">
                                             <button type="button" class="btn btn-outline-success"><i
                                                         class="fa fa-print"></i>Stampa Modulo
                                             </button>

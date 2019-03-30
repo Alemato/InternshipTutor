@@ -220,6 +220,16 @@
         <url-pattern>/Account/Moduli/Convenzione</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ModuloFineTirocinioAziendaController</servlet-name>
+        <servlet-class>controller.adm.Azienda.ModuloFineTirocinioAziendaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModuloFineTirocinioAziendaController</servlet-name>
+        <url-pattern>/account/moduli/tirocinio</url-pattern>
+        <url-pattern>/Account/Moduli/Tirocinio</url-pattern>
+    </servlet-mapping>
+
 
     <!-- servlet errori-->
     <servlet>
@@ -398,38 +408,38 @@
 
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>gestione-tirocinanti</servlet-name>
-        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllTirocinantiController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>gestione-tirocinanti</servlet-name>
-        <url-pattern>gestione-tirocinanti</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>gestione-admin</servlet-name>
-        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllAdminController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>gestione-admin</servlet-name>
-        <url-pattern>/gestione-admin</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>gestione-tutori</servlet-name>
-        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllTutoriController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>gestione-tutori</servlet-name>
-        <url-pattern>/gestione-tutoti</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>gestione-aziende</servlet-name>
-        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllAziendeController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>gestione-aziende</servlet-name>
-        <url-pattern>/gestione-aziende</url-pattern>
-    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>gestione-tirocinanti</servlet-name>-->
+<!--        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllTirocinantiController</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>gestione-tirocinanti</servlet-name>-->
+<!--        <url-pattern>gestione-tirocinanti</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet>-->
+<!--        <servlet-name>gestione-admin</servlet-name>-->
+<!--        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllAdminController</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>gestione-admin</servlet-name>-->
+<!--        <url-pattern>/gestione-admin</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet>-->
+<!--        <servlet-name>gestione-tutori</servlet-name>-->
+<!--        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllTutoriController</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>gestione-tutori</servlet-name>-->
+<!--        <url-pattern>/gestione-tutoti</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet>-->
+<!--        <servlet-name>gestione-aziende</servlet-name>-->
+<!--        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllAziendeController</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>gestione-aziende</servlet-name>-->
+<!--        <url-pattern>/gestione-aziende</url-pattern>-->
+<!--    </servlet-mapping>-->
 
 
 
@@ -586,16 +596,16 @@
     <!--<url-pattern>/modifica-admin</url-pattern>-->
 
     <!--</servlet-mapping>-->
-    <servlet>
-    <servlet-name>TutteOfferteTr</servlet-name>
-    <servlet-class>controller.adm.Admin.GestioneTirocinio.OfferteTirocinioController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-    <servlet-name>TutteOfferteTr</servlet-name>
-    <url-pattern>/OfferteTirocinioAdmin</url-pattern>
-    <url-pattern>/offertetirocinioadmin</url-pattern>
+<!--    <servlet>-->
+<!--    <servlet-name>TutteOfferteTr</servlet-name>-->
+<!--    <servlet-class>controller.adm.Admin.GestioneTirocinio.OfferteTirocinioController</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--    <servlet-name>TutteOfferteTr</servlet-name>-->
+<!--    <url-pattern>/OfferteTirocinioAdmin</url-pattern>-->
+<!--    <url-pattern>/offertetirocinioadmin</url-pattern>-->
 
-    </servlet-mapping>
+<!--    </servlet-mapping>-->
 
     <!--<servlet>-->
     <!--<servlet-name>ModificaOffertaAdmin</servlet-name>-->
