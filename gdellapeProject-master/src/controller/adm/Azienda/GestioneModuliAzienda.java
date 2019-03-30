@@ -10,7 +10,9 @@ import dao.implementation.UserDaoImp;
 import model.*;
 import view.TemplateController;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -22,6 +24,7 @@ public class GestioneModuliAzienda {
     protected HttpServletResponse response;
     protected ServletContext context;
     private Azienda azienda;
+    private boolean error;
 
     public GestioneModuliAzienda(Map<String, Object> datamodel, HttpServletRequest request, HttpServletResponse response, ServletContext context) {
         this.datamodel = datamodel;
@@ -29,6 +32,12 @@ public class GestioneModuliAzienda {
         this.response = response;
         this.context = context;
         this.azienda = null;
+        this.error = false;
+    }
+
+    private void er500(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = this.context.getRequestDispatcher("/500");
+        dispatcher.forward(request, response);
     }
 
     private void ritornaAzienda(HttpServletRequest request, HttpServletResponse response) {
@@ -41,7 +50,6 @@ public class GestioneModuliAzienda {
     }
 
     private void fillConvenzione() {
-        //TODO Implementare controllo data di convenzione
         datamodel.put("DataConvenzione", azienda.getDataConvenzione());
         datamodel.put("DataUpdate", azienda.getUpdateDate());
         datamodel.put("DataCreate", azienda.getCreateDate());
@@ -127,10 +135,18 @@ public class GestioneModuliAzienda {
         datamodel.put("Lista", lista);
     }
 
+    private void checkPdf(Azienda azienda) {
+        if (azienda.getPathPDFConvenzione() == null) {
+            datamodel.put("EsistePdf", false);
+        } else {
+            datamodel.put("EsistePdf", true);
+        }
+    }
+
     private void checkScadenzaConvenzione(Azienda azienda) {
         if (azienda.getDataConvenzione() == null && azienda.getDurataConvenzione() == null) {
             datamodel.put("CreaConvenzione", true);
-        }else {
+        } else {
             Map<String, Object> scadenza = Validation.scadenza(azienda.getDataConvenzione(), azienda.getDurataConvenzione());
             Calendar passato = (Calendar) scadenza.get("passato");
             Calendar presente = (Calendar) scadenza.get("presente");
@@ -156,10 +172,11 @@ public class GestioneModuliAzienda {
             } else {
                 datamodel.put("ConvenzioneScaduta", true);
             }
+            checkPdf(azienda);
         }
     }
 
-    private void aggiornaFini(List<String> parametriFIN) {
+    private void aggiornaFini(List<String> parametriFIN) throws ServletException, IOException {
         //TODO finire di salvare i dati sul DB
         for (String param : parametriFIN) {
             String[] parts = param.split("-");
@@ -178,20 +195,28 @@ public class GestioneModuliAzienda {
                 daoTirocinante.destroy();
             } catch (DaoException e) {
                 e.printStackTrace();
+                datamodel.put("Throwable", "problemi con la lista dei tirocinanti sul db");
+                er500(request, response);
+                this.error = true;
             }
-            if ((tirocinante.getNome().equals(parts[0].split("fin_")[1])) && (tirocinante.getCognome().equals(parts[1]))) {
-                if (tiro.getTirocinante().equals(tirocinante.getIDTirocinante())) {
-                    System.out.println("Si coincide");
-                    tiro.setStato(1);
-                    System.out.println("lo stato: " + tiro.getStato());
-//                    try {
-//                        TirocinioDaoImp daoTiro = new TirocinioDaoImp();
-//                        daoTiro.setRichiestatr(tiro);
-//                        daoTiro.destroy();
-//                    } catch (DaoException e){
-//                        e.printStackTrace();
-//                    }
+            if (!error) {
+                if ((tirocinante.getNome().equals(parts[0].split("fin_")[1])) && (tirocinante.getCognome().equals(parts[1]))) {
+                    if (tiro.getTirocinante().equals(tirocinante.getIDTirocinante())) {
+                        System.out.println("Si coincide");
+                        tiro.setStato(1);
+                        System.out.println("lo stato: " + tiro.getStato());
+                        try {
+                            TirocinioDaoImp daoTiro = new TirocinioDaoImp();
+                            daoTiro.setRichiestatr(tiro);
+                            daoTiro.destroy();
+                        } catch (DaoException e) {
+                            e.printStackTrace();
+                            datamodel.put("Throwable", "problemi con il set della richiesta fin sul db");
+                            er500(request, response);
+                            this.error = true;
+                        }
 
+                    }
                 }
             }
         }
@@ -209,9 +234,9 @@ public class GestioneModuliAzienda {
     }
 
     /**
-     *  Faccio il post solo per settare i tirocini finiti
+     * Faccio il post solo per settare i tirocini finiti
      */
-    public void post() {
+    public void post() throws ServletException, IOException {
         Map params = request.getParameterMap();
         List<String> parametri = new ArrayList<String>();
         for (Object o : params.keySet()) {
