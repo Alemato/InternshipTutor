@@ -28,6 +28,8 @@ public class Azienda {
     private Boolean ModuloConvenzione;
     private String Descrizione;
     private String Link;
+    private Integer Voti;
+    private Float Valutazione;
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
     private Integer User;
@@ -51,6 +53,8 @@ public class Azienda {
         this.ModuloConvenzione = false;
         this.Descrizione = null;
         this.Link = null;
+        this.Voti = 0;
+        this.Valutazione = 0.00f;
         this.CreateDate = null;
         this.UpdateDate = null;
         this.User = 0;
@@ -129,6 +133,10 @@ public class Azienda {
         return Link;
     }
 
+    public Integer getVoti() { return Voti; }
+
+    public Float getValutazione() { return Valutazione; }
+
     public Timestamp getCreateDate() {
         return CreateDate;
     }
@@ -140,7 +148,6 @@ public class Azienda {
     public Integer getUser() {
         return User;
     }
-
 
 
     // SET DATA
@@ -212,9 +219,13 @@ public class Azienda {
         this.Descrizione = descrizione;
     }
 
-    public void setLink( String link) {
+    public void setLink(String link) {
         this.Link = link;
     }
+
+    public void setVoti(Integer voti) { Voti = voti; }
+
+    public void setValutazione(Float valutazione) { Valutazione = valutazione; }
 
     public void setCreateDate(Timestamp createDate) {
         this.CreateDate = createDate;
@@ -251,6 +262,8 @@ public class Azienda {
                 ModuloConvenzione.equals(azienda.ModuloConvenzione) &&
                 Objects.equals(Descrizione, azienda.Descrizione) &&
                 Objects.equals(Link, azienda.Link) &&
+                Voti.equals(azienda.Voti) &&
+                Valutazione.equals(azienda.Valutazione) &&
                 CreateDate.equals(azienda.CreateDate) &&
                 UpdateDate.equals(azienda.UpdateDate) &&
                 User.equals(azienda.User);
@@ -258,7 +271,7 @@ public class Azienda {
 
     @Override
     public int hashCode() {
-        return Objects.hash(IDAzienda, RagioneSociale, IndirizzoSedeLegale, CFiscalePIva, NomeLegaleRappresentante, CognomeLegaleRappresentante, NomeResponsabileConvenzione, CognomeResponsabileConvenzione, TelefonoResponsabileConvenzione, EmailResponsabileConvenzione, PathPDFConvenzione, DurataConvenzione, ForoControversia, DataConvenzione, Attivo, ModuloConvenzione, Descrizione, Link, CreateDate, UpdateDate, User);
+        return Objects.hash(IDAzienda, RagioneSociale, IndirizzoSedeLegale, CFiscalePIva, NomeLegaleRappresentante, CognomeLegaleRappresentante, NomeResponsabileConvenzione, CognomeResponsabileConvenzione, TelefonoResponsabileConvenzione, EmailResponsabileConvenzione, PathPDFConvenzione, DurataConvenzione, ForoControversia, DataConvenzione, Attivo, ModuloConvenzione, Descrizione, Link, Voti, Valutazione, CreateDate, UpdateDate, User);
     }
 
     @Override
@@ -282,9 +295,15 @@ public class Azienda {
                 ", ModuloConvenzione=" + ModuloConvenzione +
                 ", Descrizione='" + Descrizione + '\'' +
                 ", Link='" + Link + '\'' +
+                ", Voti=" + Voti + '\'' +
+                ", Valutazione=" + '\'' +
                 ", CreateDate=" + CreateDate +
                 ", UpdateDate=" + UpdateDate +
                 ", User=" + User +
                 '}';
     }
+
+
+
+
 }
