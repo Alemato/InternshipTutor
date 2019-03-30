@@ -11,7 +11,7 @@
     <link href="../css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
-<body class="smoothscroll enable-animation">
+<body class=" enable-animation">
 <!-- wrapper -->
 <div id="wrapper">
     <#include "header.ftl">
@@ -137,6 +137,7 @@
                         <th>Data Creazione</th>
                         <th>Data Aggiornamento</th>
                         <th>Stampa Modulo</th>
+                        <td>Carica PDF</td>
                     </tr>
                     </thead>
                     <tfoot>
@@ -149,6 +150,7 @@
                         <th>Data Creazione</th>
                         <th>Data Aggiornamento</th>
                         <th>Stampa Modulo</th>
+                        <td>Carica PDF</td>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -157,17 +159,17 @@
                             <td>${Lista.tirocinante.nome}</td>
                             <td>${Lista.tirocinante.cognome}</td>
                             <td>${Lista.userMail}</td>
-                            <#if Lista.tirocinio.stato == 0>
+                            <#if Lista.tirocinio.stato == 1>
                                 <td>Tirocinio in corso</td>
                                 <td><input type="checkbox" class="checkboxes"
-                                           name="fin_${Lista.tirocinante.nome}${Lista.tirocinante.cognome}${Lista.tirocinante.IDTirocinante}"
+                                           name="fin_${Lista.tirocinante.nome}-${Lista.tirocinante.cognome}-${Lista.tirocinante.IDTirocinante}-${Lista.tirocinio.IDTirocinio}"
                                            value="1"/> <i
                                             class="fa fa-check" style="color: green;"></i> Tirocinio finito
                                 </td>
-                            <#else>
+                            <#elseif Lista.tirocinio.stato == 2>
                                 <td>Tirocinio Concluso</td>
                                 <td><input type="checkbox" class="checkboxes"
-                                           name="fin_${Lista.tirocinante.nome}${Lista.tirocinante.cognome}${Lista.tirocinante.IDTirocinante}"
+                                           name="fin_${Lista.tirocinante.nome}-${Lista.tirocinante.cognome}-${Lista.tirocinante.IDTirocinante}-${Lista.tirocinio.IDTirocinio}"
                                            value="1" checked
                                            disabled/> <i
                                             class="fa fa-check" style="color: green;"></i> Tirocinio finito
@@ -175,26 +177,35 @@
                             </#if>
                             <td>${Lista.tirocinio.createDate?date?string.short}</td>
                             <td>${Lista.tirocinio.updateDate?date?string.short}</td>
-                            <#if Lista.tirocinio.stato == 0>
+                            <#if Lista.tirocinio.stato == 1>
                                 <td>
                                     <button type="button" class="btn btn-outline-danger"><i class="fa fa-print"></i>Non
                                         disponibile
                                     </button>
                                 </td>
-                            <#elseif Lista.tirocinio.stato == 1>
-                                <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinante.IDTirocinante}">
-                                        <button type="button" class="btn btn-outline-success"><i
-                                                    class="fa fa-print"></i>Stampa Modulo
-                                        </button>
-                                    </a>
-                                </td>
-                            <#else>
-                                <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinante.IDTirocinante}">
-                                        <button type="button" class="btn btn-outline-success"><i
-                                                    class="fa fa-print"></i>Stampa PDF
-                                        </button>
-                                    </a>
-                                </td>
+                            <#elseif Lista.tirocinio.stato == 2>
+                                <#if Lista.tirocinio.pdfAzienda??>
+                                    <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinante.IDTirocinante}">
+                                            <button type="button" class="btn btn-outline-success"><i
+                                                        class="fa fa-print"></i>Stampa PDF
+                                            </button>
+                                        </a>
+                                    </td>
+                                <#else>
+                                    <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinante.IDTirocinante}">
+                                            <button type="button" class="btn btn-outline-success"><i
+                                                        class="fa fa-print"></i>Stampa Modulo
+                                            </button>
+                                        </a>
+                                    </td>
+                                </#if>
+                            </#if>
+                            <#if !Lista.tirocinio.pdfAzienda?? && Lista.tirocinio.stato == 2>
+                                    <td><input type="file" name="PDFAzineda_${Lista.tirocinio.IDTirocinio}">
+                                    </td>
+                                <#else>
+                                    <td><input type="file" name="PDFAzineda_${Lista.tirocinio.IDTirocinio}" disabled>
+                                    </td>
                             </#if>
                         </tr>
                     </#list>
@@ -248,6 +259,8 @@
             }, {
                 "orderable": true
             }, {
+                "orderable": true
+            },{
                 "orderable": true
             }],
             "order": [
