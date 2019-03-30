@@ -182,16 +182,16 @@
                                     </button>
                                 </td>
                             <#elseif Lista.tirocinio.stato == 1>
-                                <td><a href="/account/moduli/tirocinio/${Lista.tirocinante.IDTirocinante}">
+                                <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinante.IDTirocinante}">
                                         <button type="button" class="btn btn-outline-success"><i
-                                                    class="fa fa-print"></i>Stampa PDF
+                                                    class="fa fa-print"></i>Stampa Modulo
                                         </button>
                                     </a>
                                 </td>
                             <#else>
-                                <td><a href="/account/moduli/tirocinio/${Lista.tirocinante.IDTirocinante}">
+                                <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinante.IDTirocinante}">
                                         <button type="button" class="btn btn-outline-success"><i
-                                                    class="fa fa-print"></i>Stampa Modulo
+                                                    class="fa fa-print"></i>Stampa PDF
                                         </button>
                                     </a>
                                 </td>

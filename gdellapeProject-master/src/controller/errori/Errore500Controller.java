@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.rmi.ServerException;
 
 public class Errore500Controller extends baseController {
@@ -30,11 +31,14 @@ public class Errore500Controller extends baseController {
             datamodel.put("Throwable", throwable.getMessage());
         }
         if (throwable.getStackTrace() != null){
-            datamodel.put("ThrowableStackTrace", throwable.getStackTrace());
+            // https://stackoverflow.com/questions/1149703/how-can-i-convert-a-stack-trace-to-a-string
+            StringWriter sw = new StringWriter();
+            datamodel.put("ThrowableStackTrace", throwable.getStackTrace().toString());
         }
         if (throwable.getCause() != null){
             datamodel.put("ThrowableCause", throwable.getCause());
         }
+        System.out.println(datamodel);
         TemplateController.process("500.ftl", datamodel, response, getServletContext());
 
     }
