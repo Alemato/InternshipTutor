@@ -44,7 +44,7 @@
                 </div>
                 <#else>
                     <div class="table-responsive mb-30">
-                        <table class="table table-bordered g-white text-center border">
+                        <table class="table table-bordered bg-white text-center border">
                             <thead>
                             <tr>
                                 <th>Nome</th>
@@ -54,10 +54,19 @@
                                     <th>Giorni alla scadenza</th>
                                 </#if>
                                 <th>Data Aggiornamento Convenzione</th>
-                                <#if ConvenzioneScaduta?? && ConvenzioneScaduta>
-                                    <th>Aggiorna richiesta</th>
+                                <#if ConvenzioneScaduta??>
+                                    <#if ConvenzioneScaduta>
+                                        <th>Aggiorna richiesta</th>
+                                    <#else>
+                                        <#if EsistePdf>
+                                        <th>Stampa Modulo</th>
+                                        <#else>
+                                            <th>Modifica Modulo</th>
+                                            <th>Carica PDF</th>
+                                        </#if>
+                                    </#if>
                                 <#else>
-                                    <th>Stampa Modulo</th>
+                                    <th>Crea Modulo</th>
                                 </#if>
                             </tr>
                             </thead>
@@ -73,21 +82,34 @@
                                 <#if ConvenzioneScaduta??>
                                     <#if ConvenzioneScaduta>
                                         <td>
-                                            <a href="/account/moduli/convenzione/${IDConvenzione}">
+                                            <a href="/account/moduli/convenzione">
                                                 <button type="button" class="btn btn-outline-danger"><i class="fa fa-edit"></i>Richiedi Convenzione
                                                 </button>
                                             </a>
                                         </td>
                                     <#else>
-                                        <td><a href="/account/moduli/convenzione/${IDConvenzione}">
-                                                <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Stampa
-                                                    Modulo
+                                        <#if EsistePdf>
+                                        <td><a href="/account/moduli/convenzione">
+                                                <button type="button" class="btn btn-outline-success">
+                                                    <i class="fa fa-print"></i>Stampa Modulo
                                                 </button>
                                             </a></td>
+                                            <#else>
+                                                <td><a href="/account/moduli/convenzione">
+                                                        <button type="button" class="btn btn-outline-primary">
+                                                            <i class="fa fa-print"></i>Modifica Richiesta
+                                                        </button>
+                                                    </a></td>
+                                                <td>
+                                                    <form>
+                                                        <input type="file" name="ModuloConvenzione">
+                                                    </form>
+                                                </td>
+                                        </#if>
                                     </#if>
                                 <#else>
-                                    <td><a href="/account/moduli/convenzione/${IDConvenzione}">
-                                            <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Stampa
+                                    <td><a href="/account/moduli/convenzione">
+                                            <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Crea
                                                 Modulo
                                             </button>
                                         </a></td>
@@ -160,16 +182,16 @@
                                     </button>
                                 </td>
                             <#elseif Lista.tirocinio.stato == 1>
-                                <td><a href="/account/moduli/tirocinio/${Lista.tirocinante.IDTirocinante}">
+                                <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinante.IDTirocinante}">
                                         <button type="button" class="btn btn-outline-success"><i
-                                                    class="fa fa-print"></i>Stampa PDF
+                                                    class="fa fa-print"></i>Stampa Modulo
                                         </button>
                                     </a>
                                 </td>
                             <#else>
-                                <td><a href="/account/moduli/tirocinio/${Lista.tirocinante.IDTirocinante}">
+                                <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinante.IDTirocinante}">
                                         <button type="button" class="btn btn-outline-success"><i
-                                                    class="fa fa-print"></i>Stampa Modulo
+                                                    class="fa fa-print"></i>Stampa PDF
                                         </button>
                                     </a>
                                 </td>

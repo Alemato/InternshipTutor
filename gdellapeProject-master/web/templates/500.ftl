@@ -62,17 +62,17 @@
             <#if Throwable??>
             <div class="row">
                 <h3 class="col-3 fw-400">Throwable Message: </h3>
-                <h3 class="col-9 fw-400">${Throwable}</h3>
+                <#if Throwable?? && Throwable?has_content><h3 class="col-9 fw-400">${Throwable}</h3></#if>
             </div>
 
             <div class="row">
                 <h3 class="col-3 fw-400">Throwable StackTrace: </h3>
-                <h3 class="col-9 fw-400">${ThrowableStackTrace}</h3>
+                <#if ThrowableStackTrace?? && ThrowableStackTrace?has_content><h3 class="col-9 fw-400">${ThrowableStackTrace}</h3></#if>
             </div>
             
             <div class="row">
                 <h3 class="col-3 fw-400">Throwable Cause: </h3>
-                <h3 class="col-9 fw-400">${ThrowableCause}</h3>
+                <#if ThrowableCause?? && ThrowableCause?has_content><h3 class="col-9 fw-400">${ThrowableCause}</h3></#if>
             </div>
             </#if>
         </div>

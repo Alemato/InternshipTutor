@@ -69,8 +69,8 @@ public class ConvenzioneController extends baseController {
             System.out.println("rispondi con il file");
             PdfView pdfView = new PdfView(this.tipoAccount, "Convenzione", getServletContext());
             String url = pdfView.createURLConvenzione(this.azienda);
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-            dispatcher.forward(request, response);
+            datamodel.put("Url", url);
+            TemplateController.process("PDFConvenzione.ftl", datamodel,response, getServletContext());
         }
 
     }
@@ -125,11 +125,18 @@ public class ConvenzioneController extends baseController {
             if (azienda.getDurataConvenzione() != null) {
                 Map<String, Object> scadenza = Validation.scadenza(azienda.getDataConvenzione(), azienda.getDurataConvenzione());
                 boolean scaduto = (boolean) scadenza.get("scaduto");
+                System.out.println("è scaduto ? "+scaduto);
                 if (!scaduto) {
-                    System.out.println("la richiesta non è valida in quanto non può aggiornare perche non è scaduta");
-                    er500(request, response);
+                    if (azienda.getPathPDFConvenzione() == null){
+                        System.out.println("la richiesta è di tipo UPDATE ");
+                        creaOggeti(request, response);
+                        processaRichiestaUpdate(request, response);
+                    }else {
+                        System.out.println("la richiesta non è valida in quanto non può aggiornare perche non è scaduta e ha il pdf");
+                        er500(request, response);
+                    }
                 } else {
-                    System.out.println("la richiesta è di tipo UPDATE e Creazione");
+                    System.out.println("la richiesta è di tipo Creazione");
                     creaOggeti(request, response);
                     processaRichiestaUpdate(request, response);
                 }

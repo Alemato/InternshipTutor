@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Modulo Convenzione</title>
-    <#include "importCss.ftl">
 
+    <#include "importCss.ftl">
+    <!-- PAGE LEVEL SCRIPTS -->
+    <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="/css/print.css" rel="stylesheet" type="text/css" media="print">
 </head>
 <body class="smoothscroll enable-animation">
 <!-- wrapper -->
 <div id="wrapper">
     <#include "header.ftl">
-    <section class="page-header page-header-md parallax parallax-3 mt-130 "
+    <section class="page-header page-header-md parallax parallax-3 mt-130 d-print-none"
              style="background-image:url('/imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
         <div class="container">
 
-            <h1 class="uppercase">Modulo Convenzione</h1>
+            <h1 class="uppercase">Modulo termine Progetto Formativo e Di Orientamento</h1>
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
@@ -28,18 +33,18 @@
     </section>
 
     <section class="section-sm centrale border-top-section pl-20 pr-20">
-        <div class="border bg-white p-30 radius-5">
-            <#--<h1 class="mb-30 fs-50 fw-100 text-center border-bottom">MODULO CONVENZIONE</h1>-->
-            <embed src="/pdfview/convenzione?id=1" type="application/pdf" style="height: -webkit-fill-available; width: -webkit-fill-available;">
+        <div class="container">
+            <embed src="${pdfurl}" type="application/pdf">
         </div>
     </section>
 
-    <#include "footer.ftl">
+<#include  "footer.ftl">
 
 </div>
 
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
+
 
 </body>
 </html>
