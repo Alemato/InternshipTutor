@@ -6,7 +6,7 @@ import java.io.IOException;
 public class AdmistrationFilter implements Filter {
     public void destroy() {
     }
-
+//Todo prova se funziona
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         if(Integer.parseInt(req.getParameter("tipo"))==1)
         {
