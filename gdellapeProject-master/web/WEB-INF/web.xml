@@ -51,6 +51,16 @@
         <filter-name>AuthenticationFilter</filter-name>
         <url-pattern>/account/*</url-pattern>
         <url-pattern>/pdfview/*</url-pattern>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AdmistrationFilter</filter-name>
+        <filter-class>filter.AdmistrationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdmistrationFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
     <!-- /filtri -->
 
@@ -371,6 +381,12 @@
 
     </servlet-mapping>
 
+
+
+
+
+
+
     <servlet>
         <servlet-name>gestione-utenti</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneUtenza.AdminFillTableController</servlet-class>
@@ -381,6 +397,43 @@
         <url-pattern>/Gestione-utenti</url-pattern>
 
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>gestione-tirocinanti</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllTirocinantiController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>gestione-tirocinanti</servlet-name>
+        <url-pattern>gestione-tirocinanti</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>gestione-admin</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>gestione-admin</servlet-name>
+        <url-pattern>/gestione-admin</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>gestione-tutori</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllTutoriController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>gestione-tutori</servlet-name>
+        <url-pattern>/gestione-tutoti</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>gestione-aziende</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllAziendeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>gestione-aziende</servlet-name>
+        <url-pattern>/gestione-aziende</url-pattern>
+    </servlet-mapping>
+
+
+
+
     <servlet>
         <servlet-name>gestione-moduli</servlet-name>
         <servlet-class>controller.adm.Admin.AdminGestioneModuliController</servlet-class>
@@ -535,7 +588,7 @@
     <!--</servlet-mapping>-->
     <servlet>
     <servlet-name>TutteOfferteTr</servlet-name>
-    <servlet-class>controller.adm.Admin.GestioneUtenza.OfferteTirocinioController</servlet-class>
+    <servlet-class>controller.adm.Admin.GestioneTirocinio.OfferteTirocinioController</servlet-class>
     </servlet>
     <servlet-mapping>
     <servlet-name>TutteOfferteTr</servlet-name>
@@ -652,6 +705,17 @@
         <url-pattern>/Stato-Tutore</url-pattern>
 
     </servlet-mapping>
+    <servlet>
+        <servlet-name>showOfferta</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneTirocinio.ShowOffertaTirocinio</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showOfferta</servlet-name>
+        <url-pattern>/show-offerta</url-pattern>
+        <url-pattern>/Show-Offerta</url-pattern>
+
+    </servlet-mapping>
+
 
 
     <!-- end servelt account admin-->
