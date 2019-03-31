@@ -35,7 +35,7 @@
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
             <div class="row justify-content-between">
-                <a class="account-settings-item account-settings mb-15 mr-25 col-12 col-lg-5 ml-lg-5" href="impostazione-account-aziendale.html">
+                <a class="account-settings-item account-settings mb-15 mr-25 col-12 col-lg-5 ml-lg-5" href="/account/impostazioni">
                     <div class="d-flex">
                         <img src="/imgs/sign-in-lock.png" class="h-95 w-95 float-left m-0">
                         <div class="ml-10 mt-5 float-right">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </a>
-                <a class="account-settings account-settings-item mb-25 col-12 col-lg-5 mr-lg-5" href="tirocinio-aziendale.html">
+                <a class="account-settings account-settings-item mb-25 col-12 col-lg-5 mr-lg-5" href="/account/gestione-offerte">
                     <div class="d-flex">
                         <img src="/imgs/internship-icon.png" class="h-85 w-85 float-left">
                         <div class="ml-10 mt-5 float-right">
@@ -54,7 +54,7 @@
                     </div>
                 </a>
 
-                <a class="account-settings account-settings-item col-12 col-lg-5 ml-lg-5" href="richieste-tirocinio-aziendale.html">
+                <a class="account-settings account-settings-item col-12 col-lg-5 ml-lg-5" href="/account/gestione-richieste">
                     <div class="d-flex">
                             <img src="/imgs/document-icon.png" class="h-85 w-85 float-left">
                             <div class="ml-10 mt-5 float-right">
@@ -63,7 +63,7 @@
                             </div>
                     </div>
                 </a>
-                <a class="account-settings account-settings-item col-12 col-lg-5 mr-lg-5" href="moduli-aziendale.html">
+                <a class="account-settings account-settings-item col-12 col-lg-5 mr-lg-5" href="/account/moduli">
                     <div class="d-flex">
                             <img src="/imgs/forms.png" class="h-90 float-left mb-5 mr-10">
                             <div class="ml-10 mt-5 float-right">

@@ -230,6 +230,16 @@
         <url-pattern>/Account/Moduli/Tirocinio</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>GestioneOfferteController</servlet-name>
+        <servlet-class>controller.adm.Azienda.GestioneOfferteController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GestioneOfferteController</servlet-name>
+        <url-pattern>/account/gestione-offerte</url-pattern>
+        <url-pattern>/Account/Gestione-Offerte</url-pattern>
+    </servlet-mapping>
+
 
     <!-- servlet errori-->
     <servlet>
