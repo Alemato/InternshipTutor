@@ -229,9 +229,9 @@
 <script src="../../plugins/datatables/dataTables.bootstrap.js"></script>
 <script src="../../plugins/select2/js/select2.full.min.js"></script>
 <script>
-    function initTableTirocinanti() {
+    function initTableTutore() {
 
-        var table = jQuery('#datatable_tirocinante');
+        var table = jQuery('#datatable_tutore');
 
         var oTable = table.dataTable({
             "columns": [  {
@@ -278,110 +278,11 @@
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
 
-    function initTableAziende() {
 
-        var table = jQuery('#datatable_azienda');
 
-        var oTable = table.dataTable({
-            "columns": [{
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": false
-            }, {
-                "orderable": false
-            }, {
-                "orderable": false
-            }],
-            "order": [
-                [0, 'asc'],
-            ],
-            "lengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "Tutti"] // change per page values here
-            ],
-            "language": {
-                "search": "Filtra i record:",
-                "emptyTable": "Nessun dato disponibile nella tabella",
-                "zeroRecords": "Nessuna corrispondenza trovata",
-                "info": "Mostra da _START_ a _END_ di _TOTAL_ voci",
-                "infoEmpty": "Nessuna voce da mostrare",
-                "infoFiltered": " (filtrato da _MAX_ voci totali)"
-            },
-            "pageLength": 5, // set the initial value,
-            "columnDefs": [{  // set default column settings
-                'orderable': true,
-                'targets': [0]
-            }, {
-                "searchable": true,
-                "targets": [0]
-            }],
-        });
 
-        var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);
+    initTableTutore();
 
-        var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
-        tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
-    }
-
-    function initTableAdmin() {
-
-        var table = jQuery('#datatable_amministatori');
-
-        var oTable = table.dataTable({
-            "columns": [{
-                "orderable": true
-            }, {
-                "orderable": false
-            }, {
-                "orderable": false
-            }, {
-                "orderable": false
-            }],
-            "order": [
-                [0, 'asc'],
-            ],
-            "lengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "Tutti"] // change per page values here
-            ],
-            "language": {
-                "search": "Filtra i record:",
-                "emptyTable": "Nessun dato disponibile nella tabella",
-                "zeroRecords": "Nessuna corrispondenza trovata",
-                "info": "Mostra da _START_ a _END_ di _TOTAL_ voci",
-                "infoEmpty": "Nessuna voce da mostrare",
-                "infoFiltered": " (filtrato da _MAX_ voci totali)"
-            },
-            "pageLength": 5, // set the initial value,
-            "columnDefs": [{  // set default column settings
-                'orderable': true,
-                'targets': [0]
-            }, {
-                "searchable": true,
-                "targets": [0]
-            }],
-        });
-
-        var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);
-
-        var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
-        tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
-    }
-    initTableTirocinanti();
-    initTableAziende();
-    initTableAdmin();
 
 </script>
 
