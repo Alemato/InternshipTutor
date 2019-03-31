@@ -183,7 +183,7 @@
                                             <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
                                     </#if>
                                 </td>
-                                <#--TODO fare una form per eliminare la richiesta in modo da poter sbloccare l'account-->
+
                                 <td>
                                     <a type="button" class="btn btn-danger" href="/#"> Elimina richiesta</a>
                                 </td>
@@ -196,94 +196,7 @@
                         </footer>
                 </div>
             </div>
-            <section class="row text-center placeholders pt-10 pb-10 mb-10">
-            </section>
-            <h2>Convenzioni</h2>
-            <div class="card">
-                <div class="card-header">
-                    <i class="fa fa-table"></i> Moduli di Richiesta di Convenzionamento Aziendale
-                </div>
-                <#--Moduli di convenzionamento gia stipulati-->
-                <div class="card-body">
-                        <table class="table table-responsive table-striped table-bordered table-hover"
-                               id="datatable_ric_convenzioni" width="100%"
-                               cellspacing="0">
-                            <thead>
-                            <tr>
-                                <th>Nome Ente/Azienda</th>
-                                <th>Sede Legale</th>
-                                <th>Codice Fiscale Tirocinante</th>
-                                <th>Nome Tutore Aziendale</th>
-                                <th>Cognome Tutore Aziendale</th>
-                                <th>Data Richiesta</th>
-                                <th>Visualizza Richiesta</th>
-                                <th>Visualizza PDF Richiesta</th>
-                                <th>Invalida PDF</th>
 
-
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Nome Ente/Azienda</th>
-                                <th>Sede Legale</th>
-                                <th>Codice Fiscale Tirocinante</th>
-                                <th>Nome Tutore Aziendale</th>
-                                <th>Cognome Tutore Aziendale</th>
-                                <th>Data Richiesta</th>
-                                <th>Visualizza Richiesta</th>
-                                <th>Visualizza PDF Richiesta</th>
-                                <th>Invalida PDF</th>
-
-                            </tr>
-                            </tfoot>
-                            <tbody>
-
-                            <#if Aziende?has_content>
-
-
-                           <#list Aziende as azienda >
-                            <tr>
-                                <td>${azienda.ragioneSociale}</td>
-                                <td>${azienda.indirizzoSedeLegale}</td>
-                                <td>${azienda.CFiscalePIva}</td>
-                                <td>${azienda.nomeResponsabileConvenzione}</td>
-                                <td>${azienda.cognomeResponsabileConvenzione}</td>
-                                <td>${azienda.dataConvenzione?date?string("dd-MM-yyyy")}</td>
-                                <td>
-                                    <#if (azienda.pathPDFConvenzione)??>
-                                        <a type="button" class="btn btn-success" href="/convezione-azienda?IDAzienda=${azienda.IDAzienda} "> <i class="fa fa-file-text"></i> Visualizza</a>
-                                        <#else>
-                                            <button type="button" class="btn btn-success" disabled> <i class="fa fa-file-text"></i> Non disponibile</button>
-                                    </#if>
-
-                                </td>
-                                <td>
-                                    <#--TODO Metti i link non appena pronti-->
-                                    <#if (azienda.pathPDFConvenzione)??>
-                                        <a type="button" class="btn btn-primary"  href="/"> <i class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
-                                        <#else>
-                                            <button class="btn btn-primary" disabled> <i class="fa fa-file-pdf-o"></i> PDF Non Presente</button>
-                                    </#if>
-
-                                </td>
-                                <td>
-                               <#if (azienda.pathPDFConvenzione)??>
-                                    <a type="button" href="/invalida-convenzione?IDAzienda=${azienda.IDAzienda}" class="btn btn-danger"> Invalida</a>
-                               <#else>
-                                   <button class="btn btn-danger" disabled> Non Diponibile</button>
-                               </#if>
-                                </td>
-
-                            </tr>
-                           </#list>
-
-                           </#if>
-
-                            </tbody>
-                        </table>
-                </div>
-            </div>
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
             </section>
             <h2>Tirocinii Conclusi</h2>
@@ -463,9 +376,9 @@
 <script>
     // datatable_ric_convenzioni
     // datatable_fine_tirocinio
-    function initTableRicTiro() {
+    function initTableFineTiro() {
 
-        var table = jQuery('#datatable_ric_tiro');
+        var table = jQuery('#datatable_fine_tirocinio');
 
         var oTable = table.dataTable({
             "columns": [{
@@ -497,7 +410,19 @@
             }, {
                 "orderable": false
             }, {
-                "orderable": true
+                "orderable": false
+            }, {
+                "orderable": false
+            }, {
+                "orderable": false
+            }, {
+                "orderable": false
+            }, {
+                "orderable": false
+            }, {
+                "orderable": false
+            }, {
+                "orderable": false
             }, {
                 "orderable": false
             }],
@@ -532,64 +457,11 @@
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
 
-    function initTableRicConvenzioni() {
 
-        var table = jQuery('#datatable_ric_convenzioni');
 
-        var oTable = table.dataTable({
-            "columns": [{
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": false
-            }, {
-                "orderable": true
-            }, {
-                "orderable": false
-            }],
-            "order": [
-                [7, 'asc'],
-            ],
-            "lengthMenu": [
-                [5, 10, 20, -1],
-                [5, 10, 20, "Tutti"] // change per page values here
-            ],
-            "language": {
-                "search": "Filtra i record:",
-                "emptyTable": "Nessun dato disponibile nella tabella",
-                "zeroRecords": "Nessuna corrispondenza trovata",
-                "info": "Mostra da _START_ a _END_ di _TOTAL_ voci",
-                "infoEmpty": "Nessuna voce da mostrare",
-                "infoFiltered": " (filtrato da _MAX_ voci totali)"
-            },
-            "pageLength": 5, // set the initial value,
-            "columnDefs": [{  // set default column settings
-                'orderable': true,
-                'targets': [0]
-            }, {
-                "searchable": true,
-                "targets": [0]
-            }],
-        });
+    function initTableRicTiro() {
 
-        var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);
-
-        var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
-        tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
-    }
-
-    function initTableFineTirocinio() {
-
-        var table = jQuery('#datatable_fine_tirocinio');
+        var table = jQuery('#datatable_ric_tiro');
 
         var oTable = table.dataTable({
             "columns": [{
@@ -621,14 +493,10 @@
             }, {
                 "orderable": false
             }, {
-                "orderable": true
+                "orderable": false
             }, {
                 "orderable": false
             },{
-                "orderable": false
-            }, {
-                "orderable": true
-            }, {
                 "orderable": false
             }],
             "order": [

@@ -1,12 +1,10 @@
 package controller.adm.Admin.GestioneModuli;
 
 
-import controller.adm.Admin.GestioneTirocinio.FillGestioniModuli;
+import controller.adm.Admin.GestioneAzienda.FillGestioniModuliConvenzione;
 import controller.baseController;
 import dao.exception.DaoException;
-import dao.implementation.AziendaDaoImp;
 import dao.implementation.TirocinioDaoImp;
-import model.Azienda;
 import model.Tirocinio;
 
 import javax.servlet.ServletException;
@@ -35,7 +33,7 @@ public class InvalidaModuloRichiestaTirocinioController extends baseController {
             TirocinioDaoImp dao = new TirocinioDaoImp();
             Tirocinio tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
             dao.destroy();
-            FillGestioniModuli page = new FillGestioniModuli(request,response,getServletContext(),datamodel);
+            FillGestioniModuliConvenzione page = new FillGestioniModuliConvenzione(request,response,getServletContext(),datamodel);
             if(!(tr.getPdfTirocinante().isEmpty()))
             {
                 tr.setPdfTirocinante(null);

@@ -1,4 +1,4 @@
-package controller.adm.Admin.GestioneTirocinio;
+package controller.adm.Admin.GestioneAzienda;
 
 import dao.exception.DaoException;
 import dao.implementation.*;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class FillGestioniModuli {
+public class FillGestioniModuliConvenzione {
 
     private HttpServletRequest request;
     private HttpServletResponse response;
@@ -27,11 +27,11 @@ public class FillGestioniModuli {
 
 
     //faccio il private per non farlo eseguire
-    private FillGestioniModuli() {
+    private FillGestioniModuliConvenzione() {
 
     }
 
-    public FillGestioniModuli( HttpServletRequest request, HttpServletResponse response,ServletContext servletContext,Map<String,Object> datamodel) {
+    public FillGestioniModuliConvenzione(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext, Map<String,Object> datamodel) {
         this.request=request;
         this.response=response;
         this.servletContext=servletContext;
@@ -218,10 +218,6 @@ public class FillGestioniModuli {
         try {
 
 
-            // add the date to fill table OfferteTirocinio
-            List<Tirocinio> richisteTr = getTirocini();
-            data.put("Richieste", getCampiTabelle(richisteTr));
-            System.out.println(data.get("Richieste"));
 
 
             // add the date to fill table Gestione convenzionamento aziende
@@ -232,14 +228,10 @@ public class FillGestioniModuli {
             System.out.println(data.get("Aziende"));
 
 
-            // add the data to fill table Gestione tirocinii Conclusi
-            List<Tirocinio> trconclusi = getTirociniConclusi();
-            data.put("TirociniConclusi", getCampiTabelle(trconclusi));
-            System.out.println(data.get("TirociniConclusi"));
 //            Warning per il successo di una operazione
             data.put("WarningSuccess",warning);
             datamodel.putAll(data);
-            TemplateController.process("BackEndTemplates/gestione-moduli.ftl", datamodel, response, servletContext);
+            TemplateController.process("BackEndTemplates/gestione-moduli-convenzione.ftl", datamodel, response, servletContext);
         }catch (DaoException e)
         {
             e.printStackTrace();
@@ -254,11 +246,6 @@ public class FillGestioniModuli {
         try {
 
 
-            // add the date to fill table OfferteTirocinio
-            List<Tirocinio> richisteTr = getTirocini();
-            data.put("Richieste", getCampiTabelle(richisteTr));
-            System.out.println(data.get("Richieste"));
-
 
             // add the date to fill table Gestione convenzionamento aziende
             AziendaDaoImp dao = new AziendaDaoImp();
@@ -268,15 +255,11 @@ public class FillGestioniModuli {
             System.out.println(data.get("Aziende"));
 
 
-            // add the data to fill table Gestione tirocinii Conclusi
-            List<Tirocinio> trconclusi = getTirociniConclusi();
-            data.put("TirociniConclusi", getCampiTabelle(trconclusi));
-            System.out.println(data.get("TirociniConclusi"));
-//            Warning per il successo di una operazione
+
 
             data.put("WarningInsuccess", warning);
             datamodel.putAll(data);
-            TemplateController.process("BackEndTemplates/gestione-moduli.ftl", datamodel, response, servletContext);
+            TemplateController.process("BackEndTemplates/gestione-moduli-convenzione.ftl", datamodel, response, servletContext);
         } catch (DaoException e) {
             e.printStackTrace();
 
@@ -289,10 +272,7 @@ public class FillGestioniModuli {
             try {
 
 
-                // add the date to fill table OfferteTirocinio
-                List<Tirocinio> richisteTr = getTirocini();
-                data.put("Richieste", getCampiTabelle(richisteTr));
-                System.out.println(data.get("Richieste"));
+
 
 
                 // add the date to fill table Gestione convenzionamento aziende
@@ -303,14 +283,9 @@ public class FillGestioniModuli {
                 System.out.println(data.get("Aziende"));
 
 
-                // add the data to fill table Gestione tirocinii Conclusi
-                List<Tirocinio> trconclusi = getTirociniConclusi();
-                data.put("TirociniConclusi", getCampiTabelle(trconclusi));
-                System.out.println(data.get("TirociniConclusi"));
-//            Warning per il successo di una operazione
 
                 datamodel.putAll(data);
-                TemplateController.process("BackEndTemplates/gestione-moduli.ftl", datamodel, response, servletContext);
+                TemplateController.process("BackEndTemplates/gestione-moduli-convenzione.ftl", datamodel, response, servletContext);
             }catch (DaoException e)
             {
                 e.printStackTrace();

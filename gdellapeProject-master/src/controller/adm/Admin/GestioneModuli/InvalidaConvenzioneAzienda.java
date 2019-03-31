@@ -1,9 +1,8 @@
 package controller.adm.Admin.GestioneModuli;
 
 
-import controller.adm.Admin.GestioneTirocinio.FillGestioniModuli;
+import controller.adm.Admin.GestioneAzienda.FillGestioniModuliConvenzione;
 import controller.adm.Admin.GestioneUtenza.AdminFillTable;
-import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
 import model.Azienda;
@@ -37,7 +36,7 @@ public class InvalidaConvenzioneAzienda  {
             AziendaDaoImp dao = new AziendaDaoImp();
             Azienda azienda = dao.getAziendaByID(Integer.parseInt(request.getParameter("IDAzienda")));
             dao.destroy();
-            FillGestioniModuli page = new FillGestioniModuli(request, response, context, datamodel);
+            FillGestioniModuliConvenzione page = new FillGestioniModuliConvenzione(request, response, context, datamodel);
             if ((!azienda.getPathPDFConvenzione().isEmpty()) && (azienda.getAttivo() == 1)) {
 //                azienda.setPathPDFConvenzione(null);
 //                azienda.setDataConvenzione(null);
@@ -46,6 +45,9 @@ public class InvalidaConvenzioneAzienda  {
 //                dao2.updateAzienda(azienda);
 //                dao2.destroy();
                 //TODO Manda mail per avvisare che la convenzione è scaduta
+                //TODO bisogna vedere anche come gestire le offerte che ha pubblicato bisogna mettere tutte le sue offerte a scadute in modo che gli studenti non le vedano piu
+
+
 
                 page.makegetWithSuccess("Invalidazione della convenzione per l'azienda " + azienda.getRagioneSociale() + " andata a buon fine");
 
@@ -71,10 +73,10 @@ public class InvalidaConvenzioneAzienda  {
 //                dao2.destroy();
                 //TODO Manda mail per avvisare che la convenzione è scaduta
 
-                page.makeSuccessGet("L'azienda "+azienda.getRagioneSociale()+" ora non può piu operare lui sito");
+                page.makeSuccessGetAziende("L'azienda "+azienda.getRagioneSociale()+" ora non può piu operare lui sito");
 
             } else {
-                page.makeInsuccessGet("Operazione di invalidazione dell'azienda "+azienda.getRagioneSociale()+"non ha funzionato");
+                page.makeInsuccessGetAziende("Operazione di invalidazione dell'azienda "+azienda.getRagioneSociale()+"non ha funzionato");
 
             }
         }

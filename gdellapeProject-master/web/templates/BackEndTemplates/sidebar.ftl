@@ -16,12 +16,10 @@
                 <a class="" href="/offertetirocinioadmin">OFFERTE DI TIROCINIO</a>
             </li>
             <li class="list-group-item">
-                <a class="dropdown-toggle" href="Gestione-moduli">GESTIONE MODULI</a>
+                <a class="dropdown-toggle">GESTIONE MODULI</a>
                 <ul>
-                    <li><a href="/#">RICHIESTE TIROCINII TIROCINANTI</a></li>
-                    <li><a href="/#">RICHIESTE CONVENZIONI AZIENDALI</a>
-                    </li>
-                    <li><a href="/#">MODULO TIROCINIO FINE</a>
+                    <li><a href="/Gestione-tirocinio">GESTIONE MODULI TIROCINI</a></li>
+                    <li><a href="/Gestione-Convenzione">GESTIONE CONVENZIONI AZIENDALI</a>
                     </li>
                 </ul>
             </li>
