@@ -456,16 +456,26 @@
 
 
     <servlet>
-        <servlet-name>gestione-moduli</servlet-name>
-        <servlet-class>controller.adm.Admin.AdminGestioneModuliController</servlet-class>
+        <servlet-name>gestione-moduli-convenzione</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneAzienda.AdminGestioneModuliConvenzioneController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>gestione-moduli</servlet-name>
-        <url-pattern>/gestione-moduli</url-pattern>
-        <url-pattern>/Gestione-moduli</url-pattern>
+        <servlet-name>gestione-moduli-convenzione</servlet-name>
+        <url-pattern>/gestione-convenzione</url-pattern>
+        <url-pattern>/Gestione-Convenzione</url-pattern>
 
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>gestione-moduli-tirocinio</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneTirocinio.AdminGestioneModuliTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>gestione-moduli-tirocinio</servlet-name>
+        <url-pattern>/gestione-tirocinio</url-pattern>
+        <url-pattern>/Gestione-tirocinio</url-pattern>
+
+    </servlet-mapping>
     <servlet>
         <servlet-name>gestione-account-admin</servlet-name>
         <servlet-class>controller.adm.Admin.AdminGestioneAccountController</servlet-class>
