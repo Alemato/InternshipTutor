@@ -404,8 +404,9 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>gestione-tirocinanti</servlet-name>
-        <url-pattern>gestione-tirocinanti</url-pattern>
+        <url-pattern>/admin/gestione-tirocinanti</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>gestione-admin</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneUtenza.ShowAllAdminController</servlet-class>
