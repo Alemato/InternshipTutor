@@ -35,7 +35,7 @@ public class ModuloFineTirocinioAziendaController extends baseController {
     }
 
     private void err500(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/400");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/500");
         dispatcher.forward(request, response);
     }
 
@@ -56,6 +56,7 @@ public class ModuloFineTirocinioAziendaController extends baseController {
         } catch (DaoException e) {
             e.printStackTrace();
         }
+        response.sendRedirect("/account/moduli");
     }
 
     private void processaRichiesta(HttpServletRequest request, HttpServletResponse response, SingSessionContoller session) throws IOException, ServletException {
@@ -93,7 +94,7 @@ public class ModuloFineTirocinioAziendaController extends baseController {
             if (session.isAzienda(request)) {
                 TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
                 try {
-                    Tirocinio tirocinio = tirocinioDaoImp.getRichiestatrByID(Integer.parseInt(request.getParameter("id")));
+                    Tirocinio tirocinio = tirocinioDaoImp.getRichiestatrByID(Integer.parseInt(request.getParameter("ID_Tirocinio")));
                     tirocinioDaoImp.destroy();
                     if (tirocinio.getPdfAzienda() == null) {
                         processaRichiestaPost(request, response, session);
