@@ -19,6 +19,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement selectAllOfferteditr;//le metto gia in ordine dal più nuovo al vecchio
     private PreparedStatement selectOffertetrByAzienda;
     private PreparedStatement selectLastFiveOfferte;
+    private PreparedStatement updateOffertatr;
 
 
     @Override
@@ -33,13 +34,20 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
 
             this.selectOffertetrByAzienda = connection.prepareStatement("SELECT * FROM offertatirocinio WHERE  Azienda = ? ORDER BY UpdateDate ASC ");
 
-            this.selectLastFiveOfferte = connection.prepareStatement("SELECT * FROM offertatirocinio ORDER BY UpdateDate ASC LIMIT 5");
+            this.selectLastFiveOfferte = connection.prepareStatement("SELECT * FROM offertatirocinio WHERE Stato = 1 ORDER BY UpdateDate ASC LIMIT 5");
 
             this.insertOffertatr = connection.prepareStatement("INSERT INTO offertatirocinio(LuogoEffettuazione," +
-                    "Titolo,DescrizioneBreve,Descrizione,Orari,DurataOre,DurataMesi,PeriodoInizio,PeriodoFine," +
+                    "Titolo,DescrizioneBreve,Descrizione,Orari,DurataOre,DurataMesi,PeriodoInizio,PeriodoFine,Stato," +
                     "Modalita,Obbiettivi,Rimborsi,Facilitazioni,AziendaOspitante,CodIdentTirocinio,SettoreInserimento," +
                     "TempoAccessoLocaliAziendali,NomeTutoreAziendale,CognomeTutoreAziendale,TelefonoTutoreAziendale," +
-                    "EmailTutoreAziendale,Azienda, TutoreUniversitario  ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "EmailTutoreAziendale,Azienda, TutoreUniversitario  ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            
+            this.updateOffertatr = connection.prepareStatement("UPDATE offertatirocinio SET LuogoEffettuazione = ?," +
+                    "Titolo= ?,DescrizioneBreve= ?,Descrizione= ?,Orari = ?, DurataOre = ?, DurataMesi = ?, " +
+                    "PeriodoInizio = ?, PeriodoFine = ?, Stato = ?, Modalita = ?, Obbiettivi = ?, Rimborsi = ?, " +
+                    "Facilitazioni = ?, AziendaOspitante = ?, CodIdentTirocinio = ?, SettoreInserimento = ?, " +
+                    "TempoAccessoLocaliAziendali = ?, NomeTutoreAziendale = ?, CognomeTutoreAziendale = ?, " +
+                    "TelefonoTutoreAziendale = ?, EmailTutoreAziendale = ? WHERE IDOffertaTirocinio = ?");
 
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
@@ -59,6 +67,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             offertaTirocinio.setDurataMesi(resultSet.getInt("DurataMesi"));
             offertaTirocinio.setPeriodoInizio(resultSet.getDate("PeriodoInizio"));
             offertaTirocinio.setPeriodoFine(resultSet.getDate("PeriodoFine"));
+            offertaTirocinio.setStato(resultSet.getInt("Stato"));
             offertaTirocinio.setModalita(resultSet.getString("Modalita"));
             offertaTirocinio.setObbiettivi(resultSet.getString("Obbiettivi"));
             offertaTirocinio.setRimborsi(resultSet.getString("Rimborsi"));
@@ -152,7 +161,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
     public void setOffertatr(OffertaTirocinio tr) throws DaoException {
         /*
         "INSERT INTO offertatirocinio(LuogoEffettuazione," +
-                    "Titolo,DescrizioneBreve,Descrizione,Orari,DurataOre,DurataMesi,PeriodoInizio,PeriodoFine," +
+                    "Titolo,DescrizioneBreve,Descrizione,Orari,DurataOre,DurataMesi,PeriodoInizio,PeriodoFine,Stato" +
                     "Modalita,Obbiettivi,Rimborsi,Facilitazioni,AziendaOspitante,CodIdentTirocinio,SettoreInserimento," +
                     "TempoAccessoLocaliAziendali,NomeTutoreAziendale,CognomeTutoreAziendale,TelefonoTutoreAziendale," +
                     "EmailTutoreAziendale,Azienda, TutoreUniversitario  ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
@@ -168,20 +177,21 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             insertOffertatr.setInt(7, tr.getDurataMesi());
             insertOffertatr.setDate(8, tr.getPeriodoInizio());
             insertOffertatr.setDate(9, tr.getPeriodoFine());
-            insertOffertatr.setString(10, tr.getModalita());
-            insertOffertatr.setString(11, tr.getObbiettivi());
-            insertOffertatr.setString(12, tr.getRimborsi());
-            insertOffertatr.setString(13, tr.getFacilitazioni());
-            insertOffertatr.setString(14, tr.getAziendaOspitante());
-            insertOffertatr.setString(15, tr.getCodIdentTirocinio());
-            insertOffertatr.setString(16, tr.getSettoreInserimento());
-            insertOffertatr.setString(17, tr.getTempoAccessoLocaliAziendali());
-            insertOffertatr.setString(18, tr.getNomeTutoreAziendale());
-            insertOffertatr.setString(19, tr.getCognomeTutoreAziendale());
-            insertOffertatr.setString(20, tr.getTelefonoTutoreAziendale());
-            insertOffertatr.setString(21, tr.getEmailTutoreAziendale());
-            insertOffertatr.setInt(22, tr.getAzienda());
-            insertOffertatr.setInt(23, tr.getTutoreUniversitario());
+            insertOffertatr.setInt(10, tr.getStato());
+            insertOffertatr.setString(11, tr.getModalita());
+            insertOffertatr.setString(12, tr.getObbiettivi());
+            insertOffertatr.setString(13, tr.getRimborsi());
+            insertOffertatr.setString(14, tr.getFacilitazioni());
+            insertOffertatr.setString(15, tr.getAziendaOspitante());
+            insertOffertatr.setString(16, tr.getCodIdentTirocinio());
+            insertOffertatr.setString(17, tr.getSettoreInserimento());
+            insertOffertatr.setString(18, tr.getTempoAccessoLocaliAziendali());
+            insertOffertatr.setString(19, tr.getNomeTutoreAziendale());
+            insertOffertatr.setString(20, tr.getCognomeTutoreAziendale());
+            insertOffertatr.setString(21, tr.getTelefonoTutoreAziendale());
+            insertOffertatr.setString(22, tr.getEmailTutoreAziendale());
+            insertOffertatr.setInt(23, tr.getAzienda());
+            insertOffertatr.setInt(24, tr.getTutoreUniversitario());
             insertOffertatr.executeUpdate();
 
         } catch (SQLException e) {
@@ -190,6 +200,45 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
 
     }
 
+    public void updateOffertatr(OffertaTirocinio tr) throws DaoException {
+    /**
+    * UPDATE offertatirocinio SET LuogoEffettuazione = ?," +
+    *                     "Titolo= ?,DescrizioneBreve= ?,Descrizione= ?,Orari = ?, DurataOre = ?, DurataMesi = ?, " +
+    *                     "PeriodoInizio = ?, PeriodoFine = ?, Stato = ?, Modalita = ?, Obbiettivi = ?, Rimborsi = ?, " +
+    *                     "Facilitazioni = ?, AziendaOspitante = ?, CodIdentTirocinio = ?, SettoreInserimento = ?, " +
+    *                     "TempoAccessoLocaliAziendali = ?, NomeTutoreAziendale = ?, CognomeTutoreAziendale = ?, " +
+    *                     "TelefonoTutoreAziendale = ?, EmailTutoreAziendale = ? WHERE IDOffertaTirocinio = ?
+    */
+        try{
+            this.init();
+            this.updateOffertatr.setString(1, tr.getLuogoEffettuazione());
+            this.updateOffertatr.setString(2, tr.getTitolo());
+            this.updateOffertatr.setString(3, tr.getDescrizioneBreve());
+            this.updateOffertatr.setString(4, tr.getDescrizione());
+            this.updateOffertatr.setString(5, tr.getOrari());
+            this.updateOffertatr.setInt(6, tr.getDurataOre());
+            this.updateOffertatr.setInt(7, tr.getDurataMesi());
+            this.updateOffertatr.setDate(8, tr.getPeriodoInizio());
+            this.updateOffertatr.setDate(9, tr.getPeriodoFine());
+            this.updateOffertatr.setInt(10, tr.getStato());
+            this.updateOffertatr.setString(11, tr.getModalita());
+            this.updateOffertatr.setString(12, tr.getObbiettivi());
+            this.updateOffertatr.setString(13, tr.getRimborsi());
+            this.updateOffertatr.setString(14, tr.getFacilitazioni());
+            this.updateOffertatr.setString(15, tr.getAziendaOspitante());
+            this.updateOffertatr.setString(16, tr.getCodIdentTirocinio());
+            this.updateOffertatr.setString(17, tr.getSettoreInserimento());
+            this.updateOffertatr.setString(18, tr.getTempoAccessoLocaliAziendali());
+            this.updateOffertatr.setString(19, tr.getNomeTutoreAziendale());
+            this.updateOffertatr.setString(20, tr.getCognomeTutoreAziendale());
+            this.updateOffertatr.setString(21, tr.getTelefonoTutoreAziendale());
+            this.updateOffertatr.setString(22, tr.getEmailTutoreAziendale());
+            this.updateOffertatr.setInt(23, tr.getIDOffertaTirocinio());
+            this.updateOffertatr.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Errore esecuzione update", e);
+        }
+    }
 
     public void destroy() throws DaoException {
         try {
@@ -198,6 +247,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             this.selectAllOfferteditr.close();
             this.insertOffertatr.close();
             this.selectLastFiveOfferte.close();
+            this.updateOffertatr.close();
             super.destroy();
 
         } catch (SQLException ex) {
