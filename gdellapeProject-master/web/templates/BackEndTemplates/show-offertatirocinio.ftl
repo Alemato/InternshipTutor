@@ -24,8 +24,8 @@
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
         <li><a href="admin.html">HOME DASHBOARD</a></li>
-        <li><a href="/gestione-utenti"><b>GESTIONE UTENZA</b></a></li>
-        <li class="active"><a href="#"><b>GESTIONE:</b></a></li>
+        <li><a href="/offertetirocinioadmin"><b>GESTIONE OFFERTE TIROCINIO</b></a></li>
+        <li class="active"><a href="#"><b>OFFERTA : ${offerta.titolo}</b></a></li>
     </ol>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">

@@ -82,7 +82,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
 
-                        <table class="table table-striped table-bordered table-hover" id="datatable_1" width="100%"
+                        <table class="table table-striped table-bordered table-hover" id="datatable_richieste" width="100%"
                                cellspacing="0">
                             <thead>
                             <tr>
@@ -139,12 +139,16 @@
                                     <td>
                                         <#if (azienda.pathPDFConvenzione)??> <a type="button" href="/#" class="btn btn-primary"> Visualizza</a>
                                         <#else>
-                                            <button type="button" class="btn btn-primary" disabled> Modulo</button>
+                                            <button type="button" class="btn btn-primary" disabled> Non  presente</button>
                                         </#if>
 
                                     </td>
                                     <td>
-                                        <a type="button" href="/#" class="btn btn-secondary"> Visualizza PDF</a>
+                                        <#if (azienda.pathPDFConvenzione)??>     <a type="button" href="/#" class="btn btn-secondary"> Visualizza PDF</a>
+                                        <#else>
+                                            <button type="button" class="btn btn-primary" disabled> PDF non presente</button>
+                                        </#if>
+
                                     </td>
                                     <td>
 
@@ -183,7 +187,7 @@
                     <i class="fa fa-table"></i> Convenzioni Stipulate
                 </div>
                 <div class="card-body" style="width: 100%">
-                    <table class="table table-striped table-bordered table-hover" id="datatable_2" cellspacing="0">
+                    <table class="table table-striped table-bordered table-hover" id="datatable_richieste_attive" cellspacing="0">
                         <thead>
                         <tr>
                             <th>Nome Ente</th>
@@ -270,9 +274,9 @@
 <script src="plugins/datatables/dataTables.bootstrap.js"></script>
 <script src="plugins/select2/js/select2.full.min.js"></script>
 <script>
-    function initTablePendenti() {
+    function initTableRichieste() {
 
-        var table = jQuery('#datatable_1');
+        var table = jQuery('#datatable_richieste');
 
         var oTable = table.dataTable({
             "columns": [{
@@ -296,10 +300,12 @@
             }, {
                 "orderable": true
             }, {
-                "width": "7%",
                 "orderable": false
             }, {
-                "width": "7%",
+                "orderable": false
+            }, {
+                "orderable": false
+            }, {
                 "orderable": false
             }],
             "order": [
@@ -333,9 +339,9 @@
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
 
-    function initTableUltime() {
+    function initTableAttive() {
 
-        var table = jQuery('#datatable_2');
+        var table = jQuery('#datatable_richieste_attive');
 
         var oTable = table.dataTable({
             "columns": [{
@@ -358,8 +364,6 @@
                 "orderable": true
             }, {
                 "orderable": true
-            }, {
-                "orderable": false
             }, {
                 "orderable": false
             }, {
@@ -396,22 +400,10 @@
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
 
-    initTablePendenti();
-    initTableUltime();
-    $("tr td input[type=checkbox]").click(enable_cb);
+    initTableRichieste();
+    initTableAttive();
 
 
-    function enable_cb() {
-        if (this.checked) {
-            console.log(this);
-            $(this).closest("tr").children().children().attr("disabled", "true").addClass('grey');
-            $(this).removeAttr("disabled").next().removeClass('grey');
-
-        } else {
-            $(this).closest("tr").children().children().removeAttr("disabled");
-            $(this).closest("tr").children().children().removeClass('grey');
-        }
-    }
 </script>
 </body>
 </html>

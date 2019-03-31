@@ -118,7 +118,7 @@
                     <td>${offerta.emailTutoreAziendale}</td>
                     <td>${offerta.createDate?date?string("dd-MM-yyyy")}</td>
                     <td>
-                        <a type="button" class="btn btn-primary" href="/#"><i class="fa fa-file-text"></i>Visualizza</a>
+                        <a type="button" class="btn btn-primary" href="/show-offerta?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-file-text"></i>Visualizza</a>
 
                     </td>
                     <td>
@@ -186,7 +186,7 @@
                         <td>${offerta.emailTutoreAziendale}</td>
                         <td>${offerta.createDate?date?string("dd-MM-yyyy")}</td>
                         <td>
-                            <a type="button" class="btn btn-primary" href="/#"><i class="fa fa-file-text"></i>Visualizza</a>
+                            <a type="button" class="btn btn-primary" href="/Show-Offerta?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-file-text"></i>Visualizza</a>
 
                         </td>
                         <td>
