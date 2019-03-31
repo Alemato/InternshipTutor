@@ -78,7 +78,7 @@ public class ModificaTutoreController extends baseController {
             storeTutoreUni(request,response,tutore);
                 //redirigo sulla pagina di gestione utenti
                 AdminFillTable page =new AdminFillTable(datamodel,getServletContext(),request,response);
-                page.makeSuccessGet("Il Tutore "+tutore.getNome()+" "+tutore.getCognome()+" e stato modifica corettamente" );
+                page.makeSuccessGetTutori("Il Tutore "+tutore.getNome()+" "+tutore.getCognome()+" e stato modifica corettamente" );
 
             }
         }catch (DaoException e) {

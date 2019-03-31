@@ -49,7 +49,8 @@ public class CreateAdminController extends baseController {
                 //insertUser(request,response);
                 //insertAdmin(request,response);
                 System.out.println("vali");
-                response.sendRedirect("/gestione-utenti");
+               AdminFillTable page = new AdminFillTable(datamodel,getServletContext(),request,response);
+               page.makeSuccessGetAdmin("Il nuovo admin &egrave; stato inserito correttamente");
             }
         }catch (DaoException e)
         {
@@ -181,7 +182,7 @@ public class CreateAdminController extends baseController {
         System.out.println(datamodel.toString());
 
         AdminFillTable page = new AdminFillTable(datamodel,getServletContext(),request,response);
-        page.makeInsuccessGet("Errore inserimento del nuovo admin");
+        page.makeInsuccessGetAdmin("Errore inserimento del nuovo admin");
 
     }
 

@@ -2,35 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gestione Moduli</title>
+    <title>Gestione Utenza</title>
 
-    <!-- mobile settings -->
-    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
-    <!--[if IE]>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-
-    <!-- WEB FONTS : use %7C instead of | (pipe) -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons%7COpen+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700"
-          rel="stylesheet" type="text/css"/>
-
-    <!-- CORE CSS -->
-    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-    <!-- THEME CSS -->
-    <link href="css/essentials.css" rel="stylesheet" type="text/css"/>
-    <link href="css/layout.css" rel="stylesheet" type="text/css"/>
-
-    <!-- PAGE LEVEL SCRIPTS -->
-    <link href="css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="css/internshiptutor.css" rel="stylesheet" type="text/css">
+   <#include "../importCss.ftl">
 
     <!-- Page Sript -->
-    <link href="css/admin.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
     <!-- /Page Script -->
 
     <!-- CSS DATATABLES -->
-    <link href="css/layout-datatables.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -42,9 +23,10 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
+
     <ol class="breadcrumb">
-        <li class=""><a href="admin.html">HOME DASHBOARD</a></li>
-        <li class="active"><a href="gestione-moduli-admin.html"><b>GESTIONE MODULI</b></a></li>
+        <li><a href="admin.html">HOME DASHBOARD</a></li>
+        <li class="active"><a href="#"><b>GESTIONE TIROCINANTI</b></a></li>
     </ol>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -58,70 +40,120 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <#include "../BackEndTemplates/sidebar.ftl">
-
+       <#include "../BackEndTemplates/sidebar.ftl">
+<#--TODO controlla solo le barre e gli url con il filtro-->
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-
             <noscript>
                 <div class="alert alert-danger mb-10 mt-10">
                     <h3 class="mb-10"><strong>Attenzione!</strong></h3>
-                    <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto
-                        <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
+                    <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
 
-            <section class="row text-center placeholders pt-10 pb-10 mb-10">
+                <#if WarningSuccess??>
+                    <div class="alert alert-success mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${WarningSuccess}
+                    </div>
+                </#if>
+            <#if WarningInsuccess??>
+                    <div class="alert alert-danger mb-20">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione!</strong> ${WarningInsuccess}
+                    </div>
+                </#if>
+
+            <section class="row text-center placeholders pt-10 mb-10">
             </section>
+            <h3>Lista Tirocinanti</h3>
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-table"></i> Tirocinanti
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive" >
+                        <table class="table table-striped table-bordered table-hover" id="datatable_tirocinante" width="100%"
+                               cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Cognome</th>
+                                <th>Codice Fiscale</th>
+                                <th>Data Di Nascita</th>
+                                <th>Telefono</th>
+                                <th>Portatore Handicap</th>
+                                <th>Visualizza</th>
+                                <th>Cambia Email</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Cognome</th>
+                                <th>Codice Fiscale</th>
+                                <th>Data Di Nascita</th>
+                                <th>Telefono</th>
+                                <th>Portatore Handicap</th>
+                                <th>Visualizza</th>
+                                <th>Cambia Email</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <#list tirocinanti as tirocinante>
+                            <tr>
+                                <td>${tirocinante.nome}</td>
+                                <td>${tirocinante.cognome}</td>
+                                <td>${tirocinante.codiceFiscale}</td>
+                                <td>${tirocinante.dataDiNascita?date?string("dd-MM-yyyy")}</td>
+                                <td>${tirocinante.telefono}</td>
+                                <td><#if tirocinante.handicap>yes<#else>no</#if> </td>
+                                <td>
 
-            <h6>Nome Tirocinante : ${dati[0]}</h6>
-            <h6>Cognome Tirocinante :${dati[1]} </h6>
-            <h6>Codice Fiscale Tirocinante : $${dati[2]}}</h6>
-            <h6>Ente/Azienda Ospitante : ${dati[3]}</h6>
-            <h6>Sede Legale Ente : ${dati[4]}</h6>
-            <h6>Codice Fiscale Ente : ${dati[5]}</h6>
-            <h6>Nome Tutore Aziendale :  ${dati[6]}</h6>
-            <h6>Cognome Tutore Aziendale :  ${dati[7]}</h6>
-            <h6>Tel. Tutore Aziendale : ${dati[8]} </h6>
-            <h6>Nome Tutore Univeresitario : ${dati[9]}</h6>
-            <h6>Cognome Tutore Univeresitario : ${dati[10]}</h6>
-            <h6>Tel. Tutore Univeresitario : ${dati[11]}</h6>
-            <h6>Data Richiesta : ${tirocinio.createDate?date}</h6>
-            <h6>Durata ore : ${tirocinio.durataOre}</h6>
-            <h6>CFU : ${tirocinio.CFU}</h6>
-            <h6>Inizio Tirocinio : ${tirocinio.periodoEffettivoIniziale?date} </h6>
-            <h6>Fine Tirocinio : ${tirocinio.periodoEffettivoIniziale?date}</h6>
-            <h6>Risultato Conseguito : ${tirocinio.risultatoConseguito}</h6>
-            <h6>Descrizione Attività svolta : ${tirocinio.descrizioneAttivitaSvolta}</h6>
+                                    <a type="button" class="btn btn-primary" href="/show-tirocinante?IDTirocinante=${tirocinante.IDTirocinante}">
+                                        <i class="fa fa-file-text"></i>Visualizza Utente
+                                    </a>
 
-            <div class="row">
-                <a type="button" class="btn btn-primary" href="/#"> PDF Modulo Azienda</a>
-                <a type="button" class="btn btn-" href="/#"> PDF Modulo Azienda</a>
-                <a type="button" class="btn btn-secondary" href="/#"> PDF Modulo Tirocinante </a>
+
+                                </td>
+                                <td>
+                                    <a type="button" href="/reimposta-User?IDUser=${tirocinante.user}" class="btn btn-secondary">
+                                        <i class="fa fa-pencil-square-o"></i>Cambia</a>
+                                </td>
+
+                            </tr>
+                            </#list>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
             </div>
+
         </main>
     </div>
 </div>
 
-<!-- JAVASCRIPT FILES -->
-<script>var plugin_path = 'plugins/';</script>
-<script src="plugins/jquery/jquery-3.3.1.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="plugins/bootstrap/js/bootstrap.js"></script>
 
+<#include "../importScript.ftl">
 
 <!-- Script page -->
-<script src="plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables/js/dataTables.tableTools.min.js"></script>
-<script src="plugins/datatables/js/dataTables.colReorder.min.js"></script>
-<script src="plugins/datatables/js/dataTables.scroller.min.js"></script>
-<script src="plugins/datatables/dataTables.bootstrap.js"></script>
-<script src="plugins/select2/js/select2.full.min.js"></script>
+<script src="../../plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.tableTools.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.colReorder.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.scroller.min.js"></script>
+<script src="../../plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
 <script>
-    // datatable_ric_convenzioni
-    // datatable_fine_tirocinio
-    function initTableRicTiro() {
+    function initTableTirocinanti() {
 
-        var table = jQuery('#datatable_ric_tiro');
+        var table = jQuery('#datatable_tirocinante');
 
         var oTable = table.dataTable({
             "columns": [{
@@ -139,30 +171,15 @@
             }, {
                 "orderable": true
             }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
                 "orderable": false
-            }, {
-                "orderable": true
-            }, {
-                "orderable": false
-            }],
+            }
+            ],
             "order": [
-                [14, 'asc'],
+                [0, 'asc'],
             ],
             "lengthMenu": [
-                [5, 10, 20, -1],
-                [5, 10, 20, "Tutti"] // change per page values here
+                [5, 15, 20, -1],
+                [5, 15, 20, "Tutti"] // change per page values here
             ],
             "language": {
                 "search": "Filtra i record:",
@@ -188,9 +205,9 @@
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
 
-    function initTableRicConvenzioni() {
+    function initTableAziende() {
 
-        var table = jQuery('#datatable_ric_convenzioni');
+        var table = jQuery('#datatable_azienda');
 
         var oTable = table.dataTable({
             "columns": [{
@@ -206,18 +223,20 @@
             }, {
                 "orderable": true
             }, {
+                "orderable": true
+            }, {
                 "orderable": false
             }, {
-                "orderable": true
+                "orderable": false
             }, {
                 "orderable": false
             }],
             "order": [
-                [7, 'asc'],
+                [0, 'asc'],
             ],
             "lengthMenu": [
-                [5, 10, 20, -1],
-                [5, 10, 20, "Tutti"] // change per page values here
+                [5, 15, 20, -1],
+                [5, 15, 20, "Tutti"] // change per page values here
             ],
             "language": {
                 "search": "Filtra i record:",
@@ -243,56 +262,26 @@
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
 
-    function initTableFineTirocinio() {
+    function initTableAdmin() {
 
-        var table = jQuery('#datatable_fine_tirocinio');
+        var table = jQuery('#datatable_amministatori');
 
         var oTable = table.dataTable({
             "columns": [{
                 "orderable": true
             }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
-                "orderable": true
-            }, {
                 "orderable": false
             }, {
-                "orderable": true
-            }, {
                 "orderable": false
-            },{
-                "orderable": false
-            }, {
-                "orderable": true
             }, {
                 "orderable": false
             }],
             "order": [
-                [14, 'asc'],
+                [0, 'asc'],
             ],
             "lengthMenu": [
-                [5, 10, 20, -1],
-                [5, 10, 20, "Tutti"] // change per page values here
+                [5, 15, 20, -1],
+                [5, 15, 20, "Tutti"] // change per page values here
             ],
             "language": {
                 "search": "Filtra i record:",
@@ -317,11 +306,11 @@
         var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
-
-    initTableRicTiro();
-    initTableRicConvenzioni();
-    initTableFineTirocinio();
+    initTableTirocinanti();
+    initTableAziende();
+    initTableAdmin();
 
 </script>
+
 </body>
 </html>

@@ -44,7 +44,8 @@ public class CreateTutoreUniController extends baseController {
             if (valiadazioneTutUni(request, response)) {
                 System.out.println("sto salvando il tutore");
                 //InsertTutoreUni(request, response);
-                //response.sendRedirect("/gestione-utenti");
+                AdminFillTable page = new AdminFillTable(datamodel,getServletContext(),request,response);
+                page.makeSuccessGetTutori("Il nuovo tutore universitario &egrave; stato aggiunto correttamente");
             }
         }catch (DaoException e)
         {
@@ -141,7 +142,7 @@ public class CreateTutoreUniController extends baseController {
         datamodel.putAll(errori);
 
         AdminFillTable page = new AdminFillTable(datamodel,getServletContext(),request,response);
-        page.makeInsuccessGet("Errore inserimento del nuovo tuttore universitario");
+        page.makeInsuccessGetTutori("Errore inserimento del nuovo tuttore universitario");
 
 
     }

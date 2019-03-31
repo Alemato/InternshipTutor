@@ -24,7 +24,7 @@
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
         <li><a href="admin.html">HOME DASHBOARD</a></li>
-        <li><a href="/gestione-utenti"><b>GESTIONE UTENZA</b></a></li>
+        <li><a href="/gestione-tutoti"><b>GESTIONE TUTORI</b></a></li>
         <li class="active"><a href="#"><b>GESTIONE: ${tutore.nome} ${tutore.cognome}</b></a></li>
     </ol>
     <ul class="navbar-nav px-3">

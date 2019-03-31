@@ -65,7 +65,7 @@ public class StatoTutoreUniversitarioController extends baseController {
             return true;
         }else{
             AdminFillTable date = new AdminFillTable(datamodel,getServletContext(),request,response);
-            date.makeInsuccessGet("Errore attivazione e disattivazione del azienda");
+            date.makeInsuccessGetTutori("Errore attivazione e disattivazione Tutore");
             return false;
 
         }
@@ -85,7 +85,7 @@ public class StatoTutoreUniversitarioController extends baseController {
 //            dao1.setTutoreUni(tutore);
 //            dao1.destroy();
             AdminFillTable date = new AdminFillTable(datamodel,getServletContext(),request,response);
-            date.makeSuccessGet("Disattivazione della azienda e andata a buon fine");
+            date.makeSuccessGetTutori("Disattivazione del Tutore e andata a buon fine");
         }else if(stato.equals("1")&&!(tutore.getAttivo()))
         {
             tutore.setAttivo(false);
@@ -93,11 +93,11 @@ public class StatoTutoreUniversitarioController extends baseController {
 //            dao2.setTutoreUni(tutore);
 //            dao2.destroy();
             AdminFillTable date = new AdminFillTable(datamodel,getServletContext(),request,response);
-            date.makeSuccessGet("Attivazione della azienda e andata a buon fine");
+            date.makeSuccessGetTutori("Attivazione del tutore e andata a buon fine");
 
         }else{
             AdminFillTable date = new AdminFillTable(datamodel,getServletContext(),request,response);
-            date.makeInsuccessGet("Errore attivazione e disattivazione del azienda");
+            date.makeInsuccessGetTutori("Errore attivazione e disattivazione del azienda");
 
         }
     }
