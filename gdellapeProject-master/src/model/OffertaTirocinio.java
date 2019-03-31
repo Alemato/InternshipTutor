@@ -16,6 +16,11 @@ public class OffertaTirocinio {
     //s - a String object representing a date in in the format "yyyy-[m]m-[d]d". The leading zero for mm and dd may also be omitted.
     private Date PeriodoInizio;
     private Date PeriodoFine;
+    /*
+    *  0: non attivo
+    *  1: attivo
+    */
+    private Integer Stato;
     private String Modalita;
     private String Obbiettivi;
     private String Rimborsi;
@@ -45,6 +50,7 @@ public class OffertaTirocinio {
         this.DurataMesi = null;
         this.PeriodoInizio = null;
         this.PeriodoFine = null;
+        this.Stato = 0;
         this.Modalita = null;
         this.Obbiettivi = null;
         this.Rimborsi = null;
@@ -104,6 +110,10 @@ public class OffertaTirocinio {
 
     public Date getPeriodoFine() {
         return PeriodoFine;
+    }
+
+    public Integer getStato() {
+        return Stato;
     }
 
     public String getModalita() {
@@ -212,6 +222,10 @@ public class OffertaTirocinio {
         PeriodoFine = periodoFine;
     }
 
+    public void setStato(Integer stato) {
+        Stato = stato;
+    }
+
     public void setModalita(String modalita) {
         Modalita = modalita;
     }
@@ -291,6 +305,7 @@ public class OffertaTirocinio {
                 DurataMesi.equals(that.DurataMesi) &&
                 PeriodoInizio.equals(that.PeriodoInizio) &&
                 PeriodoFine.equals(that.PeriodoFine) &&
+                Stato.equals(that.Stato) &&
                 Modalita.equals(that.Modalita) &&
                 Obbiettivi.equals(that.Obbiettivi) &&
                 Objects.equals(Rimborsi, that.Rimborsi) &&
@@ -311,7 +326,7 @@ public class OffertaTirocinio {
 
     @Override
     public int hashCode() {
-        return Objects.hash(IDOffertaTirocinio, LuogoEffettuazione, Titolo, DescrizioneBreve, Descrizione, Orari, DurataOre, DurataMesi, PeriodoInizio, PeriodoFine, Modalita, Obbiettivi, Rimborsi, Facilitazioni, AziendaOspitante, CodIdentTirocinio, SettoreInserimento, TempoAccessoLocaliAziendali, NomeTutoreAziendale, CognomeTutoreAziendale, TelefonoTutoreAziendale, EmailTutoreAziendale, CreateDate, UpdateDate, Azienda, TutoreUniversitario);
+        return Objects.hash(IDOffertaTirocinio, LuogoEffettuazione, Titolo, DescrizioneBreve, Descrizione, Orari, DurataOre, DurataMesi, PeriodoInizio, PeriodoFine, Stato, Modalita, Obbiettivi, Rimborsi, Facilitazioni, AziendaOspitante, CodIdentTirocinio, SettoreInserimento, TempoAccessoLocaliAziendali, NomeTutoreAziendale, CognomeTutoreAziendale, TelefonoTutoreAziendale, EmailTutoreAziendale, CreateDate, UpdateDate, Azienda, TutoreUniversitario);
     }
 
     @Override
@@ -327,6 +342,7 @@ public class OffertaTirocinio {
                 ", DurataMesi=" + DurataMesi +
                 ", PeriodoInizio=" + PeriodoInizio +
                 ", PeriodoFine=" + PeriodoFine +
+                ", Stato=" + Stato +
                 ", Modalita='" + Modalita + '\'' +
                 ", Obbiettivi='" + Obbiettivi + '\'' +
                 ", Rimborsi='" + Rimborsi + '\'' +

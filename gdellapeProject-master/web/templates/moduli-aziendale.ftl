@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>Moduli disponibili</title>
@@ -8,7 +8,7 @@
     <#include "importCss.ftl">
 
     <!-- CSS DATATABLES -->
-    <link href="../css/layout-datatables.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body class=" enable-animation">
@@ -137,7 +137,7 @@
                         <th>Data Creazione</th>
                         <th>Data Aggiornamento</th>
                         <th>Stampa Modulo</th>
-                        <td>Carica PDF</td>
+                        <th>Carica PDF</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -150,7 +150,7 @@
                         <th>Data Creazione</th>
                         <th>Data Aggiornamento</th>
                         <th>Stampa Modulo</th>
-                        <td>Carica PDF</td>
+                        <th>Carica PDF</th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -185,14 +185,14 @@
                                 </td>
                             <#elseif Lista.tirocinio.stato == 2>
                                 <#if Lista.tirocinio.pdfAzienda??>
-                                    <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinante.IDTirocinante}">
+                                    <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinio.IDTirocinio}">
                                             <button type="button" class="btn btn-outline-success"><i
                                                         class="fa fa-print"></i>Stampa PDF
                                             </button>
                                         </a>
                                     </td>
                                 <#else>
-                                    <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinante.IDTirocinante}">
+                                    <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinio.IDTirocinio}">
                                             <button type="button" class="btn btn-outline-success"><i
                                                         class="fa fa-print"></i>Stampa Modulo
                                             </button>
