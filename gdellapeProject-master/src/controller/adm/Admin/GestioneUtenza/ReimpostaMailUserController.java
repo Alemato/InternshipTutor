@@ -14,6 +14,7 @@ import model.Tirocinante;
 import model.User;
 import view.TemplateController;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +23,7 @@ import java.rmi.ServerException;
 import java.sql.Date;
 import java.util.*;
 
-//TODO fai testing sull eccezzione del dao
+
 public class ReimpostaMailUserController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -59,10 +60,15 @@ public class ReimpostaMailUserController extends baseController {
             UserDaoImp dao1 = new UserDaoImp();
             User user = dao1.getUserByid(Integer.parseInt(request.getParameter("IDUser")));
             dao1.destroy();
-            if (validate(request, response, user)) {
-                storeMail(request, response, user);
-                AdminFillTable page = new AdminFillTable(datamodel,getServletContext(),request,response);
-                page.makeSuccessGet("Cambiamento della mail andato a buon fine");
+            if(user.getTipologiaAccount()==2||user.getTipologiaAccount()==3) {
+                if (validate(request, response, user)) {
+                    storeMail(request, response, user);
+                    redirectPageSuccess(request,response,"La mail del utente &egrave;  stata cambiata corettamente",user);
+
+                }
+            }else{
+                RequestDispatcher dispatcher=request.getRequestDispatcher("/403");
+                dispatcher.forward(request,response);
             }
         }catch (DaoException e)
         {
@@ -81,8 +87,20 @@ public class ReimpostaMailUserController extends baseController {
         UserDaoImp dao1 = new UserDaoImp();
            User user = dao1.getUserByid(Integer.parseInt(request.getParameter("IDUser")));
            dao1.destroy();
-           datamodel.put("user", user);
-           TemplateController.process("BackEndTemplates/reimposta-mail-user.ftl", datamodel, response, getServletContext());
+           if(user.getTipologiaAccount()==2){
+               datamodel.put("user", user);
+               datamodel.put("page","tirocinante");
+               TemplateController.process("BackEndTemplates/reimposta-mail-user.ftl", datamodel, response, getServletContext());
+           }else if(user.getTipologiaAccount()==3) {
+               datamodel.put("user", user);
+               datamodel.put("page","azienda");
+               TemplateController.process("BackEndTemplates/reimposta-mail-user.ftl", datamodel, response, getServletContext());
+
+           }else{
+               RequestDispatcher dispatcher=request.getRequestDispatcher("/403");
+               dispatcher.forward(request,response);
+           }
+
 
     }
     private void storeMail(HttpServletRequest request,HttpServletResponse response,User user) throws ServletException,IOException,DaoException
@@ -124,14 +142,14 @@ public class ReimpostaMailUserController extends baseController {
                 return true;
             }else{
                 System.out.println("Validazione non validada ricarico la pagina");
-                refreshPage(request,response,errori);
+                refreshPage(request,response,errori,user);
                 return false;
             }
 
 
     }
 
-    private void refreshPage(HttpServletRequest request,HttpServletResponse response, Map<String,Object> errori) throws IOException,ServletException,DaoException
+    private void refreshPage(HttpServletRequest request,HttpServletResponse response, Map<String,Object> errori,User user) throws IOException,ServletException,DaoException
     {
         List<String> dati = new ArrayList<>();
         if(!(errori.containsKey("ErroreMail"))){
@@ -140,9 +158,45 @@ public class ReimpostaMailUserController extends baseController {
         datamodel.putAll(errori);
 
         datamodel.putAll(Utility.AddAllData(request,response,dati));
-
         fill_form(request,response);
 
+
+    }
+
+
+    private void redirectPageSuccess(HttpServletRequest request,HttpServletResponse response,String warning,User user)throws IOException,DaoException,ServletException
+    {
+
+        AdminFillTable redirection = new AdminFillTable(datamodel,getServletContext(),request,response);
+        if(user.getTipologiaAccount()==2)
+        {
+            redirection.makeSuccessGetTirocinanti(warning);
+        }else if(user.getTipologiaAccount()==3)
+        {
+            redirection.makeSuccessGetAziende(warning);
+        }else{
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
+        }
+
+
+    }
+
+    private void redirectPageInsuccess(HttpServletRequest request,HttpServletResponse response,String warning,User user)throws IOException,DaoException,ServletException
+    {
+
+        AdminFillTable redirection = new AdminFillTable(datamodel,getServletContext(),request,response);
+
+        if(user.getTipologiaAccount()==2)
+        {
+            redirection.makeInsuccessGetTirocinanti(warning);
+        }else if(user.getTipologiaAccount()==3)
+        {
+            redirection.makeInsuccessGetAziende(warning);
+        }else{
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
+        }
     }
 
 

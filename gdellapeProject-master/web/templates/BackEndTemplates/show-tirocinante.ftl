@@ -24,8 +24,8 @@
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
         <li><a href="admin.html">HOME DASHBOARD</a></li>
-        <li><a href="/gestione-utenti"><b>GESTIONE UTENZA</b></a></li>
-        <li class="active"><a href="#"><b>GESTIONE:${gestione}</b></a></li>
+        <li><a href="/gestione-tirocinanti"><b>GESTIONE TIROCINANTI</b></a></li>
+        <li class="active"><a href="#"><b>VISUALIZZA: ${tirocinante.nome} ${tirocinante.cognome}</b></a></li>
     </ol>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -70,10 +70,10 @@
                     <h4>Risiede : ${tirocinante.luogoDiResidenza}</h4>
                 </div>
                 <div class="row">
-                    <h4>Procincia di Nascità : ${tirocinante.ProvinciaDiNascita}</h4>
+                    <h4>Procincia di Nascit&aacute;  : ${tirocinante.provinciaDiNascita}</h4>
                 </div>
                 <div class="row">
-                    <h4>Data di nascità : ${tirocinante.dataDiNascita}</h4>
+                    <h4>Data di nascit&aacute;  : ${tirocinante.dataDiNascita}</h4>
                 </div>
                 <div class="row">
                     <h4>Provincia di residenza : ${tirocinante.provinciaDiResidenza}</h4>

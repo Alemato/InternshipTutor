@@ -24,8 +24,12 @@
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
         <li><a href="admin.html">HOME DASHBOARD</a></li>
-        <li><a href="/gestione-utenti"><b>GESTIONE UTENZA</b></a></li>
-        <li class="active"><a href="#"><b>GESTIONE: ${tirocinante.nome} ${tirocinante.cognome}</b></a></li>
+        <li><#if page=="tirocinante">
+                <a href="/gestione-tirocinanti"><b>GESTIONE TIROCINANTI</b></a>
+                <#elseif page == "azienda">
+                <a href="/gestione-aziende"><b>GESTIONE AZIENDE</b></a>
+        </#if>
+        </li>
     </ol>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -40,8 +44,6 @@
 <div class="container-fluid">
     <div class="row">
        <#include "../BackEndTemplates/sidebar.ftl">
-
-
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
 
             <noscript>
@@ -56,6 +58,7 @@
             <div class="col">
                 <form action="/reimposta-User" method="post">
                     <input type="hidden" name="IDUser" value="${user.IDUser}">
+                    <input type="hidden" name="page" value="${page}">
                     <#if ErroreGenericoUpdate??>
                         <div class="alert alert-warning mb-20">
                             <button type="button" class="close" data-dismiss="alert">

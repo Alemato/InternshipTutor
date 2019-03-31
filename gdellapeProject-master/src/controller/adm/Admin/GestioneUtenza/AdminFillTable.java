@@ -40,6 +40,7 @@ public class AdminFillTable {
         this.response = response;
     }
 
+
     public void makeGet() throws IOException, ServletException,DaoException
     {
 
@@ -79,6 +80,259 @@ public class AdminFillTable {
             TemplateController.process("BackEndTemplates/gestione-utenti.ftl", datamodel, response, servletContext);
 
     }
+
+    //fine parte di caricamento dei dati per la pagina grande
+
+    //inizio parte di caricamento pagina gestione utente tirocinante
+
+    /**
+     * Funzione che carica nella pagina tutti i tirocinanti presenti nell sistema sul template ftl ed restituische
+     * il file ftl
+     *
+     * @throws IOException
+     * @throws ServletException
+     * @throws DaoException
+     */
+
+    public void makeGetTirocinanti() throws IOException, ServletException,DaoException
+    {
+
+        filltableTirocinante();
+        TemplateController.process("BackEndTemplates/gestione-tirocinanti.ftl", datamodel, response, servletContext);
+
+
+
+    }
+
+    /**
+     * Funzione che carica nella pagina tutti i tirocinanti presenti nell sistema sul template ftl ed restituische
+     * il file ftl
+     *
+     * @param message => messaggio che verra visualizzato nel
+     *               file ftl nel box di avviso per il successo di una manipolazione del sistema
+     * @throws IOException
+     * @throws ServletException
+     * @throws DaoException
+     */
+
+
+    public void makeSuccessGetTirocinanti(String message) throws IOException,ServletException,DaoException
+    {
+
+        filltableTirocinante();
+        datamodel.put("WarningSuccess",message);
+
+        TemplateController.process("BackEndTemplates/gestione-tirocinanti.ftl", datamodel, response, servletContext);
+
+    }
+    /**
+     * Funzione che carica nella pagina tutti i tirocinanti presenti nell sistema sul template ftl ed restituische
+     * il file ftl
+     *
+     * @param message => messaggio che verra visualizzato nel
+     *               file ftl nel box di avviso per il FALLIMENTO di una manipolazione del sistema
+     * @throws IOException
+     * @throws ServletException
+     * @throws DaoException
+     */
+
+    public void makeInsuccessGetTirocinanti(String message) throws IOException,ServletException,DaoException
+    {
+
+        filltableTirocinante();
+        datamodel.put("WarningInsuccess", message);
+
+        TemplateController.process("BackEndTemplates/gestione-tirocinanti.ftl", datamodel, response, servletContext);
+
+    }
+    //fine parte di caricamento pagina gestione utente tirocinante
+
+    /**
+     * Funzione che carica nella pagina tutte le Aziende presenti nell sistema sul template ftl ed restituische
+     * il file ftl
+     *
+     *
+     * @throws IOException
+     * @throws ServletException
+     * @throws DaoException
+     */
+
+
+    public void makeGetAziende() throws IOException, ServletException,DaoException
+    {
+
+        fillAziendaTable();
+        TemplateController.process("BackEndTemplates/gestione-aziende.ftl", datamodel, response, servletContext);
+
+    }
+
+    /**
+     * Funzione che carica nella pagina tutte le Aziende presenti nell sistema sul template ftl ed restituische
+     * il file ftl
+     *
+     * @param message => messaggio che verra visualizzato nel file ftl nel box di avviso per il SUCCESSO di una manipolazione del sistema
+     * @throws IOException
+     * @throws ServletException
+     * @throws DaoException
+     */
+
+    public void makeSuccessGetAziende(String message) throws IOException,ServletException,DaoException
+    {
+
+        fillAziendaTable();
+        datamodel.put("WarningSuccess",message);
+
+        TemplateController.process("BackEndTemplates/gestione-aziende.ftl", datamodel, response, servletContext);
+
+    }
+
+    /**
+     * Funzione che carica nella pagina tutte le Aziende presenti nell sistema sul template ftl ed restituische
+     * il file ftl
+     *
+     * @param message => messaggio che verra visualizzato nel file ftl nel box di avviso per il FALLIMENTO di una manipolazione del sistema
+     * @throws IOException
+     * @throws ServletException
+     * @throws DaoException
+     */
+
+    public void makeInsuccessGetAziende(String message) throws IOException,ServletException,DaoException
+    {
+
+        fillAziendaTable();
+        datamodel.put("WarningInsuccess", message);
+
+        TemplateController.process("BackEndTemplates/gestione-aziende.ftl", datamodel, response, servletContext);
+
+    }
+
+
+
+    /**
+     * Funzione che carica nella pagina tutte le tutori presenti nell sistema sul template ftl ed restituische
+     * il file ftl
+     *
+     *
+     * @throws IOException
+     * @throws ServletException
+     * @throws DaoException
+     */
+
+
+    public void makeGetTutori() throws IOException, ServletException,DaoException
+    {
+
+        fillTutUniTable();
+        TemplateController.process("BackEndTemplates/gestione-tutori.ftl", datamodel, response, servletContext);
+
+    }
+
+    /**
+     * Funzione che carica nella pagina tutte le tutori presenti nell sistema sul template ftl ed restituische
+     * il file ftl
+     *
+     * @param message => messaggio che verra visualizzato nel file ftl nel box di avviso per il SUCCESSO di una manipolazione del sistema
+     * @throws IOException
+     * @throws ServletException
+     * @throws DaoException
+     */
+
+    public void makeSuccessGetTutori(String message) throws IOException,ServletException,DaoException
+    {
+        fillTutUniTable();
+        datamodel.put("WarningSuccess",message);
+
+        TemplateController.process("BackEndTemplates/gestione-tutori.ftl", datamodel, response, servletContext);
+
+    }
+
+    /**
+     * Funzione che carica nella pagina tutti i tutori presenti nell sistema sul template ftl ed restituische
+     * il file ftl
+     *
+     * @param message => messaggio che verra visualizzato nel file ftl nel box di avviso per il FALLIMENTO di una manipolazione del sistema
+     * @throws IOException
+     * @throws ServletException
+     * @throws DaoException
+     */
+
+    public void makeInsuccessGetTutori(String message) throws IOException,ServletException,DaoException
+    {
+
+        fillTutUniTable();
+        datamodel.put("WarningInsuccess", message);
+
+        TemplateController.process("BackEndTemplates/gestione-tutori.ftl", datamodel, response, servletContext);
+
+    }
+
+    /**
+     * Funzione che carica nella pagina tutti i tutori presenti nell sistema sul template ftl ed restituische
+     * il file ftl
+     *
+     *
+     * @throws IOException
+     * @throws ServletException
+     * @throws DaoException
+     */
+
+
+    public void makeGetAdmin() throws IOException, ServletException,DaoException
+    {
+
+        fillTableAdmin();
+        TemplateController.process("BackEndTemplates/gestione-admin.ftl", datamodel, response, servletContext);
+
+    }
+
+    /**
+     * Funzione che carica nella pagina tutti gli admin presenti nell sistema sul template ftl ed restituische
+     * il file ftl
+     *
+     * @param message => messaggio che verra visualizzato nel file ftl nel box di avviso per il SUCCESSO di una manipolazione del sistema
+     * @throws IOException
+     * @throws ServletException
+     * @throws DaoException
+     */
+
+    public void makeSuccessGetAdmin(String message) throws IOException,ServletException,DaoException
+    {
+
+        fillTableAdmin();
+        datamodel.put("WarningSuccess",message);
+
+        TemplateController.process("BackEndTemplates/gestione-admin.ftl", datamodel, response, servletContext);
+
+    }
+
+    /**
+     * Funzione che carica nella pagina tutti gli admin presenti nell sistema sul template ftl ed restituische
+     * il file ftl
+     *
+     * @param message => messaggio che verra visualizzato nel file ftl nel box di avviso per il FALLIMENTO di una manipolazione del sistema
+     * @throws IOException
+     * @throws ServletException
+     * @throws DaoException
+     */
+
+    public void makeInsuccessGetAdmin(String message) throws IOException,ServletException,DaoException
+    {
+
+        fillTableAdmin();
+        datamodel.put("WarningInsuccess", message);
+
+        TemplateController.process("BackEndTemplates/gestione-admin.ftl", datamodel, response, servletContext);
+
+    }
+
+
+
+
+
+
+
+
+
 
 
 

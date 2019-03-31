@@ -2,23 +2,26 @@
     <div class="side-nav mb-60">
         <ul class="list-group list-group-bordered list-group-noicon uppercase">
             <li class="active"><a href="/admin">HOME DASHBOARD</a></li>
-            <li class=""><a href="/gestione-utenti">GESTIONE UTENZA</a></li>
-            <li class=""><a href="/gestione-moduli">GESTIONE RICHIESTE CONVENZIONE</a></li>
-            <li class="list-group-item">
-                <a class="dropdown-toggle" href="/gestione-moduli" >GESTIONE TIROCINII</a>
+            <li  class="list-group-item">
+                <a class="dropdown-toggle">GESTIONE UTENZA</a>
                 <ul>
-                    <li><a href="/gestione-moduli">ULTIME OFFERTE PUBBLICATE</a></li>
-                    <li class=""><a href="/gestione-moduli">OFFERTE SCADUTE</a></li>
-                    <li class=""><a href="/gestione-moduli">TUTTE LE OFFERTE PUBBLICATE</a></li>
+                    <li><a href="/gestione-tirocinanti">TIROCINANTI</a></li>
+                    <li><a href="/gestione-aziende">AZIENDE</a></li>
+                    <li><a href="/gestione-tutoti">TUTORI</a></li>
+                    <li><a href="/gestione-admin">ADMIN</a></li>
                 </ul>
             </li>
+            <li class=""><a href="/richisteconvezioni">GESTIONE RICHIESTE CONVENZIONE</a></li>
+            <li class="">
+                <a class="" href="/offertetirocinioadmin">OFFERTE DI TIROCINIO</a>
+            </li>
             <li class="list-group-item">
-                <a class="dropdown-toggle" href="gestione-moduli-admin.html">GESTIONE MODULI</a>
+                <a class="dropdown-toggle" href="Gestione-moduli">GESTIONE MODULI</a>
                 <ul>
-                    <li><a href="richieste-tirocinii-tirocinanti-admin.html">RICHIESTE TIROCINII TIROCINANTI</a></li>
-                    <li><a href="richieste-convenzioni-aziendali-admmin.html">RICHIESTE CONVENZIONI AZIENDALI</a>
+                    <li><a href="/#">RICHIESTE TIROCINII TIROCINANTI</a></li>
+                    <li><a href="/#">RICHIESTE CONVENZIONI AZIENDALI</a>
                     </li>
-                    <li><a href="modulo-tirocinio-fine-admin.html">MODULO TIROCINIO FINE</a>
+                    <li><a href="/#">MODULO TIROCINIO FINE</a>
                     </li>
                 </ul>
             </li>

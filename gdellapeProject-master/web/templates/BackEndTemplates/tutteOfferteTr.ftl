@@ -39,41 +39,7 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar bg-light">
-            <div class="side-nav mb-60">
-                <ul class="list-group list-group-bordered list-group-noicon uppercase">
-                    <li class=""><a href="admin.html">HOME DASHBOARD</a></li>
-                    <li class=""><a href="gestione-utenza-admin.html">GESTIONE UTENZA</a></li>
-                    <li class=""><a href="gestione-richieste-convenzioni-admin.html">GESTIONE RICHIESTE CONVENZIONE</a>
-                    </li>
-                    <li class="list-group-item active">
-                        <a class="dropdown-toggle" href="gestione-tirocinii-admin.html">GESTIONE TIROCINII</a>
-                        <ul>
-                            <li class=""><a href="ultime-offerte-pubblicate-admin.html">ULTIME OFFERTE PUBBLICATE</a>
-                            </li>
-                            <li class=""><a href="offerte-scadute-admin.html">OFFERTE SCADUTE</a></li>
-                            <li class="active"><a href="tutte-offerte-pubblicate-admin.html">TUTTE LE OFFERTE PUBBLICATE</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <a class="dropdown-toggle" href="gestione-moduli-admin.html">GESTIONE MODULI</a>
-                        <ul>
-                            <li><a href="richieste-tirocinii-tirocinanti-admin.html">RICHIESTE TIROCINII TIROCINANTI</a>
-                            </li>
-                            <li><a href="richieste-convenzioni-aziendali-admmin.html">RICHIESTE CONVENZIONI
-                                    AZIENDALI</a>
-                            </li>
-                            <li><a href="modulo-tirocinio-fine-admin.html">MODULO TIROCINIO FINE</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class=""><a href="impostazione-account-admin.html">IMPOSTAZIONI ACCOUNT</a></li>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <#include "../BackEndTemplates/sidebar.ftl">
 
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
@@ -88,8 +54,25 @@
 
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
             </section>
-            <h2>Tutte le Offete di Tirocinio</h2>
-
+            <#if WarningSuccess??>
+                <div class="alert alert-success mb-20">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Attenzione!</strong> ${WarningSuccess}
+                </div>
+            </#if>
+            <#if WarningInsuccess??>
+                <div class="alert alert-danger mb-20">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Attenzione!</strong> ${WarningInsuccess}
+                </div>
+            </#if>
+            <h2>OFFERTE DI TIROCINIO DISPONIBILI</h2>
             <table class="table table-responsive table-striped table-bordered table-hover" id="datatable_all"
                    width="100%"
                    cellspacing="0">
@@ -97,18 +80,14 @@
                 <tr>
                     <th>Codice Identificativo</th>
                     <th>Titolo</th>
+                    <th>Azienda Ospitante</th>
                     <th>Nome Tutore Aziendale</th>
                     <th>Cognome Tutore Aziendale</th>
                     <th>Tel. Tutore Aziendale</th>
                     <th>Email Tutore Aziendale</th>
-                    <th>Nome Tutore Universitarioe</th>
-                    <th>Cognome Tutore Universitario</th>
-                    <th>Tel. Tutore Universitario</th>
-                    <th>Email Tutore Universitario</th>
                     <th>Data Creazione</th>
                     <th>Visualizza</th>
-                    <th>Modifica</th>
-                    <th>Elimina</th>
+                    <th>Disattiva</th>
                     <th>Visualizza Utenti Richiedenti</th>
                 </tr>
                 </thead>
@@ -116,59 +95,41 @@
                 <tr>
                     <th>Codice Identificativo</th>
                     <th>Titolo</th>
+                    <th>Azienda Ospitante</th>
                     <th>Nome Tutore Aziendale</th>
                     <th>Cognome Tutore Aziendale</th>
                     <th>Tel. Tutore Aziendale</th>
                     <th>Email Tutore Aziendale</th>
-                    <th>Nome Tutore Universitario</th>
-                    <th>Cognome Tutore Universitario</th>
-                    <th>Tel. Tutore Universitario</th>
-                    <th>Email Tutore Universitario</th>
                     <th>Data Creazione</th>
                     <th>Visualizza</th>
-                    <th>Modifica</th>
-                    <th>Elimina</th>
+                    <th>Disattiva</th>
                     <th>Visualizza Utenti Richiedenti</th>
                 </tr>
                 </tfoot>
                 <tbody>
-                <#list map as key,value>
+                <#list OfferteAttive as offerta>
                 <tr>
-                    <td>${key.codiceTirocinio}</td>
-                    <td>${key.titolo}</td>
-                    <td>${key.nomeTutoreAziendale}</td>
-                    <td>${key.cognomeTutoreAziendale}</td>
-                    <td>${key.telefonoTutoreAzindale}</td>
-                    <td>${key.emailTutoreAziendale}</td>
-                    <td>${value.nome}</td>
-                    <td>${value.cognome}</td>
-                    <td>${value.telefono}</td>
-                    <td>${value.email}</td>
-                    <td>${key.createDate}</td>
-                    <td><a href="print.php">
-                            <button type="button" class="btn btn-success"><i class="fa fa-file-text"></i>Visualizza
-                            </button>
-                        </a>
-                    </td>
-                    <td><form action="/modificaofferta" method="get">
-                            <input type="hidden" value="${key.IDOffertaTirocinio}" name="ID">
+                    <td>${offerta.codIdentTirocinio}</td>
+                    <td>${offerta.titolo}</td>
+                    <td>${offerta.aziendaOspitante}</td>
+                    <td>${offerta.nomeTutoreAziendale}</td>
+                    <td>${offerta.cognomeTutoreAziendale}</td>
+                    <td>${offerta.telefonoTutoreAziendale}</td>
+                    <td>${offerta.emailTutoreAziendale}</td>
+                    <td>${offerta.createDate?date?string("dd-MM-yyyy")}</td>
+                    <td>
+                        <a type="button" class="btn btn-primary" href="/#"><i class="fa fa-file-text"></i>Visualizza</a>
 
-                            <button type="submit" class="btn btn-secondary"><i
-                                        class="fa fa-pencil-square-o"></i>Modifica
-                            </button>
-                        </form>
                     </td>
-                    <td><a href="print.php">
-                            <button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Elimina
-                            </button>
-                        </a>
+                    <td>
+                            <a type="button" class="btn btn-danger"><i class="fa fa-times"></i>Disattiva</a>
+
                     </td>
-                    </td>
-                    <td><a href="print.php">
-                            <button type="button" class="btn btn-primary"><i class="fa fa-users"></i>Visualizza Utenti
+                    <td>
+                            <a type="button" class="btn btn-primary" href="/#"><i class="fa fa-users"></i>Visualizza Utenti
                                 Richiedenti
-                            </button>
-                        </a>
+                            </a>
+
                     </td>
                 </tr>
                 </#list>
@@ -176,6 +137,70 @@
                 </tbody>
             </table>
 
+
+            <div class="card" id="offerte_scadute">
+                <div class="card-header">
+                    <h2>OFFERTE DI TIROCINIO SCADUTE</h2>
+                </div>
+                <div class="card-body">
+            <table class="table table-responsive table-striped table-bordered table-hover" id="datatable_all"
+                   width="100%"
+                   cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Codice Identificativo</th>
+                    <th>Titolo</th>
+                    <th>Azienda Ospitante</th>
+                    <th>Nome Tutore Aziendale</th>
+                    <th>Cognome Tutore Aziendale</th>
+                    <th>Tel. Tutore Aziendale</th>
+                    <th>Email Tutore Aziendale</th>
+                    <th>Data Creazione</th>
+                    <th>Visualizza</th>
+                    <th>Visualizza Utenti Richiedenti</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Codice Identificativo</th>
+                    <th>Titolo</th>
+                    <th>Azienda Ospitante</th>
+                    <th>Nome Tutore Aziendale</th>
+                    <th>Cognome Tutore Aziendale</th>
+                    <th>Tel. Tutore Aziendale</th>
+                    <th>Email Tutore Aziendale</th>
+                    <th>Data Creazione</th>
+                    <th>Visualizza</th>
+                    <th>Visualizza Utenti Richiedenti</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                <#list OfferteScadute as offerta>
+                    <tr>
+                        <td>${offerta.codIdentTirocinio}</td>
+                        <td>${offerta.titolo}</td>
+                        <td>${offerta.aziendaOspitante}</td>
+                        <td>${offerta.nomeTutoreAziendale}</td>
+                        <td>${offerta.cognomeTutoreAziendale}</td>
+                        <td>${offerta.telefonoTutoreAziendale}</td>
+                        <td>${offerta.emailTutoreAziendale}</td>
+                        <td>${offerta.createDate?date?string("dd-MM-yyyy")}</td>
+                        <td>
+                            <a type="button" class="btn btn-primary" href="/#"><i class="fa fa-file-text"></i>Visualizza</a>
+
+                        </td>
+                        <td>
+                                <a type="button" class="btn btn-primary" href="/#"><i class="fa fa-users"></i>Visualizza Utenti
+                                    Richiedenti
+                                </a>
+                        </td>
+                    </tr>
+                </#list>
+
+                </tbody>
+            </table>
+                </div>
+            </div>
         </main>
     </div>
 </div>

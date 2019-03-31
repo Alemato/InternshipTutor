@@ -1,4 +1,4 @@
-package controller.adm.Admin.GestioneUtenza;
+package controller.adm.Admin.GestioneTirocinio;
 
 import controller.adm.Azienda.BackEndAziendaController;
 import controller.baseController;
@@ -26,6 +26,7 @@ public class OfferteTirocinioController extends baseController {
 
     }
 
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         fillOffrte(request, response);
 
@@ -35,12 +36,11 @@ public class OfferteTirocinioController extends baseController {
     }
     private void fillOffrte(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
     {
+        super.init(request,response);
         try{
-            OffertaTirocinioDaoImp dao = new OffertaTirocinioDaoImp();
-            List<OffertaTirocinio> offerte = dao.getAllOffertatr();
-            dao.destroy();
-            datamodel.put("Offrte",offerte);
-            TemplateController.process("BackEndTemplates/tutteOfferteTr.ftl", datamodel, response, getServletContext());
+
+          FillOfferteTirocinio page =new FillOfferteTirocinio(request,response,getServletContext(),datamodel);
+          page.makeget();
 
 
         }catch (DaoException e)
