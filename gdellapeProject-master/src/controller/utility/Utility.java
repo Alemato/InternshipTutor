@@ -17,6 +17,8 @@ import java.io.*;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -78,6 +80,12 @@ public class Utility {
         return map;
 
 
+    }
+
+    public static java.sql.Date GetCurrentDate(){
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        return (java.sql.Date.valueOf(LocalDateTime.now().format(formato)));
     }
 }
 
