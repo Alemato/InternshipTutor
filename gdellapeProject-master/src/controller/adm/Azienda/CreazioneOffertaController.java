@@ -3,7 +3,10 @@ package controller.adm.Azienda;
 import controller.baseController;
 import controller.sessionController.SingSessionContoller;
 import controller.utility.Validation;
+import dao.exception.DaoException;
+import dao.implementation.OffertaTirocinioDaoImp;
 import model.Azienda;
+import model.OffertaTirocinio;
 import org.unbescape.html.HtmlEscape;
 import view.TemplateController;
 
@@ -36,12 +39,21 @@ public class CreazioneOffertaController extends baseController {
     }
 
 
-    private void processaPost(HttpServletRequest request, HttpServletResponse response, SingSessionContoller session) {
-
+    private void processaPost(HttpServletRequest request, HttpServletResponse response, OffertaTirocinio offertaTirocinio) throws IOException, ServletException {
+        OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
+        try {
+            offertaTirocinioDaoImp.setOffertatr(offertaTirocinio);
+            offertaTirocinioDaoImp.destroy();
+        } catch (DaoException e) {
+            e.printStackTrace();
+            er500(request, response);
+        }
+        response.sendRedirect("/account/gestione-offerte");
     }
 
-    private void erroriPost(HttpServletRequest request, HttpServletResponse response, SingSessionContoller session) {
+    private void erroriPost(HttpServletRequest request, HttpServletResponse response, SingSessionContoller session) throws IOException, ServletException {
         HashMap<String, String> errori = new HashMap<>();
+        OffertaTirocinio offertaTirocinio = new OffertaTirocinio();
 
         if (request.getParameter("Titolo") != null) {
             String titolo = HtmlEscape.escapeHtml5(request.getParameter("Titolo"));
@@ -50,6 +62,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreTitolo", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfTitolo", titolo);
+                offertaTirocinio.setTitolo(titolo);
             }
         } else errori.put("ErroreTitolo", "Titolo non presente");
 
@@ -60,7 +73,8 @@ public class CreazioneOffertaController extends baseController {
             if (!(boolean) risultato.get("valido")) {
                 errori.put("ErroreDescrizione_Breve", (String) risultato.get("messaggio"));
             } else {
-                datamodel.put("ErroreDescrizione_Breve", descrBreve);
+                datamodel.put("ValueOfDescrizione_Breve", descrBreve);
+                offertaTirocinio.setDescrizioneBreve(descrBreve);
             }
         } else errori.put("ErroreDescrizione_Breve", "Descrizione Breve non Presente");
 
@@ -72,6 +86,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreDescrizione_Completa", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfDescrizione_Completa", descr);
+                offertaTirocinio.setDescrizione(descr);
             }
         } else errori.put("ErroreDescrizione_Completa", "Descrizione non Presente");
 
@@ -83,6 +98,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreOrari", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfOrari", orari);
+                offertaTirocinio.setOrari(orari);
             }
         } else errori.put("ErroreOrari", "Orari non presenti");
 
@@ -95,6 +111,7 @@ public class CreazioneOffertaController extends baseController {
                     errori.put("ErroreDurara_Ora", (String) risultato.get("messaggio"));
                 } else {
                     datamodel.put("ValueOfDurara_Ora", durateore);
+                    offertaTirocinio.setDurataOre(durateore);
                 }
             } else {
                 errori.put("ErroreDurara_Ora", "Durata in ore non presente");
@@ -110,6 +127,7 @@ public class CreazioneOffertaController extends baseController {
                     errori.put("ErroreDurara_Mesi", (String) risultato.get("messaggio"));
                 } else {
                     datamodel.put("ValueOfDurara_Mesi", durMesi);
+                    offertaTirocinio.setDurataMesi(durMesi);
                 }
             } else errori.put("ErroreDurara_Mesi", "Durata in mesi non presente");
         } else errori.put("ErroreDurara_Mesi", "Durata in mesi non presente");
@@ -119,6 +137,7 @@ public class CreazioneOffertaController extends baseController {
             if(!request.getParameter("Periodo_inizio").isEmpty()) {
                 Date datainizio = Date.valueOf(request.getParameter("Periodo_inizio"));
                 datamodel.put("ValueOfPeriodo_inizio", datainizio);
+                offertaTirocinio.setPeriodoInizio(datainizio);
             } else errori.put("ErrorePeriodo_inizio", "Periodo inizio non presente");
         } else errori.put("ErrorePeriodo_inizio", "Periodo inizio non presente");
 
@@ -127,6 +146,7 @@ public class CreazioneOffertaController extends baseController {
             if(!request.getParameter("Periodo_fine").isEmpty()) {
                 Date datefine = Date.valueOf(request.getParameter("Periodo_fine"));
                 datamodel.put("ValueOfPeriodo_fine", datefine);
+                offertaTirocinio.setPeriodoFine(datefine);
             } else errori.put("ErrorePeriodo_fine", "Periodo fine non presente");
         } else errori.put("ErrorePeriodo_fine", "Periodo fine non presente");
 
@@ -138,17 +158,19 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreModalita", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfModalita", modalitasvol);
+                offertaTirocinio.setModalita(modalitasvol);
             }
         } else errori.put("ErroreModalita", "Modalita di svolgimento non presente");
 
 
         if (request.getParameter("Obiettivi") != null) {
-            String Obiettivi = HtmlEscape.escapeHtml5(request.getParameter("Obiettivi"));
-            Map<String, Object> risultato = Validation.text500(Obiettivi, "Obiettivi di svolgimento");
+            String obiettivi = HtmlEscape.escapeHtml5(request.getParameter("Obiettivi"));
+            Map<String, Object> risultato = Validation.text500(obiettivi, "Obiettivi di svolgimento");
             if (!(boolean) risultato.get("valido")) {
                 errori.put("ErroreObiettivi", (String) risultato.get("messaggio"));
             } else {
-                datamodel.put("ValueOfObiettivi", Obiettivi);
+                datamodel.put("ValueOfObiettivi", obiettivi);
+                offertaTirocinio.setObbiettivi(obiettivi);
             }
         } else errori.put("ErroreObiettivi", "Obiettivi di svolgimento non presenti");
 
@@ -160,6 +182,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreRimborsi", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfRimborsi", rimborsi);
+                offertaTirocinio.setRimborsi(rimborsi);
             }
         } else errori.put("ErroreRimborsi", "Rimborsi non presenti");
 
@@ -171,6 +194,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreFacilitazioni", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfFacilitazioni", facilitazioni);
+                offertaTirocinio.setFacilitazioni(facilitazioni);
             }
         } else errori.put("ErroreFacilitazioni", "Facilitazioni non presenti");
 
@@ -182,6 +206,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreSedeTirocinio", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfSedeTirocinio", sede);
+                offertaTirocinio.setLuogoEffettuazione(sede);
             }
         } else errori.put("ErroreSedeTirocinio", "SedeTirocinio non presente");
 
@@ -193,6 +218,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreCodiceIdentTirocinio", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfCodiceIdentTirocinio", codice);
+                offertaTirocinio.setCodIdentTirocinio(codice);
             }
         } else errori.put("ErroreCodiceIdentTirocinio", "Codice tirocinio non presente");
 
@@ -204,6 +230,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreSettoreInserimento", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfSettoreInserimento", settore);
+                offertaTirocinio.setSettoreInserimento(settore);
             }
         } else errori.put("ErroreSettoreInserimento", "Settore Inserimento non presente");
 
@@ -215,6 +242,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreTempiAccessoLocaliAziendali", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfTempiAccessoLocaliAziendali", tempiAccesso);
+                offertaTirocinio.setTempoAccessoLocaliAziendali(tempiAccesso);
             }
         } else errori.put("ErroreTempiAccessoLocaliAziendali", "Tempi di accesso ai locali non presente");
 
@@ -226,6 +254,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreNomeTutoreAziendale", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfNomeTutoreAziendale", nomeTuAz);
+                offertaTirocinio.setNomeTutoreAziendale(nomeTuAz);
             }
         } else errori.put("ErroreNomeTutoreAziendale", "Nome Tutore aziendale non presente");
 
@@ -237,6 +266,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreCognomeTutoreAziendale", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfCognomeTutoreAziendale", cognomeTuAz);
+                offertaTirocinio.setCognomeTutoreAziendale(cognomeTuAz);
             }
         } else errori.put("ErroreCognomeTutoreAziendale", "Cognome Tutore aziendale non presente");
 
@@ -248,6 +278,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreTelefonoTutoreAziendale", (String) risultato.get("messaggio"));
             } else {
                 datamodel.put("ValueOfTelefono", telTutAz);
+                offertaTirocinio.setTelefonoTutoreAziendale(telTutAz);
             }
         } else errori.put("ErroreTelefonoTutoreAziendale", "Telefono Tutore aziendale non presente");
 
@@ -261,6 +292,7 @@ public class CreazioneOffertaController extends baseController {
                 errori.put("ErroreEmailTutoreAziendale", "Non è un email valida");
             } else {
                 datamodel.put("ValueOfEmailTutoreAziendale", emailTutAz);
+                offertaTirocinio.setEmailTutoreAziendale(emailTutAz);
             }
         } else errori.put("ErroreEmailTutoreAziendale", "Email Tutore aziendale non presente");
 
@@ -270,7 +302,10 @@ public class CreazioneOffertaController extends baseController {
             TemplateController.process("creazione-tirocinio-aziendale.ftl", datamodel, response, getServletContext());
         } else {
             // salva i dati
-            processaPost(request, response, session);
+            Azienda azienda = session.getAzienda(request, response);
+            offertaTirocinio.setAzienda(azienda.getIDAzienda());
+            offertaTirocinio.setStato(1);
+            processaPost(request, response, offertaTirocinio);
         }
 
     }
@@ -285,8 +320,8 @@ public class CreazioneOffertaController extends baseController {
                     String paramName = params.nextElement();
                     System.out.println("Parameter Name - " + paramName + ", Value - " + request.getParameter(paramName));
                 }
-                erroriPost(request, response, session);
                 System.out.println("esegui post e salva i dati");
+                erroriPost(request, response, session);
             } else {
                 er500(request, response);
             }

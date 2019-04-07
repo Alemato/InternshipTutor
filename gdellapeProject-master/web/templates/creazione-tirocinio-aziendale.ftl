@@ -62,7 +62,7 @@
                         </div>
                         <div class="col">
                             <div class="fancy-form">
-                                <textarea rows="3" class="form-control form-control-1 word-count error" data-maxlength="50"
+                                <textarea rows="3" class="form-control form-control-1 word-count <#if ErroreDescrizione_Breve??>error</#if>" data-maxlength="50"
                                           data-info="textarea-descrizione_breve" name="Descrizione_Breve"
                                           placeholder="Scrivi una breve descrizione dell&apos;offerta di tirocinio  questa descrizione apparir&agrave; nel anteprima del offerta"><#if ValueOfDescrizione_Breve??> ${ValueOfDescrizione_Breve} </#if></textarea>
                                 <i class="fa fa-font"><!-- icon --></i>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="col">
                             <div class="fancy-form">
-                                <textarea rows="5" class="form-control form-control-1 word-count" data-maxlength="200"
+                                <textarea rows="5" class="form-control form-control-1 word-count<#if ErroreDescrizione_Completa??> error</#if>" data-maxlength="200"
                                           data-info="textarea-descrizione_completa" name="Descrizione_Completa"
                                           placeholder="Scrivi una descrizione completa ed esaustiva dell'offerta di tirocinio"><#if ValueOfDescrizione_Completa??> ${ValueOfDescrizione_Completa} </#if></textarea>
                                 <i class="fa fa-font"><!-- icon --></i>
@@ -147,11 +147,11 @@
                                     <#if ValueOfDurara_Ora??> value="${ValueOfDurara_Ora}" </#if> required>
                             </label>
                             <#if ErroreDurara_Ora??>
-                                <button type="button" class="close" data-dismiss="alert">
-                                    <span aria-hidden="true">&times;</span>
-                                    <span class="sr-only">Chiudi</span>
-                                </button>
                                 <div class="alert alert-danger mb-30">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Chiudi</span>
+                                    </button>
                                     <strong>Attenzione! </strong>${ErroreDurara_Ora}
                                 </div>
                             </#if>
@@ -181,7 +181,7 @@
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="date" <#if ErrorePeriodo_inizio??>class="error" </#if>name="Periodo_inizio" <#if ValueOfPeriodo_inizio??> value="${ValueOfPeriodo_inizio}" </#if>
+                                <input type="date" <#if ErrorePeriodo_inizio??>class="error" </#if>name="Periodo_inizio" <#if ValueOfPeriodo_inizio??> value="${ValueOfPeriodo_inizio?date?iso_utc}" </#if>
                                        required>
                             </label>
                             <#if ErrorePeriodo_inizio??>
@@ -199,7 +199,7 @@
                         </div>
                         <div class="col">
                             <label class="input">
-                                <input type="date" <#if ErrorePeriodo_fine??>class="error" </#if>name="Periodo_fine" <#if ValueOfPeriodo_fine??> value="${ValueOfPeriodo_fine}" </#if>
+                                <input type="date" <#if ErrorePeriodo_fine??>class="error" </#if>name="Periodo_fine" <#if ValueOfPeriodo_fine??> value="${ValueOfPeriodo_fine?date?iso_utc}" </#if>
                                        required>
                             </label>
                             <#if ErrorePeriodo_fine??>
@@ -241,7 +241,7 @@
                         </div>
                         <div class="col">
                             <div class="fancy-form">
-                                <textarea rows="5" class="form-control form-control-1 word-count" data-maxlength="200"
+                                <textarea rows="5" class="form-control form-control-1 word-count <#if ErroreObiettivi??>error</#if>" data-maxlength="200"
                                           data-info="textarea-obiettivi" name="Obiettivi"
                                           placeholder="Scrivi una descrizione completa ed esaustiva degli obiettivi dell'offerta di tirocinio"><#if ValueOfObiettivi??> ${ValueOfObiettivi} </#if></textarea>
                                 <i class="fa fa-font"><!-- icon --></i>
