@@ -17,6 +17,239 @@ import static java.lang.Character.*;
 
 public class Validation {
 
+    /**
+     * Funzione che valida um testo che abbia un massimo di 50 caratteri
+     * @param text contenuto della variabile da validare
+     * @param nomeVariabile nome della variabile, per il messaggio di errore
+     * @return  ritona una mappa che contiene come chiave un booleano che rappresenta il risultato della validazione
+     *          e una stringa che contiene il messaggio di errore
+     */
+    public static Map<String, Object> text50(String text, String nomeVariabile){
+        Map<String, Object> risulatato = new HashMap<>();
+        Boolean valido = true;
+        String messaggio = "";
+        if(text.isEmpty()){
+            messaggio = nomeVariabile + " non prensente";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }else if (text.length() > 50){
+            messaggio = nomeVariabile + " troppo lungo";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }
+        risulatato.put("valido", valido);
+        risulatato.put("messaggio", messaggio);
+        return risulatato;
+    }
+
+    /**
+     * Funzione che valida um testo che abbia un massimo di 30 caratteri
+     * @param text contenuto della variabile da validare
+     * @param nomeVariabile nome della variabile, per il messaggio di errore
+     * @return  ritona una mappa che contiene come chiave un booleano che rappresenta il risultato della validazione
+     *          e una stringa che contiene il messaggio di errore
+     */
+    public static Map<String, Object> text30(String text, String nomeVariabile){
+        Map<String, Object> risulatato = new HashMap<>();
+        Boolean valido = true;
+        String messaggio = "";
+        if(text.isEmpty()){
+            messaggio = nomeVariabile + " non prensente";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }else if (text.length() > 30){
+            messaggio = nomeVariabile + " troppo lungo";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }
+        risulatato.put("valido", valido);
+        risulatato.put("messaggio", messaggio);
+        return risulatato;
+    }
+
+    /**
+     * Funzione che valida um testo che abbia un massimo di 10 caratteri
+     * @param text contenuto della variabile da validare
+     * @param nomeVariabile nome della variabile, per il messaggio di errore
+     * @return  ritona una mappa che contiene come chiave un booleano che rappresenta il risultato della validazione
+     *          e una stringa che contiene il messaggio di errore
+     */
+    public static Map<String, Object> text10(String text, String nomeVariabile){
+        Map<String, Object> risulatato = new HashMap<>();
+        Boolean valido = true;
+        String messaggio = "";
+        if(text.isEmpty()){
+            messaggio = nomeVariabile + " non prensente";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }else if (text.length() > 10){
+            messaggio = nomeVariabile + " troppo lungo";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }
+        risulatato.put("valido", valido);
+        risulatato.put("messaggio", messaggio);
+        return risulatato;
+    }
+
+    /**
+     * Funzione che valida um testo che abbia un massimo di 500 caratteri
+     * @param text contenuto della variabile da validare
+     * @param nomeVariabile nome della variabile, per il messaggio di errore
+     * @return  ritona una mappa che contiene come chiave un booleano che rappresenta il risultato della validazione
+     *          e una stringa che contiene il messaggio di errore
+     */
+    public static Map<String, Object> text500(String text, String nomeVariabile){
+        Map<String, Object> risulatato = new HashMap<>();
+        Boolean valido = true;
+        String messaggio = "";
+        if(text.isEmpty()){
+            messaggio = nomeVariabile + " non prensente";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }else if (text.length() > 500){
+            messaggio = nomeVariabile + " troppo lungo";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }
+        risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+        return risulatato;
+    }
+
+
+    /**
+     * Funzione che valida um numero (ore, mesi) ce siano maggiori o uguali a 0 e minori di 1000
+     * @param integer contenuto della variabile da validare
+     * @param nomeVariabile nome della variabile, per il messaggio di errore
+     * @return  ritona una mappa che contiene come chiave un booleano che rappresenta il risultato della validazione
+     *          e una stringa che contiene il messaggio di errore
+     */
+    public static Map<String, Object> durateUgualeMaggiore0Minore10000(Integer integer, String nomeVariabile){
+        Map<String, Object> risulatato = new HashMap<>();
+        Boolean valido = true;
+        String messaggio = "";
+        if(integer <= 0){
+            messaggio = nomeVariabile + " non congrua";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }else if ( integer > 1000){
+            messaggio = nomeVariabile + " non congrua";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }
+        risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+        return risulatato;
+    }
+
+    /**
+     * Funzione che valida um testo che abbia un massimo di 1000 caratteri
+     * @param text contenuto della variabile da validare
+     * @param nomeVariabile nome della variabile, per il messaggio di errore
+     * @return  ritona una mappa che contiene come chiave un booleano che rappresenta il risultato della validazione
+     *          e una stringa che contiene il messaggio di errore
+     */
+    public static Map<String, Object> text1000(String text, String nomeVariabile){
+        Map<String, Object> risulatato = new HashMap<>();
+        Boolean valido = true;
+        String messaggio = "";
+        if(text.isEmpty()){
+            messaggio = nomeVariabile + " non prensente";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }else if (text.length() > 1000){
+            messaggio = nomeVariabile + " troppo lungo";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }
+        risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+        return risulatato;
+    }
+
+    /**
+     * Funzione che valida um testo che abbia un massimo di 200 caratteri
+     * @param text contenuto della variabile da validare
+     * @param nomeVariabile nome della variabile, per il messaggio di errore
+     * @return  ritona una mappa che contiene come chiave un booleano che rappresenta il risultato della validazione
+     *          e una stringa che contiene il messaggio di errore
+     */
+    public static Map<String, Object> text200(String text, String nomeVariabile){
+        Map<String, Object> risulatato = new HashMap<>();
+        Boolean valido = true;
+        String messaggio = "";
+        if(text.isEmpty()){
+            messaggio = nomeVariabile + " non prensente";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }else if (text.length() > 200){
+            messaggio = nomeVariabile + " troppo lungo";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }
+        risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+        return risulatato;
+    }
+
+    /**
+     * Funzione che valida um testo che abbia un massimo di 100 caratteri
+     * @param text contenuto della variabile da validare
+     * @param nomeVariabile nome della variabile, per il messaggio di errore
+     * @return  ritona una mappa che contiene come chiave un booleano che rappresenta il risultato della validazione
+     *          e una stringa che contiene il messaggio di errore
+     */
+    public static Map<String, Object> text100(String text, String nomeVariabile){
+        Map<String, Object> risulatato = new HashMap<>();
+        Boolean valido = true;
+        String messaggio = "";
+        if(text.isEmpty()){
+            messaggio = nomeVariabile + " non prensente";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }else if (text.length() > 100){
+            messaggio = nomeVariabile + " troppo lungo";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }
+        risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+        return risulatato;
+    }
+
     public static Boolean fileDirValidation(String appPath, String saveDir, String filename){
         File dir = new File(appPath+saveDir);
         File file = new File(appPath + saveDir + File.separator + filename);
