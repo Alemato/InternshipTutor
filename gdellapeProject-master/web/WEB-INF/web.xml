@@ -240,6 +240,15 @@
         <url-pattern>/Account/Gestione-Offerte</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CreazioneOffertaController</servlet-name>
+        <servlet-class>controller.adm.Azienda.CreazioneOffertaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreazioneOffertaController</servlet-name>
+        <url-pattern>/account/gestione-offerte/creazione-offerta</url-pattern>
+        <url-pattern>/Account/Gestione-Offerte/Creazione-Offerta</url-pattern>
+    </servlet-mapping>
 
     <!-- servlet errori-->
     <servlet>

@@ -36,11 +36,11 @@
             <div class="linea-divisione mt-15 mb-30"></div>
             <div class="card mb-50">
                 <div class="card-header">
-                    <i class="fa fa-table"></i> Richieste di tirocinio pendenti
+                    <i class="fa fa-table"></i> Visualizza Tutte le Offerte di Tirocinio
                 </div>
                 <div class="card-body">
-                    <form id="form_gestione_offerte" action="/account/gestione-offerte" method="post">
-                        <table class="table table-responsive table-striped table-bordered bg-white table-hover border"
+                    <form id="form_gestione_offerte" class="" action="/account/gestione-offerte" method="post">
+                        <table class="table table-striped table-bordered bg-white table-hover border"
                                id="datatable_1" width="100%" cellspacing="0">
                             <thead>
                             <tr>
@@ -48,6 +48,7 @@
                                 <th>Nome</th>
                                 <th>Descrizione</th>
                                 <th>Stato</th>
+                                <th>Data Scadenza Prevista</th>
                                 <th>Data Creazione</th>
                                 <th>Data Aggiornamento</th>
                                 <th>Visualizza</th>
@@ -55,35 +56,33 @@
                                 <th>Disattiva Offerta</th>
                             </tr>
                             </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Codice Identificativo</th>
-                                <th>Nome</th>
-                                <th>Descrizione</th>
-                                <th>Stato</th>
-                                <th>Data Creazione</th>
-                                <th>Data Aggiornamento</th>
-                                <th>Visualizza</th>
-                                <th>Modifica</th>
-                                <th>Disattiva Offerta</th>
-                            </tr>
-                            </tfoot>
                             <tbody>
                             <#list listaOfferte as listaOfferte>
-                            <tr>
-                                <td>${listaOfferte.codIdentTirocinio}</td>
-                                <td>${listaOfferte.titolo}</td>
-                                <td>${listaOfferte.descrizioneBreve}</td>
-                                <td>${listaOfferte.stato}</td>
-                                <td>${listaOfferte.createDate?date}</td>
-                                <td>${listaOfferte.updateDate?date}</td>
-                                <td><a href="/account/gestione-offerte?id=${listaOfferte.IDOffertaTirocinio}"><button type="button" class="btn btn-outline-success">Visualizza</button></a></td>
-                                <td><a href="/account/gestione-offerte?id=${listaOfferte.IDOffertaTirocinio}"><button type="button" class="btn btn-outline-primary">Modifica</button></a></td>
-                                <td><input type="checkbox" class="checkboxes"
-                                               name="Disattiva_${listaOfferte.IDOffertaTirocinio}"/><i
-                                            class="fa fa-check" style="color: green;"></i> Disattiva
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>${listaOfferte.codIdentTirocinio}</td>
+                                    <td>${listaOfferte.titolo}</td>
+                                    <td>${listaOfferte.descrizioneBreve}</td>
+                                    <td>
+                                        <#if listaOfferte.stato==1> Attivo <#else> Disattivato</#if></td>
+                                    <td>${listaOfferte.periodoFine?date}</td>
+                                    <td>${listaOfferte.createDate?date}</td>
+                                    <td>${listaOfferte.updateDate?date}</td>
+                                    <td><a href="/account/gestione-offerte?id=${listaOfferte.IDOffertaTirocinio}">
+                                            <button type="button" class="btn btn-outline-success">Visualizza</button>
+                                        </a></td>
+                                    <td><a href="/account/gestione-offerte?id=${listaOfferte.IDOffertaTirocinio}">
+                                            <button type="button" class="btn btn-outline-primary">Modifica</button>
+                                        </a></td>
+                                    <td><#if listaOfferte.stato==1>
+                                            <input type="checkbox" class="checkboxes"
+                                                   name="Disattiva_${listaOfferte.IDOffertaTirocinio}"/> Disattiva
+                                        <#else>
+                                            <input type="checkbox" class="checkboxes"
+                                                   name="Disattiva_${listaOfferte.IDOffertaTirocinio}" checked
+                                                   disabled/> Disattiva
+                                        </#if>
+                                    </td>
+                                </tr>
                             </#list>
                             </tbody>
                         </table>
@@ -105,9 +104,10 @@
             <h1 class="mb-0">CREA UN OFFERTA</h1>
             <div class="linea-divisione mt-15 mb-30"></div>
             <p>Per creare un offerta clicca su crea offerta
-            <a href="#">
-                <button type="button" class="btn btn-outline-primary"><i class="fa fa-pencil"></i> CREA OFFERTA</button>
-            </a>
+                <a class="col" href="/account/gestione-offerte/creazione-offerta">
+                    <button type="button" class="btn btn-outline-primary"><i class="fa fa-pencil"></i> CREA OFFERTA
+                    </button>
+                </a>
             </p>
         </div>
     </section>
@@ -137,6 +137,8 @@
                 "orderable": true
             }, {
                 "orderable": true
+            },{
+                "orderable": true
             }, {
                 "orderable": true
             }, {
@@ -149,7 +151,7 @@
                 "orderable": false
             }],
             "order": [
-                [0, 'asc']
+                [3, 'asc']
             ],
             "lengthMenu": [
                 [5, 15, 20, -1],
@@ -165,13 +167,14 @@
                 "infoFiltered": " (filtrato da _MAX_ voci totali)"
             },
             "pageLength": 5, // set the initial value,
-            "columnDefs": [{  // set default column settings
-                'orderable': true,
-                'targets': [0]
-            }, {
-                "searchable": true,
-                "targets": [0]
-            }]
+            "scrollX": true,
+            "columnDefs": [  // set default column settings
+                {"width": "150px", "targets": [2, 8]},
+                {"width": "122px", "targets": [4, 5]},
+                {
+                    "searchable": true,
+                    "targets": [0]
+                }]
         });
 
         var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);
