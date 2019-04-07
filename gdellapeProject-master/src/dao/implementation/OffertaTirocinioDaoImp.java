@@ -40,7 +40,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
                     "Titolo,DescrizioneBreve,Descrizione,Orari,DurataOre,DurataMesi,PeriodoInizio,PeriodoFine,Stato," +
                     "Modalita,Obbiettivi,Rimborsi,Facilitazioni,AziendaOspitante,CodIdentTirocinio,SettoreInserimento," +
                     "TempoAccessoLocaliAziendali,NomeTutoreAziendale,CognomeTutoreAziendale,TelefonoTutoreAziendale," +
-                    "EmailTutoreAziendale,Azienda, TutoreUniversitario  ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "EmailTutoreAziendale,Azienda ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             
             this.updateOffertatr = connection.prepareStatement("UPDATE offertatirocinio SET LuogoEffettuazione = ?," +
                     "Titolo= ?,DescrizioneBreve= ?,Descrizione= ?,Orari = ?, DurataOre = ?, DurataMesi = ?, " +
@@ -83,7 +83,6 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             offertaTirocinio.setCreateDate(resultSet.getTimestamp("CreateDate"));
             offertaTirocinio.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
             offertaTirocinio.setAzienda(resultSet.getInt("Azienda"));
-            offertaTirocinio.setTutoreUniversitario(resultSet.getInt("TutoreUniversitario"));
         } catch (SQLException e){
             e.printStackTrace();
             throw new DaoException("Errore nel creare oggetto OffertaTirocinio", e);
@@ -191,7 +190,6 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             insertOffertatr.setString(21, tr.getTelefonoTutoreAziendale());
             insertOffertatr.setString(22, tr.getEmailTutoreAziendale());
             insertOffertatr.setInt(23, tr.getAzienda());
-            insertOffertatr.setInt(24, tr.getTutoreUniversitario());
             insertOffertatr.executeUpdate();
 
         } catch (SQLException e) {

@@ -36,7 +36,7 @@ public class OffertaTirocinio {
     private Timestamp CreateDate;
     private Timestamp UpdateDate;
     private Integer Azienda;
-    private Integer TutoreUniversitario;
+
 
 
     public OffertaTirocinio() {
@@ -66,7 +66,6 @@ public class OffertaTirocinio {
         this.CreateDate = null;
         this.UpdateDate = null;
         this.Azienda = 0;
-        this.TutoreUniversitario = 0;
     }
 
     //GET DATA
@@ -176,10 +175,6 @@ public class OffertaTirocinio {
         return Azienda;
     }
 
-    public Integer getTutoreUniversitario() {
-        return TutoreUniversitario;
-    }
-
     // SET DATA
 
     public void setIDOffertaTirocinio(Integer IDOffertaTirocinio) {
@@ -286,10 +281,6 @@ public class OffertaTirocinio {
         Azienda = azienda;
     }
 
-    public void setTutoreUniversitario(Integer tutoreUniversitario) {
-        TutoreUniversitario = tutoreUniversitario;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -320,13 +311,12 @@ public class OffertaTirocinio {
                 EmailTutoreAziendale.equals(that.EmailTutoreAziendale) &&
                 CreateDate.equals(that.CreateDate) &&
                 UpdateDate.equals(that.UpdateDate) &&
-                Azienda.equals(that.Azienda) &&
-                TutoreUniversitario.equals(that.TutoreUniversitario);
+                Azienda.equals(that.Azienda);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(IDOffertaTirocinio, LuogoEffettuazione, Titolo, DescrizioneBreve, Descrizione, Orari, DurataOre, DurataMesi, PeriodoInizio, PeriodoFine, Stato, Modalita, Obbiettivi, Rimborsi, Facilitazioni, AziendaOspitante, CodIdentTirocinio, SettoreInserimento, TempoAccessoLocaliAziendali, NomeTutoreAziendale, CognomeTutoreAziendale, TelefonoTutoreAziendale, EmailTutoreAziendale, CreateDate, UpdateDate, Azienda, TutoreUniversitario);
+        return Objects.hash(IDOffertaTirocinio, LuogoEffettuazione, Titolo, DescrizioneBreve, Descrizione, Orari, DurataOre, DurataMesi, PeriodoInizio, PeriodoFine, Stato, Modalita, Obbiettivi, Rimborsi, Facilitazioni, AziendaOspitante, CodIdentTirocinio, SettoreInserimento, TempoAccessoLocaliAziendali, NomeTutoreAziendale, CognomeTutoreAziendale, TelefonoTutoreAziendale, EmailTutoreAziendale, CreateDate, UpdateDate, Azienda);
     }
 
     @Override
@@ -358,7 +348,6 @@ public class OffertaTirocinio {
                 ", CreateDate=" + CreateDate +
                 ", UpdateDate=" + UpdateDate +
                 ", Azienda=" + Azienda +
-                ", TutoreUniversitario=" + TutoreUniversitario +
                 '}';
     }
 }
