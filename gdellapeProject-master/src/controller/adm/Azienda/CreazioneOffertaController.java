@@ -304,6 +304,7 @@ public class CreazioneOffertaController extends baseController {
             // salva i dati
             Azienda azienda = session.getAzienda(request, response);
             offertaTirocinio.setAzienda(azienda.getIDAzienda());
+            offertaTirocinio.setAziendaOspitante(azienda.getRagioneSociale());
             offertaTirocinio.setStato(1);
             processaPost(request, response, offertaTirocinio);
         }

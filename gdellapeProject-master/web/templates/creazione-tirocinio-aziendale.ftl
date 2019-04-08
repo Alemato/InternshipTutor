@@ -216,7 +216,7 @@
 
                     <div class="row">
                         <div class="col-md-auto mt-6">
-                            <h4>Modalità di svolgimento:&nbsp;</h4>
+                            <h4>Modalit&agrave; di svolgimento:&nbsp;</h4>
                         </div>
                         <div class="col">
                             <label class="input">

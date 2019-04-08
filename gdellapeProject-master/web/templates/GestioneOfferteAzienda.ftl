@@ -169,7 +169,7 @@
             "pageLength": 5, // set the initial value,
             "scrollX": true,
             "columnDefs": [  // set default column settings
-                {"width": "150px", "targets": [2, 8]},
+                {"width": "150px", "targets": [2, 9]},
                 {"width": "122px", "targets": [4, 5]},
                 {
                     "searchable": true,
