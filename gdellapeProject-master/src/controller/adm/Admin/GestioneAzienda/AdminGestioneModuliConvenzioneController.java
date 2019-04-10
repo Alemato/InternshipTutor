@@ -2,7 +2,9 @@ package controller.adm.Admin.GestioneAzienda;
 
 
 import controller.baseController;
+import dao.exception.DaoException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +17,18 @@ public class AdminGestioneModuliConvenzioneController extends baseController {
 
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         super.init(request,response);
-        FillGestioniModuliConvenzione page = new FillGestioniModuliConvenzione(request,response,getServletContext(),datamodel);
-        page.makeget();
-        System.out.println(datamodel);
+        try {
+            FillGestioniModuliConvenzione page = new FillGestioniModuliConvenzione(request, response, getServletContext(), datamodel);
+            page.makeget();
+            System.out.println(datamodel);
+        }catch (DaoException e)
+        {
+            e.printStackTrace();
+            RequestDispatcher errorpage = request.getRequestDispatcher("/500");
+            errorpage.forward(request,response);
+        }
     }
 
 
