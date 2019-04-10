@@ -27,7 +27,7 @@ public class AdminAccettaConvenzione extends baseController{
     private Boolean validate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,DaoException
     {
       boolean result=true;
-        if(request.getParameter("IDUser").isEmpty())
+        if(request.getParameter("IDAzienda").isEmpty())
         {
             result=false;
         }else if(request.getParameter("stato").isEmpty())
@@ -54,17 +54,17 @@ public class AdminAccettaConvenzione extends baseController{
         String stato= request.getParameter("stato");
 
        AziendaDaoImp dao = new AziendaDaoImp();
-       Azienda azienda= dao.getAziendaByID(Integer.parseInt(request.getParameter("IDUser")));
+       Azienda azienda= dao.getAziendaByID(Integer.parseInt(request.getParameter("IDAzienda")));
        dao.destroy();
 
-       if(azienda.getAttivo()==0&&azienda.getPathPDFConvenzione()==null) {
+       if(azienda.getAttivo()==0&&azienda.getPathPDFConvenzione()!=null) {
            if (stato.equals("accetta")) {
                //caso in cui admin accetta la convenzione
                azienda.setAttivo(1);
 //               AziendaDaoImp dao1 = new AziendaDaoImp();
 //               dao1.updateAzienda(azienda);
 //               dao1.destroy();
-               AdminFillRichiesteAndAttive page= new AdminFillRichiesteAndAttive(datamodel,getServletContext(),request,response);
+               AdminFillRichiesteAndAttive page = new AdminFillRichiesteAndAttive(datamodel,getServletContext(),request,response);
                page.makegetSuccess("Azienda "+azienda.getRagioneSociale()+" ora puo operare");
 
            } else {
@@ -74,13 +74,10 @@ public class AdminAccettaConvenzione extends baseController{
 //               AziendaDaoImp dao1 = new AziendaDaoImp();
 //               dao1.updateAzienda(azienda);
 //               dao1.destroy();
-               AdminFillRichiesteAndAttive page= new AdminFillRichiesteAndAttive(datamodel,getServletContext(),request,response);
-               page.makegetSuccess("Azienda "+azienda.getRagioneSociale()+" e stata declinata");
+               AdminFillRichiesteAndAttive page = new AdminFillRichiesteAndAttive(datamodel,getServletContext(),request,response);
+               page.makegetInsuccess("Azienda "+azienda.getRagioneSociale()+" e stata declinata");
 
            }
-
-           AdminFillRichiesteAndAttive page= new AdminFillRichiesteAndAttive(datamodel,getServletContext(),request,response);
-           page.makegetSuccess("Errore scelta per attivazaione della azienda");
        }else{
            AdminFillRichiesteAndAttive page= new AdminFillRichiesteAndAttive(datamodel,getServletContext(),request,response);
            page.makegetInsuccess("Errore scelta per attivazaione della azienda");
@@ -90,6 +87,7 @@ public class AdminAccettaConvenzione extends baseController{
 
 
     private void modificaAzienda(HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException {
+        super.init(request,response);
         try {
 
             if (validate(request, response)) {
@@ -99,7 +97,7 @@ public class AdminAccettaConvenzione extends baseController{
         }catch (DaoException e)
         {
             e.printStackTrace();
-            response.sendRedirect("/404");
+            response.sendRedirect("/500");
         }
     }
 
