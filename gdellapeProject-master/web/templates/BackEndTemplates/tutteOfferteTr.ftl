@@ -107,6 +107,7 @@
                 </tr>
                 </tfoot>
                 <tbody>
+                <#if OfferteAttive?has_content>
                 <#list OfferteAttive as offerta>
                 <tr>
                     <td>${offerta.codIdentTirocinio}</td>
@@ -122,17 +123,18 @@
 
                     </td>
                     <td>
-                            <a type="button" class="btn btn-danger"><i class="fa fa-times"></i>Disattiva</a>
+                            <a type="button" class="btn btn-danger" href="/disattiva-offerta?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-times"></i>Disattiva</a>
 
                     </td>
                     <td>
-                            <a type="button" class="btn btn-primary" href="/#"><i class="fa fa-users"></i>Visualizza Utenti
+                            <a type="button" class="btn btn-primary" href="/show-richiedenti?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-users"></i>Visualizza Utenti
                                 Richiedenti
                             </a>
 
                     </td>
                 </tr>
                 </#list>
+                </#if>
 
                 </tbody>
             </table>
@@ -175,6 +177,7 @@
                 </tr>
                 </tfoot>
                 <tbody>
+                <#if OfferteScadute?has_content>
                 <#list OfferteScadute as offerta>
                     <tr>
                         <td>${offerta.codIdentTirocinio}</td>
@@ -190,12 +193,13 @@
 
                         </td>
                         <td>
-                                <a type="button" class="btn btn-primary" href="/#"><i class="fa fa-users"></i>Visualizza Utenti
+                                <a type="button" class="btn btn-primary" href="/show-richiedenti?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-users"></i>Visualizza Utenti
                                     Richiedenti
                                 </a>
                         </td>
                     </tr>
                 </#list>
+                </#if>
 
                 </tbody>
             </table>

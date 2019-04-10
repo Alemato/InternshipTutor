@@ -588,6 +588,16 @@
 
     </servlet-mapping>
     <servlet>
+        <servlet-name>show-TRRichiedenti</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneTirocinio.ShowTirocinatiRichientiController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>show-TRRichiedenti</servlet-name>
+        <url-pattern>/show-richiedenti</url-pattern>
+        <url-pattern>/Show-Richiedenti</url-pattern>
+
+    </servlet-mapping>
+    <servlet>
         <servlet-name>reimposta-user</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneUtenza.ReimpostaMailUserController</servlet-class>
     </servlet>
@@ -634,6 +644,16 @@
     <servlet-name>TutteOfferteTr</servlet-name>
     <url-pattern>/OfferteTirocinioAdmin</url-pattern>
     <url-pattern>/offertetirocinioadmin</url-pattern>
+
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DisattivaOfferta</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneTirocinio.DisattivaOffertaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DisattivaOfferta</servlet-name>
+        <url-pattern>/Disattiva-Offerta</url-pattern>
+        <url-pattern>/disattiva-offerta</url-pattern>
 
     </servlet-mapping>
 
