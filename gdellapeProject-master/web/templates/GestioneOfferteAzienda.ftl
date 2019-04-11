@@ -70,7 +70,7 @@
                                     <td><a href="/account/gestione-offerte?id=${listaOfferte.IDOffertaTirocinio}">
                                             <button type="button" class="btn btn-outline-success">Visualizza</button>
                                         </a></td>
-                                    <td><a href="/account/gestione-offerte?id=${listaOfferte.IDOffertaTirocinio}">
+                                    <td><a href="/account/gestione-offerte/edit?id=${listaOfferte.IDOffertaTirocinio}">
                                             <button type="button" class="btn btn-outline-primary">Modifica</button>
                                         </a></td>
                                     <td><#if listaOfferte.stato==1>

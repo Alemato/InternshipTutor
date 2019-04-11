@@ -250,6 +250,16 @@
         <url-pattern>/Account/Gestione-Offerte/Creazione-Offerta</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ModificaOffertaController</servlet-name>
+        <servlet-class>controller.adm.Azienda.ModificaOffertaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModificaOffertaController</servlet-name>
+        <url-pattern>/account/gestione-offerte/edit</url-pattern>
+        <url-pattern>/Account/Gestione-offerte/Edit</url-pattern>
+    </servlet-mapping>
+
     <!-- servlet errori-->
     <servlet>
         <servlet-name>404</servlet-name>
