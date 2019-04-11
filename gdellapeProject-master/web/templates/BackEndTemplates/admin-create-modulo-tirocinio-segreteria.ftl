@@ -32,7 +32,7 @@
     <!-- CSS DATATABLES -->
     <link href="css/layout-datatables.css" rel="stylesheet" type="text/css"/>
     <!--CSS no print -->
-    <link href="/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="css/print.css" rel="stylesheet" type="text/css" media="print">
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -61,14 +61,13 @@
 
 </nav>
 <div class="container-fluid d-print-none">
-    <v class="row d-print-none">
+    <div class="row d-print-none">
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar bg-light d-print-none">
             <div class="side-nav mb-60">
                 <ul class="list-group list-group-bordered list-group-noicon uppercase">
                     <li class=""><a href="admin.html">HOME DASHBOARD</a></li>
                     <li class=""><a href="gestione-utenza-admin.html">GESTIONE UTENZA</a></li>
-                    <li class=""><a href="gestione-richieste-convenzioni-admin.html">GESTIONE RICHIESTE CONVENZIONE</a>
-                    </li>
+                    <li class=""><a href="gestione-richieste-convenzioni-admin.html">GESTIONE RICHIESTE CONVENZIONE</a></li>
                     <li class="list-group-item">
                         <a class="dropdown-toggle" href="gestione-tirocinii-admin.html">GESTIONE TIROCINII</a>
                         <ul>
@@ -92,7 +91,6 @@
                     </li>
 
                     <li class=""><a href="impostazione-account-admin.html">IMPOSTAZIONI ACCOUNT</a></li>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -103,7 +101,7 @@
                 <div class="container">
                     <form id="modulo_segreteria" action="print.php" method="post" class="m-0">
                         <fieldset>
-                            <input name="IDTirocinio" value="${ID}">
+                            <input type="hidden" name="IDTirocinio"  value="${tirocinio.IDTirocinio}">
                             <h1 class="text-center fw-100 d-print-none">Controlla i dati del modulo pre-compilato e clicca su stampa</h1>
 
                             <div class="text-center d-none d-print-block">
@@ -211,7 +209,7 @@
                                 <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_documento"
                                        placeholder="Data"  <#if ValueOfData_documento?? > value="${ValueOfData_documento}" <#elseif tirocinio.data?has_content> value="${tirocinio.dataConsegnaModuloSegreteria}" </#if>
                             </div>
-                            <footer class="mt-50 d-print-none">
+                            <footer class="d-print-none container">
                                 <button type="submit" form="modulo_tirocinante" class="btn btn-success btn-lg pull-right float-right" onclick="window.print();"><i
                                             class="fa fa-check"></i> Stampa
                                 </button>
