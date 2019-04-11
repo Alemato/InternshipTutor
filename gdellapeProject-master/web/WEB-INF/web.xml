@@ -775,6 +775,14 @@
         <url-pattern>/Show-Offerta</url-pattern>
 
     </servlet-mapping>
+    <servlet>
+        <servlet-name>CreateModuloSegreteria</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneModuli.CreaModificaModuloSegreteriaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateModuloSegreteria</servlet-name>
+        <url-pattern>/crea-modulosegreteria</url-pattern>
+    </servlet-mapping>
 
 
 
