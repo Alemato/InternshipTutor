@@ -82,7 +82,7 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
             dao1.destroy();
 
             if (ifmakeModulo(request,response)) {
-                if (!(tr.getPdfSegreteria().isEmpty())) {
+                if (!(tr.getPdfSegreteria()==null)) {
                     datamodel.put("tirocinio", tr);
                 }
 
