@@ -27,10 +27,9 @@
 
     <!-- Page Sript -->
     <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
-    <!-- /Page Script -->
 
-    <!-- CSS DATATABLES -->
-    <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/print.css" rel="stylesheet" type="text/css" media="print">
+
 
 
 </head>
@@ -59,11 +58,16 @@
     </ul>
 
 </nav>
-<div class="container-fluid d-print-none">
-    <div class="row d-print-none">
-        <#include "../BackEndTemplates/sidebar.ftl">
-        <main class="col-sm-10 offset-sm-1 col-md-11 offset-md-2 pt-3 d-print-none">
-            <section class="section-sm centrale border-top-section pl-20 pr-20">
+<#--TODO im modulo e da centrare per la stampa-->
+<div class="container">
+    <div class="row">
+        <div class="d-print-none">
+            <#include "../BackEndTemplates/sidebar.ftl">
+        </div>
+        <main class="col-sm-10 offset-sm-1 col-md-11 offset-md-2 pt-3">
+            <section class="section-sm centrale border-top-section pl-20 pr-20  d-print-none">
+
+            </section>
                 <div class="container">
                     <form id="modulo_segreteria" action="print.php" method="post" class="m-0">
                         <fieldset>
@@ -136,7 +140,7 @@
                                 </div>
                             </#if>
                             <input class="input-modulo col col-sm-12 col-md pl-0 mb-25" type="text" name="Esito_tirocinio" placeholder="Esito del tirocinio"
-                                   <#if ValueOfEsito_tirocinio?? > value="${ValueOfEsito_tirocinio}" <#elseif tirocinio??> value="${tirocinio.esitoTirocinio}" </#if> >
+                                   <#if ValueOfEsito_tirocinio?? > value="${ValueOfEsito_tirocinio}"  </#if> >
 
 
 
@@ -155,7 +159,7 @@
                                 </div>
                             </#if>
                             <input class="input-modulo col-6 col-sm-6 col-md-6 pl-0 mb-45" type="number" name="Crediti_riconosciuti" placeholder="numero crediti riconosciuti"
-                                    <#if ValueOfCrediti_riconosciuti?? > value="${ValueOfCrediti_riconosciuti}"  <#elseif tirocinio?? > value="${tirocinio.esitoTirocinio}" </#if>>
+                                    <#if ValueOfCrediti_riconosciuti?? > value="${ValueOfCrediti_riconosciuti}" </#if>>
 
                             <h4 class="d-none d-print-block">Firma del responsabile della struttura didattica competente</h4>
                             <h4 class="d-none d-print-block fw-400">(Presidente del Consiglio di Corso di Studio)</h4>
@@ -173,7 +177,7 @@
                                     </div>
                                 </#if>
                                 <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_documento"
-                                       placeholder="Data"  <#if ValueOfData_documento?? > value="${ValueOfData_documento}" <#elseif tirocinio.data?has_content> value="${tirocinio.dataConsegnaModuloSegreteria}" </#if>
+                                       placeholder="Data"  <#if ValueOfData_documento?? > value="${ValueOfData_documento}" </#if>
                             </div>
                             <footer class="d-print-none container">
                                 <button type="submit" form="modulo_tirocinante" class="btn btn-success btn-lg pull-right float-right" onclick="window.print();"><i
@@ -186,8 +190,6 @@
                         </fieldset>
                     </form>
                 </div>
-            </section>
-
 
         </main>
     </div>
