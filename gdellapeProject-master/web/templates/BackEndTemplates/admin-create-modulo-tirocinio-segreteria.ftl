@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gestione Moduli</title>
+    <title>Crea Modulo</title>
 
     <!-- mobile settings -->
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
@@ -46,7 +46,8 @@
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
         <li class=""><a href="admin.html">HOME DASHBOARD</a></li>
-        <li class="active"><a href="gestione-moduli-admin.html"><b>GESTIONE MODULO: ${azienda.ragioneSociale}</b></a></li>
+        <li class=""><a href="/Gestione-tirocinio">GESTIONE MODULI TIROCINIO</a></li>
+        <li class="active"><a href="/#"><b>CREA MODULO SEGRETERIA</b></a></li>
     </ol>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -64,15 +65,15 @@
         <div class="d-print-none">
             <#include "../BackEndTemplates/sidebar.ftl">
         </div>
-        <main class="col-sm-10 offset-sm-1 col-md-11 offset-md-2 pt-3">
+        <main class="col-sm-10 offset-sm-1 col-md-11 offset-md-2 pt-3 centra">
             <section class="section-sm centrale border-top-section pl-20 pr-20  d-print-none">
 
             </section>
                 <div class="container">
-                    <form id="modulo_segreteria" action="print.php" method="post" class="m-0">
+                    <form id="modulo_segreteria" action="/crea-modulosegreteria" method="post" class="m-0">
                         <fieldset>
-                            <input type="hidden" name="IDTirocinio"  value="${tirocinio.IDTirocinio}">
-                            <h1 class="text-center fw-100 d-print-none">Controlla i dati del modulo pre-compilato e clicca su stampa</h1>
+                            <input type="hidden" name="IDTirocinio"  value="${ID}">
+                            <h1 class="text-center fw-100 d-print-none ">Controlla i dati del modulo pre-compilato e clicca su stampa</h1>
 
                             <div class="text-center d-none d-print-block">
                                 <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
@@ -147,8 +148,6 @@
                             <h4 class="d-none d-print-block">Firma del Tutor aziendale</h4>
 
                             <div class="linea col-6 p-0 mt-25 mb-25"></div>
-
-                            <h4 class="col-auto col-sm-auto p-0 fs-20">Crediti Formativi riconosciuti </h4>
                             <#if ErroreCrediti??>
                                 <div class="alert alert-danger mb-20">
                                     <button type="button" class="close" data-dismiss="alert">
@@ -158,6 +157,7 @@
                                     <strong>Attenzione!</strong> ${ErroreCrediti}
                                 </div>
                             </#if>
+                            <h4 class="col-auto col-sm-auto p-0 fs-20">Crediti Formativi riconosciuti </h4>
                             <input class="input-modulo col-6 col-sm-6 col-md-6 pl-0 mb-45" type="number" name="Crediti_riconosciuti" placeholder="numero crediti riconosciuti"
                                     <#if ValueOfCrediti_riconosciuti?? > value="${ValueOfCrediti_riconosciuti}" </#if>>
 
@@ -166,24 +166,24 @@
                             <div class="linea col-6 p-0 mt-25 mb-25"></div>
 
                             <div class="row mb-25 mr-10 mt-50">
-                                <h4 class="col-auto col-sm-auto pr-10 fs-20">L&apos;Aquila il </h4>
                                 <#if ErroreDate??>
-                                    <div class="alert alert-danger mb-20">
-                                        <button type="button" class="close" data-dismiss="alert">
-                                            <span aria-hidden="true">&times;</span>
-                                            <span class="sr-only">Chiudi</span>
-                                        </button>
-                                        <strong>Attenzione!</strong> ${ErroreDate}
-                                    </div>
+                                <div class="alert alert-danger mb-20">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Chiudi</span>
+                                    </button>
+                                    <strong>Attenzione!</strong> ${ErroreDate}
+                                </div>
                                 </#if>
+                                <h4 class="col-auto col-sm-auto pr-10 fs-20">L&apos;Aquila il </h4>
                                 <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_documento"
-                                       placeholder="Data"  <#if ValueOfData_documento?? > value="${ValueOfData_documento}" </#if>
+                                       placeholder="Data"  <#if ValueOfData_documento?? > value="${ValueOfData_documento?date?string("dd-MM-yyyy")}" </#if>>
                             </div>
                             <footer class="d-print-none container">
-                                <button type="submit" form="modulo_tirocinante" class="btn btn-success btn-lg pull-right float-right" onclick="window.print();"><i
+                                <button type="submit" form="modulo_segreteria" class="btn btn-success btn-lg pull-right float-right" onclick="window.print();"><i
                                             class="fa fa-check"></i> Stampa
                                 </button>
-                                <button type="reset" form="modulo_tirocinante" class="btn btn-red btn-lg pull-right float-left"><i
+                                <button type="reset" form="modulo_segreteria" class="btn btn-red btn-lg pull-right float-left"><i
                                             class="fa fa-times"></i> Annulla
                                 </button>
                             </footer>

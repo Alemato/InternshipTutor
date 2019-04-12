@@ -68,6 +68,7 @@ label.checkbox {
     outline: none;
 }
 
+
 ul {
     font-size: 18px;
     color: #111111;
@@ -85,4 +86,7 @@ ul {
 
 .breack-print {
     page-break-after: always;
+}
+.centra{
+    margin: 0px !important;
 }
