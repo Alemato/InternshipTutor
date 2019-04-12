@@ -33,7 +33,7 @@
 
 
 </head>
-<body class="smoothscroll enable-animation">
+<body class="enable-animation">
 
 <#--TODO metti a posto la stampa senno si vede male-->
 
@@ -43,7 +43,7 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
+    <a class="navbar-brand link-bar" href="/">Intership Tutor </a>
     <ol class="breadcrumb">
         <li class=""><a href="admin.html">HOME DASHBOARD</a></li>
         <li class=""><a href="/Gestione-tirocinio">GESTIONE MODULI TIROCINIO</a></li>
@@ -66,18 +66,15 @@
             <#include "../BackEndTemplates/sidebar.ftl">
         </div>
         <main class="col-sm-10 offset-sm-1 col-md-11 offset-md-2 pt-3 centra">
-            <section class="section-sm centrale border-top-section pl-20 pr-20  d-print-none">
-
-            </section>
                 <div class="container">
-                    <form id="modulo_segreteria" action="/crea-modulosegreteria" method="post" class="m-0">
+                    <form id="modulo_segreteria" action="/crea-modulosegreteria" method="post" class="mt-20 border p-15 radius-5 bg-white modulo-segreteria">
                         <fieldset>
                             <input type="hidden" name="IDTirocinio"  value="${ID}">
                             <h1 class="text-center fw-100 d-print-none ">Controlla i dati del modulo pre-compilato e clicca su stampa</h1>
 
                             <div class="text-center d-none d-print-block">
-                                <img class="img-fluid" src="imgs/stemma_univaq.png" width="80">
-                                <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
+                                <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
+                                <h1 class="Taviraji fw-600 uppercase mb-0 h1-modulo-segreteria">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
                                 <h4 class="">Dipartimento di INGEGNERIA E SCIENZE DELL&rsquo;INFORMAZIONE E MATEMATICA</h4>
                                 <h6>SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</h6>
                             </div>
@@ -95,7 +92,7 @@
                                 </#if>
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Previa effetuazione di opportune verifiche e colloquio svoltosi in data </h4>
                                 <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_colloquio"
-                                       <#if ValueOfData_colloquio??> value="${ValueOfData_colloquio?date?string("dd-MM-yyyy")}" <#elseif tirocinio?? > value="${tirocinio.dataColloquioSegreteria?date?string("dd-MM-yyyy")}" </#if> placeholder="data">
+                                       <#if ValueOfData_colloquio??> value="${ValueOfData_colloquio?date?iso_utc}" <#elseif tirocinio?? > value="${tirocinio.dataColloquioSegreteria?date?iso_utc}" </#if> placeholder="data">
                             </div>
 
                             <h4 class="col-auto col-sm-auto p-0 fs-20 fw-400 mb-35">Si attesta che il </h4>
@@ -190,7 +187,6 @@
                         </fieldset>
                     </form>
                 </div>
-
         </main>
     </div>
 </div>
