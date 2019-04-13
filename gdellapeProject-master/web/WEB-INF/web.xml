@@ -226,8 +226,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ModuloFineTirocinioAziendaController</servlet-name>
-        <url-pattern>/account/moduli/tirocinio</url-pattern>
-        <url-pattern>/Account/Moduli/Tirocinio</url-pattern>
+        <url-pattern>/account/moduli/crea-fine-tirocinio</url-pattern>
+        <url-pattern>/Account/Moduli/Crea-Fine-Tirocinio</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -258,6 +258,16 @@
         <servlet-name>ModificaOffertaController</servlet-name>
         <url-pattern>/account/gestione-offerte/edit</url-pattern>
         <url-pattern>/Account/Gestione-offerte/Edit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ViewOffertaController</servlet-name>
+        <servlet-class>controller.adm.Azienda.ViewOffertaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewOffertaController</servlet-name>
+        <url-pattern>/account/gestione-offerte/view</url-pattern>
+        <url-pattern>/Account/Gestione-offerte/View</url-pattern>
     </servlet-mapping>
 
     <!-- servlet errori-->

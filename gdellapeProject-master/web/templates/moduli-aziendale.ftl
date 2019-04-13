@@ -129,6 +129,7 @@
                        cellspacing="0">
                     <thead>
                     <tr>
+                        <th>Titolo Offerta</th>
                         <th>Nome</th>
                         <th>Cognome</th>
                         <th>E-mail</th>
@@ -142,6 +143,8 @@
                     </thead>
                     <tfoot>
                     <tr>
+                        <#-- TODO inserire id offerta e nome offerta -->
+                        <th>Titolo Offerta</th>
                         <th>Nome</th>
                         <th>Cognome</th>
                         <th>E-mail</th>
@@ -156,6 +159,7 @@
                     <tbody>
                     <#list Lista as Lista>
                         <tr>
+                            <td><a href="/account/gestione-offerte/view?id=${Lista.offerta.IDOffertaTirocinio}" class="text-blue">${Lista.offerta.titolo}</a></td>
                             <td>${Lista.tirocinante.nome}</td>
                             <td>${Lista.tirocinante.cognome}</td>
                             <td>${Lista.userMail}</td>
@@ -192,7 +196,7 @@
                                         </a>
                                     </td>
                                 <#else>
-                                    <td><a href="/account/moduli/tirocinio?id=${Lista.tirocinio.IDTirocinio}">
+                                    <td><a href="/account/moduli/crea-fine-tirocinio?id=${Lista.tirocinio.IDTirocinio}">
                                             <button type="button" class="btn btn-outline-success"><i
                                                         class="fa fa-print"></i>Stampa Modulo
                                             </button>
@@ -245,6 +249,8 @@
 
         var oTable = table.dataTable({
             "columns": [{
+                "orderable": true
+            }, {
                 "orderable": true
             }, {
                 "orderable": true
