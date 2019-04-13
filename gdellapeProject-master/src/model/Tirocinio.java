@@ -14,6 +14,9 @@ public class Tirocinio {
      * 0=il tirocinante ha fatto la richiesta ma l'azienda non ancora accetta la sua richieta
      * 1=L'azienda accetta la richiesta e comincia il tirocinio
      * 2=L'azienda dichiara finito il tirocinio
+     * 3=Segreteria dichiara la conclusione amministrativa
+     * 4=Votazione effettuata
+     * 5=L'azienda rifiuta
      */
     private Integer Stato;
     private Date PeriodoEffettivoIniziale;
