@@ -130,10 +130,7 @@ public class ModuloFineTirocinioAziendaController extends baseController {
                         processaRichiesta(request, response, session);
                     } else {
                         System.out.println("rispondi con il file");
-//                        PdfView pdfView = new PdfView(3, "FineTirocinioAzienda", getServletContext());
-//                        String url = pdfView.createURL(tirocinio);
-//                        datamodel.put("Url", url);
-//                        TemplateController.process("PDFFineTirocinioAzienda.ftl", datamodel, response, getServletContext());
+                        response.sendRedirect("/account/moduli/tirocinio?id="+tirocinio.getIDTirocinio());
                     }
                 } catch (DaoException e) {
                     e.printStackTrace();

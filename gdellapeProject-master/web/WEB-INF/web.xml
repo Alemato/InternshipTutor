@@ -270,6 +270,36 @@
         <url-pattern>/Account/Gestione-offerte/View</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>PdfRichiestaTirocinioController</servlet-name>
+        <servlet-class>controller.adm.PdfRichiestaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfRichiestaTirocinioController</servlet-name>
+        <url-pattern>/account/moduli/richiesta-tirocinio</url-pattern>
+        <url-pattern>/Account/Moduli/Richiesta-Tirocinio</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PdfFineTirocinioController</servlet-name>
+        <servlet-class>controller.adm.PdfFineTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfFineTirocinioController</servlet-name>
+        <url-pattern>/account/moduli/tirocinio</url-pattern>
+        <url-pattern>/Account/Moduli/Tirocinio</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PdfSegreteriaController</servlet-name>
+        <servlet-class>controller.adm.PdfSegreteriaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfSegreteriaController</servlet-name>
+        <url-pattern>/account/moduli/segreteria</url-pattern>
+        <url-pattern>/Account/Moduli/segreteria</url-pattern>
+    </servlet-mapping>
+
     <!-- servlet errori-->
     <servlet>
         <servlet-name>404</servlet-name>
