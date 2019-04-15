@@ -124,6 +124,8 @@ public class GestioneRichiesteTirocinioController extends baseController {
         super.init(request, response);
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (session.isAzienda(request)) {
+            boolean scaduto = (boolean)request.getAttribute("Scaduto");
+            datamodel.put("Scaduto", scaduto);
             Azienda azienda = session.getAzienda(request, response);
             Map<String, String[]> params = request.getParameterMap();
             List<String> parametri = new ArrayList<String>();
@@ -164,6 +166,8 @@ public class GestioneRichiesteTirocinioController extends baseController {
         super.init(request, response);
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (session.isAzienda(request)) {
+            boolean scaduto = (boolean)request.getAttribute("Scaduto");
+            datamodel.put("Scaduto", scaduto);
             Azienda azienda = session.getAzienda(request, response);
             creaOggetti(request, response,azienda);
             TemplateController.process("gestione-richieste-tirocinio-aziendale.ftl", datamodel, response, getServletContext());
