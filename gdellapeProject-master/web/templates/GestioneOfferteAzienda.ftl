@@ -67,7 +67,7 @@
                                     <td>${listaOfferte.periodoFine?date}</td>
                                     <td>${listaOfferte.createDate?date}</td>
                                     <td>${listaOfferte.updateDate?date}</td>
-                                    <td><a href="/account/gestione-offerte?id=${listaOfferte.IDOffertaTirocinio}">
+                                    <td><a href="/account/gestione-offerte/view?id=${listaOfferte.IDOffertaTirocinio}">
                                             <button type="button" class="btn btn-outline-success">Visualizza</button>
                                         </a></td>
                                     <td><a href="/account/gestione-offerte/edit?id=${listaOfferte.IDOffertaTirocinio}">

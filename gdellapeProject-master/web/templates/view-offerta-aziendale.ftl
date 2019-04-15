@@ -399,10 +399,10 @@
                                     <td>${Lista1.tirocinante.nome}</td>
                                     <td>${Lista1.tirocinante.cognome}</td>
                                     <td>${Lista1.userMail}</td>
-                                    <td><input type="checkbox" class="checkboxes" name="${Lista1.tirocinante.IDTirocinante}-${Lista1.tirocinio.IDTirocinio}" value="1"/> <i
+                                    <td><input type="checkbox" class="checkboxes" name="ac-${Lista1.tirocinante.IDTirocinante}-${Lista1.tirocinio.IDTirocinio}" value="1"/> <i
                                                 class="fa fa-check" style="color: green;"></i> Accetta
                                     </td>
-                                    <td><input type="checkbox" class="checkboxes" name="${Lista1.tirocinante.IDTirocinante}-${Lista1.tirocinio.IDTirocinio}" value="2"/> <i
+                                    <td><input type="checkbox" class="checkboxes" name="de-${Lista1.tirocinante.IDTirocinante}-${Lista1.tirocinio.IDTirocinio}" value="2"/> <i
                                                 class="fa fa-times" style="color: red;"></i> Declina
                                     </td>
                                 </tr>
