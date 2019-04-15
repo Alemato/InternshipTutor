@@ -339,8 +339,19 @@
     <!-- /servlet errori-->
 
     <servlet>
+        <servlet-name>sceltaRichiesta</servlet-name>
+        <servlet-class>controller.adm.Tirocinante.SceltaRichiestaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sceltaRichiesta</servlet-name>
+        <url-pattern>/sceltarichiesta</url-pattern>
+        <url-pattern>/SceltaRichiesta</url-pattern>
+
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>invioRichiesta</servlet-name>
-        <servlet-class>controller.adm.Tirocinante.InvioRichiestaTrController</servlet-class>
+        <servlet-class>controller.adm.Tirocinante.InvioRichiestaTirocinioController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>invioRichiesta</servlet-name>
