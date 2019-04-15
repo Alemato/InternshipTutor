@@ -44,6 +44,8 @@ public class GestioneOfferteController extends baseController {
         super.init(request, response);
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (session.isAzienda(request)){
+            boolean scaduto = (boolean)request.getAttribute("Scaduto");
+            datamodel.put("Scaduto", scaduto);
             processaGet(request, response, session);
         } else {
             er403(request, response);

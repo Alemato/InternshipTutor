@@ -368,11 +368,8 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="section-sm centrale border-top-section pl-20 pr-20">
-        <div class="container">
+            <#if Scaduto??>
+                <#if !Scaduto>
             <h1 class="mb-0">Richieste Pendanti</h1>
             <div class="linea-divisione mt-15 mb-30"></div>
             <div class="card mb-50">
@@ -399,10 +396,10 @@
                                     <td>${Lista1.tirocinante.nome}</td>
                                     <td>${Lista1.tirocinante.cognome}</td>
                                     <td>${Lista1.userMail}</td>
-                                    <td><input type="checkbox" class="checkboxes" name="${Lista1.tirocinante.IDTirocinante}-${Lista1.tirocinio.IDTirocinio}" value="1"/> <i
+                                    <td><input type="checkbox" class="checkboxes" name="ac-${Lista1.tirocinante.IDTirocinante}-${Lista1.tirocinio.IDTirocinio}" value="1"/> <i
                                                 class="fa fa-check" style="color: green;"></i> Accetta
                                     </td>
-                                    <td><input type="checkbox" class="checkboxes" name="${Lista1.tirocinante.IDTirocinante}-${Lista1.tirocinio.IDTirocinio}" value="2"/> <i
+                                    <td><input type="checkbox" class="checkboxes" name="de-${Lista1.tirocinante.IDTirocinante}-${Lista1.tirocinio.IDTirocinio}" value="2"/> <i
                                                 class="fa fa-times" style="color: red;"></i> Declina
                                     </td>
                                 </tr>
@@ -423,11 +420,9 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </section>
+                </#if>
+            </#if>
 
-    <section class="section-sm centrale border-top-section pl-20 pr-20">
-        <div class="container">
             <h1 class="mb-0">Richieste Declinate</h1>
             <div class="linea-divisione mt-15 mb-30"></div>
             <div class="card mb-50">
@@ -527,7 +522,8 @@
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
 
-
+    <#if Scaduto??>
+        <#if !Scaduto>
     function initTablePendenti() {
 
         var table = jQuery('#datatable_2');
@@ -574,6 +570,8 @@
         var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
+        </#if>
+    </#if>
 
 
     function initTableRifiutati() {
@@ -621,9 +619,14 @@
 
 
     initTableAll();
+    <#if Scaduto??>
+    <#if !Scaduto>
     initTablePendenti();
+    </#if>
+    </#if>
     initTableRifiutati();
-
+    <#if Scaduto??>
+    <#if !Scaduto>
     $("tbody#checkbox tr td input[type=checkbox]").click(enable_cb);
 
 
@@ -638,6 +641,8 @@
             $(this).closest("tr").children().children().removeClass('grey');
         }
     }
+    </#if>
+    </#if>
 
 </script>
 

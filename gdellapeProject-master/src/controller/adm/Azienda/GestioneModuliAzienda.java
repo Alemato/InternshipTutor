@@ -35,6 +35,15 @@ public class GestioneModuliAzienda {
         this.error = false;
     }
 
+    GestioneModuliAzienda(Map<String, Object> datamodel, HttpServletRequest request, HttpServletResponse response, ServletContext context, Azienda azienda) {
+        this.datamodel = datamodel;
+        this.request = request;
+        this.response = response;
+        this.context = context;
+        this.azienda = azienda;
+        this.error = false;
+    }
+
     private void er500(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = this.context.getRequestDispatcher("/500");
         dispatcher.forward(request, response);
@@ -56,7 +65,7 @@ public class GestioneModuliAzienda {
         datamodel.put("IDConvenzione", azienda.getIDAzienda());
     }
 
-    private List<OffertaTirocinio> ritornaOfferte() {
+    List<OffertaTirocinio> ritornaOfferte() {
         OffertaTirocinioDaoImp daoOfferte = new OffertaTirocinioDaoImp();
         List<OffertaTirocinio> offertaTirocinios = new ArrayList<>();
         try {
@@ -69,7 +78,7 @@ public class GestioneModuliAzienda {
         return offertaTirocinios;
     }
 
-    private List<Tirocinio> ritornaTirocinii(List<OffertaTirocinio> offertaTirocinios) {
+     List<Tirocinio> ritornaTirocinii(List<OffertaTirocinio> offertaTirocinios) {
         TirocinioDaoImp daoTirocinio = new TirocinioDaoImp();
         List<Tirocinio> listaTirocini = new ArrayList<>();
         for (OffertaTirocinio offertaTirocinio : offertaTirocinios) {
@@ -84,7 +93,7 @@ public class GestioneModuliAzienda {
         return listaTirocini;
     }
 
-    private List<Tirocinante> ritornaTirocinanti(List<Tirocinio> listaTirocini) {
+     List<Tirocinante> ritornaTirocinanti(List<Tirocinio> listaTirocini) {
         TirocinanteDaoImp daoTirocinante = new TirocinanteDaoImp();
         List<Tirocinante> listaTirocinanti = new ArrayList<>();
         for (Tirocinio tirocinio : listaTirocini) {
@@ -99,7 +108,7 @@ public class GestioneModuliAzienda {
         return listaTirocinanti;
     }
 
-    private void creaDatamodel(List<Tirocinante> tirocinantes, List<OffertaTirocinio> offertaTirocinios, List<Tirocinio> tirocinios) {
+   void creaDatamodel(List<Tirocinante> tirocinantes, List<OffertaTirocinio> offertaTirocinios, List<Tirocinio> tirocinios) {
         List<Object> lista = new ArrayList<>();
         int idOfferta = 0;
         int idTircinante = 0;
@@ -248,7 +257,6 @@ public class GestioneModuliAzienda {
      * Faccio il post solo per settare i tirocini finiti
      */
     public void post() throws ServletException, IOException {
-        //TODO implementare l'upload del pdf https://docs.oracle.com/javaee/6/tutorial/doc/glraq.html
         Map params = request.getParameterMap();
         List<String> parametri = new ArrayList<String>();
         for (Object o : params.keySet()) {

@@ -271,6 +271,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>GestioneRichiesteTirocinioController</servlet-name>
+        <servlet-class>controller.adm.Azienda.GestioneRichiesteTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GestioneRichiesteTirocinioController</servlet-name>
+        <url-pattern>/account/gestione-richieste</url-pattern>
+        <url-pattern>/Account/Gestione-Richieste</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>PdfRichiestaTirocinioController</servlet-name>
         <servlet-class>controller.adm.PdfRichiestaTirocinioController</servlet-class>
     </servlet>
