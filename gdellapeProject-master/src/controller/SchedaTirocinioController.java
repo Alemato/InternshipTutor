@@ -59,17 +59,10 @@ public class SchedaTirocinioController  extends baseController{
             datamodel.put("EmailRespAZ",Oftr.getEmailTutoreAziendale());
 
 
-
-
-
-
             }catch (Exception e){
             e.printStackTrace();
 
         }
-
-
-
 
     }
     private void ifisendRichiesta(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
