@@ -100,15 +100,19 @@
                 </div>
             </div>
 
-
-            <h1 class="mb-0">CREA UN OFFERTA</h1>
-            <div class="linea-divisione mt-15 mb-30"></div>
-            <p>Per creare un offerta clicca su crea offerta
-                <a class="col" href="/account/gestione-offerte/creazione-offerta">
-                    <button type="button" class="btn btn-outline-primary"><i class="fa fa-pencil"></i> CREA OFFERTA
-                    </button>
-                </a>
-            </p>
+            <#if Scaduto??>
+                <#if !Scaduto>
+                    <h1 class="mb-0">CREA UN OFFERTA</h1>
+                    <div class="linea-divisione mt-15 mb-30"></div>
+                    <p>Per creare un offerta clicca su crea offerta
+                        <a class="col" href="/account/gestione-offerte/creazione-offerta">
+                            <button type="button" class="btn btn-outline-primary"><i class="fa fa-pencil"></i> CREA
+                                OFFERTA
+                            </button>
+                        </a>
+                    </p>
+                </#if>
+            </#if>
         </div>
     </section>
     <#include "footer.ftl">
@@ -137,7 +141,7 @@
                 "orderable": true
             }, {
                 "orderable": true
-            },{
+            }, {
                 "orderable": true
             }, {
                 "orderable": true

@@ -31,6 +31,8 @@
     </section>
     <section id="centrale" class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
+            <#if Scaduto??>
+            <#if !Scaduto>
             <form id="form_modifica" action="/account/gestione-offerte/edit" method="post"
                   class="sky-form  boxed"
                   novalidate="novalidate">
@@ -529,6 +531,11 @@
                 </footer>
 
             </form>
+            <#else>
+                <h2 class="text-center">Non puoi modificare l&apos;offerta fino a che non avrai una conevenzione valida!</h2>
+            </#if>
+            </#if>
+
         </div>
     </section>
     <#include "footer.ftl">

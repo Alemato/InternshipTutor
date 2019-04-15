@@ -31,6 +31,8 @@
 
     <section class="section-sm centrale border-top-section">
         <div class="container p-0">
+            <#if Scaduto??>
+            <#if !Scaduto>
             <#if errore??>
                 <div class="alert alert-danger mb-30">
                     <button type="button" class="close" data-dismiss="alert">
@@ -98,7 +100,8 @@
                     </form>
                 </div>
             </div>
-
+            </#if>
+            </#if>
             <h1 class="mt-25 mb-0">Richieste Declinate</h1>
             <div class="linea-divisione mt-15 mb-30"></div>
             <div class="card mb-50">
@@ -147,6 +150,8 @@
 <script src="/plugins/datatables/dataTables.bootstrap.js"></script>
 <script src="/plugins/select2/js/select2.full.min.js"></script>
 <script>
+    <#if Scaduto??>
+    <#if !Scaduto>
     function initTableAll() {
 
         var table = jQuery('#datatable_1');
@@ -195,7 +200,8 @@
         var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
-
+    </#if>
+    </#if>
     function initTableDeclinati() {
 
         var table = jQuery('#datatable_2');
@@ -240,10 +246,14 @@
         var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
-
+    <#if Scaduto??>
+    <#if !Scaduto>
     initTableAll();
+    </#if>
+    </#if>
     initTableDeclinati();
-
+    <#if Scaduto??>
+    <#if !Scaduto>
     $("tbody#checkbox tr td input[type=checkbox]").click(enable_cb);
 
 
@@ -258,6 +268,8 @@
             $(this).closest("tr").children().children().removeClass('grey');
         }
     }
+    </#if>
+    </#if>
 </script>
 </body>
 </html>
