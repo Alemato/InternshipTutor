@@ -35,13 +35,17 @@
             <h5>Questo canale raccoglie le offerte di tirocinio per studenti da parte di azende convenzionate con il
                 nostro Dipartimento. Usa i link che seguono per passare a una sezione differente o tornare alla prima
                 pagina.</h5>
-            <div class="row hidden-lg-down">
+            <div class="row">
+            <#--<div class="row hidden-lg-down">-->
+.
                 <div class="col mb-15 box-white border radius-5">
                     <div class="row pr-10 pl-10 pt-5 pb-5">
-                        <i id="filtra" class="fa fa-plus-circle fs-25 pt-7 mr-10"></i>
+                        <i class="fa fa-plus-circle fs-25 pt-7 mr-10"></i>
+                        <#--<i id="filtra" class="fa fa-plus-circle fs-25 pt-7 mr-10"></i>-->
                         <h3 class="mb-0">Filtra la lista dei tirocini</h3>
                     </div>
-                    <form id="querystring" class="pr-15 pl-15 m-0 mt-32" method="get" action="/listaofferte">
+                    <form id="querystringe" class="pr-15 pl-15 m-0 mt-32" method="get" action="/listaofferte">
+                        <#--<form id="querystring" class="pr-15 pl-15 m-0 mt-32" method="get" action="/listaofferte">-->
                         <fieldset>
                             <div class="row justify-content-around">
                                 <div class="row col-auto mb-0">
@@ -64,7 +68,7 @@
                                         <div class="fancy-form fancy-form-select">
                                             <select class="form-control select2" name="azienda">
                                                 <option>Tutte le Aziende</option>
-                                                <#list offerte as offerta>
+                                                <#list offerteFiltro as offerta>
                                                 <option value="${offerta.aziendaOspitante}">${offerta.aziendaOspitante}</option>
                                                 </#list>
                                             </select>
@@ -76,7 +80,7 @@
                                 </div>
                                 <div class="input-group col mb-0">
                                     <input type="text" class="form-control" aria-label=""
-                                           placeholder="Cerca nella lista" name="search">
+                                           placeholder="Cerca il titolo del tirocinio o parte di esso" name="search">
                                     <span class="input-group-btn">
                                             <button class="btn btn-primary material-ico" type="submit">
                                                 <i class="material-icons">search</i>
@@ -92,7 +96,7 @@
                                         <div class="fancy-form fancy-form-select">
                                             <select class="form-control select2" name="sede">
                                                 <option >Tutte le sedi disponibili</option>
-                                                <#list offerte as offerta>
+                                                <#list offerteFiltro as offerta>
                                                 <option value="${offerta.luogoEffettuazione}">${offerta.luogoEffettuazione}</option>
                                                 </#list>
                                             </select>
@@ -122,7 +126,7 @@
                         </fieldset>
 
                         <footer class="bt-0">
-                            <button type="submit" form="querystring"
+                            <button type="submit" form="querystringe"
                                     class="btn btn-blue b-blu btn-lg pull-right float-right"><i
                                     class="fa fa-check"></i> Filtra
                             </button>
@@ -133,13 +137,15 @@
                     </form>
                 </div>
             </div>
+
+
             <div class="row hidden-xl-up">
                 <div class="col mb-15 box-white border radius-5">
                     <div class="row pr-10 pl-10 pt-5 pb-5">
                         <i id="filtra-sm" class="fa fa-plus-circle fs-25 pt-7 mr-10"></i>
                         <h3 class="mb-0">Filtra la lista dei tirocini</h3>
                     </div>
-                    <form id="querystring-sm" class="pr-15 pl-15 m-0 mt-32" method="get" action="print.php">
+                    <form id="querystringe-sm" class="pr-15 pl-15 m-0 mt-32" method="get" action="/listaofferte">
                         <fieldset>
                             <div class="row pl-15">
                                 <div class="row col-auto mb-0">
@@ -147,26 +153,25 @@
                                     <label class="col-auto">
                                         <!-- select -->
                                         <div class="fancy-form fancy-form-select">
-                                            <select class="form-control mr-15">
-                                                <option value="5">5 per pagina &nbsp;</option>
-                                                <option value="10">10 per pagina &nbsp;</option>
-                                                <option value="20">20 per pagina &nbsp;</option>
+                                            <select class="form-control mr-15" name="risultati">
+                                                <option value="4">4 per pagina &nbsp;</option>
+                                                <option value="8">8 per pagina &nbsp;</option>
+                                                <option value="16">16 per pagina &nbsp;</option>
                                             </select>
                                         </div>
+
                                     </label>
                                 </div>
                                 <div class="d-inline col-auto mb-0 pl-0">
                                     <h4 class="mt-9 d-inline">Azienda : </h4>
                                     <label class="col-auto d-inline">
                                         <!-- select -->
-                                        <div class=" d-inline fancy-form fancy-form-select">
-                                            <select class="form-control select2">
-                                                <option value="">Tutte le Aziende</option>
-                                                <option value="1">Dolci Aveja</option>
-                                                <option value="2">Gunpowder</option>
-                                                <option value="3">Tirocinio interno</option>
-                                                <option value="4">CONSEL - Consorzio ELIS</option>
-                                                <option value="5">PACARO Srl</option>
+                                        <div class="fancy-form fancy-form-select">
+                                            <select class="form-control select2" name="azienda">
+                                                <option>Tutte le Aziende</option>
+                                                <#list offerteFiltro as offerta>
+                                                    <option value="${offerta.aziendaOspitante}">${offerta.aziendaOspitante}</option>
+                                                </#list>
                                             </select>
 
                                             <i class="fancy-arrow-"></i>
@@ -182,13 +187,11 @@
                                     <label class="col pl-0">
                                         <!-- select -->
                                         <div class="fancy-form fancy-form-select">
-                                            <select class="form-control select2">
-                                                <option value="">Tutte le sedi disponibili</option>
-                                                <option value="RM">Roma</option>
-                                                <option value="AQ">L'Aquila</option>
-                                                <option value="PE">Pescara</option>
-                                                <option value="CH">Chieti</option>
-                                                <option value="AN">Ancona</option>
+                                            <select class="form-control select2" name="sede">
+                                                <option >Tutte le sedi disponibili</option>
+                                                <#list offerteFiltro as offerta>
+                                                    <option value="${offerta.luogoEffettuazione}">${offerta.luogoEffettuazione}</option>
+                                                </#list>
                                             </select>
 
                                             <i class="fancy-arrow-"></i>
@@ -196,9 +199,9 @@
 
                                     </label>
                                 </div>
-                                <div class="input-group col-md-auto col-lg pl-0 mb-0">
+                                <div class="input-group col mb-0">
                                     <input type="text" class="form-control" aria-label=""
-                                           placeholder="Cerca nella lista" name="search">
+                                           placeholder="Cerca il titolo del tirocinio o parte di esso" name="search">
                                     <span class="input-group-btn">
                                             <button class="btn btn-primary material-ico" type="submit">
                                                 <i class="material-icons">search</i>
@@ -212,36 +215,40 @@
                                     <h4 class="mt-9">Da :</h4>
                                     <label class="col input-group">
                                         <input type="date" name="datainizio"
-                                               value="2018-07-27"
-                                               min="2018-01-01" max="2018-12-31" class="form-control"/>
+
+                                               min="2018-01-01" max="2019-12-31" class="form-control"/>
                                     </label>
                                 </div>
                                 <div class="row col-12 col-md-5 mb-0">
                                     <h4 class="mt-9">A :</h4>
                                     <label class="col input-group pr-0">
-                                        <input type="date" name="datainizio"
-                                               value="2018-07-29"
-                                               min="2018-01-01" max="2018-12-31" class="form-control"/>
+                                        <input type="date" name="datafine"
+
+                                               min="2001-01-01" max="2019-12-31" class="form-control"/>
                                     </label>
                                 </div>
                             </div>
                         </fieldset>
 
                         <footer class="bt-0">
-                            <button type="submit" form="querystring"
+                            <button type="submit" form="querystringe-sm"
                                     class="btn btn-blue b-blu btn-lg pull-right float-right"><i
-                                    class="fa fa-check"></i> Filtra
+                                        class="fa fa-check"></i> Filtra
                             </button>
-                            <button type="reset" form="querystring" class="btn btn-red btn-lg pull-right float-left"><i
-                                    class="fa fa-times"></i> Annulla
+                            <button class="btn btn-red btn-lg pull-right float-left" href="/listaofferte"><i
+                                        class="fa fa-times" ></i> Annulla
                             </button>
                         </footer>
                     </form>
                 </div>
             </div>
+
+
+
             <div class="linea-divisione mt-0"></div>
             <div class="row">
                 <!-- Pagination -->
+
                 <ul class="pagination col-auto mr-15 mt-5 pl-15">
                     <#list 1..numeroPagine as x>
                         <#if x == 0 > <#break> </#if>
@@ -256,17 +263,17 @@
                 <div class="blog-post-item radius-5 box-white border p-15">
 
 
-                    <h2><a href="#" class="uppercase">${offerta.titolo}</a></h2>
+                    <h2><a href="/tirocinio?ID=${offerta.IDOffertaTirocinio}" class="uppercase">${offerta.titolo}</a></h2>
 
                     <ul class="blog-post-info list-inline">
                         <li>
-                            <a href="#">
+                            <a>
                                 <i class="fa fa-clock-o"></i>
-                                <span class="font-lato">${offerta.updateDate}</span>
+                                <span class="font-lato">Aggiornata il ${offerta.updateDate}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/schedaazienda?ID=${offerta.azienda}">
                                 <i class="fa fa-industry"></i>
                                 <span class="font-lato">${offerta.aziendaOspitante}</span>
                             </a>
@@ -276,7 +283,7 @@
                     <p>${offerta.descrizioneBreve}
                     </p>
                     <p>Per eventuali candidature o richieste di informazioni rivolgersi
-                        a: a.pasanisi@gp-start.it</p>
+                        a:</p>
                     <p><i class="fa fa-info-circle griggio"></i><b> Contatto aziendale:</b> ${offerta.nomeTutoreAziendale} ${offerta.cognomeTutoreAziendale}
                         ${offerta.emailTutoreAziendale}</p>
                     <a href="/tirocinio?ID=${offerta.IDOffertaTirocinio}" class="btn btn-reveal btn-default b-0 btn-shadow-1">
@@ -305,6 +312,6 @@
 
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
-<script src="js/internshiptutor.js"></script>
+<script src="/js/internshiptutor.js"></script>
 </body>
 </html>
