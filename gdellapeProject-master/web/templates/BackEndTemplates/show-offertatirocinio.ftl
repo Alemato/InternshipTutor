@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin</title>
+    <title>VISUALIZZA CONVENZIONE</title>
 
   <#include "../importCss.ftl">
-    <!-- Page Sript -->
-    <link href="css/admin.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Page Script -->
+    <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
     <!-- /Page Script -->
 
     <!-- CSS DATATABLES -->
-    <link href="css/layout-datatables.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -27,14 +28,7 @@
         <li><a href="/offertetirocinioadmin"><b>GESTIONE OFFERTE TIROCINIO</b></a></li>
         <li class="active"><a href="#"><b>OFFERTA : ${offerta.titolo}</b></a></li>
     </ol>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <div class="row">
-                <a class="nav-link link-bar mt-5" href="#">Benvenuto, <b>ADMIN</b></a>
-                <a class="nav-link link-bar text-center" href="#"><i class="fa fa-user-md fs-35 px-3"></i></a>
-            </div>
-        </li>
-    </ul>
+    <#include "small-navbar.ftl">
 
 </nav>
 <div class="container-fluid">
@@ -52,8 +46,8 @@
             </noscript>
 
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
-            </section>
-            <div class="col">
+
+                <div class="col">
                 <div class="row">
                     <h4>Titolo : ${offerta.titolo}</h4>
                 </div>
@@ -128,10 +122,8 @@
                 <div class="row">
                     <h4>Email Tutore Aziendale  : ${offerta.emailTutoreAziendale}</h4>
                 </div>
-
-
-
-            </div>
+            </section>
+    </div>
 
 
         </main>
@@ -141,10 +133,6 @@
 
 <!-- JAVASCRIPT FILES -->
 <#include "../importScript.ftl">
-<!-- Script page -->
-
-
-
 
 </body>
 </html>

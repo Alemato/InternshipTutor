@@ -7,11 +7,11 @@
    <#include "../importCss.ftl">
 
     <!-- Page Sript -->
-    <link href="css/admin.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
     <!-- /Page Script -->
 
     <!-- CSS DATATABLES -->
-    <link href="css/layout-datatables.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -40,7 +40,7 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-       <#include "../BackEndTemplates/sidebar.ftl">
+       <#include "sidebar.ftl">
 <#--TODO controlla solo le barre e gli url con il filtro-->
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <noscript>

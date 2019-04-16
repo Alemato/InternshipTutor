@@ -6,11 +6,11 @@
 
   <#include "../importCss.ftl">
     <!-- Page Sript -->
-    <link href="css/admin.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
     <!-- /Page Script -->
 
     <!-- CSS DATATABLES -->
-    <link href="css/layout-datatables.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -27,14 +27,7 @@
         <li><a href="/gestione-tutoti"><b>GESTIONE TUTORI</b></a></li>
         <li class="active"><a href="#"><b>GESTIONE: ${tutore.nome} ${tutore.cognome}</b></a></li>
     </ol>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <div class="row">
-                <a class="nav-link link-bar mt-5" href="#">Benvenuto, <b>ADMIN</b></a>
-                <a class="nav-link link-bar text-center" href="#"><i class="fa fa-user-md fs-35 px-3"></i></a>
-            </div>
-        </li>
-    </ul>
+   <#include "small-navbar.ftl">
 
 </nav>
 <div class="container-fluid">

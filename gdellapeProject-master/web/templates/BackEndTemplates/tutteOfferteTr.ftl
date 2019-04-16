@@ -27,22 +27,13 @@
         <li><a href="gestione-tirocinii-admin.html">GESTIONE TIROCINII</a></li>
         <li class="active"><a href="tutte-offerte-pubblicate-admin.html"><b>TUTTE LE OFFERTE PUBBLICATE</b></a>
     </ol>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <div class="row">
-                <a class="nav-link link-bar mt-5" href="#">Benvenuto, <b>ADMIN</b></a>
-                <a class="nav-link link-bar text-center" href="#"><i class="fa fa-user-md fs-35 px-3"></i></a>
-            </div>
-        </li>
-    </ul>
+    <#include "small-navbar.ftl">
 
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <#include "../BackEndTemplates/sidebar.ftl">
-
-
-        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+        <#include "sidebar.ftl">
+        <main class="col-sm-9 offset-sm-3 col-md-10 offset- md-2 pt-3">
 
             <noscript>
                 <div class="alert alert-danger mb-10 mt-10">
@@ -211,13 +202,14 @@
 
 <!-- JAVASCRIPT FILES -->
 <#include "../importScript.ftl">
+
 <!-- Script page -->
-<script src="plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables/js/dataTables.tableTools.min.js"></script>
-<script src="plugins/datatables/js/dataTables.colReorder.min.js"></script>
-<script src="plugins/datatables/js/dataTables.scroller.min.js"></script>
-<script src="plugins/datatables/dataTables.bootstrap.js"></script>
-<script src="plugins/select2/js/select2.full.min.js"></script>
+<script src="../../plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.tableTools.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.colReorder.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.scroller.min.js"></script>
+<script src="../../plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
 <script>
     function initTableOfferteAttive() {
 

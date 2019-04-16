@@ -52,8 +52,7 @@
             </noscript>
 
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
-            </section>
-            <div class="col">
+                <div class="col">
                 <div class="row">
                     <h4>Email : ${user.email}</h4>
                 </div>
@@ -115,12 +114,8 @@
                     <h4>Link Azienda : ${azienda.link}</h4>
                 </div>
                 </#if>
-<
-
-
             </div>
-
-
+            </section>
         </main>
     </div>
 </div>

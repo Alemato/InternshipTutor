@@ -14,23 +14,23 @@
           rel="stylesheet" type="text/css"/>
 
     <!-- CORE CSS -->
-    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
     <!-- THEME CSS -->
-    <link href="css/essentials.css" rel="stylesheet" type="text/css"/>
-    <link href="css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/essentials.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout.css" rel="stylesheet" type="text/css"/>
 
     <!-- PAGE LEVEL SCRIPTS -->
-    <link href="css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
 
     <!-- Page Sript -->
-    <link href="css/admin.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
     <!-- /Page Script -->
 
     <!-- CSS DATATABLES -->
-    <link href="css/layout-datatables.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -49,7 +49,7 @@
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <div class="row">
-                <a class="nav-link link-bar mt-5" href="#">Benvenuto, <b>ADMIN</b></a>
+                <a class="nav-link link-bar mt-5" href="#">Benvenuto,&nbsp;${Nome}<b>ADMIN</b></a>
                 <a class="nav-link link-bar text-center" href="#"><i class="fa fa-user-md fs-35 px-3"></i></a>
             </div>
         </li>
@@ -335,13 +335,24 @@
 
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-secondary"> <i class="fa fa-file-pdf-o"> </i>Crea/Modifica PDF</button>
+                                <#if (tirocinio.pdfSegreteria)??>
+                                    <button class="btn btn-secondary" href="/#" disabled>Azione non disponibile</button>
+                                <#else>
+
+                                    <a type="button" class="btn btn-secondary" href="/crea-modulosegreteria?IDTirocinio=${tirocinio.IDTirocinio}" <i class="fa fa-file-pdf-o"> </i>Crea/Modifica PDF</a>
+
+                                </#if>
                                 </td>
                                 <td>
-                                    <a <#if (tirocinio.pdfSegreteria)??>
-                                        <a type="button" href="/#" class="btn btn-primary" disabled> Azione non disponibile</a>
+                                    <#--TODO metti a posto il pulsante-->
+                                    <#if (tirocinio.pdfSegreteria)??>
+                                        <a type="button" href="/#" class="btn btn-success" disabled> Azione non disponibile</a>
                                     <#else>
-                                        <a type="button" href="/#" class="btn btn-primary"> Carica</a>
+                                        <form enctype="multipart/form-data" method="POST" action="/salva-segreteria?ID=${tirocinio.IDTirocinio}">
+                                            <label class="btn btn-primary" for="file">
+                                                Carica <input type="file" id="file" class="custom-file-upload-hidden" name="PDF" onchange="this.form.submit()">
+                                            </label>
+                                            </form>
                                     </#if>
                                 </td>
                             </tr>
@@ -360,19 +371,16 @@
 </div>
 
 <!-- JAVASCRIPT FILES -->
-<script>var plugin_path = 'plugins/';</script>
-<script src="plugins/jquery/jquery-3.3.1.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="plugins/bootstrap/js/bootstrap.js"></script>
+<#include "../importScript.ftl">
 
 
 <!-- Script page -->
-<script src="plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables/js/dataTables.tableTools.min.js"></script>
-<script src="plugins/datatables/js/dataTables.colReorder.min.js"></script>
-<script src="plugins/datatables/js/dataTables.scroller.min.js"></script>
-<script src="plugins/datatables/dataTables.bootstrap.js"></script>
-<script src="plugins/select2/js/select2.full.min.js"></script>
+<script src="../../plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.tableTools.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.colReorder.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.scroller.min.js"></script>
+<script src="../../plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
 <script>
     // datatable_ric_convenzioni
     // datatable_fine_tirocinio
@@ -530,8 +538,8 @@
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
 
+
     initTableRicTiro();
-    initTableRicConvenzioni();
     initTableFineTirocinio();
 
 </script>
