@@ -6,11 +6,11 @@
 
   <#include "../importCss.ftl">
     <!-- Page Sript -->
-    <link href="css/admin.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
     <!-- /Page Script -->
 
     <!-- CSS DATATABLES -->
-    <link href="css/layout-datatables.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body class="smoothscroll enable-animation">

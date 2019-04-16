@@ -6,11 +6,11 @@
 
     <#include "../importCss.ftl">
     <!-- Page Sript -->
-    <link href="css/admin.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
     <!-- /Page Script -->
 
     <!-- CSS DATATABLES -->
-    <link href="css/layout-datatables.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -26,14 +26,7 @@
         <li><a href="admin.html">HOME DASHBOARD</a></li>
         <li class="active"><a href="gestione-utenza-admin.html"><b>GESTIONE RICHIESTE CONVENZIONE</b></a></li>
     </ol>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <div class="row">
-                <a class="nav-link link-bar mt-5" href="#">Benvenuto, <b>ADMIN</b></a>
-                <a class="nav-link link-bar text-center" href="#"><i class="fa fa-user-md fs-35 px-3"></i></a>
-            </div>
-        </li>
-    </ul>
+    <#include "small-navbar.ftl">
 
 </nav>
 <div class="container-fluid">
@@ -181,12 +174,12 @@
 <#include "../importScript.ftl">
 
 <!-- Script page -->
-<script src="plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables/js/dataTables.tableTools.min.js"></script>
-<script src="plugins/datatables/js/dataTables.colReorder.min.js"></script>
-<script src="plugins/datatables/js/dataTables.scroller.min.js"></script>
-<script src="plugins/datatables/dataTables.bootstrap.js"></script>
-<script src="plugins/select2/js/select2.full.min.js"></script>
+<script src="/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatables/js/dataTables.tableTools.min.js"></script>
+<script src="/plugins/datatables/js/dataTables.colReorder.min.js"></script>
+<script src="/plugins/datatables/js/dataTables.scroller.min.js"></script>
+<script src="/plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="/plugins/select2/js/select2.full.min.js"></script>
 <script>
     function initTableRichieste() {
 
