@@ -211,6 +211,8 @@ public class ModificaOffertaController extends baseController {
         super.init(request, response);
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (session.isAzienda(request)) {
+            boolean scaduto = (boolean)request.getAttribute("Scaduto");
+            datamodel.put("Scaduto", scaduto);
             if (request.getParameterMap().containsKey("IDOfferta") && request.getParameterMap().containsKey("Titolo") && request.getParameterMap().containsKey("Orari") && request.getParameterMap().containsKey("Durara_Mesi") && request.getParameterMap().containsKey("Periodo_fine") && request.getParameterMap().containsKey("TempiAccessoLocaliAziendali")) {
                 Enumeration<String> params = request.getParameterNames();
                 while (params.hasMoreElements()) {
@@ -231,6 +233,8 @@ public class ModificaOffertaController extends baseController {
         super.init(request, response);
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (session.isAzienda(request)) {
+            boolean scaduto = (boolean)request.getAttribute("Scaduto");
+            datamodel.put("Scaduto", scaduto);
             if (request.getParameterMap().containsKey("id")) {
                 processaGet(request, response, session);
             } else {

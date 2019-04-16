@@ -3,10 +3,8 @@ package controller;
 import controller.sessionController.SingSessionContoller;
 import dao.implementation.OffertaTirocinioDaoImp;
 import dao.implementation.TirocinioDaoImp;
-import dao.implementation.TutoreUniversitarioDaoImp;
 import model.OffertaTirocinio;
 import model.Tirocinante;
-import model.TutoreUniversitario;
 import view.TemplateController;
 
 import javax.servlet.ServletException;
@@ -24,14 +22,14 @@ public class SchedaTirocinioController  extends baseController{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request,response);
         ifisendRichiesta(request,response);
-        setpage(request, response);
+        setpage(request);
         TemplateController.process("scheda-tirocinio.ftl", datamodel, response, getServletContext());
 
     }
 
-    private void setpage (HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException {
+    private void setpage (HttpServletRequest request){
         try {
-            Integer Idtrof = Integer.parseInt((String)request.getParameter("ID"));
+            Integer Idtrof = Integer.parseInt(request.getParameter("ID"));
             OffertaTirocinioDaoImp ofdao = new OffertaTirocinioDaoImp();
 
             OffertaTirocinio Oftr = ofdao.getOffertatrByID(Idtrof);
@@ -59,20 +57,13 @@ public class SchedaTirocinioController  extends baseController{
             datamodel.put("EmailRespAZ",Oftr.getEmailTutoreAziendale());
 
 
-
-
-
-
             }catch (Exception e){
             e.printStackTrace();
 
         }
 
-
-
-
     }
-    private void ifisendRichiesta(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+    private void ifisendRichiesta(HttpServletRequest request,HttpServletResponse response){
         try {
             SingSessionContoller session = SingSessionContoller.getInstance();
 

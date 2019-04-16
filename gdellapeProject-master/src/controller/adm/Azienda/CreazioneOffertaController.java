@@ -315,6 +315,8 @@ public class CreazioneOffertaController extends baseController {
         super.init(request, response);
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (session.isAzienda(request)) {
+            boolean scaduto = (boolean)request.getAttribute("Scaduto");
+            datamodel.put("Scaduto", scaduto);
             if (request.getParameterMap().containsKey("Titolo") && request.getParameterMap().containsKey("Descrizione_Breve") && request.getParameterMap().containsKey("Descrizione_Completa") && request.getParameterMap().containsKey("Orari") && request.getParameterMap().containsKey("Durara_Ora") && request.getParameterMap().containsKey("Durara_Mesi") && request.getParameterMap().containsKey("Periodo_inizio") && request.getParameterMap().containsKey("Periodo_fine") && request.getParameterMap().containsKey("Modalita") && request.getParameterMap().containsKey("Obiettivi") && request.getParameterMap().containsKey("Rimborsi") && request.getParameterMap().containsKey("Facilitazioni") && request.getParameterMap().containsKey("SedeTirocinio") && request.getParameterMap().containsKey("CodiceIdentTirocinio") && request.getParameterMap().containsKey("SettoreInserimento") && request.getParameterMap().containsKey("TempiAccessoLocaliAziendali") && request.getParameterMap().containsKey("NomeTutoreAziendale") && request.getParameterMap().containsKey("CognomeTutoreAziendale") && request.getParameterMap().containsKey("TelefonoTutoreAziendale") && request.getParameterMap().containsKey("EmailTutoreAziendale")) {
                 Enumeration<String> params = request.getParameterNames();
                 while (params.hasMoreElements()) {
@@ -335,9 +337,11 @@ public class CreazioneOffertaController extends baseController {
         super.init(request, response);
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (session.isAzienda(request)) {
+            boolean scaduto = (boolean)request.getAttribute("Scaduto");
+            datamodel.put("Scaduto", scaduto);
             processaGet(request, response, session);
         } else {
-            er403(request, response);
+            er500(request, response);
         }
     }
 }

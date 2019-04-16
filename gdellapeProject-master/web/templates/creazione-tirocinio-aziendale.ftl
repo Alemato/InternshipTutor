@@ -31,7 +31,9 @@
     </section>
     <section id="centrale" class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
-            <form id="form_modifica" action="/account/gestione-offerte/creazione-offerta" method="post" class="sky-form  boxed"
+            <#if Scaduto??>
+                <#if !Scaduto>
+                <form id="form_modifica" action="/account/gestione-offerte/creazione-offerta" method="post" class="sky-form  boxed"
                   novalidate="novalidate">
 
                 <header class="mb-50 fs-50 fw-100 text-center">Crea un&apos;offerta di tirocinio</header>
@@ -489,6 +491,10 @@
                     </button>
                 </footer>
             </form>
+                <#else >
+                    <h2 class="text-center">Non puoi creare una nuova offerta fino a quando non avrai una convenzione valida!</h2>
+                </#if>
+            </#if>
         </div>
     </section>
     <#include "footer.ftl">

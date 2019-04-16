@@ -80,26 +80,22 @@ public class ListaOfferteTutoraggiController extends baseController {
                 sdatafine = request.getParameter("datafine");
                 datafine = format.parse(sdatafine);
             }
-            if (pageid != 1) {
-                pageid = pageid - 1;
-                pageid = pageid * ElementiPerPagina;
-            }
 
 
-            List<OffertaTirocinio> Offerte = daouser.getAllOffertatr();
+            List<OffertaTirocinio> offerte = daouser.getAllOffertatr();
             List<OffertaTirocinio> offerteFiltrate = new ArrayList<>();
 
             if ((!(azienda.equals("Tutte le Aziende")) && !(sede.equals("Tutte le sedi disponibili")) && cerca != null)) {
-                for (OffertaTirocinio off : Offerte) {
+                for (OffertaTirocinio off : offerte) {
                     if (off.getAziendaOspitante().equals(azienda))
                         if (off.getLuogoEffettuazione().equals(sede))
-                            if (off.getTitolo().toLowerCase().contains(cerca.toLowerCase()))                                                             //da rivedere
+                            if (off.getTitolo().toLowerCase().contains(cerca.toLowerCase()))
                                 if (off.getPeriodoInizio().after(datainizio))
                                     if (off.getPeriodoFine().before(datafine))
                                         offerteFiltrate.add(off);
                 }
             } else if ((!(azienda.equals("Tutte le Aziende")) && !(sede.equals("Tutte le sedi disponibili")) && cerca == null)) {
-                for (OffertaTirocinio off : Offerte) {
+                for (OffertaTirocinio off : offerte) {
                     if (off.getAziendaOspitante().equals(azienda))
                         if (off.getLuogoEffettuazione().equals(sede))
                             if (off.getPeriodoInizio().after(datainizio))
@@ -107,46 +103,46 @@ public class ListaOfferteTutoraggiController extends baseController {
                                     offerteFiltrate.add(off);
                 }
             } else if ((!(azienda.equals("Tutte le Aziende")) && sede.equals("Tutte le sedi disponibili") && cerca != null)) {
-                for (OffertaTirocinio off : Offerte) {
+                for (OffertaTirocinio off : offerte) {
                     if (off.getAziendaOspitante().equals(azienda))
-                        if (off.getTitolo().toLowerCase().contains(cerca.toLowerCase()))                                                                //da rivedere
+                        if (off.getTitolo().toLowerCase().contains(cerca.toLowerCase()))
                             if (off.getPeriodoInizio().after(datainizio))
                                 if (off.getPeriodoFine().before(datafine))
                                     offerteFiltrate.add(off);
                 }
             } else if ((!(azienda.equals("Tutte le Aziende")) && sede.equals("Tutte le sedi disponibili") && cerca == null)) {
-                for (OffertaTirocinio off : Offerte) {
+                for (OffertaTirocinio off : offerte) {
                     if (off.getAziendaOspitante().equals(azienda))
                         if (off.getPeriodoInizio().after(datainizio))
                             if (off.getPeriodoFine().before(datafine))
                                 offerteFiltrate.add(off);
                 }
             } else if ((azienda.equals("Tutte le Aziende") && !(sede.equals("Tutte le sedi disponibili")) && cerca != null)) {
-                for (OffertaTirocinio off : Offerte) {
+                for (OffertaTirocinio off : offerte) {
                     if (off.getLuogoEffettuazione().equals(sede))
-                        if (off.getTitolo().toLowerCase().contains(cerca.toLowerCase()))                                                            //da rivedere
+                        if (off.getTitolo().toLowerCase().contains(cerca.toLowerCase()))
                             if (off.getPeriodoInizio().after(datainizio))
                                 if (off.getPeriodoFine().before(datafine)) {
                                     offerteFiltrate.add(off);
                                 }
                 }
             } else if ((azienda.equals("Tutte le Aziende") && !(sede.equals("Tutte le sedi disponibili")) && cerca == null)) {
-                for (OffertaTirocinio off : Offerte) {
+                for (OffertaTirocinio off : offerte) {
                     if (off.getLuogoEffettuazione().equals(sede))
                         if (off.getPeriodoInizio().after(datainizio))
                             if (off.getPeriodoFine().before(datafine))
                                 offerteFiltrate.add(off);
                 }
             } else if ((azienda.equals("Tutte le Aziende") && sede.equals("Tutte le sedi disponibili") && cerca != null)) {
-                for (OffertaTirocinio off : Offerte) {
+                for (OffertaTirocinio off : offerte) {
                     System.out.println(off.getTitolo().indexOf(cerca));
-                    if (off.getTitolo().toLowerCase().contains(cerca.toLowerCase()))                                                              //da rivedere
+                    if (off.getTitolo().toLowerCase().contains(cerca.toLowerCase()))
                         if (off.getPeriodoInizio().after(datainizio))
                             if (off.getPeriodoFine().before(datafine))
                                 offerteFiltrate.add(off);
                 }
             } else if ((azienda.equals("Tutte le Aziende") && sede.equals("Tutte le sedi disponibili") && cerca == null)) {
-                for (OffertaTirocinio off : Offerte) {
+                for (OffertaTirocinio off : offerte) {
                     if (off.getPeriodoInizio().after(datainizio))
                         if (off.getPeriodoFine().before(datafine))
                             offerteFiltrate.add(off);
@@ -154,15 +150,29 @@ public class ListaOfferteTutoraggiController extends baseController {
             }
 
             daouser.destroy();
-            int from = (pageid*ElementiPerPagina);
+            List<OffertaTirocinio> offerteInpaginate = new ArrayList<>();
+            int from = (pageid * ElementiPerPagina);
             if (offerteFiltrate.size() <= from)
                 from = from - (from - offerteFiltrate.size());
+            if (from == offerteFiltrate.size()) {
+                System.out.println(offerteFiltrate.size());
+                System.out.println("pageid");
+                System.out.println(pageid);
+                System.out.println("from");
+                System.out.println((pageid * ElementiPerPagina) - ElementiPerPagina);
+                System.out.println("to");
+                System.out.println(offerteFiltrate.size());
+                offerteInpaginate.addAll(offerteFiltrate.subList((pageid * ElementiPerPagina) - ElementiPerPagina, offerteFiltrate.size()));
+            } else {
+                offerteInpaginate.addAll(offerteFiltrate.subList((pageid * ElementiPerPagina) - ElementiPerPagina, from));
+            }
+
 
             datamodel.put("numeroPagina", pageid);
             datamodel.put("elementiPerPagina", ElementiPerPagina);
-            datamodel.put("numeroPagine",offerteFiltrate.size()/ElementiPerPagina);
-            datamodel.put("offerte", offerteFiltrate.subList((pageid*ElementiPerPagina)-ElementiPerPagina,from));
-
+            datamodel.put("numeroPagine", Math.ceil((float) offerteFiltrate.size() / ElementiPerPagina));
+            datamodel.put("offerte", offerteInpaginate);
+            datamodel.put("offerteFiltro", offerte);
 
         } catch (Exception e) {
             e.printStackTrace();

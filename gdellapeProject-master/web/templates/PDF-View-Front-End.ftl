@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Modulo Convenzione</title>
+    <title>${titolo}</title>
     <#include "importCss.ftl">
 
 </head>
@@ -16,7 +16,7 @@
 
         <div class="container">
 
-            <h1 class="uppercase">Modulo termine Progetto Formativo e Di Orientamento</h1>
+            <h1 class="uppercase">${titoloDescrittivo}</h1>
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">

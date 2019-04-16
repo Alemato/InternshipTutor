@@ -32,7 +32,7 @@
 
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
-            <form id="modulo_tirocinante" action="/account/moduli/tirocinio" method="post" class="m-0">
+            <form id="modulo_tirocinante" action="/account/moduli/crea-fine-tirocinio" method="post" class="m-0">
                 <fieldset>
                     <input type="hidden" name="ID_Tirocinio" value="${tirocinio.IDTirocinio}">
                     <h1 class="text-center fw-100 d-print-none">Controlla i dati del modulo pre-compilato e clicca su
