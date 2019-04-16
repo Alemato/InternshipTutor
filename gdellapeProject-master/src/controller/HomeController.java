@@ -1,25 +1,20 @@
 package controller;
 
+import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.OffertaTirocinioDaoImp;
 
-import dao.implementation.TutoreUniversitarioDaoImp;
 import model.Azienda;
 import model.OffertaTirocinio;
-import model.TutoreUniversitario;
 import view.TemplateController;
 
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.*;
-import java.lang.String;
 
 public class HomeController extends baseController {
 
@@ -31,37 +26,34 @@ public class HomeController extends baseController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         super.init(request, response);
-        LastFiveOfferte(request, response);
-        LastFiveConvenzioni(request, response);
-        TemplateController.process("index.ftl", datamodel, response, getServletContext());
+        try {
+            LastFiveOfferte(request, response);
+            LastFiveConvenzioni(request, response);
+            TemplateController.process("index.ftl", datamodel, response, getServletContext());
+        }catch (DaoException e){
+            RequestDispatcher page= request.getRequestDispatcher("/500");
+            page.forward(request,response);
+        }
 
 
     }
 
-    private void LastFiveOfferte(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
+    private void LastFiveOfferte(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DaoException {
             OffertaTirocinioDaoImp offerta = new OffertaTirocinioDaoImp();
             List<OffertaTirocinio> LastFiveOfferta = offerta.getLastFiveOfferte();
             offerta.destroy();
             datamodel.put("LastFiveOfferta", LastFiveOfferta);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect("/404");
-        }
+
     }
 
-    private void LastFiveConvenzioni(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
+    private void LastFiveConvenzioni(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,DaoException {
+
             AziendaDaoImp azienda = new AziendaDaoImp();
             List<Azienda> LastFiveConvenzioni = azienda.getLastFiveConvenzioni();
             azienda.destroy();
             datamodel.put("LastFiveConvenzioni", LastFiveConvenzioni);
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect("/404");
 
-        }
     }
 
 }
