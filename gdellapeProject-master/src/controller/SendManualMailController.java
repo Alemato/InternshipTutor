@@ -8,7 +8,10 @@ import java.util.Calendar;
 import java.util.Map;
 
 import controller.utility.Mailer;
+import dao.exception.DaoException;
+import dao.implementation.OffertaTirocinioDaoImp;
 import freemarker.template.Template;
+import model.OffertaTirocinio;
 import view.TemplateController;
 import view.TemplateControllerMail;
 
@@ -22,18 +25,44 @@ public class SendManualMailController extends baseController {
             String subject = request.getParameter("subject");
             String msg = request.getParameter("msg");
             datamodel.put("msg", msg);
-            Calendar cal = Calendar.getInstance();
-            // Informazioni relative alla data
-            int giorno =  cal.get(Calendar.DATE);
-            int mese = cal.get(Calendar.MONTH);
-            int anno = cal.get(Calendar.YEAR);
-            // Informazione relative all'ora
-            int ora = cal.get(Calendar.HOUR);
-            int minuti = cal.get(Calendar.MINUTE);
-            int secondi = cal.get(Calendar.SECOND);
-            String datainvio = Integer.toString(giorno) + "\\" + Integer.toString(mese) + "\\" + Integer.toString(anno) + " " + Integer.toString(ora) + ":" + Integer.toString(minuti) + ":" + Integer.toString(secondi);
-            datamodel.put("datainvio", datainvio);
-            TemplateControllerMail.process("mailtemplateprova.ftl", datamodel, to, subject, getServletContext());
+            if (request.getParameterMap().containsKey("tipo")){
+                String tipo = request.getParameter("tipo");
+                if(tipo.equals("registrazioneAzienda")){
+                    datamodel.put("nomeAzineda", "Mario srl");
+                    TemplateControllerMail.process("email/registrazione-azienda.ftl", datamodel, to, subject, getServletContext());
+                } else if (tipo.equals("registrazioneTirocinante")){
+                    datamodel.put("nomeUtente", "Mario");
+                    datamodel.put("cognomeUtente", "Rossi");
+                    TemplateControllerMail.process("email/registrazione-tirocinante.ftl", datamodel, to, subject, getServletContext());
+                } else if (tipo.equals("creazioneOferta")){
+                    OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
+                    OffertaTirocinio offertaTirocinio = null;
+                    try {
+                        offertaTirocinio = offertaTirocinioDaoImp.getOffertatrByID(6);
+                        offertaTirocinioDaoImp.destroy();
+                        datamodel.put("Titolo", offertaTirocinio.getTitolo());
+                        datamodel.put("LuogoEffettuazione", offertaTirocinio.getLuogoEffettuazione());
+                        datamodel.put("Descrizione", offertaTirocinio.getDescrizione());
+                        datamodel.put("DescrizioneBreve",offertaTirocinio.getDescrizioneBreve());
+                        datamodel.put("Orario", offertaTirocinio.getOrari());
+                        datamodel.put("PeriodoInizio", offertaTirocinio.getPeriodoInizio());
+                        datamodel.put("PeriodoFine", offertaTirocinio.getPeriodoFine());
+                        datamodel.put("Obbiettivi", offertaTirocinio.getObbiettivi());
+                        datamodel.put("Modalita", offertaTirocinio.getModalita());
+                        datamodel.put("Rimbosi", offertaTirocinio.getRimborsi());
+                        datamodel.put("Facilitazioni", offertaTirocinio.getFacilitazioni());
+                        datamodel.put("NomeRespAz", offertaTirocinio.getNomeTutoreAziendale());
+                        datamodel.put("CognomeRepAz", offertaTirocinio.getCognomeTutoreAziendale());
+                        datamodel.put("EmailRespAZ", offertaTirocinio.getEmailTutoreAziendale());
+                        datamodel.put("TelRespAz", offertaTirocinio.getTelefonoTutoreAziendale());
+                        datamodel.put("Url", "?id=6");
+                        TemplateControllerMail.process("email/creazione-offerta.ftl", datamodel, to, subject, getServletContext());
+                    } catch (DaoException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
         }
         TemplateController.process("sendmanualmail.ftl", datamodel, response, getServletContext());
     }

@@ -494,7 +494,7 @@
                                                                                         <tbody>
                                                                                         <tr>
                                                                                             <td style="border-spacing: 0px; border-collapse: collapse; line-height: 24px; font-size: 16px; border-radius: 4px; margin: 0;" align="center" bgcolor="#007bff">
-                                                                                                <a href="/account/moduli" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 4.8px; line-height: 30px; display: inline-block; font-weight: normal; white-space: nowrap; background-color: #007bff; color: #ffffff; padding: 8px 16px; border: 1px solid #007bff;">Puoi creare il tuo documento qui</a>
+                                                                                                <a href="http://localhost:8080/account/moduli" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 4.8px; line-height: 30px; display: inline-block; font-weight: normal; white-space: nowrap; background-color: #007bff; color: #ffffff; padding: 8px 16px; border: 1px solid #007bff;">Puoi creare il tuo documento qui</a>
                                                                                             </td>
                                                                                         </tr>
                                                                                         </tbody>
