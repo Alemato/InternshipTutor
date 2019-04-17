@@ -43,73 +43,164 @@
                 </div>
             </noscript>
 
-            <section class="row text-center placeholders pt-10 pb-10 mb-10">
+
+            <section class="section-sm centrale border-top-section">
+                <div class="container p-0">
+                    <h2 class="uppercase fw-100 mb-15">Dettagli Tirocinante :
+                        <span class="fw-600 ml-10">${tirocinante.nome}&nbsp;${tirocinante.cognome}</span></h2>
+                    <div class="linea-divisione mt-0"></div>
+
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Email :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">${user.email}</h4>
+                        </div>
+                    </div>
+
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Luogo di nascita :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinante.luogoDiNascita}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Luogo di residenza :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinante.luogoDiResidenza}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Provincia di nascita :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                               ${tirocinante.provinciaDiNascita}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Data di nascit&aacute; :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinante.dataDiNascita?date?string("dd-MM-yyyy")}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Provinvia di residenza :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinante.provinciaDiResidenza}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Codice fiscale :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinante.codiceFiscale}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Telefono:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinante.telefono}
+                            </h4>
+                        </div>
+                    </div>
+                    <#if tirocinante.corsoDiLaurea?has_content>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Corso di laurea :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                               ${tirocinante.corsoDiLaurea}
+                            </h4>
+                        </div>
+                    </div>
+                    </#if>
+                    <#if tirocinante.diplomaUniversitario?has_content>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Diploma universitario :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinante.diplomaUniversitario}
+                            </h4>
+                        </div>
+                    </div>
+                    </#if>
+                    <#if tirocinante.laureatoUniversitario?has_content>
+                          <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Laureato universitario :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${tirocinante.laureatoUniversitario}
+                                </h4>
+                            </div>
+                        </div>
+                    </#if>
+                    <#if tirocinante.scuolaAltro?has_content>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Scuola o altro :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinante.scuolaAltro}
+                            </h4>
+                        </div>
+                    </div>
+                    </#if>
+                    <#if tirocinante.dottoratoDiRicerca?has_content>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Dottorato di ricerca :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${tirocinante.dottoratoDiRicerca}
+                                </h4>
+                            </div>
+                        </div>
+                    </#if>
+                          <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Handicap :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    <#if tirocinante.handicap> SI <#else> NO</#if>
+                                </h4>
+                            </div>
+                        </div>
+                </div>
             </section>
-            <div class="col">
-                <div class="row">
-                    <h4>Email : ${user.email}</h4>
-                </div>
-                <div class="row">
-                    <h4>Nome : ${tirocinante.nome}</h4>
-                </div>
-                <div class="row">
-                    <h4>Cognome : ${tirocinante.cognome}</h4>
-                </div>
-                <div class="row">
-                    <h4>Luogo di Nascità : ${tirocinante.luogoDiNascita}</h4>
-                </div>
-                <div class="row">
-                    <h4>Risiede : ${tirocinante.luogoDiResidenza}</h4>
-                </div>
-                <div class="row">
-                    <h4>Procincia di Nascit&aacute;  : ${tirocinante.provinciaDiNascita}</h4>
-                </div>
-                <div class="row">
-                    <h4>Data di nascit&aacute;  : ${tirocinante.dataDiNascita}</h4>
-                </div>
-                <div class="row">
-                    <h4>Provincia di residenza : ${tirocinante.provinciaDiResidenza}</h4>
-                </div>
-                <div class="row">
-                    <h4> Codice fiscale : ${tirocinante.codiceFiscale}</h4>
-                </div>
-                <div class="row">
-                    <h4>Telefono : ${tirocinante.telefono}</h4>
-                </div>
-                <#if tirocinante.corsoDiLaurea?has_content>
-                <div class="row">
-                    <h4>Corso Di Laurea : ${tirocinante.corsoDiLaurea}</h4>
-                </div>
-                </#if>
-                <#if tirocinante.diplomaUniversitario?has_content>
-                <div class="row">
-                    <h4>Diploma Universitario : ${tirocinante.diplomaUniversitario}</h4>
-                </div>
-                </#if>
-                <#if tirocinante.laureatoUniversitario?has_content>
-                <div class="row">
-                    <h4>Laurea : ${tirocinante.laureatoUniversitario}</h4>
-                </div>
-                </#if>
-                <#if tirocinante.scuolaAltro?has_content>
-                <div class="row">
-                    <h4>Scuola o Altro : ${tirocinante.scuolaAltro}</h4>
-                </div>
-                </#if>
-
-                <#if tirocinante.dottoratoDiRicerca?has_content>
-                <div class="row">
-                    <h4> Dottorato  : ${tirocinante.dottoratoDiRicerca}</h4>
-                </div>
-                </#if>
-                <div class="row">
-                    <h4>HandiCap : <#if tirocinante.handicap> yes <#else> no</#if> </h4>
-                </div>
-
-
-            </div>
-
-
         </main>
     </div>
 </div>

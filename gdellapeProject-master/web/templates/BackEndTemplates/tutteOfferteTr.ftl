@@ -63,7 +63,12 @@
                     <strong>Attenzione!</strong> ${WarningInsuccess}
                 </div>
             </#if>
-            <h2>OFFERTE DI TIROCINIO DISPONIBILI</h2>
+            <h2>Offerte Di Tirocinio</h2>
+            <div class="card" id="offerte_attive">
+                <div class="card-header">
+                    <h3>OFFERTE DI TIROCINIO SCADUTE</h3>
+                </div>
+                <div class="card-body">
             <table class="table table-responsive table-striped table-bordered table-hover" id="datatable_offerte_attive"
                    width="100%"
                    cellspacing="0">
@@ -129,11 +134,12 @@
 
                 </tbody>
             </table>
+                </div>
 
 
             <div class="card" id="offerte_scadute">
                 <div class="card-header">
-                    <h2>OFFERTE DI TIROCINIO SCADUTE</h2>
+                    <h3>OFFERTE DI TIROCINIO SCADUTE</h3>
                 </div>
                 <div class="card-body">
             <table class="table table-responsive table-striped table-bordered table-hover" id="datatable_offerte_disattive"

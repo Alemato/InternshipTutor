@@ -366,6 +366,191 @@
                         </footer>
                 </div>
             </div>
+            <h2>Tirocinii Attivi</h2>
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-table"></i> Moduli di Tirocinio Attive
+                </div>
+                <div class="card-body">
+                    <table class="table table-responsive table-striped table-bordered table-hover"
+                           id="datatable_tr_attivi" width="100%"
+                           cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Nome Tirocinante</th>
+                            <th>Cognome Tirocinante</th>
+                            <th>Codice Fiscale Tirocinante</th>
+                            <th>Ente/Azienda Ospitante</th>
+                            <th>Sede Legale Ente</th>
+                            <th>Codice Fiscale Ente</th>
+                            <th>Nome Tutore Aziendale</th>
+                            <th>Cognome Tutore Aziendale</th>
+                            <th>Tel. Tutore Aziendale</th>
+                            <th>Nome Tutore Univeresitario</th>
+                            <th>Cognome Tutore Univeresitario</th>
+                            <th>Tel. Tutore Univeresitario</th>
+                            <th>Data Richiesta</th>
+                            <th>Visualizza Richiesta</th>
+                            <th>Visualizza PDF Caricato</th>
+                            <th>Invalida PDF</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Nome Tirocinante</th>
+                            <th>Cognome Tirocinante</th>
+                            <th>Codice Fiscale Tirocinante</th>
+                            <th>Ente/Azienda Ospitante</th>
+                            <th>Sede Legale Ente</th>
+                            <th>Codice Fiscale Ente</th>
+                            <th>Nome Tutore Aziendale</th>
+                            <th>Cognome Tutore Aziendale</th>
+                            <th>Tel. Tutore Aziendale</th>
+                            <th>Nome Tutore Univeresitario</th>
+                            <th>Cognome Tutore Univeresitario</th>
+                            <th>Tel. Tutore Univeresitario</th>
+                            <th>Data Richiesta</th>
+                            <th>Visualizza Richiesta</th>
+                            <th>Visualizza PDF Caricato</th>
+                            <th>Invalida PDF</th>
+
+                        </tr>
+                        </tfoot>
+                        <tbody>
+
+
+                        <#list Attive as tirocinio,dati>
+                            <tr>
+                                <td>${dati[0]}</td>
+                                <td>${dati[1]}</td>
+                                <td>${dati[2]}</td>
+                                <td>${dati[3]}</td>
+                                <td>${dati[4]}</td>
+                                <td>${dati[5]}</td>
+                                <td>${dati[6]}</td>
+                                <td>${dati[7]}</td>
+                                <td>${dati[8]}</td>
+                                <td>${dati[9]}</td>
+                                <td>${dati[10]}</td>
+                                <td>${dati[11]}</td>
+                                <td>${tirocinio.createDate?date?string("dd-MM-yyyy")}</td>
+                                <td>
+                                    <#if (tirocinio.pdfTirocinante)??>
+                                        <a type="button" href="/#" class="btn btn-danger"> Visualizza Modulo Richiesta</a>
+                                    <#else>
+                                        <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
+                                    </#if>
+                                </td>
+                                <td>
+                                    <#if (tirocinio.pdfTirocinante)??>
+                                        <a type="button" href="/#" class="btn btn-danger"> <i class="fa fa-file-pdf-o"></i> Visualizza PDF</a>
+                                    <#else>
+                                        <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
+                                    </#if>
+                                </td>
+                                <td>
+                                    <#if (tirocinio.pdfTirocinante)??>
+                                        <a type="button" href="/" class="btn btn-danger"> <i class="fa fa-file-pdf-o"></i> Invalida PDF</a>
+                                    <#else>
+                                        <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
+                                    </#if>
+                                </td>
+                            </tr>
+                        </#list>
+                        </tbody>
+                    </table>
+                    <footer class="text-center text-sm-right mt-25 ">
+                    </footer>
+                </div>
+            </div>
+            <h2>Tirocinii Rifiutati</h2>
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-table"></i> Moduli di Richiesta Tirocinio Rifiutati
+                </div>
+                <div class="card-body">
+                    <table class="table table-responsive table-striped table-bordered table-hover"
+                           id="datatable_ric_tiro_rif" width="100%"
+                           cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Nome Tirocinante</th>
+                            <th>Cognome Tirocinante</th>
+                            <th>Codice Fiscale Tirocinante</th>
+                            <th>Ente/Azienda Ospitante</th>
+                            <th>Sede Legale Ente</th>
+                            <th>Codice Fiscale Ente</th>
+                            <th>Nome Tutore Aziendale</th>
+                            <th>Cognome Tutore Aziendale</th>
+                            <th>Tel. Tutore Aziendale</th>
+                            <th>Nome Tutore Univeresitario</th>
+                            <th>Cognome Tutore Univeresitario</th>
+                            <th>Tel. Tutore Univeresitario</th>
+                            <th>Data Richiesta</th>
+                            <th>Visualizza Richiesta</th>
+                            <th>Visualizza PDF Caricato</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Nome Tirocinante</th>
+                            <th>Cognome Tirocinante</th>
+                            <th>Codice Fiscale Tirocinante</th>
+                            <th>Ente/Azienda Ospitante</th>
+                            <th>Sede Legale Ente</th>
+                            <th>Codice Fiscale Ente</th>
+                            <th>Nome Tutore Aziendale</th>
+                            <th>Cognome Tutore Aziendale</th>
+                            <th>Tel. Tutore Aziendale</th>
+                            <th>Nome Tutore Univeresitario</th>
+                            <th>Cognome Tutore Univeresitario</th>
+                            <th>Tel. Tutore Univeresitario</th>
+                            <th>Data Richiesta</th>
+                            <th>Visualizza Richiesta</th>
+                            <th>Visualizza PDF Caricato</th>
+
+                        </tr>
+                        </tfoot>
+                        <tbody>
+
+
+                        <#list Rifiutati as tirocinio,dati>
+                            <tr>
+                                <td>${dati[0]}</td>
+                                <td>${dati[1]}</td>
+                                <td>${dati[2]}</td>
+                                <td>${dati[3]}</td>
+                                <td>${dati[4]}</td>
+                                <td>${dati[5]}</td>
+                                <td>${dati[6]}</td>
+                                <td>${dati[7]}</td>
+                                <td>${dati[8]}</td>
+                                <td>${dati[9]}</td>
+                                <td>${dati[10]}</td>
+                                <td>${dati[11]}</td>
+                                <td>${tirocinio.createDate?date?string("dd-MM-yyyy")}</td>
+                                <td>
+                                    <#if (tirocinio.pdfTirocinante)??>
+                                        <a type="button" href="/#" class="btn btn-danger"> Visualizza Modulo Richiesta</a>
+                                    <#else>
+                                        <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
+                                    </#if>
+                                </td>
+                                <td>
+                                    <#if (tirocinio.pdfTirocinante)??>
+                                        <a type="button" href="/#" class="btn btn-danger"> <i class="fa fa-file-pdf-o"></i> Visualizza PDF</a>
+                                    <#else>
+                                        <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
+                                    </#if>
+                                </td>
+                            </tr>
+                        </#list>
+                        </tbody>
+                    </table>
+                    <footer class="text-center text-sm-right mt-25 ">
+                    </footer>
+                </div>
+            </div>
         </main>
     </div>
 </div>
@@ -384,7 +569,7 @@
 <script>
     // datatable_ric_convenzioni
     // datatable_fine_tirocinio
-    function initTableFineTiro() {
+    function initTableFineTirocinio() {
 
         var table = jQuery('#datatable_fine_tirocinio');
 
@@ -435,6 +620,73 @@
                 "orderable": false
             }],
             "order": [
+                [14, 'asc']
+            ],
+            "lengthMenu": [
+                [5, 10, 20, -1],
+                [5, 10, 20, "Tutti"] // change per page values here
+            ],
+            "language": {
+                "search": "Filtra i record:",
+                "emptyTable": "Nessun dato disponibile nella tabella",
+                "zeroRecords": "Nessuna corrispondenza trovata",
+                "info": "Mostra da _START_ a _END_ di _TOTAL_ voci",
+                "infoEmpty": "Nessuna voce da mostrare",
+                "infoFiltered": " (filtrato da _MAX_ voci totali)"
+            },
+            "pageLength": 5, // set the initial value,
+            "columnDefs": [{  // set default column settings
+                'orderable': true,
+                'targets': [0]
+            }, {
+                "searchable": true,
+                "targets": [0]
+            }]
+        });
+
+        var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);
+
+        var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
+        tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
+    }
+
+    function initTableRifiutati() {
+
+        var table = jQuery('#datatable_ric_tiro_rif');
+
+        var oTable = table.dataTable({
+            "columns": [{
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": false
+            }, {
+                "orderable": false
+            }],
+            "order": [
                 [14, 'asc'],
             ],
             "lengthMenu": [
@@ -456,16 +708,78 @@
             }, {
                 "searchable": true,
                 "targets": [0]
-            }],
+            }]
         });
-
         var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);
 
         var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
+    function initTableAttive() {
 
+        var table = jQuery('#datatable_tr_attivi');
 
+        var oTable = table.dataTable({
+            "columns": [{
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
+                "orderable": false
+            }, {
+                "orderable": false
+            }],
+            "order": [
+                [14, 'asc']
+            ],
+            "lengthMenu": [
+                [5, 10, 20, -1],
+                [5, 10, 20, "Tutti"] // change per page values here
+            ],
+            "language": {
+                "search": "Filtra i record:",
+                "emptyTable": "Nessun dato disponibile nella tabella",
+                "zeroRecords": "Nessuna corrispondenza trovata",
+                "info": "Mostra da _START_ a _END_ di _TOTAL_ voci",
+                "infoEmpty": "Nessuna voce da mostrare",
+                "infoFiltered": " (filtrato da _MAX_ voci totali)"
+            },
+            "pageLength": 5, // set the initial value,
+            "columnDefs": [{  // set default column settings
+                'orderable': true,
+                'targets': [0]
+            }, {
+                "searchable": true,
+                "targets": [0]
+            }]
+        });
+        var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);
+
+        var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
+        tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
+    }
 
     function initTableRicTiro() {
 
@@ -504,7 +818,7 @@
                 "orderable": false
             }, {
                 "orderable": false
-            },{
+            }, {
                 "orderable": false
             }],
             "order": [
@@ -541,6 +855,8 @@
 
     initTableRicTiro();
     initTableFineTirocinio();
+    initTableAttive();
+    initTableRifiutati();
 
 </script>
 </body>

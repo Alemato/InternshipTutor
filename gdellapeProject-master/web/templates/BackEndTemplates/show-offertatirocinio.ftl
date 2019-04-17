@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>VISUALIZZA CONVENZIONE</title>
 
-  <#include "../importCss.ftl">
+    <#include "../importCss.ftl">
 
     <!-- Page Script -->
     <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
@@ -33,7 +33,7 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-       <#include "../BackEndTemplates/sidebar.ftl">
+        <#include "../BackEndTemplates/sidebar.ftl">
         <#--TODO controlla solo le barre e gli url con il filtro-->
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
@@ -41,91 +41,218 @@
             <noscript>
                 <div class="alert alert-danger mb-10 mt-10">
                     <h3 class="mb-10"><strong>Attenzione!</strong></h3>
-                    <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
+                    <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto
+                        <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
 
-            <section class="row text-center placeholders pt-10 pb-10 mb-10">
+            <section class="section-sm centrale border-top-section">
+                <div class="container p-0">
+                    <h2 class="uppercase fw-100 mb-15">Dettagli Offerta Di Tirocinio :
+                        <span class="fw-600 ml-10">${offerta.titolo}</span></h2>
+                    <div class="linea-divisione mt-0"></div>
 
-                <div class="col">
-                <div class="row">
-                    <h4>Titolo : ${offerta.titolo}</h4>
-                </div>
-                <div class="row">
-                    <h4>Descrizione Breve : ${offerta.descrizioneBreve}</h4>
-                </div>
-                <div class="row">
-                    <h4>Descrizione :</h4>
-                </div>
-                <div class="row">
-                    <h5>${offerta.descrizione}</h5>
-                </div>
-                <div class="row">
-                    <h4> Luogo Di Effettuazione : ${offerta.luogoEffettuazione}</h4>
-                </div>
-                <div class="row">
-                    <h4>Orari  : ${offerta.orari}</h4>
-                </div>
-                <div class="row">
-                    <h4>Durata Ore  : ${offerta.durataOre}</h4>
-                </div>
-                <div class="row">
-                    <h4>Mesi : ${offerta.durataMesi}</h4>
-                </div>
-                <div class="row">
-                   <h4>Dall ${offerta.periodoInizio?date?string("dd-MM-yyyy")} All ${offerta.periodoFine?date?string("dd-MM-yyyy")} </h4>
-                </div>
-                <div class="row">
-                    <h4> Modalita :</h4>
-                </div>
-                <div class="row">
-                    <h6>${offerta.modalita}</h6>
-                </div>
-                <div class="row">
-                    <h4>Obbiettivi: ${offerta.obbiettivi}</h4>
-                </div>
-                <#if offerta.rimborsi?has_content>
-                    <div class="row">
-                        <h4>Rimborsi : ${offerta.rimborsi}</h4>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Descrizione Breve :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">${offerta.descrizioneBreve}</h4>
+                        </div>
                     </div>
-                </#if>
-                <#if offerta.facilitazione?has_content >
-                <div class="row">
-                    <h4>Facilitazione : ${offerta.facilitazione}</h4>
-                </div>
-                </#if>
 
-                <div class="row">
-                    <h4>Azienda Ospitante : ${offerta.aziendaOspitante}</h4>
-                </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Descrizione :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.descrizione}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Luogo Di Effettuazione :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.luogoEffettuazione}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Orari:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.orari}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Durata ore:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.durataOre}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Mesi :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.durataMesi}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Periodo inizio:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.periodoInizio?date?string("dd-MM-yyyy")}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Periodo Fine:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.periodoFine?date?string("dd-MM-yyyy")}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro"> Modalit&agrave; :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.modalita}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Obiettivi:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.obbiettivi}
+                            </h4>
+                        </div>
+                    </div>
 
-                <div class="row">
-                    <h4>Codice Indetificativo Tirocinio : ${offerta.codIdentTirocinio}</h4>
-                </div>
-
-                <div class="row">
-                    <h4> Settore Inserimento : ${offerta.settoreInserimento}</h4>
-                </div>
-
-                <div class="row">
-                    <h4>Tempo accesso locali aziendali  : ${offerta.tempoAccessoLocaliAziendali}</h4>
-                </div>
-                <div class="row">
-                    <h4>Nome Tutore Aziendale  : ${offerta.nomeTutoreAziendale}</h4>
-                </div>
-                <div class="row">
-                    <h4>Cognome Tutore Aziendale  : ${offerta.cognomeTutoreAziendale}</h4>
-                </div>
-                <div class="row">
-                    <h4>Telefono Tutore Aziendale  : ${offerta.telefonoTutoreAziendale}</h4>
-                </div>
-                <div class="row">
-                    <h4>Email Tutore Aziendale  : ${offerta.emailTutoreAziendale}</h4>
-                </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Rimborsi:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.rimborsi}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Facilitazione :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.facilitazione}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Azienda Ospitante :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.aziendaOspitante}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Codice Indetificativo Tirocinio :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${offerta.codIdentTirocinio}
+                            </h4>
+                        </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Settore di Inserimento :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${offerta.settoreInserimento}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Tempo accesso locali aziendali :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${offerta.tempoAccessoLocaliAziendali}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Nome Tutore Aziendale :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${offerta.nomeTutoreAziendale}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Cognome Tutore Aziendale:</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${offerta.cognomeTutoreAziendale}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Telefono Tutore Aziendale:</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${offerta.telefonoTutoreAziendale}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Email Tutore Aziendale:</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${offerta.emailTutoreAziendale}
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
             </section>
-    </div>
-
-
         </main>
     </div>
 </div>
