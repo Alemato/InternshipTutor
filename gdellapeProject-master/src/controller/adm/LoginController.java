@@ -96,18 +96,7 @@ public class LoginController extends HttpServlet {
                             System.out.println("TirocinioSettato");
                             System.out.println(request.getSession().getAttribute("Tirocinio"));
                             response.sendRedirect("/sceltarichiesta?Tirocinio="+ request.getSession().getAttribute("Tirocinio"));
-//                            RequestDispatcher requestDispatcher;
-//                            requestDispatcher = request.getRequestDispatcher("/inviorichiesta?Tirocinio="+ request.getSession().getAttribute("Tirocinio"));
-//                            try {
-//                                requestDispatcher.forward(request, response);
-//                            } catch (ServletException | IOException e) {
-//                                e.printStackTrace();
-//                                try {
-//                                    response.sendRedirect("404");
-//                                } catch (IOException e1) {
-//                                    e1.printStackTrace();
-//                                }
-//                            }
+//
                         }else {
                         response.sendRedirect("/home");
                     }}catch (IOException e){
