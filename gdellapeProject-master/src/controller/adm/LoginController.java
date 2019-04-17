@@ -12,6 +12,7 @@ import model.Tirocinante;
 import model.User;
 import view.TemplateController;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,13 +44,25 @@ public class LoginController extends HttpServlet {
 
         }
 
+        private int sessionDestroy(HttpServletRequest request, HttpServletResponse response){
+            int tirocinio = (int) request.getSession().getAttribute("Tirocinio");
+            System.out.println("id tirocinio");
+            System.out.println(tirocinio);
+            request.getSession(false).invalidate();
+            return tirocinio;
+        }
 
         protected void login (HttpServletRequest request, HttpServletResponse response) throws DaoException {
+            int tirocinio = 0;
+            boolean richiesta = false;
+            if (request.getSession(false).getAttribute("Tirocinio") != null) {
+                tirocinio = sessionDestroy(request, response);
+                richiesta = true;
+//                request.getSession().setAttribute("Tirocinio", tirocinio);
+            }
             SingSessionContoller session = SingSessionContoller.getInstance();
             String Mail = request.getParameter("Email");
             String pass = request.getParameter("Password");
-
-
 
             if (session.isAccount(Mail)) {
                 UserDaoImp dao = new UserDaoImp();
@@ -78,8 +91,26 @@ public class LoginController extends HttpServlet {
 
                     }
                     try {
+                        if (richiesta){
+                            request.getSession().setAttribute("Tirocinio", tirocinio);
+                            System.out.println("TirocinioSettato");
+                            System.out.println(request.getSession().getAttribute("Tirocinio"));
+                            response.sendRedirect("/sceltarichiesta?Tirocinio="+ request.getSession().getAttribute("Tirocinio"));
+//                            RequestDispatcher requestDispatcher;
+//                            requestDispatcher = request.getRequestDispatcher("/inviorichiesta?Tirocinio="+ request.getSession().getAttribute("Tirocinio"));
+//                            try {
+//                                requestDispatcher.forward(request, response);
+//                            } catch (ServletException | IOException e) {
+//                                e.printStackTrace();
+//                                try {
+//                                    response.sendRedirect("404");
+//                                } catch (IOException e1) {
+//                                    e1.printStackTrace();
+//                                }
+//                            }
+                        }else {
                         response.sendRedirect("/home");
-                    }catch (IOException e){
+                    }}catch (IOException e){
                         e.printStackTrace();
                     }
 
