@@ -44,7 +44,14 @@ public class LoginController extends HttpServlet {
 
         }
 
-        private int sessionDestroy(HttpServletRequest request, HttpServletResponse response){
+        private String urlRIC(HttpServletRequest request){
+            String url = (String) request.getSession().getAttribute("URI");
+            System.out.println("URI: "+ url);
+            request.getSession(false).invalidate();
+            return url;
+        }
+
+        private int idTirocinio(HttpServletRequest request, HttpServletResponse response){
             int tirocinio = (int) request.getSession().getAttribute("Tirocinio");
             System.out.println("id tirocinio");
             System.out.println(tirocinio);
@@ -55,10 +62,14 @@ public class LoginController extends HttpServlet {
         protected void login (HttpServletRequest request, HttpServletResponse response) throws DaoException {
             int tirocinio = 0;
             boolean richiesta = false;
+            String url= "";
             if (request.getSession(false).getAttribute("Tirocinio") != null) {
-                tirocinio = sessionDestroy(request, response);
+                tirocinio = idTirocinio(request, response);
                 richiesta = true;
 //                request.getSession().setAttribute("Tirocinio", tirocinio);
+            }
+            if(request.getSession(false).getAttribute("URI")!= null){
+               url= urlRIC(request);
             }
             SingSessionContoller session = SingSessionContoller.getInstance();
             String Mail = request.getParameter("Email");
@@ -96,10 +107,11 @@ public class LoginController extends HttpServlet {
                             System.out.println("TirocinioSettato");
                             System.out.println(request.getSession().getAttribute("Tirocinio"));
                             response.sendRedirect("/sceltarichiesta?Tirocinio="+ request.getSession().getAttribute("Tirocinio"));
-//
-                        }else {
-                        response.sendRedirect("/home");
-                    }}catch (IOException e){
+
+                        }else if (!url.equals("")){
+                            response.sendRedirect(url);
+                        } else response.sendRedirect("/home");
+                    }catch (IOException e){
                         e.printStackTrace();
                     }
 

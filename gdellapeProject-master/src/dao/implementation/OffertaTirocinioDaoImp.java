@@ -89,7 +89,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
                 offertaTirocinio.setStato(0);
                 this.updateOffertatr(offertaTirocinio);
             }
-            System.out.println(presente.getTime() + "  " + passato.getTime() + " Scaduto? " + presente.after(passato));
+            //System.out.println(presente.getTime() + "  " + passato.getTime() + " Scaduto? " + presente.after(passato));
         } catch (SQLException e){
             e.printStackTrace();
             throw new DaoException("Errore nel creare oggetto OffertaTirocinio", e);

@@ -194,7 +194,7 @@ public class SingSessionContoller {
         if(isValidSession(request)) {
             HttpSession session = getSession(request);
             String tipo = (String) session.getAttribute("Tipo");
-            if (tipo.equals("Admin")) {
+            if(tipo!=null && tipo.equals("Admin")) {
                 return true;
             }
         }
@@ -205,8 +205,7 @@ public class SingSessionContoller {
         if(isValidSession(request)){
             HttpSession session = getSession(request);
             String tipo = (String) session.getAttribute("Tipo");
-
-            if(tipo.equals("Tirocinante")){
+            if(tipo!=null && tipo.equals("Tirocinante")){
                 return true;
             }
         }
@@ -216,7 +215,7 @@ public class SingSessionContoller {
         if(isValidSession(request)){
             HttpSession session = getSession(request);
             String tipo = (String) session.getAttribute("Tipo");
-            if(tipo.equals("Azienda")){
+            if(tipo!=null && tipo.equals("Azienda")){
                 return true;
             }
         }
