@@ -439,16 +439,7 @@
         <location>/500</location>
     </error-page>
 
-    <servlet>
-        <servlet-name>stampa</servlet-name>
-        <servlet-class>controller.adm.Azienda.GestioneTirociniaAziendaController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>stampa</servlet-name>
-        <url-pattern>/Stampa</url-pattern>
-        <url-pattern>/stampa</url-pattern>
 
-    </servlet-mapping>
     <servlet>
         <servlet-name>createtirocinio</servlet-name>
         <servlet-class>controller.adm.Azienda.CreateTirocinioController</servlet-class>
