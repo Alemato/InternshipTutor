@@ -64,7 +64,6 @@
             <section class="row text-center placeholders pt-10 mb-10">
             </section>
             <h2><i class="fa fa-user-md"></i> Utenza di Tipo Amministratore</h2>
-            <h3>Lista Aministratori</h3>
             <div class="card mb-50">
                 <div class="card-header">
                     <i class="fa fa-table"></i> Amministratori

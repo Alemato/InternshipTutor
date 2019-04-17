@@ -43,67 +43,213 @@
                         <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
-            <div class="row">
-            <h6>Nome Tirocinante : ${dati[0]}</h6>
-            </div>
 
-            <div class="row">
-            <h6>Cognome Tirocinante :${dati[1]} </h6>
-            </div>
+            <section class="section-sm centrale border-top-section">
+                <div class="container p-0">
+                    <h2 class="uppercase fw-100 mb-15">Dettagli Modulo Tirocinio Azienda</h2>
+                    <div class="linea-divisione mt-0"></div>
 
-            <div class="row">
-            <h6>Codice Fiscale Tirocinante : $${dati[2]}}</h6>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Nome Tirocinante :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">${dati[0]}</h4>
+                        </div>
+                    </div>
+
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Cognome Tirocinante :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dati[1]}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Codice Fiscale Tirocinante :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dati[2]}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Ente/Azienda Ospitante :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dati[3]}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Ente/Azienda Ospitante :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dati[3]}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Sede Legale Ente :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dati[4]}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Codice Fiscale Ente :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dati[5]}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Nome Tutore Aziendale :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dati[6]}
+                            </h4>
+                        </div>
+                    </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Cognome Tutore Aziendale :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${dati[7]}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Tel. Tutore Aziendale :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${dati[8]}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Nome Tutore Univeresitario :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${dati[9]}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Cognome Tutore Univeresitario :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${dati[10]}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Tel. Tutore Univeresitario :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${dati[11]}
+                                </h4>
+                            </div>
+                        </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Data Richiesta :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinio.createDate?date?string("dd-MM-yyyy")}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Durata ore :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinio.durataOre}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">CFU :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinio.CFU}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Inizio Tirocinio :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinio.periodoEffettivoIniziale?date?string("dd-MM-yyyy")}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Fine Tirocinio :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinio.periodoEffettivoFinale?date?string("dd-MM-yyyy")}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Risultato Conseguito :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinio.risultatoConseguito}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Descrizione Attivit&agrave; svolta :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinio.descrizioneAttivitaSvolta}
+                            </h4>
+                        </div>
+                    </div>
                 </div>
-            <div class="row">
-            <h6>Ente/Azienda Ospitante : ${dati[3]}</h6>
-            </div>
-            <div class="row">
-            <h6>Sede Legale Ente : ${dati[4]}</h6>
-            </div>
-            <div class="row">
-            <h6>Codice Fiscale Ente : ${dati[5]}</h6>
-            </div>
-            <div class="row">
-            <h6>Nome Tutore Aziendale :  ${dati[6]}</h6>
-            </div>
-            <div class="row">
-            <h6>Cognome Tutore Aziendale :  ${dati[7]}</h6>
-            </div>
-            <div class="row">
-            <h6>Tel. Tutore Aziendale : ${dati[8]} </h6>
-            </div>
-            <div class="row">
-            <h6>Nome Tutore Univeresitario : ${dati[9]}</h6>
-            </div>
-            <div class="row">
-            <h6>Cognome Tutore Univeresitario : ${dati[10]}</h6>
-            </div>
-            <div class="row">
-            <h6>Tel. Tutore Univeresitario : ${dati[11]}</h6>
-            </div>
-            <div class="row">
-            <h6>Data Richiesta : ${tirocinio.createDate?date}</h6>
-            </div>
-            <div class="row">
-            <h6>Durata ore : ${tirocinio.durataOre}</h6>
-            </div>
-            <div class="row">
-            <h6>CFU : ${tirocinio.CFU}</h6>
-            </div>
-            <div class="row">
-            <h6>Inizio Tirocinio : ${tirocinio.periodoEffettivoIniziale?date} </h6>
-            </div>
-            <div class="row">
-            <h6>Fine Tirocinio : ${tirocinio.periodoEffettivoIniziale?date}</h6>
-            </div>
-            <div class="row">
-            <h6>Risultato Conseguito : ${tirocinio.risultatoConseguito}</h6>
-            </div>
-            <div class="row">
-            <h6>Descrizione Attivit&agrave; svolta : ${tirocinio.descrizioneAttivitaSvolta}</h6>
-            </div>
-
-
+            </section>
         </main>
     </div>
 </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gestione Utenza</title>
+    <title>Gestione Tirocinanti</title>
 
    <#include "../importCss.ftl">
 

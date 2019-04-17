@@ -36,58 +36,113 @@
     <div class="row">
         <#include "sidebar.ftl">
         <main class="col-sm-10 offset-sm-1 col-md-11 offset-md-2 pt-3">
+            <section class="section-sm centrale border-top-section">
+                <div class="container p-0">
+                    <h2 class="uppercase fw-100 mb-15">Dettagli Modulo Tirocinio Aziendale
+                       </h2>
+                    <div class="linea-divisione mt-0"></div>
 
-            <section class="section-sm centrale border-top-section pl-20 pr-20">
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Ente/Azienda:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">${dato[0]}</h4>
+                        </div>
+                    </div>
 
-
-                <div class="row">
-                    <h3>Ente/Azienda :</h3>
-                    <h3>&nbsp;${dato[0]}</h3>
-                    <h3>&nbsp;Codice fiscale Ente/Azienda :</h3>
-                    <h3>&nbsp;${dato[1]}</h3>
-                </div>
-                <div class="row">
-                    <h3>Tirocinante: </h3>
-                    <h3>&nbsp;${dato[2]}</h3>
-                    <h3>&nbsp;${dato[3]}</h3>
-                </div>
-                <div class="row" >
-                    <h3>(Codice identificativo tirocinio: Dipartimento, Corso di Laurea o diploma, anno, n progressivo, altro) : </h3>
-                    <h3>&nbsp;${dato[4]}</h3>
-                </div>
-                <div class="row">
-                    <h3>&nbsp;Periodo del Tirocinio: </h3>
-                    <h3>Dal</h3>
-                    <h3>&nbsp;${dato[5]?date?string("yyyy-MM-dd")}</h3>
-                    <h3>&nbsp;al</h3>
-                    <h3>&nbsp;${dato[6]?date?string("yyyy-MM-dd")}</h3>
-                    <h3>&nbsp;Per un totale di </h3>
-                    <h3>&nbsp;${dato[7]}</h3>
-                    <h3>&nbsp;ore</h3>
-                </div>
-                <div class="row">
-                    <h3>Sede di svolgimento del tirocinio :</h3>
-                    <h3>&nbsp; ${dato[8]}</h3>
-                </div>
-                <div class="row">
-                    <h3>Descrizione attivita svolta :</h3>
-                    <h3>&nbsp;${dato[9]}</h3>
-                </div>
-
-                <div class="row">
-                    <h3 >Si attesta che il/la Sig :</h3>
-                    <h3>&nbsp;${dato[3]} &nbsp; ${dato[2]}</h3>
-                </div>
-                <div class="row">
-                    <h3>Ha effettuato i compiti affidatigli conseguendo il seguente risultato :</h3>
-                    <h3>&nbsp;${dato[10]}</h3>
-                </div>
-                <div class="row">
-                    <h3>Data</h3>
-                    <h3>&nbsp;${dato[11]?date?string("yyyy-MM-dd")}</h3>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Codice fiscale Ente/Azienda :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dato[1]}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Tirocinante</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dato[2]}&nbsp;${dato[3]}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Codice identificativo tirocinio:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dato[4]}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Periodo del Tirocinio:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                Dal&nbsp;${dato[5]?date?string("yyyy-MM-dd")}&nbsp;al&nbsp;${dato[6]?date?string("yyyy-MM-dd")}&nbsp;Per un totale di&nbsp;${dato[7]}&nbsp;ore
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Sede di svolgimento del tirocinio :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dato[8]}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Descrizione attivita svolta:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dato[9]}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Si attesta che il/la Sig :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${dato[3]} &nbsp; ${dato[2]}
+                            </h4>
+                        </div>
+                    </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Ha effettuato i compiti affidatigli conseguendo il seguente risultato :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${dato[10]}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Data :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${dato[11]?date?string("yyyy-MM-dd")}
+                                </h4>
+                            </div>
+                        </div>
                 </div>
             </section>
-
         </main>
     </div>
 </div>

@@ -50,71 +50,158 @@
                     <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
+            <section class="section-sm centrale border-top-section">
+                <div class="container p-0">
+                    <h2 class="uppercase fw-100 mb-15">Dettagli Azienda:
+                        <span class="fw-600 ml-10">${azienda.ragioneSociale}</span></h2>
+                    <div class="linea-divisione mt-0"></div>
 
-            <section class="row text-center placeholders pt-10 pb-10 mb-10">
-                <div class="col">
-                <div class="row">
-                    <h4>Email : ${user.email}</h4>
-                </div>
-                <div class="row">
-                    <h4>Nome : ${azienda.ragioneSociale}</h4>
-                </div>
-                <div class="row">
-                    <h4>Cognome : ${azienda.indirizzoSedeLegale}</h4>
-                </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Email:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">${user.email}</h4>
+                        </div>
+                    </div>
 
-                <div class="row">
-                    <h4>Codice Fiscale o Partita iva : ${azienda.CFiscalePIva}</h4>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Indirizzo sede legale:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${azienda.indirizzoSedeLegale}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Codice Fiscale o Partita iva:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${azienda.CFiscalePIva}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Nome Legale Rappresentante:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${azienda.nomeLegaleRappresentante}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Cognome legale Rappresentante:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${azienda.cognomeLegaleRappresentante}
+                            </h4>
+                        </div>
+                    </div>
+                    <#if azienda.nomeResponsabileConvenzione?has_content>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Nome Responsabile Convenzione: </h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${azienda.nomeResponsabileConvenzione}
+                            </h4>
+                        </div>
+                    </div>
+                    </#if>
+                    <#if azienda.cognomeResponsabileConvenzione?has_content>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Cognome Responsabile Convenzione:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${azienda.cognomeResponsabileConvenzione}
+                            </h4>
+                        </div>
+                    </div>
+                    </#if>
+                    <#if azienda.telefonoResponsabileConvenzione?has_content>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Telefono Responsabile Convenzione:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${azienda.telefonoResponsabileConvenzione}
+                            </h4>
+                        </div>
+                    </div>
+                    </#if>
+                    <#if azienda.emailResponsabileConvenzione?has_content>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Email Responsabile Convenzione :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${azienda.emailResponsabileConvenzione}
+                                </h4>
+                            </div>
+                        </div>
+                    </#if>
+                        <#if azienda.durataConvenzione?has_content>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Durata Convenzione:</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${azienda.durataConvenzione}
+                                </h4>
+                            </div>
+                        </div>
+                    </#if>
+                    <#if azienda.foroControversia?has_content>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Foro Controversie :</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${azienda.foroControversia}
+                                </h4>
+                            </div>
+                        </div>
+                    </#if>
+                    <#if azienda.descrizione?has_content>
+                        <div class="row pl-15 pr-15">
+                            <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                                <h4 class="uppercase testo-chiaro">Descrizione:</h4>
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <h4 class="testo-scuro">
+                                    ${azienda.descrizione}
+                                </h4>
+                            </div>
+                        </div>
+                    </#if>
+                    <#if azienda.link?has_content>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Link Azienda :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${azienda.link}
+                            </h4>
+                        </div>
+                    </div>
+                    </#if>
                 </div>
-
-                <div class="row">
-                    <h4>Nome Legale Rappresentante : ${azienda.nomeLegaleRappresentante}</h4>
-                </div>
-                <div class="row">
-                    <h4>Cognome legale Rappresentante : ${azienda.cognomeLegaleRappresentante}</h4>
-                </div>
-                <#if azienda.nomeResponsabileConvenzione?has_content>
-                <div class="row">
-                    <h4> Nome Responsabile Convenzione: ${azienda.nomeResponsabileConvenzione}</h4>
-                </div>
-                </#if>
-                <#if azienda.cognomeResponsabileConvenzione?has_content>
-                <div class="row">
-                    <h4>Cognome Responsabile Convenzione : ${azienda.cognomeResponsabileConvenzione}</h4>
-                </div>
-                </#if>
-                <#if azienda.telefonoResponsabileConvenzione?has_content>
-                <div class="row">
-                    <h4> Telefono Responsabile Convenzione : ${azienda.telefonoResponsabileConvenzione}</h4>
-                </div>
-                </#if>
-                <#if azienda.emailResponsabileConvenzione?has_content>
-                <div class="row">
-                    <h4>Email Responsabile Convenzione : ${azienda.emailResponsabileConvenzione}</h4>
-                </div>
-                </#if>
-                <#if azienda.durataConvenzione?has_content>
-                <div class="row">
-                    <h4>Durata Convenzione : ${azienda.durataConvenzione}</h4>
-                </div>
-
-                </#if>
-                <#if azienda.foroControversia?has_content>
-                <div class="row">
-                    <h4>Foro Controversie : ${azienda.foroControversia}</h4>
-                </div>
-                </#if>
-                <#if azienda.descrizione?has_content>
-                <div class="row">
-                    <h4>Descrizione Azienda : ${azienda.descrizione}</h4>
-                </div>
-                </#if>
-                <#if azienda.link?has_content>
-                <div class="row">
-                    <h4>Link Azienda : ${azienda.link}</h4>
-                </div>
-                </#if>
-            </div>
             </section>
         </main>
     </div>

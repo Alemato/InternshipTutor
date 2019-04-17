@@ -35,35 +35,62 @@
     <div class="row">
         <#include "sidebar.ftl">
         <main class="col-sm-10 offset-sm-1 col-md-11 offset-md-2 pt-3 d-print-none">
+            <section class="section-sm centrale border-top-section">
+                <div class="container p-0">
+                    <h2 class="uppercase fw-100 mb-15">Dettagli Modulo Tirocinio Segreteria
+                    </h2>
+                    <div class="linea-divisione mt-0"></div>
 
-            <section class="section-sm centrale border-top-section pl-20 pr-20">
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Previa effetuazione di opportune verifiche e colloquio svoltosi in data :</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro"> ${tirocinio.dataColloquioSegreteria?date?string("dd-MM-yyyy")}</h4>
+                        </div>
+                    </div>
 
-                <div class="row">
-                <h3>Previa effetuazione di opportune verifiche e colloquio svoltosi in data :  </h3>
-                <h3>&nbsp; ${tirocinio.dataColloquioSegreteria?date?string("dd-MM-yyyy")} </h3>
-              </div>
-                <div class="row">
-                <h3>Tirocinante: </h3>
-                        <h3> &nbsp;${tirocinante.cognome} </h3>
-                        <h3> &nbsp;${tirocinante.nome}</h3>
-                </div>
-                <div class="row">
-                    <h3>Ha svolto il tirocinio con esito : </h3>
-                    <h3> &nbsp;${tirocinio.esitoTirocinio} </h3>
-                </div>
-
-                <div class="row">
-                <h3>Crediti Formativi riconosciuti :  </h3>
-                <h3>&nbsp;${tirocinio.CFU}</h3>
-                </div>
-                <div class="row">
-                    <h3>L&apos;Aquila il : </h3>
-                    <h3>&nbsp;${tirocinio.dataConsegnaModuloSegreteria?date?string("dd-MM-yyyy")} </h3>
-                </div>
-
-
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Tirocinante:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinante.cognome}&nbsp;${tirocinante.nome}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Ha svolto il tirocinio con esito:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinio.esitoTirocinio}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Crediti Formativi riconosciuti:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinio.CFU}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row pl-15 pr-15">
+                        <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
+                            <h4 class="uppercase testo-chiaro">Data:</h4>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-6">
+                            <h4 class="testo-scuro">
+                                ${tirocinio.dataConsegnaModuloSegreteria?date?string("dd-MM-yyyy")}
+                            </h4>
+                        </div>
+                    </div>
             </section>
-
         </main>
     </div>
 </div>
