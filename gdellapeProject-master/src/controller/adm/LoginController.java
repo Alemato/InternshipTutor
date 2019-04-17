@@ -30,6 +30,7 @@ public class LoginController extends HttpServlet {
     protected Map<String, Object> datamodel = new HashMap<>();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        TODO Controllo sulla login e sulla registrazione se un utente è già loggato
         try {
             this.login(request, response);
         } catch (DaoException e) {
