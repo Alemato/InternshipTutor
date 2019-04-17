@@ -64,7 +64,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.updateAzienda = connection.prepareStatement
                     ("UPDATE azienda SET RagioneSociale = ? ,IndirizzoSedeLegale = ? ,CFiscalePIva = ?,NomeLegaleRappresentante = ?," +
                             "CognomeLegaleRappresentante = ? ,NomeResponsabileConvenzione = ?,CognomeResponsabileConvenzione = ? ,TelefonoResponsabileConvenzione = ?," +
-                            "EmailResponsabileConvenzione = ?, PathPDFConvenzione=?,DurataConvenzione=?,ForoControversia = ?,DataConvenzione=?, Attivo=?, ModuloConvenzione=?, Descrizione=?, Link = ?, Voti = ?, Valutazione = ?,  WHERE IDAzienda = ? ");
+                            "EmailResponsabileConvenzione = ?, PathPDFConvenzione=?,DurataConvenzione=?,ForoControversia = ?,DataConvenzione=?, Attivo=?, ModuloConvenzione=?, Descrizione=?, Link = ?, Voti = ?, Valutazione = ?  WHERE azienda.IDAzienda = ? ");
 
             this.regAzienda = connection.prepareStatement
                     ("INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
@@ -123,10 +123,13 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
 
     public void updateAzienda(Azienda azienda) throws DaoException {
         /*
-        "UPDATE azienda SET RagioneSociale = ? ,IndirizzoSedeLegale = ? ,CFiscalePIva = ?,NomeLegaleRappresentante = ?," +
-        "CognomeLegaleRappresentante = ? ,NomeResponsabileConvenzione = ?,CognomeResponsabileConvenzione = ? ,TelefonoResponsabileConvenzione = ?," +
-        "EmailResponsabileConvenzione = ?, PathPDFConvenzione=?,DurataConvenzione=?,ForoControversia = ?,DataConvenzione=?, Attivo=?, ModuloConvenzione=?, Descrizione=?, Link = ? WHERE IDAzienda = ?
-         */
+        UPDATE azienda SET RagioneSociale = ? ,IndirizzoSedeLegale = ? ,CFiscalePIva = ?,NomeLegaleRappresentante = ?," +
+                            "CognomeLegaleRappresentante = ? ,NomeResponsabileConvenzione = ?,
+                            CognomeResponsabileConvenzione = ? ,TelefonoResponsabileConvenzione = ?," +
+                            "EmailResponsabileConvenzione = ?, PathPDFConvenzione=?,DurataConvenzione=?,
+                            ForoControversia = ?,DataConvenzione=?, Attivo=?, ModuloConvenzione=?, Descrizione=?,
+                            Link = ?, Voti = ?, Valutazione = ?,  WHERE IDAzienda = ?
+        */
         try {
             this.init();
             this.updateAzienda.setString(1, azienda.getRagioneSociale());
@@ -151,7 +154,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.updateAzienda.setFloat(20, azienda.getIDAzienda());
             this.updateAzienda.executeUpdate();
         } catch (SQLException e) {
-            throw new DaoException("Errore esecuzione update", e);
+            throw new DaoException("Errore esecuzione update " + azienda.getIDAzienda(), e);
         }
     }
 
@@ -216,7 +219,8 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.regAzienda.setInt(15, user.getIDUser());
             this.regAzienda.executeUpdate();
         } catch (SQLException e) {
-            throw new DaoException("Errore esecuzione update", e);
+            throw new DaoException("Errore esecuzione update " + azienda.getIDAzienda(), e);
+
         }
     }
 
