@@ -9,8 +9,7 @@ import model.OffertaTirocinio;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
@@ -83,6 +82,14 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
             offertaTirocinio.setCreateDate(resultSet.getTimestamp("CreateDate"));
             offertaTirocinio.setUpdateDate(resultSet.getTimestamp("UpdateDate"));
             offertaTirocinio.setAzienda(resultSet.getInt("Azienda"));
+            Calendar presente = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
+            Calendar passato = Calendar.getInstance();
+            passato.setTime(offertaTirocinio.getPeriodoFine());
+            if(presente.after(passato) && offertaTirocinio.getStato().equals(1)){
+                offertaTirocinio.setStato(0);
+                this.updateOffertatr(offertaTirocinio);
+            }
+            System.out.println(presente.getTime() + "  " + passato.getTime() + " Scaduto? " + presente.after(passato));
         } catch (SQLException e){
             e.printStackTrace();
             throw new DaoException("Errore nel creare oggetto OffertaTirocinio", e);
