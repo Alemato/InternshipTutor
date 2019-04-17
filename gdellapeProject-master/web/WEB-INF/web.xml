@@ -149,15 +149,14 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>registration</servlet-name>
-        <servlet-class>controller.adm.RegistrationController</servlet-class>
+        <servlet-name>Registrazione</servlet-name>
+        <servlet-class>controller.adm.RegistrazioneController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>registration</servlet-name>
-        <url-pattern>/registration</url-pattern>
-        <url-pattern>/Prove/registration</url-pattern>
+        <servlet-name>Registrazione</servlet-name>
+        <url-pattern>/registrazione</url-pattern>
+        <url-pattern>/Registrazione</url-pattern>
     </servlet-mapping>
-
 
     <servlet>
         <servlet-name>Lista-Convenzioni</servlet-name>

@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>Registrazione - Parte 2</title>
 
     <#include "importCss.ftl">
-    <!-- PAGE LEVEL SCRIPTS -->
-    <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
+
 </head>
-<body class="smoothscroll enable-animation">
+<body class=" enable-animation">
 <div class="w-1000 mx-auto">
-    <form id="form_registrazione" action="/registration" method="post" class="sky-form .validate boxed"
-          novalidate="novalidate">
+    <form id="form_registrazione" action="/registrazione" method="post" class="sky-form validate boxed">
 
         <header class="mb-50 fs-50 fw-100 text-center">Crea Il Tuo Account</header>
 
@@ -21,8 +17,8 @@
             AZIENDA
         </div>
         <fieldset name="step-1" class="d-none">
-            <input type="hidden" name="Email" value=${Email}>
-            <input type="password" class="d-none" name="Password" value=${Password}>
+            <input type="hidden" name="Email" value=${email}>
+            <input type="password" class="d-none" name="Password" value=${password}>
             <input type="hidden" name="Tipologia" value="Ente-Azienda">
         </fieldset>
         <fieldset name="Ente-Azienda">

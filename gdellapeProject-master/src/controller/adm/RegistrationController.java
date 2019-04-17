@@ -22,84 +22,57 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
-public class RegistrationController extends HttpServlet  {
-    HashMap<String,Object> datamodel = new HashMap<>();
+public class RegistrationController extends HttpServlet {
+    HashMap<String, Object> datamodel = new HashMap<>();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    private void Registration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DaoException {
+        logged(request, response);
+        AccountEsistente(request, response);
+        if (request.getParameterMap().containsKey("Tipologia")) {
 
-        try {
-           this.Registration(request,response);
-       }catch ( Exception e){
-           e.printStackTrace();
+            String tipo = (String) request.getParameter("Tipologia");
+            if (tipo.equals("Tirocinante")) {
+                String nome = request.getParameter("Nome");
+                if (nome == null) {
+                    halfRegistration(request, response);
+                } else {
+                    registrationTirocinante(request, response);
+                }
+            }
+            if (tipo.equals("Ente-Azienda")) {
+                String azienda = request.getParameter("NomeAzienda");
 
-       }
+                if (azienda == null) {
+                    halfRegistration(request, response);
+                } else {
+                    registrationAzienda(request, response);
 
-
-
-
-
+                }
+            }
+        } else {
+            TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
+        }
     }
 
 
-    protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
+    private void halfRegistration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getParameterMap().containsKey("Email") && request.getParameterMap().containsKey("Password") && request.getParameterMap().containsKey("Tipologia")) {
+            String email = request.getParameter("Email");
+            String password = request.getParameter("Password");
+            String type = request.getParameter("Tipologia");
 
+            datamodel.put("Email", email);
+            datamodel.put("Password", password);
 
-
-        }
-
-        protected void Registration(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException,DaoException {
-            logged(request, response);
-            AccountEsistente(request, response);
-            if (request.getParameterMap().containsKey("Tipologia")) {
-
-                String tipo = (String)request.getParameter("Tipologia");
-                if(tipo.equals("Tirocinante")) {
-                    String nome = request.getParameter("Nome");
-                    if (nome == null)
-                    {
-                        halfRegistration(request, response);
-                    }
-                    else
-                    {
-                        registrationTirocinante(request,response);
-                    }
-                }
-                if(tipo.equals("Ente-Azienda"))
-                {
-                    String azienda = request.getParameter("NomeAzienda");
-
-                    if (azienda == null) {
-                        halfRegistration(request, response);
-                    } else {
-                        registrationAzienda(request, response);
-
-                    }
-                }
-            }else {
-                TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
+            if (type.equals("Tirocinante")) {
+                TemplateController.process("registrazione_step2_tirocinante.ftl", datamodel, response, getServletContext());
             }
-        }
-
-
-        protected void halfRegistration(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException {
-            if (request.getParameterMap().containsKey("Email") && request.getParameterMap().containsKey("Password") && request.getParameterMap().containsKey("Tipologia")) {
-                String email = request.getParameter("Email");
-                String password = request.getParameter("Password");
-                String type = request.getParameter("Tipologia");
-
-                datamodel.put("Email", email);
-                datamodel.put("Password", password);
-
-                if (type.equals("Tirocinante")) {
-                    TemplateController.process("registrazione_step2_tirocinante.ftl", datamodel, response, getServletContext());
-                }
-                if(type.equals("Ente-Azienda")){
-                    TemplateController.process("registrazione_step2_azienda.ftl", datamodel, response, getServletContext());
-                }
-            }else {
-                //Errore se non esistono Email,Password e Tipologia
+            if (type.equals("Ente-Azienda")) {
+                TemplateController.process("registrazione_step2_azienda.ftl", datamodel, response, getServletContext());
             }
+        } else {
+            //Errore se non esistono Email,Password e Tipologia
+        }
 
 
 //           //farei un check dei campi tipo validazione mail poi se e le password sono uguali ed se ha messo il tipo di account
@@ -107,84 +80,73 @@ public class RegistrationController extends HttpServlet  {
 //                //errore
 //            }
 
+    }
+
+    private void registrationAzienda(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+
+
+            User user = new User();
+            Azienda azienda = new Azienda();
+
+            user.setEmail((String) request.getParameter("Email"));
+            user.setPassword(SecurityHash.SetHash(request.getParameter("Password")));
+            user.setTipologiaAccount(3);
+
+            azienda.setRagioneSociale((String) request.getParameter("NomeAzienda"));
+            azienda.setIndirizzoSedeLegale((String) request.getParameter("SedeLegale"));
+            azienda.setCFiscalePIva((String) request.getParameter("PartitaIVA"));
+            azienda.setNomeLegaleRappresentante((String) request.getParameter("NomeRappresentante"));
+            azienda.setCognomeLegaleRappresentante((String) request.getParameter("CognomeRappresentante"));
+            azienda.setNomeResponsabileConvenzione((String) request.getParameter("NomeResponsabile"));
+            azienda.setCognomeResponsabileConvenzione((String) request.getParameter("CognomeResponsabile"));
+            azienda.setTelefonoResponsabileConvenzione((String) request.getParameter("NumeroTelefonoResponsabile"));
+            azienda.setEmailResponsabileConvenzione((String) request.getParameter("EmailResponsabile"));
+
+            UserDaoImp daouser = new UserDaoImp();
+
+            daouser.setUser(user);
+            User userconid = daouser.getUserByMail(user.getEmail());
+            daouser.destroy();
+
+            AziendaDaoImp daoAzienda = new AziendaDaoImp();
+
+            daoAzienda.setRegisterazienda(azienda, userconid);
+            daoAzienda.destroy();
+
+            response.sendRedirect("/home");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        protected void registrationAzienda(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
-        {
-            try {
 
+    }
 
-                User user = new User();
-                Azienda azienda = new Azienda();
-
-                user.setEmail((String) request.getParameter("Email"));
-                user.setPassword(SecurityHash.SetHash(request.getParameter("Password")));
-                user.setTipologiaAccount(3);
-
-                azienda.setRagioneSociale((String) request.getParameter("NomeAzienda"));
-                azienda.setIndirizzoSedeLegale((String) request.getParameter("SedeLegale"));
-                azienda.setCFiscalePIva((String) request.getParameter("PartitaIVA"));
-                azienda.setNomeLegaleRappresentante((String) request.getParameter("NomeRappresentante"));
-                azienda.setCognomeLegaleRappresentante((String) request.getParameter("CognomeRappresentante"));
-                azienda.setNomeResponsabileConvenzione((String) request.getParameter("NomeResponsabile"));
-                azienda.setCognomeResponsabileConvenzione((String) request.getParameter("CognomeResponsabile"));
-                azienda.setTelefonoResponsabileConvenzione((String) request.getParameter("NumeroTelefonoResponsabile"));
-                azienda.setEmailResponsabileConvenzione((String) request.getParameter("EmailResponsabile"));
-
-                UserDaoImp daouser = new UserDaoImp();
-
-                daouser.setUser(user);
-                User userconid = daouser.getUserByMail(user.getEmail());
-                daouser.destroy();
-
-                AziendaDaoImp daoAzienda = new AziendaDaoImp();
-
-                daoAzienda.setRegisterazienda(azienda, userconid);
-                daoAzienda.destroy();
-
-                response.sendRedirect("/home");
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-
-
-
-
-
-
-
-        }
-        protected void AccountEsistente(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException,DaoException
-        {try {
+    private void AccountEsistente(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, DaoException {
+        try {
             SingSessionContoller session = SingSessionContoller.getInstance();
             String email = (String) request.getParameter("Email");
             if (session.isAccount(email)) {
                 //pagina di errore
             }
-        }
-            catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
 
-            }
-
-
-
         }
 
-        protected void logged(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException{
 
+    }
 
+    private void logged(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         SingSessionContoller session = SingSessionContoller.getInstance();
-        if(session.isValidSession(request)){
+        if (session.isValidSession(request)) {
             //pagina di e di errore
         }
 
-        }
-    protected void registrationTirocinante(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException {
+    }
+
+    private void registrationTirocinante(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-
-
             User user = new User();
             Tirocinante tirocinante = new Tirocinante();
 
@@ -243,7 +205,9 @@ public class RegistrationController extends HttpServlet  {
             String CKha = (String) request.getParameter("Handicap");
             if (CKha.equals("1")) {
                 tirocinante.setHandicap(true);
-            }else{tirocinante.setHandicap(false);}
+            } else {
+                tirocinante.setHandicap(false);
+            }
 
 
             UserDaoImp daouser = new UserDaoImp();
@@ -266,21 +230,33 @@ public class RegistrationController extends HttpServlet  {
             e.printStackTrace();
         }
     }
-    protected void halfControl(HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException{
+
+    protected void halfControl(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String mail = request.getParameter("Email");
         String Password = request.getParameter("Password");
         String CPassword = request.getParameter("ConfermaPassword");
-        if(Utility.isEmail(mail)&& Password.equals(CPassword)){
+        if (Utility.isEmail(mail) && Password.equals(CPassword)) {
 
 
-        }else{ TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
+        } else {
+            TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
 
         }
     }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Registration(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
 
+        }
 
+    }
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
+    }
 
 
 }
