@@ -152,6 +152,17 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         }
         return listRT;
     }
+    public List<Tirocinio> getAllTirocinio() throws DaoException {
+        List<Tirocinio> listRT = new ArrayList<>();
+        try {
+            this.init();
+            ResultSet resultSet = selectAllRichiestatr.executeQuery();
+            setListTirocinio(listRT, resultSet);
+        } catch (SQLException e) {
+            throw new DaoException("Errore query", e);
+        }
+        return listRT;
+    }
 
 
     public List<Tirocinio> getTrByOfferta(OffertaTirocinio offertaTirocinio) throws DaoException {
