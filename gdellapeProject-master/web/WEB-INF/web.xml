@@ -466,8 +466,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>richiesteconvenzioni</servlet-name>
-        <url-pattern>/Richisteconvezioni</url-pattern>
-        <url-pattern>/richisteconvezioni</url-pattern>
+        <url-pattern>/admin/Richisteconvezioni</url-pattern>
+        <url-pattern>/admin/richisteconvezioni</url-pattern>
 
     </servlet-mapping>
 
@@ -475,18 +475,17 @@
 
 
 
+<!--    Deprecated-->
+<!--    <servlet>-->
+<!--        <servlet-name>gestione-utenti</servlet-name>-->
+<!--        <servlet-class>controller.adm.Admin.GestioneUtenza.AdminFillTableController</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>gestione-utenti</servlet-name>-->
+<!--        <url-pattern>/gestione-utenti</url-pattern>-->
+<!--        <url-pattern>/Gestione-utenti</url-pattern>-->
 
-
-    <servlet>
-        <servlet-name>gestione-utenti</servlet-name>
-        <servlet-class>controller.adm.Admin.GestioneUtenza.AdminFillTableController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>gestione-utenti</servlet-name>
-        <url-pattern>/gestione-utenti</url-pattern>
-        <url-pattern>/Gestione-utenti</url-pattern>
-
-    </servlet-mapping>
+<!--    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>gestione-tirocinanti</servlet-name>
@@ -503,7 +502,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>gestione-admin</servlet-name>
-        <url-pattern>/gestione-admin</url-pattern>
+        <url-pattern>/admin/gestione-admin</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>gestione-tutori</servlet-name>
@@ -511,7 +510,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>gestione-tutori</servlet-name>
-        <url-pattern>/gestione-tutoti</url-pattern>
+        <url-pattern>/admin/gestione-tutoti</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>gestione-aziende</servlet-name>
@@ -519,7 +518,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>gestione-aziende</servlet-name>
-        <url-pattern>/gestione-aziende</url-pattern>
+        <url-pattern>/admin/gestione-aziende</url-pattern>
     </servlet-mapping>
 
 
@@ -531,8 +530,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>gestione-moduli-convenzione</servlet-name>
-        <url-pattern>/gestione-convenzione</url-pattern>
-        <url-pattern>/Gestione-Convenzione</url-pattern>
+        <url-pattern>/admin/gestione-convenzione</url-pattern>
+        <url-pattern>/admin/Gestione-Convenzione</url-pattern>
 
     </servlet-mapping>
 
@@ -542,8 +541,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>gestione-moduli-tirocinio</servlet-name>
-        <url-pattern>/gestione-tirocinio</url-pattern>
-        <url-pattern>/Gestione-tirocinio</url-pattern>
+        <url-pattern>/admin/gestione-tirocinio</url-pattern>
+        <url-pattern>/admin/Gestione-tirocinio</url-pattern>
 
     </servlet-mapping>
     <servlet>
@@ -562,8 +561,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>accettaconv</servlet-name>
-        <url-pattern>/accetta</url-pattern>
-        <url-pattern>/Accetta</url-pattern>
+        <url-pattern>/admin/accetta</url-pattern>
 
     </servlet-mapping>
     <!--<servlet>-->
@@ -644,8 +642,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>show-tirociante</servlet-name>
-        <url-pattern>/show-tirocinante</url-pattern>
-        <url-pattern>/Show-tirociante</url-pattern>
+        <url-pattern>/admin/show-tirocinante</url-pattern>
 
     </servlet-mapping>
     <servlet>
@@ -664,8 +661,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>reimposta-user</servlet-name>
-        <url-pattern>/reimposta-user</url-pattern>
-        <url-pattern>/reimposta-User</url-pattern>
+        <url-pattern>/admin/reimposta-user</url-pattern>
 
     </servlet-mapping>
     <servlet>
@@ -674,8 +670,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>show-azienda</servlet-name>
-        <url-pattern>/show-Azienda</url-pattern>
-        <url-pattern>/show-azienda</url-pattern>
+        <url-pattern>/admin/show-azienda</url-pattern>
 
     </servlet-mapping>
     <servlet>
@@ -684,27 +679,26 @@
     </servlet>
     <servlet-mapping>
     <servlet-name>modifica-tutore</servlet-name>
-    <url-pattern>/modifica-tutore</url-pattern>
-    <url-pattern>/modifica-Tutore</url-pattern>
+    <url-pattern>/admin/modifica-tutore</url-pattern>
     </servlet-mapping>
-    <!--<servlet>-->
-    <!--<servlet-name>modifica-admin</servlet-name>-->
-    <!--<servlet-class>controller.adm.Admin.GestioneUtenza.ModificaAdminControllerController</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>modifica-admin</servlet-name>-->
-    <!--<url-pattern>/modifica-Admin</url-pattern>-->
-    <!--<url-pattern>/modifica-admin</url-pattern>-->
+    <servlet>
+    <servlet-name>modifica-admin</servlet-name>
+    <servlet-class>controller.adm.Admin.GestioneUtenza.ModificaAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>modifica-admin</servlet-name>
+    <url-pattern>/admin/modifica-Admin</url-pattern>
+    <url-pattern>/admin/modifica-admin</url-pattern>
 
-    <!--</servlet-mapping>-->
+    </servlet-mapping>
     <servlet>
     <servlet-name>TutteOfferteTr</servlet-name>
     <servlet-class>controller.adm.Admin.GestioneTirocinio.OfferteTirocinioController</servlet-class>
     </servlet>
     <servlet-mapping>
     <servlet-name>TutteOfferteTr</servlet-name>
-    <url-pattern>/OfferteTirocinioAdmin</url-pattern>
-    <url-pattern>/offertetirocinioadmin</url-pattern>
+    <url-pattern>/admin/OfferteTirocinioAdmin</url-pattern>
+    <url-pattern>/admin/offertetirocinioadmin</url-pattern>
 
     </servlet-mapping>
     <servlet>
@@ -734,8 +728,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>CreaAdmin</servlet-name>
-        <url-pattern>/CreaAdmin</url-pattern>
-        <url-pattern>/creaadmin</url-pattern>
+        <url-pattern>/admin/crea-admin</url-pattern>
 
     </servlet-mapping>
 
@@ -746,8 +739,7 @@
 </servlet>
 <servlet-mapping>
 <servlet-name>CreaTutoreUni</servlet-name>
-<url-pattern>/Create-tutore</url-pattern>
-<url-pattern>/create-tutore</url-pattern>
+<url-pattern>/admin/create-tutore</url-pattern>
 
 </servlet-mapping>
 
@@ -783,14 +775,25 @@
         <url-pattern>/Modulo-Segreteria</url-pattern>
 
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CaricaModuloSegreteria</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneModuli.VisualizzaModuloSegreteriaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CaricaModuloSegreteria</servlet-name>
+        <url-pattern>/carica-segreteria</url-pattern>
+        <url-pattern>/carica-Segreteria</url-pattern>
+
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>VediConvenzioneAzienda</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneModuli.VisualizzaConvenzioneAziendaController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>VediConvenzioneAzienda</servlet-name>
-        <url-pattern>/convezione-azienda</url-pattern>
-        <url-pattern>/Convenzione-Azienda</url-pattern>
+        <url-pattern>/admin/convezione-azienda</url-pattern>
 
     </servlet-mapping>
 
@@ -811,8 +814,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>DisattivaAzienda</servlet-name>
-        <url-pattern>/Disattiva-azienda</url-pattern>
-        <url-pattern>/disattiva-azienda</url-pattern>
+        <url-pattern>/admin/disattiva-azienda</url-pattern>
 
     </servlet-mapping>
 
@@ -822,8 +824,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>statoTutoreUni</servlet-name>
-        <url-pattern>/stato-tutore</url-pattern>
-        <url-pattern>/Stato-Tutore</url-pattern>
+        <url-pattern>/admin/stato-tutore</url-pattern>
 
     </servlet-mapping>
     <servlet>
@@ -832,8 +833,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>showOfferta</servlet-name>
-        <url-pattern>/show-offerta</url-pattern>
-        <url-pattern>/Show-Offerta</url-pattern>
+        <url-pattern>/admin/show-offerta</url-pattern>
 
     </servlet-mapping>
     <servlet>
@@ -843,6 +843,17 @@
     <servlet-mapping>
         <servlet-name>CreateModuloSegreteria</servlet-name>
         <url-pattern>/crea-modulosegreteria</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SalvaModuloSegreteria</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneModuli.CaricaModuloSegreteriaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SalvaModuloSegreteria</servlet-name>
+        <url-pattern>/salva-segreteria</url-pattern>
+        <url-pattern>/salva-Segreteria</url-pattern>
+
     </servlet-mapping>
 
 
