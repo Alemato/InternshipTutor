@@ -23,11 +23,11 @@
     </button>
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
-        <li><a href="admin.html">HOME DASHBOARD</a></li>
+        <li><a href="/#">HOME DASHBOARD</a></li>
         <li><#if page=="tirocinante">
-                <a href="/gestione-tirocinanti"><b>GESTIONE TIROCINANTI</b></a>
+                <a href="/admin/gestione-tirocinanti"><b>GESTIONE TIROCINANTI</b></a>
                 <#elseif page == "azienda">
-                <a href="/gestione-aziende"><b>GESTIONE AZIENDE</b></a>
+                <a href="/admin/gestione-aziende"><b>GESTIONE AZIENDE</b></a>
         </#if>
         </li>
     </ol>
@@ -56,7 +56,7 @@
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
             </section>
             <div class="col">
-                <form action="/reimposta-User" method="post">
+                <form action="/admin/reimposta-user" method="post">
                     <input type="hidden" name="IDUser" value="${user.IDUser}">
                     <input type="hidden" name="page" value="${page}">
                     <#if ErroreGenericoUpdate??>

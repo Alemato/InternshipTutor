@@ -24,7 +24,7 @@
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
         <li><a href="admin.html">HOME DASHBOARD</a></li>
-        <li><a href="/gestione-tutoti"><b>GESTIONE TUTORI</b></a></li>
+        <li><a href="/admin/gestione-tutoti"><b>GESTIONE TUTORI</b></a></li>
         <li class="active"><a href="#"><b>GESTIONE: ${tutore.nome} ${tutore.cognome}</b></a></li>
     </ol>
    <#include "small-navbar.ftl">
@@ -56,7 +56,7 @@
                 </div>
             </#if>
             <div class="col">
-                <form action="/modifica-tutore" method="post">
+                <form action="/admin/modifica-tutore" method="post">
                     <input type="hidden" name="IDTutoreUni" value="${tutore.IDTutoreUni}">
                 <div class="form-group">
                     <label>Nome</label>

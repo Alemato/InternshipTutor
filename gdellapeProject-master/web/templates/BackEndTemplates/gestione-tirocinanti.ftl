@@ -108,14 +108,14 @@
                                 <td><#if tirocinante.handicap>yes<#else>no</#if> </td>
                                 <td>
 
-                                    <a type="button" class="btn btn-primary" href="/show-tirocinante?IDTirocinante=${tirocinante.IDTirocinante}">
+                                    <a type="button" class="btn btn-primary" href="/admin/show-tirocinante?IDTirocinante=${tirocinante.IDTirocinante}">
                                         <i class="fa fa-file-text"></i>Visualizza Utente
                                     </a>
 
 
                                 </td>
                                 <td>
-                                    <a type="button" href="/reimposta-User?IDUser=${tirocinante.user}" class="btn btn-secondary">
+                                    <a type="button" href="/admin/reimposta-user?IDUser=${tirocinante.user}" class="btn btn-secondary">
                                         <i class="fa fa-pencil-square-o"></i>Cambia</a>
                                 </td>
 

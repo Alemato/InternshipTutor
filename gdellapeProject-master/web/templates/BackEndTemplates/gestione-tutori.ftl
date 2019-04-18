@@ -26,7 +26,7 @@
 
     <ol class="breadcrumb">
         <li><a href="admin.html">HOME DASHBOARD</a></li>
-        <li class="active"><a href="/gestione-tutoti"><b>GESTIONE TUTORI</b></a></li>
+        <li class="active"><a href="/admin/gestione-tutoti"><b>GESTIONE TUTORI</b></a></li>
     </ol>
     <#include "small-navbar.ftl">
 
@@ -102,22 +102,15 @@
                             <td>${tutore.email}</td>
 
                             <td>
-
-
-                                <a type="button"  class="btn btn-secondary" href="/modifica-tutore?IDTutoreUni=${tutore.IDTutoreUni}">
+                                <a type="button"  class="btn btn-secondary" href="/admin/modifica-tutore?IDTutoreUni=${tutore.IDTutoreUni}">
                                     <i class="fa fa-pencil-square-o"></i> Modifica </a>
-
-
                             </td>
                             <td>
-
                                 <#if tutore.attivo==true>
-
-                                <a type="button" class="btn btn-danger" href="/stato-tutore?IDTutoreUni=${tutore.IDTutoreUni}&stato=0"><i class="fa fa-times"></i>Disattiva Tutore
+                                    <a type="button" class="btn btn-danger" href="/admin/stato-tutore?IDTutoreUni=${tutore.IDTutoreUni}&stato=0"><i class="fa fa-times"></i>Disattiva Tutore
                                 </a>
                                 <#else>
-                                <a type="button" class="btn btn-danger" href="/stato-tutore?IDTutoreUni=${tutore.IDTutoreUni}&stato=1"><i class="fa fa-times"></i>Attiva Tutore</a>
-
+                                <a type="button" class="btn btn-danger" href="/admin/stato-tutore?IDTutoreUni=${tutore.IDTutoreUni}&stato=1"><i class="fa fa-times"></i>Attiva Tutore</a>
                                 </#if>
                             </td>
                             </tr>
@@ -131,8 +124,7 @@
             </section>
             <#--TODO problema form validazione con java script-->
             <h3 class="mb-10">Crea Utente Turore Universitario</h3>
-            <form id="form_crea_tutore_uni" method="post" action="/create-tutore" class="sky-form validate"
-                  novalidate="novalidate">
+            <form id="form_crea_tutore_uni" method="post" action="/admin/create-tutore" class="sky-form">
                 <#if ErroreNomeTutore??>
                     <div class="alert alert-warning mb-20">
                         <button type="button" class="close" data-dismiss="alert">
@@ -145,7 +137,7 @@
                 <label class="input">
                     <p><em>*</em> Nome</p>
                     <i class="ico-append giu fa fa-lock"></i>
-                    <input type="text" <#if ErroreNomeTutore??> class="error" </#if> placeholder="Nome" name="Nome_tutore" <#if ValueOfNome_tutore??> value="${ValueOfNome_tutore}" </#if> required>
+                    <input type="text" <#if ErroreNomeTutore??> class="error" </#if> placeholder="Nome" name="Nome_tutore" <#if ValueOfNome_tutore??> value="${ValueOfNome_tutore}" </#if>>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri</b>
                 </label>
                 <#if ErroreCognomeTutore??>
@@ -160,7 +152,7 @@
                 <label class="input mb-20">
                     <p><em>*</em> Cognome</p>
                     <i class="ico-append giu fa fa-lock"></i>
-                    <input type="text" <#if ErroreCognomeTutore??> class="error" </#if> placeholder="Cognome" name="Cognome_tutore" <#if ValueOfCognome_tutore??> value="${ValueOfCognome_tutore}" </#if> required>
+                    <input type="text" <#if ErroreCognomeTutore??> class="error" </#if> placeholder="Cognome" name="Cognome_tutore" <#if ValueOfCognome_tutore??> value="${ValueOfCognome_tutore}" </#if>>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri</b>
                 </label>
                 <#if ErroreTelefonoTutore??>
@@ -175,7 +167,7 @@
                 <label class="input mb-20">
                     <p><em>*</em> Numero di Telefono</p>
                     <i class="ico-append giu fa fa-lock"></i>
-                    <input type="tel"  <#if ErroreTelefonoTutore??> class="error" </#if> placeholder="Numero di Telefono" name="Numero_telefono_tutore"  <#if ValueOfNumero_telefono_tutore??> value="${ValueOfNumero_telefono_tutore}" </#if> required>
+                    <input type="tel"  <#if ErroreTelefonoTutore??> class="error" </#if> placeholder="Numero di Telefono" name="Numero_telefono_tutore"  <#if ValueOfNumero_telefono_tutore??> value="${ValueOfNumero_telefono_tutore}" </#if>>
                     <b class="tooltip tooltip-bottom-right">Solo numeri</b>
                 </label>
                 <#if ErroreEmailTutore??>
@@ -190,7 +182,7 @@
                 <label class="input">
                     <p><em>*</em> Indirizzo Email</p>
                     <i class="ico-append giu fa fa-envelope"></i>
-                    <input type="email" <#if ErroreEmailTutore??> class="error" </#if> placeholder="Indirizzo Email" name="Email_tutore" <#if ValueOfEmail_tutore??> value="${ValueOfEmail_tutore}" </#if> required>
+                    <input type="email" <#if ErroreEmailTutore??> class="error" </#if> placeholder="Indirizzo Email" name="Email_tutore" <#if ValueOfEmail_tutore??> value="${ValueOfEmail_tutore}" </#if> >
                     <b class="tooltip tooltip-bottom-right">Necessario per essere contattato</b>
                 </label>
 

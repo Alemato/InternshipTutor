@@ -22,11 +22,11 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
+    <a class="navbar-brand link-bar" href="">Intership Tutor </a>
 
     <ol class="breadcrumb">
         <li><a href="admin.html">HOME DASHBOARD</a></li>
-        <li class="active"><a href="gestione-utenza-admin.html"><b>GESTIONE UTENZA</b></a></li>
+        <li class="active"><a href="admin/gestione-admin"><b>GESTIONE UTENZA</b></a></li>
     </ol>
    <#include "small-navbar.ftl">
 
@@ -102,7 +102,7 @@
             </section>
             <#--TODO problema javascrip form-->
             <h3 class="mb-10">Crea Utente Aministratore</h3>
-            <form id="form_crea_admin" method="post" action="/creaadmin" class="sky-form validate"
+            <form id="form_crea_admin" method="post" action="/admin/crea-admin" class="sky-form"
                   novalidate="novalidate">
 
                 <#if ErroreEmail??>

@@ -3,28 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestione Moduli</title>
-
-    <!-- mobile settings -->
-    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
-    <!--[if IE]>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-
-    <!-- WEB FONTS : use %7C instead of | (pipe) -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons%7COpen+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700"
-          rel="stylesheet" type="text/css"/>
-
-    <!-- CORE CSS -->
-    <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-    <!-- THEME CSS -->
-    <link href="/css/essentials.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/layout.css" rel="stylesheet" type="text/css"/>
-
-    <!-- PAGE LEVEL SCRIPTS -->
-    <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
-
+    <#include "../importCss.ftl">
     <!-- Page Sript -->
     <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
     <!-- /Page Script -->
@@ -44,16 +23,9 @@
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
         <li class=""><a href="admin.html">HOME DASHBOARD</a></li>
-        <li class="active"><a href="gestione-moduli-admin.html"><b>GESTIONE MODULI</b></a></li>
+        <li class="active"><a href="/admin/gestione-tirocinio"><b>GESTIONE MODULI</b></a></li>
     </ol>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <div class="row">
-                <a class="nav-link link-bar mt-5" href="#">Benvenuto,&nbsp;${Nome}<b>ADMIN</b></a>
-                <a class="nav-link link-bar text-center" href="#"><i class="fa fa-user-md fs-35 px-3"></i></a>
-            </div>
-        </li>
-    </ul>
+    <#include "small-navbar.ftl">
 
 </nav>
 <div class="container-fluid">
@@ -75,20 +47,20 @@
             <h2>Tirocinii</h2>
             <#if WarningSuccess??>
                 <div class="alert alert-success mb-20">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Chiudi</span>
-                        </button>
-                        <strong>Attenzione!</strong> ${WarningSuccess}
-                    </div>
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Attenzione!</strong> ${WarningSuccess}
+                </div>
             </#if>
             <#if WarningInsuccess??>
                 <div class="alert alert-danger mb-20">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Chiudi</span>
-                        </button>
-                        <strong>Attenzione!</strong> ${WarningInsuccess}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Attenzione!</strong> ${WarningInsuccess}
                 </div>
             </#if>
             <div class="card">
@@ -96,56 +68,56 @@
                     <i class="fa fa-table"></i> Moduli di Richiesta Tirocinio dei Tirocinanti
                 </div>
                 <div class="card-body">
-                        <table class="table table-responsive table-striped table-bordered table-hover"
-                               id="datatable_ric_tiro" width="100%"
-                               cellspacing="0">
-                            <thead>
-                            <tr>
-                                <th>Nome Tirocinante</th>
-                                <th>Cognome Tirocinante</th>
-                                <th>Codice Fiscale Tirocinante</th>
-                                <th>Ente/Azienda Ospitante</th>
-                                <th>Sede Legale Ente</th>
-                                <th>Codice Fiscale Ente</th>
-                                <th>Nome Tutore Aziendale</th>
-                                <th>Cognome Tutore Aziendale</th>
-                                <th>Tel. Tutore Aziendale</th>
-                                <th>Nome Tutore Univeresitario</th>
-                                <th>Cognome Tutore Univeresitario</th>
-                                <th>Tel. Tutore Univeresitario</th>
-                                <th>Data Richiesta</th>
-                                <th>Visualizza Richiesta</th>
-                                <th>Visualizza PDF Caricato</th>
-                                <th>Invalida PDF</th>
-                                <th>Elimina Richieta</th>
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Nome Tirocinante</th>
-                                <th>Cognome Tirocinante</th>
-                                <th>Codice Fiscale Tirocinante</th>
-                                <th>Ente/Azienda Ospitante</th>
-                                <th>Sede Legale Ente</th>
-                                <th>Codice Fiscale Ente</th>
-                                <th>Nome Tutore Aziendale</th>
-                                <th>Cognome Tutore Aziendale</th>
-                                <th>Tel. Tutore Aziendale</th>
-                                <th>Nome Tutore Univeresitario</th>
-                                <th>Cognome Tutore Univeresitario</th>
-                                <th>Tel. Tutore Univeresitario</th>
-                                <th>Data Richiesta</th>
-                                <th>Visualizza Richiesta</th>
-                                <th>Visualizza PDF Caricato</th>
-                                <th>Invalida PDF</th>
-                                <th>Elimina Richieta</th>
+                    <table class="table table-responsive table-striped table-bordered table-hover"
+                           id="datatable_ric_tiro" width="100%"
+                           cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Nome Tirocinante</th>
+                            <th>Cognome Tirocinante</th>
+                            <th>Codice Fiscale Tirocinante</th>
+                            <th>Ente/Azienda Ospitante</th>
+                            <th>Sede Legale Ente</th>
+                            <th>Codice Fiscale Ente</th>
+                            <th>Nome Tutore Aziendale</th>
+                            <th>Cognome Tutore Aziendale</th>
+                            <th>Tel. Tutore Aziendale</th>
+                            <th>Nome Tutore Univeresitario</th>
+                            <th>Cognome Tutore Univeresitario</th>
+                            <th>Tel. Tutore Univeresitario</th>
+                            <th>Data Richiesta</th>
 
-                            </tr>
-                            </tfoot>
-                            <tbody>
+                            <th>Visualizza Richiesta</th>
+                            <th>Visualizza PDF Caricato</th>
+                            <th>Invalida PDF</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Nome Tirocinante</th>
+                            <th>Cognome Tirocinante</th>
+                            <th>Codice Fiscale Tirocinante</th>
+                            <th>Ente/Azienda Ospitante</th>
+                            <th>Sede Legale Ente</th>
+                            <th>Codice Fiscale Ente</th>
+                            <th>Nome Tutore Aziendale</th>
+                            <th>Cognome Tutore Aziendale</th>
+                            <th>Tel. Tutore Aziendale</th>
+                            <th>Nome Tutore Univeresitario</th>
+                            <th>Cognome Tutore Univeresitario</th>
+                            <th>Tel. Tutore Univeresitario</th>
+                            <th>Data Richiesta</th>
+
+                            <th>Visualizza Richiesta</th>
+                            <th>Visualizza PDF Caricato</th>
+                            <th>Invalida PDF</th>
+
+                        </tr>
+                        </tfoot>
+                        <tbody>
 
 
-                            <#list Richieste as tirocinio,dati>
+                        <#list Richieste as tirocinio,dati>
                             <tr>
                                 <td>${dati[0]}</td>
                                 <td>${dati[1]}</td>
@@ -161,39 +133,43 @@
                                 <td>${dati[11]}</td>
                                 <td>${tirocinio.createDate?date?string("dd-MM-yyyy")}</td>
                                 <td>
-                                <#if (tirocinio.pdfTirocinante)??>
-                                    <a type="button" href="/modulo-richista?IDTirocinio=${tirocinio.IDTirocinio}" class="btn btn-primary"> <i class="fa fa-file-text"></i> Visualizza</a>
-                                <#else>
-                                    <button class="btn btn-primary"> <i class="fa fa-file-text"></i> Non disponibile</button>
-                                </#if>
-                                    </td>
+                                    <#if (tirocinio.pdfTirocinante)??>
+                                        <a type="button"
+                                           href="/admin/modulo-richista?IDTirocinio=${tirocinio.IDTirocinio}"
+                                           class="btn btn-primary"> <i class="fa fa-file-text"></i> Visualizza</a>
+                                    <#else>
+                                        <button class="btn btn-primary"><i class="fa fa-file-text"></i> Non disponibile
+                                        </button>
+                                    </#if>
+                                </td>
                                 <td>
                                     <#--TODO Metti i link non appena pronti-->
                                     <#if (tirocinio.pdfTirocinante)??>
-                                        <a type="button" class="btn btn-secondary" href="/#"> Visualizza PDF </a>
+                                        <a type="button" href="/#" class="btn btn-secondary" > Visualizza PDF </a>
                                     <#else>
-                                        <button type="button" class="btn btn-secondary" disabled> <i class="fa fa-file-pdf-o"></i> PDF Non Presente</button>
+                                        <button type="button" class="btn btn-secondary" disabled><i
+                                                    class="fa fa-file-pdf-o"></i> PDF Non Presente
+                                        </button>
                                     </#if>
 
                                 </td>
                                 <td>
                                     <#if (tirocinio.pdfTirocinante)??>
-                                        <a type="button" href="/#" class="btn btn-danger"> <i class="fa fa-file-pdf-o"></i> Invalida PDF</a>
-                                        <#else>
-                                            <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
+                                        <a type="button"
+                                           href="/admin/invalida-pdf-Tirocinante=IDTirocinio=${tirocinio.IDTirocinio}"
+                                           class="btn btn-danger"> <i class="fa fa-file-pdf-o"></i> Invalida PDF</a>
+                                    <#else>
+                                        <button class="btn btn-danger" disabled><i class="fa fa-file-pdf-o"></i>
+                                            Azione non disponibile
+                                        </button>
                                     </#if>
                                 </td>
-
-                                <td>
-                                    <a type="button" class="btn btn-danger" href="/#"> Elimina richiesta</a>
-                                </td>
-
                             </tr>
-                            </#list>
-                            </tbody>
-                        </table>
-                        <footer class="text-center text-sm-right mt-25 ">
-                        </footer>
+                        </#list>
+                        </tbody>
+                    </table>
+                    <footer class="text-center text-sm-right mt-25 ">
+                    </footer>
                 </div>
             </div>
 
@@ -205,165 +181,220 @@
                     <i class="fa fa-table"></i> Moduli per Conclusione Tirocinii
                 </div>
                 <div class="card-body">
-                        <table class="table table-responsive table-striped table-bordered table-hover"
-                               id="datatable_fine_tirocinio" width="100%"
-                               cellspacing="0">
-                            <thead>
-                            <tr>
-                                <th>Nome Tirocinante</th>
-                                <th>Cognome Tirocinante</th>
-                                <th>Codice Fiscale Tirocinante</th>
-                                <th>Ente/Azienda Ospitante</th>
-                                <th>Sede Legale Ente</th>
-                                <th>Codice Fiscale Ente</th>
-                                <th>Nome Tutore Aziendale</th>
-                                <th>Cognome Tutore Aziendale</th>
-                                <th>Tel. Tutore Aziendale</th>
-                                <th>Nome Tutore Univeresitario</th>
-                                <th>Cognome Tutore Univeresitario</th>
-                                <th>Tel. Tutore Univeresitario</th>
-                                <th>Data Richiesta</th>
+                    <table class="table table-responsive table-striped table-bordered table-hover"
+                           id="datatable_fine_tirocinio" width="100%"
+                           cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Nome Tirocinante</th>
+                            <th>Cognome Tirocinante</th>
+                            <th>Codice Fiscale Tirocinante</th>
+                            <th>Ente/Azienda Ospitante</th>
+                            <th>Sede Legale Ente</th>
+                            <th>Codice Fiscale Ente</th>
+                            <th>Nome Tutore Aziendale</th>
+                            <th>Cognome Tutore Aziendale</th>
+                            <th>Tel. Tutore Aziendale</th>
+                            <th>Nome Tutore Univeresitario</th>
+                            <th>Cognome Tutore Univeresitario</th>
+                            <th>Tel. Tutore Univeresitario</th>
+                            <th>Data Richiesta</th>
 
-                                <th>Visualizza Modulo Richiesta Tirocinio (Tirocinante)</th>
-                                <th>Visualizza PDF Caricato (Tirocinante)</th>
+                            <th>Visualizza Modulo Richiesta Tirocinio (Tirocinante)</th>
+                            <th>Visualizza PDF Caricato (Tirocinante)</th>
+                            <th>Invalida PDF Caricato (Tirocinante)</th>
 
-                                <th>Visualizza Modulo Conclusione Tirocinio (Azienda)</th>
-                                <th>Visualizza PDF Caricato (Azienda)</th>
-                                <th>Invalida PDF (Azienda)</th>
+                            <th>Visualizza Modulo Conclusione Tirocinio (Azienda)</th>
+                            <th>Visualizza PDF Caricato (Azienda)</th>
+                            <th>Invalida PDF (Azienda)</th>
 
-                                <th>Visualizza Modulo Conclusione Tirocinio (Segreteria)</th>
-                                <th>Visualizza PDF Caricato (Segreteria)</th>
-                                <th>Crea/Modifica PDF (Segreteria)</th>
-                                <th>Carica/Ricarica PDF </th>
+                            <th>Visualizza Modulo Conclusione Tirocinio (Segreteria)</th>
+                            <th>Visualizza PDF Caricato (Segreteria)</th>
+                            <th>Crea/Modifica PDF (Segreteria)</th>
+                            <th>Carica/Ricarica PDF</th>
 
 
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Nome Tirocinante</th>
-                                <th>Cognome Tirocinante</th>
-                                <th>Codice Fiscale Tirocinante</th>
-                                <th>Ente/Azienda Ospitante</th>
-                                <th>Sede Legale Ente</th>
-                                <th>Codice Fiscale Ente</th>
-                                <th>Nome Tutore Aziendale</th>
-                                <th>Cognome Tutore Aziendale</th>
-                                <th>Tel. Tutore Aziendale</th>
-                                <th>Nome Tutore Univeresitario</th>
-                                <th>Cognome Tutore Univeresitario</th>
-                                <th>Tel. Tutore Univeresitario</th>
-                                <th>Data Richiesta</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Nome Tirocinante</th>
+                            <th>Cognome Tirocinante</th>
+                            <th>Codice Fiscale Tirocinante</th>
+                            <th>Ente/Azienda Ospitante</th>
+                            <th>Sede Legale Ente</th>
+                            <th>Codice Fiscale Ente</th>
+                            <th>Nome Tutore Aziendale</th>
+                            <th>Cognome Tutore Aziendale</th>
+                            <th>Tel. Tutore Aziendale</th>
+                            <th>Nome Tutore Univeresitario</th>
+                            <th>Cognome Tutore Univeresitario</th>
+                            <th>Tel. Tutore Univeresitario</th>
+                            <th>Data Richiesta</th>
 
-                                <th>Visualizza Modulo Richiesta Tirocinio (Tirocinante)</th>
-                                <th>Visualizza PDF Caricato (Tirocinante)</th>
+                            <th>Visualizza Modulo Richiesta Tirocinio (Tirocinante)</th>
+                            <th>Visualizza PDF Caricato (Tirocinante)</th>
+                            <th>Invalida PDF Caricato (Tirocinante)</th>
 
-                                <th>Visualizza Modulo Conclusione Tirocinio (Azienda)</th>
-                                <th>Visualizza PDF Caricato (Azienda)</th>
-                                <th>Invalida PDF (Azienda)</th>
+                            <th>Visualizza Modulo Conclusione Tirocinio (Azienda)</th>
+                            <th>Visualizza PDF Caricato (Azienda)</th>
+                            <th>Invalida PDF (Azienda)</th>
 
-                                <th>Visualizza Modulo Conclusione Tirocinio (Segreteria)</th>
-                                <th>Visualizza PDF Caricato (Segreteria)</th>
-                                <th>Crea/Modifica PDF (Segreteria)</th>
-                                <th>Carica/Ricarica PDF </th>
+                            <th>Visualizza Modulo Conclusione Tirocinio (Segreteria)</th>
+                            <th>Visualizza PDF Caricato (Segreteria)</th>
+                            <th>Crea/Modifica PDF (Segreteria)</th>
+                            <th>Carica/Ricarica PDF</th>
 
-                            </tr>
-                            </tfoot>
-                            <tbody>
-                            <#if TirociniConclusi?has_content>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        <#if TirociniConclusi?has_content>
                             <#list TirociniConclusi as tirocinio,dati >
-                            <tr>
-                                <td>${dati[0]}</td>
-                                <td>${dati[1]}</td>
-                                <td>${dati[2]}</td>
-                                <td>${dati[3]}</td>
-                                <td>${dati[4]}</td>
-                                <td>${dati[5]}</td>
-                                <td>${dati[6]}</td>
-                                <td>${dati[7]}</td>
-                                <td>${dati[8]}</td>
-                                <td>${dati[9]}</td>
-                                <td>${dati[10]}</td>
-                                <td>${dati[11]}</td>
-                                <td>${tirocinio.createDate?date?string("dd-MM-yyyy")}</td>
+                                <tr>
+                                    <td>${dati[0]}</td>
+                                    <td>${dati[1]}</td>
+                                    <td>${dati[2]}</td>
+                                    <td>${dati[3]}</td>
+                                    <td>${dati[4]}</td>
+                                    <td>${dati[5]}</td>
+                                    <td>${dati[6]}</td>
+                                    <td>${dati[7]}</td>
+                                    <td>${dati[8]}</td>
+                                    <td>${dati[9]}</td>
+                                    <td>${dati[10]}</td>
+                                    <td>${dati[11]}</td>
+                                    <td>${tirocinio.createDate?date?string("dd-MM-yyyy")}</td>
+
+                                    <td>
+                                        <#if (tirocinio.pdfTirocinante)??>
+                                        <a type="button" class="btn btn-success"
+                                           href="/admin/modulo-richista?IDTirocinio=${tirocinio.IDTirocinio}"><i
+                                                    class="fa fa-file-text"></i>Visualizza</a>
+                                            <#else>
+                                                <a type="button" class="btn btn-success"
+                                                   disabled><i class="fa fa-file-text"></i>Modulo non presente</a>
+
+                                        </#if>
+                                    </td>
+                                    <td>
+                                        <#if (tirocinio.pdfTirocinante)??>
+                                        <a type="button" class="btn btn-secondary" href="/#"> <i
+                                                    class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
+                                        <#else>
+                                         <a type="button" class="btn btn-success"
+                                                   disabled><i
+                                                    class="fa fa-file-pdf-o"></i>PDF non presente</a>
+                                        </#if>
+                                    </td>
+
+                                    <td>
+                                        <#if (tirocinio.pdfTirocinante)??>
+                                            <a type="button" href="/admin/invalida-pdf-Tirocinante?IDTirocinio=${tirocinio.IDTirocinio}" class="btn btn-danger"><i
+                                                        class="fa fa-file-text"></i>Invalida</a>
+                                        <#else>
+                                            <button type="button" class="btn btn-danger" disabled><i
+                                                        class="fa fa-file-text"></i>Azione non disponibile
+                                            </button>
+                                        </#if>
+                                    </td>
+
+                                    <td>
+                                        <#if (tirocinio.pdfAzienda)??>
+                                            <a type="button" class="btn btn-success"
+                                               href="/admin/modulo-azienda?IDTirocinio=${tirocinio.IDTirocinio}"> <i
+                                                        class="fa fa-file-text"> </i>Visualizza</a>
+                                        <#else>
+                                            <button type="button" class="btn btn-success" disabled><i
+                                                        class="fa fa-file-text"> </i>Non Disponibile
+                                            </button>
+                                        </#if>
+                                    </td>
+                                    <td>
+                                        <#if (tirocinio.pdfAzienda)??>
+                                            <a type="button" class="btn btn-secondary" href="/#"> <i
+                                                        class="fa fa-file-pdf-o"> </i>Visualizza PDF</a>
+                                        <#else>
+                                            <button type="button" class="btn btn-secondary" disabled><i
+                                                        class="fa fa-file-pdf-o"> </i>PDF Non Disponibile
+                                            </button>
+                                        </#if>
+
+                                    </td>
+                                    <td>
+                                        <#if (tirocinio.pdfAzienda)??>
+                                            <a type="button" href="/admin/invalida-pdf-azienda?IDTirocinio=${tirocinio.IDTirocinio}" class="btn btn-danger"><i
+                                                        class="fa fa-file-text"></i>Invalida</a>
+                                        <#else>
+                                            <button type="button" class="btn btn-danger" disabled><i
+                                                        class="fa fa-file-text"></i>Azione non disponibile
+                                            </button>
+                                        </#if>
+
+                                    </td>
+                                    <td>
+                                        <#if (tirocinio.pdfSegreteria)??>
+                                            <a type="button" class="btn btn-success"
+                                               href="/admin/modulo-segreteria?IDTirocinio=${tirocinio.IDTirocinio}"><i
+                                                        class="fa fa-file-text"></i>Visualizza</a>
+                                        <#else>
+                                            <button type="button" class="btn btn-success" disabled><i
+                                                        class="fa fa-file-text"></i> Azione non disponibile
+                                            </button>
+                                        </#if>
 
 
-                                <td>
-                                    <a type="button" class="btn btn-success" href="/modulo-richista?IDTirocinio=${tirocinio.IDTirocinio}"><i class="fa fa-file-text"></i>Visualizza</a>
-                                </td>
-                                <td>
-                                    <a type="button" class="btn btn-secondary" href="/#">  <i class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
-                                </td>
-                                <td>
-                                    <#if (tirocinio.pdfAzienda)??>
-                                        <a type="button" class="btn btn-success" href="/modulo-azienda?IDTirocinio=${tirocinio.IDTirocinio}">  <i class="fa fa-file-text"> </i>Visualizza</a>
-                                    <#else>
-                                        <button type="button" class="btn btn-success" disabled> <i class="fa fa-file-text"> </i>Non Disponibile</button>
-                                    </#if>
-                                </td>
-                                <td>
-                                    <#if (tirocinio.pdfAzienda)??>
-                                        <a type="button" class="btn btn-secondary" href="/#">  <i class="fa fa-file-pdf-o"> </i>Visualizza PDF</a>
-                                    <#else>
-                                        <button type="button" class="btn btn-secondary" disabled> <i class="fa fa-file-pdf-o"> </i>PDF Non Disponibile</button>
-                                    </#if>
+                                    </td>
+                                    <td>
+                                        <#if (tirocinio.pdfSegreteria)??>
+                                            <a type="button" class="btn btn-secondary" href="/#"> <i
+                                                        class="fa fa-file-pdf-o"> </i>Visualizza PDF</a>
+                                        <#else>
+                                            <button type="button" class="btn btn-secondary" disabled><i
+                                                        class="fa fa-file-pdf-o"> </i>PDF Non Disponibile
+                                            </button>
+                                        </#if>
 
-                                </td>
-                                <td>
-                                <#if (tirocinio.pdfAzienda)??>
-                                    <a type="button" href="/#" class="btn btn-danger"><i class="fa fa-file-text"></i>Invalida</a>
-                                    <#else>
-                                        <button type="button" class="btn btn-danger" disabled><i class="fa fa-file-text"></i>Azione non disponibile</button>
-                                    </#if>
+                                    </td>
+                                    <td>
+                                        <#if (tirocinio.pdfSegreteria)??>
+                                            <button class="btn btn-secondary" href="/#" disabled> Azione non
+                                                disponibile
+                                            </button>
+                                        <#else>
 
-                                </td>
-                                <td>
-                                <#if (tirocinio.pdfSegreteria)??>
-                                    <a type="button" class="btn btn-success" href="/modulo-segreteria?IDTirocinio=${tirocinio.IDTirocinio}"><i class="fa fa-file-text"></i>Visualizza</a>
-                                <#else>
-                                    <button type="button" class="btn btn-success" disabled><i class="fa fa-file-text"></i> Azione non disponibile</button>
-                                </#if>
+                                            <a type="button" class="btn btn-secondary"
+                                               href="/admin/crea-modulosegreteria?IDTirocinio=${tirocinio.IDTirocinio}" <i
+                                                class="fa fa-file-pdf-o"> </i>Crea/Modifica PDF</a>
 
+                                        </#if>
+                                    </td>
+                                    <td>
+                                        <#--TODO metti a posto il pulsante-->
+                                        <#if tirocinio.pdfSegreteria?has_content>
+                                            <a type="button" href="/#" class="btn btn-primary" disabled> Azione non
+                                                disponibile</a>
+                                        <#else>
+                                            <form enctype="multipart/form-data" class="mb-2" method="POST"
+                                                  action="/admin/salva-segreteria?ID=${tirocinio.IDTirocinio}">
+                                                <div class="col">
+                                                    <input type="file" name="PDF"  onchange="this.form.submit()">
+                                                    <button type="submit"  class="btn btn-success ml-4 mt-7"> Invia</button>
 
-                                </td>
-                                <td>
-                                    <#if (tirocinio.pdfSegreteria)??>
-                                        <a type="button" class="btn btn-secondary" href="/">  <i class="fa fa-file-pdf-o"> </i>Visualizza PDF</a>
-                                    <#else>
-                                        <button type="button" class="btn btn-secondary" disabled> <i class="fa fa-file-pdf-o"> </i>PDF Non Disponibile</button>
-                                    </#if>
+                                                </div>
+<#--                                                    TODO vedi come lo vuoi aggiustare perchè non funziona con js disattivati-->
 
-                                </td>
-                                <td>
-                                <#if (tirocinio.pdfSegreteria)??>
-                                    <button class="btn btn-secondary" href="/#" disabled>Azione non disponibile</button>
-                                <#else>
-
-                                    <a type="button" class="btn btn-secondary" href="/crea-modulosegreteria?IDTirocinio=${tirocinio.IDTirocinio}" <i class="fa fa-file-pdf-o"> </i>Crea/Modifica PDF</a>
-
-                                </#if>
-                                </td>
-                                <td>
-                                    <#--TODO metti a posto il pulsante-->
-                                    <#if (tirocinio.pdfSegreteria)??>
-                                        <a type="button" href="/#" class="btn btn-success" disabled> Azione non disponibile</a>
-                                    <#else>
-                                        <form enctype="multipart/form-data" method="POST" action="/salva-segreteria?ID=${tirocinio.IDTirocinio}">
-                                            <label class="btn btn-primary" for="file">
-                                                Carica <input type="file" id="file" class="custom-file-upload-hidden" name="PDF" onchange="this.form.submit()">
-                                            </label>
                                             </form>
-                                    </#if>
-                                </td>
-                            </tr>
+                                        </#if>
+                                    </td>
+                                </tr>
                             </#list>
 
-                            </#if>
+                        </#if>
 
-                            </tbody>
-                        </table>
-                        <footer class="text-center text-sm-right mt-25 ">
-                        </footer>
+                        </tbody>
+                    </table>
+                    <footer class="text-center text-sm-right mt-25 ">
+                    </footer>
                 </div>
             </div>
             <h2>Tirocinii Attivi</h2>
@@ -436,23 +467,34 @@
                                 <td>${tirocinio.createDate?date?string("dd-MM-yyyy")}</td>
                                 <td>
                                     <#if (tirocinio.pdfTirocinante)??>
-                                        <a type="button" href="/#" class="btn btn-danger"> Visualizza Modulo Richiesta</a>
+                                        <a type="button"
+                                           href="/admin/modulo-richista?IDTirocinio=${tirocinio.IDTirocinio}"
+                                           class="btn btn-danger"> Visualizza Modulo Richiesta</a>
                                     <#else>
-                                        <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
+                                        <button class="btn btn-danger" disabled><i class="fa fa-file-pdf-o"></i> Non
+                                            disponibile
+                                        </button>
                                     </#if>
                                 </td>
                                 <td>
                                     <#if (tirocinio.pdfTirocinante)??>
-                                        <a type="button" href="/#" class="btn btn-danger"> <i class="fa fa-file-pdf-o"></i> Visualizza PDF</a>
+                                        <a type="button" href="/#" class="btn btn-danger"> <i
+                                                    class="fa fa-file-pdf-o"></i> Visualizza PDF</a>
                                     <#else>
-                                        <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
+                                        <button class="btn btn-danger" disabled><i class="fa fa-file-pdf-o"></i> Non
+                                            disponibile
+                                        </button>
                                     </#if>
                                 </td>
                                 <td>
                                     <#if (tirocinio.pdfTirocinante)??>
-                                        <a type="button" href="/" class="btn btn-danger"> <i class="fa fa-file-pdf-o"></i> Invalida PDF</a>
+                                        <a type="button"
+                                           href="/admin/invalida-pdf-Tirocinante?IDTirocinio=${tirocinio.IDTirocinio}"
+                                           class="btn btn-danger"> <i class="fa fa-file-pdf-o"></i> Invalida PDF</a>
                                     <#else>
-                                        <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
+                                        <button class="btn btn-danger" disabled><i class="fa fa-file-pdf-o"></i> Non
+                                            disponibile
+                                        </button>
                                     </#if>
                                 </td>
                             </tr>
@@ -531,16 +573,23 @@
                                 <td>${tirocinio.createDate?date?string("dd-MM-yyyy")}</td>
                                 <td>
                                     <#if (tirocinio.pdfTirocinante)??>
-                                        <a type="button" href="/#" class="btn btn-danger"> Visualizza Modulo Richiesta</a>
+                                        <a type="button"
+                                           href="/admin/modulo-richista?IDTirocinio=${tirocinio.IDTirocinio}"
+                                           class="btn btn-danger"> Visualizza Modulo Richiesta</a>
                                     <#else>
-                                        <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
+                                        <button class="btn btn-danger" disabled><i class="fa fa-file-pdf-o"></i> Non
+                                            disponibile
+                                        </button>
                                     </#if>
                                 </td>
                                 <td>
                                     <#if (tirocinio.pdfTirocinante)??>
-                                        <a type="button" href="/#" class="btn btn-danger"> <i class="fa fa-file-pdf-o"></i> Visualizza PDF</a>
+                                        <a type="button" href="/#" class="btn btn-danger"> <i
+                                                    class="fa fa-file-pdf-o"></i> Visualizza PDF</a>
                                     <#else>
-                                        <button class="btn btn-danger" disabled> <i class="fa fa-file-pdf-o"></i> Non disponibile </button>
+                                        <button class="btn btn-danger" disabled><i class="fa fa-file-pdf-o"></i> Non
+                                            disponibile
+                                        </button>
                                     </#if>
                                 </td>
                             </tr>
@@ -600,6 +649,8 @@
                 "orderable": true
             }, {
                 "orderable": true
+            }, {
+                "orderable": false
             }, {
                 "orderable": false
             }, {
@@ -715,6 +766,7 @@
         var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
+
     function initTableAttive() {
 
         var table = jQuery('#datatable_tr_attivi');
@@ -812,8 +864,6 @@
                 "orderable": true
             }, {
                 "orderable": true
-            }, {
-                "orderable": false
             }, {
                 "orderable": false
             }, {

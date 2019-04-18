@@ -24,8 +24,7 @@
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
         <li><a href="admin.html">HOME DASHBOARD</a></li>
-        <li><a href="gestione-tirocinii-admin.html">GESTIONE TIROCINII</a></li>
-        <li class="active"><a href="tutte-offerte-pubblicate-admin.html"><b>TUTTE LE OFFERTE PUBBLICATE</b></a>
+        <li class="active"><a href="/admin/show-offerta"><b>TUTTE LE OFFERTE PUBBLICATE</b></a>
     </ol>
     <#include "small-navbar.ftl">
 
@@ -115,15 +114,15 @@
                     <td>${offerta.emailTutoreAziendale}</td>
                     <td>${offerta.createDate?date?string("dd-MM-yyyy")}</td>
                     <td>
-                        <a type="button" class="btn btn-primary" href="/show-offerta?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-file-text"></i>Visualizza</a>
+                        <a type="button" class="btn btn-primary" href="/admin/show-offerta?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-file-text"></i>Visualizza</a>
 
                     </td>
                     <td>
-                            <a type="button" class="btn btn-danger" href="/disattiva-offerta?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-times"></i>Disattiva</a>
+                            <a type="button" class="btn btn-danger" href="/admin/disattiva-offerta?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-times"></i>Disattiva</a>
 
                     </td>
                     <td>
-                            <a type="button" class="btn btn-primary" href="/show-richiedenti?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-users"></i>Visualizza Utenti
+                            <a type="button" class="btn btn-primary" href="/admin/show-richiedenti?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-users"></i>Visualizza Utenti
                                 Richiedenti
                             </a>
 
@@ -186,11 +185,11 @@
                         <td>${offerta.emailTutoreAziendale}</td>
                         <td>${offerta.createDate?date?string("dd-MM-yyyy")}</td>
                         <td>
-                            <a type="button" class="btn btn-primary" href="/Show-Offerta?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-file-text"></i>Visualizza</a>
+                            <a type="button" class="btn btn-primary" href="/admin/show-offerta?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-file-text"></i>Visualizza</a>
 
                         </td>
                         <td>
-                                <a type="button" class="btn btn-primary" href="/show-richiedenti?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-users"></i>Visualizza Utenti
+                                <a type="button" class="btn btn-primary" href="/admin/show-richiedenti?IDOfferta=${offerta.IDOffertaTirocinio}"><i class="fa fa-users"></i>Visualizza Utenti
                                     Richiedenti
                                 </a>
                         </td>

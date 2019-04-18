@@ -6,11 +6,11 @@
 
   <#include "../importCss.ftl">
     <!-- Page Sript -->
-    <link href="css/admin.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
     <!-- /Page Script -->
 
     <!-- CSS DATATABLES -->
-    <link href="css/layout-datatables.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -24,17 +24,10 @@
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
         <li><a href="admin.html">HOME DASHBOARD</a></li>
-        <li><a href="/offertetirocinioadmin"><b>GESTIONE OfferteTirocinio</b></a></li>
+        <li><a href="/admin/offertetirocinioadmin"><b>GESTIONE OfferteTirocinio</b></a></li>
         <li class="active"><a href="#"><b>TIROCINANTI DI :&nbsp;${Offerta.titolo}</b></a></li>
     </ol>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <div class="row">
-                <a class="nav-link link-bar mt-5" href="#">Benvenuto, <b>ADMIN</b></a>
-                <a class="nav-link link-bar text-center" href="#"><i class="fa fa-user-md fs-35 px-3"></i></a>
-            </div>
-        </li>
-    </ul>
+    <#include "small-navbar.ftl">
 
 </nav>
 <div class="container-fluid">
@@ -66,7 +59,7 @@
                 <#list Tirocinanti as tirocinante >
                     <div class="row">
 
-                        <a href="show-tirocinante?IDTirocinante=${tirocinante.IDTirocinante}">
+                        <a href="/admin/show-tirocinante?IDTirocinante=${tirocinante.IDTirocinante}">
                         <h4>${tirocinante.nome}&nbsp;${tirocinante.cognome}</h4>
                         </a>
 

@@ -27,14 +27,7 @@
         <li class=""><a href="admin.html">HOME DASHBOARD</a></li>
         <li class="active"><a href="gestione-moduli-admin.html"><b>GESTIONE MODULI</b></a></li>
     </ol>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <div class="row">
-                <a class="nav-link link-bar mt-5" href="#">Benvenuto, <b>ADMIN</b></a>
-                <a class="nav-link link-bar text-center" href="#"><i class="fa fa-user-md fs-35 px-3"></i></a>
-            </div>
-        </li>
-    </ul>
+    <#include "small-navbar.ftl">
 
 </nav>
 <div class="container-fluid">
@@ -126,7 +119,7 @@
                                 <td>${azienda.dataConvenzione?date?string("dd-MM-yyyy")}</td>
                                 <td>
                                     <#if (azienda.pathPDFConvenzione)??>
-                                        <a type="button" class="btn btn-success" href="/convezione-azienda?IDAzienda=${azienda.IDAzienda} "> <i class="fa fa-file-text"></i> Visualizza</a>
+                                        <a type="button" class="btn btn-success" href="/admin/convezione-azienda?IDAzienda=${azienda.IDAzienda},page=gestione"> <i class="fa fa-file-text"></i> Visualizza</a>
                                         <#else>
                                             <button type="button" class="btn btn-success" disabled> <i class="fa fa-file-text"></i> Non disponibile</button>
                                     </#if>
@@ -135,7 +128,7 @@
                                 <td>
                                     <#--TODO Metti i link non appena pronti-->
                                     <#if (azienda.pathPDFConvenzione)??>
-                                        <a type="button" class="btn btn-primary"  href="/"> <i class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
+                                        <a type="button" class="btn btn-primary"  href="/#"> <i class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
                                         <#else>
                                             <button class="btn btn-primary" disabled> <i class="fa fa-file-pdf-o"></i> PDF Non Presente</button>
                                     </#if>
@@ -143,7 +136,7 @@
                                 </td>
                                 <td>
                                <#if (azienda.pathPDFConvenzione)??>
-                                    <a type="button" href="/invalida-convenzione?IDAzienda=${azienda.IDAzienda}" class="btn btn-danger"> Invalida</a>
+                                    <a type="button" href="/admin/invalida-convenzione?IDAzienda=${azienda.IDAzienda}" class="btn btn-danger"> Invalida</a>
                                <#else>
                                    <button class="btn btn-danger" disabled> Non Diponibile</button>
                                </#if>

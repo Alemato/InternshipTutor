@@ -24,7 +24,11 @@
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
         <li><a href="admin.html">HOME DASHBOARD</a></li>
-        <li class="active"><a href="gestione-utenza-admin.html"><b>GESTIONE RICHIESTE CONVENZIONE</b></a></li>
+        <#if urlpage == "/admin/richisteconvezioni">
+        <li class="active"><a href="/admin/richisteconvezioni"><b>GESTIONE RICHIESTE CONVENZIONE</b></a></li>
+            <#else>
+                <li class="active"><a href="/admin/gestione-convenzione"><b>GESTIONE RICHIESTE CONVENZIONE</b></a></li>
+        </#if>
     </ol>
     <#include "small-navbar.ftl">
 
@@ -131,7 +135,7 @@
                                     <td> <#if azienda.pathPDFConvenzione?has_content > ${azienda.dataConvenzione?date?string("yyyy-MM-dd")}
                                         <#else> convenzione non ancora richiesta </#if></td>
                                     <td>
-                                        <#if (azienda.pathPDFConvenzione)??> <a type="button" href="/#" class="btn btn-primary"> Visualizza</a>
+                                        <#if (azienda.pathPDFConvenzione)??> <a type="button" href="/admin/convezione-azienda?page=richieste" class="btn btn-primary"> Visualizza</a>
                                         <#else>
                                             <button type="button" class="btn btn-primary" disabled> Non  presente</button>
                                         </#if>
@@ -145,10 +149,10 @@
 
                                     </td>
                                     <td>
-                                        <a  type="button" class="btn btn-success" href="/Accetta?IDAzienda=${azienda.IDAzienda}&stato=accetta">Accetta</a>
+                                        <a  type="button" class="btn btn-success" href="/admin/accetta?IDAzienda=${azienda.IDAzienda}&stato=accetta">Accetta</a>
                                     </td>
                                     <td>
-                                        <a  type="button" class="btn btn-danger" href="/Accetta?IDAzienda=${azienda.IDAzienda}&stato=declina">Declina</a>
+                                        <a  type="button" class="btn btn-danger" href="/admin/accetta?IDAzienda=${azienda.IDAzienda}&stato=declina">Declina</a>
                                     </td>
                                 </tr>
                             </#list>
@@ -174,12 +178,12 @@
 <#include "../importScript.ftl">
 
 <!-- Script page -->
-<script src="/plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="/plugins/datatables/js/dataTables.tableTools.min.js"></script>
-<script src="/plugins/datatables/js/dataTables.colReorder.min.js"></script>
-<script src="/plugins/datatables/js/dataTables.scroller.min.js"></script>
-<script src="/plugins/datatables/dataTables.bootstrap.js"></script>
-<script src="/plugins/select2/js/select2.full.min.js"></script>
+<script src="../../plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.tableTools.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.colReorder.min.js"></script>
+<script src="../../plugins/datatables/js/dataTables.scroller.min.js"></script>
+<script src="../../plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
 <script>
     function initTableRichieste() {
 

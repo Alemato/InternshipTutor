@@ -113,16 +113,16 @@
                                 <td>${azienda.emailResponsabileConvenzione}</td>
                                 <td>
 
-                                        <a type="button" class="btn btn-success" href="/show-azienda?IDAzienda=${azienda.IDAzienda}"><i class="fa fa-file-text"></i>Visualizza Utente</a>
+                                        <a type="button" class="btn btn-success" href="/admin/show-azienda?IDAzienda=${azienda.IDAzienda}"><i class="fa fa-file-text"></i>Visualizza Utente</a>
 
                                 </td>
                                 <td>
-                                  <a class="btn btn-secondary" href="/reimposta-user?IDUser=${azienda.user}">
+                                  <a class="btn btn-secondary" href="/admin/reimposta-user?IDUser=${azienda.user}">
                                       <i class="fa fa-pencil-square-o"></i> Cambia </a>
                                 </td>
                                 <td>
                                     <#if azienda.attivo==1>
-                                        <a type="button" class="btn btn-danger" href="/disattiva-azienda?IDAzienda=${azienda.IDAzienda}"> Disattiva</a>
+                                        <a type="button" class="btn btn-danger" href="/admin/disattiva-azienda?IDAzienda=${azienda.IDAzienda}"> Disattiva</a>
                                         <#else>
                                         <button class="btn btn-danger" disabled>Azienda Disattivata</button>
                                     </#if>
