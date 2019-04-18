@@ -1,4 +1,4 @@
-package controller.adm.Admin;
+package controller.adm.Admin.GestioneModuli;
 
 import controller.adm.Admin.GestioneUtenza.AdminFillRichiesteAndAttive;
 import controller.adm.Admin.GestioneUtenza.AdminFillTable;
@@ -8,6 +8,7 @@ import dao.implementation.AziendaDaoImp;
 import model.Azienda;
 
 import java.io.*;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminAccettaConvenzione extends baseController{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+        RequestDispatcher page = request.getRequestDispatcher("/404");
+        page.forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -89,7 +91,7 @@ public class AdminAccettaConvenzione extends baseController{
     private void modificaAzienda(HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException {
         super.init(request,response);
         try {
-
+            datamodel.put("urlpage","/admin/richisteconvezioni");
             if (validate(request, response)) {
                 cambiaStato(request,response);
 
@@ -97,7 +99,8 @@ public class AdminAccettaConvenzione extends baseController{
         }catch (DaoException e)
         {
             e.printStackTrace();
-            response.sendRedirect("/500");
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
         }
     }
 

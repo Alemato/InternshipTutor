@@ -1,17 +1,23 @@
 package controller.adm.Admin.GestioneModuli;
 
 
+import com.sun.javaws.exceptions.OfflineLaunchException;
 import controller.adm.Admin.GestioneAzienda.FillGestioniModuliConvenzione;
 import controller.adm.Admin.GestioneUtenza.AdminFillTable;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
+import dao.implementation.OffertaTirocinioDaoImp;
+import dao.implementation.TirocinioDaoImp;
 import model.Azienda;
+import model.OffertaTirocinio;
+import model.Tirocinio;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 
@@ -32,7 +38,7 @@ public class InvalidaConvenzioneAzienda  {
 
    public void invalidaConvezioneModuli()throws ServletException,IOException,DaoException
     {
-
+       datamodel.put("urlpage","/admin/Gestione-Convenzione") ;
             AziendaDaoImp dao = new AziendaDaoImp();
             Azienda azienda = dao.getAziendaByID(Integer.parseInt(request.getParameter("IDAzienda")));
             dao.destroy();
@@ -42,13 +48,24 @@ public class InvalidaConvenzioneAzienda  {
 //                azienda.setDataConvenzione(null);
 //                azienda.setAttivo(0);
 //                AziendaDaoImp dao2=new AziendaDaoImp();
+//                OffertaTirocinioDaoImp dao2 = new OffertaTirocinioDaoImp();
+//                List<OffertaTirocinio> offerte = dao2.getOffertatrBYAzienda(azienda);
+//                dao2.destroy();
+                //disattivo tutte le offerta di tirocinio
+//                for (OffertaTirocinio offerta: offerte
+//                     ) {
+//                    offerta.setStato(0);
+//                    OffertaTirocinioDaoImp dao3 = new OffertaTirocinioDaoImp();
+//                    dao3.updateOffertatr(offerta);
+//                    dao3.destroy();
+//
+//                }
+
+
 //                dao2.updateAzienda(azienda);
 //                dao2.destroy();
+
                 //TODO Manda mail per avvisare che la convenzione è scaduta
-                //TODO bisogna vedere anche come gestire le offerte che ha pubblicato bisogna mettere tutte le sue offerte a scadute in modo che gli studenti non le vedano piu
-
-
-
                 page.makegetWithSuccess("Invalidazione della convenzione per l'azienda " + azienda.getRagioneSociale() + " andata a buon fine");
 
             } else {
@@ -56,46 +73,41 @@ public class InvalidaConvenzioneAzienda  {
 
             }
         }
-
-
-    public void invalidaConvenzioneUtente() throws ServletException,IOException,DaoException
-        {
-            AziendaDaoImp dao = new AziendaDaoImp();
-            Azienda azienda = dao.getAziendaByID(Integer.parseInt(request.getParameter("IDAzienda")));
-            dao.destroy();
-           AdminFillTable page = new AdminFillTable(datamodel,context,request,response);
-            if (azienda.getAttivo() == 1) {
+    public void disattivaAzienda()throws ServletException,IOException,DaoException
+    {
+        datamodel.put("urlpage","/admin/gestione-aziende");
+        AziendaDaoImp dao = new AziendaDaoImp();
+        Azienda azienda = dao.getAziendaByID(Integer.parseInt(request.getParameter("IDAzienda")));
+        dao.destroy();
+       AdminFillTable page = new AdminFillTable(datamodel,context,request,response);
+        if ((!azienda.getPathPDFConvenzione().isEmpty()) && (azienda.getAttivo() == 1)) {
 //                azienda.setPathPDFConvenzione(null);
 //                azienda.setDataConvenzione(null);
 //                azienda.setAttivo(0);
 //                AziendaDaoImp dao2=new AziendaDaoImp();
+//            OffertaTirocinioDaoImp dao2 = new OffertaTirocinioDaoImp();
+//            List<OffertaTirocinio> offerte = dao2.getOffertatrBYAzienda(azienda);
+//            dao2.destroy();
+            //disattivo tutte le offerta di tirocinio
+//                for (OffertaTirocinio offerta: offerte
+//                     ) {
+//                    offerta.setStato(0)
+//                    OffertaTirocinioDaoImp dao3 = new OffertaTirocinioDaoImp();
+//                    dao3.updateOffertatr(offerta);
+//                    dao3.destroy();
+//
+//                }
+
+
 //                dao2.updateAzienda(azienda);
 //                dao2.destroy();
-                //TODO Manda mail per avvisare che la convenzione è scaduta
 
-                page.makeSuccessGetAziende("L'azienda "+azienda.getRagioneSociale()+" ora non può piu operare lui sito");
+            //TODO Manda mail per avvisare che la convenzione è scaduta
+            page.makeSuccessGetAziende(" L&apos;azienda " + azienda.getRagioneSociale() + "$eacute stata Disattivata con successo ");
 
-            } else {
-                page.makeInsuccessGetAziende("Operazione di invalidazione dell'azienda "+azienda.getRagioneSociale()+"non ha funzionato");
+        } else {
+            page.makeInsuccessGetAziende(" L&apos;azienda " + azienda.getRagioneSociale() + " non $eacute stata Disattivata con successo ");
 
-            }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 }

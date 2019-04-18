@@ -7,6 +7,7 @@ import dao.implementation.*;
 import model.*;
 import view.TemplateController;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,8 @@ import java.util.List;
 public class VisualizzaConvenzioneAziendaController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        RequestDispatcher page = request.getRequestDispatcher("/404");
+        page.forward(request,response);
 
 
     }
@@ -31,6 +34,7 @@ public class VisualizzaConvenzioneAziendaController extends baseController {
     }
     private void fillModulo(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
     {
+        pagefill(request,response);
        Tirocinante tirocinante =new Tirocinante();
        List<String> dati = new ArrayList<>();
         try{
@@ -44,6 +48,16 @@ public class VisualizzaConvenzioneAziendaController extends baseController {
         }catch (DaoException e)
         {
             e.printStackTrace();
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
+        }
+
+    }
+    private void pagefill(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        if(request.getParameter("page").equals("richiete")){
+            datamodel.put("urlpage","/admin/richisteconvezioni");
+        }else{
+            datamodel.put("urlpage","/admin/Gestione-Convenzione");
         }
 
     }

@@ -7,6 +7,7 @@ import dao.implementation.*;
 import model.*;
 import view.TemplateController;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,8 @@ import java.util.List;
 public class VisualizzaModuloSegreteriaTirocinioController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-
+        RequestDispatcher page = request.getRequestDispatcher("/404");
+        page.forward(request,response);
 
     }
 
@@ -34,6 +36,7 @@ public class VisualizzaModuloSegreteriaTirocinioController extends baseControlle
        Tirocinante tirocinante = new Tirocinante();
        Tirocinio tr = new Tirocinio();
         try{
+            datamodel.put("urlpage","/admin/Gestione-tirocinio");
             TirocinioDaoImp dao = new TirocinioDaoImp();
             tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
             dao.destroy();
@@ -49,6 +52,8 @@ public class VisualizzaModuloSegreteriaTirocinioController extends baseControlle
         }catch (DaoException e)
         {
             e.printStackTrace();
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
 
 
         }

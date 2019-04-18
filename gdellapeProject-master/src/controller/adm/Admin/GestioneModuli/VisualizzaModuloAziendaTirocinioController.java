@@ -7,6 +7,7 @@ import dao.implementation.*;
 import model.*;
 import view.TemplateController;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,13 +19,14 @@ import java.util.List;
 public class VisualizzaModuloAziendaTirocinioController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-
+        request.getRequestDispatcher("/404").forward(request,response);
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         super.init(request,response);
+        datamodel.put("urlpage","/admin/Gestione-tirocinio");
         fillModulo(request,response);
 
 
@@ -83,6 +85,8 @@ public class VisualizzaModuloAziendaTirocinioController extends baseController {
         }catch (DaoException e)
         {
             e.printStackTrace();
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
 
 
         }
