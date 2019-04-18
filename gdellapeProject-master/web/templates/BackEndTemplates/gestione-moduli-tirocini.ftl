@@ -381,7 +381,6 @@
                                                     <button type="submit"  class="btn btn-success ml-4 mt-7"> Invia</button>
 
                                                 </div>
-<#--                                                    TODO vedi come lo vuoi aggiustare perchè non funziona con js disattivati-->
 
                                             </form>
                                         </#if>
