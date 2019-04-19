@@ -31,6 +31,8 @@ public class baseController extends HttpServlet {
         SingSessionContoller session = SingSessionContoller.getInstance();
         boolean logger = session.isValidSession(request);
         datamodel.put("logged",logger);
+        datamodel.put("urlpage",request.getRequestURI());
+        System.out.print(request.getRequestURI());
         if(logger){
                String Nome =(String)request.getSession().getAttribute("Nome");
                datamodel.put("Nome",Nome);
