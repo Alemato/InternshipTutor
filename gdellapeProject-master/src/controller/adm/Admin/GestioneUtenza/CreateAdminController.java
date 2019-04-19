@@ -8,11 +8,13 @@ import dao.exception.DaoException;
 import dao.implementation.UserDaoImp;
 import model.Admin;
 import model.User;
+import org.unbescape.html.HtmlEscape;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.text.html.HTML;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,8 +96,9 @@ public class CreateAdminController extends baseController {
 
 
            Admin admin =new Admin();
-           admin.setNome(request.getParameter("Nome"));
-           admin.setCognome(request.getParameter("Cognome"));
+
+           admin.setNome(HtmlEscape.escapeHtml5(request.getParameter("Nome")));
+           admin.setCognome(HtmlEscape.escapeHtml5(request.getParameter("Cognome")));
            admin.setUser(user.getIDUser());
 
            UserDaoImp dao1 = new UserDaoImp();

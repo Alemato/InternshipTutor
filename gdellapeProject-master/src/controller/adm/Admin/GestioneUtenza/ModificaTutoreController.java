@@ -13,8 +13,10 @@ import dao.implementation.UserDaoImp;
 import model.Tirocinante;
 import model.TutoreUniversitario;
 import model.User;
+import org.unbescape.html.HtmlEscape;
 import view.TemplateController;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,7 +50,8 @@ public class ModificaTutoreController extends baseController {
         }catch (DaoException e)
         {
             e.printStackTrace();
-            response.sendRedirect("/500");
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
         }
 
 
@@ -85,15 +88,16 @@ public class ModificaTutoreController extends baseController {
             }
         }catch (DaoException e) {
             e.printStackTrace();
-            response.sendRedirect("/500");
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
 
         }
     }
 
 
 
-    private Boolean validation(HttpServletRequest request,HttpServletResponse response,TutoreUniversitario tutore)throws ServletException,IOException {
-       try {
+    private Boolean validation(HttpServletRequest request,HttpServletResponse response,TutoreUniversitario tutore)throws ServletException,IOException,DaoException {
+
            Map<String, Object> errori = new HashMap<>();
 
            if (request.getParameter("email").isEmpty()) {
@@ -133,11 +137,7 @@ public class ModificaTutoreController extends baseController {
                refreshPage(request, response, errori);
                return false;
            }
-       }catch (DaoException e)
-       {
-           response.sendRedirect("/404");
-           return false;
-       }
+
     }
 
     private void refreshPage(HttpServletRequest request,HttpServletResponse response,Map<String,Object> errori)throws ServletException,IOException,DaoException
@@ -181,8 +181,8 @@ public class ModificaTutoreController extends baseController {
    private void storeTutoreUni(HttpServletRequest request,HttpServletResponse response,TutoreUniversitario tutore)throws IOException,ServletException,DaoException
     {
 
-            tutore.setNome(request.getParameter("nome"));
-            tutore.setCognome(request.getParameter("cognome"));
+            tutore.setNome(HtmlEscape.escapeHtml5(request.getParameter("nome")));
+            tutore.setCognome(HtmlEscape.escapeHtml5(request.getParameter("cognome")));
             tutore.setEmail(request.getParameter("email"));
             tutore.setTelefono(request.getParameter("telefono"));
 

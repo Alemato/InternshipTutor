@@ -8,6 +8,7 @@ import controller.utility.Utility;
 import dao.exception.DaoException;
 import dao.implementation.TutoreUniversitarioDaoImp;
 import model.TutoreUniversitario;
+import org.unbescape.html.HtmlEscape;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,7 +31,8 @@ public class CreateTutoreUniController extends baseController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+        RequestDispatcher page = request.getRequestDispatcher("/404");
+        page.forward(request,response);
 
     }
 
@@ -65,8 +67,8 @@ public class CreateTutoreUniController extends baseController {
     {
 
             TutoreUniversitario tutUni= new TutoreUniversitario();
-            tutUni.setNome(request.getParameter("Nome_tutore"));
-            tutUni.setCognome(request.getParameter("Cognome_tutore"));
+            tutUni.setNome(HtmlEscape.escapeHtml5(request.getParameter("Nome_tutore")));
+            tutUni.setCognome(HtmlEscape.escapeHtml5(request.getParameter("Cognome_tutore")));
             tutUni.setTelefono(request.getParameter("Numero_telefono_tutore"));
             tutUni.setEmail(request.getParameter("Email_tutore"));
 

@@ -9,6 +9,7 @@ import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.TirocinioDaoImp;
 import model.Tirocinante;
 import model.Tirocinio;
+import org.unbescape.html.HtmlEscape;
 import view.TemplateController;
 
 import javax.servlet.RequestDispatcher;
@@ -183,7 +184,7 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
         dao.destroy();
 
         tirocinio.setDataColloquioSegreteria(Date.valueOf(request.getParameter("Data_colloquio")));
-        tirocinio.setEsitoTirocinio(request.getParameter("Esito_tirocinio"));
+        tirocinio.setEsitoTirocinio(HtmlEscape.escapeHtml5(request.getParameter("Esito_tirocinio")));
         tirocinio.setCreditiRiconosciuti(Integer.parseInt(request.getParameter("Crediti_riconosciuti")));
         tirocinio.setDataColloquioSegreteria(Date.valueOf(request.getParameter("Data_documento")));
 
