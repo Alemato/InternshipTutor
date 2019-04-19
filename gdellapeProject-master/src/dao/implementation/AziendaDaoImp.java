@@ -4,6 +4,7 @@ import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
 import model.Azienda;
 import model.User;
+import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +26,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement regAzienda;
     private PreparedStatement updateAzienda;
     private PreparedStatement selectAllPendentAzieda;
+    private PreparedStatement delete;
 
 
     @Override
@@ -67,10 +69,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
                             "EmailResponsabileConvenzione = ?, PathPDFConvenzione=?,DurataConvenzione=?,ForoControversia = ?,DataConvenzione=?, Attivo=?, ModuloConvenzione=?, Descrizione=?, Link = ?, Voti = ?, Valutazione = ?  WHERE azienda.IDAzienda = ? ");
 
             this.regAzienda = connection.prepareStatement
-                    ("INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
-                            "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
-                            "EmailResponsabileConvenzione,ForoControversia, Descrizione, Link, Voti, Valutazione, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
+                    ("INSERT INTO azienda(RagioneSociale, IndirizzoSedeLegale, CFiscalePIva, NomeLegaleRappresentante," +
+                            "CognomeLegaleRappresentante, NomeResponsabileConvenzione, CognomeResponsabileConvenzione, TelefonoResponsabileConvenzione," +
+                            "EmailResponsabileConvenzione, Attivo, Voti, Valutazione, User ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            this.delete = connection.prepareStatement("DELETE FROM azienda WHERE IDAzienda=?");
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
 
@@ -120,6 +122,15 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    public  void deleteAzienda(Azienda azienda) throws DaoException{
+        try {
+            this.init();
+            this.delete.setInt(1, azienda.getIDAzienda());
+            this.delete.executeUpdate();
+        }catch (SQLException e) {
+            throw new DaoException("Errore esecuzione delete " + azienda.getIDAzienda(), e);
+        }
+    }
 
     public void updateAzienda(Azienda azienda) throws DaoException {
         /*
@@ -198,7 +209,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         /*
         INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
         "CognomeLegaleRappresentante,NomeResponsabileConvenzione,CognomeResponsabileConvenzione,TelefonoResponsabileConvenzione," +
-        "EmailResponsabileConvenzione,ForoControversia, Descrizione, Link, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+        "EmailResponsabileConvenzione, Attivo, Voti, Valutazione, User ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
          */
         try {
             this.init();
@@ -211,12 +222,10 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
             this.regAzienda.setString(7, azienda.getCognomeResponsabileConvenzione());
             this.regAzienda.setString(8, azienda.getTelefonoResponsabileConvenzione());
             this.regAzienda.setString(9, azienda.getEmailResponsabileConvenzione());
-            this.regAzienda.setString(10, azienda.getForoControversia());
-            this.regAzienda.setString(11, azienda.getDescrizione());
-            this.regAzienda.setString(12, azienda.getLink());
-            this.regAzienda.setInt(13, azienda.getVoti());
-            this.regAzienda.setFloat(14, azienda.getValutazione());
-            this.regAzienda.setInt(15, user.getIDUser());
+            this.regAzienda.setInt(10, azienda.getAttivo());
+            this.regAzienda.setInt(11, azienda.getVoti());
+            this.regAzienda.setFloat(12, azienda.getValutazione());
+            this.regAzienda.setInt(13, user.getIDUser());
             this.regAzienda.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Errore esecuzione update " + azienda.getIDAzienda(), e);

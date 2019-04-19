@@ -82,6 +82,35 @@ public class Validation {
      * @return  ritona una mappa che contiene come chiave un booleano che rappresenta il risultato della validazione
      *          e una stringa che contiene il messaggio di errore
      */
+    public static Map<String, Object> text20(String text, String nomeVariabile){
+        Map<String, Object> risulatato = new HashMap<>();
+        Boolean valido = true;
+        String messaggio = "";
+        if(text.isEmpty()){
+            messaggio = nomeVariabile + " non prensente";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }else if (text.length() > 20){
+            messaggio = nomeVariabile + " troppo lungo";
+            valido = false;
+            risulatato.put("valido", valido);
+            risulatato.put("messaggio", messaggio);
+            return risulatato;
+        }
+        risulatato.put("valido", valido);
+        risulatato.put("messaggio", messaggio);
+        return risulatato;
+    }
+
+    /**
+     * Funzione che valida um testo che abbia un massimo di 10 caratteri
+     * @param text contenuto della variabile da validare
+     * @param nomeVariabile nome della variabile, per il messaggio di errore
+     * @return  ritona una mappa che contiene come chiave un booleano che rappresenta il risultato della validazione
+     *          e una stringa che contiene il messaggio di errore
+     */
     public static Map<String, Object> text10(String text, String nomeVariabile){
         Map<String, Object> risulatato = new HashMap<>();
         Boolean valido = true;

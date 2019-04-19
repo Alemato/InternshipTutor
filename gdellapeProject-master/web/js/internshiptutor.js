@@ -40,12 +40,12 @@ jQuery(window).ready(function () {
                         "                </div>\n" +
                         "                <div class=\"col\">\n" +
                         "                    <label class=\"input\">\n" +
-                        "                        <input type=\"text\" placeholder=\"Nome\" name=\"Nome\" required>\n" +
+                        "                        <input type=\"text\" placeholder=\"Nome\" name=\"Nome\" >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "                <div class=\"col col\">\n" +
                         "                    <label class=\"input\">\n" +
-                        "                        <input type=\"text\" placeholder=\"Cognome\" name=\"Cognome\" required>\n" +
+                        "                        <input type=\"text\" placeholder=\"Cognome\" name=\"Cognome\" >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "            </div>\n" +
@@ -58,7 +58,7 @@ jQuery(window).ready(function () {
                         "                <div class=\"col\">\n" +
                         "                    <label class=\"input\">\n" +
                         "                        <i class=\"ico-append fa fa-map-o\"></i>\n" +
-                        "                        <input type=\"text\" placeholder=\"Luogo di Nascita\" name=\"LuogoNascita\" required>\n" +
+                        "                        <input type=\"text\" placeholder=\"Luogo di Nascita\" name=\"LuogoNascita\" >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "\n" +
@@ -69,7 +69,7 @@ jQuery(window).ready(function () {
                         "                <div class=\"col-md-1\">\n" +
                         "                    <label class=\"input\">\n" +
                         "                        <input type=\"text\" class=\"masked\" data-format=\"aa\" placeholder=\"XX\" name=\"ProvinciaNascita\"\n" +
-                        "                               required>\n" +
+                        "                               >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "\n" +
@@ -81,8 +81,7 @@ jQuery(window).ready(function () {
                         "                <div class=\"col col-md-3\">\n" +
                         "                    <label class=\"input\">\n" +
                         "                        <i class=\"ico-append fa fa-calendar\"></i>\n" +
-                        "                        <input type=\"text\" class=\"masked\" data-format=\"99 / 99 / 9999\" data-placeholder=\"X\"\n" +
-                        "                               placeholder=\"GG / MM / ANNO\" name=\"DataNascita\" required>\n" +
+                        "                        <input type=\"date\"  name=\"DataNascita\" >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "            </div>\n" +
@@ -95,7 +94,7 @@ jQuery(window).ready(function () {
                         "                <div class=\"col\">\n" +
                         "                    <label class=\"input\">\n" +
                         "                        <i class=\"ico-append fa fa-map-o\"></i>\n" +
-                        "                        <input type=\"text\" placeholder=\"Luogo di Residenza\" name=\"LuogoResidenza\" required>\n" +
+                        "                        <input type=\"text\" placeholder=\"Luogo di Residenza\" name=\"LuogoResidenza\" >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "\n" +
@@ -106,7 +105,7 @@ jQuery(window).ready(function () {
                         "                <div class=\"col-md-1\">\n" +
                         "                    <label class=\"input\">\n" +
                         "                        <input type=\"text\" class=\"masked\" data-format=\"aa\" data-placeholder=\"X\" placeholder=\"XX\"\n" +
-                        "                               name=\"ProvinciaResidenza\" required>\n" +
+                        "                               name=\"ProvinciaResidenza\" >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "\n" +
@@ -120,7 +119,7 @@ jQuery(window).ready(function () {
                         "                <div class=\"col\">\n" +
                         "                    <label class=\"input mb-20\">\n" +
                         "                        <input type=\"text\" class=\"masked\" data-format=\"****************\" data-placeholder=\"X\"\n" +
-                        "                               placeholder=\"Codice Fiscale\" name=\"CodiceFiscale\" required>\n" +
+                        "                               placeholder=\"Codice Fiscale\" name=\"CodiceFiscale\" >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "\n" +
@@ -131,8 +130,7 @@ jQuery(window).ready(function () {
                         "                <div class=\"col\">\n" +
                         "                    <label class=\"input mb-20\">\n" +
                         "                        <i class=\"ico-append fa fa-phone\"></i>\n" +
-                        "                        <input type=\"text\" class=\"masked\" data-format=\"999-9999999\" data-placeholder=\"XXX-XXXXXXX\"\n" +
-                        "                               placeholder=\"Numero di telefono\" name=\"NumeroTelefono\" required>\n" +
+                        "                        <input type=\"tel\"name=\"NumeroTelefono\" >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "\n" +
@@ -243,7 +241,7 @@ jQuery(window).ready(function () {
                         "                </div>\n" +
                         "                <div class=\"col\">\n" +
                         "                    <label class=\"input\">\n" +
-                        "                        <input type=\"text\" placeholder=\"Nome Ente / Azienda\" name=\"NomeAzienda\" required>\n" +
+                        "                        <input type=\"text\" placeholder=\"Nome Ente / Azienda\" name=\"NomeAzienda\" >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "            </div>\n" +
@@ -254,7 +252,7 @@ jQuery(window).ready(function () {
                         "                </div>\n" +
                         "                <div class=\"col\">\n" +
                         "                    <label class=\"input\">\n" +
-                        "                        <input type=\"text\" placeholder=\"Indirizzo sede legale\" name=\"SedeLegale\" required>\n" +
+                        "                        <input type=\"text\" placeholder=\"Indirizzo sede legale\" name=\"SedeLegale\" >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "            </div>\n" +
@@ -265,7 +263,7 @@ jQuery(window).ready(function () {
                         "                </div>\n" +
                         "                <div class=\"col\">\n" +
                         "                    <label class=\"input\">\n" +
-                        "                        <input type=\"text\" placeholder=\"Codice Fiscale o Partita IVA\" name=\"PartitaIVA\" required>\n" +
+                        "                        <input type=\"text\" placeholder=\"Codice Fiscale o Partita IVA\" name=\"PartitaIVA\" >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "            </div>\n" +
@@ -278,13 +276,13 @@ jQuery(window).ready(function () {
                         "                        <div class=\"col-md-6\">\n" +
                         "                            <label class=\"input\">\n" +
                         "                                <input type=\"text\" placeholder=\"Nome Rappresentante Aziendale\" name=\"NomeRappresentante\"\n" +
-                        "                                       required>\n" +
+                        "                                       >\n" +
                         "                            </label>\n" +
                         "                        </div>\n" +
                         "                        <div class=\"col-md-6\">\n" +
                         "                            <label class=\"input\">\n" +
                         "                                <input type=\"text\" placeholder=\"Cognome Rappresentante Aziendale\"\n" +
-                        "                                       name=\"CognomeRappresentante\" required>\n" +
+                        "                                       name=\"CognomeRappresentante\" >\n" +
                         "                            </label>\n" +
                         "                        </div>\n" +
                         "                    </div>\n" +
@@ -298,13 +296,13 @@ jQuery(window).ready(function () {
                         "                    <div class=\"row\">\n" +
                         "                        <div class=\"col-md-6\">\n" +
                         "                            <label class=\"input\">\n" +
-                        "                                <input type=\"text\" placeholder=\"Nome Responsabile\" name=\"NomeResponsabile\" required>\n" +
+                        "                                <input type=\"text\" placeholder=\"Nome Responsabile\" name=\"NomeResponsabile\" >\n" +
                         "                            </label>\n" +
                         "                        </div>\n" +
                         "                        <div class=\"col-md-6\">\n" +
                         "                            <label class=\"input\">\n" +
                         "                                <input type=\"text\" placeholder=\"Cognome Responsabile\" name=\"CognomeResponsabile\"\n" +
-                        "                                       required>\n" +
+                        "                                       >\n" +
                         "                            </label>\n" +
                         "                        </div>\n" +
                         "                    </div>\n" +
@@ -317,7 +315,7 @@ jQuery(window).ready(function () {
                         "                <div class=\"col\">\n" +
                         "                    <label class=\"input\">\n" +
                         "                        <input type=\"tel\" placeholder=\"Numero di telefono\" name=\"NumeroTelefonoResponsabile\"\n" +
-                        "                               required>\n" +
+                        "                               >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "            </div>\n" +
@@ -327,7 +325,7 @@ jQuery(window).ready(function () {
                         "                </div>\n" +
                         "                <div class=\"col-md-12 col-lg\">\n" +
                         "                    <label class=\"input\">\n" +
-                        "                        <input type=\"email\" placeholder=\"Email responsabile\" name=\"EmailResponsabile\" required>\n" +
+                        "                        <input type=\"email\" placeholder=\"Email responsabile\" name=\"EmailResponsabile\" >\n" +
                         "                    </label>\n" +
                         "                </div>\n" +
                         "            </div>\n" +

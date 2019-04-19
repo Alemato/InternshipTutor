@@ -14,16 +14,24 @@
 
 
     <!--<div class="alert alert-danger">Complete all fields!</div>-->
-
+    <#if ErroreCaricamentoDati??>
+        <div class="alert alert-danger mb-30">
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Chiudi</span>
+            </button>
+            <strong>Errore!</strong> Attenzione, errore nel caricamento dei dati.<br>
+            se l&apos;errore persiste contattare admin.
+        </div>
+    </#if>
 
     <!-- registration form -->
-    <form id="form_registrazione" action="/registrazione" method="post" class="sky-form validate boxed">
+    <form id="form_registrazione" action="/registrazione" method="post" class="sky-form  boxed">
         <header class="mb-50 fs-50 fw-100 text-center">Crea Il Tuo Account</header>
 
         <div class="header-form"><i class="fa fa-lock"></i> INFORMAZIONI ACCESSO</div>
         <fieldset name="Accesso">
-            <label class="input">
-                <#if erroreEmail??>
+            <#if erroreEmail??>
                 <div class="alert alert-danger mb-30">
                     <button type="button" class="close" data-dismiss="alert">
                         <span aria-hidden="true">&times;</span>
@@ -31,57 +39,58 @@
                     </button>
                     <strong>Errore!</strong> Attenzione, errore email non valida.
                 </div>
-                </#if>
+            </#if>
+            <label class="input">
                 <p><em>*</em> Indirizzo Email</p>
                 <i class="ico-append giu fa fa-envelope"></i>
-                <input type="text" placeholder="Indirizzo Email" name="Email" <#if email??> value="${email}" </#if>required>
+                <input type="text" <#if erroreEmail??> class="error" </#if> placeholder="Indirizzo Email" name="Email" <#if email??> value="${email}" </#if>required>
                 <b class="tooltip tooltip-bottom-right">Necessario per verificare il tuo account</b>
             </label>
 
+            <#if errorePassword??>
+                <div class="alert alert-danger mb-30">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Errore!</strong> Attenzione, errore password non valida.
+                </div>
+            </#if>
             <label class="input">
-                <#if errorePassword??>
-                    <div class="alert alert-danger mb-30">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Chiudi</span>
-                        </button>
-                        <strong>Errore!</strong> Attenzione, errore password non valida.
-                    </div>
-                </#if>
                 <p><em>*</em> Password</p>
                 <i class="ico-append giu fa fa-lock"></i>
-                <input type="password" placeholder="Password" name="Password" <#if password??> value="${password}" </#if> required>
+                <input type="password" <#if errorePassword??> class="error" </#if> placeholder="Password" name="Password" <#if password??> value="${password}" </#if> required>
                 <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                     al tuo account</b>
             </label>
 
+            <#if errorePassword??>
+                <div class="alert alert-danger mb-30">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Errore!</strong> Attenzione, errore password non valida.
+                </div>
+            </#if>
             <label class="input mb-20">
-                <#if errorePassword??>
-                    <div class="alert alert-danger mb-30">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Chiudi</span>
-                        </button>
-                        <strong>Errore!</strong> Attenzione, errore password non valida.
-                    </div>
-                </#if>
                 <p><em>*</em> Password</p>
                 <i class="ico-append giu fa fa-lock"></i>
-                <input type="password" placeholder="Conferma password" name="ConfermaPassword" <#if confermaPassword??> value="${confermaPassword}" </#if> required>
+                <input type="password" <#if errorePassword??> class="error" </#if> placeholder="Conferma password" name="ConfermaPassword" <#if confermaPassword??> value="${confermaPassword}" </#if> required>
                 <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                     al tuo account</b>
             </label>
 
+            <#if erroreTipologia??>
+                <div class="alert alert-danger mb-30">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Errore!</strong> Attenzione, errore campo selezionato non valido.
+                </div>
+            </#if>
             <label class="select">
-                <#if erroreTipologia??>
-                    <div class="alert alert-danger mb-30">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Chiudi</span>
-                        </button>
-                        <strong>Errore!</strong> Attenzione, errore campo selezionato non valido.
-                    </div>
-                </#if>
                 <p><em>*</em> Tipologia di Account</p>
                 <select id="Tipologia" class="line-height-normal" name="Tipologia" required>
                     <#if tipologia??>
