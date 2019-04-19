@@ -64,7 +64,7 @@
                 </div>
             </#if>
             <div class="col-md-4 col-lg-3">
-                <form action="/admin/modifica-admin" method="post">
+                <form action="/admin/modifica-admin" class="sky-form"  method="post">
                     <div class="form-group">
                         <label>Email</label>
                         <#if ErroreEmail??>

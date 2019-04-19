@@ -379,9 +379,7 @@
                                                 <div class="col">
                                                     <input type="file" name="PDF"  onchange="this.form.submit()">
                                                     <button type="submit"  class="btn btn-success ml-4 mt-7"> Invia</button>
-
                                                 </div>
-
                                             </form>
                                         </#if>
                                     </td>

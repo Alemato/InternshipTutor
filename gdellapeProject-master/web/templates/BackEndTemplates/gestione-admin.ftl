@@ -60,7 +60,6 @@
                         <strong>Attenzione!</strong> ${WarningInsuccess}
                     </div>
                 </#if>
-
             <section class="row text-center placeholders pt-10 mb-10">
             </section>
             <h2><i class="fa fa-user-md"></i> Utenza di Tipo Amministratore</h2>
