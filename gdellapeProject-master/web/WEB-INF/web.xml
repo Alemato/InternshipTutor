@@ -401,7 +401,7 @@
         <url-pattern>/impostazionetirocinante</url-pattern>
 
     </servlet-mapping>
-<!-- TODO eliminare SETPWD-->
+    <!-- TODO eliminare SETPWD-->
     <servlet>
         <servlet-name>SetPWD</servlet-name>
         <servlet-class>controller.SetPWD</servlet-class>
@@ -450,16 +450,14 @@
 
     </servlet-mapping>
     <!--servelt account admin-->
-    <servlet>
-        <servlet-name>admin</servlet-name>
-        <servlet-class>controller.adm.Admin.AccountAdminController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>admin</servlet-name>
-        <url-pattern>/Admin</url-pattern>
-        <url-pattern>/admin</url-pattern>
-
-    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>admin</servlet-name>-->
+<!--        <servlet-class>controller.adm.Admin.AccountAdminController</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>admin</servlet-name>-->
+<!--        <url-pattern>/admin</url-pattern>-->
+<!--    </servlet-mapping>-->
     <servlet>
         <servlet-name>richiesteconvenzioni</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneUtenza.AdminRichiesteConvenzioniController</servlet-class>
@@ -472,20 +470,17 @@
     </servlet-mapping>
 
 
+    <!--    Deprecated-->
+    <!--    <servlet>-->
+    <!--        <servlet-name>gestione-utenti</servlet-name>-->
+    <!--        <servlet-class>controller.adm.Admin.GestioneUtenza.AdminFillTableController</servlet-class>-->
+    <!--    </servlet>-->
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>gestione-utenti</servlet-name>-->
+    <!--        <url-pattern>/gestione-utenti</url-pattern>-->
+    <!--        <url-pattern>/Gestione-utenti</url-pattern>-->
 
-
-
-<!--    Deprecated-->
-<!--    <servlet>-->
-<!--        <servlet-name>gestione-utenti</servlet-name>-->
-<!--        <servlet-class>controller.adm.Admin.GestioneUtenza.AdminFillTableController</servlet-class>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>gestione-utenti</servlet-name>-->
-<!--        <url-pattern>/gestione-utenti</url-pattern>-->
-<!--        <url-pattern>/Gestione-utenti</url-pattern>-->
-
-<!--    </servlet-mapping>-->
+    <!--    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>gestione-tirocinanti</servlet-name>
@@ -522,8 +517,6 @@
     </servlet-mapping>
 
 
-
-
     <servlet>
         <servlet-name>gestione-moduli-convenzione</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneAzienda.AdminGestioneModuliConvenzioneController</servlet-class>
@@ -545,19 +538,18 @@
         <url-pattern>/admin/Gestione-tirocinio</url-pattern>
 
     </servlet-mapping>
-    <servlet>
-        <servlet-name>gestione-account-admin</servlet-name>
-        <servlet-class>controller.adm.Admin.AdminGestioneAccountController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>gestione-account-admin</servlet-name>
-        <url-pattern>/gestione-account</url-pattern>
-        <url-pattern>/Gestione-account</url-pattern>
-    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>gestione-account-admin</servlet-name>-->
+<!--        <servlet-class>controller.adm.Admin.AdminGestioneAccountController</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>gestione-account-admin</servlet-name>-->
+<!--        <url-pattern>/admin/gestione-account</url-pattern>-->
+<!--    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>accettaconv</servlet-name>
-        <servlet-class>controller.adm.Admin.AdminAccettaConvenzione</servlet-class>
+        <servlet-class>controller.adm.Admin.GestioneModuli.AdminAccettaConvenzione</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>accettaconv</servlet-name>
@@ -651,8 +643,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>show-TRRichiedenti</servlet-name>
-        <url-pattern>/show-richiedenti</url-pattern>
-        <url-pattern>/Show-Richiedenti</url-pattern>
+        <url-pattern>/admin/show-richiedenti</url-pattern>
+
 
     </servlet-mapping>
     <servlet>
@@ -674,31 +666,32 @@
 
     </servlet-mapping>
     <servlet>
-    <servlet-name>modifica-tutore</servlet-name>
-    <servlet-class>controller.adm.Admin.GestioneUtenza.ModificaTutoreController</servlet-class>
+        <servlet-name>modifica-tutore</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.ModificaTutoreController</servlet-class>
     </servlet>
     <servlet-mapping>
-    <servlet-name>modifica-tutore</servlet-name>
-    <url-pattern>/admin/modifica-tutore</url-pattern>
+        <servlet-name>modifica-tutore</servlet-name>
+        <url-pattern>/admin/modifica-tutore</url-pattern>
     </servlet-mapping>
+<!--    Servlet per modificare il proprio account admin-->
     <servlet>
-    <servlet-name>modifica-admin</servlet-name>
-    <servlet-class>controller.adm.Admin.GestioneUtenza.ModificaAdminController</servlet-class>
+        <servlet-name>modifica-admin</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.ModificaAdminController</servlet-class>
     </servlet>
     <servlet-mapping>
-    <servlet-name>modifica-admin</servlet-name>
-    <url-pattern>/admin/modifica-Admin</url-pattern>
-    <url-pattern>/admin/modifica-admin</url-pattern>
+        <servlet-name>modifica-admin</servlet-name>
+        <url-pattern>/admin/modifica-Admin</url-pattern>
+        <url-pattern>/admin/modifica-admin</url-pattern>
 
     </servlet-mapping>
     <servlet>
-    <servlet-name>TutteOfferteTr</servlet-name>
-    <servlet-class>controller.adm.Admin.GestioneTirocinio.OfferteTirocinioController</servlet-class>
+        <servlet-name>TutteOfferteTr</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneTirocinio.OfferteTirocinioController</servlet-class>
     </servlet>
     <servlet-mapping>
-    <servlet-name>TutteOfferteTr</servlet-name>
-    <url-pattern>/admin/OfferteTirocinioAdmin</url-pattern>
-    <url-pattern>/admin/offertetirocinioadmin</url-pattern>
+        <servlet-name>TutteOfferteTr</servlet-name>
+        <url-pattern>/admin/OfferteTirocinioAdmin</url-pattern>
+        <url-pattern>/admin/offertetirocinioadmin</url-pattern>
 
     </servlet-mapping>
     <servlet>
@@ -707,8 +700,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>DisattivaOfferta</servlet-name>
-        <url-pattern>/Disattiva-Offerta</url-pattern>
-        <url-pattern>/disattiva-offerta</url-pattern>
+        <url-pattern>/admin/disattiva-offerta</url-pattern>
 
     </servlet-mapping>
 
@@ -733,27 +725,26 @@
     </servlet-mapping>
 
 
-<servlet>
-<servlet-name>CreaTutoreUni</servlet-name>
-<servlet-class>controller.adm.Admin.GestioneUtenza.CreateTutoreUniController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>CreaTutoreUni</servlet-name>
-<url-pattern>/admin/create-tutore</url-pattern>
+    <servlet>
+        <servlet-name>CreaTutoreUni</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneUtenza.CreateTutoreUniController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreaTutoreUni</servlet-name>
+        <url-pattern>/admin/create-tutore</url-pattern>
 
-</servlet-mapping>
+    </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>VediRichiesta</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneModuli.VisualizzaModuloRichietaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VediRichiesta</servlet-name>
+        <url-pattern>/admin/modulo-richista</url-pattern>
 
-<servlet>
-<servlet-name>VediRichiesta</servlet-name>
-<servlet-class>controller.adm.Admin.GestioneModuli.VisualizzaModuloRichietaTirocinioController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>VediRichiesta</servlet-name>
-<url-pattern>/modulo-richista</url-pattern>
-<url-pattern>/Modulo-Richiesta</url-pattern>
-</servlet-mapping>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>VediModuloAzienda</servlet-name>
@@ -761,8 +752,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>VediModuloAzienda</servlet-name>
-        <url-pattern>/modulo-azienda</url-pattern>
-        <url-pattern>/modulo-Azienda</url-pattern>
+        <url-pattern>/admin/modulo-azienda</url-pattern>
 
     </servlet-mapping>
     <servlet>
@@ -771,8 +761,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>VediModuloSegreteria</servlet-name>
-        <url-pattern>/modulo-segreteria</url-pattern>
-        <url-pattern>/Modulo-Segreteria</url-pattern>
+        <url-pattern>/admin/modulo-segreteria</url-pattern>
 
     </servlet-mapping>
 
@@ -782,9 +771,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>CaricaModuloSegreteria</servlet-name>
-        <url-pattern>/carica-segreteria</url-pattern>
-        <url-pattern>/carica-Segreteria</url-pattern>
-
+        <url-pattern>/admin/carica-segreteria</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -797,16 +784,32 @@
 
     </servlet-mapping>
 
-<servlet>
-<servlet-name>InvalidaConvenzioneAzienda</servlet-name>
-<servlet-class>controller.adm.Admin.GestioneModuli.InvalidaConvenzioneAziendaController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>InvalidaConvenzioneAzienda</servlet-name>
-<url-pattern>/invalida-convenzione</url-pattern>
-<url-pattern>/Invalida-Convenzione</url-pattern>
+    <servlet>
+        <servlet-name>InvalidaConvenzioneAzienda</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneModuli.InvalidaConvenzioneAziendaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InvalidaConvenzioneAzienda</servlet-name>
+        <url-pattern>/admin/invalida-convenzione</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InvalidaPDFAzienda</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneModuli.InvalidaModuloAziendeTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InvalidaPDFAzienda</servlet-name>
+        <url-pattern>/admin/invalida-pdf-azienda</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InvalidaPDFTirocinante</servlet-name>
+        <servlet-class>controller.adm.Admin.GestioneModuli.InvalidaModuloRichiestaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InvalidaPDFTirocinante</servlet-name>
+        <url-pattern>/admin/invalida-pdf-Tirocinante</url-pattern>
 
-</servlet-mapping>
+
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>DisattivaAzienda</servlet-name>
@@ -836,26 +839,27 @@
         <url-pattern>/admin/show-offerta</url-pattern>
 
     </servlet-mapping>
+<!--    Servlet che crea il modulo ed da cui puoi stampare il pdf-->
     <servlet>
         <servlet-name>CreateModuloSegreteria</servlet-name>
-        <servlet-class>controller.adm.Admin.GestioneModuli.CreaModificaModuloSegreteriaTirocinioController</servlet-class>
+        <servlet-class>controller.adm.Admin.GestioneModuli.CreaModificaModuloSegreteriaTirocinioController
+        </servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateModuloSegreteria</servlet-name>
-        <url-pattern>/crea-modulosegreteria</url-pattern>
+        <url-pattern>/admin/crea-modulosegreteria</url-pattern>
     </servlet-mapping>
-
+    <!--    Servlet che salva il pdf caricato in precendenza-->
     <servlet>
         <servlet-name>SalvaModuloSegreteria</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneModuli.CaricaModuloSegreteriaTirocinioController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SalvaModuloSegreteria</servlet-name>
-        <url-pattern>/salva-segreteria</url-pattern>
-        <url-pattern>/salva-Segreteria</url-pattern>
+        <url-pattern>/admin/salva-segreteria</url-pattern>
+
 
     </servlet-mapping>
-
 
 
     <!-- end servelt account admin-->
@@ -870,5 +874,15 @@
         <url-pattern>/Data</url-pattern>
         <url-pattern>/data</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Dashboard</servlet-name>
+        <servlet-class>controller.adm.Admin.DashboardController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Dashboard</servlet-name>
+        <url-pattern>/admin/dashboard</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
