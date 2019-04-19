@@ -6,6 +6,7 @@ import controller.adm.Admin.GestioneModuli.InvalidaConvenzioneAzienda;
 import controller.baseController;
 import dao.exception.DaoException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,11 +30,12 @@ public class DistattivaAziendaController extends baseController {
         try {
             super.init(request, response);
             InvalidaConvenzioneAzienda page = new InvalidaConvenzioneAzienda(datamodel, getServletContext(), request, response);
-            page.invalidaConvenzioneUtente();
+            page.disattivaAzienda();
         }catch (DaoException e)
         {
             e.printStackTrace();
-            response.sendRedirect("/500");
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
         }
 
     }

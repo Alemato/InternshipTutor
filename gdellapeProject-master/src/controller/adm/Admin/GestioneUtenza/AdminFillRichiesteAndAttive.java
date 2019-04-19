@@ -38,32 +38,24 @@ public class AdminFillRichiesteAndAttive {
         return aziende;
     }
 
-    private List<Azienda> getAziendeAttiva() throws DaoException
-    {
-        AziendaDaoImp dao = new AziendaDaoImp();
-        List<Azienda> aziende= dao.getAllAziendaAttive();
-        dao.destroy();
-        return aziende;
-    }
 
      public void makeget() throws IOException, ServletException,DaoException {
 
 
 
-            datamodel.put("AziendaAttiva", getAziendeAttiva());
+
             datamodel.put("AziendaPendenti", getAziendePendenti());
 
-            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
+            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin-dashboard.ftl", datamodel, response, servletContext);
      }
 
     public void makegetSuccess(String message) throws IOException, ServletException,DaoException {
 
 
-            datamodel.put("WarningSucess",message);
-            datamodel.put("AziendaAttiva", getAziendeAttiva());
+            datamodel.put("WarningSuccess",message);
             datamodel.put("AziendaPendenti", getAziendePendenti());
 
-            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
+            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin-dashboard.ftl", datamodel, response, servletContext);
 
 
     }
@@ -71,10 +63,9 @@ public class AdminFillRichiesteAndAttive {
 
 
             datamodel.put("WarningInsuccess",message);
-            datamodel.put("AziendaAttiva", getAziendeAttiva());
             datamodel.put("AziendaPendenti", getAziendePendenti());
 
-            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
+            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin-dashboard.ftl", datamodel, response, servletContext);
 
 
 

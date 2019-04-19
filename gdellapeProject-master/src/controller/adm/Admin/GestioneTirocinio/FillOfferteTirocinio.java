@@ -50,45 +50,48 @@ public class FillOfferteTirocinio {
 
         return offerte;
     }
+    private List<OffertaTirocinio> getOfferteScadute(List<OffertaTirocinio> allOfferte){
+        List<OffertaTirocinio> scadute = new ArrayList<>();
+        for (OffertaTirocinio of:allOfferte
+        ) {
+            if(of.getStato()==0){
+                scadute.add(of);
+            }
+
+        }
+        return scadute;
+    }
+    private List<OffertaTirocinio> getOfferteAttive(List<OffertaTirocinio> allOfferte){
+        List<OffertaTirocinio> attive = new ArrayList<>();
+        for (OffertaTirocinio of:allOfferte
+        ) {
+            if(of.getStato()==1){
+                attive.add(of);
+            }
+
+        }
+        return attive;
+    }
 
     public void makegetWithSuccess(String warning) throws IOException, ServletException,DaoException{
+        List<OffertaTirocinio> offerte = getOfferteTirocinio();
+        List<OffertaTirocinio> attive = getOfferteAttive(offerte);
+        List<OffertaTirocinio> scadute = getOfferteScadute(offerte);
 
-       List<OffertaTirocinio> offerteattive = new ArrayList<>();
-       List<OffertaTirocinio> offertescadute= new ArrayList<>();
-            List<OffertaTirocinio> offerte = getOfferteTirocinio();
-//            for (OffertaTirocinio offerta: offerte) {
-//
-//                if(offerta.getAttiva()==true)
-//                {
-//                    offerteattive.add(offerta);
-//                }else{
-//                    offertescadute.add(offerta);
-//                }
-//            }
-
-          datamodel.put("OfferteAttive",offerte);
-          datamodel.put("OfferteScadute",offerte);
-          datamodel.put("WarningSuccess",warning);
-            TemplateController.process("BackEndTemplates/tutteOfferteTr.ftl", datamodel, response, servletContext);
+        datamodel.put("OfferteAttive",attive);
+        datamodel.put("OfferteScadute",scadute);
+        datamodel.put("WarningSuccess",warning);
+        TemplateController.process("BackEndTemplates/tutteOfferteTr.ftl", datamodel, response, servletContext);
 
     }
 
     public void makegetWithInsuccess(String warning) throws IOException, ServletException,DaoException {
-        List<OffertaTirocinio> offerteattive = new ArrayList<>();
-        List<OffertaTirocinio> offertescadute= new ArrayList<>();
-            List<OffertaTirocinio> offerte = getOfferteTirocinio();
-//            for (OffertaTirocinio offerta: offerte) {
-//
-//                if(offerta.getAttiva()==true)
-//                {
-//                    offerteattive.add(offerta);
-//                }else{
-//                    offertescadute.add(offerta);
-//                }
-//            }
+        List<OffertaTirocinio> offerte = getOfferteTirocinio();
+        List<OffertaTirocinio> attive = getOfferteAttive(offerte);
+        List<OffertaTirocinio> scadute = getOfferteScadute(offerte);
 
-            datamodel.put("OfferteAttive",offerte);
-            datamodel.put("OfferteScadute",offerte);
+        datamodel.put("OfferteAttive",attive);
+        datamodel.put("OfferteScadute",scadute);
             datamodel.put("WarningInsucess",warning);
             TemplateController.process("BackEndTemplates/tutteOfferteTr.ftl", datamodel, response, servletContext);
 
@@ -98,22 +101,13 @@ public class FillOfferteTirocinio {
         public void makeget() throws IOException, ServletException,DaoException {
 
 
-            List<OffertaTirocinio> offerteattive = new ArrayList<>();
-            List<OffertaTirocinio> offertescadute= new ArrayList<>();
-                List<OffertaTirocinio> offerte = getOfferteTirocinio();
-//            for (OffertaTirocinio offerta: offerte) {
-//
-//                if(offerta.getAttiva()==true)
-//                {
-//                    offerteattive.add(offerta);
-//                }else{
-//                    offertescadute.add(offerta);
-//                }
-//            }
+            List<OffertaTirocinio> offerte = getOfferteTirocinio();
+            List<OffertaTirocinio> attive = getOfferteAttive(offerte);
+            List<OffertaTirocinio> scadute = getOfferteScadute(offerte);
 
-                datamodel.put("OfferteAttive",offerte);
-                datamodel.put("OfferteScadute",offerte);
-                TemplateController.process("BackEndTemplates/tutteOfferteTr.ftl", datamodel, response, servletContext);
+            datamodel.put("OfferteAttive",attive);
+            datamodel.put("OfferteScadute",scadute);
+            TemplateController.process("BackEndTemplates/tutteOfferteTr.ftl", datamodel, response, servletContext);
 
 
 

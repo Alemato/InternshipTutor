@@ -39,12 +39,25 @@ public class FillGestioniModuliTirocini {
 
     }
 
+    private List<Tirocinio> getAllTirocini() throws DaoException{
 
-    private List<Tirocinio> getTirocini() throws DaoException {
+        TirocinioDaoImp dao = new TirocinioDaoImp();
+        List<Tirocinio> tirocini = dao.getAllTirocinio();
+        dao.destroy();
+
+        return tirocini;
+    }
+
+
+    private List<Tirocinio> getTirociniPendenti() throws DaoException {
+        List<Tirocinio> allTirocinio = getAllTirocini();
         List<Tirocinio> tirocini = new ArrayList<>();
-            TirocinioDaoImp dao = new TirocinioDaoImp();
-            tirocini = dao.getTirociniByStato(0);
-            dao.destroy();
+        for (Tirocinio tr: allTirocinio) {
+            if(tr.getStato()==0){
+                tirocini.add(tr);
+            }
+
+        }
 
         return tirocini;
 
@@ -109,11 +122,48 @@ public class FillGestioniModuliTirocini {
 
     private List<Tirocinio> getTirociniConclusi()throws DaoException
     {
+        List<Tirocinio> allTirocinio = getAllTirocini();
         List<Tirocinio> tirocini= new ArrayList<>();
+        for (Tirocinio tr : allTirocinio)
+        {
+            if(tr.getStato()== 2 || tr.getStato()== 3 || tr.getStato()==4)
+            {
+                tirocini.add(tr);
+            }
 
-            TirocinioDaoImp dao = new TirocinioDaoImp();
-            tirocini = dao.getTirociniByStato(2);
-            dao.destroy();
+        }
+
+
+        return tirocini;
+    }
+    private List<Tirocinio> getTirociniRifiutati()throws DaoException
+    {
+        List<Tirocinio> allTirocinio = getAllTirocini();
+        List<Tirocinio> tirocini= new ArrayList<>();
+        for (Tirocinio tr : allTirocinio)
+        {
+            if(tr.getStato()== 5)
+            {
+                tirocini.add(tr);
+            }
+
+        }
+
+
+        return tirocini;
+    }
+    private List<Tirocinio> getTirociniAttivi()throws DaoException
+    {
+        List<Tirocinio> allTirocinio = getAllTirocini();
+        List<Tirocinio> tirocini= new ArrayList<>();
+        for (Tirocinio tr : allTirocinio)
+        {
+            if(tr.getStato()== 1)
+            {
+                tirocini.add(tr);
+            }
+
+        }
 
 
         return tirocini;
@@ -211,16 +261,26 @@ public class FillGestioniModuliTirocini {
 
 
 
-    public void makegetWithSuccess(String warning) throws IOException, ServletException {
+    public void makegetWithSuccess(String warning) throws IOException, ServletException,DaoException {
         //make big map to add in data model
         Map<String, Object> data = new HashMap<>();
-        try {
 
 
             // add the date to fill table OfferteTirocinio
-            List<Tirocinio> richisteTr = getTirocini();
+            List<Tirocinio> richisteTr = getTirociniPendenti();
             data.put("Richieste", getCampiTabelle(richisteTr));
             System.out.println(data.get("Richieste"));
+
+            // add the date to fill table OfferteTirocinio
+            List<Tirocinio> TrRifiutati = getTirociniRifiutati();
+            data.put("Rifiutati", getCampiTabelle(TrRifiutati));
+            System.out.println(data.get("Rifiutati"));
+
+            // add the date to fill table OfferteTirocinio
+            List<Tirocinio> TrAttivi = getTirociniAttivi();
+            data.put("Attive", getCampiTabelle(TrAttivi));
+            System.out.println(data.get("Attive"));
+
 
 
 
@@ -232,25 +292,29 @@ public class FillGestioniModuliTirocini {
             data.put("WarningSuccess",warning);
             datamodel.putAll(data);
             TemplateController.process("BackEndTemplates/gestione-moduli-tirocini.ftl", datamodel, response, servletContext);
-        }catch (DaoException e)
-        {
-            e.printStackTrace();
 
-        }
 
     }
 
-    public void makegetWithInsuccess(String warning) throws IOException, ServletException {
+    public void makegetWithInsuccess(String warning) throws IOException, ServletException,DaoException {
         //make big map to add in data model
         Map<String, Object> data = new HashMap<>();
-        try {
 
 
             // add the date to fill table OfferteTirocinio
-            List<Tirocinio> richisteTr = getTirocini();
+            List<Tirocinio> richisteTr = getTirociniPendenti();
             data.put("Richieste", getCampiTabelle(richisteTr));
             System.out.println(data.get("Richieste"));
 
+            // add the date to fill table OfferteTirocinio
+            List<Tirocinio> TrRifiutati = getTirociniRifiutati();
+            data.put("Rifiutati", getCampiTabelle(TrRifiutati));
+            System.out.println(data.get("Rifiutati"));
+
+            // add the date to fill table OfferteTirocinio
+            List<Tirocinio> TrAttivi = getTirociniAttivi();
+            data.put("Attive", getCampiTabelle(TrAttivi));
+            System.out.println(data.get("Rifiutati"));
 
 
 
@@ -263,23 +327,28 @@ public class FillGestioniModuliTirocini {
             data.put("WarningInsuccess", warning);
             datamodel.putAll(data);
             TemplateController.process("BackEndTemplates/gestione-moduli-tirocini.ftl", datamodel, response, servletContext);
-        } catch (DaoException e) {
-            e.printStackTrace();
 
-        }
     }
 
-        public void makeget() throws IOException, ServletException {
+        public void makeget() throws IOException, ServletException,DaoException {
             //make big map to add in data model
             Map<String, Object> data = new HashMap<>();
-            try {
 
 
                 // add the date to fill table OfferteTirocinio
-                List<Tirocinio> richisteTr = getTirocini();
+                List<Tirocinio> richisteTr = getTirociniPendenti();
                 data.put("Richieste", getCampiTabelle(richisteTr));
                 System.out.println(data.get("Richieste"));
 
+                // add the date to fill table OfferteTirocinio
+                List<Tirocinio> TrRifiutati = getTirociniRifiutati();
+                data.put("Rifiutati", getCampiTabelle(TrRifiutati));
+                System.out.println(data.get("Rifiutati"));
+
+                // add the date to fill table OfferteTirocinio
+                List<Tirocinio> TrAttivi = getTirociniAttivi();
+                data.put("Attive", getCampiTabelle(TrAttivi));
+                System.out.println(data.get("Rifiutati"));
 
 
 
@@ -291,11 +360,7 @@ public class FillGestioniModuliTirocini {
 
                 datamodel.putAll(data);
                 TemplateController.process("BackEndTemplates/gestione-moduli-tirocini.ftl", datamodel, response, servletContext);
-            }catch (DaoException e)
-            {
-                e.printStackTrace();
 
-            }
 
     }
 

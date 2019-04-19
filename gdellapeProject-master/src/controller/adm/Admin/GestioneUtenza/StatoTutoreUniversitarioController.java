@@ -7,6 +7,7 @@ import dao.exception.DaoException;
 import dao.implementation.TutoreUniversitarioDaoImp;
 import model.TutoreUniversitario;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,8 @@ public class StatoTutoreUniversitarioController extends baseController {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-
+        RequestDispatcher page = request.getRequestDispatcher("/404");
+        page.forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -33,6 +35,7 @@ public class StatoTutoreUniversitarioController extends baseController {
         try {
 
             super.init(request, response);
+            datamodel.put("urlpage","/admin/gestione-tutoti");
             if (validate(request, response)){
                 storeTirocinante(request,response);
 
@@ -40,7 +43,8 @@ public class StatoTutoreUniversitarioController extends baseController {
         }catch (DaoException e)
         {
             e.printStackTrace();
-            response.sendRedirect("/500");
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
         }
     }
 

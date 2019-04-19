@@ -9,6 +9,7 @@ import dao.exception.DaoException;
 import dao.implementation.TutoreUniversitarioDaoImp;
 import model.TutoreUniversitario;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,16 +42,18 @@ public class CreateTutoreUniController extends baseController {
     {
         super.init(request,response);
         try {
+            datamodel.put("urlpage","/admin/gestione-tutoti");
             if (valiadazioneTutUni(request, response)) {
                 System.out.println("sto salvando il tutore");
-                //InsertTutoreUni(request, response);
+                //insertTutoreUni(request, response);
                 AdminFillTable page = new AdminFillTable(datamodel,getServletContext(),request,response);
                 page.makeSuccessGetTutori("Il nuovo tutore universitario &egrave; stato aggiunto correttamente");
             }
         }catch (DaoException e)
         {
             e.printStackTrace();
-            response.sendRedirect("/500");
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
         }
 
 
@@ -58,7 +61,7 @@ public class CreateTutoreUniController extends baseController {
 
     }
 
-    private void InsertTutoreUni(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException,DaoException
+    private void insertTutoreUni(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException,DaoException
     {
 
             TutoreUniversitario tutUni= new TutoreUniversitario();

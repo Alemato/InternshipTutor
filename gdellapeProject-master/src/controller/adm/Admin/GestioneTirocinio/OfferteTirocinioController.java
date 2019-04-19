@@ -7,6 +7,7 @@ import dao.implementation.*;
 import model.*;
 import view.TemplateController;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +23,8 @@ public class OfferteTirocinioController extends baseController {
 
 
 
-
+        RequestDispatcher page = request.getRequestDispatcher("/404");
+        page.forward(request,response);
 
     }
 
@@ -46,7 +48,8 @@ public class OfferteTirocinioController extends baseController {
         }catch (DaoException e)
         {
             e.printStackTrace();
-            response.sendRedirect("/404");
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
         }
     }
 

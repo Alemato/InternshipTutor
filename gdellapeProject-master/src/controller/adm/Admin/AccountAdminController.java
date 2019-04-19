@@ -34,7 +34,7 @@ public class AccountAdminController extends BackEndAziendaController{
            // super.accessLogin(request, response);
            // super.accessAzienda(request, response);
             FillTableRicheste(request, response);
-            TemplateController.process("BackEndTemplates/admin.ftl", datamodel, response, getServletContext());
+            TemplateController.process("BackEndTemplates/admin-dashboard.ftl", datamodel, response, getServletContext());
         }catch (Exception e)
         {
             e.printStackTrace();

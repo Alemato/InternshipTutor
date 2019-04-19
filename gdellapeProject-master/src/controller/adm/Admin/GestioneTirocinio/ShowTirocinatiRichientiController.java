@@ -21,7 +21,8 @@ import java.util.List;
 
 public class ShowTirocinatiRichientiController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        RequestDispatcher page = request.getRequestDispatcher("/404");
+        page.forward(request,response);
 
 
     }
@@ -33,6 +34,7 @@ public class ShowTirocinatiRichientiController extends baseController {
     private void fillTirocinanti(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         super.init(request,response);
         try {
+            datamodel.put("urlpage","/admin/offertetirocinioadmin");
             String idOfferta=request.getParameter("IDOfferta");
             OffertaTirocinioDaoImp dao = new OffertaTirocinioDaoImp();
             OffertaTirocinio offerta= dao.getOffertatrByID(Integer.parseInt(idOfferta));

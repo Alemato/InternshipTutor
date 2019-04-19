@@ -6,6 +6,7 @@ import dao.implementation.OffertaTirocinioDaoImp;
 import model.OffertaTirocinio;
 import view.TemplateController;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,8 @@ import java.util.Map;
 public class ShowOffertaTirocinio extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        RequestDispatcher page = request.getRequestDispatcher("/404");
+        page.forward(request,response);
 
     }
 
@@ -32,20 +35,24 @@ public class ShowOffertaTirocinio extends baseController {
     private void fillOfferta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
         try {
+            datamodel.put("urlpage","/admin/offertetirocinioadmin");
             OffertaTirocinioDaoImp dao = new OffertaTirocinioDaoImp();
             OffertaTirocinio offerta = dao.getOffertatrByID(Integer.parseInt(request.getParameter("IDOfferta")));
             dao.destroy();
-
-            datamodel.put("offerta",offerta);
+            datamodel.put("Offerta",offerta);
             TemplateController.process("BackEndTemplates/show-offertatirocinio.ftl", datamodel, response, getServletContext());
 
 
 
         } catch (DaoException e) {
             e.printStackTrace();
-            response.sendRedirect("/404");
+
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
+
         }
     }
+
 
 }
 

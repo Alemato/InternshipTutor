@@ -1,6 +1,7 @@
 package controller.adm.Admin.GestioneUtenza;
 
 import controller.baseController;
+import controller.utility.SecurityHash;
 import controller.utility.Validation;
 import controller.utility.Utility;
 import dao.exception.DaoException;
@@ -8,6 +9,7 @@ import dao.implementation.UserDaoImp;
 import model.Admin;
 import model.User;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,9 +35,11 @@ public class CreateAdminController extends baseController {
 
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException
     {
 
+        RequestDispatcher page = request.getRequestDispatcher("/404");
+        page.forward(request,response);
 
 
 
@@ -45,6 +49,7 @@ public class CreateAdminController extends baseController {
     {
         try {
             super.init(request, response);
+            datamodel.put("urlpage","/admin/gestione-admin");
             if (validationUserAndAdmin(request, response)) {
                 //insertUser(request,response);
                 //insertAdmin(request,response);
@@ -55,7 +60,8 @@ public class CreateAdminController extends baseController {
         }catch (DaoException e)
         {
             e.printStackTrace();
-            response.sendRedirect("/500");
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
         }
 
 
@@ -70,7 +76,8 @@ public class CreateAdminController extends baseController {
     {
             User user =new User();
             user.setEmail(request.getParameter("Email"));
-            user.setPassword(request.getParameter("Password"));
+            String hash = SecurityHash.SetHash(request.getParameter("Email"));
+            user.setPassword(hash);
             user.setTipologiaAccount(1);
 
             UserDaoImp dao = new UserDaoImp();

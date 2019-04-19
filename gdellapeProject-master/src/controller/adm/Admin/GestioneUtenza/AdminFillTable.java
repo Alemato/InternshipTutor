@@ -33,7 +33,7 @@ public class AdminFillTable {
     private HttpServletResponse response;
 
 
-   public AdminFillTable(Map<String, Object> datamodel, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
+   public AdminFillTable(Map<String,Object> datamodel, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
         this.datamodel = datamodel;
         this.servletContext = servletContext;
         this.request = request;
@@ -49,7 +49,7 @@ public class AdminFillTable {
         fillTableAdmin();
         fillTutUniTable();
 
-        TemplateController.process("BackEndTemplates/gestione-utenti.ftl", datamodel, response, servletContext);
+        TemplateController.process("BackEndTemplates/deprecated(gestione-utenti).ftl", datamodel, response, servletContext);
 
 
 
@@ -64,7 +64,7 @@ public class AdminFillTable {
         fillTutUniTable();
         datamodel.put("WarningSuccess",message);
 
-        TemplateController.process("BackEndTemplates/gestione-utenti.ftl", datamodel, response, servletContext);
+        TemplateController.process("BackEndTemplates/deprecated(gestione-utenti).ftl", datamodel, response, servletContext);
 
     }
 
@@ -77,7 +77,7 @@ public class AdminFillTable {
             fillTutUniTable();
             datamodel.put("WarningInsuccess", message);
 
-            TemplateController.process("BackEndTemplates/gestione-utenti.ftl", datamodel, response, servletContext);
+            TemplateController.process("BackEndTemplates/deprecated(gestione-utenti).ftl", datamodel, response, servletContext);
 
     }
 
@@ -281,7 +281,7 @@ public class AdminFillTable {
     {
 
         fillTableAdmin();
-        TemplateController.process("BackEndTemplates/gestione-admin.ftl", datamodel, response, servletContext);
+        TemplateController.process("BackEndTemplates/gestione-admin-dashboard.ftl", datamodel, response, servletContext);
 
     }
 
@@ -301,7 +301,7 @@ public class AdminFillTable {
         fillTableAdmin();
         datamodel.put("WarningSuccess",message);
 
-        TemplateController.process("BackEndTemplates/gestione-admin.ftl", datamodel, response, servletContext);
+        TemplateController.process("BackEndTemplates/gestione-admin-dashboard.ftl", datamodel, response, servletContext);
 
     }
 
@@ -321,7 +321,7 @@ public class AdminFillTable {
         fillTableAdmin();
         datamodel.put("WarningInsuccess", message);
 
-        TemplateController.process("BackEndTemplates/gestione-admin.ftl", datamodel, response, servletContext);
+        TemplateController.process("BackEndTemplates/gestione-admin-dashboard.ftl", datamodel, response, servletContext);
 
     }
 

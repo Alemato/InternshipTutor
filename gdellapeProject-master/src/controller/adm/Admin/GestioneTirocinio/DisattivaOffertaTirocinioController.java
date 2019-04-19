@@ -19,7 +19,8 @@ import java.time.format.DateTimeFormatter;
 public class DisattivaOffertaTirocinioController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+        RequestDispatcher page = request.getRequestDispatcher("/404");
+        page.forward(request,response);
 
 
 
@@ -39,10 +40,12 @@ public class DisattivaOffertaTirocinioController extends baseController {
     {
         super.init(request,response);
         try{
+            datamodel.put("urlpage","/admin/offertetirocinioadmin");
             OffertaTirocinioDaoImp dao = new OffertaTirocinioDaoImp();
             OffertaTirocinio offerta = dao.getOffertatrByID(Integer.parseInt(request.getParameter("IDOfferta")));
             if(validate(request,response,offerta)){
 //                cambiaStato(request,response,offerta);
+                //TODO Mail che l'offerta è stata disattivata
                 FillOfferteTirocinio page = new FillOfferteTirocinio(request,response,getServletContext(),datamodel);
                 page.makegetWithSuccess("Offerta Disattivata");
             }
@@ -63,7 +66,7 @@ public class DisattivaOffertaTirocinioController extends baseController {
             page.makegetWithInsuccess("Offerta gia disattivata");
             return false;
 
-        }else if(Utility.GetCurrentDate().compareTo(offerta.getPeriodoFine())==1)
+        }else if(Utility.GetCurrentDate().compareTo(offerta.getPeriodoFine()) == 1)
         {
             FillOfferteTirocinio page = new FillOfferteTirocinio(request,response,getServletContext(),datamodel);
             page.makegetWithInsuccess("Offerta scaduta");

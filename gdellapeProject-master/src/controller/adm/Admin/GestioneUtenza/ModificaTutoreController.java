@@ -62,6 +62,7 @@ public class ModificaTutoreController extends baseController {
         TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
         TutoreUniversitario tutore = dao.getTutoreUniByID(Integer.parseInt(request.getParameter("IDTutoreUni")));
         dao.destroy();
+        datamodel.put("urlpage","/admin/gestione-tutoti" );
         datamodel.put("tutore", tutore);
         TemplateController.process("BackEndTemplates/modifica-tutoreuni.ftl", datamodel, response, getServletContext());
 
@@ -74,6 +75,7 @@ public class ModificaTutoreController extends baseController {
             TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
             TutoreUniversitario tutore = dao.getTutoreUniByID(Integer.parseInt(request.getParameter("IDTutoreUni")));
             dao.destroy();
+            datamodel.put("urlpage","/admin/gestione-tutoti" );
             if (validation(request, response, tutore)) {
             storeTutoreUni(request,response,tutore);
                 //redirigo sulla pagina di gestione utenti

@@ -12,6 +12,7 @@ import model.Tirocinante;
 import model.User;
 import view.TemplateController;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +39,7 @@ public class ShowAziendaController extends baseController {
     private void showAzienda(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
     {
         super.init(request,response);
+        datamodel.put("urlpage","/admin/gestione-aziende");
         try {
             AziendaDaoImp dao = new AziendaDaoImp();
             Azienda az = dao.getAziendaByID(Integer.parseInt(request.getParameter("IDAzienda")));
@@ -49,7 +51,8 @@ public class ShowAziendaController extends baseController {
         }catch (DaoException e)
         {
             e.printStackTrace();
-            response.sendRedirect("/500");
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
         }
     }
 
