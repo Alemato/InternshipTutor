@@ -5,6 +5,7 @@ import dao.exception.DaoException;
 import model.OffertaTirocinio;
 import model.Tirocinante;
 import model.Tirocinio;
+import model.TutoreUniversitario;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +24,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement selectAllTirocinioByStato;
     private PreparedStatement selectOffertaTirByIDTirocinante;
     private PreparedStatement updateTirocinio;
+    private PreparedStatement selectAllTrByTutore;
 
 
     @Override
@@ -47,6 +49,8 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             this.selectTrByStatoAndOfferta = connection.prepareStatement("SELECT * FROM tirocinio WHERE Stato = ? AND OffertaTirocinio = ? ");
 
             this.selectAllTrByOfferta = connection.prepareStatement("SELECT * FROM tirocinio WHERE OffertaTirocinio = ?");
+
+            this.selectAllTrByTutore = connection.prepareStatement("SELECT * FROM tirocinio WHERE TutoreUniversitario = ?");
 
             this.ifinsertTirocinio = connection.prepareStatement("SELECT * FROM tirocinio WHERE Tirocinio = ? AND Stato > 2 ");
 
@@ -146,6 +150,19 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             this.init();
             this.selectAllTirocinioByStato.setInt(1, stato);
             ResultSet resultSet = selectAllTirocinioByStato.executeQuery();
+            setListTirocinio(listRT, resultSet);
+        } catch (SQLException e) {
+            throw new DaoException("Errore query", e);
+        }
+        return listRT;
+    }
+
+    public List<Tirocinio> getAllTirocinioByTutore(TutoreUniversitario tutore) throws DaoException {
+        List<Tirocinio> listRT = new ArrayList<>();
+        try {
+            this.init();
+            this.selectAllTrByTutore.setInt(1, tutore.getIDTutoreUni());
+            ResultSet resultSet = selectAllTrByTutore.executeQuery();
             setListTirocinio(listRT, resultSet);
         } catch (SQLException e) {
             throw new DaoException("Errore query", e);
@@ -311,6 +328,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             this.selectAllTirocinioByStato.close();
             this.selectOffertaTirByIDTirocinante.close();
             this.updateTirocinio.close();
+            this.selectAllTrByTutore.close();
             super.destroy();
 
         } catch (SQLException ex) {
