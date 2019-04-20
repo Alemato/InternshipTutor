@@ -84,7 +84,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         }
     }
 
-    public void deleteAzienda(User user) throws DaoException{
+    public void delete(User user) throws DaoException{
         try {
             this.init();
             this.delete.setInt(1, user.getIDUser());

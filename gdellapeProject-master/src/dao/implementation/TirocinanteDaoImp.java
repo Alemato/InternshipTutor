@@ -19,7 +19,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
     private PreparedStatement insertTirocinante;
     private PreparedStatement selectTirocinanteByIDuser;
     private PreparedStatement updateTirocinante;
-
+    private PreparedStatement delete;
 
     @Override
     public void init() throws DaoException {
@@ -42,6 +42,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
 
             this.selectAllTirocinante = connection.prepareStatement("SELECT * FROM tirocinante ORDER BY UpdateDate ASC");
 
+            this.delete = connection.prepareStatement("DELETE FROM tirocinante WHERE IDTirocinante=?");
         } catch (SQLException ex) {
             throw new DaoException("Error:PrepareStatement error", ex);
 
@@ -98,6 +99,15 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
             throw new DaoException("Errore inserimento", e);
         }
         return tr;
+    }
+
+    public void delete(Tirocinante tr) throws DaoException {
+        try{
+            this.init();
+            this.delete.setInt(1,tr.getIDTirocinante());
+        } catch (SQLException e) {
+            throw new DaoException("Errore distruzione", e);
+        }
     }
 
     public void setTirocinante(Tirocinante tr) throws DaoException {

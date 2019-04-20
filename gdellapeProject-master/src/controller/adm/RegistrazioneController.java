@@ -6,8 +6,10 @@ import controller.utility.SecurityHash;
 import controller.utility.Validation;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
+import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Azienda;
+import model.Tirocinante;
 import model.User;
 import view.TemplateController;
 import view.TemplateControllerMail;
@@ -538,7 +540,7 @@ public class RegistrazioneController extends baseController {
             }
             // posso distrugere
             UserDaoImp userDaoImp1 = new UserDaoImp();
-            userDaoImp1.deleteAzienda(user);
+            userDaoImp1.delete(user);
             userDaoImp1.destroy();
         } catch (DaoException e) {
             e.printStackTrace();
@@ -580,6 +582,84 @@ public class RegistrazioneController extends baseController {
         TemplateControllerMail.process("email/registrazione-azienda.ftl", datamodel, to, subject, getServletContext());
     }
 
+    private void deleteAccountTirocinante(){
+        UserDaoImp userDaoImp = new UserDaoImp();
+        try {
+            User user = userDaoImp.getUserByMail((String) datamodel.get("email"));
+            userDaoImp.destroy();
+            TirocinanteDaoImp tirocinanteDaoImp= new TirocinanteDaoImp();
+            try{
+                Tirocinante tirocinante = tirocinanteDaoImp.getTirocianteByIDuser(user.getIDUser());
+                tirocinanteDaoImp.destroy();
+                TirocinanteDaoImp tirocinanteDaoImp1= new TirocinanteDaoImp();
+                tirocinanteDaoImp1.delete(tirocinante);
+            }catch (DaoException ex){
+                System.out.println("NON esiste Account Azienda da eliminare");
+            }
+            // posso distrugere
+            UserDaoImp userDaoImp1 = new UserDaoImp();
+            userDaoImp1.delete(user);
+            userDaoImp1.destroy();
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void caricamentoTirocinante() throws DaoException {
+        UserDaoImp userDaoImp = new UserDaoImp();
+        User user = new User();
+        user.setEmail((String) datamodel.get("email"));
+        user.setPassword(SecurityHash.SetHash((String) datamodel.get("password")));
+        user.setTipologiaAccount(2);
+        userDaoImp.setUser(user);
+        userDaoImp.destroy();
+        UserDaoImp userDaoImp1 = new UserDaoImp();
+        user = userDaoImp1.getUserByMail((String) datamodel.get("email"));
+        int idUser = user.getIDUser();
+        TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
+        Tirocinante tirocinante = new Tirocinante();
+        tirocinante.setNome((String) datamodel.get("nome"));
+        tirocinante.setCognome((String) datamodel.get("cognome"));
+        tirocinante.setLuogoDiNascita((String) datamodel.get("luogoNascita"));
+        tirocinante.setDataDiNascita((java.sql.Date) datamodel.get("dataNascita"));
+        tirocinante.setLuogoDiResidenza((String) datamodel.get("luogoResidenza"));
+        tirocinante.setProvinciaDiResidenza((String) datamodel.get("provinciaResidenza"));
+        tirocinante.setProvinciaDiNascita((String) datamodel.get("provinciaNascita"));
+        tirocinante.setCodiceFiscale((String) datamodel.get("codiceFiscale"));
+        tirocinante.setTelefono((String) datamodel.get("numeroTelefono"));
+        if(datamodel.get("studenteCorsoLaurea")!=null){
+            tirocinante.setCorsoDiLaurea((String) datamodel.get("studenteCorsoLaurea"));
+        }
+        if(datamodel.get("diplomaUniversitario")!=null){
+            tirocinante.setDiplomaUniversitario((String) datamodel.get("diplomaUniversitario"));
+        }
+        if(datamodel.get("laureaIn")!=null){
+            tirocinante.setLaureato((String) datamodel.get("laureaIn"));
+        }
+        if(datamodel.get("dottoratoRicerca")!=null){
+            tirocinante.setDottoratoDiRicerca((String) datamodel.get("dottoratoRicerca"));
+        }
+        if(datamodel.get("scuolaAltro")!=null){
+            tirocinante.setScuolaAltro((String) datamodel.get("scuolaAltro"));
+        }
+        if(datamodel.get("handicap")!=null){
+            if(datamodel.get("handicap")=="Si"){
+                tirocinante.setHandicap(true);
+            }else tirocinante.setHandicap(false);
+        }
+        tirocinante.setUser(idUser);
+        tirocinanteDaoImp.setTirocinante(tirocinante);
+        tirocinanteDaoImp.destroy();
+        TirocinanteDaoImp tirocinanteDaoImp1 = new TirocinanteDaoImp();
+        tirocinante= tirocinanteDaoImp1.getTirocianteByIDuser(idUser);
+        String[] to = new String[1];
+        to[0]= "tirocinante@matteifamily.net";
+        datamodel.put("nomeUtente", tirocinante.getNome());
+        datamodel.put("cognomeUtente", tirocinante.getCognome());
+        String subject = "Registrazione Tirocinante: " + tirocinante.getNome()+" "+ tirocinante.getCognome() +" id:" + tirocinante.getIDTirocinante();
+        TemplateControllerMail.process("email/registrazione-tirocinante.ftl", datamodel, to, subject, getServletContext());
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
         System.out.println(" ");
@@ -600,7 +680,17 @@ public class RegistrazioneController extends baseController {
                         System.out.println("prima parte giusta controllo la seconda");
                         if(secondoStepTirocinante(request)){
                             System.out.println("la prima parte è giusta, la seconda anche quindi carico i dati");
-                            response.sendRedirect("/home");
+                            try {
+                                caricamentoTirocinante();
+                                response.sendRedirect("/home");
+                            } catch (DaoException e) {
+                                e.printStackTrace();
+                                deleteAccountTirocinante();
+                                datamodel.put("ErroreCaricamentoDati", true);
+                                System.out.println("Errore nel caricamento dati");
+                                TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
+                            }
+
                         } else {
                             System.out.println("la prima parte è giusta, e devo caricare la seconda per il Tirocinante perchè è sbagliata");
                             System.out.println("datamodel: " + datamodel);

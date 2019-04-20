@@ -162,7 +162,7 @@
                         </div>
                     </#if>
                     <label class="input mb-20">
-                        <input type="text"  <#if erroreCodiceFiscale??>class="error" <#else> class="masked"</#if> data-format="****************" data-placeholder="X"
+                        <input type="text"  <#if erroreCodiceFiscale??>class="error"</#if>
                                placeholder="Codice Fiscale" name="CodiceFiscale" <#if codiceFiscale??>value="${codiceFiscale}" </#if> required>
                     </label>
                 </div>
