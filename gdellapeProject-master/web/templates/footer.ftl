@@ -39,7 +39,7 @@
                 </div>
 
 
-                <div class="col-md-4">
+                <div class="col-md-7">
 
                     <!-- Newsletter Form -->
                     <h4 class="letter-spacing-1">INTERNSHIP TUTOR</h4>
@@ -48,28 +48,7 @@
                 </div>
 
 
-                <div class="col-md-3">
 
-                    <!-- Latest Blog Posts -->
-                    <h4 class="letter-spacing-1">ULTIME OFFERTE PUBLICATE</h4>
-                    <ul class="footer-posts list-unstyled">
-                        <li>
-                            <a href="#">L&apos;azienda PACARO srl, sede di Borgorose (RI), ricerca tirocinanti</a>
-                            <small>29 June 2017</small>
-                        </li>
-                        <li>
-                            <a href="#">Tirocini e stage retributi presso la Gunpowder S.r.l. (Spinoff Univ.
-                                L&apos;Aquila)</a>
-                            <small>29 June 2017</small>
-                        </li>
-                        <li>
-                            <a href="#">Tirocinio presso Aveja</a>
-                            <small>29 June 2017</small>
-                        </li>
-                    </ul>
-                    <!-- /Latest Blog Posts -->
-
-                </div>
 
                 <div class="col-md-2">
 
@@ -78,11 +57,19 @@
                     <ul class="footer-links list-unstyled">
                         <li><a href="/home">Home</a></li>
                         <li><a href="/listaofferte">Lista Offerte Tuttoraggi</a></li>
-                        <li><a href="#">Lista Convenzioni</a></li>
-                        <li><a href="#">Contattaci</a></li>
-                        <li><a href="#">Il Mio Accout</a></li>
-                        <li><a href="#">I Miei Tirocini</a></li>
-
+                        <li><a href="/listaconvenzioni">Lista Convenzioni</a></li>
+                        <#if logged>
+                        <#if accountLogged??>
+                            <#if accountLogged=="Azienda" || accountLogged=="Tirocininate" >
+                                <li><a href="/account">Il Mio Accout</a></li>
+                                <#if accountLogged=="Azienda">
+                                    <li><a href="/account/gestione-offerte">I Miei Tirocini</a></li>
+                                    <#elseif accountLogged=="Tirocininate">
+                                        <li><a href="/account/moduli">I Miei Tirocini</a></li>
+                                </#if>
+                            </#if>
+                        </#if>
+                        </#if>
                     </ul>
                     <!-- /Links -->
 

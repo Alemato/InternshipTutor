@@ -29,7 +29,16 @@ public class baseController extends HttpServlet {
     }
     protected void header(HttpServletRequest request,HttpServletResponse response) throws ServletException ,IOException{
         SingSessionContoller session = SingSessionContoller.getInstance();
-        boolean logger = session.isValidSession(request);
+        boolean logger = false;
+        if(session.isTirocinante(request)||session.isAzienda(request)|| session.isAdmin(request)){
+            logger=true;
+            datamodel.put("logged",logger);
+            if(session.isAzienda(request)){
+                datamodel.put("accountLogged", "Azienda");
+            }else if(session.isTirocinante(request)){
+                datamodel.put("accountLogged", "Tirocininate");
+            } else datamodel.put("accountLogged", "Admin");
+        }
         datamodel.put("logged",logger);
         datamodel.put("urlpage",request.getRequestURI());
         System.out.print(request.getRequestURI());
