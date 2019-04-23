@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>${RagioneSociale}</title>
 
    <#include "importCss.ftl">
 </head>
-<body class="smoothscroll enable-animation">
+<body class=" enable-animation">
 <div id="wrapper">
     <#include "header.ftl">
 
@@ -48,7 +48,7 @@
                     <h4 class="uppercase testo-chiaro mb-5">Sito internet :</h4>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8 mb-15 mb-sm-5">
-                    <h4 class="testo-scuro"><a href="${Link}">${RagioneSociale}</a></h4>
+                    <h4 class="testo-scuro"><#if Link??><#if Link?has_content><a href="${Link}">${RagioneSociale}</a><#else><p> LINK NON DISPONIBILE</p></#if><#else><p> LINK NON DISPONIBILE</p></#if></h4>
                 </div>
             </div>
 
@@ -57,7 +57,7 @@
                     <h4 class="uppercase testo-chiaro mb-5">descizione azienda :</h4>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8 mb-15 mb-sm-5">
-                    <h4 class="testo-scuro"><p>${Descrizione}</p>
+                    <h4 class="testo-scuro"><#if Descrizione??><#if Descrizione?has_content><p>${Descrizione}</p><#else><p> DESCRIZIONE NON DISPONIBILE</p></#if><#else><p> DESCRIZIONE NON DISPONIBILE</p></#if>
                     </h4>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                     <h4 class="uppercase testo-chiaro mb-5">Nome Responsabile :</h4>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8 mb-15 mb-sm-5">
-                    <h4 class="testo-scuro">${NomeResponsabileConvenzione}</h4>
+                    <h4 class="testo-scuro"><#if NomeResponsabileConvenzione??><#if NomeResponsabileConvenzione?has_content>${NomeResponsabileConvenzione}<#else> NON DISPONIBILE</#if><#else> NON DISPONIBILE</#if></h4>
                 </div>
             </div>
 
@@ -112,7 +112,7 @@
                     <h4 class="uppercase testo-chiaro mb-5">Cognome Responsabile :</h4>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8 mb-15 mb-sm-5">
-                    <h4 class="testo-scuro">${CognomeResponsabileConvenzione}</h4>
+                    <h4 class="testo-scuro"><#if CognomeResponsabileConvenzione??><#if CognomeResponsabileConvenzione?has_content>${CognomeResponsabileConvenzione}<#else> NON DISPONIBILE</#if><#else> NON DISPONIBILE</#if></h4>
                 </div>
             </div>
 
@@ -121,7 +121,7 @@
                     <h4 class="uppercase testo-chiaro mb-5">Numero di telefono Responsabile :</h4>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8 mb-15 mb-sm-5">
-                    <h4 class="testo-scuro letter-spacing-1">${TelefonoResponsabileConvenzione}</h4>
+                    <h4 class="testo-scuro letter-spacing-1"><#if TelefonoResponsabileConvenzione??><#if TelefonoResponsabileConvenzione?has_content>${TelefonoResponsabileConvenzione}<#else> NON DISPONIBILE</#if><#else> NON DISPONIBILE</#if></h4>
                 </div>
             </div>
 
@@ -130,7 +130,7 @@
                     <h4 class="uppercase testo-chiaro mb-5">Email Responsabile :</h4>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8 mb-15 mb-sm-5">
-                    <h4 class="testo-scuro"><a href="mailto:francesco.totti@1a0.gol">${EmailResponsabileConvenzione}</a></h4>
+                    <h4 class="testo-scuro"><#if EmailResponsabileConvenzione??><#if EmailResponsabileConvenzione?has_content><a href="mailto:${EmailResponsabileConvenzione}">${EmailResponsabileConvenzione}</a><#else> NON DISPONIBILE</#if><#else> NON DISPONIBILE</#if></h4>
                 </div>
             </div>
 
@@ -139,7 +139,7 @@
                     <h4 class="uppercase testo-chiaro mb-5">Foro competente :</h4>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8 mb-15 mb-sm-5">
-                    <h4 class="testo-scuro">${ForoControversia}</h4>
+                    <h4 class="testo-scuro"><#if ForoControversia??><#if ForoControversia?has_content>${ForoControversia}<#else> NON DISPONIBILE</#if><#else> NON DISPONIBILE</#if></h4>
                 </div>
             </div>
 
@@ -152,8 +152,6 @@
 
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
-<script src="/js/internshiptutor.js"></script>
-
 
 </body>
 </html>
