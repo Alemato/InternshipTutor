@@ -1,8 +1,10 @@
 package controller;
 
 import controller.sessionController.SingSessionContoller;
+import dao.implementation.AziendaDaoImp;
 import dao.implementation.OffertaTirocinioDaoImp;
 import dao.implementation.TirocinioDaoImp;
+import model.Azienda;
 import model.OffertaTirocinio;
 import model.Tirocinante;
 import view.TemplateController;
@@ -29,34 +31,15 @@ public class SchedaTirocinioController  extends baseController{
 
     private void setpage (HttpServletRequest request){
         try {
-            Integer Idtrof = Integer.parseInt(request.getParameter("ID"));
+            int Idtrof = Integer.parseInt(request.getParameter("ID"));
             OffertaTirocinioDaoImp ofdao = new OffertaTirocinioDaoImp();
-
-            OffertaTirocinio Oftr = ofdao.getOffertatrByID(Idtrof);
-
+            OffertaTirocinio oftr = ofdao.getOffertatrByID(Idtrof);
             ofdao.destroy();
-
-
-            datamodel.put("IDTirocinio",Oftr.getIDOffertaTirocinio());
-            datamodel.put("LuogoEffettuazione", Oftr.getLuogoEffettuazione());
-            datamodel.put("Titolo",Oftr.getTitolo());
-            datamodel.put("DescrizioneBreve",Oftr.getDescrizioneBreve());
-            datamodel.put("Descrizione",Oftr.getDescrizione());
-            datamodel.put("Orario",Oftr.getOrari());
-
-            datamodel.put("PeriodoInizio",Oftr.getPeriodoInizio());
-            datamodel.put("PeriodoFine",Oftr.getPeriodoFine());
-            datamodel.put("Modalita",Oftr.getModalita());
-            datamodel.put("Obbiettivi",Oftr.getObbiettivi());
-            datamodel.put("Rimbosi",Oftr.getRimborsi());
-            datamodel.put("Facilitazioni",Oftr.getFacilitazioni());
-            datamodel.put("AziendaOspitante",Oftr.getAziendaOspitante());
-            datamodel.put("NomeRespAz",Oftr.getNomeTutoreAziendale());
-            datamodel.put("CognomeRepAz",Oftr.getCognomeTutoreAziendale());
-            datamodel.put("TelRespAz",Oftr.getTelefonoTutoreAziendale());
-            datamodel.put("EmailRespAZ",Oftr.getEmailTutoreAziendale());
-
-
+            AziendaDaoImp aziendaDaoImp = new AziendaDaoImp();
+            Azienda azienda = aziendaDaoImp.getAziendaByID(oftr.getAzienda());
+            aziendaDaoImp.destroy();
+            datamodel.put("Offerta", oftr);
+            datamodel.put("AziendaOspitante",azienda.getRagioneSociale());
             }catch (Exception e){
             e.printStackTrace();
 

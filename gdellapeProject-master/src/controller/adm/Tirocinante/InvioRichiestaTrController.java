@@ -26,7 +26,7 @@ public class InvioRichiestaTrController extends BackEndTrController  {
         try {
 
 
-            Integer idOfTr = Integer.parseInt(request.getParameter("Tirocinio"));
+            Integer idoftr = Integer.parseInt(request.getParameter("Tirocinio"));
 
 
             SingSessionContoller session = SingSessionContoller.getInstance();
@@ -35,7 +35,7 @@ public class InvioRichiestaTrController extends BackEndTrController  {
 
             Tirocinio richiestaTirocinio = new Tirocinio();
             richiestaTirocinio.setTirocinante(Account.getIDTirocinante());
-            richiestaTirocinio.setOffertaTirocinio(idOfTr);
+            richiestaTirocinio.setOffertaTirocinio(idoftr);
 
             TirocinioDaoImp rc = new TirocinioDaoImp();
             rc.firstRichiestatr(richiestaTirocinio);

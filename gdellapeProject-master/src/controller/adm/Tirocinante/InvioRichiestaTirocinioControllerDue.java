@@ -24,10 +24,10 @@ public class InvioRichiestaTirocinioControllerDue extends BackEndTrController {
     }
 //    protected void RichiestaGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 ////        SingSessionContoller session = SingSessionContoller.getInstance();
-////        Integer idOfTr = Integer.parseInt(request.getParameter("Tirocinio"));
+////        Integer idoftr = Integer.parseInt(request.getParameter("Tirocinio"));
 ////        if (!(session.isValidSession(request))) {
-////            request.getSession().setAttribute("Tirocinio", idOfTr);
-////            System.out.println(idOfTr);
+////            request.getSession().setAttribute("Tirocinio", idoftr);
+////            System.out.println(idoftr);
 ////            response.sendRedirect("/login");
 ////        } else {
 //        if (super.loginTirocinante(request, response)) {
@@ -40,10 +40,10 @@ public class InvioRichiestaTirocinioControllerDue extends BackEndTrController {
 
     protected void Richiesta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SingSessionContoller session = SingSessionContoller.getInstance();
-        Integer idOfTr = Integer.parseInt(request.getParameter("Tirocinio"));
+        Integer idoftr = Integer.parseInt(request.getParameter("Tirocinio"));
         if (!(session.isValidSession(request))) {
-            request.getSession().setAttribute("Tirocinio", idOfTr);
-            System.out.println(idOfTr);
+            request.getSession().setAttribute("Tirocinio", idoftr);
+            System.out.println(idoftr);
             response.sendRedirect("/login");
         } else {
             if (super.loginTirocinante(request, response)) {
@@ -76,7 +76,7 @@ public class InvioRichiestaTirocinioControllerDue extends BackEndTrController {
         try {
 
 
-            Integer idOfTr = Integer.parseInt(request.getParameter("Tirocinio"));
+            Integer idoftr = Integer.parseInt(request.getParameter("Tirocinio"));
 
 
             SingSessionContoller session = SingSessionContoller.getInstance();
@@ -85,7 +85,7 @@ public class InvioRichiestaTirocinioControllerDue extends BackEndTrController {
 
             Tirocinio richiestaTirocinio = new Tirocinio();
             richiestaTirocinio.setTirocinante(Account.getIDTirocinante());
-            richiestaTirocinio.setOffertaTirocinio(idOfTr);
+            richiestaTirocinio.setOffertaTirocinio(idoftr);
 
             TirocinioDaoImp rc = new TirocinioDaoImp();
             rc.firstRichiestatr(richiestaTirocinio);

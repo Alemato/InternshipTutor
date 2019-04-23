@@ -14,9 +14,9 @@ import java.io.IOException;
 public class SceltaRichiestaTirocinioController extends BackEndTrController {
 
     private void creoSessione(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Integer idOfTr = Integer.parseInt(request.getParameter("Tirocinio"));
-        System.out.println(idOfTr);
-        request.getSession().setAttribute("Tirocinio", idOfTr);
+        Integer idoftr = Integer.parseInt(request.getParameter("Tirocinio"));
+        System.out.println(idoftr);
+        request.getSession().setAttribute("Tirocinio", idoftr);
         response.sendRedirect("/login");
 
     }

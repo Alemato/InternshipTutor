@@ -2,13 +2,13 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>TIROCINIO PRESSO AVEJA</title>
+    <title>Tirocinio Presso ${AziendaOspitante}</title>
 
     <#include "importCss.ftl">
 
 
 </head>
-<body class="smoothscroll enable-animation">
+<body class="enable-animation">
 <div id="wrapper">
 
     <#include "header.ftl">
@@ -23,13 +23,13 @@
 
         <div class="container">
 
-            <h1>Tirocinio Presso ${AziendaOspitante}</h1>
+            <h1>Tirocinio Presso: ${AziendaOspitante}</h1>
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
                 <li><a href="/home">Home</a></li>
-                <li>Tirocini</li>
-                <li>Tirocinio Presso ${AziendaOspitante} </li>
+                <li><a href="/listaofferte">Tirocini</a></li>
+                <li>Tirocinio Presso: ${AziendaOspitante}</li>
             </ol><!-- /breadcrumbs -->
 
         </div>
@@ -50,8 +50,7 @@
                     <h4 class="uppercase testo-chiaro">Descrizione :</h4>
                 </div>
                 <div class="col-12 col-md-5 col-lg-6">
-                    <h4 class="testo-scuro"><p>${Descrizione}</p>
-                        <p>Per informazioni e candidature contattare la prof.ssa Monica Nesi</p></h4>
+                    <h4 class="testo-scuro"><p>${Offerta.descrizione}</p></h4>
                 </div>
             </div>
 
@@ -61,7 +60,7 @@
                 </div>
                 <div class="col-12 col-md-5 col-lg-6">
                     <h4 class="testo-scuro">
-                        ${LuogoEffettuazione}
+                        ${Offerta.luogoEffettuazione}
                     </h4>
                 </div>
             </div>
@@ -72,7 +71,7 @@
                 </div>
                 <div class="col-12 col-md-5 col-lg-6">
                     <h4 class="testo-scuro">
-                        ${Orario}
+                        ${Offerta.orari}
                     </h4>
                 </div>
             </div>
@@ -83,7 +82,7 @@
                 </div>
                 <div class="col-12 col-md-5 col-lg-6">
                     <h4 class="testo-scuro">
-                        Dal ${PeriodoInizio} al ${PeriodoFine}
+                        Dal ${Offerta.periodoInizio?string.short} al ${Offerta.periodoFine?string.short}
                     </h4>
                 </div>
             </div>
@@ -94,7 +93,7 @@
                 </div>
                 <div class="col-12 col-md-5 col-lg-6">
                     <h4 class="testo-scuro">
-                        ${Obbiettivi}
+                        ${Offerta.obbiettivi}
                     </h4>
                 </div>
             </div>
@@ -105,7 +104,7 @@
                 </div>
                 <div class="col-12 col-md-5 col-lg-6">
                     <h4 class="testo-scuro">
-                        ${Modalita}
+                        ${Offerta.modalita}
                     </h4>
                 </div>
             </div>
@@ -116,7 +115,7 @@
                 </div>
                 <div class="col-12 col-md-5 col-lg-6">
                     <h4 class="testo-scuro">
-                        <#if Rimbosi??>${Rimbosi}<#else>Nessun tipo di rimborso.</#if><#if Facilitazioni??> ${Facilitazioni}<#else>Nessun tipo di facilitazione prevista.</#if>
+                        <#if Offerta.rimborsi??>${Offerta.rimborsi}<#else>Nessun tipo di rimborso.</#if><#if Offerta.facilitazioni??> ${Offerta.facilitazioni}<#else>Nessun tipo di facilitazione prevista.</#if>
                     </h4>
                 </div>
             </div>
@@ -127,7 +126,7 @@
                 </div>
                 <div class="col-12 col-md-5 col-lg-6">
                     <h4 class="testo-scuro">
-                        ${NomeRespAz} ${CognomeRepAz}
+                        ${Offerta.nomeTutoreAziendale} ${Offerta.cognomeTutoreAziendale}
                     </h4>
                 </div>
             </div>
@@ -139,7 +138,7 @@
                 <div class="row col-12 col-md-5 col-lg-6 mb-sm-5 mb-0">
                     <i class="fa fa-send fs-19 pl-15 pt-4 mr-10"></i>
                     <h4 class="testo-scuro">
-                        <a href="mailto:mario.rossi@aveja.it">${EmailRespAZ}</a>
+                        <a href="mailto:${Offerta.emailTutoreAziendale}">${Offerta.emailTutoreAziendale}</a>
                     </h4>
                 </div>
             </div>
@@ -150,14 +149,14 @@
                 </div>
                 <div class="row col-12 col-md-5 col-lg-6 mb-sm-5 mb-0">
                     <i class="fa fa-phone-square fs-19 pl-15 pt-4 mr-10"></i><h4 class="testo-scuro letter-spacing-1">
-                        ${TelRespAz}
+                        ${Offerta.telefonoTutoreAziendale}
                     </h4>
                 </div>
             </div>
 
 
             <form id="manda_iscrizione" method="post" action="/sceltarichiesta">
-                <input type="hidden" name="Tirocinio" value=${IDTirocinio}>
+                <input type="hidden" name="Tirocinio" value=${Offerta.IDOffertaTirocinio}>
                 <button type="submit" form="manda_iscrizione"
                         class="btn btn-blue b-blu btn-lg pull-right float-right"><i
                             class="fa fa-check"></i> Invia Domanda
