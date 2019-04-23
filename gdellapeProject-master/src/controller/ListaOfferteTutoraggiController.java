@@ -26,6 +26,8 @@ public class ListaOfferteTutoraggiController extends baseController {
         } catch (DaoException | ParseException e) {
             e.printStackTrace();
         }
+        Calendar presente = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
+        datamodel.put("dataOggi", presente.getTime());
         TemplateController.process("offerte-tutoraggi.ftl", datamodel, response, getServletContext());
 
     }
