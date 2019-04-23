@@ -281,7 +281,7 @@ public class AdminFillTable {
     {
 
         fillTableAdmin();
-        TemplateController.process("BackEndTemplates/gestione-admin-dashboard.ftl", datamodel, response, servletContext);
+        TemplateController.process("BackEndTemplates/gestione-admin.ftl", datamodel, response, servletContext);
 
     }
 
@@ -301,7 +301,7 @@ public class AdminFillTable {
         fillTableAdmin();
         datamodel.put("WarningSuccess",message);
 
-        TemplateController.process("BackEndTemplates/gestione-admin-dashboard.ftl", datamodel, response, servletContext);
+        TemplateController.process("BackEndTemplates/gestione-admin.ftl", datamodel, response, servletContext);
 
     }
 
@@ -321,7 +321,7 @@ public class AdminFillTable {
         fillTableAdmin();
         datamodel.put("WarningInsuccess", message);
 
-        TemplateController.process("BackEndTemplates/gestione-admin-dashboard.ftl", datamodel, response, servletContext);
+        TemplateController.process("BackEndTemplates/gestione-admin.ftl", datamodel, response, servletContext);
 
     }
 

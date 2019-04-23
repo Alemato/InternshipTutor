@@ -45,7 +45,8 @@ public class ReimpostaMailUserController extends baseController {
             fill_form(request, response);
         } catch (DaoException e) {
             e.printStackTrace();
-            response.sendRedirect("/500");
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
         }
 
     }
@@ -70,7 +71,8 @@ public class ReimpostaMailUserController extends baseController {
             }
         } catch (DaoException e) {
             e.printStackTrace();
-            response.sendRedirect("/404");
+            RequestDispatcher page = request.getRequestDispatcher("/500");
+            page.forward(request,response);
         }
 
     }
@@ -107,7 +109,7 @@ public class ReimpostaMailUserController extends baseController {
 //        UserDaoImp dao =new UserDaoImp();
 //        dao.update(user);
 //        dao.destroy();
-        System.out.println("Cambio password andato bene");
+        System.out.println("Cambio Email andato bene");
 
     }
 

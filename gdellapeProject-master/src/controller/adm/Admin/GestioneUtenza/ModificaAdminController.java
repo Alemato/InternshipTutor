@@ -71,21 +71,21 @@ public class ModificaAdminController extends baseController {
     private void fillForm(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException,DaoException
     {
         fill(request,response);
-        TemplateController.process("/BackEndTemplates/impostazioni-account-admin-dashboard.ftl", datamodel, response, getServletContext());
+        TemplateController.process("/BackEndTemplates/impostazioni-account-admin.ftl", datamodel, response, getServletContext());
 
     }
     private void successFillForm(HttpServletRequest request,HttpServletResponse response,String message)throws IOException,ServletException,DaoException
     {
         fill(request,response);
         datamodel.put("WarningSuccess",message);
-        TemplateController.process("/BackEndTemplates/impostazioni-account-admin-dashboard.ftl", datamodel, response, getServletContext());
+        TemplateController.process("/BackEndTemplates/impostazioni-account-admin.ftl", datamodel, response, getServletContext());
 
     }
     private void insuccessFillForm(HttpServletRequest request,HttpServletResponse response,String message)throws IOException,ServletException,DaoException
     {
         fill(request,response);
         datamodel.put("WarningInsuccess",message);
-        TemplateController.process("/BackEndTemplates/impostazioni-account-admin-dashboard.ftl", datamodel, response, getServletContext());
+        TemplateController.process("/BackEndTemplates/impostazioni-account-admin.ftl", datamodel, response, getServletContext());
 
     }
 
