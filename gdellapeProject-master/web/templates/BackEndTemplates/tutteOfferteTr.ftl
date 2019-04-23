@@ -21,9 +21,9 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
+    <a class="navbar-brand link-bar" href="/home">Intership Tutor </a>
     <ol class="breadcrumb">
-        <li><a href="admin.html">HOME DASHBOARD</a></li>
+        <li><a href="/admin/dashboard">HOME DASHBOARD</a></li>
         <li class="active"><a href="/admin/show-offerta"><b>TUTTE LE OFFERTE PUBBLICATE</b></a>
     </ol>
     <#include "small-navbar.ftl">
@@ -32,8 +32,7 @@
 <div class="container-fluid">
     <div class="row">
         <#include "sidebar.ftl">
-        <main class="col-sm-9 offset-sm-3 col-md-10 offset- md-2 pt-3">
-
+        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <noscript>
                 <div class="alert alert-danger mb-10 mt-10">
                     <h3 class="mb-10"><strong>Attenzione!</strong></h3>
@@ -41,9 +40,7 @@
                         <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
-
-            <section class="row text-center placeholders pt-10 pb-10 mb-10">
-            </section>
+            <h1><i class="fa fa-book"></i>GESTIONE OFFERTE DI TIROCINIO</h1>
             <#if WarningSuccess??>
                 <div class="alert alert-success mb-20">
                     <button type="button" class="close" data-dismiss="alert">
@@ -62,7 +59,8 @@
                     <strong>Attenzione!</strong> ${WarningInsuccess}
                 </div>
             </#if>
-            <h2>Offerte Di Tirocinio</h2>
+            <section class="row text-center placeholders pt-10 pb-10 mb-10">
+            </section>
             <div class="card" id="offerte_attive">
                 <div class="card-header">
                     <h3>OFFERTE DI TIROCINIO SCADUTE</h3>
@@ -245,7 +243,7 @@
                 "orderable": false
             }],
             "order": [
-                [1, 'asc'],
+                [1, 'asc']
             ],
             "lengthMenu": [
                 [5, 10, 20, -1],
@@ -266,7 +264,7 @@
             }, {
                 "searchable": true,
                 "targets": [0]
-            }],
+            }]
         });
 
         var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);

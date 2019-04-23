@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Gestione Utenza</title>
 
-   <#include "../importCss.ftl">
+    <#include "../importCss.ftl">
 
     <!-- Page Sript -->
     <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
@@ -22,53 +22,54 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand link-bar" href="">Intership Tutor </a>
+    <a class="navbar-brand link-bar" href="/home">Intership Tutor </a>
 
     <ol class="breadcrumb">
-        <li><a href="admin.html">HOME DASHBOARD</a></li>
-        <li class="active"><a href="admin/gestione-admin"><b>GESTIONE UTENZA</b></a></li>
+        <li><a href="/admin/dashboard">HOME DASHBOARD</a></li>
+        <li class="active"><a href="#"><b>GESTIONE UTENZA</b></a></li>
     </ol>
-   <#include "small-navbar.ftl">
+    <#include "small-navbar.ftl">
 
 </nav>
 <div class="container-fluid">
     <div class="row">
-       <#include "../BackEndTemplates/sidebar.ftl">
-<#--TODO controlla solo le barre e gli url con il filtro-->
+        <#include "sidebar.ftl">
+        <#--TODO controlla solo le barre e gli url con il filtro-->
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <noscript>
                 <div class="alert alert-danger mb-10 mt-10">
                     <h3 class="mb-10"><strong>Attenzione!</strong></h3>
-                    <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
+                    <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto
+                        <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
-                <#if WarningSuccess??>
-                    <div class="alert alert-success mb-20">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Chiudi</span>
-                        </button>
-                        <strong>Attenzione!</strong> ${WarningSuccess}
-                    </div>
-                </#if>
+            <#if WarningSuccess??>
+                <div class="alert alert-success mb-20">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Attenzione!</strong> ${WarningSuccess}
+                </div>
+            </#if>
             <#if WarningInsuccess??>
-                    <div class="alert alert-danger mb-20">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Chiudi</span>
-                        </button>
-                        <strong>Attenzione!</strong> ${WarningInsuccess}
-                    </div>
-                </#if>
-            <section class="row text-center placeholders pt-10 mb-10">
-            </section>
+                <div class="alert alert-danger mb-20">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Attenzione!</strong> ${WarningInsuccess}
+                </div>
+            </#if>
+
             <h2><i class="fa fa-user-md"></i> Utenza di Tipo Amministratore</h2>
             <div class="card mb-50">
                 <div class="card-header">
                     <i class="fa fa-table"></i> Amministratori
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-bordered table-hover" id="datatable_amministatori" width="100%"
+                    <table class="table table-striped table-bordered table-hover" id="datatable_amministatori"
+                           width="100%"
                            cellspacing="0">
                         <thead>
                         <tr>
@@ -85,12 +86,12 @@
                         </tfoot>
                         <tbody>
                         <#list listadmin as admin >
-                        <tr>
+                            <tr>
 
-                            <td>${admin.nome}</td>
-                            <td>${admin.cognome}</td>
+                                <td>${admin.nome}</td>
+                                <td>${admin.cognome}</td>
 
-                        </tr>
+                            </tr>
                         </#list>
 
                         </tbody>
@@ -101,11 +102,10 @@
             </section>
             <#--TODO problema javascrip form-->
             <h3 class="mb-10">Crea Utente Aministratore</h3>
-            <form id="form_crea_admin" method="post" action="/admin/crea-admin" class="sky-form"
-                  novalidate="novalidate">
+            <form id="form_crea_admin" method="post" action="/admin/crea-admin" class="sky-form">
 
                 <#if ErroreEmail??>
-                    <div class="alert alert-warning mb-20">
+                    <div class="alert alert-danger mb-20">
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Chiudi</span>
@@ -116,13 +116,14 @@
                 <label class="input">
                     <p><em>*</em> Indirizzo Email</p>
                     <i class="ico-append giu fa fa-envelope"></i>
-                    <input type="text"  <#if ErroreEmail??> class="error" </#if> placeholder="Indirizzo Email" name="Email" <#if ValueOfEmail??>value="${ValueOfEmail}"</#if> required>
+                    <input type="text" <#if ErroreEmail??> class="error" </#if> placeholder="Indirizzo Email"
+                           name="Email" <#if ValueOfEmail??>value="${ValueOfEmail}"</#if> required>
                     <b class="tooltip tooltip-bottom-right">Necessario per verificare il tuo account</b>
                 </label>
 
 
                 <#if ErrorePassword??>
-                    <div class="alert alert-warning mb-20">
+                    <div class="alert alert-danger mb-20">
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Chiudi</span>
@@ -133,12 +134,13 @@
                 <label class="input">
                     <p><em>*</em> Password</p>
                     <i class="ico-append giu fa fa-lock"></i>
-                    <input type="password" <#if ErrorePassword??> class="error" </#if> placeholder="Password"  name="Password" <#if ValueOfPassword??>value="${ValueOfPassword}" </#if> required>
+                    <input type="password" <#if ErrorePassword??> class="error" </#if> placeholder="Password"
+                           name="Password" <#if ValueOfPassword??>value="${ValueOfPassword}" </#if> required>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                         al tuo account</b>
                 </label>
                 <#if ErroreConfermaPassword??>
-                    <div class="alert alert-warning mb-20">
+                    <div class="alert alert-danger mb-20">
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Chiudi</span>
@@ -150,13 +152,15 @@
 
                     <p><em>*</em> Password</p>
                     <i class="ico-append giu fa fa-lock"></i>
-                    <input type="password" <#if ErrorePassword??> class="error" </#if> placeholder="Conferma password"   name="ConfermaPassword" <#if ValueOfConfermaPassword??> value="${ValueOfConfermaPassword}" </#if> required>
+                    <input type="password" <#if ErrorePassword??> class="error" </#if> placeholder="Conferma password"
+                           name="ConfermaPassword" <#if ValueOfConfermaPassword??> value="${ValueOfConfermaPassword}" </#if>
+                           required>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                         al tuo account</b>
                 </label>
 
                 <#if ErroreNome??>
-                    <div class="alert alert-warning mb-20">
+                    <div class="alert alert-danger mb-20">
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Chiudi</span>
@@ -167,12 +171,13 @@
                 <label class="input">
                     <p><em>*</em> Nome</p>
                     <i class="ico-append giu fa fa-envelope"></i>
-                    <input type="text" <#if ValueofNome??>class="error"</#if> placeholder="Nome" name="Nome" <#if ValueofNome??>value="${ValueofNome}"  </#if> required>
+                    <input type="text" <#if ValueofNome??>class="error"</#if> placeholder="Nome"
+                           name="Nome" <#if ValueofNome??>value="${ValueofNome}"  </#if> required>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                         al tuo account</b>
                 </label>
                 <#if ErroreCognome??>
-                    <div class="alert alert-warning mb-20">
+                    <div class="alert alert-danger mb-20">
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Chiudi</span>
@@ -183,7 +188,8 @@
                 <label class="input">
                     <p><em>*</em>Cognome</p>
                     <i class="ico-append giu fa fa-envelope"></i>
-                    <input type="text" <#if ValueOfCognome??>class="error"</#if> placeholder="Cognome" name="Cognome" <#if ValueOfCognome??> value="${ValueOfCognome}"</#if> required>
+                    <input type="text" <#if ValueOfCognome??>class="error"</#if> placeholder="Cognome"
+                           name="Cognome" <#if ValueOfCognome??> value="${ValueOfCognome}"</#if> required>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                         al tuo account</b>
                 </label>

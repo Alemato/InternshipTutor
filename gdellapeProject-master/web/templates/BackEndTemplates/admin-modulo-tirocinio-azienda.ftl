@@ -23,10 +23,11 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
+    <a class="navbar-brand link-bar" href="/Home">Intership Tutor </a>
     <ol class="breadcrumb">
-        <li class=""><a href=/#">HOME DASHBOARD</a></li>
-        <li class="active"><a href="/#"><b>GESTIONE MODULO: ${dato[0]}</b></a></li>
+        <li><a href="/admin/dashboard">HOME DASHBOARD</a></li>
+        <li><a href="/admin/gestione-tirocinio">GESTIONE MODULO TIROCINIO</a></li>
+        <li class="active"><a href="#"><b>GESTIONE MODULO: ${dato[0]}</b></a></li>
     </ol>
 
    <#include "small-navbar.ftl">

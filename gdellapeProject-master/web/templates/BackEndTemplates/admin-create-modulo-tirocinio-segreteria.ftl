@@ -20,11 +20,11 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand link-bar" href="/">Intership Tutor </a>
+    <a class="navbar-brand link-bar" href="/home">Intership Tutor </a>
     <ol class="breadcrumb">
-        <li class=""><a href="admin.html">HOME DASHBOARD</a></li>
-        <li class=""><a href="/Gestione-tirocinio">GESTIONE MODULI TIROCINIO</a></li>
-        <li class="active"><a href="/#"><b>CREA MODULO SEGRETERIA</b></a></li>
+        <li class=""><a href="/admin/dashboard">HOME DASHBOARD</a></li>
+        <li class=""><a href="/admin/gestione-tirocinio">GESTIONE MODULI TIROCINIO</a></li>
+        <li class="active"><a href="#"><b>CREA MODULO SEGRETERIA</b></a></li>
     </ol>
    <#include"small-navbar.ftl">
 
@@ -36,7 +36,7 @@
         </div>
         <main class="col-sm-10 offset-sm-1 col-md-11 offset-md-2 pt-3 centra">
                 <div class="container">
-                    <form id="modulo_segreteria" action="/crea-modulosegreteria" method="post" class="mt-20 border p-15 radius-5 bg-white modulo-segreteria">
+                    <form id="modulo_segreteria" action="admin/crea-modulosegreteria" method="post" class="mt-20 border p-15 radius-5 bg-white modulo-segreteria">
                         <fieldset>
                             <input type="hidden" name="IDTirocinio"  value="${ID}">
                             <h1 class="text-center fw-100 d-print-none ">Controlla i dati del modulo pre-compilato e clicca su stampa</h1>

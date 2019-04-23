@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Gestione Tirocinanti</title>
 
-   <#include "../importCss.ftl">
+    <#include "../importCss.ftl">
 
     <!-- Page Sript -->
     <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
@@ -33,45 +33,44 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-       <#include "sidebar.ftl">
-<#--TODO controlla solo le barre e gli url con il filtro-->
+        <#include "sidebar.ftl">
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <noscript>
                 <div class="alert alert-danger mb-10 mt-10">
                     <h3 class="mb-10"><strong>Attenzione!</strong></h3>
-                    <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
+                    <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto
+                        <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
-
-                <#if WarningSuccess??>
-                    <div class="alert alert-success mb-20">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Chiudi</span>
-                        </button>
-                        <strong>Attenzione!</strong> ${WarningSuccess}
-                    </div>
-                </#if>
-            <#if WarningInsuccess??>
-                    <div class="alert alert-danger mb-20">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Chiudi</span>
-                        </button>
-                        <strong>Attenzione!</strong> ${WarningInsuccess}
-                    </div>
-                </#if>
-
+            <h2><i class="fa fa-user"></i> Gestione Tirocinanti</h2>
             <section class="row text-center placeholders pt-10 mb-10">
             </section>
-            <h3>Lista Tirocinanti</h3>
+            <#if WarningSuccess??>
+                <div class="alert alert-success mb-20">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Attenzione!</strong> ${WarningSuccess}
+                </div>
+            </#if>
+            <#if WarningInsuccess??>
+                <div class="alert alert-danger mb-20">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Attenzione!</strong> ${WarningInsuccess}
+                </div>
+            </#if>
             <div class="card">
                 <div class="card-header">
                     <i class="fa fa-table"></i> Tirocinanti
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive" >
-                        <table class="table table-striped table-bordered table-hover" id="datatable_tirocinante" width="100%"
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="datatable_tirocinante"
+                               width="100%"
                                cellspacing="0">
                             <thead>
                             <tr>
@@ -99,36 +98,32 @@
                             </tfoot>
                             <tbody>
                             <#list tirocinanti as tirocinante>
-                            <tr>
-                                <td>${tirocinante.nome}</td>
-                                <td>${tirocinante.cognome}</td>
-                                <td>${tirocinante.codiceFiscale}</td>
-                                <td>${tirocinante.dataDiNascita?date?string("dd-MM-yyyy")}</td>
-                                <td>${tirocinante.telefono}</td>
-                                <td><#if tirocinante.handicap>yes<#else>no</#if> </td>
-                                <td>
+                                <tr>
+                                    <td>${tirocinante.nome}</td>
+                                    <td>${tirocinante.cognome}</td>
+                                    <td>${tirocinante.codiceFiscale}</td>
+                                    <td>${tirocinante.dataDiNascita?date?string("dd-MM-yyyy")}</td>
+                                    <td>${tirocinante.telefono}</td>
+                                    <td><#if tirocinante.handicap>yes<#else>no</#if> </td>
+                                    <td>
+                                        <a type="button" class="btn btn-primary"
+                                           href="/admin/show-tirocinante?IDTirocinante=${tirocinante.IDTirocinante}">
+                                            <i class="fa fa-file-text"></i>Visualizza Utente
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a type="button" href="/admin/reimposta-user?IDUser=${tirocinante.user}"
+                                           class="btn btn-secondary">
+                                            <i class="fa fa-pencil-square-o"></i>Cambia</a>
+                                    </td>
 
-                                    <a type="button" class="btn btn-primary" href="/admin/show-tirocinante?IDTirocinante=${tirocinante.IDTirocinante}">
-                                        <i class="fa fa-file-text"></i>Visualizza Utente
-                                    </a>
-
-
-                                </td>
-                                <td>
-                                    <a type="button" href="/admin/reimposta-user?IDUser=${tirocinante.user}" class="btn btn-secondary">
-                                        <i class="fa fa-pencil-square-o"></i>Cambia</a>
-                                </td>
-
-                            </tr>
+                                </tr>
                             </#list>
-
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
-
         </main>
     </div>
 </div>
@@ -168,7 +163,7 @@
             }
             ],
             "order": [
-                [0, 'asc'],
+                [0, 'asc']
             ],
             "lengthMenu": [
                 [5, 15, 20, -1],
@@ -189,7 +184,7 @@
             }, {
                 "searchable": true,
                 "targets": [0]
-            }],
+            }]
         });
 
         var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);

@@ -31,17 +31,14 @@
 <div class="container-fluid">
     <div class="row">
        <#include "sidebar.ftl">
-
-
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-
             <noscript>
                 <div class="alert alert-danger mb-10 mt-10">
                     <h3 class="mb-10"><strong>Attenzione!</strong></h3>
                     <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
-            <h1>DASHBOARD</h1>
+            <h1><i class="fa fa-archive"></i>DASHBOARD</h1>
 
                 <div class="row">
                     <div class="col-md-3 col-lg-3">
@@ -96,7 +93,7 @@
                             <i class="fa fa-industry"></i> Classifica Aziende con i voti migliori
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped table-bordered table-hover" id="datatable_aziende_cla" width="100%"
+                            <table class="table table-bordered table-hover" id="datatable_aziende_cla" width="100%"
                                    cellspacing="0">
                                 <thead>
                                 <tr>
@@ -135,7 +132,7 @@
                             <i class="fa fa-industry"></i> Classifica dei tutori universitari pi&uacute; richiesti
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped table-bordered table-hover" id="datatable_tutore_cla" width="100%"
+                            <table class="table table-striped table-bordered table-hover compact" id="datatable_tutore_cla" width="100%"
                                    cellspacing="0">
                                 <thead>
                                 <tr>
@@ -201,12 +198,14 @@
                 "orderable": true
             }],
             "order": [
-                [0, 'asc'],
+                [0, 'asc']
             ],
             "lengthMenu": [
                 [5, 15, 20, -1],
                 [5, 15, 20, "Tutti"] // change per page values here
             ],
+
+            "searching": false,
             "language": {
                 "search": "Filtra i record:",
                 "emptyTable": "Nessun dato disponibile nella tabella",
@@ -215,13 +214,14 @@
                 "infoEmpty": "Nessuna voce da mostrare",
                 "infoFiltered": " (filtrato da _MAX_ voci totali)"
             },
+
             "pageLength": 5, // set the initial value,
             "columnDefs": [{  // set default column settings
                 'orderable': true,
                 'targets': [0]
             }, {
                 "targets": [0]
-            }],
+            }]
         });
 
         var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);
@@ -240,12 +240,14 @@
                 "orderable": true
             }],
             "order": [
-                [0, 'asc'],
+                [0, 'asc']
             ],
             "lengthMenu": [
                 [5, 15, 20, -1],
                 [5, 15, 20, "Tutti"] // change per page values here
             ],
+            "searching": false,
+
             "language": {
                 "search": "Filtra i record:",
                 "emptyTable": "Nessun dato disponibile nella tabella",
@@ -260,8 +262,8 @@
                 'targets': [0]
             }, {
                 "targets": [0]
-            }],
-        });
+            }]
+        } );
 
         var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);
 
