@@ -5,10 +5,10 @@
     <title>Internship Tutor</title>
     <#include "importCss.ftl">
 </head>
-<body class="smoothscroll enable-animation">
+<body class=" enable-animation">
 <div id="wrapper">
     <#include "header.ftl">
-    <img class="img-fluid mt-140" src="imgs/internship.jpg">
+    <img class="img-fluid mt-140" src="/imgs/internship.jpg">
 
 
     <!-- SECTION HEADER TITLE-->
@@ -43,7 +43,7 @@
 
                             <#--il periodo di inizio-->
 
-                                <span class="font-lato">${OffertaTirocinio.periodoInizio}</span>
+                                <span class="font-lato">${OffertaTirocinio.periodoInizio?string.short}</span>
                         </li>
                         <li>
                             <a href="schedaazienda?ID=${OffertaTirocinio.azienda}">
@@ -81,7 +81,7 @@
                     <ul class="blog-post-info list-inline">
                         <li class="pl-0">
                                 <i class="fa fa-clock-o"></i>
-                                <span class="font-lato">${Convenzioni.dataConvenzione}</span>
+                                <span class="font-lato">${Convenzioni.dataConvenzione?string.short}</span>
                         </li>
                         <li>
                             <a href="/SchedaAzienda?ID=${Convenzioni.IDAzienda}">
@@ -91,7 +91,7 @@
                         </li>
                     </ul>
 
-                    <p class="mb-10">${Convenzioni.descrizione}</p>
+                    <p class="mb-10"><#if Convenzioni.descrizione??><#if Convenzioni.descrizione?has_content>${Convenzioni.descrizione} <#else> Descrizione Azienda non disponibile</#if> <#else> Descrizione Azienda non disponibile</#if></p>
 
                     <a href="/SchedaAzienda?ID=${Convenzioni.IDAzienda}" class="btn btn-reveal btn-default b-0 btn-shadow-1 mt-30">
                         <i class="fa fa-plus"></i>

@@ -55,7 +55,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
 
 
             this.selectLastFiveConvenzioni = connection.prepareStatement
-                    ("SELECT * FROM azienda ORDER BY UpdateDate DESC LIMIT 5");
+                    ("SELECT * FROM azienda WHERE Attivo = 1 ORDER BY UpdateDate DESC LIMIT 5");
 
             this.insertAzienda = connection.prepareStatement
                     ("INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
