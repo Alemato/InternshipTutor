@@ -63,9 +63,9 @@ public class AdminAccettaConvenzione extends baseController{
            if (stato.equals("accetta")) {
                //caso in cui admin accetta la convenzione
                azienda.setAttivo(1);
-//               AziendaDaoImp dao1 = new AziendaDaoImp();
-//               dao1.updateAzienda(azienda);
-//               dao1.destroy();
+               AziendaDaoImp dao1 = new AziendaDaoImp();
+               dao1.updateAzienda(azienda);
+               dao1.destroy();
                AdminFillRichiesteAndAttive page = new AdminFillRichiesteAndAttive(datamodel,getServletContext(),request,response);
                page.makegetSuccess("Azienda "+azienda.getRagioneSociale()+" ora puo operare");
 
@@ -73,9 +73,9 @@ public class AdminAccettaConvenzione extends baseController{
                //caso in cui admin delclina la convenzione
                azienda.setAttivo(0);
                azienda.setPathPDFConvenzione(null);
-//               AziendaDaoImp dao1 = new AziendaDaoImp();
-//               dao1.updateAzienda(azienda);
-//               dao1.destroy();
+               AziendaDaoImp dao1 = new AziendaDaoImp();
+               dao1.updateAzienda(azienda);
+               dao1.destroy();
                AdminFillRichiesteAndAttive page = new AdminFillRichiesteAndAttive(datamodel,getServletContext(),request,response);
                page.makegetInsuccess("Azienda "+azienda.getRagioneSociale()+" e stata declinata");
 

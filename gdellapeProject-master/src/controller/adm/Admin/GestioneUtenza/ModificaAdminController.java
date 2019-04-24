@@ -104,19 +104,19 @@ public class ModificaAdminController extends baseController {
             User user = dao2.getUserByid(admin.getUser());
             dao2.destroy();
             if(validate(request,response,admin,user)) {
-//                storeAdmin(request,response,admin);
+                storeAdmin(request,response,admin);
                 System.out.println("Cambio dati admin");
                 if(!user.getEmail().equals(request.getParameter("email")))
                 {
-//                    storeEmail(request,response,user);
+                    storeEmail(request,response,user);
                     System.out.println("Cambio email");
                 }
                 if(!request.getParameter("newpassword").isEmpty())
                 {
-//                    storePassword(request,response,user);
+                    storePassword(request,response,user);
                     System.out.println("Cambio la password");
                 }
-//                response.sendRedirect("/logout");
+                response.sendRedirect("/logout");
 
             }
 

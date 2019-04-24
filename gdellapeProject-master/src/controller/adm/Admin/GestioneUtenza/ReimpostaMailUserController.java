@@ -105,10 +105,10 @@ public class ReimpostaMailUserController extends baseController {
 
     private void storeMail(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException, DaoException {
 
-        //      user.setEmail(request.getParameter(request.getParameter("email")));
-//        UserDaoImp dao =new UserDaoImp();
-//        dao.update(user);
-//        dao.destroy();
+        user.setEmail(request.getParameter(request.getParameter("email")));
+        UserDaoImp dao =new UserDaoImp();
+        dao.update(user);
+        dao.destroy();
         System.out.println("Cambio Email andato bene");
 
     }

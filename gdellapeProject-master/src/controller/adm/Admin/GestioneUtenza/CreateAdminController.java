@@ -53,8 +53,8 @@ public class CreateAdminController extends baseController {
             super.init(request, response);
             datamodel.put("urlpage","/admin/gestione-admin");
             if (validationUserAndAdmin(request, response)) {
-                //insertUser(request,response);
-                //insertAdmin(request,response);
+                storeUser(request,response);
+                insertAdmin(request,response);
                 System.out.println("vali");
                AdminFillTable page = new AdminFillTable(datamodel,getServletContext(),request,response);
                page.makeSuccessGetAdmin("Il nuovo admin &egrave; stato inserito correttamente");

@@ -6,7 +6,9 @@ import controller.adm.Admin.GestioneAzienda.FillGestioniModuliConvenzione;
 import controller.adm.Admin.GestioneUtenza.AdminFillTable;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
+import dao.implementation.OffertaTirocinioDaoImp;
 import model.Azienda;
+import model.OffertaTirocinio;
 
 
 import javax.servlet.ServletContext;
@@ -41,26 +43,26 @@ public class InvalidaConvenzioneAzienda  {
             dao.destroy();
             FillGestioniModuliConvenzione page = new FillGestioniModuliConvenzione(request, response, context, datamodel);
             if ((!azienda.getPathPDFConvenzione().isEmpty()) && (azienda.getAttivo() == 1)) {
-//                azienda.setPathPDFConvenzione(null);
-//                azienda.setDataConvenzione(null);
-//                azienda.setAttivo(0);
-//                AziendaDaoImp dao2=new AziendaDaoImp();
-//                OffertaTirocinioDaoImp dao2 = new OffertaTirocinioDaoImp();
-//                List<OffertaTirocinio> offerte = dao2.getOffertatrBYAzienda(azienda);
-//                dao2.destroy();
+                azienda.setPathPDFConvenzione(null);
+                azienda.setDataConvenzione(null);
+                azienda.setAttivo(0);
+                AziendaDaoImp dao3=new AziendaDaoImp();
+                OffertaTirocinioDaoImp dao2 = new OffertaTirocinioDaoImp();
+                List<OffertaTirocinio> offerte = dao2.getOffertatrBYAzienda(azienda);
+                dao2.destroy();
                 //disattivo tutte le offerta di tirocinio
-//                for (OffertaTirocinio offerta: offerte
-//                     ) {
-//                    offerta.setStato(0);
-//                    OffertaTirocinioDaoImp dao3 = new OffertaTirocinioDaoImp();
-//                    dao3.updateOffertatr(offerta);
-//                    dao3.destroy();
-//
-//                }
+                for (OffertaTirocinio offerta: offerte
+                     ) {
+                    offerta.setStato(0);
+                    OffertaTirocinioDaoImp dao4 = new OffertaTirocinioDaoImp();
+                    dao4.updateOffertatr(offerta);
+                    dao4.destroy();
+
+                }
 
 
-//                dao2.updateAzienda(azienda);
-//                dao2.destroy();
+                dao3.updateAzienda(azienda);
+                dao3.destroy();
 
                 //TODO Manda mail per avvisare che la convenzione è scaduta
                 page.makegetWithSuccess("Invalidazione della convenzione per l'azienda " + azienda.getRagioneSociale() + " andata a buon fine");
@@ -78,26 +80,26 @@ public class InvalidaConvenzioneAzienda  {
         dao.destroy();
        AdminFillTable page = new AdminFillTable(datamodel,context,request,response);
         if ((!azienda.getPathPDFConvenzione().isEmpty()) && (azienda.getAttivo() == 1)) {
-//                azienda.setPathPDFConvenzione(null);
-//                azienda.setDataConvenzione(null);
-//                azienda.setAttivo(0);
-//                AziendaDaoImp dao2=new AziendaDaoImp();
-//            OffertaTirocinioDaoImp dao2 = new OffertaTirocinioDaoImp();
-//            List<OffertaTirocinio> offerte = dao2.getOffertatrBYAzienda(azienda);
-//            dao2.destroy();
-            //disattivo tutte le offerta di tirocinio
-//                for (OffertaTirocinio offerta: offerte
-//                     ) {
-//                    offerta.setStato(0)
-//                    OffertaTirocinioDaoImp dao3 = new OffertaTirocinioDaoImp();
-//                    dao3.updateOffertatr(offerta);
-//                    dao3.destroy();
-//
-//                }
+                azienda.setPathPDFConvenzione(null);
+                azienda.setDataConvenzione(null);
+                azienda.setAttivo(0);
+                AziendaDaoImp dao3=new AziendaDaoImp();
+            OffertaTirocinioDaoImp dao2 = new OffertaTirocinioDaoImp();
+            List<OffertaTirocinio> offerte = dao2.getOffertatrBYAzienda(azienda);
+            dao2.destroy();
+           // disattivo tutte le offerta di tirocinio
+                for (OffertaTirocinio offerta: offerte
+                     ) {
+                    offerta.setStato(0);
+                    OffertaTirocinioDaoImp dao4 = new OffertaTirocinioDaoImp();
+                    dao4.updateOffertatr(offerta);
+                    dao4.destroy();
+
+                }
 
 
-//                dao2.updateAzienda(azienda);
-//                dao2.destroy();
+                dao3.updateAzienda(azienda);
+                dao2.destroy();
 
             //TODO Manda mail per avvisare che la convenzione è scaduta
             page.makeSuccessGetAziende(" L&apos;azienda " + azienda.getRagioneSociale() + "$eacute stata Disattivata con successo ");

@@ -1,7 +1,6 @@
 package controller.adm.Admin.GestioneUtenza;
 
 
-import controller.adm.Admin.GestioneModuli.InvalidaConvenzioneAzienda;
 import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.TutoreUniversitarioDaoImp;
@@ -28,12 +27,9 @@ public class StatoTutoreUniversitarioController extends baseController {
 
     }
 
-
-
     private void updateTirocinio(HttpServletRequest request,HttpServletResponse response)throws IOException,ServletException
     {
         try {
-
             super.init(request, response);
             datamodel.put("urlpage","/admin/gestione-tutoti");
             if (validate(request, response)){
@@ -85,17 +81,17 @@ public class StatoTutoreUniversitarioController extends baseController {
         if(stato.equals("0")&&tutore.getAttivo())
         {
             tutore.setAttivo(false);
-//            TutoreUniversitarioDaoImp dao1 = new TutoreUniversitarioDaoImp();
-//            dao1.setTutoreUni(tutore);
-//            dao1.destroy();
+            TutoreUniversitarioDaoImp dao1 = new TutoreUniversitarioDaoImp();
+            dao1.UpdateTutoreUni(tutore);
+            dao1.destroy();
             AdminFillTable date = new AdminFillTable(datamodel,getServletContext(),request,response);
             date.makeSuccessGetTutori("Disattivazione del Tutore e andata a buon fine");
         }else if(stato.equals("1")&&!(tutore.getAttivo()))
         {
-            tutore.setAttivo(false);
-//            TutoreUniversitarioDaoImp dao2 = new TutoreUniversitarioDaoImp();
-//            dao2.setTutoreUni(tutore);
-//            dao2.destroy();
+            tutore.setAttivo(true);
+            TutoreUniversitarioDaoImp dao2 = new TutoreUniversitarioDaoImp();
+            dao2.UpdateTutoreUni(tutore);
+            dao2.destroy();
             AdminFillTable date = new AdminFillTable(datamodel,getServletContext(),request,response);
             date.makeSuccessGetTutori("Attivazione del tutore e andata a buon fine");
 

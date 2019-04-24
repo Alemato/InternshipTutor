@@ -54,13 +54,17 @@ public class VisualizzaConvenzioneAziendaController extends baseController {
 
     }
     private void pagefill(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        if(request.getParameter("page").equals("richiete")){
-            datamodel.put("urlpage","/admin/richisteconvezioni");
-        }else{
-            datamodel.put("urlpage","/admin/gestione-convenzione");
-        }
+        String page = request.getParameter("rif");
+        if (page.equals("richiete")) {
+            datamodel.put("urlpage", "/admin/richisteconvezioni");
 
+        } else {
+            datamodel.put("urlpage", "/admin/Gestione-Convenzione");
+
+
+        }
     }
+
 
 
 

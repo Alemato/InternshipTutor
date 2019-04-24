@@ -26,8 +26,6 @@ public class InvalidaModuloAziendeTirocinioController extends baseController {
             datamodel.put("urlpage","/admin/Gestione-tirocinio");
             InvalidazioneModuliTirocinio page = new InvalidazioneModuliTirocinio(datamodel,getServletContext(),request,response);
             page.invalidaPDFAzienda();
-
-
         }catch (DaoException e){
             e.printStackTrace();
             RequestDispatcher page = request.getRequestDispatcher("/500");

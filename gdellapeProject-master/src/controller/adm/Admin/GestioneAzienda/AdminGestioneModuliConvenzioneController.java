@@ -9,14 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Objects;
 
 public class AdminGestioneModuliConvenzioneController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher page = request.getRequestDispatcher("/404");
         page.forward(request,response);
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -24,7 +21,6 @@ public class AdminGestioneModuliConvenzioneController extends baseController {
         try {
             FillGestioniModuliConvenzione page = new FillGestioniModuliConvenzione(request, response, getServletContext(), datamodel);
             page.makeget();
-            System.out.println(datamodel);
         }catch (DaoException e)
         {
             e.printStackTrace();

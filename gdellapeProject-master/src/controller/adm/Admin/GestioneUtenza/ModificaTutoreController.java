@@ -188,9 +188,9 @@ public class ModificaTutoreController extends baseController {
 
             System.out.println(tutore.toString());
 
-//            TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
-//           dao.UpdateTutoreUni(tutore);
-//           dao.destroy();
+            TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
+           dao.UpdateTutoreUni(tutore);
+           dao.destroy();
 
 
 

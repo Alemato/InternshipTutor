@@ -60,7 +60,7 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
         try {
             if (ifmakeModulo(request, response)) {
                 if (validate(request, response)) {
-//                    storeModulo(request, response);
+                    storeModulo(request, response);
                     FillGestioniModuliTirocini page = new FillGestioniModuliTirocini(request, response, getServletContext(), datamodel);
                     page.makegetWithSuccess("Modulo Segreteria Compilato Correttamente");
                 }

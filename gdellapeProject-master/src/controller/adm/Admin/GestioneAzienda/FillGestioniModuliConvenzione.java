@@ -40,11 +40,6 @@ public class FillGestioniModuliConvenzione {
 
     }
 
-
-
-
-
-
     public void makegetWithSuccess(String warning) throws IOException, ServletException,DaoException{
         //make big map to add in data model
         Map<String, Object> data = new HashMap<>();

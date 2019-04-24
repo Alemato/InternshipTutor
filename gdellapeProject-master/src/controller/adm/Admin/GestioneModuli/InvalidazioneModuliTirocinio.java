@@ -36,10 +36,10 @@ public class InvalidazioneModuliTirocinio {
         FillGestioniModuliTirocini page = new FillGestioniModuliTirocini(request, response, context, datamodel);
         if (!tirocinio.getPdfTirocinante().isEmpty()) {
 
-//            tirocinio.setPdfTirocinante(null);
-//             TirocinioDaoImp dao1= new TirocinioDaoImp();
-//             dao1.updateTirocinio(tirocinio);
-//             dao1.destroy();
+            tirocinio.setPdfTirocinante(null);
+             TirocinioDaoImp dao1= new TirocinioDaoImp();
+             dao1.updateTirocinio(tirocinio);
+             dao1.destroy();
             //TODO Manda mail per avvisare è estato invalidato il pdf tirociante
 
             page.makegetWithSuccess("Invalidazione del PDF richiesta tirocinio &egrave andata a buon fine");
@@ -57,10 +57,10 @@ public class InvalidazioneModuliTirocinio {
         dao.destroy();
         FillGestioniModuliTirocini page = new FillGestioniModuliTirocini(request, response, context, datamodel);
         if (!tirocinio.getPdfAzienda().isEmpty()) {
-//                tirocinio.setPdfAzienda(null);
-//                TirocinioDaoImp dao1= new TirocinioDaoImp();
-//                dao1.updateTirocinio(tirocinio);
-//                dao1.destroy();
+                tirocinio.setPdfAzienda(null);
+                TirocinioDaoImp dao1= new TirocinioDaoImp();
+                dao1.updateTirocinio(tirocinio);
+                dao1.destroy();
             //TODO Manda mail per avvisare che pdf aziende da rifare
 
             page.makegetWithSuccess("Il PDF dell&rsquo; azienda &egrave stato invalidato con successo");

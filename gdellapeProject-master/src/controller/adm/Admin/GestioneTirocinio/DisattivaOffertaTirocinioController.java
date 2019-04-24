@@ -40,7 +40,7 @@ public class DisattivaOffertaTirocinioController extends baseController {
             OffertaTirocinioDaoImp dao = new OffertaTirocinioDaoImp();
             OffertaTirocinio offerta = dao.getOffertatrByID(Integer.parseInt(request.getParameter("IDOfferta")));
             if (validate(request, response, offerta)) {
-//                cambiaStato(request,response,offerta);
+                cambiaStato(request,response,offerta);
                 //TODO Mail che l'offerta è stata disattivata
                 FillOfferteTirocinio page = new FillOfferteTirocinio(request, response, getServletContext(), datamodel);
                 page.makegetWithSuccess("Offerta Disattivata");
