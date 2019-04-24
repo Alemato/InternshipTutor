@@ -88,12 +88,12 @@
                 </div>
             <div class="row">
                 <div class="col-md-6 col-lg-6">
-                    <div class="card mb-50">
+                    <div class="card mr-2 ">
                         <div class="card-header">
                             <i class="fa fa-industry"></i> Classifica Aziende con i voti migliori
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered table-hover" id="datatable_aziende_cla" width="100%"
+                            <table class="table table-striped table-bordered table-hover" id="datatable_aziende_cla" width="100%"
                                    cellspacing="0">
                                 <thead>
                                 <tr>
@@ -123,16 +123,18 @@
 
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6">
-                    <div class="card mb-50">
+                    <div class="card mb-30 ml-2">
                         <div class="card-header">
                             <i class="fa fa-industry"></i> Classifica dei tutori universitari pi&uacute; richiesti
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped table-bordered table-hover compact" id="datatable_tutore_cla" width="100%"
+                            <div class="card-block">
+                            <table class="table table-striped table-bordered table-hover" id="datatable_tutore_cla" width="100%"
                                    cellspacing="0">
                                 <thead>
                                 <tr>
@@ -190,6 +192,7 @@
         var table = jQuery('#datatable_aziende_cla');
 
         var oTable = table.dataTable({
+
             "columns": [{
                 "orderable": false
             }, {
@@ -266,6 +269,7 @@
         } );
 
         var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);
+        oTable.table.fixedHeader.headerOffset( 10 );
 
         var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown

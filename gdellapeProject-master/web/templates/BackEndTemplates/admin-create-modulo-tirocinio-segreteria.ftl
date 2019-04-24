@@ -26,7 +26,7 @@
         <li class=""><a href="/admin/gestione-tirocinio">GESTIONE MODULI TIROCINIO</a></li>
         <li class="active"><a href="#"><b>CREA MODULO SEGRETERIA</b></a></li>
     </ol>
-   <#include"small-navbar.ftl">
+   <#include "small-navbar.ftl">
 
 </nav>
 <div class="container">
@@ -36,7 +36,7 @@
         </div>
         <main class="col-sm-10 offset-sm-1 col-md-11 offset-md-2 pt-3 centra">
                 <div class="container">
-                    <form id="modulo_segreteria" action="admin/crea-modulosegreteria" method="post" class="mt-20 border p-15 radius-5 bg-white modulo-segreteria">
+                    <form id="modulo_segreteria" action="/admin/crea-modulosegreteria" method="post" class="mt-20 border p-15 radius-5 bg-white modulo-segreteria">
                         <fieldset>
                             <input type="hidden" name="IDTirocinio"  value="${ID}">
                             <h1 class="text-center fw-100 d-print-none ">Controlla i dati del modulo pre-compilato e clicca su stampa</h1>
@@ -51,7 +51,7 @@
 
                             <div class="row mb-0 mr-10 ">
                                 <#if ErroreDataColloquio??>
-                                    <div class="alert alert-danger mb-20">
+                                    <div class="alert alert-danger mb-20 d-print-none">
                                         <button type="button" class="close" data-dismiss="alert">
                                             <span aria-hidden="true">&times;</span>
                                             <span class="sr-only">Chiudi</span>
@@ -72,7 +72,7 @@
 
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Cognome:</h4>
                                 <#if ErroreCognome??>
-                                    <div class="alert alert-danger mb-20">
+                                    <div class="alert alert-danger mb-20 d-print-none">
                                         <button type="button" class="close" data-dismiss="alert">
                                             <span aria-hidden="true">&times;</span>
                                             <span class="sr-only">Chiudi</span>
@@ -84,7 +84,7 @@
                                        name="Cognome_tirocinante"  <#if ValueOfCognome_tirocinante??> value="${ValueOfCognome_tirocinante}"  <#else>  value="${tirocinante.cognome}"  </#if> placeholder="Cognome del tirocinante">
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Nome</h4>
                                 <#if ErroreNome??>
-                                    <div class="alert alert-danger mb-20">
+                                    <div class="alert alert-danger mb-20 d-print-none">
                                         <button type="button" class="close" data-dismiss="alert">
                                             <span aria-hidden="true">&times;</span>
                                             <span class="sr-only">Chiudi</span>
@@ -97,7 +97,7 @@
 
                             <h4 class="col-auto col-sm-auto p-0 fs-20 fw-400 mt-25">Ha svolto il tirocinio con esito </h4>
                             <#if ErroreEsito??>
-                                <div class="alert alert-danger mb-20">
+                                <div class="alert alert-danger mb-20 d-print-none">
                                     <button type="button" class="close" data-dismiss="alert">
                                         <span aria-hidden="true">&times;</span>
                                         <span class="sr-only">Chiudi</span>
@@ -109,7 +109,7 @@
                             <h4 class="d-none d-print-block">Firma del Tutor aziendale</h4>
                             <div class="linea col-6 p-0 mt-25 mb-25"></div>
                             <#if ErroreCrediti??>
-                                <div class="alert alert-danger mb-20">
+                                <div class="alert alert-danger mb-20 d-print-none">
                                     <button type="button" class="close" data-dismiss="alert">
                                         <span aria-hidden="true">&times;</span>
                                         <span class="sr-only">Chiudi</span>
@@ -127,7 +127,7 @@
 
                             <div class="row mb-25 mr-10 mt-50">
                                 <#if ErroreDate??>
-                                <div class="alert alert-danger mb-20">
+                                <div class="alert alert-danger mb-20 d-print-none">
                                     <button type="button" class="close" data-dismiss="alert">
                                         <span aria-hidden="true">&times;</span>
                                         <span class="sr-only">Chiudi</span>

@@ -281,7 +281,7 @@
                                         <a type="button" class="btn btn-secondary" href="/#"> <i
                                                     class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
                                         <#else>
-                                         <a type="button" class="btn btn-success"
+                                         <a type="button" class="btn btn-secondary"
                                                    disabled><i
                                                     class="fa fa-file-pdf-o"></i>PDF non presente</a>
                                         </#if>
