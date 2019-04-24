@@ -606,6 +606,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>PdfAdminRichestaTirocinioController</servlet-name>
+        <servlet-class>controller.adm.Admin.PdfAdminRichiestaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfAdminRichestaTirocinioController</servlet-name>
+        <url-pattern>/admin/modulo/richiesta-tirocinio</url-pattern>
+        <url-pattern>/Admin/Modulo/Richiesta-Tirocinio</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>PdfAdminFineTirocinioController</servlet-name>
         <servlet-class>controller.adm.Admin.PdfAdminFineTirocinioController</servlet-class>
     </servlet>
