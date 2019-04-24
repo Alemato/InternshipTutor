@@ -889,6 +889,7 @@
     <servlet-mapping>
         <servlet-name>Dashboard</servlet-name>
         <url-pattern>/admin/dashboard</url-pattern>
+        <url-pattern>/admin</url-pattern>
     </servlet-mapping>
 
 
