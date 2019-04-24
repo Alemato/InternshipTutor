@@ -6,11 +6,8 @@ import controller.adm.Admin.GestioneAzienda.FillGestioniModuliConvenzione;
 import controller.adm.Admin.GestioneUtenza.AdminFillTable;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
-import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinioDaoImp;
 import model.Azienda;
-import model.OffertaTirocinio;
-import model.Tirocinio;
+
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

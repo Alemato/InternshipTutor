@@ -7,6 +7,7 @@ import model.*;
 import view.TemplateController;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class InvioRichiestaTirocinioController extends BackEndTrController {
 
-    private void fillModulo(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException {
+    private void fillModulo(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException ,ServletException{
         SingSessionContoller session = SingSessionContoller.getInstance();
         Tirocinante tirocinante = session.getTirocinate(request, response);
 
@@ -88,7 +89,7 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
 
     }
 
-    private Tirocinante controlloCampiTirocinante(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+    private Tirocinante controlloCampiTirocinante(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException ,ServletException{
         SingSessionContoller session = SingSessionContoller.getInstance();
         Tirocinante tirocinante = session.getTirocinate(request, response);
         String[] nominativo;
@@ -180,7 +181,7 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
         tirocinanteDaoImp.destroy();
     }
 
-    private void creoTirocinio(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException {
+    private void creoTirocinio(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException {
         TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
         Tirocinio tirocinio = new Tirocinio();
 

@@ -11,6 +11,7 @@ import model.*;
 import view.TemplateController;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class GestioneModuliTirocinante {
         this.tirocinante = tirocinante;
     }
 
-    private void ritornaTirocinate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void ritornaTirocinate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         SingSessionContoller session = SingSessionContoller.getInstance();
         this.tirocinante = session.getTirocinate(request, response);
     }
@@ -76,7 +77,7 @@ public class GestioneModuliTirocinante {
         return listaID;
     }
 
-    public void get() throws IOException, DaoException {
+    public void get() throws IOException, DaoException,ServletException {
         ritornaTirocinate(request, response);
         ArrayList<Integer> listaID = new ArrayList<Integer>();
         List<OffertaTirocinio> offertaTir = new ArrayList<>();

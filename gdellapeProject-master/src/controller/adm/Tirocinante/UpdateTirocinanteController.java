@@ -21,7 +21,7 @@ public class UpdateTirocinanteController extends BackEndTrController {
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ifCarica(request,response);
         }
-        protected void caricadati(HttpServletRequest request ,HttpServletResponse response)throws IOException{
+        protected void caricadati(HttpServletRequest request ,HttpServletResponse response)throws IOException,ServletException{
             SingSessionContoller session = SingSessionContoller.getInstance();
             Tirocinante tirocinante = session.getTirocinate(request,response);
             User user = session.getUserTirocinante(request,response);

@@ -49,22 +49,18 @@ public class FillGestioniModuliConvenzione {
         //make big map to add in data model
         Map<String, Object> data = new HashMap<>();
 
+        // add the date to fill table Gestione convenzioni attive
+        AziendaDaoImp dao = new AziendaDaoImp();
+        List<Azienda> aziendas = dao.getAllAziendaAttive();
+        dao.destroy();
+        data.put("Aziende", aziendas);
+        System.out.println(data.get("Aziende"));
 
 
-
-
-            // add the date to fill table Gestione convenzioni attive
-            AziendaDaoImp dao = new AziendaDaoImp();
-            List<Azienda> aziendas = dao.getAllAziendaAttive();
-            dao.destroy();
-            data.put("Aziende", aziendas);
-            System.out.println(data.get("Aziende"));
-
-
-//            Warning per il successo di una operazione
-            data.put("WarningSuccess",warning);
-            datamodel.putAll(data);
-            TemplateController.process("BackEndTemplates/gestione-moduli-convenzione.ftl", datamodel, response, servletContext);
+//       Warning per il successo di una operazione
+        data.put("WarningSuccess",warning);
+        datamodel.putAll(data);
+        TemplateController.process("BackEndTemplates/gestione-moduli-convenzione.ftl", datamodel, response, servletContext);
 
     }
 
@@ -96,14 +92,14 @@ public class FillGestioniModuliConvenzione {
 
 
             // add the date to fill table Gestione convenzioni attive
-                AziendaDaoImp dao = new AziendaDaoImp();
-                List<Azienda> aziendas = dao.getAllAziendaAttive();
-                dao.destroy();
-                data.put("Aziende", aziendas);
-                System.out.println(data.get("Aziende"));
+            AziendaDaoImp dao = new AziendaDaoImp();
+            List<Azienda> aziendas = dao.getAllAziendaAttive();
+            dao.destroy();
+            data.put("Aziende", aziendas);
+            System.out.println(data.get("Aziende"));
 
-                datamodel.putAll(data);
-                TemplateController.process("BackEndTemplates/gestione-moduli-convenzione.ftl", datamodel, response, servletContext);
+            datamodel.putAll(data);
+            TemplateController.process("BackEndTemplates/gestione-moduli-convenzione.ftl", datamodel, response, servletContext);
 
 
     }
