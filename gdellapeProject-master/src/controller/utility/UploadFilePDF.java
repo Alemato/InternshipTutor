@@ -34,8 +34,8 @@ public class UploadFilePDF extends baseController {
      *                albero cartella Fine Tirocinio Azienda ./PDF/FineTirocinio/IDTirocinio/IDTirocininante/NOMEPDF.pdf
      *                albero cartella Segreteria ./PDF/Segreteria/IDTirocinio/IDTirocininante/NOMEPDF.pdf
      * @return torna il nome del file che serve per caricare sul DB o "" se si presenta un errore
-     * @throws IOException
-     * @throws PdfException
+     * @throws IOException    per il metodo write
+     * @throws PdfException   se il file non ha estensione .pdf
      */
     public String uploadPDF(HttpServletRequest request, Part part, int tipoPdf, Object object) throws IOException, PdfException {
 
