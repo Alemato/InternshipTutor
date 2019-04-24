@@ -148,7 +148,7 @@ public class ModuloTirocinioTirocinanteController extends baseController {
         }
         Tirocinio tirocinio = new Tirocinio();
         for (Tirocinio tir: tirocini) {
-            if (tirocinio.getIDTirocinio() == Integer.parseInt(request.getParameter("idTirocinio")))
+            if (tir.getIDTirocinio() == Integer.parseInt(request.getParameter("idTirocinio")))
                 tirocinio = tir;
         }
         tirocinioDaoImp.destroy();
