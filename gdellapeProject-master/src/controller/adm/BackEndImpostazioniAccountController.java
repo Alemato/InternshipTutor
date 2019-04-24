@@ -1,6 +1,7 @@
 package controller.adm;
 
 import controller.adm.Azienda.ImpostazioniAccountAzienda;
+import controller.adm.Tirocinante.ImpostazioniAccountTirocinante;
 import controller.baseController;
 import dao.exception.DaoException;
 
@@ -21,7 +22,12 @@ public class BackEndImpostazioniAccountController extends baseController {
                 e.printStackTrace();
             }
         }else if (tipo == 2){
-            System.out.println("altro");
+            ImpostazioniAccountTirocinante tr = new ImpostazioniAccountTirocinante(request, response, getServletContext(), datamodel);
+            try {
+                tr.get();
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
         }else{
             response.sendRedirect("/500");
         }
@@ -37,7 +43,12 @@ public class BackEndImpostazioniAccountController extends baseController {
                 e.printStackTrace();
             }
         }else if (tipo == 2){
-            System.out.println("altro");
+            ImpostazioniAccountTirocinante tr = new ImpostazioniAccountTirocinante(request, response, getServletContext(), datamodel);
+            try {
+                tr.post();
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
         }else{
             response.sendRedirect("/500");
         }
