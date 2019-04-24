@@ -52,7 +52,11 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
         TirocinioDaoImp dao = new TirocinioDaoImp();
         Tirocinio tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
-        return (tr.getStato() == 2);
+        if(tr.getPdfSegreteria()!=null){
+            return false;
+        }else {
+            return (tr.getStato() >= 2);
+        }
     }
 
 
@@ -136,9 +140,12 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
         }
 
         if (errori.isEmpty()) {
+            System.out.println("Validazione ok");
             return true;
+
         } else {
             refreshPage(request, response, errori);
+            System.out.println("Validazione ko");
             return false;
         }
     }
@@ -169,6 +176,7 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
 
         datamodel.putAll(Utility.AddAllData(request, response, dati));
         datamodel.putAll(errori);
+        System.out.println("ricarico pagina");
         fillModulo(request, response);
 
     }
@@ -176,7 +184,7 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
     private void storeModulo(HttpServletRequest request, HttpServletResponse response) throws IOException, ServerException, DaoException {
 
         TirocinioDaoImp dao = new TirocinioDaoImp();
-        Tirocinio tirocinio = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("ID")));
+        Tirocinio tirocinio = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
 
         tirocinio.setDataColloquioSegreteria(Date.valueOf(request.getParameter("Data_colloquio")));

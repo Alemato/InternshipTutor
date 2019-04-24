@@ -34,7 +34,7 @@ public class InvalidazioneModuliTirocinio {
         Tirocinio tirocinio = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
         FillGestioniModuliTirocini page = new FillGestioniModuliTirocini(request, response, context, datamodel);
-        if (!tirocinio.getPdfTirocinante().isEmpty()) {
+        if (tirocinio.getPdfTirocinante()!=null) {
 
             tirocinio.setPdfTirocinante(null);
              TirocinioDaoImp dao1= new TirocinioDaoImp();
@@ -56,7 +56,7 @@ public class InvalidazioneModuliTirocinio {
         Tirocinio tirocinio = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
         FillGestioniModuliTirocini page = new FillGestioniModuliTirocini(request, response, context, datamodel);
-        if (!tirocinio.getPdfAzienda().isEmpty()) {
+        if (tirocinio.getPdfAzienda()!=null) {
                 tirocinio.setPdfAzienda(null);
                 TirocinioDaoImp dao1= new TirocinioDaoImp();
                 dao1.updateTirocinio(tirocinio);
