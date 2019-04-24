@@ -52,7 +52,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
 
             this.selectAllTrByTutore = connection.prepareStatement("SELECT * FROM tirocinio WHERE TutoreUniversitario = ?");
 
-            this.ifinsertTirocinio = connection.prepareStatement("SELECT * FROM tirocinio WHERE Tirocinio = ? AND Stato > 2 ");
+            this.ifinsertTirocinio = connection.prepareStatement("SELECT * FROM tirocinio WHERE tirocinante = ? AND Stato < 3");
 
             this.selectAllTirocinioByStato = connection.prepareStatement("SELECT * FROM tirocinio WHERE Stato = ?");
 
@@ -201,9 +201,10 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
 
     public boolean ifTirocinanteSendRichiesta(Tirocinante tr) throws DaoException {
         try {
+            this.init();
             ifinsertTirocinio.setInt(1, tr.getIDTirocinante());
             ResultSet resultSet = ifinsertTirocinio.executeQuery();
-            return !resultSet.next();
+            return resultSet.next();
         } catch (SQLException e) {
             throw new DaoException("Problema data base", e);
         }
@@ -252,7 +253,6 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
             insertRichiestatr.setInt(17, tirocinio.getOffertaTirocinio());
             insertRichiestatr.setInt(18, tirocinio.getTirocinante());
             insertRichiestatr.setInt(19, tirocinio.getTutoreUniversitario());
-            insertRichiestatr.executeUpdate();
             insertRichiestatr.executeUpdate();
 
 
