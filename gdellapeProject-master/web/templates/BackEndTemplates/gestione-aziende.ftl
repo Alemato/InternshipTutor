@@ -71,7 +71,7 @@
                     <i class="fa fa-table"></i> Aziende
                 </div>
                 <div class="card-body">
-                        <table class="table table-striped table-bordered table-hover" id="datatable_aziende" width="100%"
+                        <table class="table table-responsive table-striped table-bordered table-hover" id="datatable_aziende" width="100%"
                                cellspacing="0">
                             <thead>
                             <tr>
@@ -136,6 +136,9 @@
                         </table>
                         <footer class="text-center text-sm-right mt-25 ">
                         </footer>
+
+                    <section class="row text-center placeholders pt-10 mb-10">
+                    </section>
                 </div>
             </div>
 
@@ -161,6 +164,7 @@
         var table = jQuery('#datatable_aziende');
 
         var oTable = table.dataTable({
+            "responsive": true,
             "columns": [{
                 "orderable": true
             }, {
@@ -204,7 +208,8 @@
             }, {
                 "searchable": true,
                 "targets": [0]
-            }],
+            }]
+
         });
 
         var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);

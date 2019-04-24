@@ -25,9 +25,9 @@
     <ol class="breadcrumb">
         <li><a href="admin.html">HOME DASHBOARD</a></li>
         <#if urlpage == "/admin/richisteconvezioni">
-        <li class="active"><a href="/admin/richisteconvezioni"><b>GESTIONE RICHIESTE CONVENZIONE</b></a></li>
-            <#else>
-                <li class="active"><a href="/admin/gestione-convenzione"><b>GESTIONE RICHIESTE CONVENZIONE</b></a></li>
+            <li class="active"><a href="/admin/richisteconvezioni"><b>GESTIONE RICHIESTE CONVENZIONE</b></a></li>
+        <#else>
+            <li class="active"><a href="/admin/gestione-convenzione"><b>GESTIONE RICHIESTE CONVENZIONE</b></a></li>
         </#if>
     </ol>
     <#include "small-navbar.ftl">
@@ -43,41 +43,39 @@
             <noscript>
                 <div class="alert alert-danger mb-10 mt-10">
                     <h3 class="mb-10"><strong>Attenzione!</strong></h3>
-                    <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
+                    <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto
+                        <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
             <h2><i class="fa fa-user"></i>Richieste di Convenzioni Aziendali Pendenti</h2>
             <#if WarningSuccess??>
-                    <div class="alert alert-success mb-20">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Chiudi</span>
-                        </button>
-                        <strong>Attenzione!</strong> ${WarningSuccess}
-                    </div>
-                </#if>
+                <div class="alert alert-success mb-20">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Attenzione!</strong> ${WarningSuccess}
+                </div>
+            </#if>
 
 
-                <#if WarningInsuccess??>
-                    <div class="alert alert-danger mb-20">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Chiudi</span>
-                        </button>
-                        <strong>Attenzione!</strong> ${WarningInsuccess}
-                    </div>
-                </#if>
+            <#if WarningInsuccess??>
+                <div class="alert alert-danger mb-20">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Attenzione!</strong> ${WarningInsuccess}
+                </div>
+            </#if>
 
-            <h3>Lista Richieste</h3>
+            <h3> Lista Richieste</h3>
             <div class="card">
                 <div class="card-header">
                     <i class="fa fa-table"></i> Richieste di Convenzionamento pendenti
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-
-                        <table class="table table-striped table-bordered table-hover" id="datatable_richieste" width="100%"
-                               cellspacing="0">
+                        <table class="table table-responsive table-striped table-bordered table-hover" id="datatable_richieste" width="100%" cellspacing="0">
                             <thead>
                             <tr>
                                 <th>Nome Ente</th>
@@ -92,7 +90,7 @@
                                 <th>Data Richiesta</th>
                                 <th>Visualizza Richiesta</th>
                                 <th>Visualizza PDF</th>
-                                <th>Accetta Richiesta </th>
+                                <th>Accetta Richiesta</th>
                                 <th>Declina richiesta</th>
                             </tr>
                             </thead>
@@ -110,63 +108,58 @@
                                 <th>Data Richiesta</th>
                                 <th>Modulo Richiesta</th>
                                 <th>Visualizza PDF</th>
-                                <th>Accetta Richiesta </th>
+                                <th>Accetta Richiesta</th>
                                 <th>Declina richiesta</th>
                             </tr>
                             </tfoot>
                             <tbody>
-                            <#if AziendaPendenti?has_content>
-                            <#list AziendaPendenti as azienda>
-                                <tr>
+                                <#list AziendaPendenti as azienda>
+                                    <tr>
 
-                                    <td>${azienda.ragioneSociale}</td>
-                                    <td>${azienda.indirizzoSedeLegale}</td>
-                                    <td>${azienda.CFiscalePIva}</td>
-                                    <td>${azienda.nomeLegaleRappresentante}</td>
-                                    <td>${azienda.cognomeLegaleRappresentante}</td>
-                                    <td>${azienda.nomeResponsabileConvenzione}</td>
-                                    <td>${azienda.cognomeResponsabileConvenzione}</td>
-                                    <td>${azienda.telefonoResponsabileConvenzione}</td>
-                                    <td>${azienda.emailResponsabileConvenzione}</td>
+                                        <td>${azienda.ragioneSociale}</td>
+                                        <td>${azienda.indirizzoSedeLegale}</td>
+                                        <td>${azienda.CFiscalePIva}</td>
+                                        <td>${azienda.nomeLegaleRappresentante}</td>
+                                        <td>${azienda.cognomeLegaleRappresentante}</td>
+                                        <td>${azienda.nomeResponsabileConvenzione}</td>
+                                        <td>${azienda.cognomeResponsabileConvenzione}</td>
+                                        <td>${azienda.telefonoResponsabileConvenzione}</td>
+                                        <td>${azienda.emailResponsabileConvenzione}</td>
 
-                                    <td> <#if azienda.pathPDFConvenzione?has_content > ${azienda.dataConvenzione?date?string("yyyy-MM-dd")}
-                                        <#else> convenzione non ancora richiesta </#if></td>
-                                    <td>
-                                        <#if (azienda.pathPDFConvenzione)??> <a type="button" href="/admin/convezione-azienda?page=richieste" class="btn btn-primary"> Visualizza</a>
-                                        <#else>
-                                            <button type="button" class="btn btn-primary" disabled> Non  presente</button>
-                                        </#if>
+                                        <td> <#if azienda.pathPDFConvenzione?has_content > ${azienda.dataConvenzione?date?string("yyyy-MM-dd")}
+                                            <#else> convenzione non ancora richiesta </#if></td>
+                                        <td>
+                                            <#if (azienda.pathPDFConvenzione)??>
+                                                <a type="button" href="/admin/convezione-azienda?page=richieste" class="btn btn-primary">Visualizza</a>
+                                            <#else>
+                                                <button type="button" class="btn btn-primary" disabled> Non presente
+                                                </button>
+                                            </#if>
 
-                                    </td>
-                                    <td>
-                                        <#if (azienda.pathPDFConvenzione)??>     <a type="button" href="/#" class="btn btn-secondary"> Visualizza PDF</a>
-                                        <#else>
-                                            <button type="button" class="btn btn-primary" disabled> PDF non presente</button>
-                                        </#if>
+                                        </td>
+                                        <td>
+                                            <#if (azienda.pathPDFConvenzione)??>
+                                                <a type="button" href="/#" class="btn btn-secondary">Visualizza PDF</a>
+                                            <#else>
+                                                <button type="button" class="btn btn-primary" disabled> PDF non presente
+                                                </button>
+                                            </#if>
 
-                                    </td>
-                                    <td>
-                                        <a  type="button" class="btn btn-success" href="/admin/accetta?IDAzienda=${azienda.IDAzienda}&stato=accetta">Accetta</a>
-                                    </td>
-                                    <td>
-                                        <a  type="button" class="btn btn-danger" href="/admin/accetta?IDAzienda=${azienda.IDAzienda}&stato=declina">Declina</a>
-                                    </td>
-                                </tr>
-                            </#list>
-                            </#if>
-
+                                        </td>
+                                        <td>
+                                            <a type="button" class="btn btn-success"
+                                               href="/admin/accetta?IDAzienda=${azienda.IDAzienda}&stato=accetta">Accetta</a>
+                                        </td>
+                                        <td>
+                                            <a type="button" class="btn btn-danger"
+                                               href="/admin/accetta?IDAzienda=${azienda.IDAzienda}&stato=declina">Declina</a>
+                                        </td>
+                                    </tr>
+                                </#list>
                             </tbody>
                         </table>
-
-                        <footer class="text-center text-sm-right mt-25 ">
-                        </footer>
-                    </div>
                 </div>
             </div>
-
-
-
-
         </main>
     </div>
 </div>
@@ -238,7 +231,7 @@
             }, {
                 "searchable": true,
                 "targets": [0]
-            }],
+            }]
         });
 
         var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);
@@ -246,8 +239,8 @@
         var tableWrapper = jQuery('#datatable_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
-    initTableRichieste();
 
+    initTableRichieste();
 
 
 </script>

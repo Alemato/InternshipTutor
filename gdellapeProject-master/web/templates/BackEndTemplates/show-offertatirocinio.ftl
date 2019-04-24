@@ -191,6 +191,7 @@
                                 ${offerta.codIdentTirocinio}
                             </h4>
                         </div>
+                    </div>
                         <div class="row pl-15 pr-15">
                             <div class="col-12 col-md-7 col-lg-6 mb-sm-5 mb-0">
                                 <h4 class="uppercase testo-chiaro">Settore di Inserimento :</h4>

@@ -32,7 +32,7 @@
 <div class="container">
     <div class="row">
         <div class="d-print-none">
-            <#include "../BackEndTemplates/sidebar.ftl">
+            <#include "sidebar.ftl">
         </div>
         <main class="col-sm-10 offset-sm-1 col-md-11 offset-md-2 pt-3 centra">
                 <div class="container">
@@ -92,8 +92,7 @@
                                         <strong>Attenzione!</strong> ${ErroreNome}
                                     </div>
                                 </#if>
-                                <input class="input-modulo col col-sm-12 col-md pl-0 mb-0" type="text" name="Nome_tirocinante"
-                                       <#if ValueOfNome_tirocinante??> value="${ValueOfNome_tirocinante}"  <#else>  value="${tirocinante.nome}"  </#if> placeholder="Nome del tirocinante">
+                                <input class="input-modulo col col-sm-12 col-md pl-0 mb-0" type="text" name="Nome_tirocinante" <#if ValueOfNome_tirocinante??> value="${ValueOfNome_tirocinante}"  <#else>  value="${tirocinante.nome}"  </#if> placeholder="Nome del tirocinante" />
                             </div>
 
                             <h4 class="col-auto col-sm-auto p-0 fs-20 fw-400 mt-25">Ha svolto il tirocinio con esito </h4>
@@ -106,13 +105,8 @@
                                     <strong>Attenzione!</strong> ${ErroreEsito}
                                 </div>
                             </#if>
-                            <input class="input-modulo col col-sm-12 col-md pl-0 mb-25" type="text" name="Esito_tirocinio" placeholder="Esito del tirocinio"
-                                   <#if ValueOfEsito_tirocinio?? > value="${ValueOfEsito_tirocinio}"  </#if> >
-
-
-
+                            <input class="input-modulo col col-sm-12 col-md pl-0 mb-25" type="text" name="Esito_tirocinio" placeholder="Esito del tirocinio" <#if ValueOfEsito_tirocinio?? > value="${ValueOfEsito_tirocinio}"  </#if> / >
                             <h4 class="d-none d-print-block">Firma del Tutor aziendale</h4>
-
                             <div class="linea col-6 p-0 mt-25 mb-25"></div>
                             <#if ErroreCrediti??>
                                 <div class="alert alert-danger mb-20">
