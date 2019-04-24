@@ -31,7 +31,7 @@ public class SchedaTirocinioController  extends baseController{
 
     private void setpage (HttpServletRequest request){
         try {
-            int Idtrof = Integer.parseInt(request.getParameter("ID"));
+            int Idtrof = Integer.parseInt(request.getParameter("Tirocinio"));
             OffertaTirocinioDaoImp ofdao = new OffertaTirocinioDaoImp();
             OffertaTirocinio oftr = ofdao.getOffertatrByID(Idtrof);
             ofdao.destroy();
