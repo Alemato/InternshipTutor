@@ -46,11 +46,8 @@
                     <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
-            <section class="row text-center placeholders pt-10 pb-10 mb-10">
-            </section>
-            <h2>Richieste di Convenzioni Aziendali Pendenti</h2>
-
-                <#if WarningSuccess??>
+            <h2><i class="fa fa-user"></i>Richieste di Convenzioni Aziendali Pendenti</h2>
+            <#if WarningSuccess??>
                     <div class="alert alert-success mb-20">
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>

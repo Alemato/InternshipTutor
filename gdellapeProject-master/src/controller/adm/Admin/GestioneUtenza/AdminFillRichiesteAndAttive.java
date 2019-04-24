@@ -46,7 +46,7 @@ public class AdminFillRichiesteAndAttive {
 
             datamodel.put("AziendaPendenti", getAziendePendenti());
 
-            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin-dashboard.ftl", datamodel, response, servletContext);
+            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
      }
 
     public void makegetSuccess(String message) throws IOException, ServletException,DaoException {
@@ -55,7 +55,7 @@ public class AdminFillRichiesteAndAttive {
             datamodel.put("WarningSuccess",message);
             datamodel.put("AziendaPendenti", getAziendePendenti());
 
-            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin-dashboard.ftl", datamodel, response, servletContext);
+            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
 
 
     }
@@ -65,7 +65,7 @@ public class AdminFillRichiesteAndAttive {
             datamodel.put("WarningInsuccess",message);
             datamodel.put("AziendaPendenti", getAziendePendenti());
 
-            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin-dashboard.ftl", datamodel, response, servletContext);
+            TemplateController.process("BackEndTemplates/richieste-convenzioni-admin.ftl", datamodel, response, servletContext);
 
 
 

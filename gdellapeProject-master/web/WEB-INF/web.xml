@@ -95,18 +95,6 @@
         <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
 
-
-    <!--<servlet>-->
-    <!--<servlet-name>index</servlet-name>-->
-    <!--<servlet-class>controller.adm.AccountController</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>index</servlet-name>-->
-    <!--<url-pattern>/index</url-pattern>-->
-    <!--<url-pattern>/Account</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-
     <servlet>
         <servlet-name>Home</servlet-name>
         <servlet-class>controller.HomeController</servlet-class>
@@ -556,16 +544,6 @@
         <url-pattern>/admin/accetta</url-pattern>
 
     </servlet-mapping>
-    <!--<servlet>-->
-    <!--<servlet-name>moduloConvAzienda</servlet-name>-->
-    <!--<servlet-class>controller.adm.Azienda.ModuloconvezioneController</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>moduloConvAzienda</servlet-name>-->
-    <!--<url-pattern>/convenzione</url-pattern>-->
-    <!--<url-pattern>/Convenzione</url-pattern>-->
-
-    <!--</servlet-mapping>-->
 
     <servlet>
         <servlet-name>PdfViewProva</servlet-name>
@@ -627,6 +605,45 @@
         <url-pattern>/prova/Pdf</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>PdfAdminRichestaTirocinioController</servlet-name>
+        <servlet-class>controller.adm.Admin.PdfAdminRichiestaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfAdminRichestaTirocinioController</servlet-name>
+        <url-pattern>/admin/modulo/richiesta-tirocinio</url-pattern>
+        <url-pattern>/Admin/Modulo/Richiesta-Tirocinio</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PdfAdminFineTirocinioController</servlet-name>
+        <servlet-class>controller.adm.Admin.PdfAdminFineTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfAdminFineTirocinioController</servlet-name>
+        <url-pattern>/admin/modulo/tirocinio</url-pattern>
+        <url-pattern>/Admin/Modulo/Tirocinio</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PdfAdminSegreteriaController</servlet-name>
+        <servlet-class>controller.adm.Admin.PdfAdminSegreteriaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfAdminSegreteriaController</servlet-name>
+        <url-pattern>/admin/modulo/segreteria</url-pattern>
+        <url-pattern>/Admin/Modulo/Segreteria</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PdfAdminConvenzioneController</servlet-name>
+        <servlet-class>controller.adm.Admin.PdfAdminConvenzioneController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfAdminConvenzioneController</servlet-name>
+        <url-pattern>/admin/modulo/convenzione</url-pattern>
+        <url-pattern>/Admin/Modulo/Convenzione</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>show-tirociante</servlet-name>
@@ -704,16 +721,6 @@
 
     </servlet-mapping>
 
-    <!--<servlet>-->
-    <!--<servlet-name>ModificaOffertaAdmin</servlet-name>-->
-    <!--<servlet-class>controller.adm.Admin.GestioneUtenza.ModificaOffertatrController</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>ModificaOffertaAdmin</servlet-name>-->
-    <!--<url-pattern>/ModificaOfferta</url-pattern>-->
-    <!--<url-pattern>/modificaofferta</url-pattern>-->
-
-    <!--</servlet-mapping>-->
     <servlet>
         <servlet-name>CreaAdmin</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneUtenza.CreateAdminController</servlet-class>
