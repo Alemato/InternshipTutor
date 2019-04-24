@@ -34,7 +34,7 @@
 
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
-            <form id="modulo_richiesta_tirocinante" action="/inviorichiesta" method="post" class="m-0">
+            <form id="modulo_richiesta_tirocinante" action="/inviorichiesta?idOffertaTirocinio=${offertatirocinio.IDOffertaTirocinio}" method="post" class="m-0">
                 <fieldset>
                     <h1 class="text-center fw-100 d-print-none">Controlla i dati, aggiorna quelli mancanti e clicca su invia per inviare la
                         richiesta</h1>
@@ -123,7 +123,7 @@
                             <input type="checkbox" value="<#if ckDottoratoDiRicerca == true>1<#else>0</#if>"  <#if ckDottoratoDiRicerca == true>checked="checked"</#if>>
                             <i></i> Dottorato di ricerca in:
                         </label>
-                        <input class="input-modulo col col-sm pl-0" type="text" name="Dottorato_ricerca"
+                        <input class="input-modulo col col-sm pl-0" type="text" name="Dottorato"
                                value="<#if ckDottoratoDiRicerca == true>${tirocinante.dottoratoDiRicerca}</#if>" placeholder="Dottorato">
                     </div>
 
@@ -144,7 +144,7 @@
                     <label class="checkbox ml-200 mb-25 mr-10">
                         <input type="checkbox" name="Handicap" value="No" <#if handicap == false>checked="checked"</#if>>
                         <i></i> No
-                    </label>
+                    </label><br>
 
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Ente/Azienda ospitante</h4>

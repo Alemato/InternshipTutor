@@ -255,7 +255,7 @@
                 <div class="blog-post-item radius-5 box-white border p-15">
 
 
-                    <h2><a href="/tirocinio?ID=${offerta.IDOffertaTirocinio}" class="uppercase">${offerta.titolo}</a></h2>
+                    <h2><a href="/tirocinio?Tirocinio=${offerta.IDOffertaTirocinio}" class="uppercase">${offerta.titolo}</a></h2>
 
                     <ul class="blog-post-info list-inline">
                         <li>
@@ -278,7 +278,7 @@
                         a:</p>
                     <p><i class="fa fa-info-circle griggio"></i><b> Contatto aziendale:</b> ${offerta.nomeTutoreAziendale} ${offerta.cognomeTutoreAziendale}
                         ${offerta.emailTutoreAziendale}</p>
-                    <a href="/tirocinio?ID=${offerta.IDOffertaTirocinio}" class="btn btn-reveal btn-default b-0 btn-shadow-1">
+                    <a href="/tirocinio?Tirocinio=${offerta.IDOffertaTirocinio}" class="btn btn-reveal btn-default b-0 btn-shadow-1">
                         <i class="fa fa-plus"></i>
                         <span>Leggi di pi&ugrave;</span>
                     </a>

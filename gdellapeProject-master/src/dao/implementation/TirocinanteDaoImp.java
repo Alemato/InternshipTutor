@@ -157,7 +157,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
             updateTirocinante.setBoolean(15, tr.getHandicap());
             updateTirocinante.setInt(16, tr.getUser());
             updateTirocinante.setInt(17, tr.getIDTirocinante());
-            insertTirocinante.executeUpdate();
+            updateTirocinante.executeUpdate();
 
 
         } catch (SQLException e) {

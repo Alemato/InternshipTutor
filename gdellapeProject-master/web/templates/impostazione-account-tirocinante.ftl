@@ -6,9 +6,9 @@
 
 <#include "importCss.ftl">
     <!-- PAGE LEVEL SCRIPTS -->
-    <link href="css/header-1.css" rel="stylesheet" type="text/css"/>
-    <link href="css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
-    <link href="css/internshiptutor.css" rel="stylesheet" type="text/css">
+    <link href="/css/header-1.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/blue.css" rel="stylesheet" type="text/css" id="color_scheme"/>
+    <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -27,7 +27,7 @@
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li>Impostazione acccount</li>
             </ol><!-- /breadcrumbs -->
 
@@ -36,46 +36,177 @@
 
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
-            <form id="form_modifica" action="print.php" method="post" class="sky-form .validate boxed"
+            <#if ModApp??>
+                <div class="alert alert-success mb-30 fs-20">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Congratulazioni! </strong> ${ModApp}
+                </div>
+            </#if>
+            <form id="form_modifica" action="/account/impostazioni" method="post" class="sky-form .validate boxed"
                   novalidate="novalidate">
 
                 <header class="mb-50 fs-50 fw-100 text-center">Aggiorna i tuoi dati</header>
-            <#if Message??>
-            <#include "messaggio-errore.ftl">
-            </#if>
-
                 <div class="header-form"><i class="fa fa-lock"></i> INFORMAZIONI ACCESSO</div>
                 <fieldset name="Accesso">
+                    <#if MesError??>
+                        <div class="alert alert-danger mb-30">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>ERRORE!</strong> ${MesError}
+                        </div>
+                    </#if>
                     <label class="input">
-                        <p> Indirizzo Email</p>
-                        <i class="ico-append giu fa fa-envelope"></i>
-                        <input type="text" placeholder="Indirizzo Email" name="Email" value="${User.email}" required>
-                        <b class="tooltip tooltip-bottom-right">Necessario per verificare il tuo account</b>
+                        <#if MesError??>
+                            <p><em>*</em>&nbsp;Indirizzo Email Attuale</p>
+                            <i class="ico-append giu fa fa-envelope"></i>
+                            <input type="text" class="error" placeholder="Indirizzo Email" name="EmailAttuale" required>
+                            <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
+                        <#else>
+                            <p><em>*</em>&nbsp;Indirizzo Email Attuale</p>
+                            <i class="ico-append giu fa fa-envelope"></i>
+                            <input type="text" placeholder="Indirizzo Email" name="EmailAttuale" required>
+                            <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
+                        </#if>
                     </label>
 
                     <label class="input">
-                        <p> Password</p>
-                        <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password Attuale" name="Password" required>
-                        <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
-                            al tuo account</b>
+                        <#if MesError??>
+                            <p><em>*</em>&nbsp;Password Attuale</p>
+                            <i class="ico-append giu fa fa-lock"></i>
+                            <input type="password" class="error" placeholder="Password Attuale" name="PasswordAttuale"
+                                   required>
+                            <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
+                        <#else>
+                            <p><em>*</em>&nbsp;Password Attuale</p>
+                            <i class="ico-append giu fa fa-lock"></i>
+                            <input type="password" placeholder="Password Attuale" name="PasswordAttuale" required>
+                            <b class="tooltip tooltip-bottom-right">Necessario per garantire la tua identit&agrave;</b>
+                        </#if>
                     </label>
+
+                    <p><em>*</em> Campi necessari per effettuare le modifice</p>
+                    <#if MesErrorEmail??>
+                        <div class="alert alert-danger mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>ERRORE!</strong> ${MesErrorEmail}
+                        </div>
+                    </#if>
+                    <#if MesErrorEmailValidation??>
+                        <div class="alert alert-danger mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>ERRORE!</strong> ${MesErrorEmailValidation}
+                        </div>
+                    </#if>
+                    <#if MesWarningEmail??>
+                        <div class="alert alert-warning mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>Attenzione!</strong> ${MesWarningEmail}
+                        </div>
+                    </#if>
                     <label class="input">
-                        <p> Password</p>
-                        <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password Nuova" name="PasswordNuova" required>
-                        <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
-                            al tuo account</b>
+                        <#if MesErrorEmail??  || MesErrorEmailValidation?? || MesWarningEmail??>
+                            <p> Nuovo Indirizzo Email</p>
+                            <i class="ico-append giu fa fa-envelope"></i>
+                            <input type="text" class="error" placeholder="Indirizzo Email" name="Email">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                        <#else>
+                            <p> Nuovo Indirizzo Email</p>
+                            <i class="ico-append giu fa fa-envelope"></i>
+                            <input type="text" placeholder="Indirizzo Email" name="Email">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                        </#if>
                     </label>
+                    <label class="input mb-30">
+                        <#if MesErrorEmail??  || MesErrorEmailValidation?? || MesWarningEmail??>
+                            <p> Ripeti il nuovo Indirizzo Email</p>
+                            <i class="ico-append giu fa fa-envelope"></i>
+                            <input type="text" class="error" placeholder="Indirizzo Email" name="EmailRipetuta">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                        <#else>
+                            <p> Ripeti il nuovo Indirizzo Email</p>
+                            <i class="ico-append giu fa fa-envelope"></i>
+                            <input type="text" placeholder="Indirizzo Email" name="EmailRipetuta">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login</b>
+                        </#if>
+                    </label>
+                    <#if MesErrorPWD??>
+                        <div class="alert alert-danger mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>ERRORE!</strong> ${MesErrorPWD}
+                        </div>
+                    </#if>
+                    <#if MesErrorValidationPWD??>
+                        <div class="alert alert-danger mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>ERRORE!</strong> ${MesErrorValidationPWD}
+                        </div>
+                    </#if>
+                    <#if MesWarningPWD??>
+                        <div class="alert alert-warning mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>Attenzione!</strong> ${MesWarningPWD}
+                        </div>
+                    </#if>
+
                     <label class="input">
-                        <p> Password</p>
-                        <i class="ico-append giu fa fa-lock"></i>
-                        <input type="password" placeholder="Password Nuova" name="PasswordNuova1" required>
-                        <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
-                            al tuo account</b>
+                        <#if MesErrorPWD??  || MesErrorValidationPWD?? || MesWarningPWD??>
+                            <p>Nuova Password</p>
+                            <i class="ico-append giu fa fa-lock"></i>
+                            <input type="password" class="error" placeholder="Password Nuova" name="Password">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login, Solo caratteri e numeri
+                                latini, necessario per l&apos;accesso
+                                al tuo account</b>
+                        <#else>
+                            <p>Nuova Password</p>
+                            <i class="ico-append giu fa fa-lock"></i>
+                            <input type="password" placeholder="Password Nuova" name="Password">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login, Solo caratteri e numeri
+                                latini, necessario per l&apos;accesso
+                                al tuo account</b>
+                        </#if>
+                    </label>
+
+                    <label class="input">
+                        <#if MesErrorPWD??  || MesErrorValidationPWD?? || MesWarningPWD??>
+                            <p>Ripeti la nuova Password</p>
+                            <i class="ico-append giu fa fa-lock"></i>
+                            <input type="password" class="error" placeholder="Password Nuova" name="PasswordRipetuta">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login, Solo caratteri e numeri latini,
+                                necessario per l&apos;accesso
+                                al tuo account</b>
+                        <#else>
+                            <p>Ripeti la nuova Password</p>
+                            <i class="ico-append giu fa fa-lock"></i>
+                            <input type="password" placeholder="Password Nuova" name="PasswordRipetuta">
+                            <b class="tooltip tooltip-bottom-right">Necessario per il login, Solo caratteri e numeri latini,
+                                necessario per l&apos;accesso
+                                al tuo account</b>
+                        </#if>
                     </label>
                 </fieldset>
-
 
                 <div id="Tirocinante" class="header-form mb-30"><i class="fa fa-user"></i> INFORMAZIONI
                     PERSONALI TIROCINANTE
@@ -120,15 +251,14 @@
                             </label>
                         </div>
 
-
                         <div class="col-md-auto mt-6">
                             <h4>Il: </h4>
                         </div>
 
                         <div class="col">
                             <label class="input">
-                                <input type="date" name="DataNascita" value="${Nascita}" required>
-                                <p>${Nascita}</p>
+                                <input type="date" name="DataNascita" value="${Tirocinante.dataDiNascita}" required>
+                                <p>${Tirocinante.dataDiNascita}</p>
                             </label>
                         </div>
                     </div>
@@ -178,7 +308,7 @@
                             <label class="input mb-20">
                                 <i class="ico-append fa fa-phone"></i>
                                 <input type="text" class="masked" data-format="999-9999999" data-placeholder="XXX-XXXXXXX"
-                                       placeholder="Numero di telefono" name="NumeroTelefono" value="${Tirocinante.telefono}" required>
+                                       placeholder="Numero di telefono" name="Telefono" value="${Tirocinante.telefono}" required>
                             </label>
                         </div>
 
@@ -276,118 +406,14 @@
     </section>
 
     <!-- /FOOTER-->
-    <footer id="footer">
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-3">
-                    <div class="row">
-                        <div class="col-4">
-                            <!-- Footer Logo -->
-                            <img class="footer-logo" src="http://www.disim.univaq.it/didattica/img/logo_univaq.png"
-                                 alt=""/>
-                        </div>
-                        <div class="col-6 text-left py-5p">
-
-                            <!-- Short Description -->
-                            <a href="http://univaq.it">Università degli Studi dell'Aquila</a>
-                        </div>
-                    </div>
-                    <!-- Contact Address -->
-                    <address>
-                        <ul class="list-unstyled">
-                            <li class="footer-sprite address">
-                                67100 L'Aquila, Coppito, Via Vetoio<br>
-                            </li>
-                            <li class="footer-sprite phone">
-                                Phone: +39 0862 433002
-                            </li>
-                            <li class="footer-sprite phone">
-                                Phone: +39 0862 433180 (fax)
-                            </li>
-                            <li class="footer-sprite email">
-                                <a href="mailto:disim.sad@univaq.it">disim.sad@univaq.it</a>
-                            </li>
-                        </ul>
-                    </address>
-                    <!-- /Contact Address -->
-
-                </div>
-
-
-                <div class="col-md-4">
-
-                    <!-- Newsletter Form -->
-                    <h4 class="letter-spacing-1">INTERNSHIP TUTOR</h4>
-                    <p>Internship Tutor rappresenta un sistema web per la gestione dell'iter completo dei tirocini
-                        universitari del degli Studi dell'Aquila.</p>
-                </div>
-
-
-                <div class="col-md-3">
-
-                    <!-- Latest Blog Posts -->
-                    <h4 class="letter-spacing-1">ULTIME OFFERTE PUBLICATE</h4>
-                    <ul class="footer-posts list-unstyled">
-                        <li>
-                            <a href="#">L'azienda PACARO srl, sede di Borgorose (RI), ricerca tirocinanti</a>
-                            <small>29 June 2017</small>
-                        </li>
-                        <li>
-                            <a href="#">Tirocini e stage retributi presso la Gunpowder S.r.l. (Spinoff Univ.
-                                L'Aquila)</a>
-                            <small>29 June 2017</small>
-                        </li>
-                        <li>
-                            <a href="#">Tirocinio presso Aveja</a>
-                            <small>29 June 2017</small>
-                        </li>
-                    </ul>
-                    <!-- /Latest Blog Posts -->
-
-                </div>
-
-                <div class="col-md-2">
-
-                    <!-- Links -->
-                    <h4 class="letter-spacing-1">LINK UTILI</h4>
-                    <ul class="footer-links list-unstyled">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Lista Offerte Tuttoraggi</a></li>
-                        <li><a href="#">Lista Convenzioni</a></li>
-                        <li><a href="#">Contattaci</a></li>
-                        <li><a href="#">Il Mio Accout</a></li>
-                        <li><a href="#">I Miei Tirocini</a></li>
-
-                    </ul>
-                    <!-- /Links -->
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-        <div class="copyright">
-            <div class="container">
-                <ul class="float-right m-0 list-inline mobile-block">
-                    <li><a href="#">Terms & Conditions</a></li>
-                    <li>&bull;</li>
-                    <li><a href="#">Privacy</a></li>
-                </ul>
-                &copy; All Rights Reserved, INTERNSHIP TUTOR
-            </div>
-        </div>
-    </footer>
+    <#include "footer.ftl">
     <!-- /FOOTER -->
 
 </div>
 
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
-<script src="js/internshiptutor.js"></script>
+<script src="/js/internshiptutor.js"></script>
 
 </body>
 </html>

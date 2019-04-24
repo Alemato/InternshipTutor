@@ -26,7 +26,7 @@
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
-                <li><a href="/home">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li>Il mio account</li>
             </ol><!-- /breadcrumbs -->
 
@@ -36,39 +36,26 @@
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
             <div class="row justify-content-between">
-                <div class="col-12 col-lg-4 mb-15">
-                <a href="impostazionetirocinante">
-                    <div class="account-settings-item account-settings d-flex">
-                        <img src="/imgs/sign-in-lock.png" class="h-90 float-left m-0">
+                <a class="account-settings-item account-settings mb-15 mr-25 col-12 col-lg-5 ml-lg-5" href="/account/impostazioni">
+                    <div class="d-flex">
+                        <img src="/imgs/sign-in-lock.png" class="h-95 w-95 float-left m-0">
                         <div class="ml-10 mt-5 float-right">
                             <h4 class="Raleway text-uppercase fw-700 mb-5">Impostazioni Accout</h4>
                             <h6>Modifica il login, il nome e la password e tutti i tuo dati.</h6>
                         </div>
                     </div>
                 </a>
-                </div>
-                <div class="col-12 col-lg-4 mb-15">
-                <a href="tirocinio-tirocinante.html">
-                    <div class="account-settings account-settings-item d-flex">
-                        <img src="/imgs/internship-icon.png" class="h-90 w-90 float-left">
+
+                <a class="account-settings account-settings-item mb-25 col-12 col-lg-5 mr-lg-5"  href="/account/moduli">
+                    <div class="d-flex">
+                        <img src="/imgs/internship-icon.png" class="h-85 w-85 float-left">
                         <div class="ml-10 mt-5 float-right">
-                            <h4 class="Raleway text-uppercase fw-700 mb-5">Gestione Tirocinio</h4>
-                            <h6>Gestione, visualizzazione stato richiesta del tirocinio scelto.</h6>
+                            <h4 class="Raleway text-uppercase fw-700 mb-5">Gestione Tirocini</h4>
+                            <h6>Gestione, visualizzazione stato richiesta dei.</h6>
                         </div>
                     </div>
                 </a>
-                </div>
-                <div class="col-12 col-lg-4 mb-15">
-                <a href="moduli-tirocinante.html">
-                    <div class="account-settings account-settings-item d-flex">
-                        <img src="/imgs/forms.png" class="h-90 float-left mb-5 mr-10">
-                        <div class="ml-10 mt-5 float-right">
-                            <h4 class="Raleway text-uppercase fw-700 mb-5">Modulistica</h4>
-                            <h6>Richiedi e visualizza i moduli necessari per iter burocratico</h6>
-                        </div>
-                    </div>
-                </a>
-                </div>
+
             </div>
         </div>
     </section>

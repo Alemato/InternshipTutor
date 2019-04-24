@@ -8,7 +8,7 @@
     <#include "importCss.ftl">
 
     <!-- CSS DATATABLES -->
-    <link href="../css/layout-datatables.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body class="smoothscroll enable-animation">
@@ -21,13 +21,13 @@
 
         <div class="container">
 
-            <h1>MODULI</h1>
+            <h1>TIROCINI E MODULI</h1>
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
                 <li><a href="/">Home</a></li>
                 <li><a href="/account">Il Mio Account</a></li>
-                <li>Moduli Disponibili</li>
+                <li>Tirocini e Moduli</li>
             </ol><!-- /breadcrumbs -->
 
         </div>
@@ -35,126 +35,88 @@
 
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
-            <h1 class="mb-0">MODULO PER LA CONVENZIONE</h1>
+            <h1 class="mb-0">TIROCINI E MODULI</h1>
             <div class="linea-divisione mt-15 mb-30"></div>
-            <div class="table-responsive mb-30">
-                <table class="table table-bordered g-white bg-white text-center border">
-                    <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Tipologia</th>
-                        <th>Data Convenzione</th>
-                        <#if GiorniScadenza??>
-                            <th>Gironi alla Scadenza</th>
-                        </#if>
-                        <th>Data Creazione</th>
-                        <th>Data Aggiornamento</th>
-                        <#if ConvenzioneScaduta>
-                            <th>Aggiorna Convenzione</th>
-                        <#else>
-                            <th>Stampa Modulo</th>
-                        </#if>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>CONVENZIONE PER LO SVOLGIMENTO DI ATTIVITA&apos; DI TIROCINIO E DI ORIENTAMENTO</td>
-                        <td>CONVENZIONE</td>
-
-                        <td>${DataConvenzione?date?string.short}</td>
-                        <#if GiorniScadenza??>
-                            <#if GiorniScadenza gt 1 >
-                                <td>${GiorniScadenza} giorni</td>
-                            <#else>
-                                <td>${GiorniScadenza} giorno</td>
-                            </#if>
-                        </#if>
-                        <td>${DataCreate?date?string.short}</td>
-                        <td>${DataUpdate?date?string.short}</td>
-                        <#if ConvenzioneScaduta>
-                            <td><a href="/account/moduli/covenzione">
-                                    <button type="button" class="btn btn-outline-danger"><i class="fa fa-file"></i>Aggiorna
-                                        Modulo
-                                    </button>
-                                </a></td>
-                        <#else>
-                            <td><a href="/account/moduli/covenzione">
-                                    <button type="button" class="btn btn-outline-success"><i class="fa fa-print"></i>Stampa
-                                        Modulo
-                                    </button>
-                                </a></td>
-                        </#if>
-
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h1 class="mb-0">MODULI TIROCINI SVOLTI</h1>
-            <div class="linea-divisione mt-15 mb-30"></div>
-            <form id="form_tirocinii_fine" action="/account/moduli" method="post">
+            <#--<form id="form_tirocinii_fine" action="/account/moduli" method="post">-->
                 <table class="table table-responsive table-striped table-bordered bg-white table-hover border"
                        id="datatable_2" width="100%"
                        cellspacing="0">
                     <thead>
                     <tr>
-                        <th>Azienda Ospitante</th>
-                        <th>Stato Richiesta</th>
-                        <th>Numero Ore</th>
-                        <th>Inizio Tirocinio</th>
-                        <th>Fine Tirocinio</th>
+                        <th>Azienda</th>
+                        <th>Inizio</th>
+                        <th>Fine</th>
                         <th>Tutore Aziendale</th>
                         <th>Tutore Universitario</th>
-                        <th>Stampa Modulo</th>
+                        <th>Stato Richiesta</th>
+                        <th>Modulo</th>
+                        <th>Tirocinio</th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th>Azienda Ospitante</th>
-                        <th>Stato Richiesta</th>
-                        <th>Numero Ore</th>
-                        <th>Inizio Tirocinio</th>
-                        <th>Fine Tirocinio</th>
-                        <th>Tutore Aziendale</th>
-                        <th>Tutore Universitario</th>
-                        <th>Stampa Modulo</th>
-                    </tr>
-                    </tfoot>
-                    <tbody>
-                    <#list ritornaListaOff as ritornaListaOff>
-                        <tr>
-                            <td>${ritornaListaOff.aziendaOspitante}</td>
-                            <#--TODO Stato del tirocinio-->
-                            <#--<td>${ritornaListaOff.}</td>-->
-                            <td>${ritornaListaOff.durataOra}</td>
-                            <td>${ritornaListaOff.periodoInizio}</td>
-                            <td>${ritornaListaOff.periodoFine}</td>
-                            <td>${ritornaListaOff.nomeTutoreAziendale} ${ritornaListaOff.cognomeTutoreAziendale}</td>
 
-                            <#--TODO Nome e Cognome Tutore Universitario-->
-                            <#--<td>${ritornaListaOff.}</td>-->
-                            <#--<td>${ritornaListaOff.}</td>-->
-                            <td><a href="#">
+                    <tbody>
+                    <#list lista as lista>
+                        <tr>
+                            <td>${lista.offertaTirocinio.aziendaOspitante}</td>
+                            <#if lista.tirocinio.periodoEffettivoIniziale??>
+                            <td>${lista.tirocinio.periodoEffettivoIniziale}</td>
+                            <#else>
+                            <td>${lista.offertaTirocinio.periodoInizio}</td>
+                            </#if>
+                            <#if lista.tirocinio.periodoEffettivoFinale??>
+                            <td>${lista.tirocinio.periodoEffettivoFinale}</td>
+                            <#else>
+                            <td>${lista.offertaTirocinio.periodoFine}</td>
+                            </#if>
+                            <td>${lista.offertaTirocinio.nomeTutoreAziendale} ${lista.offertaTirocinio.cognomeTutoreAziendale}</td>
+                            <td>${lista.tutoreUniversitario.nome} ${lista.tutoreUniversitario.cognome}</td>
+                            <#if lista.tirocinio.stato == 0>
+                                <td>Richiesta inoltrata</td>
+                            <#elseif lista.tirocinio.stato == 1>
+                                <td>Richiesta accettata</td>
+                            <#elseif lista.tirocinio.stato == 2>
+                                <td>Tirocinio Terminato</td>
+                            <#elseif lista.tirocinio.stato == 3 || lista.tirocinio.stato == 4>
+                                <td>Tirocinio Concluso</td>
+                            <#elseif lista.tirocinio.stato == 5>
+                                <td>Tirocinio Rifiutato</td>
+                            </#if>
+                            <#if lista.tirocinio.stato == 0>
+                                <td>In attesa di approvazione del Tirocinio</td>
+                            <#elseif lista.tirocinio.stato == 1>
+                                <td>
+                                    <a href="/account/moduloTirocinioTirocinante?idTirocinio=${lista.tirocinio.IDTirocinio}">
+                                        <button type="button" class="btn btn-outline-success"><i
+                                                    class="fa fa-print"></i>Stampa Modulo
+                                        </button>
+                                    </a>
+                                </td>
+                            <#else>
+                                <td>Modulo gi&agrave; stampato</td>
+                            </#if>
+                            <td>
+                                <a href="/gestioneTirocinioScelto?idTirocinio=${lista.tirocinio.IDTirocinio}">
                                     <button type="button" class="btn btn-outline-success"><i
-                                                class="fa fa-print"></i>Stampa Modulo
+                                                class="fa fa-plus"></i>Dettagli
                                     </button>
                                 </a>
+                            </td>
                         </tr>
                     </#list>
                     </tbody>
                 </table>
 
-                <footer class="text-center text-sm-right mt-25 ">
-                    <button type="submit" form="form_tirocinii_fine"
-                            class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
-                                class="fa fa-check"></i> Aggiorna
-                    </button>
-                    <button type="reset" form="form_tirocinii_fine"
-                            class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
-                                class="fa fa-times"></i> Annulla
-                    </button>
-                </footer>
-            </form>
+                <#--<footer class="text-center text-sm-right mt-25 ">-->
+                    <#--<button type="submit" form="form_tirocinii_fine"-->
+                            <#--class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i-->
+                                <#--class="fa fa-check"></i> Aggiorna-->
+                    <#--</button>-->
+                    <#--<button type="reset" form="form_tirocinii_fine"-->
+                            <#--class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i-->
+                                <#--class="fa fa-times"></i> Annulla-->
+                    <#--</button>-->
+                <#--</footer>-->
+            <#--</form>-->
 
     </section>
 

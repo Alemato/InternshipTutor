@@ -12,7 +12,7 @@ import model.Tirocinante;
 import model.User;
 import view.TemplateController;
 
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +30,6 @@ public class LoginController extends HttpServlet {
     protected Map<String, Object> datamodel = new HashMap<>();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        TODO Controllo sulla login e sulla registrazione se un utente è già loggato
         try {
             this.login(request, response);
         } catch (DaoException e) {
@@ -49,7 +48,6 @@ public class LoginController extends HttpServlet {
     private String urlRIC(HttpServletRequest request) {
         String url = (String) request.getSession().getAttribute("URI");
         System.out.println("URI: " + url);
-        request.getSession(false).invalidate();
         return url;
     }
 

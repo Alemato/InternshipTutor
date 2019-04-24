@@ -15,7 +15,7 @@
 
                             <#if accountLogged=="Azienda" || accountLogged=="Tirocininate" >
                             <ul class="dropdown-menu float-right has-topBar">
-                                <a tabindex="-1"<#if accountLogged=="Azienda">href="/account/gestione-offerte"<#elseif accountLogged=="Tirocininate">href="/account"</#if>><i class="fa fa-history"></i> I MIEI TIROCINI</a></li>
+                                <a tabindex="-1"<#if accountLogged=="Azienda">href="/account/gestione-offerte"<#elseif accountLogged=="Tirocininate">href="/account/moduli"</#if>><i class="fa fa-history"></i> I MIEI TIROCINI</a></li>
                                 <li class="divider"></li>
                                 <li><a tabindex="-1" href="/account/impostazioni"><i class="fa fa-cog"></i> IMPOSTAZIONI
                                     DELL'ACCOUNT </a></li>

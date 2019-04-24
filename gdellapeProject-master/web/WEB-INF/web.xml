@@ -111,8 +111,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Tirocinio</servlet-name>
-        <url-pattern>/Tirocinio</url-pattern>
         <url-pattern>/tirocinio</url-pattern>
+        <url-pattern>/account/tirocinio</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -342,7 +342,7 @@
     <servlet-mapping>
         <servlet-name>sceltaRichiesta</servlet-name>
         <url-pattern>/sceltarichiesta</url-pattern>
-        <url-pattern>/SceltaRichiesta</url-pattern>
+        <url-pattern>/account/SceltaRichiesta</url-pattern>
 
     </servlet-mapping>
 
@@ -354,6 +354,28 @@
         <servlet-name>invioRichiesta</servlet-name>
         <url-pattern>/inviorichiesta</url-pattern>
         <url-pattern>/InvioRichiesta</url-pattern>
+
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>gestioneTirocinioScelto</servlet-name>
+        <servlet-class>controller.adm.Tirocinante.GestioneDettagliTirocinio</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>gestioneTirocinioScelto</servlet-name>
+        <url-pattern>/gestioneTirocinioScelto</url-pattern>
+        <url-pattern>/GestioneTirocinioScelto</url-pattern>
+
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>moduloTirocinioTirocinante</servlet-name>
+        <servlet-class>controller.adm.Tirocinante.ModuloTirocinioTirocinanteController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>moduloTirocinioTirocinante</servlet-name>
+        <url-pattern>/account/moduloTirocinioTirocinante</url-pattern>
+        <url-pattern>/account/ModuloTirocinioTirocinante</url-pattern>
 
     </servlet-mapping>
 

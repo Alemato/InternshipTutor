@@ -24,10 +24,13 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
     private void Richiesta(HttpServletRequest request, HttpServletResponse response) throws IOException {
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (!(session.isValidSession(request))) {
+            System.out.println("sessione non valida, quindi la creo");
             creoSessione(request, response);
         } else if (session.isTirocinante(request)) {
+            System.out.println("sessione validae di tipo Tirocinante");
             ifsend(request, response);
         } else {
+
             response.sendRedirect("/404");
         }
 
@@ -35,6 +38,7 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
 
     private void ifsend(HttpServletRequest request, HttpServletResponse response) {
         try {
+            System.out.println("sono nel metodo ifSend");
             SingSessionContoller session = SingSessionContoller.getInstance();
             Tirocinante tr = session.getTirocinate(request, response);
             TirocinioDaoImp dao = new TirocinioDaoImp();
@@ -42,11 +46,12 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
             System.out.println(status);
             if (!status) {
                 System.out.println("non hai richieste pendenti o attive");
-                response.sendRedirect("/inviorichiesta");
+                String idOfferta = request.getParameter("Tirocinio");
+                response.sendRedirect("/inviorichiesta?Tirocinio=" + idOfferta);
 
             } else {
                 String idOfferta = request.getParameter("Tirocinio");
-                response.sendRedirect("/Tirocinio?ID=" + idOfferta);
+                response.sendRedirect("/tirocinio?Tirocinio=" + idOfferta);
             }
         } catch (Exception e) {
             e.printStackTrace();

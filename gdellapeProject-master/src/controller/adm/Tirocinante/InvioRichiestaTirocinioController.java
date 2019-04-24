@@ -6,8 +6,6 @@ import dao.implementation.*;
 import model.*;
 import view.TemplateController;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,11 +18,7 @@ import java.util.List;
 
 public class InvioRichiestaTirocinioController extends BackEndTrController {
 
-    private void fillModulo(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException ,ServletException{
-        SingSessionContoller session = SingSessionContoller.getInstance();
-        Tirocinante tirocinante = session.getTirocinate(request, response);
-
-
+    private void fillModulo(HttpServletRequest request, Tirocinante tirocinante) throws DaoException {
         Date dataDiNascita = tirocinante.getDataDiNascita();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String stringaDataDiNascita = df.format(dataDiNascita);
@@ -57,7 +51,16 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
             ckScuolaAltro = true;
         }
 
-        int idOffertaTirocinio = (int) request.getSession().getAttribute("Tirocinio");
+        int idOffertaTirocinio;
+
+        if (request.getSession().getAttribute("Tirocinio") != null) {
+            idOffertaTirocinio = (int) request.getSession().getAttribute("Tirocinio");
+        }
+
+        else {
+            idOffertaTirocinio = Integer.parseInt(request.getParameter("Tirocinio"));
+        }
+
         OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
         OffertaTirocinio offertaTirocinio = offertaTirocinioDaoImp.getOffertatrByID(idOffertaTirocinio);
         offertaTirocinioDaoImp.destroy();
@@ -89,9 +92,8 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
 
     }
 
-    private Tirocinante controlloCampiTirocinante(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException ,ServletException{
-        SingSessionContoller session = SingSessionContoller.getInstance();
-        Tirocinante tirocinante = session.getTirocinate(request, response);
+    private void controlloCampiTirocinante(HttpServletRequest request, Tirocinante tirocinante) throws ParseException {
+
         String[] nominativo;
         String delimiter = " ";
         nominativo = request.getParameter("Nominativo").split(delimiter);
@@ -108,8 +110,8 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
         if (!(request.getParameter("ProvinciaDiNascita").equals(tirocinante.getProvinciaDiNascita())))
             tirocinante.setProvinciaDiNascita(request.getParameter("LuogoDiNnascita"));
 
-        String stringDataDiNascita = request.getParameter("GiornoDiNascita") + "/" +
-                request.getParameter("MeseDiNascita") + "/" +
+        String stringDataDiNascita = request.getParameter("GiornoDiNascita") + "-" +
+                request.getParameter("MeseDiNascita") + "-" +
                 request.getParameter("AnnoDiNascita");
         SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
         Date dataDiNascita = format.parse(stringDataDiNascita);
@@ -170,8 +172,6 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
             handicap = true;
         if (handicap != tirocinante.getHandicap())
             tirocinante.setHandicap(handicap);
-
-        return tirocinante;
     }
 
 
@@ -181,25 +181,34 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
         tirocinanteDaoImp.destroy();
     }
 
-    private void creoTirocinio(HttpServletRequest request, HttpServletResponse response) throws IOException, DaoException, ServletException {
+    private void creoTirocinio(HttpServletRequest request, Tirocinante tirocinante) throws DaoException {
         TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
         Tirocinio tirocinio = new Tirocinio();
 
-        SingSessionContoller session = SingSessionContoller.getInstance();
-        Tirocinante tirocinante = session.getTirocinate(request, response);
-
         tirocinio.setDurataOre(Integer.parseInt(request.getParameter("NumeroOreTirocinio")));
         tirocinio.setCFU(Integer.parseInt(request.getParameter("NumeroCfu")));
-        tirocinio.setOffertaTirocinio((int) request.getSession().getAttribute("Tirocinio"));
+        System.out.println("CFU");
+        System.out.println(tirocinio.getCFU());
+
+        if (request.getSession().getAttribute("Tirocinio") != null) {
+            tirocinio.setOffertaTirocinio((int) request.getSession().getAttribute("Tirocinio"));
+        }
+        else {
+            tirocinio.setOffertaTirocinio(Integer.parseInt(request.getParameter("idOffertaTirocinio")));
+        }
         tirocinio.setTirocinante(tirocinante.getIDTirocinante());
-        TutoreUniversitario tutoreUniversitario;
-        if (request.getParameter("TutoreUniversitario").equals("NEW")){
+        TutoreUniversitario tutoreUniversitario = new TutoreUniversitario();
+        if (request.getParameter("TutoreUniversitario").equals("NEW")) {
             tutoreUniversitario = creoTutoreUniversitario(request);
             tirocinio.setTutoreUniversitario(tutoreUniversitario.getIDTutoreUni());
-        }else{
+        } else {
             tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
         }
+        if (request.getParameter("TutoreUniversitario").equals("NEW")) {
+            tirocinio.setTutoreUniversitario(tutoreUniversitario.getIDTutoreUni());
+        } else {
             tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
+        }
         tirocinioDaoImp.setRichiestatr(tirocinio);
         tirocinioDaoImp.destroy();
     }
@@ -219,8 +228,11 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
+        SingSessionContoller session = SingSessionContoller.getInstance();
+        Tirocinante tirocinante = session.getTirocinate(request, response);
         try {
-            fillModulo(request, response);
+
+            fillModulo(request, tirocinante);
             TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
         } catch (DaoException e) {
             e.printStackTrace();
@@ -230,13 +242,13 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
-
+        SingSessionContoller session = SingSessionContoller.getInstance();
+        Tirocinante tirocinante = session.getTirocinate(request, response);
         try {
-            Tirocinante tirocinante = controlloCampiTirocinante(request, response);
+            controlloCampiTirocinante(request, tirocinante);
             aggiornoTirocinante(tirocinante);
-            creoTirocinio(request,response);
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/account/moduli");
-            dispatcher.forward(request, response);
+            creoTirocinio(request, tirocinante);
+            response.sendRedirect("/account/moduli");
 
         } catch (ParseException | DaoException e) {
             e.printStackTrace();
