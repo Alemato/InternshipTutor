@@ -54,7 +54,7 @@ public class Tirocinio {
         this.DataConsegnaModuloSegreteria = null;
         this.DataColloquioSegreteria =null;
         this.EsitoTirocinio =null;
-        this.CreditiRiconosciuti =null;
+        this.CreditiRiconosciuti = 0;
         this.CreateDate = null;
         this.UpdateDate = null;
         this.OffertaTirocinio = 0;
