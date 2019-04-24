@@ -187,6 +187,8 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
 
         tirocinio.setDurataOre(Integer.parseInt(request.getParameter("NumeroOreTirocinio")));
         tirocinio.setCFU(Integer.parseInt(request.getParameter("NumeroCfu")));
+        System.out.println("CFU");
+        System.out.println(tirocinio.getCFU());
 
         if (request.getSession().getAttribute("Tirocinio") != null) {
             tirocinio.setOffertaTirocinio((int) request.getSession().getAttribute("Tirocinio"));
