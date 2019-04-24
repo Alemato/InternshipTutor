@@ -1,7 +1,9 @@
 package controller.adm;
 
 import controller.adm.Azienda.GestioneModuliAzienda;
+import controller.adm.Tirocinante.GestioneModuliTirocinante;
 import controller.baseController;
+import dao.exception.DaoException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +21,13 @@ public class BackEndModuliController extends baseController {
             moduliaz.get();
             System.out.println("getttato");
 
+        }else if (tipo == 2){
+            GestioneModuliTirocinante moduliTir = new GestioneModuliTirocinante(datamodel, request, response, getServletContext());
+            try {
+                moduliTir.get();
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -29,6 +38,14 @@ public class BackEndModuliController extends baseController {
             System.out.println("Devo entra dentro la pagina del azienda");
             GestioneModuliAzienda moduliaz = new GestioneModuliAzienda(datamodel, request, response, getServletContext());
             moduliaz.post();
+
+        }else if (tipo == 2){
+            GestioneModuliTirocinante moduliTir = new GestioneModuliTirocinante(datamodel, request, response, getServletContext());
+            try {
+                moduliTir.post();
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
