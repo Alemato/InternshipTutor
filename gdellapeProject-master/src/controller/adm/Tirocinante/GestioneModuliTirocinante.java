@@ -11,7 +11,6 @@ import model.*;
 import view.TemplateController;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -32,7 +31,7 @@ public class GestioneModuliTirocinante {
         this.tirocinante = null;
     }
 
-    private void ritornaTirocinate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void ritornaTirocinate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         SingSessionContoller session = SingSessionContoller.getInstance();
         this.tirocinante = session.getTirocinate(request, response);
     }
@@ -69,8 +68,8 @@ public class GestioneModuliTirocinante {
 
     private void fillDatamodel(List<TutoreUniversitario> tutoriUniversitari, List<OffertaTirocinio> offerteTirocini, List<Tirocinio> tirocini) {
         List<Object> lista = new ArrayList<>();
-        int idOfferta = 0;
-        int idTutoreUniversitario = 0;
+        int idOfferta;
+        int idTutoreUniversitario;
         for (Tirocinio tirocinio : tirocini) {
             Map<String, Object> mappa = new HashMap<>();
             idOfferta = tirocinio.getOffertaTirocinio();
@@ -95,7 +94,7 @@ public class GestioneModuliTirocinante {
         datamodel.put("lista", lista);
     }
 
-    public void get() throws IOException, DaoException,ServletException {
+    public void get() throws IOException, DaoException {
         ritornaTirocinate(request, response);
 
         System.out.println("ID del Tirocinante nella gestione moduli");
