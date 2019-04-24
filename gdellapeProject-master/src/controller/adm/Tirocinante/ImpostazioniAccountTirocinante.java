@@ -1,23 +1,24 @@
 package controller.adm.Tirocinante;
 
 import controller.sessionController.SingSessionContoller;
+import controller.utility.SecurityHash;
 import dao.exception.DaoException;
+import dao.implementation.TirocinanteDaoImp;
+import dao.implementation.TirocinioDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Tirocinante;
 import model.User;
 import org.unbescape.html.HtmlEscape;
 import view.TemplateController;
 
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 import java.sql.Date;
 
+import static controller.utility.Validation.isValidEmailAddress;
 
 public class ImpostazioniAccountTirocinante {
     protected Map<String, Object> datamodel;
@@ -28,6 +29,7 @@ public class ImpostazioniAccountTirocinante {
     protected User user;
     private Boolean modificato;
     private Boolean sessionescaduta;
+    private Boolean errori;
 
     public ImpostazioniAccountTirocinante (HttpServletRequest request, HttpServletResponse response, ServletContext context, Map<String, Object> datamodel){
         this.request = request;
@@ -38,9 +40,10 @@ public class ImpostazioniAccountTirocinante {
         this.user = null;
         this.modificato = false;
         this.sessionescaduta = false;
+        this.errori = false;
     }
 
-    private Tirocinante ritornaTirocinante(SingSessionContoller session, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private Tirocinante ritornaTirocinante(SingSessionContoller session, HttpServletRequest request, HttpServletResponse response) throws IOException {
         return session.getTirocinate(request,response);
     }
 
@@ -52,11 +55,19 @@ public class ImpostazioniAccountTirocinante {
     }
 
     private void checkSessioneAndModifica(){
-        if(!modificato || !sessionescaduta) {
+        if((!errori && !modificato) || (!errori && !sessionescaduta)) {
             this.modificato = true;
             this.sessionescaduta = true;
         }
     }
+
+    private void chekErrori(){
+        if(!errori){
+            this.errori = true;
+            this.modificato = false;
+        }
+    }
+
 
 
     private void scaricaDatiTirocinanteDB( User user, Tirocinante tirocinante){
@@ -65,22 +76,22 @@ public class ImpostazioniAccountTirocinante {
 
     }
 
-    private void creaOggetti() throws IOException, DaoException,ServletException {
+    private void creaOggetti() throws IOException, DaoException {
         SingSessionContoller session = SingSessionContoller.getInstance();
         this.tirocinante = ritornaTirocinante(session, request, response);
         this.user = ritornUser(tirocinante);
     }
 
-    private static boolean isValidEmailAddress(String email) {
-        boolean result = true;
-        try {
-            InternetAddress emailAddr = new InternetAddress(email);
-            emailAddr.validate();
-        } catch (AddressException ex) {
-            result = false;
-        }
-        return result;
-    }
+//    private static boolean isValidEmailAddress(String email) {
+//        boolean result = true;
+//        try {
+//            InternetAddress emailAddr = new InternetAddress(email);
+//            emailAddr.validate();
+//        } catch (AddressException ex) {
+//            result = false;
+//        }
+//        return result;
+//    }
 
     private void changeEmilTir(String email, String emailRipetuta){
         System.out.println("le email inserite sono " + email + " " + emailRipetuta);
@@ -100,21 +111,27 @@ public class ImpostazioniAccountTirocinante {
                 System.out.println("l'email non è valida");
                 String messaggio = HtmlEscape.escapeHtml5("l'email non è valida");
                 datamodel.put("MesErrorEmailValidation", messaggio);
+                chekErrori();
             }
         } else{
             System.out.println("l'email nuova non coincide con l'altra");
             String messaggio = HtmlEscape.escapeHtml5("l'email nuova non coincide con l'altra");
             datamodel.put("MesErrorEmail", messaggio);
+            chekErrori();
         }
     }
 
+
     private void changePasswordTir(String password, String passwordRipetuta, String passwordAttuale){
         System.out.println("le pwd inserite sono " + password + " " + passwordRipetuta);
-        String passwordAttualeDB = user.getPassword();
-        if (passwordAttualeDB.equals(passwordAttuale)){
+        //String passwordAttualeDB = user.getPassword();
+        //if (passwordAttualeDB.equals(passwordAttuale)){
+        if(SecurityHash.equals(passwordAttuale, user)){
             if(password.equals(passwordRipetuta)) {
-                if (!passwordAttualeDB.equals(password)){
-                    user.setEmail(password); // setto la nuova password
+                //if (!passwordAttualeDB.equals(password)){
+                if(!SecurityHash.equals(password, user)){
+                    //user.setEmail(password); // setto la nuova password
+                    user.setPassword(SecurityHash.SetHash(password));
                     System.out.println("Modifico la password");
                     checkSessioneAndModifica(); // cambio le flag
                 }else {
@@ -134,61 +151,13 @@ public class ImpostazioniAccountTirocinante {
             datamodel.put("MesErrorValidationPWD", messaggio);
         }
     }
-    //TODO tirocinantemod per aggiornare il db
 
-    private void updateTirocinante(Tirocinante tirocinante) {
+    private void updateTirocinante(Tirocinante tirocinante) throws DaoException {
         User userAttuale = user;
         String passwordAttuale;
         String emailAttuale;
-        Tirocinante tirocinanteMod = new Tirocinante();
+        Tirocinante tirocinanteMod;
         tirocinanteMod = tirocinante;
-
-        if (!(request.getParameter("Nome").isEmpty())){
-            tirocinanteMod.setNome(request.getParameter("Nome"));
-        }
-
-        if (!(request.getParameter("Cognome").isEmpty())){
-            tirocinanteMod.setCognome(request.getParameter("Cognome"));
-        }
-
-        if (!(request.getParameter("LuogoNascita").isEmpty())){
-            tirocinanteMod.setLuogoDiNascita(request.getParameter("LuogoNascita"));
-        }
-
-        if (!(request.getParameter("ProvinciaNascita").isEmpty())){
-            tirocinanteMod.setProvinciaDiNascita(request.getParameter("ProvinciaNascita"));
-        }
-
-        if (!(request.getParameter("luogoDiResidenza").isEmpty())){
-            tirocinanteMod.setLuogoDiResidenza(request.getParameter("luogoDiResidenza"));
-        }
-
-        if (!(request.getParameter("provinciaDiResidenza").isEmpty())){
-            tirocinanteMod.setProvinciaDiResidenza(request.getParameter("provinciaDiResidenza"));
-        }
-
-        if (!(request.getParameter("codiceFiscale").isEmpty())){
-            tirocinanteMod.setCodiceFiscale(request.getParameter("codiceFiscale"));
-        }
-
-        if (!(request.getParameter("telefono").isEmpty())){
-            tirocinanteMod.setTelefono(request.getParameter("telefono"));
-        }
-
-        if (!(request.getParameter("Nascita").isEmpty())){
-            tirocinanteMod.setDataDiNascita(Date.valueOf(request.getParameter("Nascita")));
-        }
-
-        if (!(request.getParameter("StudenteCorsoLaurea").isEmpty())){
-            tirocinanteMod.setCorsoDiLaurea(request.getParameter("StudenteCorsoLaurea"));
-        }
-
-        if (!(request.getParameter("handicap").isEmpty())){
-            if (request.getParameter("handicap").equals("Si"))
-                tirocinanteMod.setHandicap(true);
-            else if (request.getParameter("handicap").equals("No"))
-                tirocinante.setHandicap(false);
-        }
 
         if (request.getParameter("EmailAttuale").isEmpty() || request.getParameter("PasswordAttuale").isEmpty()){
             System.out.println("Modifiche non consentite, manchano l'email o la password");
@@ -197,8 +166,8 @@ public class ImpostazioniAccountTirocinante {
         }else {
             emailAttuale = request.getParameter("EmailAttuale");
             passwordAttuale = request.getParameter("PasswordAttuale");
-            if(emailAttuale.equals(userAttuale.getEmail()) && passwordAttuale.equals(userAttuale.getPassword())){
-
+            //if(emailAttuale.equals(userAttuale.getEmail()) && passwordAttuale.equals(userAttuale.getPassword())){
+            if(emailAttuale.equals(userAttuale.getEmail()) && SecurityHash.equals(passwordAttuale, userAttuale)){
                 if(!request.getParameter("Email").isEmpty() && !request.getParameter("EmailRipetuta").isEmpty()) {
                     changeEmilTir(request.getParameter("Email"), request.getParameter("EmailRipetuta"));
                 }
@@ -220,22 +189,112 @@ public class ImpostazioniAccountTirocinante {
                 }
 
 
+                if (!(request.getParameter("Nome").isEmpty())){
+                    tirocinanteMod.setNome(request.getParameter("Nome"));
+                }
+
+                if (!(request.getParameter("Cognome").isEmpty())){
+                    tirocinanteMod.setCognome(request.getParameter("Cognome"));
+                }
+
+                if (!(request.getParameter("LuogoNascita").isEmpty())){
+                    tirocinanteMod.setLuogoDiNascita(request.getParameter("LuogoNascita"));
+                }
+
+                if (!(request.getParameter("ProvinciaNascita").isEmpty())){
+                    tirocinanteMod.setProvinciaDiNascita(request.getParameter("ProvinciaNascita"));
+                }
+
+                if (!(request.getParameter("LuogoResidenza").isEmpty())){
+                    tirocinanteMod.setLuogoDiResidenza(request.getParameter("LuogoResidenza"));
+                }
+
+                if (!(request.getParameter("ProvinciaResidenza").isEmpty())){
+                    tirocinanteMod.setProvinciaDiResidenza(request.getParameter("ProvinciaResidenza"));
+                }
+
+                if (!(request.getParameter("CodiceFiscale").isEmpty())){
+                    tirocinanteMod.setCodiceFiscale(request.getParameter("CodiceFiscale"));
+                }
+
+                if (!(request.getParameter("Telefono").isEmpty())){
+                    tirocinanteMod.setTelefono(request.getParameter("Telefono"));
+                }
+
+                if (!(request.getParameter("DataNascita").isEmpty())){
+                    tirocinanteMod.setDataDiNascita(Date.valueOf(request.getParameter("Nascita")));
+                }
+
+                if (!(request.getParameter("Handicap").isEmpty())){
+                    if (request.getParameter("Handicap").equals("Si"))
+                        tirocinanteMod.setHandicap(true);
+                    else if (request.getParameter("Handicap").equals("No"))
+                        tirocinante.setHandicap(false);
+                }
+
+                if (!(request.getParameter("CKStudenteCorsoLaurea") == null)) {
+                    if (request.getParameter("CKStudenteCorsoLaurea").equals("1")) {
+                        if (!(request.getParameter("StudenteCorsoLaurea").isEmpty())) {
+                            tirocinanteMod.setCorsoDiLaurea(request.getParameter("StudenteCorsoLaurea"));
+                        }
+                    }
+                }
+
+                if (!(request.getParameter("CKDiplomaUniversitario") == null)) {
+                    if (request.getParameter("CKDiplomaUniversitario").equals("1")) {
+                        if (!(request.getParameter("DiplomaUniversitario").isEmpty())) {
+                            tirocinanteMod.setCorsoDiLaurea(request.getParameter("DiplomaUniversitario"));
+                        }
+                    }
+                }
+
+                if (!(request.getParameter("CKLaureaIn") == null)) {
+                    if (request.getParameter("CKLaureaIn").equals("1")) {
+                        if (!(request.getParameter("LaureaIn").isEmpty())) {
+                            tirocinanteMod.setCorsoDiLaurea(request.getParameter("LaureaIn"));
+                        }
+                    }
+                }
+
+                if (!(request.getParameter("CKDottoratoRicerca") == null)) {
+                    if (request.getParameter("CKDottoratoRicerca").equals("1")) {
+                        if (!(request.getParameter("DottoratoRicerca").isEmpty())) {
+                            tirocinanteMod.setCorsoDiLaurea(request.getParameter("DottoratoRicerca"));
+                        }
+                    }
+                }
+
+                if (!(request.getParameter("CKScuolaAltro") == null)) {
+                    if (request.getParameter("CKScuolaAltro").equals("1")) {
+                        if (!(request.getParameter("ScuolaAltro").isEmpty())) {
+                            tirocinanteMod.setCorsoDiLaurea(request.getParameter("ScuolaAltro"));
+                        }
+                    }
+                }
+                System.out.println(tirocinanteMod);
+                System.out.println("applico le modifiche");
+                datamodel.put("ModApp", "Le modifiche sono state salvate");
+                TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
+                tirocinanteDaoImp.setUpdate(tirocinanteMod);
+                tirocinanteDaoImp.destroy();
+
+
             } else {
                 System.out.println("Modifiche non consentite non conincidono l'email o la password email: " + emailAttuale + "  " + user.getEmail()  + "  password: "+ passwordAttuale + "  " + user.getPassword() );
-                String messaggio = HtmlEscape.escapeHtml5("Modifiche non consentite non conincidono l'email o la password email");
+                String messaggio = HtmlEscape.escapeHtml5("Modifiche non consentite non conincidono l'email o la password");
                 datamodel.put("MesError", messaggio);
             }
         }
     }
 
-    public void get() throws IOException, DaoException,ServletException {
+    public void get() throws IOException, DaoException {
         System.out.println(request.getMethod() + ' ' + request.getRequestURI()+" sto in ImpostazioniAccountTirocinante");
         creaOggetti();
         scaricaDatiTirocinanteDB(user, tirocinante);
         TemplateController.process("impostazione-account-tirocinante.ftl", datamodel, response, context);
     }
 
-    public void post() throws IOException, DaoException,ServletException {
+    public void post() throws IOException, DaoException {
         System.out.println(request.getMethod() + ' ' + request.getRequestURI()+" sto in ImpostazioniAccountTirocinante");
         creaOggetti();
         updateTirocinante(tirocinante);
