@@ -70,15 +70,17 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
 
     public TutoreUniversitario getTutoreUniByID(int ID) throws DaoException {
         TutoreUniversitario tutUni = new TutoreUniversitario();
-        this.init();
+
         try {
+            this.init();
             this.selectTutUniByID.setInt(1, ID);
             ResultSet resultSet = selectTutUniByID.executeQuery();
             if (resultSet.next()) {
                 setTutoreUniversitarioObject(tutUni, resultSet);
             } else {
-                throw new DaoException("Query con risultato vuoto");
+                throw new DaoException("Query getTutoreUniByID con risultato vuoto");
             }
+
 
         } catch (SQLException e) {
             throw new DaoException("Errore query select id ", e);
@@ -152,7 +154,6 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
     }
 
     public void destroy() throws DaoException {
-
         try {
             this.selectTutUniByID.close();
             this.selectAllTutUni.close();
