@@ -636,6 +636,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>PdfAdminConvenzioneController</servlet-name>
+        <servlet-class>controller.adm.Admin.PdfAdminConvenzioneController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfAdminConvenzioneController</servlet-name>
+        <url-pattern>/admin/modulo/convenzione</url-pattern>
+        <url-pattern>/Admin/Modulo/Convenzione</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>show-tirociante</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneUtenza.ShowTirocinanteController</servlet-class>
     </servlet>
