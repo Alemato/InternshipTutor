@@ -14,8 +14,6 @@ import view.TemplateController;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -47,8 +45,6 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
             RequestDispatcher page = request.getRequestDispatcher("500");
             page.forward(request, response);
         }
-
-
     }
 
     private Boolean ifmakeModulo(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, DaoException {

@@ -22,43 +22,33 @@ public class OfferteTirocinioController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-
         RequestDispatcher page = request.getRequestDispatcher("/404");
-        page.forward(request,response);
+        page.forward(request, response);
 
     }
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         fillOffrte(request, response);
 
 
-
-
     }
-    private void fillOffrte(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
-    {
-        super.init(request,response);
-        try{
 
-          FillOfferteTirocinio page =new FillOfferteTirocinio(request,response,getServletContext(),datamodel);
-          page.makeget();
+    private void fillOffrte(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        super.init(request, response);
+        try {
+
+            FillOfferteTirocinio page = new FillOfferteTirocinio(request, response, getServletContext(), datamodel);
+            page.makeget();
 
 
-        }catch (DaoException e)
-        {
+        } catch (DaoException e) {
             e.printStackTrace();
             RequestDispatcher page = request.getRequestDispatcher("/500");
-            page.forward(request,response);
+            page.forward(request, response);
         }
     }
-
-
-
-
-
-
-
 
 
 }

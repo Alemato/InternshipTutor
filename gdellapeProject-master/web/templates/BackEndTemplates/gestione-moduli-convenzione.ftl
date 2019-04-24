@@ -119,7 +119,7 @@
                                 <td>${azienda.dataConvenzione?date?string("dd-MM-yyyy")}</td>
                                 <td>
                                     <#if (azienda.pathPDFConvenzione)??>
-                                        <a type="button" class="btn btn-success" href="/admin/convezione-azienda?IDAzienda=${azienda.IDAzienda},page=gestione"> <i class="fa fa-file-text"></i> Visualizza</a>
+                                        <a type="button" class="btn btn-success" href="/admin/convezione-azienda?IDAzienda=${azienda.IDAzienda}&page=gestione"> <i class="fa fa-file-text"></i> Visualizza</a>
                                         <#else>
                                             <button type="button" class="btn btn-success" disabled> <i class="fa fa-file-text"></i> Non disponibile</button>
                                     </#if>

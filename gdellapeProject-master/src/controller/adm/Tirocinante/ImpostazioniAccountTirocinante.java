@@ -11,6 +11,7 @@ import view.TemplateController;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class ImpostazioniAccountTirocinante {
         this.sessionescaduta = false;
     }
 
-    private Tirocinante ritornaTirocinante(SingSessionContoller session, HttpServletRequest request, HttpServletResponse response) throws IOException{
+    private Tirocinante ritornaTirocinante(SingSessionContoller session, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         return session.getTirocinate(request,response);
     }
 
@@ -64,7 +65,7 @@ public class ImpostazioniAccountTirocinante {
 
     }
 
-    private void creaOggetti() throws IOException, DaoException {
+    private void creaOggetti() throws IOException, DaoException,ServletException {
         SingSessionContoller session = SingSessionContoller.getInstance();
         this.tirocinante = ritornaTirocinante(session, request, response);
         this.user = ritornUser(tirocinante);
@@ -227,14 +228,14 @@ public class ImpostazioniAccountTirocinante {
         }
     }
 
-    public void get() throws IOException, DaoException {
+    public void get() throws IOException, DaoException,ServletException {
         System.out.println(request.getMethod() + ' ' + request.getRequestURI()+" sto in ImpostazioniAccountTirocinante");
         creaOggetti();
         scaricaDatiTirocinanteDB(user, tirocinante);
         TemplateController.process("impostazione-account-tirocinante.ftl", datamodel, response, context);
     }
 
-    public void post() throws IOException, DaoException {
+    public void post() throws IOException, DaoException,ServletException {
         System.out.println(request.getMethod() + ' ' + request.getRequestURI()+" sto in ImpostazioniAccountTirocinante");
         creaOggetti();
         updateTirocinante(tirocinante);

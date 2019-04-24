@@ -22,10 +22,10 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
+    <a class="navbar-brand link-bar" href="/Home">Intership Tutor </a>
 
     <ol class="breadcrumb">
-        <li><a href="admin.html">HOME DASHBOARD</a></li>
+        <li><a href="/admin/dashboard">HOME DASHBOARD</a></li>
         <li class="active"><a href="/admin/gestione-tutoti"><b>GESTIONE TUTORI</b></a></li>
     </ol>
     <#include "small-navbar.ftl">
@@ -136,7 +136,7 @@
                 </#if>
                 <label class="input">
                     <p><em>*</em> Nome</p>
-                    <i class="ico-append giu fa fa-lock"></i>
+                    <i class="ico-append giu fa fa-user"></i>
                     <input type="text" <#if ErroreNomeTutore??> class="error" </#if> placeholder="Nome" name="Nome_tutore" <#if ValueOfNome_tutore??> value="${ValueOfNome_tutore}" </#if>>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri</b>
                 </label>
@@ -151,7 +151,7 @@
                 </#if>
                 <label class="input mb-20">
                     <p><em>*</em> Cognome</p>
-                    <i class="ico-append giu fa fa-lock"></i>
+                    <i class="ico-append giu fa fa-user"></i>
                     <input type="text" <#if ErroreCognomeTutore??> class="error" </#if> placeholder="Cognome" name="Cognome_tutore" <#if ValueOfCognome_tutore??> value="${ValueOfCognome_tutore}" </#if>>
                     <b class="tooltip tooltip-bottom-right">Solo caratteri</b>
                 </label>

@@ -21,9 +21,9 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
+    <a class="navbar-brand link-bar" href="/home">Intership Tutor </a>
     <ol class="breadcrumb">
-        <li><a href="admin.html">HOME DASHBOARD</a></li>
+        <li><a href="/admin/dashboard">HOME DASHBOARD</a></li>
         <li><a href="/admin/gestione-tutoti"><b>GESTIONE TUTORI</b></a></li>
         <li class="active"><a href="#"><b>GESTIONE: ${tutore.nome} ${tutore.cognome}</b></a></li>
     </ol>
@@ -56,10 +56,8 @@
                 </div>
             </#if>
             <div class="col">
-                <form action="/admin/modifica-tutore" method="post">
+                <form action="/admin/modifica-tutore" method="post" class="sky-form">
                     <input type="hidden" name="IDTutoreUni" value="${tutore.IDTutoreUni}">
-                <div class="form-group">
-                    <label>Nome</label>
                     <#if ErroreNome??>
                         <div class="alert alert-danger mb-20">
                             <button type="button" class="close" data-dismiss="alert">
@@ -69,25 +67,28 @@
                             <strong>Attenzione!</strong> ${ErroreNome}
                         </div>
                     </#if>
-                    <input type="text" <#if ErroreNome??> class="error" </#if> name="nome"  <#if ValueOfnome?? > value="${ValueOfnome}" <#else> value="${tutore.nome}" </#if> >
-                </div>
-
-                <div class="form-group">
-                    <label>Cognome</label>
+                    <label class="input">
+                        <p><em>*</em> Nome </p>
+                        <i class="ico-append giu fa fa-user"></i>
+                        <input type="text" <#if ErroreNome??> class="error" </#if> name="nome"  <#if ValueOfnome?? > value="${ValueOfnome}" <#else> value="${tutore.nome}" </#if> required>
+                        <b class="tooltip tooltip-bottom-right">Solo caratteri</b>
+                    </label>
                     <#if ErroreCognome??>
                         <div class="alert alert-danger mb-20">
                             <button type="button" class="close" data-dismiss="alert">
                                 <span aria-hidden="true">&times;</span>
                                 <span class="sr-only">Chiudi</span>
                             </button>
-                            <strong>Attenzione!</strong> ${ErroreNome}
+                            <strong>Attenzione!</strong> ${ErroreCognome}
                         </div>
                     </#if>
-                    <input type="text" <#if ErroreCognome??> class="error" </#if> name="cognome" <#if ValueOfcognome?? > value="${ValueOfcognome}" <#else> value="${tutore.cognome}" </#if> >
-                </div>
-                    <div class="form-group">
-                        <label>Telefono</label>
-                        <#if ErroreTelefono??>
+                    <label class="input">
+                        <p><em>*</em> Cognome </p>
+                        <i class="ico-append giu fa fa-user"></i>
+                    <input type="text" <#if ErroreCognome??> class="error" </#if> name="cognome" <#if ValueOfcognome?? > value="${ValueOfcognome}" <#else> value="${tutore.cognome}" </#if> required>
+                        <b class="tooltip tooltip-bottom-right">Solo caratteri</b>
+                    </label>
+                    <#if ErroreTelefono??>
                             <div class="alert alert-danger mb-20">
                                 <button type="button" class="close" data-dismiss="alert">
                                     <span aria-hidden="true">&times;</span>
@@ -96,10 +97,13 @@
                                 <strong>Attenzione!</strong> ${ErroreTelefono}
                             </div>
                         </#if>
-                        <input type="text"  <#if ErroreTelefono??> class="error" </#if>  name="telefono" <#if ValueOftelefono?? > value="${ValueOftelefono}" <#else> value="${tutore.telefono}"</#if> >
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
+                        <label class="input">
+                            <p><em>*</em> Telefono </p>
+                            <i class="ico-append giu fa fa-lock"></i>
+                        <input type="text"  <#if ErroreTelefono??> class="error" </#if>  name="telefono" <#if ValueOftelefono?? > value="${ValueOftelefono}" <#else> value="${tutore.telefono}"</#if> required >
+                            <b class="tooltip tooltip-bottom-right">Solo numeri</b>
+                        </label>
+
                         <#if ErroreEmail??>
                             <div class="alert alert-danger mb-20">
                                 <button type="button" class="close" data-dismiss="alert">
@@ -109,11 +113,13 @@
                                 <strong>Attenzione!</strong> ${ErroreEmail}
                             </div>
                         </#if>
-                        <input type="text" <#if ErroreEmail??> class="error" </#if> name="email"  <#if ValueOfemail?? > value="${ValueOfemail}" <#else>  value="${tutore.email}" </#if> >
-                    </div>
-
-
-                    <button type="submit" class="btn btn-primary" >Modifica</button>
+                        <label class="input">
+                            <p><em>*</em> Indirizzo Email </p>
+                            <i class="ico-append giu fa fa-mail-forward"></i>
+                        <input type="email" <#if ErroreEmail??> class="error" </#if> name="email"  <#if ValueOfemail?? > value="${ValueOfemail}" <#else>  value="${tutore.email}" </#if> required>
+                            <b class="tooltip tooltip-bottom-right">Indirizzo Email</b>
+                        </label>
+                    <button type="submit" class="btn btn-primary float-right"><i class="fa fa-user"></i>Modifica</button>
                 </form>
 
             </div>

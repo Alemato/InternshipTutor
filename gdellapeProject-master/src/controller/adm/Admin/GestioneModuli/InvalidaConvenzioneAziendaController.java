@@ -14,7 +14,6 @@ import java.io.IOException;
 public class InvalidaConvenzioneAziendaController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-
         RequestDispatcher page = request.getRequestDispatcher("/404");
         page.forward(request,response);
     }

@@ -508,9 +508,7 @@
                     <i class="fa fa-table"></i> Moduli di Richiesta Tirocinio Rifiutati
                 </div>
                 <div class="card-body">
-                    <table class="table table-responsive table-striped table-bordered table-hover"
-                           id="datatable_ric_tiro_rif" width="100%"
-                           cellspacing="0">
+                    <table class="table table-responsive table-striped table-bordered table-hover" id="datatable_ric_tiro_rif" width="100%" cellspacing="0">
                         <thead>
                         <tr>
                             <th>Nome Tirocinante</th>
@@ -735,7 +733,7 @@
                 "orderable": false
             }],
             "order": [
-                [14, 'asc'],
+                [14, 'asc']
             ],
             "lengthMenu": [
                 [5, 10, 20, -1],

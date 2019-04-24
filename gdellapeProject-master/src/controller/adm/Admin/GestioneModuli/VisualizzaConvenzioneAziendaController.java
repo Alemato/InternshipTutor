@@ -35,8 +35,8 @@ public class VisualizzaConvenzioneAziendaController extends baseController {
     private void fillModulo(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException
     {
         pagefill(request,response);
-       Tirocinante tirocinante =new Tirocinante();
-       List<String> dati = new ArrayList<>();
+        Tirocinante tirocinante =new Tirocinante();
+        List<String> dati = new ArrayList<>();
         try{
             AziendaDaoImp dao  = new AziendaDaoImp();
             Azienda azienda = dao.getAziendaByID(Integer.parseInt(request.getParameter("IDAzienda")));
@@ -57,7 +57,7 @@ public class VisualizzaConvenzioneAziendaController extends baseController {
         if(request.getParameter("page").equals("richiete")){
             datamodel.put("urlpage","/admin/richisteconvezioni");
         }else{
-            datamodel.put("urlpage","/admin/Gestione-Convenzione");
+            datamodel.put("urlpage","/admin/gestione-convenzione");
         }
 
     }

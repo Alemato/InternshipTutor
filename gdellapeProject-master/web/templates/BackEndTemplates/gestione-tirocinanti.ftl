@@ -25,7 +25,7 @@
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
 
     <ol class="breadcrumb">
-        <li><a href="admin.html">HOME DASHBOARD</a></li>
+        <li><a href="/admin/dashboard">HOME DASHBOARD</a></li>
         <li class="active"><a href="#"><b>GESTIONE TIROCINANTI</b></a></li>
     </ol>
     <#include "small-navbar.ftl">
@@ -68,8 +68,7 @@
                     <i class="fa fa-table"></i> Tirocinanti
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="datatable_tirocinante"
+                        <table class="table table-responsive table-striped table-bordered table-hover" id="datatable_tirocinante"
                                width="100%"
                                cellspacing="0">
                             <thead>
@@ -121,7 +120,6 @@
                             </#list>
                             </tbody>
                         </table>
-                    </div>
                 </div>
             </div>
         </main>

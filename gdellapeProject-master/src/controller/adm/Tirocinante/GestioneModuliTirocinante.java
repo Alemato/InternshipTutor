@@ -11,6 +11,7 @@ import model.*;
 import view.TemplateController;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class GestioneModuliTirocinante {
         this.tirocinante = null;
     }
 
-    private void ritornaTirocinate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void ritornaTirocinate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         SingSessionContoller session = SingSessionContoller.getInstance();
         this.tirocinante = session.getTirocinate(request, response);
     }
@@ -94,7 +95,7 @@ public class GestioneModuliTirocinante {
         datamodel.put("lista", lista);
     }
 
-    public void get() throws IOException, DaoException {
+    public void get() throws IOException, DaoException,ServletException {
         ritornaTirocinate(request, response);
 
         System.out.println("ID del Tirocinante nella gestione moduli");

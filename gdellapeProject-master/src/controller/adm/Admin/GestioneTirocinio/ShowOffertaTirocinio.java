@@ -39,14 +39,11 @@ public class ShowOffertaTirocinio extends baseController {
             OffertaTirocinioDaoImp dao = new OffertaTirocinioDaoImp();
             OffertaTirocinio offerta = dao.getOffertatrByID(Integer.parseInt(request.getParameter("IDOfferta")));
             dao.destroy();
-            datamodel.put("Offerta",offerta);
+            datamodel.put("offerta",offerta);
             TemplateController.process("BackEndTemplates/show-offertatirocinio.ftl", datamodel, response, getServletContext());
-
-
 
         } catch (DaoException e) {
             e.printStackTrace();
-
             RequestDispatcher page = request.getRequestDispatcher("/500");
             page.forward(request,response);
 
