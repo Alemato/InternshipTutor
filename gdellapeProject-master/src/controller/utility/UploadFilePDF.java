@@ -2,6 +2,8 @@ package controller.utility;
 
 import controller.Exeption.PdfException;
 import controller.baseController;
+import model.Azienda;
+import model.Tirocinio;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,24 +18,33 @@ import javax.servlet.http.Part;
 public class UploadFilePDF extends baseController {
 
     /**
-     * @param request  richiesta
-     * @param savePath albero cartelle Convenzione ./PDF/Covenzione/IDAzienda/NOMEPDF.pdf
-     *                 albero cartelle Richiesta di tirocinio ./PDF/RichestaTirocinio/IDTirocinio/IDTirocininate/NOMEPDF.pdf
-     *                 albero cartella Fine Tirocinio Azienda ./PDF/FineTirocinioAzienda/IDTirocinio/IDTirocininante/NOMEPDF.pdf
-     *                 albero cartella Segreteria ./PDF/Segreteria/IDTirocinio/IDTirocininante/NOMEPDF.pdf
-     * @param part     variabile di tipo Part del file che si ricava tramite:
-     *                 Part parto = request.getPart("NOME FORM");
-     * @return torna il nome del file che serve per caricare sul DB
-     * @throws IOException
-     * @throws PdfException
+     * @param request richiesta
+     * @param part    variabile di tipo Part del file che si ricava tramite:
+     *                *          Part parto = request.getPart("NOME FORM");
+     * @param tipoPdf variabile intera che identifica il tipo di PDF da caicare:
+     *                0 se si tratta di PDF della Convenzione
+     *                1 se si tratta di PDF della Richiesta di Tirocinio
+     *                2 se si tratta di PDF di Fine Tirocinio
+     *                3 se si tratta di PDF di della Segreteria
+     * @param object  oggetto che può essere di tipo Azienda se tipoPdf è uguale a 0
+     *                o di tipo Tirocinio se tipoPdf è uguale a 1, 2, 3
+     *                <p>
+     *                albero cartelle Convenzione ./PDF/Covenzione/IDAzienda/NOMEPDF.pdf
+     *                albero cartelle Richiesta di tirocinio ./PDF/RichestaTirocinio/IDTirocinio/IDTirocininate/NOMEPDF.pdf
+     *                albero cartella Fine Tirocinio Azienda ./PDF/FineTirocinio/IDTirocinio/IDTirocininante/NOMEPDF.pdf
+     *                albero cartella Segreteria ./PDF/Segreteria/IDTirocinio/IDTirocininante/NOMEPDF.pdf
+     * @return torna il nome del file che serve per caricare sul DB o "" se si presenta un errore
+     * @throws IOException    per il metodo write
+     * @throws PdfException   se il file non ha estensione .pdf
      */
-    public String uploadPDF(HttpServletRequest request, String savePath, Part part) throws PdfException {
-
-        // ...\out\artifacts\gdellapeProject_master_war_exploded\savePath
+    public String uploadPDF(HttpServletRequest request, Part part, int tipoPdf, Object object) throws IOException, PdfException {
 
         // percorso assoluto dell'app
         String appPath = request.getServletContext().getRealPath("");
-        String completeSavePath = appPath + File.separator + savePath;
+        if (!(tipoPdf == 0 || tipoPdf == 1 || tipoPdf == 2 || tipoPdf == 3))
+            return "";
+        String completeSavePath = appPath + File.separator + checkTipoPdf(object, tipoPdf);
+
         File fileSaveDir = new File(completeSavePath);
         // creo se non esiste la directory di destinazione
         if (!fileSaveDir.exists()) {
@@ -46,16 +57,16 @@ public class UploadFilePDF extends baseController {
             throw new PdfException("Errore: il file non è un PDF");
         }
         fileName = new File(fileName).getName();
-        try {
-            part.write(completeSavePath + File.separator + fileName);
-        } catch (IOException e) {
-            e.getCause();
-            return "";
-        }
+        part.write(completeSavePath + File.separator + fileName);
         return fileName;
     }
 
-    // estrae il nome del file
+
+    /**
+     * @param part variabile di tipo Part del file che si ricava tramite:
+     * @return il nome del file o "" se c'è stato un errore
+     */
+
     private String fileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         String[] items = contentDisp.split(";");
@@ -65,6 +76,41 @@ public class UploadFilePDF extends baseController {
             }
         }
         return "";
+    }
+
+    /**
+     * @param object  oggetto che può essere di tipo Azienda se tipoPdf è uguale a 0
+     *                o di tipo Tirocinio se tipoPdf è uguale a 1, 2, 3
+     * @param tipoPdf variabile intera che identifica il tipo di PDF da caicare:
+     *                0 se si tratta di PDF della Convenzione
+     *                1 se si tratta di PDF della Richiesta di Tirocinio
+     *                2 se si tratta di PDF di Fine Tirocinio
+     *                3 se si tratta di PDF di della Segreteria
+     * @return percorso parziale nel quale andrà salvato il PDF
+     */
+
+    private String checkTipoPdf(Object object, int tipoPdf) {
+        String savePath = "";
+        if (object instanceof Azienda && tipoPdf == 0) {
+//            PDF Convenzione Azienda
+            savePath = savePath.concat("Covenzione" + File.separator);
+            savePath = savePath.concat(((Azienda) object).getIDAzienda() + File.separator);
+        } else if (object instanceof Tirocinio) {
+            if (tipoPdf == 1) {
+//                PDF della Richiesta di Tirocinio
+                savePath = savePath.concat("RichestaTirocinio" + File.separator);
+            } else if (tipoPdf == 2) {
+//                PDF della Segreteria
+                savePath = savePath.concat("Segreteria" + File.separator);
+
+            } else if (tipoPdf == 3) {
+//                PDF di Fine Tirocinio
+                savePath = savePath.concat("FineTirocinio" + File.separator);
+            }
+            savePath = savePath.concat(((Tirocinio) object).getIDTirocinio() + File.separator);
+            savePath = savePath.concat(((Tirocinio) object).getTirocinante() + File.separator);
+        }
+        return savePath;
     }
 
 }

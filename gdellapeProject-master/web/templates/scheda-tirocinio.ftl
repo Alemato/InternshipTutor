@@ -154,14 +154,18 @@
                 </div>
             </div>
 
+            <#if Message??>
 
-            <form id="manda_iscrizione" method="post" action="/sceltarichiesta">
-                <input type="hidden" name="Tirocinio" value=${Offerta.IDOffertaTirocinio}>
-                <button type="submit" form="manda_iscrizione"
-                        class="btn btn-blue b-blu btn-lg pull-right float-right"><i
-                            class="fa fa-check"></i> Invia Domanda
-                </button>
-            </form>
+            <#else>
+                <form id="manda_iscrizione" method="post" action="/sceltarichiesta">
+                    <input type="hidden" name="Tirocinio" value=${Offerta.IDOffertaTirocinio}>
+                    <button type="submit" form="manda_iscrizione"
+                            class="btn btn-blue b-blu btn-lg pull-right float-right"><i
+                                class="fa fa-check"></i> Invia Domanda
+                    </button>
+                </form>
+            </#if>
+
         </div>
     </section>
 
