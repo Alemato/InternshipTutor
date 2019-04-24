@@ -130,7 +130,7 @@
                                             <#else> convenzione non ancora richiesta </#if></td>
                                         <td>
                                             <#if (azienda.pathPDFConvenzione)??>
-                                                <a type="button" href="/admin/convezione-azienda?page=richieste" class="btn btn-primary">Visualizza</a>
+                                                <a type="button" href="/admin/convezione-azienda?IDAzienda=${azienda.IDAzienda}&rif=richieste" class="btn btn-primary">Visualizza</a>
                                             <#else>
                                                 <button type="button" class="btn btn-primary" disabled> Non presente
                                                 </button>

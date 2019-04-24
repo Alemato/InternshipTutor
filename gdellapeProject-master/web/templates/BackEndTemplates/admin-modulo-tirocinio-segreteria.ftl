@@ -27,7 +27,7 @@
     <ol class="breadcrumb">
         <li><a href="/admin/dashboard">HOME DASHBOARD</a></li>
         <li><a href="/admin/dashboard">GESTIONE MODULO TIROCINIO</a></li>
-        <li class="active"><a href="#"><b>GESTIONE MODULO: ${azienda.ragioneSociale}</b></a></li>
+        <li class="active"><a href="#"><b>GESTIONE MODULO:${tirocinante.cognome}&nbsp;${tirocinante.nome} </b></a></li>
     </ol>
    <#include "small-navbar.ftl">
 

@@ -68,7 +68,7 @@
                         </div>
                     </#if>
                     <label class="input">
-                        <p><em>*</em> Nome </p>
+                        <p><em>*</em>Nome</p>
                         <i class="ico-append giu fa fa-user"></i>
                         <input type="text" <#if ErroreNome??> class="error" </#if> name="nome"  <#if ValueOfnome?? > value="${ValueOfnome}" <#else> value="${tutore.nome}" </#if> required>
                         <b class="tooltip tooltip-bottom-right">Solo caratteri</b>

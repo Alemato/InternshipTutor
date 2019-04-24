@@ -110,7 +110,7 @@
                                     <a type="button" class="btn btn-danger" href="/admin/stato-tutore?IDTutoreUni=${tutore.IDTutoreUni}&stato=0"><i class="fa fa-times"></i>Disattiva Tutore
                                 </a>
                                 <#else>
-                                <a type="button" class="btn btn-danger" href="/admin/stato-tutore?IDTutoreUni=${tutore.IDTutoreUni}&stato=1"><i class="fa fa-times"></i>Attiva Tutore</a>
+                                <a type="button" class="btn btn-success" href="/admin/stato-tutore?IDTutoreUni=${tutore.IDTutoreUni}&stato=1"><i class="fa fa-times"></i>Attiva Tutore</a>
                                 </#if>
                             </td>
                             </tr>
