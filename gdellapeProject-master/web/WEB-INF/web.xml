@@ -626,6 +626,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>PdfAdminSegreteriaController</servlet-name>
+        <servlet-class>controller.adm.Admin.PdfAdminSegreteriaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PdfAdminSegreteriaController</servlet-name>
+        <url-pattern>/admin/modulo/segreteria</url-pattern>
+        <url-pattern>/Admin/Modulo/Segreteria</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>show-tirociante</servlet-name>
         <servlet-class>controller.adm.Admin.GestioneUtenza.ShowTirocinanteController</servlet-class>
     </servlet>
