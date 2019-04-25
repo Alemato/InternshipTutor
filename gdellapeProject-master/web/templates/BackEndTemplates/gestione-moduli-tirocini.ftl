@@ -20,9 +20,9 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
+    <a class="navbar-brand link-bar" href="/home">Intership Tutor </a>
     <ol class="breadcrumb">
-        <li class=""><a href="admin.html">HOME DASHBOARD</a></li>
+        <li class=""><a href="/admin/dashboard">HOME DASHBOARD</a></li>
         <li class="active"><a href="/admin/gestione-tirocinio"><b>GESTIONE MODULI</b></a></li>
     </ol>
     <#include "small-navbar.ftl">
@@ -30,7 +30,7 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <#include "../BackEndTemplates/sidebar.ftl">
+        <#include "sidebar.ftl">
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
 
@@ -41,10 +41,9 @@
                         <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
-
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
             </section>
-            <h2>Tirocinii</h2>
+            <h2><i class="fa fa-archive"></i> Gestione Moduli Tirocini</h2>
             <#if WarningSuccess??>
                 <div class="alert alert-success mb-20">
                     <button type="button" class="close" data-dismiss="alert">
@@ -63,6 +62,7 @@
                     <strong>Attenzione!</strong> ${WarningInsuccess}
                 </div>
             </#if>
+
             <div class="card">
                 <div class="card-header">
                     <i class="fa fa-table"></i> Moduli di Richiesta Tirocinio dei Tirocinanti
@@ -115,8 +115,6 @@
                         </tr>
                         </tfoot>
                         <tbody>
-
-
                         <#list Richieste as tirocinio,dati>
                             <tr>
                                 <td>${dati[0]}</td>
@@ -138,7 +136,7 @@
                                            href="/admin/modulo-richista?IDTirocinio=${tirocinio.IDTirocinio}"
                                            class="btn btn-primary"> <i class="fa fa-file-text"></i> Visualizza</a>
                                     <#else>
-                                        <button class="btn btn-primary"><i class="fa fa-file-text"></i> Non disponibile
+                                        <button class="btn btn-primary" disabled><i class="fa fa-file-text"></i> Non disponibile
                                         </button>
                                     </#if>
                                 </td>
@@ -175,7 +173,7 @@
 
             <section class="row text-center placeholders pt-10 pb-10 mb-10">
             </section>
-            <h2>Tirocinii Conclusi</h2>
+            <h2> <i class="fa fa-archive"></i>Tirocinii Conclusi</h2>
             <div class="card">
                 <div class="card-header">
                     <i class="fa fa-table"></i> Moduli per Conclusione Tirocinii
@@ -362,9 +360,7 @@
                                             </button>
                                         <#else>
 
-                                            <a type="button" class="btn btn-secondary"
-                                               href="/admin/crea-modulosegreteria?IDTirocinio=${tirocinio.IDTirocinio}" <i
-                                                class="fa fa-file-pdf-o"> </i>Crea/Modifica PDF</a>
+                                            <a type="button" class="btn btn-secondary" href="/admin/crea-modulosegreteria?IDTirocinio=${tirocinio.IDTirocinio}"> <i class="fa fa-file-pdf-o"> </i>Crea/Modifica PDF </a>
 
                                         </#if>
                                     </td>
@@ -387,14 +383,13 @@
                             </#list>
 
                         </#if>
-
                         </tbody>
                     </table>
-                    <footer class="text-center text-sm-right mt-25 ">
-                    </footer>
                 </div>
             </div>
-            <h2>Tirocinii Attivi</h2>
+            <section class="row text-center placeholders pt-10 pb-10 mb-10">
+            </section>
+            <h2><i class="fa fa-archive"></i>Tirocinii Attivi</h2>
             <div class="card">
                 <div class="card-header">
                     <i class="fa fa-table"></i> Moduli di Tirocinio Attive
@@ -498,11 +493,11 @@
                         </#list>
                         </tbody>
                     </table>
-                    <footer class="text-center text-sm-right mt-25 ">
-                    </footer>
                 </div>
             </div>
-            <h2>Tirocinii Rifiutati</h2>
+            <section class="row text-center placeholders pt-10 pb-10 mb-10">
+            </section>
+            <h2><i class="fa fa-archive"></i>Tirocinii Rifiutati</h2>
             <div class="card">
                 <div class="card-header">
                     <i class="fa fa-table"></i> Moduli di Richiesta Tirocinio Rifiutati
@@ -591,8 +586,6 @@
                         </#list>
                         </tbody>
                     </table>
-                    <footer class="text-center text-sm-right mt-25 ">
-                    </footer>
                 </div>
             </div>
         </main>
@@ -611,8 +604,7 @@
 <script src="../../plugins/datatables/dataTables.bootstrap.js"></script>
 <script src="../../plugins/select2/js/select2.full.min.js"></script>
 <script>
-    // datatable_ric_convenzioni
-    // datatable_fine_tirocinio
+
     function initTableFineTirocinio() {
 
         var table = jQuery('#datatable_fine_tirocinio');
@@ -867,7 +859,7 @@
                 "orderable": false
             }],
             "order": [
-                [14, 'asc'],
+                [14, 'asc']
             ],
             "lengthMenu": [
                 [5, 10, 20, -1],
@@ -888,7 +880,7 @@
             }, {
                 "searchable": true,
                 "targets": [0]
-            }],
+            }]
         });
 
         var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);

@@ -42,6 +42,10 @@
                     <p>Per motivi di usabilit&agrave; &egrave; sconsigliato l&apos;uso dei <b>javascript</b>, per tanto <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
+
+            <section class="row text-center placeholders pt-10 mb-10">
+            </section>
+            <h2><i class="fa fa-industry fs-25"></i> Utenza di Tipo Aziendale</h2>
                 <#if WarningSuccess??>
                     <div class="alert alert-success mb-20">
                         <button type="button" class="close" data-dismiss="alert">
@@ -61,11 +65,6 @@
                     </div>
                 </#if>
 
-
-            <section class="row text-center placeholders pt-10 mb-10">
-            </section>
-            <h2><i class="fa fa-industry fs-25"></i> Utenza di Tipo Aziendale</h2>
-            <h3>Lista Aziende</h3>
             <div class="card mb-50">
                 <div class="card-header">
                     <i class="fa fa-table"></i> Aziende
