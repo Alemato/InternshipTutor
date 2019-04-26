@@ -368,6 +368,19 @@
 
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>provaUpload</servlet-name>
+        <servlet-class>controller.utility.servletUploadProva</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>provaUpload</servlet-name>
+        <url-pattern>/provaUpload</url-pattern>
+        <url-pattern>/provaupload</url-pattern>
+
+    </servlet-mapping>
+
+
     <servlet>
         <servlet-name>moduloTirocinioTirocinante</servlet-name>
         <servlet-class>controller.adm.Tirocinante.ModuloTirocinioTirocinanteController</servlet-class>
