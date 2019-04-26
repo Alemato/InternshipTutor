@@ -3,19 +3,14 @@ package controller.adm.Admin.GestioneTirocinio;
 import controller.adm.Azienda.BackEndAziendaController;
 import controller.baseController;
 import dao.exception.DaoException;
-import dao.implementation.*;
-import model.*;
-import view.TemplateController;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+
 
 
 public class OfferteTirocinioController extends baseController {
