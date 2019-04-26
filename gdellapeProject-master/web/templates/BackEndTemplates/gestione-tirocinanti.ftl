@@ -42,9 +42,9 @@
                         <b>attiva tale funzionalit&agrave; nel tuo browser!!!</b></p>
                 </div>
             </noscript>
-            <h2><i class="fa fa-user"></i> Gestione Tirocinanti</h2>
             <section class="row text-center placeholders pt-10 mb-10">
             </section>
+            <h2><i class="fa fa-user"></i> Gestione Tirocinanti</h2>
             <#if WarningSuccess??>
                 <div class="alert alert-success mb-20">
                     <button type="button" class="close" data-dismiss="alert">
