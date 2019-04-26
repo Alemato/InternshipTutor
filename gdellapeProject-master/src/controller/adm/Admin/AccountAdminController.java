@@ -1,7 +1,5 @@
 package controller.adm.Admin;
 
-import controller.adm.Azienda.BackEndAziendaController;
-import controller.sessionController.SingSessionContoller;
 import dao.exception.DaoException;
 import dao.implementation.*;
 import model.*;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.rmi.ServerException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AccountAdminController extends BackEndAziendaController{

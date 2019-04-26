@@ -1,18 +1,11 @@
 package controller.adm.Admin.GestioneUtenza;
 
-import com.sun.org.apache.regexp.internal.RE;
-import controller.adm.Admin.BackEndAdminController;
-import controller.adm.Azienda.BackEndAziendaController;
 import controller.baseController;
 import controller.utility.Utility;
 import controller.utility.Validation;
 import dao.exception.DaoException;
-import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.TutoreUniversitarioDaoImp;
-import dao.implementation.UserDaoImp;
-import model.Tirocinante;
 import model.TutoreUniversitario;
-import model.User;
 import org.unbescape.html.HtmlEscape;
 import view.TemplateController;
 
@@ -21,7 +14,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.*;
 
 
