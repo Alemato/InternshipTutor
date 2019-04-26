@@ -299,11 +299,17 @@ public class Validation {
         Map<String, Object> scadenze = new HashMap<>();
         Calendar presente = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
         scadenze.put("presente", presente);
-        Calendar passato = Calendar.getInstance();
-        passato.setTime(data);
-        passato.add(Calendar.DAY_OF_MONTH, +giorni);
-        scadenze.put("passato", passato);
-        scadenze.put("scaduto", presente.after(passato));
+        if (data!=null) {
+            Calendar passato = Calendar.getInstance();
+            passato.setTime(data);
+            passato.add(Calendar.DAY_OF_MONTH, +giorni);
+            scadenze.put("passato", passato);
+            scadenze.put("scaduto", presente.after(passato));
+        }else {
+            scadenze.put("passato", presente);
+            scadenze.put("scaduto", true);
+        }
+
         return scadenze;
     }
 
