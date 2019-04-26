@@ -1,6 +1,5 @@
 package controller.adm.Admin.GestioneTirocinio;
 
-import controller.adm.Azienda.BackEndAziendaController;
 import controller.baseController;
 import dao.exception.DaoException;
 

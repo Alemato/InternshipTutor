@@ -1,6 +1,5 @@
 package controller.adm.Azienda;
 
-import controller.adm.PdfView;
 import controller.baseController;
 import controller.sessionController.SingSessionContoller;
 import dao.exception.DaoException;

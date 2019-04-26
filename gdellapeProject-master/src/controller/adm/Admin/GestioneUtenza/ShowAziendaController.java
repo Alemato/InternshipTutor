@@ -1,15 +1,10 @@
 package controller.adm.Admin.GestioneUtenza;
 
 import controller.adm.Admin.BackEndAdminController;
-import controller.adm.Azienda.BackEndAziendaController;
 import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
-import dao.implementation.TirocinanteDaoImp;
-import dao.implementation.UserDaoImp;
 import model.Azienda;
-import model.Tirocinante;
-import model.User;
 import view.TemplateController;
 
 import javax.servlet.RequestDispatcher;
