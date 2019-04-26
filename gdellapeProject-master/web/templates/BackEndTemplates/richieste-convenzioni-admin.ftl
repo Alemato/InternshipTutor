@@ -23,7 +23,7 @@
     </button>
     <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
     <ol class="breadcrumb">
-        <li><a href="admin.html">HOME DASHBOARD</a></li>
+        <li><a href="/home">HOME DASHBOARD</a></li>
         <#if urlpage == "/admin/richisteconvezioni">
             <li class="active"><a href="/admin/richisteconvezioni"><b>GESTIONE RICHIESTE CONVENZIONE</b></a></li>
         <#else>
@@ -139,7 +139,7 @@
                                         </td>
                                         <td>
                                             <#if (azienda.pathPDFConvenzione)??>
-                                                <a type="button" href="/#" class="btn btn-secondary">Visualizza PDF</a>
+                                                <a type="button" href="/admin/modulo/convenzione?id=${azienda.IDAzienda}" class="btn btn-secondary">Visualizza PDF</a>
                                             <#else>
                                                 <button type="button" class="btn btn-primary" disabled> PDF non presente
                                                 </button>

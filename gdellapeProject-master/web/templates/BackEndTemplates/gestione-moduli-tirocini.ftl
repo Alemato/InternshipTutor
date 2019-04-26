@@ -143,7 +143,7 @@
                                 <td>
                                     <#--TODO Metti i link non appena pronti-->
                                     <#if (tirocinio.pdfTirocinante)??>
-                                        <a type="button" href="/#" class="btn btn-secondary" > Visualizza PDF </a>
+                                        <a type="button" href="/admin/modulo/richiesta-tirocinio?id=${tirocinio.IDTirocinio}" class="btn btn-secondary" > Visualizza PDF </a>
                                     <#else>
                                         <button type="button" class="btn btn-secondary" disabled><i
                                                     class="fa fa-file-pdf-o"></i> PDF Non Presente
@@ -276,7 +276,7 @@
                                     </td>
                                     <td>
                                         <#if (tirocinio.pdfTirocinante)??>
-                                        <a type="button" class="btn btn-secondary" href="/#"> <i
+                                        <a type="button" class="btn btn-secondary" href="/admin/modulo/richiesta-tirocinio?id=${tirocinio.IDTirocinio}"> <i
                                                     class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
                                         <#else>
                                          <a type="button" class="btn btn-secondary"
@@ -309,7 +309,7 @@
                                     </td>
                                     <td>
                                         <#if (tirocinio.pdfAzienda)??>
-                                            <a type="button" class="btn btn-secondary" href="/#"> <i
+                                            <a type="button" class="btn btn-secondary" href="/admin/modulo/tirocinio?id=${tirocinio.IDTirocinio}"> <i
                                                         class="fa fa-file-pdf-o"> </i>Visualizza PDF</a>
                                         <#else>
                                             <button type="button" class="btn btn-secondary" disabled><i
@@ -344,7 +344,7 @@
                                     </td>
                                     <td>
                                         <#if (tirocinio.pdfSegreteria)??>
-                                            <a type="button" class="btn btn-secondary" href="/#"> <i
+                                            <a type="button" class="btn btn-secondary" href="/admin/modulo/segreteria?id=${tirocinio.IDTirocinio}"> <i
                                                         class="fa fa-file-pdf-o"> </i>Visualizza PDF</a>
                                         <#else>
                                             <button type="button" class="btn btn-secondary" disabled><i
@@ -470,7 +470,7 @@
                                 </td>
                                 <td>
                                     <#if (tirocinio.pdfTirocinante)??>
-                                        <a type="button" href="/#" class="btn btn-danger"> <i
+                                        <a type="button" href="/admin/modulo/richiesta-tirocinio?id=${tirocinio.IDTirocinio}" class="btn btn-danger"> <i
                                                     class="fa fa-file-pdf-o"></i> Visualizza PDF</a>
                                     <#else>
                                         <button class="btn btn-danger" disabled><i class="fa fa-file-pdf-o"></i> Non
@@ -574,7 +574,7 @@
                                 </td>
                                 <td>
                                     <#if (tirocinio.pdfTirocinante)??>
-                                        <a type="button" href="/#" class="btn btn-danger"> <i
+                                        <a type="button" href="/admin/modulo/richiesta-tirocinio?id=${tirocinio.IDTirocinio}" class="btn btn-danger"> <i
                                                     class="fa fa-file-pdf-o"></i> Visualizza PDF</a>
                                     <#else>
                                         <button class="btn btn-danger" disabled><i class="fa fa-file-pdf-o"></i> Non

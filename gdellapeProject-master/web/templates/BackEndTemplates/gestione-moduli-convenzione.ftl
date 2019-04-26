@@ -22,10 +22,10 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
+    <a class="navbar-brand link-bar" href="home">Intership Tutor </a>
     <ol class="breadcrumb">
-        <li class=""><a href="admin.html">HOME DASHBOARD</a></li>
-        <li class="active"><a href="gestione-moduli-admin.html"><b>GESTIONE MODULI</b></a></li>
+        <li class=""><a href="/admin/dashboard">HOME DASHBOARD</a></li>
+        <li class="active"><a href="admin/modulo-azienda"><b>GESTIONE MODULI</b></a></li>
     </ol>
     <#include "small-navbar.ftl">
 
@@ -126,9 +126,8 @@
 
                                 </td>
                                 <td>
-                                    <#--TODO Metti i link non appena pronti-->
                                     <#if (azienda.pathPDFConvenzione)??>
-                                        <a type="button" class="btn btn-primary"  href="/#"> <i class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
+                                        <a type="button" class="btn btn-primary"  href="/admin/modulo/convenzione?id=${azienda.IDAzienda}"> <i class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
                                         <#else>
                                             <button class="btn btn-primary" disabled> <i class="fa fa-file-pdf-o"></i> PDF Non Presente</button>
                                     </#if>
