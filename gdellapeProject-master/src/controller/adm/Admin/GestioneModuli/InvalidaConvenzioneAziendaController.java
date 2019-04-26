@@ -14,12 +14,14 @@ import java.io.IOException;
 public class InvalidaConvenzioneAziendaController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        super.init(request,response);
         RequestDispatcher page = request.getRequestDispatcher("/404");
         page.forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        super.init(request, response);
         makeGet(request,response);
 
     }
@@ -28,7 +30,6 @@ public class InvalidaConvenzioneAziendaController extends baseController {
     {
         try {
             datamodel.put("urlpage","/admin/Gestione-Convenzione");
-            super.init(request, response);
             InvalidaConvenzioneAzienda page = new InvalidaConvenzioneAzienda(datamodel, getServletContext(), request, response);
             page.invalidaConvezioneModuli();
         }catch (DaoException e)
