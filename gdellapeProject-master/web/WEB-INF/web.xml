@@ -449,16 +449,6 @@
     </error-page>
 
 
-    <servlet>
-        <servlet-name>createtirocinio</servlet-name>
-        <servlet-class>controller.adm.Azienda.CreateTirocinioController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>createtirocinio</servlet-name>
-        <url-pattern>/createtirocinio</url-pattern>
-        <url-pattern>/Createtirocinio</url-pattern>
-
-    </servlet-mapping>
     <!--servelt account admin-->
 <!--    <servlet>-->
 <!--        <servlet-name>admin</servlet-name>-->
