@@ -1,7 +1,6 @@
 package controller.utility;
 
 import controller.Exeption.PdfException;
-import controller.baseController;
 import model.Azienda;
 import model.Tirocinio;
 
@@ -15,7 +14,7 @@ import javax.servlet.http.Part;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
         maxFileSize = 1024 * 1024 * 10,      // 10MB
         maxRequestSize = 1024 * 1024 * 50)   // 50MB
-public class UploadFilePDF extends baseController {
+public class UploadFilePDF{
 
     /**
      * @param request richiesta
@@ -43,12 +42,12 @@ public class UploadFilePDF extends baseController {
         String appPath = request.getServletContext().getRealPath("");
         if (!(tipoPdf == 0 || tipoPdf == 1 || tipoPdf == 2 || tipoPdf == 3))
             return "";
-        String completeSavePath = appPath + File.separator + checkTipoPdf(object, tipoPdf);
+        String completeSavePath = appPath + File.separator + "PDF" + File.separator + checkTipoPdf(object, tipoPdf);
 
         File fileSaveDir = new File(completeSavePath);
         // creo se non esiste la directory di destinazione
         if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
+            fileSaveDir.mkdirs();
         }
         String fileName = fileName(part);
         // Check se il file è un PDF
