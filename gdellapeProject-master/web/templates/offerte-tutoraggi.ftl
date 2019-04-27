@@ -107,15 +107,15 @@
                                     <label class="col input-group">
                                         <input type="date" name="datainizio"
                                                value=""
-                                               min="2018-01-01" max="${dataOggi?date?iso_utc}" class="form-control"/>
+                                               min="2018-01-01" class="form-control"/>
                                     </label>
                                 </div>
                                 <div class="row col-4 mb-0">
                                     <h4 class="mt-9">A :</h4>
                                     <label class="col input-group pr-0">
-                                        <input type="date" name="datainizio"
+                                        <input type="date" name="datafine"
                                                value=""
-                                               min="2018-01-01"  class="form-control"/>
+                                               min="2018-01-01" class="form-control"/>
                                     </label>
                                 </div>
                             </div>
