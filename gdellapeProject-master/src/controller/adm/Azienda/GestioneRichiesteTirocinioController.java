@@ -90,6 +90,8 @@ public class GestioneRichiesteTirocinioController extends baseController {
 
     private void processaPost(HttpServletRequest request, HttpServletResponse response, List<String> parametri) throws DaoException, ServletException, IOException {
         boolean errore = false;
+        String statoAc="";
+        String statoDe="";
         for (String parametro: parametri){
             System.out.println("processo parametro: ");
             System.out.println(parametro);
@@ -103,25 +105,36 @@ public class GestioneRichiesteTirocinioController extends baseController {
                 TirocinioDaoImp tirocinioDaoImp1 = new TirocinioDaoImp();
                 tirocinioDaoImp1.updateTirocinio(tirocinio);
                 tirocinioDaoImp1.destroy();
+                TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
+                Tirocinante tirocinante= tirocinanteDaoImp.getTirocianteByID(tirocinio.getTirocinante());
+                tirocinanteDaoImp.destroy();
+                statoAc= statoAc.concat("Trirocinante: " + tirocinante.getNome()+" "+ tirocinante.getCognome()+" &egrave; stato accettato <br>");
             } else if(parts1[0].equals("de")){
                 tirocinio=tirocinioDaoImp.getRichiestatrByID(Integer.parseInt(parts1[2]));
                 tirocinioDaoImp.destroy();
-                tirocinio.setStato(5);
                 TirocinioDaoImp tirocinioDaoImp1 = new TirocinioDaoImp();
+                tirocinio.setStato(5);
                 tirocinioDaoImp1.updateTirocinio(tirocinio);
                 tirocinioDaoImp1.destroy();
+                TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
+                Tirocinante tirocinante= tirocinanteDaoImp.getTirocianteByID(tirocinio.getTirocinante());
+                statoDe= statoDe.concat("Trirocinante: " + tirocinante.getNome()+" "+ tirocinante.getCognome()+" &egrave; stato respinto <br>");
+                tirocinanteDaoImp.destroy();
             } else {
                 errore = true;
                 er500(request, response);
             }
         }
         if(!errore){
-            this.doGet(request, response);
+            SingSessionContoller session = SingSessionContoller.getInstance();
+            datamodel.put("StatoRic", statoAc+statoDe);
+            get(request, response, session);
         }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
+        datamodel.put("init", true);
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (session.isAzienda(request)) {
             boolean scaduto = (boolean)request.getAttribute("Scaduto");
@@ -162,15 +175,19 @@ public class GestioneRichiesteTirocinioController extends baseController {
         }
     }
 
+    private void get(HttpServletRequest request, HttpServletResponse response, SingSessionContoller session)throws ServletException, IOException{
+        boolean scaduto = (boolean)request.getAttribute("Scaduto");
+        datamodel.put("Scaduto", scaduto);
+        Azienda azienda = session.getAzienda(request, response);
+        creaOggetti(request, response,azienda);
+        TemplateController.process("gestione-richieste-tirocinio-aziendale.ftl", datamodel, response, getServletContext());
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (session.isAzienda(request)) {
-            boolean scaduto = (boolean)request.getAttribute("Scaduto");
-            datamodel.put("Scaduto", scaduto);
-            Azienda azienda = session.getAzienda(request, response);
-            creaOggetti(request, response,azienda);
-            TemplateController.process("gestione-richieste-tirocinio-aziendale.ftl", datamodel, response, getServletContext());
+            get(request, response, session);
         } else {
             er403(request, response);
         }

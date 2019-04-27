@@ -177,6 +177,7 @@
                         </thead>
                         <tbody>
                         <#list Lista as Lista>
+                        <#if Lista.tirocinio.stato gt 0>
                         <tr>
                             <td>${Lista.tirocinante.nome}</td>
                             <td>${Lista.tirocinante.cognome}</td>
@@ -352,6 +353,8 @@
                                         </button>
                                 </td>
                             </#if>
+
+                            </#if>
                         </#list>
                         </tbody>
                     </table>
@@ -377,7 +380,7 @@
                     <i class="fa fa-table"></i> Visualizza Tutte le Richieste di Tirocinio pendenti
                 </div>
                 <div class="card-body">
-                    <form id="form_tirocinii_fine" action="/account/gestione-richieste" method="post">
+                    <form id="form_richieste" action="/account/gestione-richieste" method="post">
                         <table class="table table-striped table-bordered bg-white table-hover border"
                                id="datatable_2" width="100%" cellspacing="0">
                             <thead>
@@ -408,11 +411,11 @@
                             </tbody>
                         </table>
                         <footer class="text-center text-sm-right mt-25 ">
-                            <button type="submit" form="form_tirocinii_fine"
+                            <button type="submit" form="form_richieste"
                                     class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
                                         class="fa fa-check"></i> Aggiorna
                             </button>
-                            <button type="reset" form="form_tirocinii_fine"
+                            <button type="reset" form="form_richieste"
                                     class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
                                         class="fa fa-times"></i> Annulla
                             </button>

@@ -3,6 +3,7 @@ package controller.adm.Azienda;
 import controller.sessionController.SingSessionContoller;
 import controller.utility.SecurityHash;
 import dao.exception.DaoException;
+import dao.implementation.AziendaDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Azienda;
 import model.User;
@@ -186,6 +187,18 @@ public class ImpostazioniAccountAzienda {
         }
     }
 
+    private void salvaAzienda(Azienda azienda) throws DaoException {
+        AziendaDaoImp aziendaDaoImp = new AziendaDaoImp();
+        aziendaDaoImp.updateAzienda(azienda);
+        aziendaDaoImp.destroy();
+    }
+
+    private void salvaUser(User user) throws DaoException {
+        UserDaoImp userDaoImp = new UserDaoImp();
+        userDaoImp.update(user);
+        userDaoImp.destroy();
+    }
+
     private void updateAzienda(){
         User userAttuale = user;
         Azienda azziendaAttuale = azienda;
@@ -239,45 +252,22 @@ public class ImpostazioniAccountAzienda {
 
                 if (modificato){
                     System.out.println("applico le modifiche");
-                    datamodel.put("ModApp", "Le modifiche sono state salvate");
-                    //TODO implementare il salvataggio
-
+                    try {
+                        salvaAzienda(azienda);
+                        salvaUser(user);
+                        datamodel.put("ModApp", "Le modifiche sono state salvate");
+                        if(sessionescaduta){
+                            System.out.println("sessione scaduta");
+                            SingSessionContoller session = SingSessionContoller.getInstance();
+                            session.destroy(request);
+                            response.sendRedirect("/login");
+                        }
+                    } catch (DaoException | IOException e) {
+                        e.printStackTrace();
+                    }
                 }else {
                     System.out.println("non applico le modifiche");
                 }
-
-                // Controllo se devo salvare qualche modifica
-                /*if(modificato){
-                    System.out.println("modificato");
-                    // vedo chi è stato modificato e salvo le modifiche
-
-                    if(user.equals(userAttuale)) {
-                        try {
-                            UserDaoImp userDao = new UserDaoImp();
-                            userDao.update(user);
-                            userDao.destroy();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    if(azienda.equals(azziendaAttuale)){
-                        try {
-                            AziendaDaoImp aziendaDao = new AziendaDaoImp();
-                            aziendaDao.updateAzienda(azienda);
-                            aziendaDao.destroy();
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-                    }
-                }
-
-                // Controllo se devo INVALIDARE LA SESSIONE
-                if(sessionescaduta){
-                    System.out.println("sessione scaduta");
-                }
-
-                */
 
             } else {
                 System.out.println("Modifiche non consentite non conincidono l'email o la password email: " + emailAttuale + "  " + user.getEmail()  + "  password: "+ passwordAttuale + "  " + user.getPassword() );
