@@ -6,6 +6,7 @@ import dao.implementation.*;
 import model.*;
 import view.TemplateController;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,12 @@ import java.util.List;
 
 public class InvioRichiestaTirocinioController extends BackEndTrController {
 
-    private void fillModulo(HttpServletRequest request, Tirocinante tirocinante) throws DaoException {
+    private void er500(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/500");
+        dispatcher.forward(request, response);
+    }
+
+    private void fillModulo(HttpServletRequest request, HttpServletResponse response, Tirocinante tirocinante) throws ServletException, IOException {
         Date dataDiNascita = tirocinante.getDataDiNascita();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String stringaDataDiNascita = df.format(dataDiNascita);
@@ -55,41 +61,43 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
 
         if (request.getSession().getAttribute("Tirocinio") != null) {
             idOffertaTirocinio = (int) request.getSession().getAttribute("Tirocinio");
-        }
-
-        else {
+        } else {
             idOffertaTirocinio = Integer.parseInt(request.getParameter("Tirocinio"));
         }
+        try {
+            OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
+            OffertaTirocinio offertaTirocinio = offertaTirocinioDaoImp.getOffertatrByID(idOffertaTirocinio);
+            offertaTirocinioDaoImp.destroy();
 
-        OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
-        OffertaTirocinio offertaTirocinio = offertaTirocinioDaoImp.getOffertatrByID(idOffertaTirocinio);
-        offertaTirocinioDaoImp.destroy();
+            Integer idAzienda = offertaTirocinio.getAzienda();
+            AziendaDaoImp aziendaDaoImp = new AziendaDaoImp();
+            Azienda azienda = aziendaDaoImp.getAziendaByID(idAzienda);
+            aziendaDaoImp.destroy();
 
-        Integer idAzienda = offertaTirocinio.getAzienda();
-        AziendaDaoImp aziendaDaoImp = new AziendaDaoImp();
-        Azienda azienda = aziendaDaoImp.getAziendaByID(idAzienda);
-        aziendaDaoImp.destroy();
+            TutoreUniversitarioDaoImp tutoreUniversitarioDaoImp = new TutoreUniversitarioDaoImp();
+            List<TutoreUniversitario> listaTutori = tutoreUniversitarioDaoImp.getAllTutUni();
+            tutoreUniversitarioDaoImp.destroy();
 
-        TutoreUniversitarioDaoImp tutoreUniversitarioDaoImp = new TutoreUniversitarioDaoImp();
-        List<TutoreUniversitario> listaTutori = tutoreUniversitarioDaoImp.getAllTutUni();
-        tutoreUniversitarioDaoImp.destroy();
+            datamodel.put("tirocinante", tirocinante);
+            datamodel.put("offertatirocinio", offertaTirocinio);
+            datamodel.put("azienda", azienda);
+            datamodel.put("tutoreUniversitario", listaTutori);
+            datamodel.put("giorno", giorno);
+            datamodel.put("mese", mese);
+            datamodel.put("anno", anno);
+            datamodel.put("ckCorsoDilaurea", ckCorsoDilaurea);
+            datamodel.put("ckDiplomaUniversitario", ckDiplomaUniversitario);
+            datamodel.put("ckLaureato", ckLaureato);
+            datamodel.put("ckDottoratoDiRicerca", ckDottoratoDiRicerca);
+            datamodel.put("ckScuolaAltro", ckScuolaAltro);
+            if (tirocinante.getHandicap()) {
+                datamodel.put("handicap", true);
+            } else datamodel.put("handicap", false);
 
-        datamodel.put("tirocinante", tirocinante);
-        datamodel.put("offertatirocinio", offertaTirocinio);
-        datamodel.put("azienda", azienda);
-        datamodel.put("tutoreUniversitario", listaTutori);
-        datamodel.put("giorno", giorno);
-        datamodel.put("mese", mese);
-        datamodel.put("anno", anno);
-        datamodel.put("ckCorsoDilaurea", ckCorsoDilaurea);
-        datamodel.put("ckDiplomaUniversitario", ckDiplomaUniversitario);
-        datamodel.put("ckLaureato", ckLaureato);
-        datamodel.put("ckDottoratoDiRicerca", ckDottoratoDiRicerca);
-        datamodel.put("ckScuolaAltro", ckScuolaAltro);
-        if (tirocinante.getHandicap()) {
-            datamodel.put("handicap", true);
-        } else datamodel.put("handicap", false);
-
+        } catch (DaoException e) {
+            e.printStackTrace();
+            er500(request, response);
+        }
     }
 
     private void controlloCampiTirocinante(HttpServletRequest request, Tirocinante tirocinante) throws ParseException {
@@ -175,13 +183,18 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
     }
 
 
-    private void aggiornoTirocinante(Tirocinante tirocinante) throws DaoException {
+    private void aggiornoTirocinante(HttpServletRequest request, HttpServletResponse response, Tirocinante tirocinante) throws ServletException, IOException {
         TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
-        tirocinanteDaoImp.setTirocinante(tirocinante);
-        tirocinanteDaoImp.destroy();
+        try {
+            tirocinanteDaoImp.setTirocinante(tirocinante);
+            tirocinanteDaoImp.destroy();
+        } catch (DaoException e) {
+            e.printStackTrace();
+            er500(request, response);
+        }
     }
 
-    private void creoTirocinio(HttpServletRequest request, Tirocinante tirocinante) throws DaoException {
+    private void creoTirocinio(HttpServletRequest request, HttpServletResponse response, Tirocinante tirocinante) throws ServletException, IOException {
         TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
         Tirocinio tirocinio = new Tirocinio();
 
@@ -192,14 +205,17 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
 
         if (request.getSession().getAttribute("Tirocinio") != null) {
             tirocinio.setOffertaTirocinio((int) request.getSession().getAttribute("Tirocinio"));
-        }
-        else {
+        } else {
             tirocinio.setOffertaTirocinio(Integer.parseInt(request.getParameter("idOffertaTirocinio")));
         }
         tirocinio.setTirocinante(tirocinante.getIDTirocinante());
         TutoreUniversitario tutoreUniversitario = new TutoreUniversitario();
         if (request.getParameter("TutoreUniversitario").equals("NEW")) {
-            tutoreUniversitario = creoTutoreUniversitario(request);
+            try {
+                tutoreUniversitario = creoTutoreUniversitario(request);
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
             tirocinio.setTutoreUniversitario(tutoreUniversitario.getIDTutoreUni());
         } else {
             tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
@@ -209,8 +225,14 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
         } else {
             tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
         }
-        tirocinioDaoImp.setRichiestatr(tirocinio);
-        tirocinioDaoImp.destroy();
+        try {
+
+            tirocinioDaoImp.setRichiestatr(tirocinio);
+            tirocinioDaoImp.destroy();
+        } catch (DaoException e) {
+            er500(request, response);
+            e.printStackTrace();
+        }
     }
 
     private TutoreUniversitario creoTutoreUniversitario(HttpServletRequest request) throws DaoException {
@@ -230,13 +252,9 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
         super.init(request, response);
         SingSessionContoller session = SingSessionContoller.getInstance();
         Tirocinante tirocinante = session.getTirocinate(request, response);
-        try {
 
-            fillModulo(request, tirocinante);
-            TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
+        fillModulo(request, response, tirocinante);
+        TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
 
     }
 
@@ -246,11 +264,11 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
         Tirocinante tirocinante = session.getTirocinate(request, response);
         try {
             controlloCampiTirocinante(request, tirocinante);
-            aggiornoTirocinante(tirocinante);
-            creoTirocinio(request, tirocinante);
+            aggiornoTirocinante(request, response, tirocinante);
+            creoTirocinio(request, response,tirocinante);
             response.sendRedirect("/account/moduli");
 
-        } catch (ParseException | DaoException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
