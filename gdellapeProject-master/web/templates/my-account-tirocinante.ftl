@@ -12,7 +12,7 @@
     <link href="/css/internshiptutor.css" rel="stylesheet" type="text/css">
 
 </head>
-<body class="smoothscroll enable-animation">
+<body class="enable-animation">
 <!-- wrapper -->
 <div id="wrapper">
     <#include "header.ftl">
