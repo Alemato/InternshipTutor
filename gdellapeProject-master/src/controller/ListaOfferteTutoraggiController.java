@@ -4,6 +4,7 @@ import dao.implementation.OffertaTirocinioDaoImp;
 import model.OffertaTirocinio;
 import view.TemplateController;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,22 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ListaOfferteTutoraggiController extends baseController {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.init(request, response);
-            OfferteTut(request);
-
-
-        Calendar presente = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
-        datamodel.put("dataOggi", presente.getTime());
-        TemplateController.process("offerte-tutoraggi.ftl", datamodel, response, getServletContext());
-
-    }
-
-    private void OfferteTut(HttpServletRequest request) {
+    private void OfferteTut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
 
@@ -37,8 +24,8 @@ public class ListaOfferteTutoraggiController extends baseController {
             String azienda = "Tutte le Aziende";
             String sede = "Tutte le sedi disponibili";
             String cerca = null;
-            String sdatainizio = "2000-01-01";
-            String sdatafine = "3000-12-31";
+            String sdatainizio = "1900-01-01";
+            String sdatafine = "5000-12-31";
             Date datainizio;
             Date datafine;
 
@@ -49,21 +36,30 @@ public class ListaOfferteTutoraggiController extends baseController {
             }
             String sElementiPerPagina = request.getParameter("risultati");
             if (sElementiPerPagina != null) {
-                ElementiPerPagina = Integer.parseInt(sElementiPerPagina);
+                if (!sElementiPerPagina.equals("")) {
+                    ElementiPerPagina = Integer.parseInt(sElementiPerPagina);
+                }
             }
+
             String sAzienda = request.getParameter("azienda");
             if (sAzienda != null) {
-                azienda = sAzienda;
+                if (!sAzienda.equals(""))
+                    azienda = sAzienda;
+
             }
+
             String sSede = request.getParameter("sede");
             if (sSede != null) {
-                sede = sSede;
+                if (!sSede.equals(""))
+                    sede = sSede;
             }
-            System.out.println(request.getParameter("search"));
+
             String sCerca = request.getParameter("search");
             if (sCerca != null) {
-                cerca = sCerca;
+                if (!sCerca.equals(""))
+                    cerca = sCerca;
             }
+
             SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
             datainizio = format.parse(sdatainizio);
 
@@ -79,7 +75,7 @@ public class ListaOfferteTutoraggiController extends baseController {
 
             List<OffertaTirocinio> allOfferte = offertaTirocinioDaoImp.getAllOffertatr();
             List<OffertaTirocinio> offerte = new ArrayList<>();
-            for (OffertaTirocinio offertaTirocinio : allOfferte){
+            for (OffertaTirocinio offertaTirocinio : allOfferte) {
                 if (offertaTirocinio.getStato() == 1)
                     offerte.add(offertaTirocinio);
             }
@@ -135,7 +131,8 @@ public class ListaOfferteTutoraggiController extends baseController {
                                 offerteFiltrate.add(off);
                 }
             } else if ((azienda.equals("Tutte le Aziende") && sede.equals("Tutte le sedi disponibili") && cerca != null)) {
-                for (OffertaTirocinio off : offerte) {;
+                for (OffertaTirocinio off : offerte) {
+                    ;
                     if (off.getTitolo().toLowerCase().contains(cerca.toLowerCase()))
                         if (off.getPeriodoInizio().after(datainizio))
                             if (off.getPeriodoFine().before(datafine))
@@ -164,14 +161,32 @@ public class ListaOfferteTutoraggiController extends baseController {
 
             datamodel.put("numeroPagina", pageid);
             datamodel.put("elementiPerPagina", ElementiPerPagina);
-            System.out.println("ElementiPerPagina");
-            System.out.println(ElementiPerPagina);
             datamodel.put("numeroPagine", Math.ceil((float) offerteFiltrate.size() / ElementiPerPagina));
             datamodel.put("offerte", offerteInpaginate);
             datamodel.put("offerteFiltro", offerte);
 
         } catch (Exception e) {
             e.printStackTrace();
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/500");
+            dispatcher.forward(request, response);
+
         }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        RequestDispatcher page = request.getRequestDispatcher("/404");
+        page.forward(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        super.init(request, response);
+        OfferteTut(request, response);
+
+
+        Calendar presente = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
+        datamodel.put("dataOggi", presente.getTime());
+        TemplateController.process("offerte-tutoraggi.ftl", datamodel, response, getServletContext());
+
     }
 }
