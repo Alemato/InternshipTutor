@@ -6,10 +6,10 @@
     <#include "importCss.ftl">
 
     <!-- CSS DATATABLES -->
-    <link href="css/layout-datatables.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
-<body class="smoothscroll enable-animation">
+<body class="enable-animation">
 
 <div id="wrapper">
     <#include "header.ftl">
@@ -44,7 +44,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>Localit&agrave;</th>
-                        <th>Web</th>
+                        <th>Sito Web</th>
                         <th>Data Convenzione</th>
                     </tr>
                     </thead>
@@ -53,18 +53,18 @@
                     <tr>
                         <th>Nome</th>
                         <th>Localit&agrave;</th>
-                        <th>Web</th>
+                        <th>Sito Web</th>
                         <th>Data Convenzione</th>
                     </tr>
                     </tfoot>
 
                     <tbody>
-                    <#list ListaConv as ListaConvenzione>
+                    <#list ListaConv as listaConvenzione>
                     <tr>
-                        <td>${ListaConvenzione.ragioneSociale}</td>
-                        <td>${ListaConvenzione.indirizzoSedeLegale}</td>
-                        <td><a href="${ListaConvenzione.link}">${ListaConvenzione.ragioneSociale}</a></td>
-                        <td>${ListaConvenzione.dataConvenzione}</td>
+                        <td>${listaConvenzione.ragioneSociale}</td>
+                        <td>${listaConvenzione.indirizzoSedeLegale}</td>
+                        <td><a href="${listaConvenzione.link}">${listaConvenzione.ragioneSociale}</a></td>
+                        <td>${listaConvenzione.dataConvenzione}</td>
                     </tr>
                     </#list>
 
@@ -82,12 +82,12 @@
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
 <!-- Script page -->
-<script src="plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables/js/dataTables.tableTools.min.js"></script>
-<script src="plugins/datatables/js/dataTables.colReorder.min.js"></script>
-<script src="plugins/datatables/js/dataTables.scroller.min.js"></script>
-<script src="plugins/datatables/dataTables.bootstrap.js"></script>
-<script src="plugins/select2/js/select2.full.min.js"></script>
+<script src="/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatables/js/dataTables.tableTools.min.js"></script>
+<script src="/plugins/datatables/js/dataTables.colReorder.min.js"></script>
+<script src="/plugins/datatables/js/dataTables.scroller.min.js"></script>
+<script src="/plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="/plugins/select2/js/select2.full.min.js"></script>
 <script>
     function initTableListaConvenzioni() {
 
