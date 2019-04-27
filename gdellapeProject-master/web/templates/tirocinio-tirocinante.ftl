@@ -7,7 +7,7 @@
     <#include "importCss.ftl">
 
 </head>
-<body class="smoothscroll enable-animation">
+<body class="enable-animation">
 
 <div id="wrapper">
     <#include "header.ftl">

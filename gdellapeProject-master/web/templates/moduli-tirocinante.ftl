@@ -11,7 +11,7 @@
     <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
-<body class="smoothscroll enable-animation">
+<body class="enable-animation">
 <!-- wrapper -->
 <div id="wrapper">
     <#include "header.ftl">
@@ -91,8 +91,16 @@
                                         </button>
                                     </a>
                                 </td>
+                            <#elseif lista.tirocinio?has_content>
+                                <td>
+                                    <a href="/account/moduloTirocinioTirocinante?idTirocinio=${lista.tirocinio.IDTirocinio}">
+                                        <button type="button" class="btn btn-outline-success"><i
+                                                    class="fa fa-print"></i>Visualizza Modulo
+                                        </button>
+                                    </a>
+                                </td>
                             <#else>
-                                <td>Modulo gi&agrave; stampato</td>
+                                <td>In attesa del caricamento del modulo</td>
                             </#if>
                             <td>
                                 <a href="/gestioneTirocinioScelto?idTirocinio=${lista.tirocinio.IDTirocinio}">
@@ -105,18 +113,6 @@
                     </#list>
                     </tbody>
                 </table>
-
-                <#--<footer class="text-center text-sm-right mt-25 ">-->
-                    <#--<button type="submit" form="form_tirocinii_fine"-->
-                            <#--class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i-->
-                                <#--class="fa fa-check"></i> Aggiorna-->
-                    <#--</button>-->
-                    <#--<button type="reset" form="form_tirocinii_fine"-->
-                            <#--class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i-->
-                                <#--class="fa fa-times"></i> Annulla-->
-                    <#--</button>-->
-                <#--</footer>-->
-            <#--</form>-->
 
     </section>
 

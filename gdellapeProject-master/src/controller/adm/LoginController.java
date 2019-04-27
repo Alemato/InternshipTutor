@@ -51,7 +51,7 @@ public class LoginController extends HttpServlet {
         return url;
     }
 
-    private int idTirocinio(HttpServletRequest request, HttpServletResponse response) {
+    private int idTirocinio(HttpServletRequest request) {
         int tirocinio = (int) request.getSession().getAttribute("Tirocinio");
         System.out.println("id tirocinio");
         System.out.println(tirocinio);
@@ -66,7 +66,7 @@ public class LoginController extends HttpServlet {
         HttpSession sessionFalse = request.getSession(false);
         if (sessionFalse != null) {
             if (sessionFalse.getAttribute("Tirocinio") != null) {
-                tirocinio = idTirocinio(request, response);
+                tirocinio = idTirocinio(request);
                 richiesta = true;
             }
         }

@@ -23,11 +23,7 @@ public class BackEndModuliController extends baseController {
 
         }else if (tipo == 2){
             GestioneModuliTirocinante moduliTir = new GestioneModuliTirocinante(datamodel, request, response, getServletContext());
-            try {
-                moduliTir.get();
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
+            moduliTir.get();
         }
     }
 
@@ -41,11 +37,7 @@ public class BackEndModuliController extends baseController {
 
         }else if (tipo == 2){
             GestioneModuliTirocinante moduliTir = new GestioneModuliTirocinante(datamodel, request, response, getServletContext());
-            try {
-                moduliTir.post();
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
+            moduliTir.post();
         }
     }
 }

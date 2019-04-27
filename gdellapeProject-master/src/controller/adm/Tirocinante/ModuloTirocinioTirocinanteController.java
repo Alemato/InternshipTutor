@@ -23,6 +23,12 @@ import java.util.List;
 
 public class ModuloTirocinioTirocinanteController extends baseController {
 
+    private boolean ifPdfTirocinanteUploaded(HttpServletRequest request) throws DaoException {
+        TirocinioDaoImp tirocinioDaoImpTestPdf = new TirocinioDaoImp();
+        Tirocinio tirocinio = tirocinioDaoImpTestPdf.getRichiestatrByID(Integer.parseInt(request.getParameter("idTirocinio")));
+        return tirocinio.getPdfTirocinante() != null;
+    }
+
     private void controlloCampiTirocinante(HttpServletRequest request, Tirocinante tirocinante) throws ParseException {
 
         String[] nominativo;
@@ -105,6 +111,8 @@ public class ModuloTirocinioTirocinanteController extends baseController {
             tirocinante.setHandicap(handicap);
     }
 
+
+
     private void fillModulo(HttpServletRequest request, Tirocinante tirocinante) throws DaoException {
         Date dataDiNascita = tirocinante.getDataDiNascita();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -142,12 +150,12 @@ public class ModuloTirocinioTirocinanteController extends baseController {
         int idOffertaTirocinio = 0;
         TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
         List<Tirocinio> tirocini = tirocinioDaoImp.getOffertaTirByIDTirocinante(tirocinante.getIDTirocinante());
-        for (Tirocinio tirocinio: tirocini){
+        for (Tirocinio tirocinio : tirocini) {
             if (tirocinio.getIDTirocinio() == Integer.parseInt(request.getParameter("idTirocinio")))
                 idOffertaTirocinio = tirocinio.getOffertaTirocinio();
         }
         Tirocinio tirocinio = new Tirocinio();
-        for (Tirocinio tir: tirocini) {
+        for (Tirocinio tir : tirocini) {
             if (tir.getIDTirocinio() == Integer.parseInt(request.getParameter("idTirocinio")))
                 tirocinio = tir;
         }
@@ -190,23 +198,25 @@ public class ModuloTirocinioTirocinanteController extends baseController {
         super.init(request, response);
         SingSessionContoller session = SingSessionContoller.getInstance();
         Tirocinante tirocinante = session.getTirocinate(request, response);
-            try {
-                controlloCampiTirocinante(request, tirocinante);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/account/moduli");
-            dispatcher.forward(request, response);
+        try {
+            controlloCampiTirocinante(request, tirocinante);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/account/moduli");
+        dispatcher.forward(request, response);
     }
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
-        datamodel.put("notview", true);
+
         SingSessionContoller session = SingSessionContoller.getInstance();
         Tirocinante tirocinante = session.getTirocinate(request, response);
         try {
-            fillModulo(request,tirocinante);
+            if (ifPdfTirocinanteUploaded(request))
+                datamodel.put("PdfStampato",true);
+            fillModulo(request, tirocinante);
         } catch (DaoException e) {
             e.printStackTrace();
         }
