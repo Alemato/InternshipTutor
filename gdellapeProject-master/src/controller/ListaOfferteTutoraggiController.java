@@ -91,7 +91,7 @@ public class ListaOfferteTutoraggiController extends baseController {
                                     if (off.getPeriodoFine().before(datafine))
                                         offerteFiltrate.add(off);
                 }
-            } else if ((!(azienda.equals("Tutte le Aziende")) && !(sede.equals("Tutte le sedi disponibili")) && cerca == null)) {
+            } else if (!azienda.equals("Tutte le Aziende") && !sede.equals("Tutte le sedi disponibili")) {
                 for (OffertaTirocinio off : offerte) {
                     if (off.getAziendaOspitante().equals(azienda))
                         if (off.getLuogoEffettuazione().equals(sede))
@@ -99,7 +99,7 @@ public class ListaOfferteTutoraggiController extends baseController {
                                 if (off.getPeriodoFine().before(datafine))
                                     offerteFiltrate.add(off);
                 }
-            } else if ((!(azienda.equals("Tutte le Aziende")) && sede.equals("Tutte le sedi disponibili") && cerca != null)) {
+            } else if (!azienda.equals("Tutte le Aziende") && cerca != null) {
                 for (OffertaTirocinio off : offerte) {
                     if (off.getAziendaOspitante().equals(azienda))
                         if (off.getTitolo().toLowerCase().contains(cerca.toLowerCase()))
@@ -107,14 +107,14 @@ public class ListaOfferteTutoraggiController extends baseController {
                                 if (off.getPeriodoFine().before(datafine))
                                     offerteFiltrate.add(off);
                 }
-            } else if ((!(azienda.equals("Tutte le Aziende")) && sede.equals("Tutte le sedi disponibili") && cerca == null)) {
+            } else if (!azienda.equals("Tutte le Aziende")) {
                 for (OffertaTirocinio off : offerte) {
                     if (off.getAziendaOspitante().equals(azienda))
                         if (off.getPeriodoInizio().after(datainizio))
                             if (off.getPeriodoFine().before(datafine))
                                 offerteFiltrate.add(off);
                 }
-            } else if ((azienda.equals("Tutte le Aziende") && !(sede.equals("Tutte le sedi disponibili")) && cerca != null)) {
+            } else if (!sede.equals("Tutte le sedi disponibili") && cerca != null) {
                 for (OffertaTirocinio off : offerte) {
                     if (off.getLuogoEffettuazione().equals(sede))
                         if (off.getTitolo().toLowerCase().contains(cerca.toLowerCase()))
@@ -123,22 +123,21 @@ public class ListaOfferteTutoraggiController extends baseController {
                                     offerteFiltrate.add(off);
                                 }
                 }
-            } else if ((azienda.equals("Tutte le Aziende") && !(sede.equals("Tutte le sedi disponibili")) && cerca == null)) {
+            } else if (!sede.equals("Tutte le sedi disponibili")) {
                 for (OffertaTirocinio off : offerte) {
                     if (off.getLuogoEffettuazione().equals(sede))
                         if (off.getPeriodoInizio().after(datainizio))
                             if (off.getPeriodoFine().before(datafine))
                                 offerteFiltrate.add(off);
                 }
-            } else if ((azienda.equals("Tutte le Aziende") && sede.equals("Tutte le sedi disponibili") && cerca != null)) {
+            } else if (cerca != null) {
                 for (OffertaTirocinio off : offerte) {
-                    ;
                     if (off.getTitolo().toLowerCase().contains(cerca.toLowerCase()))
                         if (off.getPeriodoInizio().after(datainizio))
                             if (off.getPeriodoFine().before(datafine))
                                 offerteFiltrate.add(off);
                 }
-            } else if ((azienda.equals("Tutte le Aziende") && sede.equals("Tutte le sedi disponibili") && cerca == null)) {
+            } else {
                 for (OffertaTirocinio off : offerte) {
                     if (off.getPeriodoInizio().after(datainizio))
                         if (off.getPeriodoFine().before(datafine))
@@ -183,9 +182,6 @@ public class ListaOfferteTutoraggiController extends baseController {
         super.init(request, response);
         OfferteTut(request, response);
 
-
-        Calendar presente = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
-        datamodel.put("dataOggi", presente.getTime());
         TemplateController.process("offerte-tutoraggi.ftl", datamodel, response, getServletContext());
 
     }
