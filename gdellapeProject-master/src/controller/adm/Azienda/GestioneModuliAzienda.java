@@ -3,10 +3,7 @@ package controller.adm.Azienda;
 import controller.sessionController.SingSessionContoller;
 import controller.utility.Validation;
 import dao.exception.DaoException;
-import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinanteDaoImp;
-import dao.implementation.TirocinioDaoImp;
-import dao.implementation.UserDaoImp;
+import dao.implementation.*;
 import model.*;
 import view.TemplateController;
 

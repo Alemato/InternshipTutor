@@ -28,9 +28,9 @@ public class UploadFilePDF{
      * @param object  oggetto che può essere di tipo Azienda se tipoPdf è uguale a 0
      *                o di tipo Tirocinio se tipoPdf è uguale a 1, 2, 3
      *                <p>
-     *                albero cartelle Convenzione ./PDF/Covenzione/IDAzienda/NOMEPDF.pdf
+     *                albero cartelle Convenzione ./PDF/Convenzione/IDAzienda/NOMEPDF.pdf
      *                albero cartelle Richiesta di tirocinio ./PDF/RichestaTirocinio/IDTirocinio/IDTirocininate/NOMEPDF.pdf
-     *                albero cartella Fine Tirocinio Azienda ./PDF/FineTirocinio/IDTirocinio/IDTirocininante/NOMEPDF.pdf
+     *                albero cartella Fine Tirocinio Azienda ./PDF/FineTirocinioAzienda/IDTirocinio/IDTirocininante/NOMEPDF.pdf
      *                albero cartella Segreteria ./PDF/Segreteria/IDTirocinio/IDTirocininante/NOMEPDF.pdf
      * @return torna il nome del file che serve per caricare sul DB o "" se si presenta un errore
      * @throws IOException    per il metodo write
@@ -92,19 +92,19 @@ public class UploadFilePDF{
         String savePath = "";
         if (object instanceof Azienda && tipoPdf == 0) {
 //            PDF Convenzione Azienda
-            savePath = savePath.concat("Covenzione" + File.separator);
+            savePath = savePath.concat("Convenzione" + File.separator);
             savePath = savePath.concat(((Azienda) object).getIDAzienda() + File.separator);
         } else if (object instanceof Tirocinio) {
             if (tipoPdf == 1) {
 //                PDF della Richiesta di Tirocinio
-                savePath = savePath.concat("RichestaTirocinio" + File.separator);
-            } else if (tipoPdf == 2) {
+                savePath = savePath.concat("RichiestaTirocinio" + File.separator);
+            } else if (tipoPdf == 3) {
 //                PDF della Segreteria
                 savePath = savePath.concat("Segreteria" + File.separator);
 
-            } else if (tipoPdf == 3) {
+            } else if (tipoPdf == 2) {
 //                PDF di Fine Tirocinio
-                savePath = savePath.concat("FineTirocinio" + File.separator);
+                savePath = savePath.concat("FineTirocinioAzienda" + File.separator);
             }
             savePath = savePath.concat(((Tirocinio) object).getIDTirocinio() + File.separator);
             savePath = savePath.concat(((Tirocinio) object).getTirocinante() + File.separator);

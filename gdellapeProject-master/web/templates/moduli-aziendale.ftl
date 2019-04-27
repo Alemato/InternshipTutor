@@ -101,8 +101,10 @@
                                                         </button>
                                                     </a></td>
                                                 <td>
-                                                    <form>
-                                                        <input type="file" name="ModuloConvenzione">
+                                                    <form id="form_file_convenzione" action="/account/upload-convenzione" method="post" enctype="multipart/form-data">
+                                                        <input type="file" name="filetoupload" size="60"/>
+                                                        <input type="submit" form="form_file_convenzione"
+                                                                class="btn btn-success pull-left float-sm-left mb-20" value="invia" />
                                                     </form>
                                                 </td>
                                         </#if>
@@ -123,7 +125,8 @@
 
             <h1 class="mb-0">MODULI TIROCINI SVOLTI</h1>
             <div class="linea-divisione mt-15 mb-30"></div>
-            <form id="form_tirocinii_fine" action="/account/moduli" method="post">
+
+
                 <table class="table table-responsive table-striped table-bordered bg-white table-hover border"
                        id="datatable_2" width="100%"
                        cellspacing="0">
@@ -135,6 +138,7 @@
                         <th>E-mail</th>
                         <th>Stato Richiesta</th>
                         <th>Fine Tirocinio</th>
+                        <th>Aggiorna Stato</th>
                         <th>Data Creazione</th>
                         <th>Data Aggiornamento</th>
                         <th>Stampa Modulo</th>
@@ -143,22 +147,24 @@
                     </thead>
                     <tfoot>
                     <tr>
-                        <#-- TODO inserire id offerta e nome offerta -->
                         <th>Titolo Offerta</th>
                         <th>Nome</th>
                         <th>Cognome</th>
                         <th>E-mail</th>
                         <th>Stato Richiesta</th>
                         <th>Fine Tirocinio</th>
+                        <th>Aggiorna Stato</th>
                         <th>Data Creazione</th>
                         <th>Data Aggiornamento</th>
                         <th>Stampa Modulo</th>
                         <th>Carica PDF</th>
+
                     </tr>
                     </tfoot>
                     <tbody>
                     <#list Lista as Lista>
                         <tr>
+                            <form id="form_tirocinii_fine_${Lista?index}" action="/account/moduli" method="post">
                             <td><a href="/account/gestione-offerte/view?id=${Lista.offerta.IDOffertaTirocinio}" class="text-blue">${Lista.offerta.titolo}</a></td>
                             <td>${Lista.tirocinante.nome}</td>
                             <td>${Lista.tirocinante.cognome}</td>
@@ -179,8 +185,22 @@
                                             class="fa fa-check" style="color: green;"></i> Tirocinio finito
                                 </td>
                             </#if>
+                                <#if Lista.tirocinio.stato == 1>
+                                <td>
+                                    <button type="submit" form="form_tirocinii_fine_${Lista?index}"
+                                            class="btn btn-success btn-lg pull-right float-sm-left"><i class="fa fa-check"></i> Aggiorna
+                                    </button>
+                                </td>
+                                    <#else>
+                                        <td>
+                                            <button type="submit" form="form_tirocinii_fine_${Lista?index}"
+                                                    class="btn btn-success btn-lg pull-right float-sm-left" disabled><i class="fa fa-check"></i> Aggiorna
+                                            </button>
+                                        </td>
+                                </#if>
                             <td>${Lista.tirocinio.createDate?date?string.short}</td>
                             <td>${Lista.tirocinio.updateDate?date?string.short}</td>
+
                             <#if Lista.tirocinio.stato == 1>
                                 <td>
                                     <button type="button" class="btn btn-outline-danger"><i class="fa fa-print"></i>Non
@@ -204,29 +224,28 @@
                                     </td>
                                 </#if>
                             </#if>
+                            </form>
+
                             <#if !Lista.tirocinio.pdfAzienda?? && Lista.tirocinio.stato == 2>
-                                    <td><input type="file" name="PDFAzineda_${Lista.tirocinio.IDTirocinio}">
+                                <form id="upload_PDFAzineda__${Lista?index}" action="/account/upload-file-tirocinio-azienda" method="post" enctype="multipart/form-data">
+                                    <td><input type="file" name="PDFAzienda">
+                                        <input type="submit" form="upload_PDFAzineda__${Lista?index}"
+                                                class="btn btn-success  mt-10" value="invia"/>
+                                        <input type="hidden" name="id" value="${Lista.tirocinio.IDTirocinio}">
                                     </td>
+                                </form>
                                 <#else>
-                                    <td><input type="file" name="PDFAzineda_${Lista.tirocinio.IDTirocinio}" disabled>
+                                    <td> NON DISPONIBILE
                                     </td>
                             </#if>
+
+
+
                         </tr>
                     </#list>
                     </tbody>
                 </table>
 
-                <footer class="text-center text-sm-right mt-25 ">
-                    <button type="submit" form="form_tirocinii_fine"
-                            class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
-                                class="fa fa-check"></i> Aggiorna
-                    </button>
-                    <button type="reset" form="form_tirocinii_fine"
-                            class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
-                                class="fa fa-times"></i> Annulla
-                    </button>
-                </footer>
-            </form>
 
     </section>
 
@@ -261,13 +280,15 @@
             }, {
                 "orderable": false
             }, {
-                "orderable": true
+                "orderable": false
             }, {
                 "orderable": true
             }, {
                 "orderable": true
             },{
-                "orderable": true
+                "orderable": false
+            },{
+                "orderable": false
             }],
             "order": [
                 [1, 'asc']
