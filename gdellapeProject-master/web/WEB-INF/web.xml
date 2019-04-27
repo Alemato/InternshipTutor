@@ -380,6 +380,25 @@
 
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>uploadConvenzione</servlet-name>
+        <servlet-class>controller.adm.Azienda.UploadConvenzioneController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>uploadConvenzione</servlet-name>
+        <url-pattern>/account/upload-convenzione</url-pattern>
+        <url-pattern>/Account/Upload-Convenzione</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UploadPDFTirocinioController</servlet-name>
+        <servlet-class>controller.adm.Azienda.UploadPDFTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadPDFTirocinioController</servlet-name>
+        <url-pattern>/account/upload-file-tirocinio-azienda</url-pattern>
+        <url-pattern>/Account/Upload-File-Tirocinio-Azienda</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>moduloTirocinioTirocinante</servlet-name>
