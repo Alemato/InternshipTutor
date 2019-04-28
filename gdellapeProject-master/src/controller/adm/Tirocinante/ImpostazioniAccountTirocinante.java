@@ -177,7 +177,7 @@ public class ImpostazioniAccountTirocinante {
         }
     }
 
-    private void updateTirocinante(Tirocinante tirocinante) throws ServletException, IOException, DaoException {
+    private void updateTirocinante(Tirocinante tirocinante) throws DaoException {
         User userAttuale = user;
         String passwordAttuale;
         String emailAttuale;
@@ -212,56 +212,56 @@ public class ImpostazioniAccountTirocinante {
                 }
 
 
-                if (!(request.getParameter("Nome").isEmpty())) {
+                if (!(request.getParameter("Nome").isEmpty()) && !(request.getParameter("Nome").equals(tirocinante.getNome()))) {
                     tirocinanteMod.setNome(request.getParameter("Nome"));
                     checkModificaTirocinante();
                 }
 
-                if (!(request.getParameter("Cognome").isEmpty())) {
+                if (!(request.getParameter("Cognome").isEmpty()) && !(request.getParameter("Cognome").equals(tirocinante.getCognome()))) {
                     tirocinanteMod.setCognome(request.getParameter("Cognome"));
                     checkModificaTirocinante();
                 }
 
-                if (!(request.getParameter("LuogoNascita").isEmpty())) {
+                if (!(request.getParameter("LuogoNascita").isEmpty()) && !(request.getParameter("LuogoNascita").equals(tirocinante.getLuogoDiNascita()))) {
                     tirocinanteMod.setLuogoDiNascita(request.getParameter("LuogoNascita"));
                     checkModificaTirocinante();
                 }
 
-                if (!(request.getParameter("ProvinciaNascita").isEmpty())) {
+                if (!(request.getParameter("ProvinciaNascita").isEmpty()) && !(request.getParameter("ProvinciaNascita").equals(tirocinante.getProvinciaDiNascita()))) {
                     tirocinanteMod.setProvinciaDiNascita(request.getParameter("ProvinciaNascita"));
                     checkModificaTirocinante();
                 }
 
-                if (!(request.getParameter("LuogoResidenza").isEmpty())) {
+                if (!(request.getParameter("LuogoResidenza").isEmpty()) && !(request.getParameter("LuogoResidenza").equals(tirocinante.getLuogoDiResidenza()))) {
                     tirocinanteMod.setLuogoDiResidenza(request.getParameter("LuogoResidenza"));
                     checkModificaTirocinante();
                 }
 
-                if (!(request.getParameter("ProvinciaResidenza").isEmpty())) {
+                if (!(request.getParameter("ProvinciaResidenza").isEmpty()) && !(request.getParameter("ProvinciaResidenza").equals(tirocinante.getProvinciaDiResidenza()))) {
                     tirocinanteMod.setProvinciaDiResidenza(request.getParameter("ProvinciaResidenza"));
                     checkModificaTirocinante();
                 }
 
-                if (!(request.getParameter("CodiceFiscale").isEmpty())) {
+                if (!(request.getParameter("CodiceFiscale").isEmpty()) && !(request.getParameter("CodiceFiscale").equals(tirocinante.getCodiceFiscale()))) {
                     tirocinanteMod.setCodiceFiscale(request.getParameter("CodiceFiscale"));
                     checkModificaTirocinante();
                 }
 
-                if (!(request.getParameter("Telefono").isEmpty())) {
+                if (!(request.getParameter("Telefono").isEmpty()) && !(request.getParameter("Telefono").equals(tirocinante.getTelefono()))) {
                     tirocinanteMod.setTelefono(request.getParameter("Telefono"));
                     checkModificaTirocinante();
                 }
 
-                if (!(request.getParameter("DataNascita").isEmpty())) {
+                if (!(request.getParameter("DataNascita").isEmpty()) && !(Date.valueOf(request.getParameter("DataNascita")).equals(tirocinante.getDataDiNascita()))) {
                     tirocinanteMod.setDataDiNascita(Date.valueOf(request.getParameter("DataNascita")));
                     checkModificaTirocinante();
                 }
                 if (!(request.getParameter("Handicap") == null)) {
                     if (!(request.getParameter("Handicap").isEmpty())) {
-                        if (request.getParameter("Handicap").equals("Si")) {
+                        if (request.getParameter("Handicap").equals("Si") && !tirocinante.getHandicap()) {
                             tirocinanteMod.setHandicap(true);
                             checkModificaTirocinante();
-                        } else if (request.getParameter("Handicap").equals("No")) {
+                        } else if (request.getParameter("Handicap").equals("No") && tirocinante.getHandicap()) {
                             tirocinante.setHandicap(false);
                             checkModificaTirocinante();
                         }
@@ -270,76 +270,84 @@ public class ImpostazioniAccountTirocinante {
 
                 if (!(request.getParameter("CKStudenteCorsoLaurea") == null)) {
                     if (request.getParameter("CKStudenteCorsoLaurea").equals("1")) {
-                        if (!(request.getParameter("StudenteCorsoLaurea").isEmpty())) {
+                        if (!(request.getParameter("StudenteCorsoLaurea").isEmpty()) && !(request.getParameter("StudenteCorsoLaurea").equals(tirocinante.getCorsoDiLaurea()))) {
                             tirocinanteMod.setCorsoDiLaurea(request.getParameter("StudenteCorsoLaurea"));
                             checkModificaTirocinante();
                         }
                     }
-                }else {
+                }else if (tirocinante.getCorsoDiLaurea() != null){
                     tirocinanteMod.setCorsoDiLaurea(null);
                     checkModificaTirocinante();
                 }
 
                 if (!(request.getParameter("CKDiplomaUniversitario") == null)) {
                     if (request.getParameter("CKDiplomaUniversitario").equals("1")) {
-                        if (!(request.getParameter("DiplomaUniversitario").isEmpty())) {
+                        if (!(request.getParameter("DiplomaUniversitario").isEmpty()) && !(request.getParameter("DiplomaUniversitario").equals(tirocinante.getDiplomaUniversitario()))) {
                             tirocinanteMod.setDiplomaUniversitario(request.getParameter("DiplomaUniversitario"));
                             checkModificaTirocinante();
                         }
                     }
-                }else {
+                }else if (tirocinante.getDiplomaUniversitario() != null){
                     tirocinanteMod.setDiplomaUniversitario(null);
                     checkModificaTirocinante();
                 }
 
                 if (!(request.getParameter("CKLaureaIn") == null)) {
                     if (request.getParameter("CKLaureaIn").equals("1")) {
-                        if (!(request.getParameter("LaureaIn").isEmpty())) {
+                        if (!(request.getParameter("LaureaIn").isEmpty()) && !(request.getParameter("LaureaIn").equals(tirocinante.getLaureato()))) {
                             tirocinanteMod.setLaureato(request.getParameter("LaureaIn"));
                             checkModificaTirocinante();
                         }
                     }
-                }else {
+                }else if (tirocinante.getLaureato() != null) {
                     tirocinanteMod.setLaureato(null);
                     checkModificaTirocinante();
                 }
 
                 if (!(request.getParameter("CKDottoratoRicerca") == null)) {
                     if (request.getParameter("CKDottoratoRicerca").equals("1")) {
-                        if (!(request.getParameter("DottoratoRicerca").isEmpty())) {
+                        if (!(request.getParameter("DottoratoRicerca").isEmpty()) && !(request.getParameter("DottoratoRicerca").equals(tirocinante.getDottoratoDiRicerca()))) {
                             tirocinanteMod.setDottoratoDiRicerca(request.getParameter("DottoratoRicerca"));
                             checkModificaTirocinante();
                         }
                     }
-                }else {
+                }else if (tirocinante.getDottoratoDiRicerca() != null) {
                     tirocinanteMod.setDottoratoDiRicerca(null);
                     checkModificaTirocinante();
                 }
 
                 if (!(request.getParameter("CKScuolaAltro") == null)) {
                     if (request.getParameter("CKScuolaAltro").equals("1")) {
-                        if (!(request.getParameter("ScuolaAltro").isEmpty())) {
+                        if (!(request.getParameter("ScuolaAltro").isEmpty()) && !(request.getParameter("ScuolaAltro").equals(tirocinante.getScuolaAltro()))) {
                             tirocinanteMod.setScuolaAltro(request.getParameter("ScuolaAltro"));
                             checkModificaTirocinante();
                         }
                     }
-                }else {
+                }else if (tirocinante.getScuolaAltro() != null) {
                     tirocinanteMod.setScuolaAltro(null);
                     checkModificaTirocinante();
                 }
 
                 if (modificatoTir) {
                     System.out.println(tirocinanteMod);
-                    System.out.println("applico le modifiche");
+                    System.out.println("applico le modifiche al tirocinante");
                     datamodel.put("ModApp", "Le modifiche sono state salvate");
                     TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
                     tirocinanteDaoImp.setUpdate(tirocinanteMod);
                     tirocinanteDaoImp.destroy();
+
                 }
                 if (modificatoUser) {
+                    System.out.println(user);
+                    System.out.println("applico le modifiche a user");
                     UserDaoImp userDaoImp = new UserDaoImp();
                     userDaoImp.update(user);
                     userDaoImp.destroy();
+
+                }
+                if (!modificatoTir && !modificatoUser) {
+                    System.out.println("Nessuna Modifica &egrave; stata salvata");
+                    datamodel.put("ModApp", "Nessuna Modifica &egrave; stata salvata");
 
                 }
 
