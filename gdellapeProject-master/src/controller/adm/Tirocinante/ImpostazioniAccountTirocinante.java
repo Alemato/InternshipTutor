@@ -9,6 +9,7 @@ import model.Tirocinante;
 import model.User;
 import org.unbescape.html.HtmlEscape;
 import view.TemplateController;
+import view.TemplateControllerMail;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -179,6 +180,7 @@ public class ImpostazioniAccountTirocinante {
 
     private void updateTirocinante(Tirocinante tirocinante) throws DaoException {
         User userAttuale = user;
+        boolean sendemail=false;
         String passwordAttuale;
         String emailAttuale;
         Tirocinante tirocinanteMod;
@@ -204,6 +206,7 @@ public class ImpostazioniAccountTirocinante {
 
                 if (!request.getParameter("Password").isEmpty() && !request.getParameter("PasswordRipetuta").isEmpty()) {
                     changePasswordTir(request.getParameter("Password"), request.getParameter("PasswordRipetuta"), passwordAttuale);
+                    sendemail = true;
                 } else if (request.getParameter("Password").isEmpty()) {
                     System.out.println("password nuova vuota");
 
@@ -343,7 +346,12 @@ public class ImpostazioniAccountTirocinante {
                     UserDaoImp userDaoImp = new UserDaoImp();
                     userDaoImp.update(user);
                     userDaoImp.destroy();
-
+                    if(sendemail){
+                        String[] to = new String[1];
+                        to[0]= "tirocinante@matteifamily.net";
+                        String subject = "Notifica di avvenuta modifica della password";
+                        TemplateControllerMail.process("email/modifica-password.ftl", datamodel, to, subject, request.getServletContext());
+                    }
                 }
                 if (!modificatoTir && !modificatoUser) {
                     System.out.println("Nessuna Modifica &egrave; stata salvata");
