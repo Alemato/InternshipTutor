@@ -6,6 +6,7 @@ import dao.exception.DaoException;
 import model.User;
 import dao.implementation.UserDaoImp;
 import view.TemplateController;
+import view.TemplateControllerMail;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -68,8 +69,13 @@ public class ResetController extends baseController {
                     users.setToken(token);
                     user.setToken(users);
                     user.destroy();
-                    String msg = "<h1>Richiesta di Reset Password</h1>Caro utente<br><p>Abbiamo ricevuto una richiesta di reset della password per l&apos;account con email : <b>" + users.getEmail() + "</b> .<br> Per poter resettare la propia password clicca al seguente linck <a href=\"" + "http://localhost:8080/reset?Token=" + token + "\"" + ">http://localhost:8080/reset?Token=" + token + "</a></p>";
-                    Mailer.send(users.getEmail(), "Richiesta di Reset Password", msg);
+//                    String msg = "<h1>Richiesta di Reset Password</h1>Caro utente<br><p>Abbiamo ricevuto una richiesta di reset della password per l&apos;account con email : <b>" + users.getEmail() + "</b> .<br> Per poter resettare la propia password clicca al seguente linck <a href=\"" + "http://localhost:8080/reset?Token=" + token + "\"" + ">http://localhost:8080/reset?Token=" + token + "</a></p>";
+//                    Mailer.send(users.getEmail(), "Richiesta di Reset Password", msg);
+                    datamodel.put("urlReset", "http://localhost:8080/reset?Token="+token);
+                    String[] to = new String[1];
+                    to[0]= "internshiptutor@matteifamily.net";
+                    String subject = "Richiesta di reset Password";
+                    TemplateControllerMail.process("email/richiesta-reset-password.ftl", datamodel, to, subject, getServletContext());
                     response.sendRedirect("/home");
                 }
             } catch (DaoException e) {
@@ -85,8 +91,12 @@ public class ResetController extends baseController {
                         if (users.getToken().equals(request.getParameter("Token"))){
                             users.setPassword(request.getParameter("New_password"));
                             user.update(users);
-                            String msg = "<h1>Richiesta di Reset Password</h1>Caro utente<br><p>Abbiamo ricevuto una richiesta di reset della password per l&apos;account con email : <b>"+ users.getEmail() + "</b> .<br> La richesta &egrave; stata accettata. <br>La nuova password &egrave; :  "+ users.getPassword();
-                            Mailer.send(users.getEmail(), "Richiesta di Reset Password", msg);
+//                            String msg = "<h1>Richiesta di Reset Password</h1>Caro utente<br><p>Abbiamo ricevuto una richiesta di reset della password per l&apos;account con email : <b>"+ users.getEmail() + "</b> .<br> La richesta &egrave; stata accettata. <br>La nuova password &egrave; :  "+ users.getPassword();
+//                            Mailer.send(users.getEmail(), "Richiesta di Reset Password", msg);
+                            String[] to = new String[1];
+                            to[0]= "internshiptutor@matteifamily.net";
+                            String subject = "Notifica di avvenuta modifica della password";
+                            TemplateControllerMail.process("email/modifica-password.ftl", datamodel, to, subject, request.getServletContext());
                             user.destroy();
                             response.sendRedirect("/login");
                         }else {
