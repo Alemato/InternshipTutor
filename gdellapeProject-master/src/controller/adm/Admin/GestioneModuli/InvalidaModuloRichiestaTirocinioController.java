@@ -6,6 +6,7 @@ import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.TirocinioDaoImp;
 import model.Tirocinio;
+import view.TemplateControllerMail;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,6 +30,10 @@ public class InvalidaModuloRichiestaTirocinioController extends baseController {
         try{
             datamodel.put("urlpage","/admin/Gestione-tirocinio");
             InvalidazioneModuliTirocinio page = new InvalidazioneModuliTirocinio(datamodel,getServletContext(),request,response);
+            String[] to = new String[1];
+            to[0]= "tirocinante@matteifamily.net";
+            String subject = "Notifica di invalidazione del pdf di richiesta di tirocinio";
+            TemplateControllerMail.process("email/invalidazione-modulo-richiesta-tirocinio.ftl", datamodel, to, subject, request.getServletContext());
             page.invalidaPDfTirocinio();
 
 
