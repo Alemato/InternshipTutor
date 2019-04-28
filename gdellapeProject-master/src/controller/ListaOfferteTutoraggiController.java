@@ -24,11 +24,10 @@ public class ListaOfferteTutoraggiController extends baseController {
             String azienda = "Tutte le Aziende";
             String sede = "Tutte le sedi disponibili";
             String cerca = null;
-            String sdatainizio = "1900-01-01";
-            String sdatafine = "5000-12-31";
+            String sdatainizio;
+            String sdatafine;
             Date datainizio;
             Date datafine;
-
 
             if (spageid != null) {
                 pageid = Integer.parseInt(spageid);
@@ -61,16 +60,28 @@ public class ListaOfferteTutoraggiController extends baseController {
             }
 
             SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
-            datainizio = format.parse(sdatainizio);
+
 
             if (request.getParameter("datainizio") != null && !request.getParameter("datainizio").equals("")) {
                 sdatainizio = request.getParameter("datainizio");
                 datainizio = format.parse(sdatainizio);
+
+            }else{
+
+                Calendar calIn = Calendar.getInstance();
+                calIn.add(Calendar.YEAR, -500);
+                datainizio = calIn.getTime();
             }
-            datafine = format.parse(sdatafine);
+
             if (request.getParameter("datafine") != null && !request.getParameter("datafine").equals("")) {
                 sdatafine = request.getParameter("datafine");
                 datafine = format.parse(sdatafine);
+
+            }else {
+
+                Calendar calFin = Calendar.getInstance();
+                calFin.add(Calendar.YEAR, 500);
+                datafine = calFin.getTime();
             }
 
             List<OffertaTirocinio> allOfferte = offertaTirocinioDaoImp.getAllOffertatr();
