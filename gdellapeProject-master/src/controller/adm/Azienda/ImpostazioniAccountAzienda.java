@@ -9,6 +9,7 @@ import model.Azienda;
 import model.User;
 import org.unbescape.html.HtmlEscape;
 import view.TemplateController;
+import view.TemplateControllerMail;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -202,6 +203,7 @@ public class ImpostazioniAccountAzienda {
     private void updateAzienda(){
         User userAttuale = user;
         Azienda azziendaAttuale = azienda;
+        boolean sendemail = false;
         String passwordAttuale;
         String emailAttuale;
         // Verifico la presenza dell'email e della password Attuale che mi serve per sicurezza
@@ -228,6 +230,7 @@ public class ImpostazioniAccountAzienda {
                 // Modifico la password a cui segue l'INVALIDAZIONE DELLA SESSIONE
                 if(!request.getParameter("Password").isEmpty() && !request.getParameter("PasswordRipetuta").isEmpty()){
                     changePassword(request.getParameter("Password"),request.getParameter("PasswordRipetuta"),passwordAttuale);
+                    sendemail = true;
                 }
                 else if (request.getParameter("Password").isEmpty()){
                     System.out.println("password nuova vuota");
@@ -256,6 +259,12 @@ public class ImpostazioniAccountAzienda {
                         salvaAzienda(azienda);
                         salvaUser(user);
                         datamodel.put("ModApp", "Le modifiche sono state salvate");
+                        if(sendemail){
+                            String[] to = new String[1];
+                            to[0] = "azienda@matteifamily.net";
+                            String subject = "Notifica di avvenuta modifica della password";
+                            TemplateControllerMail.process("email/modifica-password.ftl", datamodel, to, subject, request.getServletContext());
+                        }
                         if(sessionescaduta){
                             System.out.println("sessione scaduta");
                             SingSessionContoller session = SingSessionContoller.getInstance();
