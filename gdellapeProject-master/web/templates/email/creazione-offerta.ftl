@@ -761,18 +761,14 @@
     <tbody>
     <tr>
         <td valign="top" style="border-spacing: 0px; border-collapse: collapse; line-height: 24px; font-size: 16px; margin: 0;" align="left" bgcolor="#f8f9fa">
-
-
             <table class="s-5 w-100" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                 <tbody>
                 <tr>
-                    <td height="48" style="border-spacing: 0px; border-collapse: collapse; line-height: 48px; font-size: 48px; width: 100%; height: 48px; margin: 0;" align="left">
-                         
+                    <td height="48" style="border-spacing: 0px; border-collapse: collapse; line-height: 48px; font-size: 48px; width: 100%; height: 48px; margin: 0;" align="left"> 
                     </td>
                 </tr>
                 </tbody>
             </table>
-
             <table class="container " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; width: 100%;">
                 <tbody>
                 <tr>
@@ -787,7 +783,6 @@
                             <tbody>
                             <tr>
                                 <td style="border-spacing: 0px; border-collapse: collapse; line-height: 24px; font-size: 16px; margin: 0;" align="left">
-
                                     <table class="card " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: separate !important; border-radius: 4px; width: 100%; overflow: hidden; border: 1px solid #dee2e6;" bgcolor="#ffffff">
                                         <tbody>
                                         <tr>
@@ -818,16 +813,12 @@
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
-
-
-
-                                                                    <h4 class="text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 24px; line-height: 28.8px;" align="center">È stata creata un offerta di tirocinio!</h4>
+                                                                    <h4 class="text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 24px; line-height: 28.8px;" align="center">&Egrave; stata creata un offerta di tirocinio!</h4>
                                                                     <p class="text-center " style="line-height: 24px; font-size: 16px; margin: 0;" align="center">Riassunto dei dettagli del offerta creata:</p>
                                                                     <table class="s-3 w-100" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                                                                         <tbody>
                                                                         <tr>
-                                                                            <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left">
-                                                                                 
+                                                                            <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left"> 
                                                                             </td>
                                                                         </tr>
                                                                         </tbody>
@@ -852,9 +843,7 @@
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${Titolo}</h5>
                                                                                         </th>
-
-
-                                                                                    </tr>
+                                                                                 </tr>
                                                                                     </thead>
                                                                                 </table>
                                                                                 <table class="s-3 w-100" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
@@ -866,22 +855,15 @@
                                                                                     </tr>
                                                                                     </tbody>
                                                                                 </table>
-
-
-
                                                                                 <table class="row " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; margin-right: -15px; margin-left: -15px; table-layout: fixed; width: 100%;">
                                                                                     <thead>
                                                                                     <tr>
-
                                                                                         <th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Descrizione: </h5>
                                                                                         </th>
-
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${Descrizione}</h5>
                                                                                         </th>
-
-
                                                                                     </tr>
                                                                                     </thead>
                                                                                 </table>
@@ -889,27 +871,19 @@
                                                                                     <tbody>
                                                                                     <tr>
                                                                                         <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left">
-                                                                                             
-                                                                                        </td>
+                                                                                             </td>
                                                                                     </tr>
                                                                                     </tbody>
                                                                                 </table>
-
-
-
                                                                                 <table class="row " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; margin-right: -15px; margin-left: -15px; table-layout: fixed; width: 100%;">
                                                                                     <thead>
                                                                                     <tr>
-
                                                                                         <th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Descrizione Breve: </h5>
                                                                                         </th>
-
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${DescrizioneBreve}</h5>
                                                                                         </th>
-
-
                                                                                     </tr>
                                                                                     </thead>
                                                                                 </table>
@@ -917,27 +891,18 @@
                                                                                     <tbody>
                                                                                     <tr>
                                                                                         <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left">
-                                                                                             
-                                                                                        </td>
+                                                                                             </td>
                                                                                     </tr>
                                                                                     </tbody>
                                                                                 </table>
-
-
-
                                                                                 <table class="row " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; margin-right: -15px; margin-left: -15px; table-layout: fixed; width: 100%;">
                                                                                     <thead>
-                                                                                    <tr>
-
-                                                                                        <th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
+                                                                                    <tr><th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Luogo di effettuazione: </h5>
                                                                                         </th>
-
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${LuogoEffettuazione}</h5>
                                                                                         </th>
-
-
                                                                                     </tr>
                                                                                     </thead>
                                                                                 </table>
@@ -945,27 +910,19 @@
                                                                                     <tbody>
                                                                                     <tr>
                                                                                         <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left">
-                                                                                             
-                                                                                        </td>
+                                                                                             </td>
                                                                                     </tr>
                                                                                     </tbody>
                                                                                 </table>
-
-
-
                                                                                 <table class="row " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; margin-right: -15px; margin-left: -15px; table-layout: fixed; width: 100%;">
                                                                                     <thead>
                                                                                     <tr>
-
                                                                                         <th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Orari di svolgimento : </h5>
                                                                                         </th>
-
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${Orario}</h5>
                                                                                         </th>
-
-
                                                                                     </tr>
                                                                                     </thead>
                                                                                 </table>
@@ -973,27 +930,19 @@
                                                                                     <tbody>
                                                                                     <tr>
                                                                                         <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left">
-                                                                                             
-                                                                                        </td>
+                                                                                             </td>
                                                                                     </tr>
                                                                                     </tbody>
                                                                                 </table>
-
-
-
                                                                                 <table class="row " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; margin-right: -15px; margin-left: -15px; table-layout: fixed; width: 100%;">
                                                                                     <thead>
                                                                                     <tr>
-
                                                                                         <th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Durata del tirocinio : </h5>
                                                                                         </th>
-
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Dal ${PeriodoInizio?date} al ${PeriodoFine?date}</h5>
                                                                                         </th>
-
-
                                                                                     </tr>
                                                                                     </thead>
                                                                                 </table>
@@ -1001,27 +950,19 @@
                                                                                     <tbody>
                                                                                     <tr>
                                                                                         <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left">
-                                                                                             
-                                                                                        </td>
+                                                                                             </td>
                                                                                     </tr>
                                                                                     </tbody>
                                                                                 </table>
-
-
-
                                                                                 <table class="row " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; margin-right: -15px; margin-left: -15px; table-layout: fixed; width: 100%;">
                                                                                     <thead>
                                                                                     <tr>
-
                                                                                         <th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Obiettivi del tirocinio: </h5>
                                                                                         </th>
-
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${Obbiettivi}</h5>
                                                                                         </th>
-
-
                                                                                     </tr>
                                                                                     </thead>
                                                                                 </table>
@@ -1029,55 +970,39 @@
                                                                                     <tbody>
                                                                                     <tr>
                                                                                         <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left">
-                                                                                             
-                                                                                        </td>
+                                                                                             </td>
                                                                                     </tr>
                                                                                     </tbody>
                                                                                 </table>
-
-
-
                                                                                 <table class="row " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; margin-right: -15px; margin-left: -15px; table-layout: fixed; width: 100%;">
                                                                                     <thead>
                                                                                     <tr>
-
                                                                                         <th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Modalità di svolgimento :</h5>
                                                                                         </th>
-
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${Modalita}</h5>
                                                                                         </th>
-
-
                                                                                     </tr>
                                                                                     </thead>
                                                                                 </table>
                                                                                 <table class="s-3 w-100" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                                                                                     <tbody>
                                                                                     <tr>
-                                                                                        <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left">
-                                                                                             
-                                                                                        </td>
+                                                                                        <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left"> 
+                                                                                       </td>
                                                                                     </tr>
                                                                                     </tbody>
                                                                                 </table>
-
-
-
                                                                                 <table class="row " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; margin-right: -15px; margin-left: -15px; table-layout: fixed; width: 100%;">
                                                                                     <thead>
                                                                                     <tr>
-
                                                                                         <th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Rimborsi spese e facilitzioni previste :</h5>
                                                                                         </th>
-
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${Rimbosi} ${Facilitazioni}</h5>
                                                                                         </th>
-
-
                                                                                     </tr>
                                                                                     </thead>
                                                                                 </table>
@@ -1085,27 +1010,19 @@
                                                                                     <tbody>
                                                                                     <tr>
                                                                                         <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left">
-                                                                                             
                                                                                         </td>
                                                                                     </tr>
                                                                                     </tbody>
                                                                                 </table>
-
-
-
                                                                                 <table class="row " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; margin-right: -15px; margin-left: -15px; table-layout: fixed; width: 100%;">
                                                                                     <thead>
                                                                                     <tr>
-
                                                                                         <th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Nome e Cognome del Responsabile aziendale: </h5>
                                                                                         </th>
-
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${NomeRespAz} ${CognomeRepAz}</h5>
                                                                                         </th>
-
-
                                                                                     </tr>
                                                                                     </thead>
                                                                                 </table>
@@ -1113,27 +1030,19 @@
                                                                                     <tbody>
                                                                                     <tr>
                                                                                         <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left">
-                                                                                             
                                                                                         </td>
                                                                                     </tr>
                                                                                     </tbody>
                                                                                 </table>
-
-
-
                                                                                 <table class="row " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; margin-right: -15px; margin-left: -15px; table-layout: fixed; width: 100%;">
                                                                                     <thead>
                                                                                     <tr>
-
                                                                                         <th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Email del responsabile aziendale : </h5>
                                                                                         </th>
-
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${EmailRespAZ}</h5>
                                                                                         </th>
-
-
                                                                                     </tr>
                                                                                     </thead>
                                                                                 </table>
@@ -1141,76 +1050,56 @@
                                                                                     <tbody>
                                                                                     <tr>
                                                                                         <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left">
-                                                                                             
                                                                                         </td>
                                                                                     </tr>
                                                                                     </tbody>
                                                                                 </table>
-
-
-
                                                                                 <table class="row " border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; margin-right: -15px; margin-left: -15px; table-layout: fixed; width: 100%;">
                                                                                     <thead>
                                                                                     <tr>
-
                                                                                         <th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">telefono responsabile Aziendale : </h5>
                                                                                         </th>
-
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${TelRespAz}</h5>
                                                                                         </th>
-
-
                                                                                     </tr>
                                                                                     </thead>
                                                                                 </table>
                                                                                 <table class="s-3 w-100" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                                                                                     <tbody>
                                                                                     <tr>
-                                                                                        <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left">
-                                                                                             
+                                                                                        <td height="16" style="border-spacing: 0px; border-collapse: collapse; line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left"> 
                                                                                         </td>
                                                                                     </tr>
                                                                                     </tbody>
                                                                                 </table>
-
-
-
-
                                                                             </th>
-
                                                                         </tr>
                                                                         </tbody>
                                                                     </table>
-
-
                                                                     <table class="s-4 w-100" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                                                                         <tbody>
                                                                         <tr>
                                                                             <td height="24" style="border-spacing: 0px; border-collapse: collapse; line-height: 24px; font-size: 24px; width: 100%; height: 24px; margin: 0;" align="left">
-                                                                                 
                                                                             </td>
                                                                         </tr>
                                                                         </tbody>
                                                                     </table>
-
                                                                     <table class="btn btn-primary btn-lg mx-auto " align="center" border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: separate !important; border-radius: 4px; margin: 0 auto; border: 0;" bgcolor="#3072e0">
                                                                         <tbody>
                                                                         <tr>
                                                                             <td style="border-spacing: 0px; border-collapse: collapse; line-height: 24px; font-size: 16px; border-radius: 4px; margin: 0;" align="center" bgcolor="#007bff">
-                                                                                <a href="http://localhost:8080/account/gestione-offerte/view${Url}" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 4.8px; line-height: 30px; display: inline-block; font-weight: normal; white-space: nowrap; background-color: #007bff; color: #ffffff; padding: 8px 16px; border: 1px solid #007bff;">Visualizza Dettagli</a>
+                                                                                <a href="http://localhost:8080/account/gestione-offerte/view?id=${Url}" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 4.8px; line-height: 30px; display: inline-block; font-weight: normal; white-space: nowrap; background-color: #007bff; color: #ffffff; padding: 8px 16px; border: 1px solid #007bff;">Visualizza Dettagli</a>
                                                                             </td>
                                                                         </tr>
                                                                         </tbody>
                                                                     </table>
-
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
-
                                                 </div>
                                             </td>
                                         </tr>
@@ -1220,15 +1109,10 @@
                                         <tbody>
                                         <tr>
                                             <td height="24" style="border-spacing: 0px; border-collapse: collapse; line-height: 24px; font-size: 24px; width: 100%; height: 24px; margin: 0;" align="left">
-                                                 
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
-
-
-
-
                                 </td>
                             </tr>
                             </tbody>
@@ -1243,8 +1127,6 @@
                 </tr>
                 </tbody>
             </table>
-
-
         </td>
     </tr>
     </tbody>

@@ -140,12 +140,12 @@ public class GestioneRichiesteTirocinioController extends baseController {
                 datamodel.put("PeriodoFine",offertaTirocinio.getPeriodoFine());
                 datamodel.put("Obbiettivi",offertaTirocinio.getObbiettivi());
                 datamodel.put("Modalita",offertaTirocinio.getModalita());
-                datamodel.put("Rimborsi",offertaTirocinio.getRimborsi());
+                datamodel.put("Rimbosi",offertaTirocinio.getRimborsi());
                 datamodel.put("Facilitazioni",offertaTirocinio.getFacilitazioni());
                 datamodel.put("NomeRespAz",offertaTirocinio.getNomeTutoreAziendale());
                 datamodel.put("CognomeRepAz",offertaTirocinio.getCognomeTutoreAziendale());
-                datamodel.put("EmailRepAZ",offertaTirocinio.getEmailTutoreAziendale());
-                datamodel.put("TelRepAz",offertaTirocinio.getTelefonoTutoreAziendale());
+                datamodel.put("EmailRespAZ",offertaTirocinio.getEmailTutoreAziendale());
+                datamodel.put("TelRespAz",offertaTirocinio.getTelefonoTutoreAziendale());
                 datamodel.put("tirocinante",tirocinante);
                 String[] to = new String[3];
                 to[0]= "azienda@matteifamily.net";
