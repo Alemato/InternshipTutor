@@ -58,7 +58,7 @@ public class SchedaTirocinioController  extends baseController{
             dao.destroy();
 
             if(statusoldRC) {
-                datamodel.put("Message", "Non puoi Richiedene altri Tirocini mentre ne stai svogendo uno o ne hai richiesto uno");
+                datamodel.put("Message", " Non puoi Richiedene altri Tirocini mentre ne stai svogendo uno o ne hai richiesto uno");
 
             }
         }

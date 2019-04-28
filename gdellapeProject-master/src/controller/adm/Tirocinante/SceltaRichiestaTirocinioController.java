@@ -50,11 +50,11 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
             if (!status) {
                 System.out.println("non hai richieste pendenti o attive");
                 String idOfferta = request.getParameter("Tirocinio");
-                response.sendRedirect("/inviorichiesta?Tirocinio=" + idOfferta);
+                response.sendRedirect("/listaofferte/tirocinio/inviorichiesta?Tirocinio=" + idOfferta);
 
             } else {
                 String idOfferta = request.getParameter("Tirocinio");
-                response.sendRedirect("/tirocinio?Tirocinio=" + idOfferta);
+                response.sendRedirect("/listaofferte/tirocinio?Tirocinio=" + idOfferta);
             }
         } catch (Exception e) {
             e.printStackTrace();

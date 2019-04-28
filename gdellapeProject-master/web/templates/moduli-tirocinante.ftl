@@ -85,7 +85,7 @@
                                 <td>In attesa di approvazione del Tirocinio</td>
                             <#elseif lista.tirocinio.stato == 1>
                                 <td>
-                                    <a href="/account/moduloTirocinioTirocinante?idTirocinio=${lista.tirocinio.IDTirocinio}">
+                                    <a href="/account/moduli/moduloTirocinio?idTirocinio=${lista.tirocinio.IDTirocinio}">
                                         <button type="button" class="btn btn-outline-success"><i
                                                     class="fa fa-print"></i>Stampa Modulo
                                         </button>
@@ -93,7 +93,7 @@
                                 </td>
                             <#elseif lista.tirocinio?has_content>
                                 <td>
-                                    <a href="/account/moduloTirocinioTirocinante?idTirocinio=${lista.tirocinio.IDTirocinio}">
+                                    <a href="/account/moduli/moduloTirocinio?idTirocinio=${lista.tirocinio.IDTirocinio}">
                                         <button type="button" class="btn btn-outline-success"><i
                                                     class="fa fa-print"></i>Visualizza Modulo
                                         </button>

@@ -46,7 +46,7 @@
                             href="/schedaazienda?ID=${azienda.IDAzienda}">${azienda.ragioneSociale}</a> per la sua
                     candidatura per il
                      <a
-                            href="/tirocinio?Tirocinio=${tirocinio.IDTirocinio}">"tirocinio
+                            href="/listaofferte/tirocinio?Tirocinio=${tirocinio.IDTirocinio}">"tirocinio
                         "</a> presso ${azienda.ragioneSociale}.
                 </div>
             <#elseif tirocinio.stato == 1>

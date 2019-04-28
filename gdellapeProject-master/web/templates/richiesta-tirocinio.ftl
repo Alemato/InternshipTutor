@@ -34,7 +34,7 @@
 
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
-            <form id="modulo_richiesta_tirocinante" action="/inviorichiesta?idOffertaTirocinio=${offertatirocinio.IDOffertaTirocinio}" method="post" class="m-0">
+            <form id="modulo_richiesta_tirocinante" action="/listaofferte/tirocinio/inviorichiesta?idOffertaTirocinio=${offertatirocinio.IDOffertaTirocinio}" method="post" class="m-0">
                 <fieldset>
                     <h1 class="text-center fw-100 d-print-none">Controlla i dati, aggiorna quelli mancanti e clicca su invia per inviare la
                         richiesta</h1>
