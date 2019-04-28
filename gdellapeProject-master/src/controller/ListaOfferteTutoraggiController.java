@@ -20,7 +20,7 @@ public class ListaOfferteTutoraggiController extends baseController {
 
             String spageid = request.getParameter("pageid");
             int pageid = 1;
-            int ElementiPerPagina = 4;
+            int elementiPerPagina = 4;
             String azienda = "Tutte le Aziende";
             String sede = "Tutte le sedi disponibili";
             String cerca = null;
@@ -36,7 +36,7 @@ public class ListaOfferteTutoraggiController extends baseController {
             String sElementiPerPagina = request.getParameter("risultati");
             if (sElementiPerPagina != null) {
                 if (!sElementiPerPagina.equals("")) {
-                    ElementiPerPagina = Integer.parseInt(sElementiPerPagina);
+                    elementiPerPagina = Integer.parseInt(sElementiPerPagina);
                 }
             }
 
@@ -72,6 +72,7 @@ public class ListaOfferteTutoraggiController extends baseController {
                 calIn.add(Calendar.YEAR, -500);
                 datainizio = calIn.getTime();
             }
+            System.out.println(datainizio);
 
             if (request.getParameter("datafine") != null && !request.getParameter("datafine").equals("")) {
                 sdatafine = request.getParameter("datafine");
@@ -83,6 +84,7 @@ public class ListaOfferteTutoraggiController extends baseController {
                 calFin.add(Calendar.YEAR, 500);
                 datafine = calFin.getTime();
             }
+            System.out.println(datafine);
 
             List<OffertaTirocinio> allOfferte = offertaTirocinioDaoImp.getAllOffertatr();
             List<OffertaTirocinio> offerte = new ArrayList<>();
@@ -158,22 +160,32 @@ public class ListaOfferteTutoraggiController extends baseController {
 
             offertaTirocinioDaoImp.destroy();
             List<OffertaTirocinio> offerteInpaginate = new ArrayList<>();
-            int from = (pageid * ElementiPerPagina);
+            int from = (pageid * elementiPerPagina);
             if (offerteFiltrate.size() <= from)
                 from = from - (from - offerteFiltrate.size());
             if (from == offerteFiltrate.size()) {
 
-                offerteInpaginate.addAll(offerteFiltrate.subList((pageid * ElementiPerPagina) - ElementiPerPagina, offerteFiltrate.size()));
+                offerteInpaginate.addAll(offerteFiltrate.subList((pageid * elementiPerPagina) - elementiPerPagina, offerteFiltrate.size()));
             } else {
-                offerteInpaginate.addAll(offerteFiltrate.subList((pageid * ElementiPerPagina) - ElementiPerPagina, from));
+                offerteInpaginate.addAll(offerteFiltrate.subList((pageid * elementiPerPagina) - elementiPerPagina, from));
             }
 
 
             datamodel.put("numeroPagina", pageid);
-            datamodel.put("elementiPerPagina", ElementiPerPagina);
-            datamodel.put("numeroPagine", Math.ceil((float) offerteFiltrate.size() / ElementiPerPagina));
+            datamodel.put("elementiPerPagina", elementiPerPagina);
+            datamodel.put("numeroPagine", Math.ceil((float) offerteFiltrate.size() / elementiPerPagina));
             datamodel.put("offerte", offerteInpaginate);
             datamodel.put("offerteFiltro", offerte);
+
+            datamodel.put("risultati", elementiPerPagina);
+            datamodel.put("azienda", azienda);
+            datamodel.put("cerca", cerca);
+            datamodel.put("sede", sede);
+
+
+            datamodel.put("datainizio", format.format(datainizio));
+            datamodel.put("datafine", format.format(datafine));
+
 
         } catch (Exception e) {
             e.printStackTrace();
