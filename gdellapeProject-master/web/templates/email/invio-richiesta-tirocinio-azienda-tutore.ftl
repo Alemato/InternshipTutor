@@ -808,7 +808,7 @@
                                                                         </tbody>
                                                                     </table>
 
-                                                                    <h4 class="text-primary text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: #007bff; vertical-align: baseline; font-size: 24px; line-height: 28.8px;" align="center">È stata ricevuta una richiesta di tirocinio!</h4>
+                                                                    <h4 class="text-primary text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: #007bff; vertical-align: baseline; font-size: 24px; line-height: 28.8px;" align="center">&Egrave; stata ricevuta una richiesta di tirocinio!</h4>
                                                                     <div class="hr " style="width: 100%; margin: 20px 0; border: 0;">
                                                                         <table border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; width: 100%;">
                                                                             <tbody>
@@ -1042,7 +1042,7 @@
                                                                                     <tr>
 
                                                                                         <th class="col-5" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 41.666667%; margin: 0;">
-                                                                                            <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Modalità di svolgimento :</h5>
+                                                                                            <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Modalit&agrave; di svolgimento :</h5>
                                                                                         </th>
 
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
