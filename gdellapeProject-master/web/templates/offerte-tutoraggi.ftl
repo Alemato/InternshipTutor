@@ -143,7 +143,7 @@
                 <ul class="pagination col-auto mr-15 mt-5 pl-15">
                     <#list 1..numeroPagine as x>
                         <#if x == 0 > <#break> </#if>
-                    <li class="page-item <#if numeroPagina == x> active </#if>"><a class="page-link" <#if numeroPagina != x> href="/listaofferte?pageid=${x}"</#if> >${x}</a></li>
+                    <li class="page-item <#if numeroPagina == x> active </#if>"><a class="page-link" <#if numeroPagina != x> href="/listaofferte?pageid=${x}&risultati=${risultati}&azienda=${azienda}&sede=${sede}&datainizio=${datainizio}&datafine=${datafine}<#if cerca??>$search=${cerca}</#if>"</#if> >${x}</a></li>
                     </#list>
                 </ul>
             </div>
