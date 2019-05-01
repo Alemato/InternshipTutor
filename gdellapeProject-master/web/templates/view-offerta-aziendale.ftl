@@ -197,9 +197,11 @@
                                         </a>
                                     </td>
                                 <#else>
-                                    <td><button type="button" class="btn btn-outline-danger"><i
-                                                    class="fa fa-print"></i>Modulo non disponibile
-                                        </button>
+                                    <td><a href="/account/moduli/richiesta-tirocinio?id=${Lista.tirocinio.IDTirocinio}">
+                                    <button type="button" class="btn btn-outline-success"><i
+                                                class="fa fa-print"></i>Stampa PDF richiesta
+                                    </button>
+                                </a>
                                     </td>
                                 </#if>
                                 <td><button type="button" class="btn btn-outline-danger"><i
@@ -217,12 +219,30 @@
                                            value="1" /> <i
                                             class="fa fa-check" style="color: green;"></i> Tirocinio finito
                                 </td>
-                                <td><a href="/account/moduli/richiesta-tirocinio?id=${Lista.tirocinio.IDTirocinio}">
+                                <#if Lista.tirocinio.pdfTirocinante??>
+                                    <#if Lista.tirocinio.pdfTirocinante?has_content>
+                                    <td><a href="/account/moduli/richiesta-tirocinio?id=${Lista.tirocinio.IDTirocinio}">
                                             <button type="button" class="btn btn-outline-success"><i
                                                         class="fa fa-print"></i>Stampa PDF
                                             </button>
                                         </a>
-                                </td>
+                                    </td>
+                                        <#else>
+                                            <td><a href="/account/moduli/richiesta-tirocinante?id=${Lista.tirocinio.IDTirocinio}">
+                                                    <button type="button" class="btn btn-outline-success"><i
+                                                                class="fa fa-print"></i>Stampa PDF richiesta
+                                                    </button>
+                                                </a>
+                                            </td>
+                                    </#if>
+                                <#else>
+                                    <td><a href="/account/moduli/richiesta-tirocinante?id=${Lista.tirocinio.IDTirocinio}">
+                                    <button type="button" class="btn btn-outline-success"><i
+                                                class="fa fa-print"></i>Stampa PDF richiesta
+                                    </button>
+                                </a>
+                                    </td>
+                                </#if>
                                 <td><button type="button" class="btn btn-outline-danger"><i
                                                     class="fa fa-print"></i>Modulo non disponibile
                                         </button>

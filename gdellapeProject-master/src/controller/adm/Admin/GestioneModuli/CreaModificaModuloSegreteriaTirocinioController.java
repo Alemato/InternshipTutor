@@ -91,6 +91,7 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
         if (ifmakeModulo(request, response)) {
 
             datamodel.put("tirocinante", tirocinante);
+            datamodel.put("tirocinio",tr);
             datamodel.put("ID", tr.getIDTirocinio());
 
             TemplateController.process("BackEndTemplates/admin-create-modulo-tirocinio-segreteria.ftl", datamodel, response, getServletContext());

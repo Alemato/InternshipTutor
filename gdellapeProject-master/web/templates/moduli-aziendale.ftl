@@ -141,8 +141,10 @@
                         <th>Aggiorna Stato</th>
                         <th>Data Creazione</th>
                         <th>Data Aggiornamento</th>
-                        <th>Stampa Modulo</th>
-                        <th>Carica PDF</th>
+                        <th>Stampa Modulo Richiesta</th>
+                        <th>Carica PDF Richesta</th>
+                        <th>Stampa Modulo Fine</th>
+                        <th>Carica PDF Fine</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -156,8 +158,10 @@
                         <th>Aggiorna Stato</th>
                         <th>Data Creazione</th>
                         <th>Data Aggiornamento</th>
-                        <th>Stampa Modulo</th>
-                        <th>Carica PDF</th>
+                        <th>Stampa Modulo Richiesta</th>
+                        <th>Carica PDF Richesta</th>
+                        <th>Stampa Modulo Fine</th>
+                        <th>Carica PDF Fine</th>
 
                     </tr>
                     </tfoot>
@@ -171,11 +175,20 @@
                             <td>${Lista.userMail}</td>
                             <#if Lista.tirocinio.stato == 1>
                                 <td>Tirocinio in corso</td>
+                                <#if Lista.tirocinio.pdfTirocinante??><#if Lista.tirocinio.pdfTirocinante?has_content>
                                 <td><input type="checkbox" class="checkboxes"
                                            name="fin_${Lista.tirocinante.nome}-${Lista.tirocinante.cognome}-${Lista.tirocinante.IDTirocinante}-${Lista.tirocinio.IDTirocinio}"
                                            value="1"/> <i
                                             class="fa fa-check" style="color: green;"></i> Tirocinio finito
                                 </td>
+                                </#if>
+                                    <#else>
+                                        <td><input type="checkbox" class="checkboxes"
+                                                   name="fin_${Lista.tirocinante.nome}-${Lista.tirocinante.cognome}-${Lista.tirocinante.IDTirocinante}-${Lista.tirocinio.IDTirocinio}"
+                                                   value="1" disabled/> <i
+                                                    class="fa fa-check" style="color: green;"></i> Tirocinio finito
+                                        </td>
+                                </#if>
                             <#elseif Lista.tirocinio.stato == 2>
                                 <td>Tirocinio Concluso</td>
                                 <td><input type="checkbox" class="checkboxes"
@@ -186,21 +199,58 @@
                                 </td>
                             </#if>
                                 <#if Lista.tirocinio.stato == 1>
+                                     <#if Lista.tirocinio.pdfTirocinante??><#if Lista.tirocinio.pdfTirocinante?has_content>
                                 <td>
                                     <button type="submit" form="form_tirocinii_fine_${Lista?index}"
                                             class="btn btn-success btn-lg pull-right float-sm-left"><i class="fa fa-check"></i> Aggiorna
                                     </button>
-                                </td>
+                                </td></#if>
+                                         <#else>
+                                             <td>
+                                                 <button type="submit" form="form_tirocinii_fine_${Lista?index}"
+                                                         class="btn btn-success btn-lg pull-right float-sm-left" disabled><i class="fa fa-check"></i> Aggiorna
+                                                 </button>
+                                             </td>
+                                     </#if>
                                     <#else>
-                                        <td>
-                                            <button type="submit" form="form_tirocinii_fine_${Lista?index}"
-                                                    class="btn btn-success btn-lg pull-right float-sm-left" disabled><i class="fa fa-check"></i> Aggiorna
-                                            </button>
-                                        </td>
+                                    <td>
+                                        <button type="submit" form="form_tirocinii_fine_${Lista?index}"
+                                                class="btn btn-success btn-lg pull-right float-sm-left" disabled><i class="fa fa-check"></i> Aggiorna
+                                        </button>
+                                    </td>
                                 </#if>
                             <td>${Lista.tirocinio.createDate?date?string.short}</td>
                             <td>${Lista.tirocinio.updateDate?date?string.short}</td>
-
+                            </form>
+                                <#if Lista.tirocinio.pdfTirocinante??>
+                                    <#if Lista.tirocinio.pdfTirocinante?has_content>
+                                        <td><a href="/account/moduli/richiesta-tirocinio?id=${Lista.tirocinio.IDTirocinio}">
+                                                <button type="button" class="btn btn-outline-success"><i
+                                                            class="fa fa-print"></i>Stampa PDF richiesta
+                                                </button>
+                                            </a>
+                                        </td>
+                                    </#if>
+                                <#else>
+                                    <td><a href="/account/moduli/richiesta-tirocinante?id=${Lista.tirocinio.IDTirocinio}">
+                                            <button type="button" class="btn btn-outline-success"><i
+                                                        class="fa fa-print"></i>Stampa Modulo richiesta
+                                            </button>
+                                        </a>
+                                    </td>
+                                </#if>
+                                <#if !Lista.tirocinio.pdfTirocinante?? && Lista.tirocinio.stato == 1>
+                                    <form id="PDFRichiesta__${Lista?index}" action="/account/upload-richiesta-tirocinio-azienda" method="post" enctype="multipart/form-data">
+                                        <td><input type="file" name="PDFRichiesta">
+                                            <input type="submit" form="PDFRichiesta__${Lista?index}"
+                                                   class="btn btn-success  mt-10" value="invia"/>
+                                            <input type="hidden" name="idRichiesta" value="${Lista.tirocinio.IDTirocinio}">
+                                        </td>
+                                    </form>
+                                <#else>
+                                    <td> NON DISPONIBILE
+                                    </td>
+                                </#if>
                             <#if Lista.tirocinio.stato == 1>
                                 <td>
                                     <button type="button" class="btn btn-outline-danger"><i class="fa fa-print"></i>Non
@@ -224,7 +274,6 @@
                                     </td>
                                 </#if>
                             </#if>
-                            </form>
 
                             <#if !Lista.tirocinio.pdfAzienda?? && Lista.tirocinio.stato == 2>
                                 <form id="upload_PDFAzineda__${Lista?index}" action="/account/upload-file-tirocinio-azienda" method="post" enctype="multipart/form-data">
@@ -238,9 +287,6 @@
                                     <td> NON DISPONIBILE
                                     </td>
                             </#if>
-
-
-
                         </tr>
                     </#list>
                     </tbody>
@@ -285,6 +331,10 @@
                 "orderable": true
             }, {
                 "orderable": true
+            },{
+                "orderable": false
+            },{
+                "orderable": false
             },{
                 "orderable": false
             },{
