@@ -45,7 +45,7 @@
             </button>
         </footer>
 
-        <h4 class="text-center mt-15 mb-25">Non hai un account? <a href="/registration">Registrati subito!</a></h4>
+        <h4 class="text-center mt-15 mb-25">Non hai un account? <a href="/registrazione">Registrati subito!</a></h4>
     </form>
 </div>
 
