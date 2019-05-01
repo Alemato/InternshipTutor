@@ -278,6 +278,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ModuloRichiestaTirocinioController</servlet-name>
+        <servlet-class>controller.adm.Azienda.ModuloRichiestaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModuloRichiestaTirocinioController</servlet-name>
+        <url-pattern>/account/moduli/richiesta-tirocinante</url-pattern>
+        <url-pattern>/Account/Moduli/Richiesta-Tirocinante</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>PdfFineTirocinioController</servlet-name>
         <servlet-class>controller.adm.PdfFineTirocinioController</servlet-class>
     </servlet>
