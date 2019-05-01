@@ -3,7 +3,6 @@ package controller.adm.Azienda;
 import controller.baseController;
 import controller.utility.UploadFilePDF;
 import dao.exception.DaoException;
-import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.TirocinioDaoImp;
 import model.Tirocinio;
 
@@ -20,26 +19,28 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 @MultipartConfig
-public class UploadPDFTirocinioController extends baseController {
+public class UploadPDFTiroicinioRichiestaControler extends baseController {
     private void er500(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/500");
         dispatcher.forward(request, response);
     }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
-        int id = Integer.parseInt(request.getParameter("id"));
-        System.out.println(id);
-        Part pdfAzienda = request.getPart("PDFAzienda");
-        System.out.println("file : "+pdfAzienda);
-        if(pdfAzienda!=null){
+        int id = Integer.parseInt(request.getParameter("idRichiesta"));
+        Part pdfRichiesta = request.getPart("PDFRichiesta");
+        System.out.println("file : "+pdfRichiesta);
+        if(pdfRichiesta!=null){
             TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
             try {
                 Tirocinio tirocinio = tirocinioDaoImp.getRichiestatrByID(id);
                 tirocinioDaoImp.destroy();
                 TirocinioDaoImp tirocinioDaoImp1 = new TirocinioDaoImp();
                 UploadFilePDF uploadFilePDF = new UploadFilePDF();
-                String nomefile = uploadFilePDF.uploadPDF(request, pdfAzienda, 2, tirocinio);
-                tirocinio.setPdfAzienda(nomefile);
+                String nomefile = uploadFilePDF.uploadPDF(request, pdfRichiesta, 1, tirocinio);
+                tirocinio.setPdfTirocinante(nomefile);
+                Calendar presente = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
+                tirocinio.setDataConsegnaModuloRichiesta(new java.sql.Date(presente.getTimeInMillis()));
                 tirocinioDaoImp1.updateTirocinio(tirocinio);
                 tirocinioDaoImp1.destroy();
                 response.sendRedirect("/account/moduli");

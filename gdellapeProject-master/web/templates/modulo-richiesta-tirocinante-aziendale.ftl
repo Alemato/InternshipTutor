@@ -181,19 +181,21 @@
                                <#if tirocinante.scuolaAltro??><#if tirocinante.scuolaAltro?has_content>value="${tirocinante.scuolaAltro}"</#if></#if>
                                placeholder="Specificare" disabled>
                     </div>
-
-                    <h4>Barrare se trattasi di soggetto portatore di handicap:</h4>
-                    <label class="checkbox ml-200 mr-10">
+                    <div class="row">
+                    <h4 class="col-auto">Barrare se trattasi di soggetto portatore di handicap:</h4>
+                        <div class="col">
+                    <label class="checkbox ml-15 mr-10">
                         <input type="checkbox" name="Handicap" value="Si"
                                <#if tirocinante.handicap == true>checked="checked"</#if> disabled>
                         <i></i> Si
                     </label><br>
-                    <label class="checkbox ml-200 mb-25 mr-10">
+                    <label class="checkbox ml-15 mb-25 mr-10">
                         <input type="checkbox" name="Handicap" value="No"
                                <#if tirocinante.handicap == false>checked="checked"</#if> disabled>
                         <i></i> No
                     </label><br>
-
+                        </div>
+                    </div>
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Ente/Azienda ospitante</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Nome_ente_azienda"
