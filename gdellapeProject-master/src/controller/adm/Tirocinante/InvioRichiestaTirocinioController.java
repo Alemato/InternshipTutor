@@ -221,7 +221,14 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
             tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
         }
         if (request.getParameter("TutoreUniversitario").equals("NEW")) {
-            tirocinio.setTutoreUniversitario(tutoreUniversitario.getIDTutoreUni());
+            TutoreUniversitarioDaoImp tutoreUniversitarioDaoImpCaricato = new TutoreUniversitarioDaoImp();
+            TutoreUniversitario tutoreCaricato = new TutoreUniversitario();
+            try {
+                tutoreCaricato = tutoreUniversitarioDaoImpCaricato.getTutoreByEmail(tutoreUniversitario.getEmail());
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
+            tirocinio.setTutoreUniversitario(tutoreCaricato.getIDTutoreUni());
         } else {
             tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
         }
