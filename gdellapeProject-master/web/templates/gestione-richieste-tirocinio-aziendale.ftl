@@ -42,6 +42,15 @@
                     <strong>Attenzione! </strong>${errore}
                 </div>
             </#if>
+                <#if StatoRic??>
+                    <div class="alert alert-success mb-30">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Chiudi</span>
+                        </button>
+                        <strong>Attenzione! </strong>${StatoRic}
+                    </div>
+                </#if>
             <h1 class="mb-0">Richieste Pendanti</h1>
             <div class="linea-divisione mt-15 mb-30"></div>
             <div class="card mb-50">

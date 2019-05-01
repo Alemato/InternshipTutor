@@ -3,6 +3,7 @@ package controller.adm.Admin.GestioneModuli;
 
 import controller.baseController;
 import dao.exception.DaoException;
+import view.TemplateControllerMail;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,6 +26,10 @@ public class InvalidaModuloAziendeTirocinioController extends baseController {
         try{
             datamodel.put("urlpage","/admin/Gestione-tirocinio");
             InvalidazioneModuliTirocinio page = new InvalidazioneModuliTirocinio(datamodel,getServletContext(),request,response);
+            String[] to = new String[1];
+            to[0]= "azienda@matteifamily.net";
+            String subject = "Notifica di invalidazione del pdf di fine tirocinio";
+            TemplateControllerMail.process("email/invalidazione-modulo-convenzionamento.ftl", datamodel, to, subject, request.getServletContext());
             page.invalidaPDFAzienda();
         }catch (DaoException e){
             e.printStackTrace();

@@ -9,6 +9,7 @@ import dao.implementation.AziendaDaoImp;
 import dao.implementation.OffertaTirocinioDaoImp;
 import model.Azienda;
 import model.OffertaTirocinio;
+import view.TemplateControllerMail;
 
 
 import javax.servlet.ServletContext;
@@ -64,7 +65,10 @@ public class InvalidaConvenzioneAzienda  {
                 dao3.updateAzienda(azienda);
                 dao3.destroy();
 
-                //TODO Manda mail per avvisare che la convenzione è scaduta
+                String[] to = new String[1];
+                to[0]= "azienda@matteifamily.net";
+                String subject = "Notifica di invalidazione del pdf di convenzionamento";
+                TemplateControllerMail.process("email/invalidazione-modulo-convenzionamento.ftl", datamodel, to, subject, request.getServletContext());
                 page.makegetWithSuccess("Invalidazione della convenzione per l'azienda " + azienda.getRagioneSociale() + " andata a buon fine");
 
             } else {

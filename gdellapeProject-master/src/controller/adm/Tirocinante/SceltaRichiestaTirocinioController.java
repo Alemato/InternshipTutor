@@ -2,7 +2,6 @@ package controller.adm.Tirocinante;
 
 import controller.sessionController.SingSessionContoller;
 import dao.implementation.TirocinioDaoImp;
-import model.Tirocinio;
 import model.Tirocinante;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +12,11 @@ import java.io.IOException;
 
 public class SceltaRichiestaTirocinioController extends BackEndTrController {
 
+    private void er403(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/403");
+        dispatcher.forward(request, response);
+    }
+
     private void creoSessione(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Integer idoftr = Integer.parseInt(request.getParameter("Tirocinio"));
         System.out.println(idoftr);
@@ -21,7 +25,7 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
 
     }
 
-    private void Richiesta(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void Richiesta(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (!(session.isValidSession(request))) {
             System.out.println("sessione non valida, quindi la creo");
@@ -30,8 +34,7 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
             System.out.println("sessione validae di tipo Tirocinante");
             ifsend(request, response);
         } else {
-
-            response.sendRedirect("/404");
+            er403(request, response);
         }
 
     }
@@ -47,11 +50,11 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
             if (!status) {
                 System.out.println("non hai richieste pendenti o attive");
                 String idOfferta = request.getParameter("Tirocinio");
-                response.sendRedirect("/inviorichiesta?Tirocinio=" + idOfferta);
+                response.sendRedirect("/listaofferte/tirocinio/inviorichiesta?Tirocinio=" + idOfferta);
 
             } else {
                 String idOfferta = request.getParameter("Tirocinio");
-                response.sendRedirect("/tirocinio?Tirocinio=" + idOfferta);
+                response.sendRedirect("/listaofferte/tirocinio?Tirocinio=" + idOfferta);
             }
         } catch (Exception e) {
             e.printStackTrace();

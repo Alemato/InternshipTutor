@@ -177,6 +177,7 @@
                         </thead>
                         <tbody>
                         <#list Lista as Lista>
+                        <#if Lista.tirocinio.stato gt 0>
                         <tr>
                             <td>${Lista.tirocinante.nome}</td>
                             <td>${Lista.tirocinante.cognome}</td>
@@ -196,9 +197,11 @@
                                         </a>
                                     </td>
                                 <#else>
-                                    <td><button type="button" class="btn btn-outline-danger"><i
-                                                    class="fa fa-print"></i>Modulo non disponibile
-                                        </button>
+                                    <td><a href="/account/moduli/richiesta-tirocinio?id=${Lista.tirocinio.IDTirocinio}">
+                                    <button type="button" class="btn btn-outline-success"><i
+                                                class="fa fa-print"></i>Stampa PDF richiesta
+                                    </button>
+                                </a>
                                     </td>
                                 </#if>
                                 <td><button type="button" class="btn btn-outline-danger"><i
@@ -216,12 +219,30 @@
                                            value="1" /> <i
                                             class="fa fa-check" style="color: green;"></i> Tirocinio finito
                                 </td>
-                                <td><a href="/account/moduli/richiesta-tirocinio?id=${Lista.tirocinio.IDTirocinio}">
+                                <#if Lista.tirocinio.pdfTirocinante??>
+                                    <#if Lista.tirocinio.pdfTirocinante?has_content>
+                                    <td><a href="/account/moduli/richiesta-tirocinio?id=${Lista.tirocinio.IDTirocinio}">
                                             <button type="button" class="btn btn-outline-success"><i
                                                         class="fa fa-print"></i>Stampa PDF
                                             </button>
                                         </a>
-                                </td>
+                                    </td>
+                                        <#else>
+                                            <td><a href="/account/moduli/richiesta-tirocinante?id=${Lista.tirocinio.IDTirocinio}">
+                                                    <button type="button" class="btn btn-outline-success"><i
+                                                                class="fa fa-print"></i>Stampa PDF richiesta
+                                                    </button>
+                                                </a>
+                                            </td>
+                                    </#if>
+                                <#else>
+                                    <td><a href="/account/moduli/richiesta-tirocinante?id=${Lista.tirocinio.IDTirocinio}">
+                                    <button type="button" class="btn btn-outline-success"><i
+                                                class="fa fa-print"></i>Stampa PDF richiesta
+                                    </button>
+                                </a>
+                                    </td>
+                                </#if>
                                 <td><button type="button" class="btn btn-outline-danger"><i
                                                     class="fa fa-print"></i>Modulo non disponibile
                                         </button>
@@ -352,6 +373,8 @@
                                         </button>
                                 </td>
                             </#if>
+
+                            </#if>
                         </#list>
                         </tbody>
                     </table>
@@ -377,7 +400,7 @@
                     <i class="fa fa-table"></i> Visualizza Tutte le Richieste di Tirocinio pendenti
                 </div>
                 <div class="card-body">
-                    <form id="form_tirocinii_fine" action="/account/gestione-richieste" method="post">
+                    <form id="form_richieste" action="/account/gestione-richieste" method="post">
                         <table class="table table-striped table-bordered bg-white table-hover border"
                                id="datatable_2" width="100%" cellspacing="0">
                             <thead>
@@ -408,11 +431,11 @@
                             </tbody>
                         </table>
                         <footer class="text-center text-sm-right mt-25 ">
-                            <button type="submit" form="form_tirocinii_fine"
+                            <button type="submit" form="form_richieste"
                                     class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i
                                         class="fa fa-check"></i> Aggiorna
                             </button>
-                            <button type="reset" form="form_tirocinii_fine"
+                            <button type="reset" form="form_richieste"
                                     class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i
                                         class="fa fa-times"></i> Annulla
                             </button>

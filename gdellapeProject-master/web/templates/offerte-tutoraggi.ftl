@@ -49,10 +49,10 @@
                                     <label class="col">
                                         <!-- select -->
                                         <div class="fancy-form fancy-form-select">
-                                            <select class="form-control mr-15">
-                                                <option value="5">5 per pagina &nbsp;</option>
-                                                <option value="10">10 per pagina &nbsp;</option>
-                                                <option value="20">20 per pagina &nbsp;</option>
+                                            <select class="form-control mr-15" name="risultati">
+                                                <option value="4">4 per pagina &nbsp;</option>
+                                                <option value="8">8 per pagina &nbsp;</option>
+                                                <option value="16">16 per pagina &nbsp;</option>
                                             </select>
                                         </div>
                                     </label>
@@ -62,7 +62,7 @@
                                     <label class="col-auto">
                                         <!-- select -->
                                         <div class="fancy-form fancy-form-select">
-                                            <select class="form-control select2">
+                                            <select class="form-control select2" name="azienda">
                                                 <option value="">Tutte le Aziende</option>
                                                 <#list offerteFiltro as offerta>
                                                 <option value="${offerta.aziendaOspitante}">${offerta.aziendaOspitante}</option>
@@ -90,7 +90,7 @@
                                     <label class="col">
                                         <!-- select -->
                                         <div class="fancy-form fancy-form-select">
-                                            <select class="form-control select2">
+                                            <select class="form-control select2" name="sede">
                                                 <option value="">Tutte le sedi disponibili</option>
                                                 <#list offerteFiltro as offerta>
                                                     <option value="${offerta.luogoEffettuazione}">${offerta.luogoEffettuazione}</option>
@@ -106,16 +106,16 @@
                                     <h4 class="mt-9">Da :</h4>
                                     <label class="col input-group">
                                         <input type="date" name="datainizio"
-                                               value="${dataOggi?date?iso_utc}"
-                                               min="2018-01-01" max="${dataOggi?date?iso_utc}" class="form-control"/>
+                                               value=""
+                                               min="2018-01-01" class="form-control"/>
                                     </label>
                                 </div>
                                 <div class="row col-4 mb-0">
                                     <h4 class="mt-9">A :</h4>
                                     <label class="col input-group pr-0">
-                                        <input type="date" name="datainizio"
-                                               value="${dataOggi?date?iso_utc}"
-                                               min="2018-01-01"  class="form-control"/>
+                                        <input type="date" name="datafine"
+                                               value=""
+                                               min="2018-01-01" class="form-control"/>
                                     </label>
                                 </div>
                             </div>
@@ -133,108 +133,7 @@
                     </form>
                 </div>
             </div>
-            <div class="row hidden-xl-up">
-                <div class="col mb-15 box-white border radius-5">
-                    <div class="row pr-10 pl-10 pt-5 pb-5">
-                        <i id="filtra-sm" class="fa fa-plus-circle fs-25 pt-7 mr-10"></i>
-                        <h3 class="mb-0">Filtra la lista dei tirocini</h3>
-                    </div>
-                    <form id="querystring-sm" class="pr-15 pl-15 m-0 mt-32" method="get" action="/listaofferte">
-                        <fieldset>
-                            <div class="row pl-15">
-                                <div class="row col-auto mb-0">
-                                    <h4 class="mt-9">Risultati: </h4>
-                                    <label class="col-auto">
-                                        <!-- select -->
-                                        <div class="fancy-form fancy-form-select">
-                                            <select class="form-control mr-15">
-                                                <option value="5">5 per pagina &nbsp;</option>
-                                                <option value="10">10 per pagina &nbsp;</option>
-                                                <option value="20">20 per pagina &nbsp;</option>
-                                            </select>
-                                        </div>
-                                    </label>
-                                </div>
-                                <div class="d-inline col-auto mb-0 pl-0">
-                                    <h4 class="mt-9 d-inline">Azienda : </h4>
-                                    <label class="col-auto d-inline">
-                                        <!-- select -->
-                                        <div class=" d-inline fancy-form fancy-form-select">
-                                            <select class="form-control select2">
-                                                <option value="">Tutte le Aziende</option>
-                                                <#list offerteFiltro as offerta>
-                                                    <option value="${offerta.aziendaOspitante}">${offerta.aziendaOspitante}</option>
-                                                </#list>
-                                            </select>
 
-                                            <i class="fancy-arrow-"></i>
-                                        </div>
-
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="row pl-15">
-                                <div class="row col mb-0 mr-15">
-                                    <h4 class="mt-9 pr-15">Sede Tirocinio :</h4>
-                                    <label class="col pl-0">
-                                        <!-- select -->
-                                        <div class="fancy-form fancy-form-select">
-                                            <select class="form-control select2">
-                                                <option value="">Tutte le sedi disponibili</option>
-                                                <#list offerteFiltro as offerta>
-                                                    <option value="${offerta.luogoEffettuazione}">${offerta.luogoEffettuazione}</option>
-                                                </#list>
-                                            </select>
-
-                                            <i class="fancy-arrow-"></i>
-                                        </div>
-
-                                    </label>
-                                </div>
-                                <div class="input-group col-md-auto col-lg pl-0 mb-0">
-                                    <input type="text" class="form-control" aria-label=""
-                                           placeholder="Cerca nella lista" name="search">
-                                    <span class="input-group-btn">
-                                            <button class="btn btn-primary material-ico" type="submit">
-                                                <i class="material-icons">search</i>
-                                            </button>
-                                        </span>
-                                </div>
-                            </div>
-
-                            <div class="row pl-15 pr-10 mb-0">
-                                <div class="row col-12 col-md-5 mb-0 mr-15">
-                                    <h4 class="mt-9">Da :</h4>
-                                    <label class="col input-group">
-                                        <input type="date" name="datainizio"
-                                               value="${dataOggi?date?iso_utc}"
-                                               min="2018-01-01" max="${dataOggi?date?iso_utc}" class="form-control"/>
-                                    </label>
-                                </div>
-                                <div class="row col-12 col-md-5 mb-0">
-                                    <h4 class="mt-9">A :</h4>
-                                    <label class="col input-group pr-0">
-                                        <input type="date" name="datainizio"
-                                               value="${dataOggi?date?iso_utc}"
-                                               min="2018-01-01"  class="form-control"/>
-                                    </label>
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        <footer class="bt-0">
-                            <button type="submit" form="querystring"
-                                    class="btn btn-blue b-blu btn-lg pull-right float-right"><i
-                                        class="fa fa-check"></i> Filtra
-                            </button>
-                            <button type="reset" form="querystring" class="btn btn-red btn-lg pull-right float-left"><i
-                                        class="fa fa-times"></i> Annulla
-                            </button>
-                        </footer>
-                    </form>
-                </div>
-            </div>
 
 
             <div class="linea-divisione mt-0"></div>
@@ -244,7 +143,7 @@
                 <ul class="pagination col-auto mr-15 mt-5 pl-15">
                     <#list 1..numeroPagine as x>
                         <#if x == 0 > <#break> </#if>
-                    <li class="page-item <#if numeroPagina == x> active </#if>"><a class="page-link" <#if numeroPagina != x> href="/listaofferte?pageid=${x}"</#if> >${x}</a></li>
+                    <li class="page-item <#if numeroPagina == x> active </#if>"><a class="page-link" <#if numeroPagina != x> href="/listaofferte?pageid=${x}&risultati=${risultati}&azienda=${azienda}&sede=${sede}&datainizio=${datainizio}&datafine=${datafine}<#if cerca??>$search=${cerca}</#if>"</#if> >${x}</a></li>
                     </#list>
                 </ul>
             </div>
@@ -255,7 +154,7 @@
                 <div class="blog-post-item radius-5 box-white border p-15">
 
 
-                    <h2><a href="/tirocinio?Tirocinio=${offerta.IDOffertaTirocinio}" class="uppercase">${offerta.titolo}</a></h2>
+                    <h2><a href="/listaofferte/tirocinio?Tirocinio=${offerta.IDOffertaTirocinio}" class="uppercase">${offerta.titolo}</a></h2>
 
                     <ul class="blog-post-info list-inline">
                         <li>
@@ -278,7 +177,7 @@
                         a:</p>
                     <p><i class="fa fa-info-circle griggio"></i><b> Contatto aziendale:</b> ${offerta.nomeTutoreAziendale} ${offerta.cognomeTutoreAziendale}
                         ${offerta.emailTutoreAziendale}</p>
-                    <a href="/tirocinio?Tirocinio=${offerta.IDOffertaTirocinio}" class="btn btn-reveal btn-default b-0 btn-shadow-1">
+                    <a href="/listaofferte/tirocinio?Tirocinio=${offerta.IDOffertaTirocinio}" class="btn btn-reveal btn-default b-0 btn-shadow-1">
                         <i class="fa fa-plus"></i>
                         <span>Leggi di pi&ugrave;</span>
                     </a>

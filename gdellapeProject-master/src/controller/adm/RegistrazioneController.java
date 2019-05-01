@@ -17,6 +17,7 @@ import view.TemplateControllerMail;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Enumeration;
@@ -657,7 +658,7 @@ public class RegistrazioneController extends baseController {
         datamodel.put("nomeUtente", tirocinante.getNome());
         datamodel.put("cognomeUtente", tirocinante.getCognome());
         String subject = "Registrazione Tirocinante: " + tirocinante.getNome()+" "+ tirocinante.getCognome() +" id:" + tirocinante.getIDTirocinante();
-        TemplateControllerMail.process("email/registrazione-tirocinante.ftl", datamodel, to, subject, getServletContext());
+//        TemplateControllerMail.process("email/registrazione-tirocinante.ftl", datamodel, to, subject, getServletContext());
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -682,7 +683,16 @@ public class RegistrazioneController extends baseController {
                             System.out.println("la prima parte è giusta, la seconda anche quindi carico i dati");
                             try {
                                 caricamentoTirocinante();
-                                response.sendRedirect("/home");
+
+                                HttpSession sessionFalse = request.getSession(false);
+                                if (sessionFalse != null) {
+                                    if (sessionFalse.getAttribute("Tirocinio") != null) {
+                                        System.out.println("Il Tirocinante Proviene da una richiesta di tirocinio");
+                                        response.sendRedirect("/login");
+                                    }
+                                }else {
+                                    response.sendRedirect("/home");
+                                }
                             } catch (DaoException e) {
                                 e.printStackTrace();
                                 deleteAccountTirocinante();

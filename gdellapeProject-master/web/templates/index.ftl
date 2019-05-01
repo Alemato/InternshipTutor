@@ -35,7 +35,7 @@
                 <#list LastFiveOfferta  as  OffertaTirocinio>
                 <div class="blog-post-item radius-5 box-white border p-15">
 
-                    <h2><a href="/tirocinio?Tirocinio=${OffertaTirocinio.IDOffertaTirocinio}" class="uppercase"> ${OffertaTirocinio.titolo}</a></h2>
+                    <h2><a href="/listaofferte/tirocinio?Tirocinio=${OffertaTirocinio.IDOffertaTirocinio}" class="uppercase"> ${OffertaTirocinio.titolo}</a></h2>
 
                     <ul class="blog-post-info list-inline">
                         <li>
@@ -58,7 +58,7 @@
                     <p>Per eventuali candidature o richieste di informazioni rivolgersi
                         a: ${OffertaTirocinio.emailTutoreAziendale}</p>
                        <p> <b class="mr-5"> Contatto aziendale:</b> ${OffertaTirocinio.nomeTutoreAziendale} ${OffertaTirocinio.cognomeTutoreAziendale}<a class="ml-25" href="mailto:${OffertaTirocinio.emailTutoreAziendale}">${OffertaTirocinio.emailTutoreAziendale}</a></p>
-                    <a href="/tirocinio?Tirocinio=${OffertaTirocinio.IDOffertaTirocinio}" class="btn btn-reveal btn-default b-0 btn-shadow-1 mt-30">
+                    <a href="/listaofferte/tirocinio?Tirocinio=${OffertaTirocinio.IDOffertaTirocinio}" class="btn btn-reveal btn-default b-0 btn-shadow-1 mt-30">
                         <i class="fa fa-plus"></i>
                         <span>Leggi di pi&ugrave;</span>
                     </a>

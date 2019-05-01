@@ -111,8 +111,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Tirocinio</servlet-name>
-        <url-pattern>/tirocinio</url-pattern>
-        <url-pattern>/account/tirocinio</url-pattern>
+        <url-pattern>/listaofferte/tirocinio</url-pattern>
+        <url-pattern>/account/listaofferte/tirocinio</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -278,6 +278,26 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>UploadPDFTirocinioRichiestaController</servlet-name>
+        <servlet-class>controller.adm.Azienda.UploadPDFTiroicinioRichiestaControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadPDFTirocinioRichiestaController</servlet-name>
+        <url-pattern>/account/upload-richiesta-tirocinio-azienda</url-pattern>
+        <url-pattern>/Account/Upload-Richiesta-Tirocinio-Azienda</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ModuloRichiestaTirocinioController</servlet-name>
+        <servlet-class>controller.adm.Azienda.ModuloRichiestaTirocinioController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModuloRichiestaTirocinioController</servlet-name>
+        <url-pattern>/account/moduli/richiesta-tirocinante</url-pattern>
+        <url-pattern>/Account/Moduli/Richiesta-Tirocinante</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>PdfFineTirocinioController</servlet-name>
         <servlet-class>controller.adm.PdfFineTirocinioController</servlet-class>
     </servlet>
@@ -352,8 +372,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>invioRichiesta</servlet-name>
-        <url-pattern>/inviorichiesta</url-pattern>
-        <url-pattern>/InvioRichiesta</url-pattern>
+        <url-pattern>/listaofferte/tirocinio/inviorichiesta</url-pattern>
+        <url-pattern>/Listaofferte/Tirocinio/InvioRichiesta</url-pattern>
 
     </servlet-mapping>
 
@@ -380,6 +400,25 @@
 
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>uploadConvenzione</servlet-name>
+        <servlet-class>controller.adm.Azienda.UploadConvenzioneController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>uploadConvenzione</servlet-name>
+        <url-pattern>/account/upload-convenzione</url-pattern>
+        <url-pattern>/Account/Upload-Convenzione</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UploadPDFTirocinioController</servlet-name>
+        <servlet-class>controller.adm.Azienda.UploadPDFTirocinioFineController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadPDFTirocinioController</servlet-name>
+        <url-pattern>/account/upload-file-tirocinio-azienda</url-pattern>
+        <url-pattern>/Account/Upload-File-Tirocinio-Azienda</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>moduloTirocinioTirocinante</servlet-name>
@@ -387,8 +426,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>moduloTirocinioTirocinante</servlet-name>
-        <url-pattern>/account/moduloTirocinioTirocinante</url-pattern>
-        <url-pattern>/account/ModuloTirocinioTirocinante</url-pattern>
+        <url-pattern>/account/moduli/moduloTirocinio</url-pattern>
+        <url-pattern>/account/Moduli/ModuloTirocinio</url-pattern>
 
     </servlet-mapping>
 

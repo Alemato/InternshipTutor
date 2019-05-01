@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Moduli</title>
+    <title>Richiesta Tirocinio</title>
 
     <#include "importCss.ftl">
     <link href="/css/print.css" rel="stylesheet" type="text/css" media="print">
@@ -13,7 +13,7 @@
 <div id="wrapper">
     <#include "header.ftl">
     <section class="page-header page-header-md parallax parallax-3 mt-130 d-print-none"
-             style="background-image:url('imgs/imgpattern.jpg')">
+             style="background-image:url('/imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
         <div class="container">
@@ -24,8 +24,8 @@
             <ol class="breadcrumb">
                 <li><a href="/">Home</a></li>
                 <li><a href="/account">Il Mio Account</a></li>
-                <li><a href="/account/moduli">Tirocini e Moduli</a></li>
-                <li>Modulo Tirocinio</li>
+                <li><a href="/account/moduli">Moduli</a></li>
+                <li>Modulo Richiesta Tirocinio</li>
             </ol><!-- /breadcrumbs -->
 
         </div>
@@ -33,9 +33,11 @@
 
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
-            <form id="modulo_tirocinante" action="/account/moduli/richiesta-tirocinio?id=${tirocinio.IDTirocinio}" method="post" class="m-0">
+            <form id="modulo_tirocinante" action="/account/moduli/richiesta-tirocinante" method="post" class="m-0">
                 <fieldset>
-                    <h1 class="text-center fw-100 d-print-none">Controlla i dati del modulo pre-compilato e clicca su stampa</h1>
+                    <#if idRichiesta??><input name="idRichiesta" type="hidden" value="${idRichiesta}"></#if>
+                    <h1 class="text-center fw-100 d-print-none">Controlla i dati del modulo pre-compilato e clicca su
+                        stampa</h1>
 
                     <div class="text-center d-none d-print-block">
                         <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
@@ -57,7 +59,8 @@
                     </div>
 
                     <h3 class="fw-700 text-center mb-0 d-none d-print-block">ALLEGATO 1</h3>
-                    <h4 class="fw-700 text-justify mr-10 fs-22 mb-25 d-none d-print-block">alla Convenzione per lo svolgimento di attivit&agrave; di tirocinio e di orientamento (ai
+                    <h4 class="fw-700 text-justify mr-10 fs-22 mb-25 d-none d-print-block">alla Convenzione per lo
+                        svolgimento di attivit&agrave; di tirocinio e di orientamento (ai
                         sensi dell&apos;art. 18 L.196/97 e dell&apos;Art. 1 Decreto Ministero del Lavoro e Previdenza
                         Sociale N. 142/98 e della Legge 148 del 14/09/2011) per studenti, laureati e diplomati
                         del Dipartimento di Ingegneria, Scienze dell&rsquo;Informazione e Matematica
@@ -66,123 +69,145 @@
                     <h3 class="fw-700 text-center d-none d-print-block mb-25">PROGETTO FORMATIVO E DI ORIENTAMENTO</h3>
 
 
-
                     <div class="row mb-0 mr-10 ">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Nominativo del tirocinante </h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Nominativo"
-                               value="${tirocinante.nome} ${tirocinante.cognome}" placeholder="Nome e Cognome del tirocinante" <#if PdfStampato??>disabled</#if>>
+                               value="${tirocinante.nome} ${tirocinante.cognome}"
+                               placeholder="Nome e Cognome del tirocinante" disabled>
                     </div>
 
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Nato a</h4>
                         <input class="input-modulo col-3 col-sm-3 col-md-6 col-lg-7 pl-0" type="text"
-                               name="LuogoDiNascita" value="${tirocinante.luogoDiNascita}" placeholder="" <#if PdfStampato??>disabled</#if>>
+                               name="LuogoDiNascita" value="${tirocinante.luogoDiNascita}" placeholder="" disabled>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Prov</h4>
                         <input class="input-modulo col-1 col-sm pl-0" type="text" name="Provincia_di_nascita"
-                               value="${tirocinante.provinciaDiNascita}" placeholder="XX" <#if PdfStampato??>disabled</#if>>
+                               value="${tirocinante.provinciaDiNascita}" placeholder="XX" disabled>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">il</h4>
                         <input class="input-modulo text-center col col-sm pl-0" type="text" name="Giorno_di_nascita"
-                               value="${giorno}" placeholder="XX" <#if PdfStampato??>disabled</#if>>
+                               value="${giorno}" placeholder="XX" disabled>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">/</h4>
                         <input class="input-modulo text-center col col-sm pl-0" type="text" name="Mese_di_nascita"
-                               value="${mese}" placeholder="XX" <#if PdfStampato??>disabled</#if>>
+                               value="${mese}" placeholder="XX" disabled>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">/</h4>
                         <input class="input-modulo text-center col col-sm pl-0" type="text" name="Anno_di_nascita"
-                               value="${anno}" placeholder="XXXX" <#if PdfStampato??>disabled</#if>>
+                               value="${anno}" placeholder="XXXX" disabled>
                     </div>
 
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Residente in</h4>
                         <input class="input-modulo col-8 col-sm-8 pl-0" type="text" name="Luogo_di_residenza"
-                               value="${tirocinante.luogoDiResidenza}" placeholder="Luogo di residenza" <#if PdfStampato??>disabled</#if>>
+                               value="${tirocinante.luogoDiResidenza}" placeholder="Luogo di residenza" disabled>
                         <h4 class="col-auto col-sm-auto fs-20 pr-0">Prov (</h4>
                         <input class="input-modulo text-center col col-sm pl-0" type="text"
-                               name="Provincia_di_nascita" value="${tirocinante.provinciaDiResidenza}" placeholder="XX" <#if PdfStampato??>disabled</#if>>
+                               name="Provincia_di_nascita" value="${tirocinante.provinciaDiResidenza}" placeholder="XX"
+                               disabled>
                         <h4 class="col-1 col-sm-1 pr-10 fs-20 pl-0">)</h4>
                     </div>
 
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Codice fiscale</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Codice_fiscale"
-                               value="${tirocinante.codiceFiscale}" placeholder="Codice fiscale" <#if PdfStampato??>disabled</#if>>
+                               value="${tirocinante.codiceFiscale}" placeholder="Codice fiscale" disabled>
                     </div>
 
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Telefono</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Numero_telefono"
-                               value="${tirocinante.telefono}" placeholder="Numero di telefono" <#if PdfStampato??>disabled</#if>>
+                               value="${tirocinante.telefono}" placeholder="Numero di telefono" disabled>
                     </div>
 
                     <h4 class="text-center text-black fs-16 mb-5 mt-15 mr-10">Attuale condizione (barrare la casella -
-                        possibilità di scelta multipla):</h4>
+                        possibilit&agrave; di scelta multipla):</h4>
 
                     <div class="row mb-25 pl-15 mr-10">
                         <label class="checkbox">
-                            <input type="checkbox" value="<#if ckCorsoDilaurea == true>1<#else>0</#if>" <#if ckCorsoDilaurea == true>checked="checked"</#if> <#if PdfStampato??>disabled</#if>>
+                            <input type="checkbox" value="1"
+                                   <#if tirocinante.corsoDiLaurea??><#if tirocinante.corsoDiLaurea?has_content>checked="checked"</#if></#if>
+                                   disabled>
                             <i></i> Studente Corso di Laurea in:
                         </label>
                         <input class="input-modulo col col-sm pl-0" type="text" name="CorsoLaurea"
-                               value="<#if ckCorsoDilaurea == true>${tirocinante.corsoDiLaurea}</#if>" placeholder="Corso di laurea" <#if PdfStampato??>disabled</#if>>
+                               <#if tirocinante.corsoDiLaurea??><#if tirocinante.corsoDiLaurea?has_content>value="${tirocinante.corsoDiLaurea}"</#if></#if>
+                               placeholder="Corso di laurea" disabled>
                     </div>
 
                     <div class="row mb-0 pl-15 mr-10">
                         <label class="checkbox">
-                            <input type="checkbox" value="<#if ckDiplomaUniversitario == true>1<#else>0</#if>" <#if ckDiplomaUniversitario == true>checked="checked"</#if> <#if PdfStampato??>disabled</#if>>
+                            <input type="checkbox" value="1"
+                                   <#if tirocinante.diplomaUniversitario??><#if tirocinante.diplomaUniversitario?has_content>checked="checked"</#if></#if>
+                                   disabled>
                             <i></i> Diplomato. Diploma universitario in:
                         </label>
                         <input class="input-modulo col col-sm pl-0" type="text" name="DiplomatoUniversitario"
-                               value="<#if ckDiplomaUniversitario == true>${tirocinante.diplomaUniversitario}</#if>" placeholder="Diploma Universitario" <#if PdfStampato??>disabled</#if>>
+                               <#if tirocinante.diplomaUniversitario??><#if tirocinante.diplomaUniversitario?has_content>value="${tirocinante.diplomaUniversitario}"</#if></#if>
+                               placeholder="Diploma Universitario" disabled>
                     </div>
                     <h4>(entro 12 mesi dal diploma)</h4>
 
                     <div class="row mb-0 pl-15 mr-10">
                         <label class="checkbox">
-                            <input type="checkbox" value="<#if ckLaureato == true>1<#else>0</#if>" <#if ckLaureato == true>checked="checked"</#if> <#if PdfStampato??>disabled</#if>>
+                            <input type="checkbox" value="1"
+                                   <#if tirocinante.laureato??><#if tirocinante.laureato?has_content>checked="checked"</#if></#if>
+                                   disabled>
                             <i></i> Laureato. Laurea in:
                         </label>
-                        <input class="input-modulo col col-sm pl-0" type="text" name="Laurea" value="<#if ckLaureato == true>${tirocinante.laureato}</#if>"
-                               placeholder="Laurea" <#if PdfStampato??>disabled</#if>>
+                        <input class="input-modulo col col-sm pl-0" type="text" name="Laurea"
+                               <#if tirocinante.laureato??><#if tirocinante.laureato?has_content>value="${tirocinante.laureato}"</#if></#if>
+                               placeholder="Laurea" disabled>
                     </div>
                     <h4>(entro 12 mesi dalla laurea)</h4>
 
                     <div class="row mb-25 pl-15 mr-10">
                         <label class="checkbox">
-                            <input type="checkbox" value="<#if ckDottoratoDiRicerca == true>1<#else>0</#if>"  <#if ckDottoratoDiRicerca == true>checked="checked"</#if> <#if PdfStampato??>disabled</#if>>
+                            <input type="checkbox" value="1"
+                                   <#if tirocinante.dottoratoDiRicerca??><#if tirocinante.dottoratoDiRicerca?has_content>checked="checked"</#if></#if>
+                                   disabled>
                             <i></i> Dottorato di ricerca in:
                         </label>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Dottorato_ricerca"
-                               value="<#if ckDottoratoDiRicerca == true>${tirocinante.dottoratoDiRicerca}</#if>" placeholder="Dottorato" <#if PdfStampato??>disabled</#if>>
+                               <#if tirocinante.dottoratoDiRicerca??><#if tirocinante.dottoratoDiRicerca?has_content>value="${tirocinante.dottoratoDiRicerca}"</#if></#if>
+                               placeholder="Dottorato" disabled>
                     </div>
 
                     <div class="row mb-25 pl-15 mr-10">
                         <label class="checkbox">
-                            <input type="checkbox" value="<#if ckScuolaAltro == true>1<#else>0</#if>" <#if ckScuolaAltro == true>checked="checked"</#if> <#if PdfStampato??>disabled</#if>>
+                            <input type="checkbox" value="1"
+                                   <#if tirocinante.scuolaAltro??><#if tirocinante.scuolaAltro?has_content>checked="checked"</#if></#if>
+                                   disabled>
                             <i></i> Scuola o corso di perfezionamento o specializzazione in:
                         </label>
-                        <input class="input-modulo col col-sm pl-0" type="text" name="ScuolaAltro" value="<#if ckScuolaAltro == true>${tirocinante.scuolaAltro}</#if>"
-                               placeholder="Specificare" <#if PdfStampato??>disabled</#if>>
+                        <input class="input-modulo col col-sm pl-0" type="text" name="ScuolaAltro"
+                               <#if tirocinante.scuolaAltro??><#if tirocinante.scuolaAltro?has_content>value="${tirocinante.scuolaAltro}"</#if></#if>
+                               placeholder="Specificare" disabled>
                     </div>
-
-                    <h4>Barrare se trattasi di soggetto portatore di handicap:</h4>
-                    <label class="checkbox ml-200 mr-10">
-                        <input type="checkbox" name="Handicap" value="Si" <#if handicap == true>checked="checked"</#if> <#if PdfStampato??>disabled</#if>>
+                    <div class="row">
+                    <h4 class="col-auto">Barrare se trattasi di soggetto portatore di handicap:</h4>
+                        <div class="col">
+                    <label class="checkbox ml-15 mr-10">
+                        <input type="checkbox" name="Handicap" value="Si"
+                               <#if tirocinante.handicap == true>checked="checked"</#if> disabled>
                         <i></i> Si
                     </label><br>
-                    <label class="checkbox ml-200 mb-25 mr-10">
-                        <input type="checkbox" name="Handicap" value="No" <#if handicap == false>checked="checked"</#if> <#if PdfStampato??>disabled</#if>>
+                    <label class="checkbox ml-15 mb-25 mr-10">
+                        <input type="checkbox" name="Handicap" value="No"
+                               <#if tirocinante.handicap == false>checked="checked"</#if> disabled>
                         <i></i> No
                     </label><br>
-
+                        </div>
+                    </div>
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Ente/Azienda ospitante</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Nome_ente_azienda"
-                               value="${azienda.ragioneSociale}" placeholder="Nome Ente/Azienda" disabled>
+                               <#if azienda.ragioneSociale??><#if azienda.ragioneSociale?has_content>value="${azienda.ragioneSociale}"</#if></#if>
+                               placeholder="Nome Ente/Azienda" disabled>
                     </div>
 
                     <div class="row mb-0 breack-print mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Luogo di effettuazione del tirocinio</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Luogo_di_svolgimento"
-                               value="${offertatirocinio.luogoEffettuazione}" placeholder="Luogo di svolgimento" disabled>
+                               <#if offerta.luogoEffettuazione??><#if offerta.luogoEffettuazione?has_content>value="${offerta.luogoEffettuazione}"</#if></#if>
+                               placeholder="Luogo di svolgimento" disabled>
                     </div>
 
                     <div class="text-center d-none d-print-block mr-10">
@@ -195,66 +220,78 @@
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Settore di inserimento</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Settore_di_inserimento"
-                               value="${offertatirocinio.settoreInserimento}" placeholder="Settore di inserimento" disabled>
+                               <#if offerta.settoreInserimento??><#if offerta.settoreInserimento?has_content>value="${offerta.settoreInserimento}"</#if></#if>
+                               placeholder="Settore di inserimento" disabled>
                     </div>
 
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Tempi di accesso ai locali aziendali</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Tempo_accesso_azienda"
-                               value="${offertatirocinio.tempoAccessoLocaliAziendali}" placeholder="Specificare i tempi di accesso" disabled>
+                               <#if offerta.tempoAccessoLocaliAziendali??><#if offerta.tempoAccessoLocaliAziendali?has_content>value="${offerta.tempoAccessoLocaliAziendali}"</#if></#if>
+                               placeholder="Specificare i tempi di accesso" disabled>
                     </div>
 
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Periodo di tirocinio n.</h4>
-                        <input class="input-modulo col col-sm-1 pl-0 text-center" type="text" name="Numero_di_mesi"
-                               value="${offertatirocinio.durataMesi}" placeholder="Specificare il numero di mesi" disabled>
+                        <input class="input-modulo col col-sm-1 pl-0 text-center" type="number" name="Numero_di_mesi"
+                               <#if offerta.durataMesi??><#if offerta.durataMesi?has_content>value="${offerta.durataMesi}"</#if></#if>
+                               placeholder="Specificare il numero di mesi" disabled>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">mesi dal</h4>
-                        <input class="input-modulo col col-sm pl-0" type="text" name="PeriodoInizio"
-                               value="${offertatirocinio.periodoInizio}" placeholder="Data inizio" disabled>
+                        <input  class="input-modulo col col-sm pl-0" type="date" name="PeriodoInizio"
+                               <#if offerta.periodoInizio??><#if offerta.periodoInizio?has_content>value="${offerta.periodoInizio?date?iso_utc}"</#if></#if>
+                               placeholder="Data inizio" required>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">al</h4>
-                        <input class="input-modulo col col-sm pl-0" type="text" name="PeriodoFine" value="${offertatirocinio.periodoFine}"
-                               placeholder="Data fine" disabled>
+                        <input class="input-modulo col col-sm pl-0" type="date" name="PeriodoFine"
+                               <#if offerta.periodoFine??><#if offerta.periodoFine?has_content>value="${offerta.periodoFine?date?iso_utc}"</#if></#if>
+                               placeholder="Data fine" required>
                     </div>
                     <h4>(con possibilit&agrave; di prologa entro i limiti massimi previsti dalla normativa vigente)</h4>
 
                     <div class="row mb-25 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">numero ore di tirocinio </h4>
                         <input class="input-modulo col-2 col-sm-2 pl-0" type="text" name="NumeroOreTirocinio"
-                               value="${offertatirocinio.durataOre}" placeholder="numero ore" disabled>
+                               <#if offerta.durataOre??><#if offerta.durataOre?has_content>value="${offerta.durataOre}"</#if></#if>
+                               placeholder="numero ore" required>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">per il conseguimento di n.</h4>
-                        <input class="input-modulo col-2 col-sm-2 pl-0" type="text" name="NumeroCfu" value="${tirocinio.CFU}"
-                               placeholder="Numero CFU" disabled>
+                        <input class="input-modulo col-2 col-sm-2 pl-0" type="text" name="NumeroCfu"
+                               <#if tirocinio.CFU??><#if tirocinio.CFU?has_content>value="${tirocinio.CFU}"</#if></#if>
+                               placeholder="Numero CFU" required>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">CFU</h4>
                     </div>
 
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Tutore universitario</h4>
                         <input class="input-modulo col col-sm pl-0" type="text"
-                               name="Nominativo_tutore_universitario" value="Mario Rossi"
+                               name="Nominativo_tutore_universitario"
+                               value="<#if tutore.nome?? && tutore.cognome??>${tutore.nome} ${tutore.cognome}</#if>"
                                placeholder="Nominativo tutore universitario" disabled>
                     </div>
 
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Telefono</h4>
                         <input class="input-modulo col col-sm pl-0" type="text"
-                               name="Numero_telefono_tutore_universitario" value="333-1234567"
+                               name="Numero_telefono_tutore_universitario"
+                               value="<#if tutore.telefono??>${tutore.telefono}</#if>"
                                placeholder="Numero di telefono tutore universitario" disabled>
                     </div>
 
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Tutore Aziendale</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Nominativo_tutore_aziendale"
-                               value="Francesco Bianchi" placeholder="Nominativo tutore aziendale" disabled>
+                               value="<#if offerta.nomeTutoreAziendale?? && offerta.cognomeTutoreAziendale??>${offerta.nomeTutoreAziendale} ${offerta.cognomeTutoreAziendale}</#if>"
+                               placeholder="Nominativo tutore aziendale" disabled>
                     </div>
 
                     <div class="row mb-25 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Telefono</h4>
                         <input class="input-modulo col col-sm pl-0" type="text"
-                               name="Numero_telefono_tutore_aziendale" value="333-1234567"
+                               name="Numero_telefono_tutore_aziendale"
+                               value="<#if offerta.telefonoTutoreAziendale??>${offerta.telefonoTutoreAziendale}</#if>"
                                placeholder="Numero di telefono tutore aziendale" disabled>
                     </div>
                     <h3 class="mb-0 d-none d-print-block">Polize assicurative:</h3>
-                    <h4 class="mb-5 d-none d-print-block">Copertura assicurativa per rischio responsabilità civile terzi:</h4>
+                    <h4 class="mb-5 d-none d-print-block">Copertura assicurativa per rischio responsabilit&agrave;
+                        civile terzi:</h4>
                     <h4 class="fw-100 mb-5 d-none d-print-block">Compagnia assicurativa:<br>
                         UNIPOLSAI n.65 / 102965221<br>
                         Scadenza polizza: 30 aprile 2018</h4>
@@ -264,23 +301,29 @@
                         Scadenza polizza: 30 aprile 2018 </h4>
 
                     <h3 class="mb-0 d-none d-print-block">Posizione INAIL:</h3>
-                    <h4 class="mb-35 d-none d-print-block">Copertura assicurativa “in conto Stato” ex art. 2 D.P.R. N. 156 del 9.04.1999</h4>
+                    <h4 class="mb-35 d-none d-print-block">Copertura assicurativa &ldquo;in conto Stato&rdquo; ex art. 2
+                        D.P.R. N. 156 del 9.04.1999</h4>
 
                     <h4 class="fs-20 mb-0">Obiettivi del tirocinio:</h4>
-                    <textarea class="textarea-modulo col-12 pt-5 mb-15 mr-10" rows="4" cols="1" name="ObiettiviTirocinio"
-                              placeholder="descrivi in breve l&apos;obiettivo del tirocinio" disabled>${offertatirocinio.obbiettivi}</textarea>
+                    <textarea class="textarea-modulo col-12 pt-5 mb-15 mr-10" rows="4" cols="1"
+                              name="ObiettiviTirocinio"
+                              placeholder="descrivi in breve l&apos;obiettivo del tirocinio" disabled><#if offerta.obbiettivi??><#if offerta.obbiettivi?has_content>${offerta.obbiettivi}</#if></#if></textarea>
 
                     <h4 class="fs-20 mb-0">Modalit&agrave;:</h4>
                     <textarea class="textarea-modulo col-12 pt-5 mb-0 mr-10" rows="4" cols="1" name="ModalitaTirocinio"
-                              placeholder="descrivi in breve l&apos;obiettivo del tirocinio" disabled>${offertatirocinio.modalita}</textarea>
+                              placeholder="descrivi in breve l&apos;obiettivo del tirocinio" disabled><#if offerta.modalita??><#if offerta.modalita?has_content>${offerta.modalita}</#if></#if></textarea>
 
                     <h4 class="col-12 mt-35 fs-20 pl-0 mb-0">Facilitazioni previste: sussidio di formazione e servizi
                         aziendali
                         (mensa)</h4>
-                    <input class="input-modulo col-12 pl-0 breack-print" type="text"
+                    <div class="row pr-15 pl-15">
+                        <input class="input-modulo col-6 pl-0 breack-print" type="text"
                            name="Facilitazioni"
-                           value="<#if offertatirocinio.facilitazioni??>${offertatirocinio.facilitazioni}<#else>Nessuna</#if>" disabled>
-
+                           <#if offerta.facilitazioni??><#if offerta.facilitazioni?has_content>value="${offerta.facilitazioni}"</#if></#if> disabled >
+                        <input class="input-modulo col-6 pl-0 breack-print" type="text"
+                               name="Facilitazioni"
+                               <#if offerta.rimborsi??><#if offerta.rimborsi?has_content>value="${offerta.rimborsi}"</#if></#if> disabled>
+                    </div>
                     <div class="text-center d-none d-print-block">
                         <img class="img-fluid" src="/imgs/stemma_univaq.png" width="80">
                         <h1 class="Taviraji fw-600 uppercase mb-0">UNIVERSITA&apos; DEGLI STUDI DELL&apos;AQUILA</h1>
@@ -293,13 +336,15 @@
                             organizzativo ed altre evenienze;
                         </li>
                         <li>Rispettare gli obblighi di riservatezza per quanto attiene ai dati, informazioni e
-                            conoscenze in merito all'attività di ricerca dell'Ente/Azienda, acquisiti durante e dopo lo
+                            conoscenze in merito all&apos;attivit&agrave; di ricerca dell&apos;Ente/Azienda, acquisiti
+                            durante e dopo lo
                             svolgimento del tirocinio;
                         </li>
                         <li>Rispettare i regolamenti aziendali e le norme in materia di igiene e sicurezza;</li>
-                        <li>Inviare al Dipartimento di Ingegneria, Scienze dell’Informazione e Matematica
-                            dell'Università degli Studi dell'Aquila, mensilmente, le presenze effettive presso
-                            l'Azienda rilevate da una scheda che viene consegnata dall’Azienda stessa all'atto
+                        <li>Inviare al Dipartimento di Ingegneria, Scienze dell&rsquo;Informazione e Matematica
+                            dell&apos;Universit&agrave; degli Studi dell&apos;Aquila, mensilmente, le presenze effettive
+                            presso
+                            l&apos;Azienda rilevate da una scheda che viene consegnata dall&rsquo;Azienda stessa all&apos;atto
                             della compilazione del presente Progetto.
                         </li>
                     </ul>
@@ -307,17 +352,19 @@
                     <p class="text-black  text-justify fs-20 d-none d-print-block mr-10">
                         Ai sensi degli artt. 10 e seguenti della legge 675/ 96, sulla tutela delle persone e di altri
                         soggetti rispetto al trattamento dei dati personali, con la sottoscrizione il tirocinante
-                        esprime il suo consenso a che i suoi dati personali vengano comunicati all'Università
-                        limitatamente ai trattamenti connessi alle finalità del presente rapporto di tirocinio. La
+                        esprime il suo consenso a che i suoi dati personali vengano comunicati all&apos;Universit&agrave;
+                        limitatamente ai trattamenti connessi alle finalit&agrave; del presente rapporto di tirocinio.
+                        La
                         sottoscrizione del presente modello comporta anche il consenso del tirocinante al
                         trattamento dei suoi dati personali nel senso sopraindicato.
-                        L'Aquila
+                        L&apos;Aquila
                     </p>
                     <h4 class="d-none d-print-block">Firma per visione e accettazione del tirocinante</h4>
 
                     <div class="linea col-5 p-0"></div>
 
-                    <h4 class="d-none d-print-block">Dipartimento di Ingegneria, Scienze dell’Informazione e Matematica dell’Università degli Studi di L'Aquila<br>
+                    <h4 class="d-none d-print-block">Dipartimento di Ingegneria, Scienze dell&rsquo;Informazione e
+                        Matematica dell&rsquo;Universit&agrave; degli Studi di L&apos;Aquila<br>
                         Il Tutor</h4>
 
                     <div class="linea col-5 p-0"></div>
@@ -328,7 +375,8 @@
                     <h4 class="d-none d-print-block">Il Tutor aziendale</h4>
                     <div class="linea col-5 p-0"></div>
 
-                    <h4 class="d-none d-print-block">Il Direttore del Dipartimento di Ingegneria e Scienze dell’Informazione e Matematica.<br>
+                    <h4 class="d-none d-print-block">Il Direttore del Dipartimento di Ingegneria e Scienze dell&rsquo;Informazione
+                        e Matematica.<br>
                         Prof. Guido Proietti
                     </h4>
 
@@ -336,19 +384,18 @@
 
                     <div class="linea col-3 p-0"></div>
 
-                    <h5 class="fw-800 d-none d-print-block"><sup>1</sup>Timbro e firma dell’Azienda</h5>
+                    <h5 class="fw-800 d-none d-print-block"><sup>1</sup>Timbro e firma dell&rsquo;Azienda</h5>
 
-                    <#if PdfStampato??>
-                    <#else>
                     <footer class="mt-50 d-print-none">
-                        <button type="submit" form="modulo_tirocinante" class="btn btn-success btn-lg pull-right float-right" onclick="window.print();"><i
-                                class="fa fa-check"></i> Stampa
+                        <button type="submit" form="modulo_tirocinante"
+                                class="btn btn-success btn-lg pull-right float-right" onclick="window.print();"><i
+                                    class="fa fa-check"></i> Stampa
                         </button>
-                        <button type="reset" form="modulo_tirocinante" class="btn btn-red btn-lg pull-right float-left"><i
-                                class="fa fa-times"></i> Annulla
+                        <button type="reset" form="modulo_tirocinante" class="btn btn-red btn-lg pull-right float-left">
+                            <i
+                                    class="fa fa-times"></i> Annulla
                         </button>
                     </footer>
-                    </#if>
                 </fieldset>
             </form>
         </div>

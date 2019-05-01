@@ -808,7 +808,7 @@
                                                                         </tbody>
                                                                     </table>
 
-                                                                    <h4 class="text-primary text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: #007bff; vertical-align: baseline; font-size: 24px; line-height: 28.8px;" align="center">La Richiesta è stata Declinata!</h4>
+                                                                    <h4 class="text-primary text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: #007bff; vertical-align: baseline; font-size: 24px; line-height: 28.8px;" align="center">La Richiesta &egrave; stata Declinata!</h4>
                                                                     <div class="hr " style="width: 100%; margin: 20px 0; border: 0;">
                                                                         <table border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; width: 100%;">
                                                                             <tbody>
@@ -821,7 +821,7 @@
 
 
 
-                                                                    <h4 class="text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 24px; line-height: 28.8px;" align="center">Ti inviamo questa email per notificarti che la richiesta di tirocinio da lei inviata è stata declinata.</h4>
+                                                                    <h4 class="text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 24px; line-height: 28.8px;" align="center">Ti inviamo questa email per notificarti che la richiesta di tirocinio da lei inviata &egrave; stata declinata.</h4>
                                                                     <p class="text-center " style="line-height: 24px; font-size: 16px; margin: 0;" align="center">Riassunto dei dettagli del offerta:</p>
                                                                     <table class="s-3 w-100" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                                                                         <tbody>

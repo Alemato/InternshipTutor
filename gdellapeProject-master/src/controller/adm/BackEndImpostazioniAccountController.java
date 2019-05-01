@@ -23,11 +23,7 @@ public class BackEndImpostazioniAccountController extends baseController {
             }
         }else if (tipo == 2){
             ImpostazioniAccountTirocinante tr = new ImpostazioniAccountTirocinante(request, response, getServletContext(), datamodel);
-            try {
-                tr.get();
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
+            tr.get();
         }else{
             response.sendRedirect("/500");
         }
@@ -44,11 +40,7 @@ public class BackEndImpostazioniAccountController extends baseController {
             }
         }else if (tipo == 2){
             ImpostazioniAccountTirocinante tr = new ImpostazioniAccountTirocinante(request, response, getServletContext(), datamodel);
-            try {
-                tr.post();
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
+            tr.post();
         }else{
             response.sendRedirect("/500");
         }

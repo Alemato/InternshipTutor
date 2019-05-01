@@ -23,6 +23,7 @@ public class servletUploadProva extends baseController {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Part parto = request.getPart("filetoupload");
+        System.out.println(parto);
         TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
         Tirocinio tirocinio = new Tirocinio();
         try {

@@ -144,6 +144,7 @@ public class ViewOffertaController extends baseController {
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (session.isAzienda(request)){
             boolean scaduto = (boolean)request.getAttribute("Scaduto");
+            System.out.println("-----------------"+scaduto+"---------------");
             datamodel.put("Scaduto", scaduto);
             try {
                 System.out.println("invoco processoGet");

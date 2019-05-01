@@ -18,7 +18,7 @@
     <#include "header.ftl">
 
     <section class="page-header page-header-md parallax parallax-3 mt-130"
-             style="background-image:url('imgs/imgpattern.jpg')">
+             style="background-image:url('/imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
         <div class="container">
@@ -342,11 +342,11 @@
 
                     <div class="row pl-15 pr-15">
                         <label class="checkbox mt-6">
-                            <input type="checkbox" name="CKLaureaIn" value="1" <#if Tirocinante.laureatoUniversitario?? > checked="checked" </#if>>
+                            <input type="checkbox" name="CKLaureaIn" value="1" <#if Tirocinante.laureato?? > checked="checked" </#if>>
                             <i></i> Laureato. Laurea in <em class="fw-100">(entro 12 mesi dalla laurea)</em> &nbsp;:
                         </label>
                         <label class="input col">
-                            <input type="text" placeholder="Corso di Laurea" name="LaureaIn" <#if Tirocinante.laureatoUniversitario??> value="${Tirocinante.laureatoUniversitario}" </#if> >
+                            <input type="text" placeholder="Corso di Laurea" name="LaureaIn" <#if Tirocinante.laureato??> value="${Tirocinante.laureato}" </#if> >
                         </label>
                     </div>
 
@@ -375,15 +375,15 @@
 
                     <div class="row mb-100 mt-80">
                         <div class="col-md-auto mt-4">
-                            <h4>Barrare se trattasi di soggetto portatore di handicap:</h4>
+                            <h4>Barrare se trattasi di soggetto portatore di handicap: <#if Handicap??> <i class="danger"> ${Handicap}</i></#if> </h4>
                         </div>
                         <div class="col-md-auto">
                             <label class="checkbox mt-6 pr-0">
-                                <input type="checkbox" name="Handicap" value="Si" >
+                                <input type="checkbox" name="Handicap" value="Si" <#if Tirocinante.handicap == true> checked="checked" </#if>>
                                 <i></i> SI
                             </label>
                             <label class="checkbox mt-6 pr-0">
-                                <input type="checkbox" name="Handicap" value="NO" checked="checked">
+                                <input type="checkbox" name="Handicap" value="No" <#if Tirocinante.handicap == false> checked="checked" </#if>>
                                 <i></i> NO
                             </label>
                         </div>

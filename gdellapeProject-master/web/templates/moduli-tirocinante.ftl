@@ -11,7 +11,7 @@
     <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
-<body class="smoothscroll enable-animation">
+<body class="enable-animation">
 <!-- wrapper -->
 <div id="wrapper">
     <#include "header.ftl">
@@ -38,85 +38,113 @@
             <h1 class="mb-0">TIROCINI E MODULI</h1>
             <div class="linea-divisione mt-15 mb-30"></div>
             <#--<form id="form_tirocinii_fine" action="/account/moduli" method="post">-->
-                <table class="table table-responsive table-striped table-bordered bg-white table-hover border"
-                       id="datatable_2" width="100%"
-                       cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th>Azienda</th>
-                        <th>Inizio</th>
-                        <th>Fine</th>
-                        <th>Tutore Aziendale</th>
-                        <th>Tutore Universitario</th>
-                        <th>Stato Richiesta</th>
-                        <th>Modulo</th>
-                        <th>Tirocinio</th>
-                    </tr>
-                    </thead>
+            <table class="table table-responsive table-striped table-bordered bg-white table-hover border"
+                   id="datatable_2" width="100%"
+                   cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Azienda</th>
+                    <th>Inizio</th>
+                    <th>Fine</th>
+                    <th>Tutore Aziendale</th>
+                    <th>Tutore Universitario</th>
+                    <th>Stato</th>
+                    <th>Modulo Richiesta</th>
+                    <th>Modulo Azienda</th>
+                    <th>Modulo Segreteria</th>
+                    <th>Tirocinio</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Azienda</th>
+                    <th>Inizio</th>
+                    <th>Fine</th>
+                    <th>Tutore Aziendale</th>
+                    <th>Tutore Universitario</th>
+                    <th>Stato</th>
+                    <th>Modulo Richiesta</th>
+                    <th>Modulo Azienda</th>
+                    <th>Modulo Segreteria</th>
+                    <th>Tirocinio</th>
+                </tr>
+                </tfoot>
 
-                    <tbody>
-                    <#list lista as lista>
-                        <tr>
-                            <td>${lista.offertaTirocinio.aziendaOspitante}</td>
-                            <#if lista.tirocinio.periodoEffettivoIniziale??>
+                <tbody>
+                <#list lista as lista>
+                    <tr>
+                        <td>${lista.offertaTirocinio.aziendaOspitante}</td>
+                        <#if lista.tirocinio.periodoEffettivoIniziale??>
                             <td>${lista.tirocinio.periodoEffettivoIniziale}</td>
-                            <#else>
+                        <#else>
                             <td>${lista.offertaTirocinio.periodoInizio}</td>
-                            </#if>
-                            <#if lista.tirocinio.periodoEffettivoFinale??>
+                        </#if>
+                        <#if lista.tirocinio.periodoEffettivoFinale??>
                             <td>${lista.tirocinio.periodoEffettivoFinale}</td>
-                            <#else>
+                        <#else>
                             <td>${lista.offertaTirocinio.periodoFine}</td>
-                            </#if>
-                            <td>${lista.offertaTirocinio.nomeTutoreAziendale} ${lista.offertaTirocinio.cognomeTutoreAziendale}</td>
-                            <td>${lista.tutoreUniversitario.nome} ${lista.tutoreUniversitario.cognome}</td>
-                            <#if lista.tirocinio.stato == 0>
-                                <td>Richiesta inoltrata</td>
-                            <#elseif lista.tirocinio.stato == 1>
-                                <td>Richiesta accettata</td>
-                            <#elseif lista.tirocinio.stato == 2>
-                                <td>Tirocinio Terminato</td>
-                            <#elseif lista.tirocinio.stato == 3 || lista.tirocinio.stato == 4>
-                                <td>Tirocinio Concluso</td>
-                            <#elseif lista.tirocinio.stato == 5>
-                                <td>Tirocinio Rifiutato</td>
-                            </#if>
-                            <#if lista.tirocinio.stato == 0>
-                                <td>In attesa di approvazione del Tirocinio</td>
-                            <#elseif lista.tirocinio.stato == 1>
-                                <td>
-                                    <a href="/account/moduloTirocinioTirocinante?idTirocinio=${lista.tirocinio.IDTirocinio}">
-                                        <button type="button" class="btn btn-outline-success"><i
-                                                    class="fa fa-print"></i>Stampa Modulo
-                                        </button>
-                                    </a>
-                                </td>
-                            <#else>
-                                <td>Modulo gi&agrave; stampato</td>
-                            </#if>
+                        </#if>
+                        <td>${lista.offertaTirocinio.nomeTutoreAziendale} ${lista.offertaTirocinio.cognomeTutoreAziendale}</td>
+                        <td>${lista.tutoreUniversitario.nome} ${lista.tutoreUniversitario.cognome}</td>
+                        <#if lista.tirocinio.stato == 0>
+                            <td>Richiesta Inoltrata</td>
+                        <#elseif lista.tirocinio.stato == 1>
+                            <td>Richiesta Accettata</td>
+                        <#elseif lista.tirocinio.stato == 2>
+                            <td>Periodo Tirocinio Terminato</td>
+                        <#elseif lista.tirocinio.stato == 3 || lista.tirocinio.stato == 4>
+                            <td>Tirocinio Concluso</td>
+                        <#elseif lista.tirocinio.stato == 5>
+                            <td>Tirocinio Rifiutato</td>
+                        </#if>
+                        <#if lista.tirocinio.pdfTirocinante?has_content>
                             <td>
-                                <a href="/gestioneTirocinioScelto?idTirocinio=${lista.tirocinio.IDTirocinio}">
+                                <a href="/account/moduli/richiesta-tirocinio?id=${lista.tirocinio.IDTirocinio}">
                                     <button type="button" class="btn btn-outline-success"><i
-                                                class="fa fa-plus"></i>Dettagli
+                                                class="fa fa-print"></i>Visualizza
                                     </button>
                                 </a>
                             </td>
-                        </tr>
-                    </#list>
-                    </tbody>
-                </table>
-
-                <#--<footer class="text-center text-sm-right mt-25 ">-->
-                    <#--<button type="submit" form="form_tirocinii_fine"-->
-                            <#--class="btn btn-success btn-lg pull-right float-sm-right mb-20"><i-->
-                                <#--class="fa fa-check"></i> Aggiorna-->
-                    <#--</button>-->
-                    <#--<button type="reset" form="form_tirocinii_fine"-->
-                            <#--class="btn btn-red btn-lg pull-right float-sm-left mb-20"><i-->
-                                <#--class="fa fa-times"></i> Annulla-->
-                    <#--</button>-->
-                <#--</footer>-->
-            <#--</form>-->
+                        <#else>
+                            <#if lista.tirocinio.stato == 0>
+                                <td>In attesa di approvazione del Tirocinio</td>
+                            <#else>
+                                <td>In attesa del caricamento del modulo</td>
+                            </#if>
+                        </#if>
+                        <#if lista.tirocinio.pdfAzienda?has_content>
+                            <td>
+                                <a href="/account/moduli/tirocinio?id=${lista.tirocinio.IDTirocinio}">
+                                    <button type="button" class="btn btn-outline-success"><i
+                                                class="fa fa-print"></i>Visualizza
+                                    </button>
+                                </a>
+                            </td>
+                        <#else>
+                            <td>In attesa di caricamento del Pdf da parte dell'Azienda</td>
+                        </#if>
+                        <#if lista.tirocinio.pdfSegreteria?has_content>
+                            <td>
+                                <a href="/account/moduli/segreteria?id=${lista.tirocinio.IDTirocinio}">
+                                    <button type="button" class="btn btn-outline-success"><i
+                                                class="fa fa-print"></i>Visualizza
+                                    </button>
+                                </a>
+                            </td>
+                        <#else>
+                            <td>In attesa del caricamento del modulo da parte della Segreteria</td>
+                        </#if>
+                        <td>
+                            <a href="/gestioneTirocinioScelto?idTirocinio=${lista.tirocinio.IDTirocinio}">
+                                <button type="button" class="btn btn-outline-success"><i
+                                            class="fa fa-plus"></i>Dettagli
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                </#list>
+                </tbody>
+            </table>
 
     </section>
 
@@ -147,13 +175,17 @@
             }, {
                 "orderable": true
             }, {
+                "orderable": true
+            }, {
+                "orderable": true
+            }, {
                 "orderable": false
             }, {
-                "orderable": true
+                "orderable": false
             }, {
-                "orderable": true
+                "orderable": false
             }, {
-                "orderable": true
+                "orderable": false
             }],
             "order": [
                 [1, 'asc']

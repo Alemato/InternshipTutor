@@ -9,6 +9,7 @@ import model.Azienda;
 import model.OffertaTirocinio;
 import org.unbescape.html.HtmlEscape;
 import view.TemplateController;
+import view.TemplateControllerMail;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CreazioneOffertaController extends baseController {
@@ -39,11 +41,34 @@ public class CreazioneOffertaController extends baseController {
     }
 
 
-    private void processaPost(HttpServletRequest request, HttpServletResponse response, OffertaTirocinio offertaTirocinio) throws IOException, ServletException {
+    private void processaPost(HttpServletRequest request, HttpServletResponse response, OffertaTirocinio offertaTirocinio, Azienda azienda) throws IOException, ServletException {
         OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
         try {
             offertaTirocinioDaoImp.setOffertatr(offertaTirocinio);
             offertaTirocinioDaoImp.destroy();
+            OffertaTirocinioDaoImp offertaTirocinioDaoImp1 = new OffertaTirocinioDaoImp();
+            List<OffertaTirocinio> offertaTirocinios = offertaTirocinioDaoImp1.getOffertatrBYAzienda(azienda);
+            offertaTirocinioDaoImp.destroy();
+            datamodel.put("Titolo",offertaTirocinio.getTitolo());
+            datamodel.put("Descrizione",offertaTirocinio.getDescrizione());
+            datamodel.put("DescrizioneBreve",offertaTirocinio.getDescrizioneBreve());
+            datamodel.put("LuogoEffettuazione",offertaTirocinio.getLuogoEffettuazione());
+            datamodel.put("Orario",offertaTirocinio.getOrari());
+            datamodel.put("PeriodoInizio",offertaTirocinio.getPeriodoInizio());
+            datamodel.put("PeriodoFine",offertaTirocinio.getPeriodoFine());
+            datamodel.put("Obbiettivi",offertaTirocinio.getObbiettivi());
+            datamodel.put("Modalita",offertaTirocinio.getModalita());
+            datamodel.put("Rimborsi",offertaTirocinio.getRimborsi());
+            datamodel.put("Facilitazioni",offertaTirocinio.getFacilitazioni());
+            datamodel.put("NomeRespAz",offertaTirocinio.getNomeTutoreAziendale());
+            datamodel.put("CognomeRespAz",offertaTirocinio.getCognomeTutoreAziendale());
+            datamodel.put("EmailRespAZ",offertaTirocinio.getEmailTutoreAziendale());
+            datamodel.put("TelRespAz",offertaTirocinio.getTelefonoTutoreAziendale());
+            datamodel.put("Url",offertaTirocinios.get(offertaTirocinios.size()-1).getIDOffertaTirocinio());
+            String[] to = new String[1];
+            to[0]= "azienda@matteifamily.net";
+            String subject = "Registrazione Nuova Offerta di Tirocinio : "+ offertaTirocinio.getTitolo();
+            TemplateControllerMail.process("email/creazione-offerta.ftl", datamodel, to, subject, getServletContext());
         } catch (DaoException e) {
             e.printStackTrace();
             er500(request, response);
@@ -306,7 +331,7 @@ public class CreazioneOffertaController extends baseController {
             offertaTirocinio.setAzienda(azienda.getIDAzienda());
             offertaTirocinio.setAziendaOspitante(azienda.getRagioneSociale());
             offertaTirocinio.setStato(1);
-            processaPost(request, response, offertaTirocinio);
+            processaPost(request, response, offertaTirocinio, azienda);
         }
 
     }
