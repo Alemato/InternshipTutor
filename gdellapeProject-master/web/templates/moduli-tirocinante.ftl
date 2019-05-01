@@ -71,6 +71,8 @@
                 </tfoot>
 
                 <tbody>
+                <#if nessunTirocinio??>
+                <#else>
                 <#list lista as lista>
                     <tr>
                         <td>${lista.offertaTirocinio.aziendaOspitante}</td>
@@ -143,6 +145,7 @@
                         </td>
                     </tr>
                 </#list>
+                </#if>
                 </tbody>
             </table>
 
