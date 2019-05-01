@@ -13,8 +13,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class VisualizzaModuloSegreteriaTirocinioController extends baseController {
@@ -54,7 +52,6 @@ public class VisualizzaModuloSegreteriaTirocinioController extends baseControlle
         Tirocinante tirocinante = new Tirocinante();
         Tirocinio tr = new Tirocinio();
         try {
-            datamodel.put("urlpage", "/admin/Gestione-tirocinio");
             TirocinioDaoImp dao = new TirocinioDaoImp();
             tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
             dao.destroy();
@@ -65,7 +62,7 @@ public class VisualizzaModuloSegreteriaTirocinioController extends baseControlle
 
             datamodel.put("tirocinante", tirocinante);
             datamodel.put("tirocinio", tr);
-            TemplateController.process("BackEndTemplates/admin-create-modulo-tirocinio-segreteria.ftl", datamodel, response, getServletContext());
+            TemplateController.process("BackEndTemplates/admin-modulo-tirocinio-segreteria.ftl", datamodel, response, getServletContext());
 
         } catch (DaoException e) {
             e.printStackTrace();
