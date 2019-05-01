@@ -64,15 +64,16 @@ public class LoginController extends HttpServlet {
         boolean richiesta = false;
         String url = "";
         HttpSession sessionFalse = request.getSession(false);
+
+        if (sessionFalse != null) {
+            if (sessionFalse.getAttribute("URI") != null) {
+                url = urlRIC(request);
+            }
+        }
         if (sessionFalse != null) {
             if (sessionFalse.getAttribute("Tirocinio") != null) {
                 tirocinio = idTirocinio(request);
                 richiesta = true;
-            }
-        }
-        if (sessionFalse != null) {
-            if (sessionFalse.getAttribute("URI") != null) {
-                url = urlRIC(request);
             }
         }
         SingSessionContoller session = SingSessionContoller.getInstance();
