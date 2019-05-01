@@ -52,18 +52,18 @@
             <#elseif tirocinio.stato == 1>
                 <!-- HA ACCETTATO LA CANDIDATURA -->
                 <div class="alert alert-success mb-30"><!-- SUCCESS -->
-                    <#--<button type="button" class="close" data-dismiss="alert">-->
-                    <#--<span aria-hidden="true">×</span>-->
-                    <#--<span class="sr-only">Close</span>-->
-                    <#--</button>-->
-                    <strong>La tua candidatura è stata Accettata!</strong><br> Congratualazioni in questa pagina potrai
-                    vedere tutti i dati inerenti al tirocinio che sta svolgendo.
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&ast;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong>La tua candidatura &egrave; stata Accettata!</strong><br> Congratualazioni in questa pagina potrai
+                    vedere tutti i dati inerenti al tirocinio che stai svolgendo.
                 </div>
-            <#elseif  tirocinio.stato == 2 || tirocinio.stato == 3 || tirocinio.stato == 4>
+            <#elseif tirocinio.stato == 3 || tirocinio.stato == 4>
 
                 <div class="alert alert-success mb-30"><!-- SUCCESS -->
                     <button type="button" class="close" data-dismiss="alert">
-                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true">&ast;</span>
                         <span class="sr-only">Close</span>
                     </button>
                     <strong>Complimenti!! Hai terminato il Tirocinio con <a
@@ -81,7 +81,14 @@
                     </#if>
 
                 </div>
-
+            <#elseif tirocinio.stato == 2>
+                <div class="alert alert-success mb-30"><!-- SUCCESS -->
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&ast;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong>Devi attendere che la Segreteria decreti la finde del tirocinio.</strong>
+                </div>
             <#else>
                 <!-- NON HAI INVIATO LA CANDIDATURA -->
                 <div class="alert alert-warning mb-30"><!-- WARNING -->
