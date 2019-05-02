@@ -76,7 +76,7 @@ public class GestioneModuliTirocinante {
     private boolean ifTirocini() throws ServletException, IOException {
         boolean nessunTirocinio = false;
         TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
-        List<Tirocinio> tirocini = new ArrayList<Tirocinio>();
+        List<Tirocinio> tirocini = new ArrayList<>();
         try {
             tirocini = tirocinioDaoImp.getOffertaTirByIDTirocinante(tirocinante.getIDTirocinante());
             tirocinioDaoImp.destroy();
