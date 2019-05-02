@@ -33,6 +33,11 @@ public class GestioneModuliTirocinante {
         this.tirocinante = null;
     }
 
+    private void er500(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = context.getRequestDispatcher("/500");
+        dispatcher.forward(request, response);
+    }
+
     private void ritornaTirocinate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         SingSessionContoller session = SingSessionContoller.getInstance();
         this.tirocinante = session.getTirocinate(request, response);
@@ -68,14 +73,16 @@ public class GestioneModuliTirocinante {
         return listaTirocini;
     }
 
-    private boolean ifTirocini(){
+    private boolean ifTirocini() throws ServletException, IOException {
         boolean nessunTirocinio = false;
         TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
         List<Tirocinio> tirocini = new ArrayList<Tirocinio>();
         try {
             tirocini = tirocinioDaoImp.getOffertaTirByIDTirocinante(tirocinante.getIDTirocinante());
+            tirocinioDaoImp.destroy();
         } catch (DaoException e) {
             e.printStackTrace();
+            er500(request, response);
         }
         if (tirocini.isEmpty())
             nessunTirocinio = true;
