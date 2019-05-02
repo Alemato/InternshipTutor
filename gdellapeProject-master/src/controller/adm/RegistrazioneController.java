@@ -658,7 +658,7 @@ public class RegistrazioneController extends baseController {
         datamodel.put("nomeUtente", tirocinante.getNome());
         datamodel.put("cognomeUtente", tirocinante.getCognome());
         String subject = "Registrazione Tirocinante: " + tirocinante.getNome()+" "+ tirocinante.getCognome() +" id:" + tirocinante.getIDTirocinante();
-//        TemplateControllerMail.process("email/registrazione-tirocinante.ftl", datamodel, to, subject, getServletContext());
+        TemplateControllerMail.process("email/registrazione-tirocinante.ftl", datamodel, to, subject, getServletContext());
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
