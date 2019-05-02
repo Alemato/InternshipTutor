@@ -15,16 +15,25 @@
         <header class="mb-50 fs-50 fw-100 text-center">Effettua il login</header>
         <div class="header-form"><i class="fa fa-lock"></i> INFORMAZIONI ACCESSO</div>
         <fieldset name="Accesso" class="mb-20">
+            <#if errore??>
+            <div class="alert alert-danger mb-30">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Chiudi</span>
+                </button>
+                <strong>Errore!</strong> Controlla i campi, account non trovato!!!
+            </div>
+            </#if>
             <label class="input">
                 <p><em>*</em> Indirizzo Email</p>
                 <i class="ico-append giu fa fa-envelope"></i>
-                <input type="text" placeholder="Indirizzo Email" name="Email" required>
+                <input type="text" <#if errore??>class="error"</#if> placeholder="Indirizzo Email" name="Email" required>
                 <b class="tooltip tooltip-bottom-right">Necessario per verificare il tuo account</b>
             </label>
             <label class="input">
                 <p><em>*</em> Password</p>
                 <i class="ico-append giu fa fa-lock"></i>
-                <input type="password" placeholder="Password" name="Password" required>
+                <input type="password" <#if errore??>class="error"</#if> placeholder="Password" name="Password" required>
                 <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                     al tuo account</b>
             </label>

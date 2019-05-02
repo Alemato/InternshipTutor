@@ -7,7 +7,6 @@ import dao.implementation.AdminDaoImp;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.UserDaoImp;
-import dao.interfaces.UserDao;
 import model.Admin;
 import model.Azienda;
 import model.Tirocinante;

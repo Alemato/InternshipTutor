@@ -3,7 +3,6 @@ package controller.adm.Tirocinante;
 import controller.sessionController.SingSessionContoller;
 import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.UserDaoImp;
-import dao.interfaces.UserDao;
 import model.Tirocinante;
 import model.User;
 import view.TemplateController;

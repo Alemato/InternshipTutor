@@ -34,6 +34,8 @@ public class LoginController extends HttpServlet {
             this.login(request, response);
         } catch (DaoException e) {
             e.printStackTrace();
+            datamodel.put("errore", true);
+            TemplateController.process("login.ftl", datamodel, response, getServletContext());
         }
     }
 
