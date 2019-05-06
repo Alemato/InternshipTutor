@@ -75,10 +75,10 @@
                                         </a></td>
                                     <td><#if listaOfferte.stato==1>
                                             <input type="checkbox" class="checkboxes"
-                                                   name="Disattiva_${listaOfferte.IDOffertaTirocinio}"/> Disattiva
+                                                   name="Disattiva_${listaOfferte.IDOffertaTirocinio}" value="1"/> Disattiva
                                         <#else>
                                             <input type="checkbox" class="checkboxes"
-                                                   name="Disattiva_${listaOfferte.IDOffertaTirocinio}" checked
+                                                   name="Disattiva_${listaOfferte.IDOffertaTirocinio}" value="0" checked
                                                    disabled/> Disattiva
                                         </#if>
                                     </td>
