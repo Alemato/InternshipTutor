@@ -33,6 +33,11 @@ public class GestioneModuliTirocinante {
         this.tirocinante = null;
     }
 
+    private void er500(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = context.getRequestDispatcher("/500");
+        dispatcher.forward(request, response);
+    }
+
     private void ritornaTirocinate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         SingSessionContoller session = SingSessionContoller.getInstance();
         this.tirocinante = session.getTirocinate(request, response);
@@ -68,6 +73,22 @@ public class GestioneModuliTirocinante {
         return listaTirocini;
     }
 
+    private boolean ifTirocini() throws ServletException, IOException {
+        boolean nessunTirocinio = false;
+        TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
+        List<Tirocinio> tirocini = new ArrayList<>();
+        try {
+            tirocini = tirocinioDaoImp.getOffertaTirByIDTirocinante(tirocinante.getIDTirocinante());
+            tirocinioDaoImp.destroy();
+        } catch (DaoException e) {
+            e.printStackTrace();
+            er500(request, response);
+        }
+        if (tirocini.isEmpty())
+            nessunTirocinio = true;
+        return nessunTirocinio;
+    }
+
     private void fillDatamodel(List<TutoreUniversitario> tutoriUniversitari, List<OffertaTirocinio> offerteTirocini, List<Tirocinio> tirocini) {
         List<Object> lista = new ArrayList<>();
         int idOfferta;
@@ -99,22 +120,27 @@ public class GestioneModuliTirocinante {
     public void get() throws IOException, ServletException {
         try {
             ritornaTirocinate(request, response);
-            List<Tirocinio> tirocini = ritornaTirocini(tirocinante.getIDTirocinante());
-
-            List<Integer> idOffTirocini = new ArrayList<>();
-
-            for (Tirocinio tirocinio : tirocini) {
-                idOffTirocini.add(tirocinio.getOffertaTirocinio());
+            if (ifTirocini()){
+                datamodel.put("nessunTirocinio", "nessunTirocinio");
             }
-            List<OffertaTirocinio> offerteTirocini = ritornaListaOff(idOffTirocini);
+            else{
+                List<Tirocinio> tirocini = ritornaTirocini(tirocinante.getIDTirocinante());
 
-            List<Integer> idTutoreUniversitario = new ArrayList<>();
-            for (Tirocinio tirocinio : tirocini) {
-                idTutoreUniversitario.add(tirocinio.getTutoreUniversitario());
+                List<Integer> idOffTirocini = new ArrayList<>();
+
+                for (Tirocinio tirocinio : tirocini) {
+                    idOffTirocini.add(tirocinio.getOffertaTirocinio());
+                }
+                List<OffertaTirocinio> offerteTirocini = ritornaListaOff(idOffTirocini);
+
+                List<Integer> idTutoreUniversitario = new ArrayList<>();
+                for (Tirocinio tirocinio : tirocini) {
+                    idTutoreUniversitario.add(tirocinio.getTutoreUniversitario());
+                }
+                List<TutoreUniversitario> tutoriUniversitari = ritornaTutoreUni(idTutoreUniversitario);
+
+                fillDatamodel(tutoriUniversitari, offerteTirocini, tirocini);
             }
-            List<TutoreUniversitario> tutoriUniversitari = ritornaTutoreUni(idTutoreUniversitario);
-
-            fillDatamodel(tutoriUniversitari, offerteTirocini, tirocini);
             TemplateController.process("moduli-tirocinante.ftl", datamodel, response, context);
         } catch (DaoException e) {
             e.printStackTrace();

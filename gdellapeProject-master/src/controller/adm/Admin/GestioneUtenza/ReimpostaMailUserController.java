@@ -8,7 +8,6 @@ import controller.utility.Validation;
 import dao.exception.DaoException;
 import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.UserDaoImp;
-import dao.interfaces.UserDao;
 import model.Azienda;
 import model.Tirocinante;
 import model.User;

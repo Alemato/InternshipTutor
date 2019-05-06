@@ -158,16 +158,15 @@
                                value="${offertatirocinio.luogoEffettuazione}" placeholder="Luogo di svolgimento" required>
                     </div>
 
-
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Periodo di tirocinio n.</h4>
                         <input class="input-modulo col col-sm-1 pl-0 text-center" type="text" name="Numero_di_mesi"
                                value="${offertatirocinio.durataMesi}" placeholder="Specificare il numero di mesi" required>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">mesi dal</h4>
-                        <input class="input-modulo col col-sm pl-0" type="text" name="Data_iniziale"
+                        <input class="input-modulo col col-sm pl-0" type="date" name="Data_iniziale"
                                value="${offertatirocinio.periodoInizio}" placeholder="Data inizio" required>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">al</h4>
-                        <input class="input-modulo col col-sm pl-0" type="text" name="Data_fine" value="${offertatirocinio.periodoFine}"
+                        <input class="input-modulo col col-sm pl-0" type="date" name="Data_fine" value="${offertatirocinio.periodoFine}"
                                placeholder="Data fine" required>
                     </div>
                     <h4>(con possibilit&agrave; di prologa entro i limiti massimi previsti dalla normativa vigente)</h4>

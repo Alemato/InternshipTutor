@@ -2,7 +2,6 @@ package dao.implementation;
 
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
-import dao.interfaces.UserDao;
 import model.User;
 
 import javax.jws.soap.SOAPBinding;

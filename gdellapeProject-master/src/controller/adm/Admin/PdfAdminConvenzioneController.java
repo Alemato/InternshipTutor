@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 public class PdfAdminConvenzioneController extends baseController {
 
@@ -29,6 +30,7 @@ public class PdfAdminConvenzioneController extends baseController {
         super.init(request, response);
         if(request.getAttribute("tipo").equals(1)) {
             if (request.getParameter("id") != null) {
+                page(request,response);
                 AziendaDaoImp aziendaDaoImp = new AziendaDaoImp();
                 Azienda azienda = null;
                 try {
@@ -48,4 +50,13 @@ public class PdfAdminConvenzioneController extends baseController {
         }else er404(request, response);
 
     }
+
+    private void page(HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException{
+        if(request.getParameter("page") != null)
+            datamodel.put("urlpage","/admin/Gestione-Convenzione");
+        else{
+            datamodel.put("urlpage","/admin/richisteconvezioni");
+        }
+    }
+
 }
