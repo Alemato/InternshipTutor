@@ -29,6 +29,7 @@ public class PdfAdminSegreteriaController extends baseController {
         super.init(request,response);
         if(request.getAttribute("tipo").equals(1)) {
             if (request.getParameter("id") != null) {
+                datamodel.put("urlpage","/admin/Gestione-tirocinio");
                 int idTirocinio = Integer.parseInt(request.getParameter("id"));
                 Tirocinio tirocinio;
                 TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
