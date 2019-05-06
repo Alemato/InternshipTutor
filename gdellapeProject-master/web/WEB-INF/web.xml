@@ -106,6 +106,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Informazione</servlet-name>
+        <servlet-class>controller.InformazioniController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Informazione</servlet-name>
+        <url-pattern>/informazione</url-pattern>
+        <url-pattern>/Informazione</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Tirocinio</servlet-name>
         <servlet-class>controller.SchedaTirocinioController</servlet-class>
     </servlet>
