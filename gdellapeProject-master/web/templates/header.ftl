@@ -87,7 +87,7 @@
                             </a>
                         </li>
                         <li class="dropdown active ml-30">
-                            <a class="dropdown-toggle noicon" href="informazioni.html">
+                            <a class="dropdown-toggle noicon" href="/informazione">
                                 INFORMAZIONI
                             </a>
                         </li>
