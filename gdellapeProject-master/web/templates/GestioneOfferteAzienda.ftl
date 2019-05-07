@@ -70,18 +70,27 @@
                                     <td><a href="/account/gestione-offerte/view?id=${listaOfferte.IDOffertaTirocinio}">
                                             <button type="button" class="btn btn-outline-success">Visualizza</button>
                                         </a></td>
-                                    <td><a href="/account/gestione-offerte/edit?id=${listaOfferte.IDOffertaTirocinio}">
-                                            <button type="button" class="btn btn-outline-primary">Modifica</button>
-                                        </a></td>
-                                    <td><#if listaOfferte.stato==1>
+                                    <#if listaOfferte.stato==1>
+                                        <td>
+                                            <a href="/account/gestione-offerte/edit?id=${listaOfferte.IDOffertaTirocinio}">
+                                                <button type="button" class="btn btn-outline-primary">Modifica</button>
+                                            </a></td>
+                                        <td>
                                             <input type="checkbox" class="checkboxes"
-                                                   name="Disattiva_${listaOfferte.IDOffertaTirocinio}" value="1"/> Disattiva
-                                        <#else>
+                                                   name="Disattiva_${listaOfferte.IDOffertaTirocinio}" value="1"/>
+                                            Disattiva
+                                        </td>
+                                    <#else>
+                                        <td>
+                                            <a href="#">
+                                                <button type="button" class="btn btn-outline-danger" disabled>Modifica non disponibile</button>
+                                            </a></td>
+                                        <td>
                                             <input type="checkbox" class="checkboxes"
                                                    name="Disattiva_${listaOfferte.IDOffertaTirocinio}" value="0" checked
                                                    disabled/> Disattiva
-                                        </#if>
-                                    </td>
+                                        </td>
+                                    </#if>
                                 </tr>
                             </#list>
                             </tbody>
