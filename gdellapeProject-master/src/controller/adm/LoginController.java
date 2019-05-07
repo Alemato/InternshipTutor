@@ -35,6 +35,9 @@ public class LoginController extends HttpServlet {
         } catch (DaoException e) {
             e.printStackTrace();
             datamodel.put("errore", true);
+            if (datamodel.get("errorePassword")!= null){
+                datamodel.remove("errorePassword");
+            }
             TemplateController.process("login.ftl", datamodel, response, getServletContext());
         }
     }
@@ -123,6 +126,7 @@ public class LoginController extends HttpServlet {
                 }
 
             } else {
+                datamodel.put("errorePassword", true);
                 TemplateController.process("login.ftl", datamodel, response, getServletContext());
             }
 
