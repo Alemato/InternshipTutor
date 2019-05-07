@@ -15,6 +15,15 @@
         <header class="mb-50 fs-50 fw-100 text-center">Effettua il login</header>
         <div class="header-form"><i class="fa fa-lock"></i> INFORMAZIONI ACCESSO</div>
         <fieldset name="Accesso" class="mb-20">
+            <#if errorePassword??>
+                <div class="alert alert-danger mb-30">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Chiudi</span>
+                    </button>
+                    <strong>Errore!</strong> Controlla i campi, password errata!!!
+                </div>
+            </#if>
             <#if errore??>
             <div class="alert alert-danger mb-30">
                 <button type="button" class="close" data-dismiss="alert">
@@ -24,6 +33,7 @@
                 <strong>Errore!</strong> Controlla i campi, account non trovato!!!
             </div>
             </#if>
+
             <label class="input">
                 <p><em>*</em> Indirizzo Email</p>
                 <i class="ico-append giu fa fa-envelope"></i>
@@ -33,7 +43,7 @@
             <label class="input">
                 <p><em>*</em> Password</p>
                 <i class="ico-append giu fa fa-lock"></i>
-                <input type="password" <#if errore??>class="error"</#if> placeholder="Password" name="Password" required>
+                <input type="password" <#if errore?? || errorePassword??>class="error"</#if> placeholder="Password" name="Password" required>
                 <b class="tooltip tooltip-bottom-right">Solo caratteri e numeri latini, necessario per l&apos;accesso
                     al tuo account</b>
             </label>
