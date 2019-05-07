@@ -161,7 +161,7 @@
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">Periodo di tirocinio n.</h4>
                         <input class="input-modulo col col-sm-1 pl-0 text-center" type="text" name="Numero_di_mesi"
-                               value="${offertatirocinio.durataMesi}" placeholder="Specificare il numero di mesi" required disabled>
+                               value="${offertatirocinio.durataMesi}" placeholder="Specificare il numero di mesi" required>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">mesi dal</h4>
                         <input class="input-modulo col col-sm pl-0" type="date" name="Data_iniziale"
                                value="${offertatirocinio.periodoInizio}" placeholder="Data inizio" required>
@@ -174,7 +174,7 @@
                     <div class="row mb-25 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">numero ore di tirocinio </h4>
                         <input class="input-modulo col-2 col-sm-2 pl-0" type="text" name="NumeroOreTirocinio"
-                               value="${offertatirocinio.durataOre}" placeholder="numero ore" required disabled>
+                               value="${offertatirocinio.durataOre}" placeholder="numero ore" required>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">per il conseguimento di n.</h4>
                         <input class="input-modulo col-2 col-sm-2 pl-0" type="text" name="NumeroCfu" value=""
                                placeholder="Numero CFU" required>
