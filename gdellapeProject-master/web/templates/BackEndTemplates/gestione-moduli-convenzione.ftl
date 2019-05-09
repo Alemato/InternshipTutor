@@ -127,7 +127,7 @@
                                 </td>
                                 <td>
                                     <#if (azienda.pathPDFConvenzione)??>
-                                        <a type="button" class="btn btn-primary"  href="/admin/modulo/convenzione?id=${azienda.IDAzienda}"> <i class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
+                                        <a type="button" class="btn btn-primary"  href="/admin/modulo/convenzione?id=${azienda.IDAzienda}&page=1" methods="POST"> <i class="fa fa-file-pdf-o"></i>Visualizza PDF</a>
                                         <#else>
                                             <button class="btn btn-primary" disabled> <i class="fa fa-file-pdf-o"></i> PDF Non Presente</button>
                                     </#if>
@@ -135,7 +135,7 @@
                                 </td>
                                 <td>
                                <#if (azienda.pathPDFConvenzione)??>
-                                    <a type="button" href="/admin/invalida-convenzione?IDAzienda=${azienda.IDAzienda}" class="btn btn-danger"> Invalida</a>
+                                    <a type="button"  href="/admin/invalida-convenzione?IDAzienda=${azienda.IDAzienda}" class="btn btn-danger"> Invalida</a>
                                <#else>
                                    <button class="btn btn-danger" disabled> Non Diponibile</button>
                                </#if>

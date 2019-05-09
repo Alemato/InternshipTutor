@@ -85,10 +85,12 @@
 
                             </div>
                         </div>
+                    <section class="row text-center placeholders pt-10 mb-10">
+                    </section>
                 </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-6">
-                    <div class="card mr-2 ">
+
+                <div class="col-lg-11 col-md-12 mx-auto">
+                    <div class="card">
                         <div class="card-header">
                             <i class="fa fa-industry"></i> Classifica Aziende con i voti migliori
                         </div>
@@ -126,9 +128,12 @@
 
                         </div>
                     </div>
+                    <section class="row text-center placeholders pt-10 mb-10">
+                    </section>
                 </div>
-                <div class="col-md-6 col-lg-6">
-                    <div class="card mb-30 ml-2">
+
+                <div class="col-lg-11 col-md-12 mx-auto">
+                    <div class="card">
                         <div class="card-header">
                             <i class="fa fa-industry"></i> Classifica dei tutori universitari pi&uacute; richiesti
                         </div>
@@ -164,7 +169,10 @@
                         </div>
                     </div>
                 </div>
+                    <section class="row text-center placeholders pt-10 mb-10">
+                    </section>
             </div>
+
 
 
 

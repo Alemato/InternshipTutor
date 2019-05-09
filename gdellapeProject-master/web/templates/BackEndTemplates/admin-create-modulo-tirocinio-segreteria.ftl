@@ -61,7 +61,7 @@
                                 </#if>
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Previa effetuazione di opportune verifiche e colloquio svoltosi in data </h4>
                                 <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_colloquio"
-                                       <#if ValueOfData_colloquio??> value="${ValueOfData_colloquio?date?iso_utc}" <#elseif tirocinio?? > value="${tirocinio.dataColloquioSegreteria?date?iso_utc}" </#if> placeholder="data">
+                                       <#if ValueOfData_colloquio??> value="${ValueOfData_colloquio?date?string("yyyy-MM-dd")}" <#elseif tirocinio.dataColloquioSegreteria?has_content > value="${tirocinio.dataColloquioSegreteria?date?string("yyyy-MM-dd")}" </#if> placeholder="data">
                             </div>
 
                             <h4 class="col-auto col-sm-auto p-0 fs-20 fw-400 mb-35">Si attesta che il </h4>
@@ -105,7 +105,7 @@
                                     <strong>Attenzione!</strong> ${ErroreEsito}
                                 </div>
                             </#if>
-                            <input class="input-modulo col col-sm-12 col-md pl-0 mb-25" type="text" name="Esito_tirocinio" placeholder="Esito del tirocinio" <#if ValueOfEsito_tirocinio?? > value="${ValueOfEsito_tirocinio}"  </#if> / >
+                            <input class="input-modulo col col-sm-12 col-md pl-0 mb-25" type="text" name="Esito_tirocinio" placeholder="Esito del tirocinio" <#if ValueOfEsito_tirocinio?? > value="${ValueOfEsito_tirocinio}"  <#elseif tirocinio.esitoTirocinio?has_content>  value="${tirocinio.esitoTirocinio}"  </#if> / >
                             <h4 class="d-none d-print-block">Firma del Tutor aziendale</h4>
                             <div class="linea col-6 p-0 mt-25 mb-25"></div>
                             <#if ErroreCrediti??>
@@ -119,7 +119,7 @@
                             </#if>
                             <h4 class="col-auto col-sm-auto p-0 fs-20">Crediti Formativi riconosciuti </h4>
                             <input class="input-modulo col-6 col-sm-6 col-md-6 pl-0 mb-45" type="number" name="Crediti_riconosciuti" placeholder="numero crediti riconosciuti"
-                                    <#if ValueOfCrediti_riconosciuti?? > value="${ValueOfCrediti_riconosciuti}" </#if>>
+                                    <#if ValueOfCrediti_riconosciuti?? > value="${ValueOfCrediti_riconosciuti}"  <#elseif tirocinio.creditiRiconosciuti?has_content>  value="${tirocinio.creditiRiconosciuti}"  </#if>>
 
                             <h4 class="d-none d-print-block">Firma del responsabile della struttura didattica competente</h4>
                             <h4 class="d-none d-print-block fw-400">(Presidente del Consiglio di Corso di Studio)</h4>
@@ -137,7 +137,7 @@
                                 </#if>
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20">L&apos;Aquila il </h4>
                                 <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_documento"
-                                       placeholder="Data"  <#if ValueOfData_documento?? > value="${ValueOfData_documento?date?string("dd-MM-yyyy")}" </#if>>
+                                       placeholder="Data"  <#if ValueOfData_documento?? > value="${ValueOfData_documento?date?string("yyyy-MM-dd")}" <#elseif tirocinio.dataConsegnaModuloSegreteria?has_content>  value="${tirocinio.dataConsegnaModuloSegreteria?date?string("yyyy-MM-dd")}" </#if>>
                             </div>
                             <footer class="d-print-none container">
                                 <button type="submit" form="modulo_segreteria" class="btn btn-success btn-lg pull-right float-right" onclick="window.print();"><i
