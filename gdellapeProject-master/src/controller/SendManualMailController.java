@@ -4,13 +4,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Map;
 
-import controller.utility.Mailer;
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
-import freemarker.template.Template;
 import model.OffertaTirocinio;
 import view.TemplateController;
 import view.TemplateControllerMail;

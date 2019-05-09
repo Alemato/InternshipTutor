@@ -4,7 +4,6 @@ import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
 import model.Azienda;
 import model.User;
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AziendaDaoImp extends DaoDataMySQLImpl {
+public class AziendaDaoImp extends DaoDataMySQLImpl implements dao.interfaces.AziendaDaoInterface {
 
 //    private PreparedStatement selectAziendaByNome;
 //    secondo me ci andrebbe un nome
@@ -122,6 +121,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public  void deleteAzienda(Azienda azienda) throws DaoException{
         try {
             this.init();
@@ -132,6 +132,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public void updateAzienda(Azienda azienda) throws DaoException {
         /*
         UPDATE azienda SET RagioneSociale = ? ,IndirizzoSedeLegale = ? ,CFiscalePIva = ?,NomeLegaleRappresentante = ?," +
@@ -169,6 +170,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public void setAzienda(Azienda azienda) throws DaoException {
     /*
     INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
@@ -205,6 +207,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
 
+    @Override
     public void setRegisterazienda(Azienda azienda, User user) throws DaoException {
         /*
         INSERT INTO azienda(RagioneSociale,IndirizzoSedeLegale,CFiscalePIva,NomeLegaleRappresentante," +
@@ -234,6 +237,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
 
+    @Override
     public Azienda getAziendaByRS(String RS) throws DaoException {
         Azienda azienda = new Azienda();
         try {
@@ -252,6 +256,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
 
+    @Override
     public List<Azienda> getAllAzienda() throws DaoException {
         List<Azienda> aziende = new ArrayList<>();
         try {
@@ -264,6 +269,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         return aziende;
     }
 
+    @Override
     public List<Azienda> getAllAziendaAttive() throws DaoException {
         List<Azienda> convenzioni = new ArrayList<>();
         try {
@@ -276,6 +282,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         return convenzioni;
     }
 
+    @Override
     public List<Azienda> getLastFiveConvenzioni() throws DaoException {
         List<Azienda> lastfiveconvenzioni = new ArrayList<>();
         try {
@@ -288,6 +295,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
         return lastfiveconvenzioni;
     }
 
+    @Override
     public Azienda getAziendaByID(int ID) throws DaoException {
         Azienda azienda = new Azienda();
         try {
@@ -306,6 +314,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
 
+    @Override
     public Azienda getAziendaByIDuser(int ID) throws DaoException {
         Azienda azienda = new Azienda();
         try {
@@ -324,6 +333,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
 
+    @Override
     public List<Azienda> getAllAziendaPendenti() throws DaoException {
         List<Azienda> aziende = new ArrayList<>();
         try {
@@ -341,6 +351,7 @@ public class AziendaDaoImp extends DaoDataMySQLImpl {
     }
 
 
+    @Override
     public boolean ifAziendaMakeModulo(Azienda azienda) throws DaoException {
         try {
             this.init();

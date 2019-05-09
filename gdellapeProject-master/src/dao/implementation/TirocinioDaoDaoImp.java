@@ -2,6 +2,7 @@ package dao.implementation;
 
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
+import dao.interfaces.TirocinioDaoInterface;
 import model.OffertaTirocinio;
 import model.Tirocinante;
 import model.Tirocinio;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TirocinioDaoImp extends DaoDataMySQLImpl {
+public class TirocinioDaoDaoImp extends DaoDataMySQLImpl implements TirocinioDaoInterface {
     private PreparedStatement selectRichiestatrByID;
     private PreparedStatement selectAllRichiestatr;
     private PreparedStatement insertRichiestatr;
@@ -111,6 +112,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public Tirocinio getRichiestatrByID(int ID) throws DaoException {
         try {
             this.init();
@@ -129,6 +131,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public List<Tirocinio> gettrbyStatoandOfferta(OffertaTirocinio offerta, int stato) throws DaoException {
         List<Tirocinio> listRT = new ArrayList<>();
         try {
@@ -144,6 +147,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         return listRT;
     }
 
+    @Override
     public List<Tirocinio> getTirociniByStato(Integer stato) throws DaoException {
         List<Tirocinio> listRT = new ArrayList<>();
         try {
@@ -157,6 +161,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         return listRT;
     }
 
+    @Override
     public List<Tirocinio> getAllTirocinioByTutore(TutoreUniversitario tutore) throws DaoException {
         List<Tirocinio> listRT = new ArrayList<>();
         try {
@@ -169,6 +174,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         }
         return listRT;
     }
+    @Override
     public List<Tirocinio> getAllTirocinio() throws DaoException {
         List<Tirocinio> listRT = new ArrayList<>();
         try {
@@ -182,6 +188,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
     }
 
 
+    @Override
     public List<Tirocinio> getTrByOfferta(OffertaTirocinio offertaTirocinio) throws DaoException {
         List<Tirocinio> listRT = new ArrayList<>();
         try {
@@ -199,6 +206,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
     }
 
 
+    @Override
     public boolean ifTirocinanteSendRichiesta(Tirocinante tr) throws DaoException {
         try {
             this.init();
@@ -212,6 +220,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
     }
 
 
+    @Override
     public List<Tirocinio> getOffertaTirByIDTirocinante(int IDTr) throws DaoException {
         List<Tirocinio> listIDOff = new ArrayList<>();
         try {
@@ -226,6 +235,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
     }
 
 
+    @Override
     public void setRichiestatr(Tirocinio tirocinio) throws DaoException {
 //        INSERT INTO tirocinio(DataConsegnaModuloRichiesta,
 //                DurataOre,CFU,Stato,PeriodoEffettivoIniziale,PeriodoEffettivoFinale,RisultatoConseguito,
@@ -262,6 +272,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public void firstRichiestatr(Tirocinio tr) throws DaoException {
         try {
             this.init();
@@ -277,6 +288,7 @@ public class TirocinioDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public void updateTirocinio(Tirocinio tirocinio) throws DaoException {
 //        UPDATE tirocinio SET DataConsegnaModuloRichiesta = ?,
 //                 DurataOre = ?, CFU = ?, Stato = ?, PeriodoEffettivoIniziale = ?, PeriodoEffettivoFinale = ?,

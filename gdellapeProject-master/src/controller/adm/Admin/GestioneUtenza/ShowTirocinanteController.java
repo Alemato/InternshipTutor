@@ -3,7 +3,7 @@ package controller.adm.Admin.GestioneUtenza;
 import controller.adm.Admin.BackEndAdminController;
 import controller.baseController;
 import dao.exception.DaoException;
-import dao.implementation.TirocinanteDaoImp;
+import dao.implementation.TirocinanteDaoDaoImp;
 import model.Tirocinante;
 import view.TemplateController;
 
@@ -37,7 +37,7 @@ public class ShowTirocinanteController extends baseController {
         try {
 
             datamodel.put("urlpage", "/admin/gestione-tirocinanti");
-            TirocinanteDaoImp dao = new TirocinanteDaoImp();
+            TirocinanteDaoDaoImp dao = new TirocinanteDaoDaoImp();
             Tirocinante tr = dao.getTirocianteByID(Integer.parseInt(request.getParameter("IDTirocinante")));
             dao.destroy();
             datamodel.put("tirocinante", tr);

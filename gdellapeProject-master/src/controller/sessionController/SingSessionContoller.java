@@ -1,11 +1,10 @@
 package controller.sessionController;
 
-import com.sun.deploy.net.HttpRequest;
 import controller.utility.SecurityHash;
 import dao.exception.DaoException;
 import dao.implementation.AdminDaoImp;
 import dao.implementation.AziendaDaoImp;
-import dao.implementation.TirocinanteDaoImp;
+import dao.implementation.TirocinanteDaoDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Admin;
 import model.Azienda;
@@ -13,14 +12,10 @@ import model.Tirocinante;
 import model.User;
 
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Calendar;
 
 
 public class SingSessionContoller {
@@ -95,7 +90,7 @@ public class SingSessionContoller {
         if(isTirocinante(request)){
 
 
-                TirocinanteDaoImp daotr = new TirocinanteDaoImp();
+                TirocinanteDaoDaoImp daotr = new TirocinanteDaoDaoImp();
                 tr = daotr.getTirocianteByID(id);
                 daotr.destroy();
         }else{

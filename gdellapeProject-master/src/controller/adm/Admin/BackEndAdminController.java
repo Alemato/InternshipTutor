@@ -1,7 +1,5 @@
 package controller.adm.Admin;
 
-import controller.baseController;
-import controller.sessionController.SingSessionContoller;
 import dao.exception.DaoException;
 import dao.implementation.*;
 import model.*;
@@ -11,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.rmi.ServerException;
 
 public class BackEndAdminController extends HttpServlet {
 
@@ -20,7 +17,7 @@ public class BackEndAdminController extends HttpServlet {
         Tirocinante tirocinante=  new Tirocinante();
 
         try {
-            TirocinanteDaoImp dao = new TirocinanteDaoImp();
+            TirocinanteDaoDaoImp dao = new TirocinanteDaoDaoImp();
             Tirocinante tr = dao.getTirocianteByID(idtr);
             dao.destroy();
             tirocinante=tr;
@@ -89,7 +86,7 @@ public class BackEndAdminController extends HttpServlet {
        Tirocinio tirocinio=new Tirocinio();
 
         try {
-           TirocinioDaoImp dao = new TirocinioDaoImp();
+           TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
            tirocinio=dao.getRichiestatrByID(idTirocinio);
            dao.destroy();
 

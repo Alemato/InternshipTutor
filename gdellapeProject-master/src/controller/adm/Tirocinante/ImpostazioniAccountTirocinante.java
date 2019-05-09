@@ -3,7 +3,7 @@ package controller.adm.Tirocinante;
 import controller.sessionController.SingSessionContoller;
 import controller.utility.SecurityHash;
 import dao.exception.DaoException;
-import dao.implementation.TirocinanteDaoImp;
+import dao.implementation.TirocinanteDaoDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Tirocinante;
 import model.User;
@@ -335,7 +335,7 @@ public class ImpostazioniAccountTirocinante {
                     System.out.println(tirocinanteMod);
                     System.out.println("applico le modifiche al tirocinante");
                     datamodel.put("ModApp", "Le modifiche sono state salvate");
-                    TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
+                    TirocinanteDaoDaoImp tirocinanteDaoImp = new TirocinanteDaoDaoImp();
                     tirocinanteDaoImp.setUpdate(tirocinanteMod);
                     tirocinanteDaoImp.destroy();
 

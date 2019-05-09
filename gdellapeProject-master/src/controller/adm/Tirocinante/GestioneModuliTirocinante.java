@@ -3,7 +3,7 @@ package controller.adm.Tirocinante;
 import controller.sessionController.SingSessionContoller;
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinioDaoImp;
+import dao.implementation.TirocinioDaoDaoImp;
 import dao.implementation.TutoreUniversitarioDaoImp;
 import model.Tirocinante;
 import model.Tirocinio;
@@ -66,7 +66,7 @@ public class GestioneModuliTirocinante {
     }
 
     private List<Tirocinio> ritornaTirocini(int idTirocinante) throws DaoException {
-        TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
+        TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
         List<Tirocinio> listaTirocini = new ArrayList<>(tirocinioDaoImp.getOffertaTirByIDTirocinante(idTirocinante));
         tirocinioDaoImp.destroy();
 
@@ -75,7 +75,7 @@ public class GestioneModuliTirocinante {
 
     private boolean ifTirocini() throws ServletException, IOException {
         boolean nessunTirocinio = false;
-        TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
+        TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
         List<Tirocinio> tirocini = new ArrayList<>();
         try {
             tirocini = tirocinioDaoImp.getOffertaTirByIDTirocinante(tirocinante.getIDTirocinante());

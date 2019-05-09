@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoImp extends DaoDataMySQLImpl {
+public class UserDaoImp extends DaoDataMySQLImpl implements dao.interfaces.UserDaoInterface {
 
     private PreparedStatement selectUserByEmail;
     private PreparedStatement selectUserById;
@@ -83,6 +83,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public void delete(User user) throws DaoException{
         try {
             this.init();
@@ -93,6 +94,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         }
     }
     
+    @Override
     public User getUserByToken(String token) throws DaoException {
         User user = new User();
         this.init();
@@ -112,6 +114,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
     }
 
     //    @Override
+    @Override
     public User getUserByMail(String mail) throws DaoException {
         User user = new User();
         this.init();
@@ -133,6 +136,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
 
     }
 
+    @Override
     public List<User> getAllUser() throws DaoException {
         List<User> users = new ArrayList<User>();
         this.init();
@@ -149,6 +153,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
     }
 
 
+    @Override
     public User getUserByid(int id) throws DaoException {
         User user = new User();
         this.init();
@@ -169,6 +174,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
 
     }
 
+    @Override
     public void setUser(User user) throws DaoException {
 
         try {
@@ -186,6 +192,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public void setToken(User user) throws DaoException {
         try {
             this.init();
@@ -198,6 +205,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public void update(User user) throws DaoException {
         try {
             this.init();
@@ -212,6 +220,7 @@ public class UserDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public Boolean existIsMail(String mail) throws DaoException {
         boolean risultato = false;
         try {

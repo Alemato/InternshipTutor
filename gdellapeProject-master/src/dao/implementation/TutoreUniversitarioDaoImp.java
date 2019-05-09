@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
+public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl implements dao.interfaces.TutoreUniversitarioDaoInterface {
     private PreparedStatement selectTutUniByID;
     private PreparedStatement selectAllTutUni;
     private PreparedStatement insertTutUni;
@@ -68,6 +68,7 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public TutoreUniversitario getTutoreUniByID(int ID) throws DaoException {
         TutoreUniversitario tutUni = new TutoreUniversitario();
 
@@ -89,6 +90,7 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
 
     }
 
+    @Override
     public List<TutoreUniversitario> getAllTutUni() throws DaoException {
         List<TutoreUniversitario> tutori = new ArrayList<>();
         this.init();
@@ -102,6 +104,7 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
 
     }
 
+    @Override
     public TutoreUniversitario getTutoreByEmail(String email) throws DaoException {
         TutoreUniversitario tutUni = new TutoreUniversitario();
         try {
@@ -122,6 +125,7 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
 
     }
 
+    @Override
     public void UpdateTutoreUni(TutoreUniversitario tutore) throws DaoException {
         this.init();
         try {
@@ -138,6 +142,7 @@ public class TutoreUniversitarioDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public void setTutoreUni(TutoreUniversitario tutUni) throws DaoException {
         try {
             this.init();

@@ -2,7 +2,7 @@ package controller.adm;
 
 import controller.baseController;
 import dao.exception.DaoException;
-import dao.implementation.TirocinioDaoImp;
+import dao.implementation.TirocinioDaoDaoImp;
 import model.Tirocinio;
 import view.TemplateController;
 
@@ -30,7 +30,7 @@ public class PdfFineTirocinioController extends baseController {
             if (request.getParameter("id") != null) {
                 int idTirocinio = Integer.parseInt(request.getParameter("id"));
                 Tirocinio tirocinio;
-                TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
+                TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
                 try {
                     tirocinio = tirocinioDaoImp.getRichiestatrByID(idTirocinio);
                     tirocinioDaoImp.destroy();

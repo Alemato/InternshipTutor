@@ -3,7 +3,7 @@ package controller;
 import controller.sessionController.SingSessionContoller;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinioDaoImp;
+import dao.implementation.TirocinioDaoDaoImp;
 import model.Azienda;
 import model.OffertaTirocinio;
 import model.Tirocinante;
@@ -53,7 +53,7 @@ public class SchedaTirocinioController  extends baseController{
             if (session.isTirocinante(request)&& session.isValidSession(request)){
                 Tirocinante tr = session.getTirocinate(request,response);
 
-            TirocinioDaoImp dao = new TirocinioDaoImp();
+            TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
             boolean statusoldRC = dao.ifTirocinanteSendRichiesta(tr);
             dao.destroy();
 

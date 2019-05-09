@@ -76,7 +76,7 @@ public class GestioneModuliAzienda {
     }
 
      List<Tirocinio> ritornaTirocinii(List<OffertaTirocinio> offertaTirocinios) {
-        TirocinioDaoImp daoTirocinio = new TirocinioDaoImp();
+        TirocinioDaoDaoImp daoTirocinio = new TirocinioDaoDaoImp();
         List<Tirocinio> listaTirocini = new ArrayList<>();
         for (OffertaTirocinio offertaTirocinio : offertaTirocinios) {
             try {
@@ -91,7 +91,7 @@ public class GestioneModuliAzienda {
     }
 
      List<Tirocinante> ritornaTirocinanti(List<Tirocinio> listaTirocini) {
-        TirocinanteDaoImp daoTirocinante = new TirocinanteDaoImp();
+        TirocinanteDaoDaoImp daoTirocinante = new TirocinanteDaoDaoImp();
         List<Tirocinante> listaTirocinanti = new ArrayList<>();
         for (Tirocinio tirocinio : listaTirocini) {
             try {
@@ -199,8 +199,8 @@ public class GestioneModuliAzienda {
             Tirocinio tiro = new Tirocinio();
             Tirocinante tirocinante = new Tirocinante();
             try {
-                TirocinioDaoImp daoTiro = new TirocinioDaoImp();
-                TirocinanteDaoImp daoTirocinante = new TirocinanteDaoImp();
+                TirocinioDaoDaoImp daoTiro = new TirocinioDaoDaoImp();
+                TirocinanteDaoDaoImp daoTirocinante = new TirocinanteDaoDaoImp();
                 tirocinante = daoTirocinante.getTirocianteByID(idTirocinante);
                 tiro = daoTiro.getRichiestatrByID(idTirocinio);
                 daoTiro.destroy();
@@ -223,7 +223,7 @@ public class GestioneModuliAzienda {
                         tiro.setStato(2);
                         System.out.println("lo stato: " + tiro.getStato());
                         try {
-                            TirocinioDaoImp daoTiro = new TirocinioDaoImp();
+                            TirocinioDaoDaoImp daoTiro = new TirocinioDaoDaoImp();
                             daoTiro.updateTirocinio(tiro);
                             daoTiro.destroy();
                         } catch (DaoException e) {

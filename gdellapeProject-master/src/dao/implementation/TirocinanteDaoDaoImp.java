@@ -3,8 +3,8 @@ package dao.implementation;
 
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
+import dao.interfaces.TirocinanteDaoInterface;
 import model.Tirocinante;
-import model.Tirocinio;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TirocinanteDaoImp extends DaoDataMySQLImpl {
+public class TirocinanteDaoDaoImp extends DaoDataMySQLImpl implements TirocinanteDaoInterface {
 
     private PreparedStatement selectTirocinanteById;
     private PreparedStatement selectAllTirocinante;
@@ -88,6 +88,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public List<Tirocinante> getAllTirociante() throws DaoException {
         List<Tirocinante> tr = new ArrayList<Tirocinante>();
         try {
@@ -101,6 +102,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
         return tr;
     }
 
+    @Override
     public void delete(Tirocinante tr) throws DaoException {
         try{
             this.init();
@@ -110,6 +112,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public void setTirocinante(Tirocinante tr) throws DaoException {
         try {
             this.init();
@@ -137,6 +140,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public void setUpdate(Tirocinante tr) throws DaoException {
         try {
             this.init();
@@ -165,6 +169,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public Tirocinante getTirocianteByID(int id) throws DaoException {
         Tirocinante tirocinante = new Tirocinante();
         try {
@@ -183,6 +188,7 @@ public class TirocinanteDaoImp extends DaoDataMySQLImpl {
         return tirocinante;
     }
 
+    @Override
     public Tirocinante getTirocianteByIDuser(int id) throws DaoException {
         Tirocinante tirocinante = new Tirocinante();
         try {

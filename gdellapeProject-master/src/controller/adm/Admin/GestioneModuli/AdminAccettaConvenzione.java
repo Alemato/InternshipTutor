@@ -1,7 +1,6 @@
 package controller.adm.Admin.GestioneModuli;
 
 import controller.adm.Admin.GestioneUtenza.AdminFillRichiesteAndAttive;
-import controller.adm.Admin.GestioneUtenza.AdminFillTable;
 import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;

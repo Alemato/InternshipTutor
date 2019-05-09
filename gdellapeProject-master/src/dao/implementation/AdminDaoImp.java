@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminDaoImp  extends DaoDataMySQLImpl {
+public class AdminDaoImp extends DaoDataMySQLImpl implements dao.interfaces.AdminDaoInterface {
 
     private PreparedStatement selectAdminByID;
     private PreparedStatement selectAllAdmin;
@@ -56,6 +56,7 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
 
     }
 
+    @Override
     public void setAdmin(Admin admin, User user) throws DaoException {
         try {
             this.init();
@@ -67,6 +68,7 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
             throw new DaoException("Errore Set Admin", e);
         }
     }
+    @Override
     public void updateAdmin(Admin admin) throws DaoException {
         try {
             this.init();
@@ -79,6 +81,7 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public  Admin getAdminByID(int ID) throws DaoException {
         Admin admin = new Admin();
         this.init();
@@ -96,6 +99,7 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
         return admin;
     }
 
+    @Override
     public Admin getAdminByIDuser(int user) throws DaoException {
         Admin admin = new Admin();
         try {
@@ -114,6 +118,7 @@ public class AdminDaoImp  extends DaoDataMySQLImpl {
             throw new DaoException("Errore query ", e);
         }
     }
+    @Override
     public List<Admin> getAllAdmin() throws DaoException {
         List<Admin> listadmin = new ArrayList<>();
         try {

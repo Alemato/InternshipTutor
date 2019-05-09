@@ -42,7 +42,7 @@ public class VisualizzaModuloSegreteriaTirocinioController extends baseControlle
     }
 
     private Boolean ifshow(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DaoException {
-        TirocinioDaoImp dao = new TirocinioDaoImp();
+        TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
         Tirocinio tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
         return (tr.getPdfSegreteria() != null);
@@ -52,11 +52,11 @@ public class VisualizzaModuloSegreteriaTirocinioController extends baseControlle
         Tirocinante tirocinante = new Tirocinante();
         Tirocinio tr = new Tirocinio();
         try {
-            TirocinioDaoImp dao = new TirocinioDaoImp();
+            TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
             tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
             dao.destroy();
 
-            TirocinanteDaoImp dao1 = new TirocinanteDaoImp();
+            TirocinanteDaoDaoImp dao1 = new TirocinanteDaoDaoImp();
             tirocinante = dao1.getTirocianteByID(tr.getTirocinante());
             dao1.destroy();
 

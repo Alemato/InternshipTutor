@@ -1001,7 +1001,7 @@
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Rimborsi spese e facilitzioni previste :</h5>
                                                                                         </th>
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
-                                                                                            <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${Rimbosi} ${Facilitazioni}</h5>
+                                                                                            <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${Rimborsi} ${Facilitazioni}</h5>
                                                                                         </th>
                                                                                     </tr>
                                                                                     </thead>
@@ -1021,7 +1021,7 @@
                                                                                             <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">Nome e Cognome del Responsabile aziendale: </h5>
                                                                                         </th>
                                                                                         <th class="col-7" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 58.333333%; margin: 0;">
-                                                                                            <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${NomeRespAz} ${CognomeRepAz}</h5>
+                                                                                            <h5 style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="left">${NomeRespAz} ${CognomeRespAz}</h5>
                                                                                         </th>
                                                                                     </tr>
                                                                                     </thead>

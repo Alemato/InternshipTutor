@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -45,7 +44,7 @@ public class VisualizzaModuloRichietaTirocinioController extends baseController 
     }
 
     private Boolean ifshow(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DaoException {
-        TirocinioDaoImp dao = new TirocinioDaoImp();
+        TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
         Tirocinio tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
         return (tr.getPdfTirocinante() != null);
@@ -56,11 +55,11 @@ public class VisualizzaModuloRichietaTirocinioController extends baseController 
         Tirocinante tirocinante = new Tirocinante();
         List<String> dati = new ArrayList<>();
 
-        TirocinioDaoImp dao = new TirocinioDaoImp();
+        TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
         Tirocinio tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
 
-        TirocinanteDaoImp dao1 = new TirocinanteDaoImp();
+        TirocinanteDaoDaoImp dao1 = new TirocinanteDaoDaoImp();
         tirocinante = dao1.getTirocianteByID(tr.getTirocinante());
         dao1.destroy();
 

@@ -3,7 +3,7 @@ package controller.adm.Admin.GestioneUtenza;
 import dao.exception.DaoException;
 import dao.implementation.AdminDaoImp;
 import dao.implementation.AziendaDaoImp;
-import dao.implementation.TirocinanteDaoImp;
+import dao.implementation.TirocinanteDaoDaoImp;
 import dao.implementation.TutoreUniversitarioDaoImp;
 import model.Admin;
 import model.Azienda;
@@ -16,9 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.rmi.ServerException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -338,7 +336,7 @@ public class AdminFillTable {
 
     private void filltableTirocinante() throws IOException,DaoException {
         List<Tirocinante> tirocinate = new ArrayList<>();
-        TirocinanteDaoImp dao = new TirocinanteDaoImp();
+        TirocinanteDaoDaoImp dao = new TirocinanteDaoDaoImp();
         tirocinate = dao.getAllTirociante();
         dao.destroy();
         datamodel.put("tirocinanti", tirocinate);

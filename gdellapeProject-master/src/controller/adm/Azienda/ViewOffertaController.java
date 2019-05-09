@@ -4,8 +4,8 @@ import controller.baseController;
 import controller.sessionController.SingSessionContoller;
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinanteDaoImp;
-import dao.implementation.TirocinioDaoImp;
+import dao.implementation.TirocinanteDaoDaoImp;
+import dao.implementation.TirocinioDaoDaoImp;
 import dao.implementation.UserDaoImp;
 import model.OffertaTirocinio;
 import model.Tirocinante;
@@ -42,7 +42,7 @@ public class ViewOffertaController extends baseController {
     }
 
     private List<Object> creaOggetti(HttpServletRequest request, HttpServletResponse response, OffertaTirocinio offertaTirocinio, boolean errore) throws ServletException, IOException, DaoException {
-        TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
+        TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
         List<Tirocinio> tirocinioList= new ArrayList<>();
         List<Object> lista = new ArrayList<>();
         try {
@@ -56,7 +56,7 @@ public class ViewOffertaController extends baseController {
             for (Tirocinio tirocinio: tirocinioList){
                 Map<String, Object> mappa= new HashMap<String, Object> ();
                 int idTircinante = tirocinio.getTirocinante();
-                TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
+                TirocinanteDaoDaoImp tirocinanteDaoImp = new TirocinanteDaoDaoImp();
                 Tirocinante tirocinante = tirocinanteDaoImp.getTirocianteByID(idTircinante);
                 tirocinanteDaoImp.destroy();
                 UserDaoImp daoUser = new UserDaoImp();

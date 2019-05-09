@@ -1,15 +1,10 @@
 package controller.adm.Admin.GestioneUtenza;
 
-import controller.adm.Admin.BackEndAdminController;
-
 import controller.baseController;
 import controller.utility.Utility;
 import controller.utility.Validation;
 import dao.exception.DaoException;
-import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.UserDaoImp;
-import model.Azienda;
-import model.Tirocinante;
 import model.User;
 import view.TemplateController;
 
@@ -18,8 +13,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.rmi.ServerException;
-import java.sql.Date;
 import java.util.*;
 
 

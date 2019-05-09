@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 
-public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
+public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl implements dao.interfaces.OffertaTirocinioDaoInterface {
     private PreparedStatement selectOffertatrByID;
     private PreparedStatement insertOffertatr;
     private PreparedStatement selectAllOfferteditr;//le metto gia in ordine dal più nuovo al vecchio
@@ -108,6 +108,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public OffertaTirocinio getOffertatrByID(int ID) throws DaoException {
         try {
             OffertaTirocinio oftr = new OffertaTirocinio();
@@ -127,6 +128,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
         }
     }
 
+    @Override
     public List<OffertaTirocinio> getOffertatrBYAzienda(Azienda az) throws DaoException {
         List<OffertaTirocinio> Offerte = new ArrayList<OffertaTirocinio>();
         try {
@@ -140,6 +142,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
         return Offerte;
     }
 
+    @Override
     public List<OffertaTirocinio> getAllOffertatr() throws DaoException {
         List<OffertaTirocinio> Offerte = new ArrayList<OffertaTirocinio>();
         try {
@@ -152,6 +155,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
         return Offerte;
     }
 
+    @Override
     public List<OffertaTirocinio> getLastFiveOfferte() throws DaoException {
         List<OffertaTirocinio> offerte = new ArrayList<OffertaTirocinio>();
         try {
@@ -164,6 +168,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
         return offerte;
     }
 
+    @Override
     public void setOffertatr(OffertaTirocinio tr) throws DaoException {
         /*
         "INSERT INTO offertatirocinio(LuogoEffettuazione," +
@@ -205,6 +210,7 @@ public class OffertaTirocinioDaoImp extends DaoDataMySQLImpl {
 
     }
 
+    @Override
     public void updateOffertatr(OffertaTirocinio tr) throws DaoException {
     /**
     * UPDATE offertatirocinio SET LuogoEffettuazione = ?," +

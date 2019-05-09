@@ -1,27 +1,16 @@
 package controller.utility;
 
-import dao.exception.DaoException;
-import dao.implementation.AdminDaoImp;
-import dao.implementation.AziendaDaoImp;
-import dao.implementation.TirocinanteDaoImp;
-import model.Admin;
-import model.Azienda;
-import model.Tirocinante;
-import model.User;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
-import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

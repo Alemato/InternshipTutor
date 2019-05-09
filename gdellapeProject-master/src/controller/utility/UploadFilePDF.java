@@ -3,7 +3,7 @@ package controller.utility;
 import controller.Exeption.PdfException;
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinanteDaoImp;
+import dao.implementation.TirocinanteDaoDaoImp;
 import model.Azienda;
 import model.OffertaTirocinio;
 import model.Tirocinante;
@@ -75,7 +75,7 @@ public class UploadFilePDF{
         } else if(tipoPdf==1){
             Tirocinio tirocinio = (Tirocinio) object;
             OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
-            TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
+            TirocinanteDaoDaoImp tirocinanteDaoImp = new TirocinanteDaoDaoImp();
             OffertaTirocinio offertaTirocinio=new OffertaTirocinio();
             Tirocinante tirocinante= new Tirocinante();
             try {

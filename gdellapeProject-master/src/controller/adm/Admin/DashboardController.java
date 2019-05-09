@@ -8,11 +8,9 @@ import view.TemplateController;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +47,7 @@ public class DashboardController extends baseController {
 
         datamodel.put("Tutori",getnumTirocinanti(tutori));
 
-        TirocinioDaoImp dao2 = new TirocinioDaoImp();
+        TirocinioDaoDaoImp dao2 = new TirocinioDaoDaoImp();
         List<Tirocinio> trAttivi = dao2.getTirociniByStato(1);
         dao2.destroy();
 
@@ -62,7 +60,7 @@ public class DashboardController extends baseController {
         datamodel.put("AziendeConven",aziendeAttive.size());
 
 
-        TirocinioDaoImp dao4 = new TirocinioDaoImp();
+        TirocinioDaoDaoImp dao4 = new TirocinioDaoDaoImp();
         List<Tirocinio> trrf = dao2.getTirociniByStato(5);
         dao2.destroy();
 
@@ -78,7 +76,7 @@ public class DashboardController extends baseController {
 
         for (TutoreUniversitario tutore: tutori) {
 
-            TirocinioDaoImp dao1 = new TirocinioDaoImp();
+            TirocinioDaoDaoImp dao1 = new TirocinioDaoDaoImp();
             List<Tirocinio> tirocini = dao1.getAllTirocinioByTutore(tutore);
             dao1.destroy();
 

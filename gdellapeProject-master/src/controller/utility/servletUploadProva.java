@@ -2,7 +2,7 @@ package controller.utility;
 
 import controller.baseController;
 import dao.exception.DaoException;
-import dao.implementation.TirocinioDaoImp;
+import dao.implementation.TirocinioDaoDaoImp;
 import model.Tirocinio;
 import view.TemplateController;
 
@@ -24,7 +24,7 @@ public class servletUploadProva extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Part parto = request.getPart("filetoupload");
         System.out.println(parto);
-        TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
+        TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
         Tirocinio tirocinio = new Tirocinio();
         try {
             tirocinio = tirocinioDaoImp.getRichiestatrByID(36);

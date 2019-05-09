@@ -4,8 +4,8 @@ import controller.baseController;
 import controller.sessionController.SingSessionContoller;
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinanteDaoImp;
-import dao.implementation.TirocinioDaoImp;
+import dao.implementation.TirocinanteDaoDaoImp;
+import dao.implementation.TirocinioDaoDaoImp;
 import model.Azienda;
 import model.OffertaTirocinio;
 import model.Tirocinante;
@@ -39,11 +39,11 @@ public class ModuloFineTirocinioAziendaController extends baseController {
     }
 
     private  void  processaRichiestaPost(HttpServletRequest request, HttpServletResponse response, SingSessionContoller session) throws IOException, ServletException {
-        TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
+        TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
         try {
             Tirocinio tirocinio = tirocinioDaoImp.getRichiestatrByID(Integer.parseInt(request.getParameter("ID_Tirocinio")));
             tirocinioDaoImp.destroy();
-            TirocinioDaoImp tirocinioDaoImp1 = new TirocinioDaoImp();
+            TirocinioDaoDaoImp tirocinioDaoImp1 = new TirocinioDaoDaoImp();
             tirocinio.setPeriodoEffettivoIniziale(Date.valueOf(request.getParameter("Data_inizio")));
             tirocinio.setPeriodoEffettivoFinale(Date.valueOf(request.getParameter("Data_fine")));
             tirocinio.setDurataOre(Integer.parseInt(request.getParameter("Ore_totali")));
@@ -62,8 +62,8 @@ public class ModuloFineTirocinioAziendaController extends baseController {
         Calendar presente = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
         datamodel.put("data", presente.getTime());
         Azienda azienda = session.getAzienda(request, response);
-        TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
-        TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
+        TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
+        TirocinanteDaoDaoImp tirocinanteDaoImp = new TirocinanteDaoDaoImp();
         OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
         try {
             Tirocinio tirocinio = tirocinioDaoImp.getRichiestatrByID(Integer.parseInt(request.getParameter("id")));
@@ -91,7 +91,7 @@ public class ModuloFineTirocinioAziendaController extends baseController {
         if (request.getParameter("ID_Tirocinio") != null && request.getParameter("Data_inizio") != null && request.getParameter("Data_fine") != null && request.getParameter("Ore_totali") != null && request.getParameter("Descrizione_attivita_svolta") != null && request.getParameter("risultato_tirocinio") != null && request.getParameter("Data_documento") != null) {
             SingSessionContoller session = SingSessionContoller.getInstance();
             if (session.isAzienda(request)) {
-                TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
+                TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
                 try {
                     Tirocinio tirocinio = tirocinioDaoImp.getRichiestatrByID(Integer.parseInt(request.getParameter("ID_Tirocinio")));
                     tirocinioDaoImp.destroy();
@@ -120,7 +120,7 @@ public class ModuloFineTirocinioAziendaController extends baseController {
         if (request.getParameter("id") != null) {
             SingSessionContoller session = SingSessionContoller.getInstance();
             if (session.isAzienda(request)) {
-                TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
+                TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
                 try {
                     Tirocinio tirocinio = tirocinioDaoImp.getRichiestatrByID(Integer.parseInt(request.getParameter("id")));
                     tirocinioDaoImp.destroy();

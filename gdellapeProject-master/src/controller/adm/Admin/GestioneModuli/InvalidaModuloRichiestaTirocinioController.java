@@ -1,11 +1,8 @@
 package controller.adm.Admin.GestioneModuli;
 
 
-import controller.adm.Admin.GestioneAzienda.FillGestioniModuliConvenzione;
 import controller.baseController;
 import dao.exception.DaoException;
-import dao.implementation.TirocinioDaoImp;
-import model.Tirocinio;
 import view.TemplateControllerMail;
 
 import javax.servlet.RequestDispatcher;

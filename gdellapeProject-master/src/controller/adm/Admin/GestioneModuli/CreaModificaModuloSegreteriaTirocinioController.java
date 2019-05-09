@@ -5,8 +5,8 @@ import controller.adm.Admin.GestioneTirocinio.FillGestioniModuliTirocini;
 import controller.baseController;
 import controller.utility.Utility;
 import dao.exception.DaoException;
-import dao.implementation.TirocinanteDaoImp;
-import dao.implementation.TirocinioDaoImp;
+import dao.implementation.TirocinanteDaoDaoImp;
+import dao.implementation.TirocinioDaoDaoImp;
 import model.Tirocinante;
 import model.Tirocinio;
 import org.unbescape.html.HtmlEscape;
@@ -49,7 +49,7 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
 
     private Boolean ifmakeModulo(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, DaoException {
 
-        TirocinioDaoImp dao = new TirocinioDaoImp();
+        TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
         Tirocinio tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
         if(tr.getPdfSegreteria()!=null){
@@ -80,11 +80,11 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
 
 
     private void fillModulo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DaoException {
-        TirocinioDaoImp dao = new TirocinioDaoImp();
+        TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
         Tirocinio tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
 
-        TirocinanteDaoImp dao1 = new TirocinanteDaoImp();
+        TirocinanteDaoDaoImp dao1 = new TirocinanteDaoDaoImp();
         Tirocinante tirocinante = dao1.getTirocianteByID(tr.getTirocinante());
         dao1.destroy();
 
@@ -184,7 +184,7 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
 
     private void storeModulo(HttpServletRequest request, HttpServletResponse response) throws IOException, ServerException, DaoException {
 
-        TirocinioDaoImp dao = new TirocinioDaoImp();
+        TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
         Tirocinio tirocinio = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
 
@@ -193,7 +193,7 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
         tirocinio.setCreditiRiconosciuti(Integer.parseInt(request.getParameter("Crediti_riconosciuti")));
         tirocinio.setDataColloquioSegreteria(Date.valueOf(request.getParameter("Data_documento")));
 
-        TirocinioDaoImp dao1 = new TirocinioDaoImp();
+        TirocinioDaoDaoImp dao1 = new TirocinioDaoDaoImp();
         dao1.updateTirocinio(tirocinio);
         dao1.destroy();
 

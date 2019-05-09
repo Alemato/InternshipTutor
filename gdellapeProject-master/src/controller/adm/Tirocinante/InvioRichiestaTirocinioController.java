@@ -184,7 +184,7 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
 
 
     private void aggiornoTirocinante(HttpServletRequest request, HttpServletResponse response, Tirocinante tirocinante) throws ServletException, IOException {
-        TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
+        TirocinanteDaoDaoImp tirocinanteDaoImp = new TirocinanteDaoDaoImp();
         try {
             tirocinanteDaoImp.setTirocinante(tirocinante);
             tirocinanteDaoImp.destroy();
@@ -195,7 +195,7 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
     }
 
     private void creoTirocinio(HttpServletRequest request, HttpServletResponse response, Tirocinante tirocinante) throws ServletException, IOException {
-        TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
+        TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
         Tirocinio tirocinio = new Tirocinio();
 
         tirocinio.setDurataOre(Integer.parseInt(request.getParameter("NumeroOreTirocinio")));

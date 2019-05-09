@@ -4,8 +4,8 @@ package controller.adm.Admin.GestioneTirocinio;
 import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinanteDaoImp;
-import dao.implementation.TirocinioDaoImp;
+import dao.implementation.TirocinanteDaoDaoImp;
+import dao.implementation.TirocinioDaoDaoImp;
 import model.OffertaTirocinio;
 import model.Tirocinante;
 import model.Tirocinio;
@@ -40,13 +40,13 @@ public class ShowTirocinatiRichientiController extends baseController {
             OffertaTirocinio offerta= dao.getOffertatrByID(Integer.parseInt(idOfferta));
             dao.destroy();
 
-            TirocinioDaoImp dao1 = new TirocinioDaoImp();
+            TirocinioDaoDaoImp dao1 = new TirocinioDaoDaoImp();
             List<Tirocinio> tirocini=dao1.getTrByOfferta(offerta);
             dao1.destroy();
             if(!tirocini.isEmpty()) {
 
                 List<Tirocinante> tirocinati = new ArrayList<>();
-                TirocinanteDaoImp dao2 = new TirocinanteDaoImp();
+                TirocinanteDaoDaoImp dao2 = new TirocinanteDaoDaoImp();
                 for (Tirocinio tr : tirocini) {
                     tirocinati.add(dao2.getTirocianteByID(tr.getTirocinante()));
 

@@ -1,7 +1,7 @@
 package controller.adm.Tirocinante;
 
 import controller.sessionController.SingSessionContoller;
-import dao.implementation.TirocinanteDaoImp;
+import dao.implementation.TirocinanteDaoDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Tirocinante;
 import model.User;
@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class UpdateTirocinanteController extends BackEndTrController {
 
@@ -182,7 +181,7 @@ public class UpdateTirocinanteController extends BackEndTrController {
             userdao.update(user);
             userdao.destroy();
 
-            TirocinanteDaoImp daotr = new TirocinanteDaoImp();
+            TirocinanteDaoDaoImp daotr = new TirocinanteDaoDaoImp();
             daotr.setUpdate(tirocinante);
             daotr.destroy();
         }catch (Exception e){

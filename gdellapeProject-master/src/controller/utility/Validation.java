@@ -1,7 +1,6 @@
 package controller.utility;
 
 import dao.exception.DaoException;
-import dao.implementation.OffertaTirocinioDaoImp;
 import dao.implementation.TutoreUniversitarioDaoImp;
 import dao.implementation.UserDaoImp;
 import model.TutoreUniversitario;
