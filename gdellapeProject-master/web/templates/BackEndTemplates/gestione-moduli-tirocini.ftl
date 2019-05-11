@@ -12,7 +12,7 @@
     <link href="/css/layout-datatables.css" rel="stylesheet" type="text/css"/>
 
 </head>
-<body class="smoothscroll enable-animation">
+<body class="enable-animation">
 
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse navbar-large bg-dark">
     <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse"
@@ -373,7 +373,7 @@
                                             <form enctype="multipart/form-data" class="mb-2" method="POST"
                                                   action="/admin/salva-segreteria?ID=${tirocinio.IDTirocinio}">
                                                 <div class="col">
-                                                    <input type="file" name="PDF"  onchange="this.form.submit()">
+                                                    <input type="file" name="PDF">
                                                     <button type="submit"  class="btn btn-success ml-4 mt-7"> Invia</button>
                                                 </div>
                                             </form>

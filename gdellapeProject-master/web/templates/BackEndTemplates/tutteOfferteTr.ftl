@@ -63,7 +63,7 @@
             </section>
             <div class="card" id="offerte_attive">
                 <div class="card-header">
-                    <h3>OFFERTE DI TIROCINIO SCADUTE</h3>
+                    <h3>OFFERTE DI TIROCINIO ATTIVE</h3>
                 </div>
                 <div class="card-body">
             <table class="table table-responsive table-striped table-bordered table-hover" id="datatable_offerte_attive"

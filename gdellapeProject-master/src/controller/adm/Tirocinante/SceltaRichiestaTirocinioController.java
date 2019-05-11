@@ -2,7 +2,12 @@ package controller.adm.Tirocinante;
 
 import controller.sessionController.SingSessionContoller;
 import dao.implementation.TirocinioDaoDaoImp;
+import dao.implementation.AziendaDaoImp;
+import dao.implementation.OffertaTirocinioDaoImp;
+import model.Azienda;
+import model.OffertaTirocinio;
 import model.Tirocinante;
+import view.TemplateController;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +17,8 @@ import java.io.IOException;
 
 public class SceltaRichiestaTirocinioController extends BackEndTrController {
 
-    private void er403(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/403");
+    private void er500(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/500");
         dispatcher.forward(request, response);
     }
 
@@ -25,6 +30,27 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
 
     }
 
+    private void notTirocinante(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int Idtrof = Integer.parseInt(request.getParameter("Tirocinio"));
+            OffertaTirocinioDaoImp ofdao = new OffertaTirocinioDaoImp();
+            OffertaTirocinio oftr = ofdao.getOffertatrByID(Idtrof);
+            ofdao.destroy();
+            AziendaDaoImp aziendaDaoImp = new AziendaDaoImp();
+            Azienda azienda = aziendaDaoImp.getAziendaByID(oftr.getAzienda());
+            aziendaDaoImp.destroy();
+            datamodel.put("Offerta", oftr);
+            datamodel.put("AziendaOspitante", azienda.getRagioneSociale());
+            datamodel.put("Message", " Non puoi richiedere un tirocinio perche non sei registrato come Tirocinante");
+            TemplateController.process("scheda-tirocinio.ftl", datamodel, response, getServletContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+            er500(request, response);
+        }
+
+    }
+
+
     private void Richiesta(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (!(session.isValidSession(request))) {
@@ -34,7 +60,7 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
             System.out.println("sessione validae di tipo Tirocinante");
             ifsend(request, response);
         } else {
-            er403(request, response);
+            notTirocinante(request, response);
         }
 
     }

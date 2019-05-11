@@ -149,13 +149,13 @@
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Ente/Azienda ospitante</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Nome_ente_azienda"
-                               value="${azienda.ragioneSociale}" placeholder="Nome Ente/Azienda">
+                               value="${azienda.ragioneSociale}" placeholder="Nome Ente/Azienda" disabled>
                     </div>
 
                     <div class="row mb-0 breack-print mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Luogo di effettuazione del tirocinio</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Luogo_di_svolgimento"
-                               value="${offertatirocinio.luogoEffettuazione}" placeholder="Luogo di svolgimento" required>
+                               value="${offertatirocinio.luogoEffettuazione}" placeholder="Luogo di svolgimento" required disabled>
                     </div>
 
                     <div class="row mb-0 mr-10">
@@ -250,14 +250,14 @@
                     <div class="row mb-0 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Tutore Aziendale</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Nominativo_tutore_aziendale"
-                               value="${offertatirocinio.nomeTutoreAziendale} ${offertatirocinio.cognomeTutoreAziendale}" placeholder="Nominativo tutore aziendale" required>
+                               value="${offertatirocinio.nomeTutoreAziendale} ${offertatirocinio.cognomeTutoreAziendale}" placeholder="Nominativo tutore aziendale" required disabled>
                     </div>
 
                     <div class="row mb-25 mr-10">
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Telefono Tutore Aziendale</h4>
                         <input class="input-modulo col col-sm pl-0" type="text"
                                name="Numero_telefono_tutore_aziendale" value="${offertatirocinio.telefonoTutoreAziendale}"
-                               placeholder="Numero di telefono tutore aziendale" required>
+                               placeholder="Numero di telefono tutore aziendale" required disabled>
                     </div>
                     <footer class="mt-50 d-print-none">
                         <button type="submit" form="modulo_richiesta_tirocinante"

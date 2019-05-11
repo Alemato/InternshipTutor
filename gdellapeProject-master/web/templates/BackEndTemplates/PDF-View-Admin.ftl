@@ -20,7 +20,14 @@
     </button>
     <a class="navbar-brand link-bar" href="/home">Intership Tutor </a>
     <ol class="breadcrumb">
-        <li class="active"><a href="/admin/dashboard"><b>HOME DASHBOARD</b></a></li>
+        <li><a href="/admin/dashboard"><b>HOME DASHBOARD</b></a></li>
+        <#if urlpage == "/admin/richisteconvezioni">
+            <li><a href="/admin/richisteconvezioni"><b>Richiete Convenzioni</b></a></li>
+            <#elseif urlpage=="/admin/Gestione-tirocinio" >
+                <li><a href="/admin/gestione-tirocinio"><b>Gestione Tirocinio</b></a></li>
+        <#elseif urlpage=="/admin/Gestione-Convenzione" >
+            <li><a href="/admin/gestione-convenzione"><b>Gestione Convenzioni</b></a></li>
+        </#if>
         <li class="text-white text-uppercase"><b>PDF ${titolo}</b></li>
     </ol>
     <#include "small-navbar.ftl">
