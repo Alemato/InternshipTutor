@@ -17,6 +17,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static controller.utility.Validation.isValidEmailAddress;
+
 public class InvioRichiestaTirocinioController extends BackEndTrController {
 
     private void er500(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -62,7 +64,7 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
         if (request.getSession().getAttribute("Tirocinio") != null) {
             idOffertaTirocinio = (int) request.getSession().getAttribute("Tirocinio");
         } else {
-            idOffertaTirocinio = Integer.parseInt(request.getParameter("Tirocinio"));
+            idOffertaTirocinio = Integer.parseInt(request.getParameter("idOffertaTirocinio"));
         }
         try {
             OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
@@ -194,61 +196,107 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
         }
     }
 
+    public static boolean isNumeric(String strNum) {
+        try {
+            int d = Integer.parseInt(strNum);
+        } catch (NumberFormatException | NullPointerException nfe) {
+            return false;
+        }
+        return true;
+    }
+
     private void creoTirocinio(HttpServletRequest request, HttpServletResponse response, Tirocinante tirocinante) throws ServletException, IOException {
         TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
         Tirocinio tirocinio = new Tirocinio();
-
-        tirocinio.setDurataOre(Integer.parseInt(request.getParameter("NumeroOreTirocinio")));
-        tirocinio.setCFU(Integer.parseInt(request.getParameter("NumeroCfu")));
-        System.out.println("CFU");
-        System.out.println(tirocinio.getCFU());
-
-        if (request.getSession().getAttribute("Tirocinio") != null) {
-            tirocinio.setOffertaTirocinio((int) request.getSession().getAttribute("Tirocinio"));
-        } else {
-            tirocinio.setOffertaTirocinio(Integer.parseInt(request.getParameter("idOffertaTirocinio")));
-        }
-        tirocinio.setTirocinante(tirocinante.getIDTirocinante());
-        TutoreUniversitario tutoreUniversitario = new TutoreUniversitario();
-        if (request.getParameter("TutoreUniversitario").equals("NEW")) {
-            try {
-                tutoreUniversitario = creoTutoreUniversitario(request);
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
-            tirocinio.setTutoreUniversitario(tutoreUniversitario.getIDTutoreUni());
-        } else {
-            tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
-        }
-        if (request.getParameter("TutoreUniversitario").equals("NEW")) {
-            TutoreUniversitarioDaoImp tutoreUniversitarioDaoImpCaricato = new TutoreUniversitarioDaoImp();
-            TutoreUniversitario tutoreCaricato = new TutoreUniversitario();
-            try {
-                tutoreCaricato = tutoreUniversitarioDaoImpCaricato.getTutoreByEmail(tutoreUniversitario.getEmail());
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
-            tirocinio.setTutoreUniversitario(tutoreCaricato.getIDTutoreUni());
-        } else {
-            tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
-        }
         try {
+            if (isNumeric(request.getParameter("NumeroOreTirocinio"))) {
+                if (0 < Integer.parseInt(request.getParameter("NumeroOreTirocinio"))) {
+                    tirocinio.setDurataOre(Integer.parseInt(request.getParameter("NumeroOreTirocinio")));
+                } else {
+                    fillModulo(request, response, tirocinante);
+                    datamodel.put("erroreOre", "Formato numero ore non corretto");
+                    TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+                }
+            } else {
+                fillModulo(request, response, tirocinante);
+                datamodel.put("erroreOre", "Formato numero ore non corretto");
+                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+            }
 
-            tirocinioDaoImp.setRichiestatr(tirocinio);
-            tirocinioDaoImp.destroy();
-        } catch (DaoException e) {
-            er500(request, response);
+
+            if (isNumeric(request.getParameter("NumeroCfu"))) {
+                if (0 < Integer.parseInt(request.getParameter("NumeroCfu"))) {
+                    tirocinio.setCFU(Integer.parseInt(request.getParameter("NumeroCfu")));
+                } else {
+                    fillModulo(request, response, tirocinante);
+                    datamodel.put("erroreCFU", "Formato numero CFU non corretto");
+                    TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+                }
+            } else {
+                fillModulo(request, response, tirocinante);
+                datamodel.put("erroreCFU", "Formato numero CFU non corretto");
+                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+            }
+
+
+            if (request.getSession().getAttribute("Tirocinio") != null) {
+                tirocinio.setOffertaTirocinio((int) request.getSession().getAttribute("Tirocinio"));
+            } else {
+                tirocinio.setOffertaTirocinio(Integer.parseInt(request.getParameter("idOffertaTirocinio")));
+            }
+            tirocinio.setTirocinante(tirocinante.getIDTirocinante());
+            TutoreUniversitario tutoreUniversitario = new TutoreUniversitario();
+            if (request.getParameter("TutoreUniversitario").equals("NEW")) {
+                try {
+                    tutoreUniversitario = creoTutoreUniversitario(request, response, tirocinante);
+                } catch (DaoException | NullPointerException | ServletException | IOException e) {
+                    e.printStackTrace();
+                    er500(request, response);
+                }
+                tirocinio.setTutoreUniversitario(tutoreUniversitario.getIDTutoreUni());
+            } else {
+                tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
+            }
+            if (request.getParameter("TutoreUniversitario").equals("NEW")) {
+                TutoreUniversitarioDaoImp tutoreUniversitarioDaoImpCaricato = new TutoreUniversitarioDaoImp();
+                TutoreUniversitario tutoreCaricato = new TutoreUniversitario();
+                try {
+                    tutoreCaricato = tutoreUniversitarioDaoImpCaricato.getTutoreByEmail(tutoreUniversitario.getEmail());
+                } catch (DaoException e) {
+                    e.printStackTrace();
+                    er500(request, response);
+                }
+                tirocinio.setTutoreUniversitario(tutoreCaricato.getIDTutoreUni());
+            } else {
+                tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
+            }
+            try {
+
+                tirocinioDaoImp.setRichiestatr(tirocinio);
+                tirocinioDaoImp.destroy();
+            } catch (DaoException e) {
+                er500(request, response);
+                e.printStackTrace();
+            }
+        } catch (NullPointerException e) {
             e.printStackTrace();
+            er500(request, response);
         }
     }
 
-    private TutoreUniversitario creoTutoreUniversitario(HttpServletRequest request) throws DaoException {
+    private TutoreUniversitario creoTutoreUniversitario(HttpServletRequest request, HttpServletResponse response, Tirocinante tirocinante) throws DaoException, NullPointerException, ServletException, IOException {
         TutoreUniversitarioDaoImp tutoreUniversitarioDaoImp = new TutoreUniversitarioDaoImp();
         TutoreUniversitario tutoreUniversitario = new TutoreUniversitario();
         tutoreUniversitario.setNome(request.getParameter("NomeTutoreUniversitario"));
         tutoreUniversitario.setCognome(request.getParameter("CognomeTutoreUniversitario"));
         tutoreUniversitario.setTelefono(request.getParameter("TelefonoTutoreUniversitario"));
-        tutoreUniversitario.setEmail(request.getParameter("EmailTutoreUniversitario"));
+        if (isValidEmailAddress(request.getParameter("EmailTutoreUniversitario"))) {
+            tutoreUniversitario.setEmail(request.getParameter("EmailTutoreUniversitario"));
+        }else{
+            fillModulo(request, response, tirocinante);
+            datamodel.put("erroreEmailTutore", "Formato email Tutore non valido");
+            TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+        }
         tutoreUniversitario.setAttivo(true);
         tutoreUniversitarioDaoImp.setTutoreUni(tutoreUniversitario);
         tutoreUniversitarioDaoImp.destroy();
@@ -272,7 +320,7 @@ public class InvioRichiestaTirocinioController extends BackEndTrController {
         try {
             controlloCampiTirocinante(request, tirocinante);
             aggiornoTirocinante(request, response, tirocinante);
-            creoTirocinio(request, response,tirocinante);
+            creoTirocinio(request, response, tirocinante);
             response.sendRedirect("/account/moduli");
 
         } catch (ParseException e) {
