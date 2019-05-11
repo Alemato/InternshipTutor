@@ -6,7 +6,7 @@ import controller.utility.SecurityHash;
 import controller.utility.Validation;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
-import dao.implementation.TirocinanteDaoDaoImp;
+import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Azienda;
 import model.Tirocinante;
@@ -588,11 +588,11 @@ public class RegistrazioneController extends baseController {
         try {
             User user = userDaoImp.getUserByMail((String) datamodel.get("email"));
             userDaoImp.destroy();
-            TirocinanteDaoDaoImp tirocinanteDaoImp= new TirocinanteDaoDaoImp();
+            TirocinanteDaoImp tirocinanteDaoImp= new TirocinanteDaoImp();
             try{
                 Tirocinante tirocinante = tirocinanteDaoImp.getTirocianteByIDuser(user.getIDUser());
                 tirocinanteDaoImp.destroy();
-                TirocinanteDaoDaoImp tirocinanteDaoImp1= new TirocinanteDaoDaoImp();
+                TirocinanteDaoImp tirocinanteDaoImp1= new TirocinanteDaoImp();
                 tirocinanteDaoImp1.delete(tirocinante);
             }catch (DaoException ex){
                 System.out.println("NON esiste Account Azienda da eliminare");
@@ -617,7 +617,7 @@ public class RegistrazioneController extends baseController {
         UserDaoImp userDaoImp1 = new UserDaoImp();
         user = userDaoImp1.getUserByMail((String) datamodel.get("email"));
         int idUser = user.getIDUser();
-        TirocinanteDaoDaoImp tirocinanteDaoImp = new TirocinanteDaoDaoImp();
+        TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
         Tirocinante tirocinante = new Tirocinante();
         tirocinante.setNome((String) datamodel.get("nome"));
         tirocinante.setCognome((String) datamodel.get("cognome"));
@@ -651,7 +651,7 @@ public class RegistrazioneController extends baseController {
         tirocinante.setUser(idUser);
         tirocinanteDaoImp.setTirocinante(tirocinante);
         tirocinanteDaoImp.destroy();
-        TirocinanteDaoDaoImp tirocinanteDaoImp1 = new TirocinanteDaoDaoImp();
+        TirocinanteDaoImp tirocinanteDaoImp1 = new TirocinanteDaoImp();
         tirocinante= tirocinanteDaoImp1.getTirocianteByIDuser(idUser);
         String[] to = new String[1];
         to[0]= "tirocinante@matteifamily.net";

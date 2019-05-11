@@ -41,7 +41,7 @@ public class FillGestioniModuliTirocini {
 
     private List<Tirocinio> getAllTirocini() throws DaoException{
 
-        TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
+        TirocinioDaoImp dao = new TirocinioDaoImp();
         List<Tirocinio> tirocini = dao.getAllTirocinio();
         dao.destroy();
 
@@ -93,7 +93,7 @@ public class FillGestioniModuliTirocini {
 
     private Map<Integer, Tirocinante> getTirocinante() throws DaoException {
         Map<Integer, Tirocinante> maptirocinate = new HashMap<>();
-            TirocinanteDaoDaoImp dao = new TirocinanteDaoDaoImp();
+            TirocinanteDaoImp dao = new TirocinanteDaoImp();
             List<Tirocinante> tirocinantes = dao.getAllTirociante();
             dao.destroy();
 

@@ -4,7 +4,7 @@ import controller.utility.SecurityHash;
 import dao.exception.DaoException;
 import dao.implementation.AdminDaoImp;
 import dao.implementation.AziendaDaoImp;
-import dao.implementation.TirocinanteDaoDaoImp;
+import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Admin;
 import model.Azienda;
@@ -90,7 +90,7 @@ public class SingSessionContoller {
         if(isTirocinante(request)){
 
 
-                TirocinanteDaoDaoImp daotr = new TirocinanteDaoDaoImp();
+                TirocinanteDaoImp daotr = new TirocinanteDaoImp();
                 tr = daotr.getTirocianteByID(id);
                 daotr.destroy();
         }else{

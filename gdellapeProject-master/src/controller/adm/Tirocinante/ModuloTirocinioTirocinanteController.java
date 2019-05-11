@@ -5,7 +5,7 @@ import controller.sessionController.SingSessionContoller;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinioDaoDaoImp;
+import dao.implementation.TirocinioDaoImp;
 import dao.implementation.TutoreUniversitarioDaoImp;
 import model.*;
 import view.TemplateController;
@@ -24,7 +24,7 @@ import java.util.List;
 public class ModuloTirocinioTirocinanteController extends baseController {
 
     private boolean ifPdfTirocinanteUploaded(HttpServletRequest request) throws DaoException {
-        TirocinioDaoDaoImp tirocinioDaoImpTestPdf = new TirocinioDaoDaoImp();
+        TirocinioDaoImp tirocinioDaoImpTestPdf = new TirocinioDaoImp();
         Tirocinio tirocinio = tirocinioDaoImpTestPdf.getRichiestatrByID(Integer.parseInt(request.getParameter("idTirocinio")));
         return tirocinio.getPdfTirocinante() != null;
     }
@@ -148,7 +148,7 @@ public class ModuloTirocinioTirocinanteController extends baseController {
 
 
         int idOffertaTirocinio = 0;
-        TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
+        TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
         List<Tirocinio> tirocini = tirocinioDaoImp.getOffertaTirByIDTirocinante(tirocinante.getIDTirocinante());
         for (Tirocinio tirocinio : tirocini) {
             if (tirocinio.getIDTirocinio() == Integer.parseInt(request.getParameter("idTirocinio")))

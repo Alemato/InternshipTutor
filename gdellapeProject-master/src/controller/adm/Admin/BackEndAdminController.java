@@ -17,7 +17,7 @@ public class BackEndAdminController extends HttpServlet {
         Tirocinante tirocinante=  new Tirocinante();
 
         try {
-            TirocinanteDaoDaoImp dao = new TirocinanteDaoDaoImp();
+            TirocinanteDaoImp dao = new TirocinanteDaoImp();
             Tirocinante tr = dao.getTirocianteByID(idtr);
             dao.destroy();
             tirocinante=tr;
@@ -86,7 +86,7 @@ public class BackEndAdminController extends HttpServlet {
        Tirocinio tirocinio=new Tirocinio();
 
         try {
-           TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
+           TirocinioDaoImp dao = new TirocinioDaoImp();
            tirocinio=dao.getRichiestatrByID(idTirocinio);
            dao.destroy();
 

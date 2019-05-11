@@ -46,7 +46,7 @@ public class ModuloRichiestaTirocinioController extends baseController {
                                 this.tirocinio.setDurataOre(Integer.valueOf(request.getParameter("NumeroOreTirocinio")));
                                 this.tirocinio.setPeriodoEffettivoIniziale(Date.valueOf(request.getParameter("PeriodoInizio")));
                                 this.tirocinio.setPeriodoEffettivoFinale(Date.valueOf(request.getParameter("PeriodoFine")));
-                                TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
+                                TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
                                 tirocinioDaoImp.updateTirocinio(this.tirocinio);
                                 tirocinioDaoImp.destroy();
                                 response.sendRedirect("/account/moduli");
@@ -81,11 +81,11 @@ public class ModuloRichiestaTirocinioController extends baseController {
         this.tutoreUniversitario = new TutoreUniversitario();
         this.tirocinio = new Tirocinio();
         this.tirocinante = new Tirocinante();
-        TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
+        TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
         AziendaDaoImp aziendaDaoImp = new AziendaDaoImp();
         TutoreUniversitarioDaoImp tutoreUniversitarioDaoImp= new TutoreUniversitarioDaoImp();
         OffertaTirocinioDaoImp offertaTirocinioDaoImp=new OffertaTirocinioDaoImp();
-        TirocinanteDaoDaoImp tirocinanteDaoImp = new TirocinanteDaoDaoImp();
+        TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
         this.tirocinio=tirocinioDaoImp.getRichiestatrByID(idTirocinio);
         tirocinioDaoImp.destroy();
         this.offertaTirocinio= offertaTirocinioDaoImp.getOffertatrByID(this.tirocinio.getOffertaTirocinio());

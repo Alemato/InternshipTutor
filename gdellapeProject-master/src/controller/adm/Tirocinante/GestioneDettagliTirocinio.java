@@ -4,7 +4,7 @@ import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinioDaoDaoImp;
+import dao.implementation.TirocinioDaoImp;
 import model.Azienda;
 import model.OffertaTirocinio;
 import model.Tirocinio;
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class GestioneDettagliTirocinio extends baseController {
 
     private OffertaTirocinio ritornaOffertaTirocinio(Integer idTirocinio) throws DaoException {
-        TirocinioDaoDaoImp daoTirocinio = new TirocinioDaoDaoImp();
+        TirocinioDaoImp daoTirocinio = new TirocinioDaoImp();
         Tirocinio tirocinio = daoTirocinio.getRichiestatrByID(idTirocinio);
         OffertaTirocinioDaoImp daoOffertaTirocinio = new OffertaTirocinioDaoImp();
         OffertaTirocinio offertaTirocinio = daoOffertaTirocinio.getOffertatrByID(tirocinio.getOffertaTirocinio());
@@ -30,7 +30,7 @@ public class GestioneDettagliTirocinio extends baseController {
     }
 
     private Tirocinio ritornaTirocinio(Integer idTirocinio) throws DaoException {
-        TirocinioDaoDaoImp daoTirocinio = new TirocinioDaoDaoImp();
+        TirocinioDaoImp daoTirocinio = new TirocinioDaoImp();
         Tirocinio tirocinio = daoTirocinio.getRichiestatrByID(idTirocinio);
         daoTirocinio.destroy();
         return tirocinio;
@@ -89,7 +89,7 @@ public class GestioneDettagliTirocinio extends baseController {
             Tirocinio tirocinio;
             tirocinio = ritornaTirocinio(idTirocinio);
             tirocinio.setStato(4);
-            TirocinioDaoDaoImp daoTirocinio = new TirocinioDaoDaoImp();
+            TirocinioDaoImp daoTirocinio = new TirocinioDaoImp();
             System.out.println("Tirocinio votato");
             System.out.println(tirocinio);
             daoTirocinio.updateTirocinio(tirocinio);

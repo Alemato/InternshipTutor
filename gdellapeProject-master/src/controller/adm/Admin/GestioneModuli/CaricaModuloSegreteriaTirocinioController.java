@@ -6,7 +6,7 @@ import controller.adm.Admin.GestioneTirocinio.FillGestioniModuliTirocini;
 import controller.baseController;
 import controller.utility.UploadFilePDF;
 import dao.exception.DaoException;
-import dao.implementation.TirocinioDaoDaoImp;
+import dao.implementation.TirocinioDaoImp;
 import model.Tirocinio;
 
 import javax.servlet.RequestDispatcher;
@@ -42,7 +42,7 @@ public class CaricaModuloSegreteriaTirocinioController extends baseController {
 
         try{
             datamodel.put("urlpage","/admin/Gestione-tirocinio");
-            TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
+            TirocinioDaoImp dao = new TirocinioDaoImp();
             Tirocinio tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("ID")));
             dao.destroy();
 
@@ -57,7 +57,7 @@ public class CaricaModuloSegreteriaTirocinioController extends baseController {
 
                 tr.setPdfSegreteria(path);
 
-                TirocinioDaoDaoImp dao2=new TirocinioDaoDaoImp();
+                TirocinioDaoImp dao2=new TirocinioDaoImp();
                 dao2.updateTirocinio(tr);
                 dao2.destroy();
                 //TODO Manda mail per avvisare che il moludo é stato caricato

@@ -3,7 +3,7 @@ package controller.adm.Admin.GestioneModuli;
 
 import controller.adm.Admin.GestioneTirocinio.FillGestioniModuliTirocini;
 import dao.exception.DaoException;
-import dao.implementation.TirocinioDaoDaoImp;
+import dao.implementation.TirocinioDaoImp;
 import model.Tirocinio;
 
 import javax.servlet.ServletContext;
@@ -30,14 +30,14 @@ public class InvalidazioneModuliTirocinio {
 
 
     public void invalidaPDfTirocinio() throws ServletException, IOException, DaoException {
-        TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
+        TirocinioDaoImp dao = new TirocinioDaoImp();
         Tirocinio tirocinio = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
         FillGestioniModuliTirocini page = new FillGestioniModuliTirocini(request, response, context, datamodel);
         if (tirocinio.getPdfTirocinante()!=null) {
 
             tirocinio.setPdfTirocinante(null);
-             TirocinioDaoDaoImp dao1= new TirocinioDaoDaoImp();
+             TirocinioDaoImp dao1= new TirocinioDaoImp();
              dao1.updateTirocinio(tirocinio);
              dao1.destroy();
             //TODO Manda mail per avvisare è estato invalidato il pdf tirociante
@@ -52,13 +52,13 @@ public class InvalidazioneModuliTirocinio {
 
 
     public void invalidaPDFAzienda() throws ServletException, IOException, DaoException {
-        TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
+        TirocinioDaoImp dao = new TirocinioDaoImp();
         Tirocinio tirocinio = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
         FillGestioniModuliTirocini page = new FillGestioniModuliTirocini(request, response, context, datamodel);
         if (tirocinio.getPdfAzienda()!=null) {
                 tirocinio.setPdfAzienda(null);
-                TirocinioDaoDaoImp dao1= new TirocinioDaoDaoImp();
+                TirocinioDaoImp dao1= new TirocinioDaoImp();
                 dao1.updateTirocinio(tirocinio);
                 dao1.destroy();
             //TODO Manda mail per avvisare che pdf aziende da rifare

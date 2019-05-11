@@ -6,7 +6,7 @@ import controller.utility.DownloadPDF;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinioDaoDaoImp;
+import dao.implementation.TirocinioDaoImp;
 import model.Azienda;
 import model.OffertaTirocinio;
 import model.Tirocinante;
@@ -135,7 +135,7 @@ public class PdfView {
             if (this.tipoAccount != 0){
                 if (request.getParameterMap().containsKey("id")) {
                     int idTirocinio = Integer.parseInt(request.getParameter("id"));
-                    TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
+                    TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
                     try {
                         this.tirocinio = tirocinioDaoImp.getRichiestatrByID(idTirocinio);
                         tirocinioDaoImp.destroy();

@@ -45,7 +45,7 @@ public class VisualizzaModuloAziendaTirocinioController extends baseController {
     }
 
     private Boolean ifshow(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DaoException {
-        TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
+        TirocinioDaoImp dao = new TirocinioDaoImp();
         Tirocinio tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
         return (tr.getPdfAzienda() != null);
@@ -54,11 +54,11 @@ public class VisualizzaModuloAziendaTirocinioController extends baseController {
     private void fillModulo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DaoException {
         List<Object> dati = new ArrayList<>();
 
-        TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
+        TirocinioDaoImp dao = new TirocinioDaoImp();
         Tirocinio tr = dao.getRichiestatrByID(Integer.parseInt(request.getParameter("IDTirocinio")));
         dao.destroy();
 
-        TirocinanteDaoDaoImp dao1 = new TirocinanteDaoDaoImp();
+        TirocinanteDaoImp dao1 = new TirocinanteDaoImp();
         Tirocinante tirocinante = dao1.getTirocianteByID(tr.getTirocinante());
         dao1.destroy();
 

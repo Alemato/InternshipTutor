@@ -4,7 +4,7 @@ import controller.sessionController.SingSessionContoller;
 import dao.exception.DaoException;
 import dao.implementation.AdminDaoImp;
 import dao.implementation.AziendaDaoImp;
-import dao.implementation.TirocinanteDaoDaoImp;
+import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Admin;
 import model.Azienda;
@@ -98,7 +98,7 @@ public class LoginController extends HttpServlet {
                         session.initSession(request, admin);
                         break;
                     case 2:
-                        TirocinanteDaoDaoImp daoTr = new TirocinanteDaoDaoImp();
+                        TirocinanteDaoImp daoTr = new TirocinanteDaoImp();
                         Tirocinante tr = daoTr.getTirocianteByIDuser(user.getIDUser());
                         daoTr.destroy();
                         session.initSession(request, tr);

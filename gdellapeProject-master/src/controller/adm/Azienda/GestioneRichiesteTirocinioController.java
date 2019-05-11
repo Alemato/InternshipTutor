@@ -4,8 +4,8 @@ import controller.baseController;
 import controller.sessionController.SingSessionContoller;
 import dao.exception.DaoException;
 import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinanteDaoDaoImp;
-import dao.implementation.TirocinioDaoDaoImp;
+import dao.implementation.TirocinanteDaoImp;
+import dao.implementation.TirocinioDaoImp;
 import dao.implementation.UserDaoImp;
 import model.*;
 import view.TemplateController;
@@ -99,15 +99,15 @@ public class GestioneRichiesteTirocinioController extends baseController {
             System.out.println(parametro);
             String[] parts1 = parametro.split("-");
             Tirocinio tirocinio= new Tirocinio();
-            TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
+            TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
             if(parts1[0].equals("ac")){
                 tirocinio=tirocinioDaoImp.getRichiestatrByID(Integer.parseInt(parts1[2]));
                 tirocinioDaoImp.destroy();
                 tirocinio.setStato(1);
-                TirocinioDaoDaoImp tirocinioDaoImp1 = new TirocinioDaoDaoImp();
+                TirocinioDaoImp tirocinioDaoImp1 = new TirocinioDaoImp();
                 tirocinioDaoImp1.updateTirocinio(tirocinio);
                 tirocinioDaoImp1.destroy();
-                TirocinanteDaoDaoImp tirocinanteDaoImp = new TirocinanteDaoDaoImp();
+                TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
                 Tirocinante tirocinante= tirocinanteDaoImp.getTirocianteByID(tirocinio.getTirocinante());
                 tirocinanteDaoImp.destroy();
                 statoAc= statoAc.concat("Trirocinante: " + tirocinante.getNome()+" "+ tirocinante.getCognome()+" &egrave; stato accettato <br>");
@@ -120,11 +120,11 @@ public class GestioneRichiesteTirocinioController extends baseController {
             } else if(parts1[0].equals("de")){
                 tirocinio=tirocinioDaoImp.getRichiestatrByID(Integer.parseInt(parts1[2]));
                 tirocinioDaoImp.destroy();
-                TirocinioDaoDaoImp tirocinioDaoImp1 = new TirocinioDaoDaoImp();
+                TirocinioDaoImp tirocinioDaoImp1 = new TirocinioDaoImp();
                 tirocinio.setStato(5);
                 tirocinioDaoImp1.updateTirocinio(tirocinio);
                 tirocinioDaoImp1.destroy();
-                TirocinanteDaoDaoImp tirocinanteDaoImp = new TirocinanteDaoDaoImp();
+                TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
                 Tirocinante tirocinante= tirocinanteDaoImp.getTirocianteByID(tirocinio.getTirocinante());
                 statoDe= statoDe.concat("Trirocinante: " + tirocinante.getNome()+" "+ tirocinante.getCognome()+" &egrave; stato respinto <br>");
                 tirocinanteDaoImp.destroy();

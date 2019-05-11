@@ -47,7 +47,7 @@ public class DashboardController extends baseController {
 
         datamodel.put("Tutori",getnumTirocinanti(tutori));
 
-        TirocinioDaoDaoImp dao2 = new TirocinioDaoDaoImp();
+        TirocinioDaoImp dao2 = new TirocinioDaoImp();
         List<Tirocinio> trAttivi = dao2.getTirociniByStato(1);
         dao2.destroy();
 
@@ -60,7 +60,7 @@ public class DashboardController extends baseController {
         datamodel.put("AziendeConven",aziendeAttive.size());
 
 
-        TirocinioDaoDaoImp dao4 = new TirocinioDaoDaoImp();
+        TirocinioDaoImp dao4 = new TirocinioDaoImp();
         List<Tirocinio> trrf = dao2.getTirociniByStato(5);
         dao2.destroy();
 
@@ -76,7 +76,7 @@ public class DashboardController extends baseController {
 
         for (TutoreUniversitario tutore: tutori) {
 
-            TirocinioDaoDaoImp dao1 = new TirocinioDaoDaoImp();
+            TirocinioDaoImp dao1 = new TirocinioDaoImp();
             List<Tirocinio> tirocini = dao1.getAllTirocinioByTutore(tutore);
             dao1.destroy();
 

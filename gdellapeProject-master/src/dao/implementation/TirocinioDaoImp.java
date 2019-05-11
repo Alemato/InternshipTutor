@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TirocinioDaoDaoImp extends DaoDataMySQLImpl implements TirocinioDaoInterface {
+public class TirocinioDaoImp extends DaoDataMySQLImpl implements TirocinioDaoInterface {
     private PreparedStatement selectRichiestatrByID;
     private PreparedStatement selectAllRichiestatr;
     private PreparedStatement insertRichiestatr;

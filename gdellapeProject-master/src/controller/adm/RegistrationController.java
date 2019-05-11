@@ -6,7 +6,7 @@ import controller.utility.SecurityHash;
 import controller.utility.Utility;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
-import dao.implementation.TirocinanteDaoDaoImp;
+import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Azienda;
 import model.Tirocinante;
@@ -221,7 +221,7 @@ public class RegistrationController extends HttpServlet {
             tirocinante.setUser(userconid.getIDUser());
 
 
-            TirocinanteDaoDaoImp daotr = new TirocinanteDaoDaoImp();
+            TirocinanteDaoImp daotr = new TirocinanteDaoImp();
 
             daotr.setTirocinante(tirocinante);
             daotr.destroy();

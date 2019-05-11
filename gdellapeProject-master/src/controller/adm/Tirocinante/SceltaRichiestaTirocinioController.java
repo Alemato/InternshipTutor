@@ -1,7 +1,7 @@
 package controller.adm.Tirocinante;
 
 import controller.sessionController.SingSessionContoller;
-import dao.implementation.TirocinioDaoDaoImp;
+import dao.implementation.TirocinioDaoImp;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.OffertaTirocinioDaoImp;
 import model.Azienda;
@@ -70,7 +70,7 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
             System.out.println("sono nel metodo ifSend");
             SingSessionContoller session = SingSessionContoller.getInstance();
             Tirocinante tr = session.getTirocinate(request, response);
-            TirocinioDaoDaoImp dao = new TirocinioDaoDaoImp();
+            TirocinioDaoImp dao = new TirocinioDaoImp();
             boolean status = dao.ifTirocinanteSendRichiesta(tr);
             System.out.println(status);
             if (!status) {

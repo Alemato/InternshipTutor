@@ -3,7 +3,7 @@ package controller.adm.Azienda;
 import controller.baseController;
 import controller.utility.UploadFilePDF;
 import dao.exception.DaoException;
-import dao.implementation.TirocinioDaoDaoImp;
+import dao.implementation.TirocinioDaoImp;
 import model.Tirocinio;
 
 import javax.servlet.RequestDispatcher;
@@ -30,11 +30,11 @@ public class UploadPDFTirocinioFineController extends baseController {
         Part pdfAzienda = request.getPart("PDFAzienda");
         System.out.println("file : "+pdfAzienda);
         if(pdfAzienda!=null){
-            TirocinioDaoDaoImp tirocinioDaoImp = new TirocinioDaoDaoImp();
+            TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
             try {
                 Tirocinio tirocinio = tirocinioDaoImp.getRichiestatrByID(id);
                 tirocinioDaoImp.destroy();
-                TirocinioDaoDaoImp tirocinioDaoImp1 = new TirocinioDaoDaoImp();
+                TirocinioDaoImp tirocinioDaoImp1 = new TirocinioDaoImp();
                 UploadFilePDF uploadFilePDF = new UploadFilePDF();
                 String nomefile = uploadFilePDF.uploadPDF(request, pdfAzienda, 2, tirocinio);
                 tirocinio.setPdfAzienda(nomefile);

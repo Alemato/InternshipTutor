@@ -3,7 +3,7 @@ package controller;
 import controller.sessionController.SingSessionContoller;
 import dao.implementation.AziendaDaoImp;
 import dao.implementation.OffertaTirocinioDaoImp;
-import dao.implementation.TirocinioDaoDaoImp;
+import dao.implementation.TirocinioDaoImp;
 import model.Azienda;
 import model.OffertaTirocinio;
 import model.Tirocinante;

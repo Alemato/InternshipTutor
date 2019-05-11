@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TirocinanteDaoDaoImp extends DaoDataMySQLImpl implements TirocinanteDaoInterface {
+public class TirocinanteDaoImp extends DaoDataMySQLImpl implements TirocinanteDaoInterface {
 
     private PreparedStatement selectTirocinanteById;
     private PreparedStatement selectAllTirocinante;

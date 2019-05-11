@@ -1,7 +1,7 @@
 package controller.adm.Tirocinante;
 
 import controller.sessionController.SingSessionContoller;
-import dao.implementation.TirocinanteDaoDaoImp;
+import dao.implementation.TirocinanteDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Tirocinante;
 import model.User;
@@ -181,7 +181,7 @@ public class UpdateTirocinanteController extends BackEndTrController {
             userdao.update(user);
             userdao.destroy();
 
-            TirocinanteDaoDaoImp daotr = new TirocinanteDaoDaoImp();
+            TirocinanteDaoImp daotr = new TirocinanteDaoImp();
             daotr.setUpdate(tirocinante);
             daotr.destroy();
         }catch (Exception e){
