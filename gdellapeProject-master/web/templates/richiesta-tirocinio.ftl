@@ -44,10 +44,17 @@
 
 
                     <div class="row mb-0 mr-10 ">
+                        <#if erroreNome?? || erroreCognome??>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Nominativo del tirocinante </h4>
+                        <input class="input-modulo col col-sm pl-0 error" type="text" name="Nominativo"
+                               value="${tirocinante.nome} ${tirocinante.cognome}"
+                               placeholder="Nome e Cognome del tirocinante" required>
+                        <#else>
+                            <h4 class="col-auto col-sm-auto pr-10 fs-20">Nominativo del tirocinante </h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="Nominativo"
                                value="${tirocinante.nome} ${tirocinante.cognome}"
                                placeholder="Nome e Cognome del tirocinante" required>
+                        </#if>
                     </div>
 
                     <div class="row mb-0 mr-10">
@@ -55,9 +62,15 @@
                         <input class="input-modulo col-3 col-sm-3 col-md-6 col-lg-7 pl-0" type="text"
                                name="LuogoDiNnascita" value="${tirocinante.luogoDiNascita}"
                                placeholder="Luogo di nascita" required>
+                        <#if erroreProvNascita??>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Prov</h4>
+                        <input class="input-modulo col-1 col-sm pl-0 error" type="text" name="ProvinciaDiNascita"
+                               value="${tirocinante.provinciaDiNascita}" placeholder="XX" required>
+                        <#else>
+                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Prov</h4>
                         <input class="input-modulo col-1 col-sm pl-0" type="text" name="ProvinciaDiNascita"
                                value="${tirocinante.provinciaDiNascita}" placeholder="XX" required>
+                        </#if>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">il</h4>
                         <input class="input-modulo text-center col col-sm pl-0" type="text" name="GiornoDiNascita"
                                value="${giorno}" placeholder="XX" required>
@@ -73,23 +86,43 @@
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Residente in</h4>
                         <input class="input-modulo col-8 col-sm-8 pl-0" type="text" name="LuogoDiResidenza"
                                value="${tirocinante.luogoDiResidenza}" placeholder="Luogo di residenza" required>
+                        <#if erroreProvinciaResidenza??>
+                        <h4 class="col-auto col-sm-auto fs-20 pr-0">Prov (</h4>
+                        <input class="input-modulo text-center col col-sm pl-0 error" type="text"
+                               name="ProvinciaDiResidenza" value="${tirocinante.provinciaDiResidenza}" placeholder="XX"
+                               required>
+                        <h4 class="col-1 col-sm-1 pr-10 fs-20 pl-0">)</h4>
+                        <#else>
                         <h4 class="col-auto col-sm-auto fs-20 pr-0">Prov (</h4>
                         <input class="input-modulo text-center col col-sm pl-0" type="text"
                                name="ProvinciaDiResidenza" value="${tirocinante.provinciaDiResidenza}" placeholder="XX"
                                required>
                         <h4 class="col-1 col-sm-1 pr-10 fs-20 pl-0">)</h4>
+                        </#if>
                     </div>
 
                     <div class="row mb-0 mr-10">
+                        <#if erroreCodiceFiscale??>
+                        <h4 class="col-auto col-sm-auto pr-10 fs-20">Codice fiscale</h4>
+                        <input class="input-modulo col col-sm pl-0 error" type="text" name="CodiceFiscale"
+                               value="${tirocinante.codiceFiscale}" placeholder="Codice fiscale" required>
+                        <#else>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Codice fiscale</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="CodiceFiscale"
                                value="${tirocinante.codiceFiscale}" placeholder="Codice fiscale" required>
+                        </#if>
                     </div>
 
                     <div class="row mb-0 mr-10">
+                        <#if erroreNumeroTelefono??>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20">Telefono</h4>
+                        <input class="input-modulo col col-sm pl-0 error" type="text" name="NumeroTelefono"
+                               value="${tirocinante.telefono}" placeholder="Numero di telefono" required>
+                        <#else>
+                            <h4 class="col-auto col-sm-auto pr-10 fs-20">Telefono</h4>
                         <input class="input-modulo col col-sm pl-0" type="text" name="NumeroTelefono"
                                value="${tirocinante.telefono}" placeholder="Numero di telefono" required>
+                        </#if>
                     </div>
 
                     <h4 class="text-center text-black fs-16 mb-5 mt-15 mr-10">Attuale condizione (barrare la casella -
@@ -143,7 +176,7 @@
 
                     <div class="row mb-25 pl-15 mr-10">
                         <label class="checkbox">
-                            <input type="checkbox" value="<#if ckScuolaAltro == true>1<#else>0</#if>"
+                        <input type="checkbox" value="<#if ckScuolaAltro == true>1<#else>0</#if>"
                                    <#if ckScuolaAltro == true>checked="checked"</#if>
                             <i></i> Scuola o corso di perfezionamento o specializzazione in:
                         </label>
@@ -303,11 +336,11 @@
                     <footer class="mt-50 d-print-none">
                         <button type="submit" form="modulo_richiesta_tirocinante"
                                 class="btn btn-success btn-lg pull-right float-right"><i
-                                    class="fa fa-check"></i> Invia
+                                class="fa fa-check"></i> Invia
                         </button>
                         <button type="reset" form="modulo_richiesta_tirocinante"
                                 class="btn btn-red btn-lg pull-right float-left"><i
-                                    class="fa fa-times"></i> Annulla Modifiche
+                                class="fa fa-times"></i> Annulla Modifiche
                         </button>
                     </footer>
                 </fieldset>

@@ -2,6 +2,7 @@ package controller.adm.Tirocinante;
 
 import controller.baseController;
 import controller.sessionController.SingSessionContoller;
+import controller.utility.Validation;
 import dao.exception.DaoException;
 import dao.implementation.*;
 import model.*;
@@ -17,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import static controller.utility.Validation.isValidEmailAddress;
 
@@ -103,23 +105,44 @@ public class InvioRichiestaTirocinioController extends baseController {
         }
     }
 
-    private void controlloCampiTirocinante(HttpServletRequest request, Tirocinante tirocinante) throws ParseException {
+    private void controlloCampiTirocinante(HttpServletRequest request, HttpServletResponse response, Tirocinante tirocinante) throws ParseException, ServletException, IOException {
 
         String[] nominativo;
         String delimiter = " ";
         nominativo = request.getParameter("Nominativo").split(delimiter);
 
-        if (!(nominativo[0].equals(tirocinante.getNome())))
-            tirocinante.setNome(nominativo[0]);
+        if (!(nominativo[0].equals(tirocinante.getNome()))) {
+            if (Validation.text100(nominativo[0], "Nome").get("valido").equals(true)) {
+                tirocinante.setNome(nominativo[0]);
+            }else {
+                fillModulo(request, response, tirocinante);
+                datamodel.put("erroreNome", "Valore non corretto");
+                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+            }
+        }
 
-        if (!(nominativo[1].equals(tirocinante.getCognome())))
-            tirocinante.setCognome(nominativo[1]);
+        if (!(nominativo[1].equals(tirocinante.getCognome()))) {
+            if (Validation.text100(nominativo[1], "Cognome").get("valido").equals(true)) {
+                tirocinante.setCognome(nominativo[1]);
+            }else {
+                fillModulo(request, response, tirocinante);
+                datamodel.put("erroreCognome", "Valore non corretto");
+                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+            }
+        }
 
         if (!(request.getParameter("LuogoDiNnascita").equals(tirocinante.getLuogoDiNascita())))
             tirocinante.setLuogoDiNascita(request.getParameter("LuogoDiNnascita"));
 
-        if (!(request.getParameter("ProvinciaDiNascita").equals(tirocinante.getProvinciaDiNascita())))
-            tirocinante.setProvinciaDiNascita(request.getParameter("LuogoDiNnascita"));
+        if (!(request.getParameter("ProvinciaDiNascita").equals(tirocinante.getProvinciaDiNascita()))) {
+            if (Validation.text100(request.getParameter("ProvinciaDiNascita"), "Provincia di Residenza").get("valido").equals(true)) {
+                tirocinante.setProvinciaDiNascita(request.getParameter("ProvinciaDiNascita"));
+            } else {
+                fillModulo(request, response, tirocinante);
+                datamodel.put("erroreProvNascita", "Valore non corretto");
+                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+            }
+        }
 
         String stringDataDiNascita = request.getParameter("GiornoDiNascita") + "-" +
                 request.getParameter("MeseDiNascita") + "-" +
@@ -134,14 +157,35 @@ public class InvioRichiestaTirocinioController extends baseController {
         if (!(request.getParameter("LuogoDiResidenza").equals(tirocinante.getLuogoDiResidenza())))
             tirocinante.setLuogoDiResidenza(request.getParameter("LuogoDiNnascita"));
 
-        if (!(request.getParameter("ProvinciaDiResidenza").equals(tirocinante.getProvinciaDiResidenza())))
-            tirocinante.setProvinciaDiResidenza(request.getParameter("ProvinciaDiResidenza"));
+        if (!(request.getParameter("ProvinciaDiResidenza").equals(tirocinante.getProvinciaDiResidenza()))) {
+            if (Validation.text50(request.getParameter("ProvinciaDiResidenza"), "Provincia di Nascita").get("valido").equals(true)) {
+                tirocinante.setProvinciaDiResidenza(request.getParameter("ProvinciaDiResidenza"));
+            }else{
+                fillModulo(request, response, tirocinante);
+                datamodel.put("erroreProvResidenza", "Valore non corretto");
+                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+            }
+        }
 
-        if (!(request.getParameter("CodiceFiscale").equals(tirocinante.getCodiceFiscale())))
-            tirocinante.setCodiceFiscale(request.getParameter("CodiceFiscale"));
+        if (!(request.getParameter("CodiceFiscale").equals(tirocinante.getCodiceFiscale()))) {
+            if (Validation.text100(request.getParameter("CodiceFiscale"), "Codice Fiscale").get("valido").equals(true)) {
+                tirocinante.setCodiceFiscale(request.getParameter("CodiceFiscale"));
+            }else{
+                fillModulo(request, response, tirocinante);
+                datamodel.put("erroreCodiceFiscale", "Valore non corretto");
+                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+            }
+        }
 
-        if (!(request.getParameter("NumeroTelefono").equals(tirocinante.getTelefono())))
-            tirocinante.setTelefono(request.getParameter("NumeroTelefono"));
+        if (!(request.getParameter("NumeroTelefono").equals(tirocinante.getTelefono()))) {
+            if (Validation.text100(request.getParameter("NumeroTelefono"), "Numero di Telefono").get("valido").equals(true)) {
+                tirocinante.setTelefono(request.getParameter("NumeroTelefono"));
+            }else{
+                fillModulo(request, response, tirocinante);
+                datamodel.put("erroreNumeroTelefono", "Valore non corretto");
+                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+            }
+        }
 
         if (!(request.getParameter("CorsoLaurea").equals(""))) {
             if (tirocinante.getCorsoDiLaurea() == null) {
@@ -319,7 +363,7 @@ public class InvioRichiestaTirocinioController extends baseController {
         SingSessionContoller session = SingSessionContoller.getInstance();
         Tirocinante tirocinante = session.getTirocinate(request, response);
         try {
-            controlloCampiTirocinante(request, tirocinante);
+            controlloCampiTirocinante(request, response, tirocinante);
             aggiornoTirocinante(request, response, tirocinante);
             creoTirocinio(request, response, tirocinante);
             response.sendRedirect("/account/moduli");
