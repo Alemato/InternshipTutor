@@ -33,7 +33,7 @@ public class DownloadPDF extends baseController {
 //                + filename + "\"");
             FileInputStream fileInputStream = new FileInputStream(appPath + File.separator + saveDir + File.separator
                     + filename);
-            System.out.println();
+
 
             int i;
             while ((i = fileInputStream.read()) != -1) {

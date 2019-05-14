@@ -141,12 +141,10 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
         }
 
         if (errori.isEmpty()) {
-            System.out.println("Validazione ok");
             return true;
 
         } else {
             refreshPage(request, response, errori);
-            System.out.println("Validazione ko");
             return false;
         }
     }
@@ -177,7 +175,6 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
 
         datamodel.putAll(Utility.AddAllData(request, response, dati));
         datamodel.putAll(errori);
-        System.out.println("ricarico pagina");
         fillModulo(request, response);
 
     }

@@ -104,10 +104,8 @@ public class CreateTutoreUniController extends baseController {
             }
 
             if (map.isEmpty()) {
-               System.out.println("validazione andata a buon fine");
                 return true;
             } else {
-                System.out.println("validazione in errore");
                 refreshPage(request,response,map);
                 return false;
             }
@@ -117,7 +115,6 @@ public class CreateTutoreUniController extends baseController {
     private void refreshPage(HttpServletRequest request,HttpServletResponse response,Map<String,Object> errori) throws IOException,ServletException,DaoException
     {
 
-        System.out.println("Errori validazine" + errori);
         List<String> dati = new ArrayList<>();
         if(!(errori.containsKey("ErroreNomeTutote")))
         {
@@ -134,10 +131,9 @@ public class CreateTutoreUniController extends baseController {
         if(!(errori.containsKey("ErroreTelefonoTutore"))) {
             dati.add("Numero_telefono_tutore");
         }
-        System.out.println("Dati ricaricati");
         datamodel.putAll(Utility.AddAllData(request,response,dati));
 
-        System.out.println(Utility.AddAllData(request,response,dati));
+
         datamodel.putAll(errori);
 
         AdminFillTable page = new AdminFillTable(datamodel,getServletContext(),request,response);

@@ -122,10 +122,8 @@ public class ModificaTutoreController extends baseController {
            }
 
            if (errori.isEmpty()) {
-               System.out.println("Validazione NON in errore");
                return true;
            } else {
-               System.out.println("Validazione in errore");
                refreshPage(request, response, errori);
                return false;
            }
@@ -178,7 +176,6 @@ public class ModificaTutoreController extends baseController {
             tutore.setEmail(request.getParameter("email"));
             tutore.setTelefono(request.getParameter("telefono"));
 
-            System.out.println(tutore.toString());
 
             TutoreUniversitarioDaoImp dao = new TutoreUniversitarioDaoImp();
            dao.UpdateTutoreUni(tutore);

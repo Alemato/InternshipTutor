@@ -268,17 +268,14 @@ public class FillGestioniModuliTirocini {
             // add the date to fill table OfferteTirocinio
             List<Tirocinio> richisteTr = getTirociniPendenti();
             data.put("Richieste", getCampiTabelle(richisteTr));
-            System.out.println(data.get("Richieste"));
 
             // add the date to fill table OfferteTirocinio
             List<Tirocinio> TrRifiutati = getTirociniRifiutati();
             data.put("Rifiutati", getCampiTabelle(TrRifiutati));
-            System.out.println(data.get("Rifiutati"));
 
             // add the date to fill table OfferteTirocinio
             List<Tirocinio> TrAttivi = getTirociniAttivi();
             data.put("Attive", getCampiTabelle(TrAttivi));
-            System.out.println(data.get("Attive"));
 
 
 
@@ -286,7 +283,6 @@ public class FillGestioniModuliTirocini {
             // add the data to fill table Gestione tirocinii Conclusi
             List<Tirocinio> trconclusi = getTirociniConclusi();
             data.put("TirociniConclusi", getCampiTabelle(trconclusi));
-            System.out.println(data.get("TirociniConclusi"));
 //            Warning per il successo di una operazione
             data.put("WarningSuccess",warning);
             datamodel.putAll(data);
@@ -303,24 +299,20 @@ public class FillGestioniModuliTirocini {
             // add the date to fill table OfferteTirocinio
             List<Tirocinio> richisteTr = getTirociniPendenti();
             data.put("Richieste", getCampiTabelle(richisteTr));
-            System.out.println(data.get("Richieste"));
 
             // add the date to fill table OfferteTirocinio
             List<Tirocinio> TrRifiutati = getTirociniRifiutati();
             data.put("Rifiutati", getCampiTabelle(TrRifiutati));
-            System.out.println(data.get("Rifiutati"));
 
             // add the date to fill table OfferteTirocinio
             List<Tirocinio> TrAttivi = getTirociniAttivi();
             data.put("Attive", getCampiTabelle(TrAttivi));
-            System.out.println(data.get("Rifiutati"));
 
 
 
             // add the data to fill table Gestione tirocinii Conclusi
             List<Tirocinio> trconclusi = getTirociniConclusi();
             data.put("TirociniConclusi", getCampiTabelle(trconclusi));
-            System.out.println(data.get("TirociniConclusi"));
 //            Warning per il successo di una operazione
 
             data.put("WarningInsuccess", warning);
@@ -337,24 +329,20 @@ public class FillGestioniModuliTirocini {
                 // add the date to fill table OfferteTirocinio
                 List<Tirocinio> richisteTr = getTirociniPendenti();
                 data.put("Richieste", getCampiTabelle(richisteTr));
-                System.out.println(data.get("Richieste"));
 
                 // add the date to fill table OfferteTirocinio
                 List<Tirocinio> TrRifiutati = getTirociniRifiutati();
                 data.put("Rifiutati", getCampiTabelle(TrRifiutati));
-                System.out.println(data.get("Rifiutati"));
 
                 // add the date to fill table OfferteTirocinio
                 List<Tirocinio> TrAttivi = getTirociniAttivi();
                 data.put("Attive", getCampiTabelle(TrAttivi));
-                System.out.println(data.get("Rifiutati"));
 
 
 
                 // add the data to fill table Gestione tirocinii Conclusi
                 List<Tirocinio> trconclusi = getTirociniConclusi();
                 data.put("TirociniConclusi", getCampiTabelle(trconclusi));
-                System.out.println(data.get("TirociniConclusi"));
 //            Warning per il successo di una operazione
 
                 datamodel.putAll(data);

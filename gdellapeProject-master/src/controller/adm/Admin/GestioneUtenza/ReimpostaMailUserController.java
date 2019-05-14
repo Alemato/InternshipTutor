@@ -101,7 +101,6 @@ public class ReimpostaMailUserController extends baseController {
         UserDaoImp dao =new UserDaoImp();
         dao.update(user);
         dao.destroy();
-        System.out.println("Cambio Email andato bene");
 
     }
 
@@ -124,12 +123,10 @@ public class ReimpostaMailUserController extends baseController {
 
             errori.put("ErroreEmail", "Email gia presente");
         }
-        System.out.println(errori.toString());
 
         if (errori.isEmpty()) {
             return true;
         } else {
-            System.out.println("Validazione non validada ricarico la pagina");
             refreshPage(request, response, errori, user);
             return false;
         }

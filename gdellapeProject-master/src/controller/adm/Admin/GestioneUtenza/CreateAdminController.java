@@ -55,7 +55,6 @@ public class CreateAdminController extends baseController {
             if (validationUserAndAdmin(request, response)) {
                 storeUser(request,response);
                 insertAdmin(request,response);
-                System.out.println("vali");
                AdminFillTable page = new AdminFillTable(datamodel,getServletContext(),request,response);
                page.makeSuccessGetAdmin("Il nuovo admin &egrave; stato inserito correttamente");
             }
@@ -165,7 +164,6 @@ public class CreateAdminController extends baseController {
 
     private void refreshPage(HttpServletRequest request,HttpServletResponse response,Map<String,Object> errori)throws IOException,ServletException,DaoException
     {
-        System.out.println("Sto ricaricando l'errore");
 
         List<String> dati = new ArrayList<>();
         if(!(errori.containsKey("ErroreEmail")))
@@ -188,8 +186,6 @@ public class CreateAdminController extends baseController {
         datamodel.putAll(Utility.AddAllData(request,response,dati));
         //Carico gli avvisi per gli errori trovati
         datamodel.putAll(errori);
-        System.out.println("datamodel create admin");
-        System.out.println(datamodel.toString());
 
         AdminFillTable page = new AdminFillTable(datamodel,getServletContext(),request,response);
         page.makeInsuccessGetAdmin("Errore inserimento del nuovo admin");
