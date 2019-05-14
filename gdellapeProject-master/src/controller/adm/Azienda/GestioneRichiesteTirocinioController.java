@@ -95,8 +95,6 @@ public class GestioneRichiesteTirocinioController extends baseController {
         String statoAc="";
         String statoDe="";
         for (String parametro: parametri){
-            System.out.println("processo parametro: ");
-            System.out.println(parametro);
             String[] parts1 = parametro.split("-");
             Tirocinio tirocinio= new Tirocinio();
             TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
@@ -192,7 +190,6 @@ public class GestioneRichiesteTirocinioController extends baseController {
                 String[] parts1 = primo.split("-");
                 String[] parts2 = secondo.split("-");
                 if ((!parts1[0].equals(parts2[0])) && (parts1[1].equals(parts2[1])) && (parts1[2].equals(parts2[2]))){
-                    System.out.println("errore " + primo +" uguale" + secondo);
                     // RIPORTO ERRORE
                     datamodel.put("errore","Errore nella richiesta!!!<br>Se errore persiste contattare un amministratore.");
                     creaOggetti(request, response,azienda);
@@ -200,7 +197,6 @@ public class GestioneRichiesteTirocinioController extends baseController {
                     break;
                 }
             }
-            System.out.println(parametri);
             try {
                 processaPost(request, response, parametri);
             } catch (DaoException e) {

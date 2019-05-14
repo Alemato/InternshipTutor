@@ -52,14 +52,11 @@ public class LoginController extends HttpServlet {
 
     private String urlRIC(HttpServletRequest request) {
         String url = (String) request.getSession().getAttribute("URI");
-        System.out.println("URI: " + url);
         return url;
     }
 
     private int idTirocinio(HttpServletRequest request) {
         int tirocinio = (int) request.getSession().getAttribute("Tirocinio");
-        System.out.println("id tirocinio");
-        System.out.println(tirocinio);
         request.getSession(false).invalidate();
         return tirocinio;
     }
@@ -114,8 +111,6 @@ public class LoginController extends HttpServlet {
                 try {
                     if (richiesta) {
                         request.getSession().setAttribute("Tirocinio", tirocinio);
-                        System.out.println("TirocinioSettato");
-                        System.out.println(request.getSession().getAttribute("Tirocinio"));
                         response.sendRedirect("/sceltarichiesta?Tirocinio=" + request.getSession().getAttribute("Tirocinio"));
 
                     } else if (!url.equals("")) {

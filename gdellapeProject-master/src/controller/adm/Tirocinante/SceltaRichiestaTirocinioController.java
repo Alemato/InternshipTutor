@@ -1,5 +1,6 @@
 package controller.adm.Tirocinante;
 
+import controller.baseController;
 import controller.sessionController.SingSessionContoller;
 import dao.implementation.TirocinioDaoImp;
 import dao.implementation.AziendaDaoImp;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SceltaRichiestaTirocinioController extends BackEndTrController {
+public class SceltaRichiestaTirocinioController extends baseController {
 
     private void er500(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/500");
@@ -24,7 +25,6 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
 
     private void creoSessione(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Integer idoftr = Integer.parseInt(request.getParameter("Tirocinio"));
-        System.out.println(idoftr);
         request.getSession().setAttribute("Tirocinio", idoftr);
         response.sendRedirect("/login");
 
@@ -54,10 +54,8 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
     private void Richiesta(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (!(session.isValidSession(request))) {
-            System.out.println("sessione non valida, quindi la creo");
             creoSessione(request, response);
         } else if (session.isTirocinante(request)) {
-            System.out.println("sessione validae di tipo Tirocinante");
             ifsend(request, response);
         } else {
             notTirocinante(request, response);
@@ -67,14 +65,11 @@ public class SceltaRichiestaTirocinioController extends BackEndTrController {
 
     private void ifsend(HttpServletRequest request, HttpServletResponse response) {
         try {
-            System.out.println("sono nel metodo ifSend");
             SingSessionContoller session = SingSessionContoller.getInstance();
             Tirocinante tr = session.getTirocinate(request, response);
             TirocinioDaoImp dao = new TirocinioDaoImp();
             boolean status = dao.ifTirocinanteSendRichiesta(tr);
-            System.out.println(status);
             if (!status) {
-                System.out.println("non hai richieste pendenti o attive");
                 String idOfferta = request.getParameter("Tirocinio");
                 response.sendRedirect("/listaofferte/tirocinio/inviorichiesta?idOffertaTirocinio=" + idOfferta);
 

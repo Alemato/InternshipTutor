@@ -72,7 +72,6 @@ public class ListaOfferteTutoraggiController extends baseController {
                 calIn.add(Calendar.YEAR, -500);
                 datainizio = calIn.getTime();
             }
-            System.out.println(datainizio);
 
             if (request.getParameter("datafine") != null && !request.getParameter("datafine").equals("")) {
                 sdatafine = request.getParameter("datafine");
@@ -84,7 +83,6 @@ public class ListaOfferteTutoraggiController extends baseController {
                 calFin.add(Calendar.YEAR, 500);
                 datafine = calFin.getTime();
             }
-            System.out.println(datafine);
 
             List<OffertaTirocinio> allOfferte = offertaTirocinioDaoImp.getAllOffertatr();
             List<OffertaTirocinio> offerte = new ArrayList<>();

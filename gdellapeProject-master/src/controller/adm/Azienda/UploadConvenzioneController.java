@@ -24,7 +24,6 @@ public class UploadConvenzioneController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
         Part convenzione = request.getPart("filetoupload");
-        System.out.println("part convenzione: "+convenzione);
         if(convenzione!=null){
             SingSessionContoller session = SingSessionContoller.getInstance();
             Azienda azienda = session.getAzienda(request, response);

@@ -537,7 +537,6 @@ public class RegistrazioneController extends baseController {
                 AziendaDaoImp aziendaDaoImp1 = new AziendaDaoImp();
                 aziendaDaoImp1.deleteAzienda(azienda);
             }catch (DaoException ex){
-                System.out.println("NON esiste Account Azienda da eliminare");
             }
             // posso distrugere
             UserDaoImp userDaoImp1 = new UserDaoImp();
@@ -595,7 +594,6 @@ public class RegistrazioneController extends baseController {
                 TirocinanteDaoImp tirocinanteDaoImp1= new TirocinanteDaoImp();
                 tirocinanteDaoImp1.delete(tirocinante);
             }catch (DaoException ex){
-                System.out.println("NON esiste Account Azienda da eliminare");
             }
             // posso distrugere
             UserDaoImp userDaoImp1 = new UserDaoImp();
@@ -663,31 +661,23 @@ public class RegistrazioneController extends baseController {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println(" ");
         Enumeration<String> params = request.getParameterNames();
         while(params.hasMoreElements()){
             String paramName = params.nextElement();
-            System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
         }
         if(isLogged(request)){
             response.sendRedirect("/home");
         }else {
             if(request.getParameterMap().containsKey("Email") && request.getParameterMap().containsKey("Password") && request.getParameterMap().containsKey("ConfermaPassword") && request.getParameterMap().containsKey("Tipologia")){
                 if(request.getParameterMap().containsKey("Nome") || request.getParameterMap().containsKey("Cognome") || request.getParameterMap().containsKey("LuogoNascita") || request.getParameterMap().containsKey("ProvinciaNascita") || request.getParameterMap().containsKey("DataNascita") || request.getParameterMap().containsKey("LuogoResidenza") || request.getParameterMap().containsKey("ProvinciaResidenza") || request.getParameterMap().containsKey("CodiceFiscale")|| request.getParameterMap().containsKey("NumeroTelefono")){
-                    System.out.println("richiesta di tipo Tirocinante, variabili ricervute di entrambi i step");
                     if(primoStep(request)){
-                        System.out.println("prima parte giusta controllo la seconda");
                         if(secondoStepTirocinante(request)){
-                            System.out.println("la prima parte è giusta, la seconda anche quindi carico i dati");
                             try {
                                 caricamentoTirocinante();
 
                                 HttpSession sessionFalse = request.getSession(false);
                                 if (sessionFalse != null) {
                                     if (sessionFalse.getAttribute("Tirocinio") != null) {
-                                        System.out.println("Il Tirocinante Proviene da una richiesta di tirocinio");
                                         response.sendRedirect("/login");
                                     }
                                 }else {
@@ -697,27 +687,19 @@ public class RegistrazioneController extends baseController {
                                 e.printStackTrace();
                                 deleteAccountTirocinante();
                                 datamodel.put("ErroreCaricamentoDati", true);
-                                System.out.println("Errore nel caricamento dati");
                                 TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
                             }
 
                         } else {
-                            System.out.println("la prima parte è giusta, e devo caricare la seconda per il Tirocinante perchè è sbagliata");
-                            System.out.println("datamodel: " + datamodel);
                             TemplateController.process("registrazione_step2_tirocinante.ftl", datamodel, response, getServletContext());
                         }
                     } else {
-                        System.out.println("la prima parte è presente ma sbagliata, cancello ciò che ho ricevuto dal secondo modulo");
-                        System.out.println("datamodel: " + datamodel);
                         TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
                     }
 
                 } else if(request.getParameterMap().containsKey("NomeAzienda") || request.getParameterMap().containsKey("SedeLegale")|| request.getParameterMap().containsKey("PartitaIVA")|| request.getParameterMap().containsKey("NomeRappresentante") || request.getParameterMap().containsKey("CognomeRappresentante") || request.getParameterMap().containsKey("NomeResponsabile") || request.getParameterMap().containsKey("CognomeResponsabile") || request.getParameterMap().containsKey("NumeroTelefonoResponsabile")|| request.getParameterMap().containsKey("EmailResponsabile")){
-                    System.out.println("richiesta di tipo Azienda, variabili ricervute di entrambi i step");
                     if(primoStep(request)){
-                        System.out.println("prima parte giusta controllo la seconda");
                         if(secondoStepAzienda(request)){
-                            System.out.println("la prima parte è giusta, la seconda anche quindi carico i dati");
                             try {
                                 caricoAccountAzienda();
                                 response.sendRedirect("/home");
@@ -725,42 +707,28 @@ public class RegistrazioneController extends baseController {
                                 e.printStackTrace();
                                 deleteAccountAzienda();
                                 datamodel.put("ErroreCaricamentoDati", true);
-                                System.out.println("Errore nel caricamento dati");
                                 TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
                             }
 
                         } else {
-                            System.out.println("la prima parte è giusta, e devo caricare la seconda per Azienda perchè è sbagliata");
-                            System.out.println("datamodel: " + datamodel);
                             TemplateController.process("registrazione_step2_azienda.ftl", datamodel, response, getServletContext());
                         }
                     } else {
-                        System.out.println("la prima parte è presente ma sbagliata, cancello ciò che ho ricevuto dal secondo modulo");
-                        System.out.println("datamodel: " + datamodel);
                         TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
                     }
                 } else {
-                    System.out.println("prima parte presente, seconda parte non presente manco na variabile");
                     if(primoStep(request)){
                         if(request.getParameter("Tipologia").equals("Ente-Azienda")){
-                            System.out.println("la prima parte è giusta, e devo caricare la seconda per Azienda");
-                            System.out.println("datamodel: " + datamodel);
                             TemplateController.process("registrazione_step2_azienda.ftl", datamodel, response, getServletContext());
                         } else {
-                            System.out.println("la prima parte è giusta, e devo caricare la seconda per tirocinante");
-                            System.out.println("datamodel: " + datamodel);
                             TemplateController.process("registrazione_step2_tirocinante.ftl", datamodel, response, getServletContext());
                         }
                     } else {
-                        System.out.println("la prima parte è presente ma sbagliata");
-                        System.out.println("datamodel: " + datamodel);
                         TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
                     }
                 }
             } else {
-                System.out.println("richiesta è errata");
                 primoStep(request);
-                System.out.println("datamodel: " + datamodel);
                 TemplateController.process("registrazione.ftl", datamodel, response, getServletContext());
             }
         }

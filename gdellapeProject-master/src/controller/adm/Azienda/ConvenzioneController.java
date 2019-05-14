@@ -45,18 +45,14 @@ public class ConvenzioneController extends baseController {
                 //presente.set(2018,Calendar.SEPTEMBER,2);
                 Date dataoggi = presente.getTime();
                 if (!scaduto) {
-                    System.out.println("la richiesta è di stampa o altro");
                     richiestaStampaModullo(dataoggi, response, request);
                 } else {
-                    System.out.println("la richiesta è di tipo UPDATE");
                     richiestaUpdate(dataoggi, response);
                 }
             } else {
-                System.out.println("Errore ha una data di convenzione ma non ha una durata");
                 er500(request, response);
             }
         } else {
-            System.out.println("la richiesta è di tipo Create");
             Calendar presente = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
             richiestaUpdate(presente.getTime(), response);
         }
@@ -66,7 +62,6 @@ public class ConvenzioneController extends baseController {
         if (azienda.getPathPDFConvenzione() == null) {
             richiestaUpdate(dataoggi, response);
         } else {
-            System.out.println("rispondi con il file");
             PdfView pdfView = new PdfView(this.tipoAccount, "Convenzione", getServletContext());
             String url = pdfView.createURLConvenzione(this.azienda);
             datamodel.put("Url", url);
@@ -76,7 +71,6 @@ public class ConvenzioneController extends baseController {
     }
 
     private void richiestaUpdate(Date dataoggi, HttpServletResponse response) {
-        System.out.println("richiesta agg convenzione");
         datamodel.put("notview", true);
         datamodel.put("azienda", azienda);
         datamodel.put("data", dataoggi);
@@ -106,12 +100,10 @@ public class ConvenzioneController extends baseController {
                     this.gestioneRichiesta(response, request);
                 }
             } else {
-                System.out.println("Uno o più dati sono vuoti");
                 datamodel.put("ErroreDati", "Uno o più dati sono vuoti");
                 this.gestioneRichiesta(response, request);
             }
         } else {
-            System.out.println("Mancano dati");
             datamodel.put("ErroreDati", "Uno o più dati sono mancanti") ;
             this.gestioneRichiesta(response, request);
         }
@@ -125,28 +117,22 @@ public class ConvenzioneController extends baseController {
             if (azienda.getDurataConvenzione() != null) {
                 Map<String, Object> scadenza = Validation.scadenza(azienda.getDataConvenzione(), azienda.getDurataConvenzione());
                 boolean scaduto = (boolean) scadenza.get("scaduto");
-                System.out.println("è scaduto ? "+scaduto);
                 if (!scaduto) {
                     if (azienda.getPathPDFConvenzione() == null){
-                        System.out.println("la richiesta è di tipo UPDATE ");
                         creaOggeti(request, response);
                         processaRichiestaUpdate(request, response);
                     }else {
-                        System.out.println("la richiesta non è valida in quanto non può aggiornare perche non è scaduta e ha il pdf");
                         er500(request, response);
                     }
                 } else {
-                    System.out.println("la richiesta è di tipo Creazione");
                     creaOggeti(request, response);
                     processaRichiestaUpdate(request, response);
                 }
             } else {
-                System.out.println("C'è un problema come fa ad avere una data senza una durata?");
                 er500(request, response);
             }
         } else {
             // ALLORA SE E NULLA DEVO CREARE UNA CONVENZIONE
-            System.out.println("la richiesta è di tipo creazione");
             creaOggeti(request, response);
             processaRichiestaUpdate(request, response);
         }

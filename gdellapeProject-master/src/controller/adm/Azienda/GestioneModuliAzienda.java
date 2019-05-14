@@ -161,7 +161,6 @@ public class GestioneModuliAzienda {
             Boolean scaduto = (Boolean) scadenza.get("scaduto");
             //presente.set(2018,Calendar.SEPTEMBER,3);
             //scaduto = false;
-            System.out.println("data convenzione: " + azienda.getDataConvenzione() + " durata: " + azienda.getDurataConvenzione() + " scade il " + passato.getTime() + " oggi e" + presente.getTime() + " e scaduta: " + scaduto);
 
             //if (presente.before(passato)){
             if (!scaduto) {
@@ -173,7 +172,6 @@ public class GestioneModuliAzienda {
                 long diff = millis2 - millis1;
 
                 long diffDays = diff / (24 * 60 * 60 * 1000);
-                System.out.println("In days: " + diffDays + " days.");
                 int ggAllaScadenza = (int) diffDays;
                 datamodel.put("GiorniScadenza", ggAllaScadenza);
                 datamodel.put("ConvenzioneScaduta", false);
@@ -188,7 +186,6 @@ public class GestioneModuliAzienda {
         for (String param : parametriFIN) {
             String[] parts = param.split("-");
             for (String part: parts) {
-                System.out.println(part);
             }
             String p = request.getParameter(param);
             String[] nomeParts= parts[0].split("fin_");
@@ -219,9 +216,7 @@ public class GestioneModuliAzienda {
             if (!error) {
                 if ((tirocinante.getNome().equals(parts[0].split("fin_")[1])) && (tirocinante.getCognome().equals(parts[1]))) {
                     if (tiro.getTirocinante().equals(tirocinante.getIDTirocinante())) {
-                        System.out.println("Si coincide");
                         tiro.setStato(2);
-                        System.out.println("lo stato: " + tiro.getStato());
                         try {
                             TirocinioDaoImp daoTiro = new TirocinioDaoImp();
                             daoTiro.updateTirocinio(tiro);
@@ -263,7 +258,6 @@ public class GestioneModuliAzienda {
                 parametri.add(key);
             }
         }
-        System.out.println(parametri);
         aggiornaFini(parametri);
         this.get();
     }

@@ -75,9 +75,6 @@ public class PdfView {
         Boolean riuscito = d.DownloadPDF(request, response, filename, saveDir);
         if (!riuscito){
             errorNotFound = true;
-            System.out.println("non trovo pdf");
-            System.out.println("nome file: "+ filename);
-            System.out.println("percorso file; "+ saveDir);
         }
     }
 
@@ -142,7 +139,6 @@ public class PdfView {
                         this.trovato = true;
                     } catch (DaoException e) {
                         this.errorNotFound = true;
-                        System.out.println("tirocinio non trovato");
                     }
 
                     // TEST per vedere se l'Azienda e quella giusta
@@ -157,13 +153,11 @@ public class PdfView {
                             for(OffertaTirocinio offertaTirocinio : offertaTirocinios){
                                 if(this.tirocinio.getOffertaTirocinio().equals(offertaTirocinio.getIDOffertaTirocinio())){
                                     this.trovato = true;
-                                    System.out.println("tirocinio trovato Azienda");
                                     break;
                                 }
                             }
                         } catch (DaoException e) {
                             this.errorNotFound = true;
-                            System.out.println("tirocinio non trovato Azienda");
                         }
                     }
                     // TEST per verdere se il tirocinante e quello giusto
@@ -171,19 +165,15 @@ public class PdfView {
                         SingSessionContoller session = SingSessionContoller.getInstance();
                         Tirocinante tirocinante = session.getTirocinate(request, response);
                         this.trovato = tirocinante.getIDTirocinante().equals(this.tirocinio.getTirocinante());
-                        System.out.println("tirocinio stato " + this.trovato);
                     }
                 } else {
                     this.errorNotFound = true;
-                    System.out.println("non id");
                 }
             } else {
                 this.accessoProibito = true;
-                System.out.println("account non diverso da 0");
             }
             inviaRisposta(response, request);
         }else {
-            System.out.println("La richiesta non è di tipo: RichiestaTirocinio o FineTirocinioAzienda o Segreteria ");
             RequestDispatcher dispatcher = this.context.getRequestDispatcher("/500");
             dispatcher.forward(request, response);
         }
@@ -228,7 +218,6 @@ public class PdfView {
             // Carico risposta
             inviaRisposta(response, request);
         } else {
-            System.out.println("La richiesta non è di tipo: Convenzione");
             RequestDispatcher dispatcher = this.context.getRequestDispatcher("/500");
             dispatcher.forward(request, response);
         }

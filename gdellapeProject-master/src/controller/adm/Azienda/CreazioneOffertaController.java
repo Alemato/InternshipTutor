@@ -346,9 +346,7 @@ public class CreazioneOffertaController extends baseController {
                 Enumeration<String> params = request.getParameterNames();
                 while (params.hasMoreElements()) {
                     String paramName = params.nextElement();
-                    System.out.println("Parameter Name - " + paramName + ", Value - " + request.getParameter(paramName));
                 }
-                System.out.println("esegui post e salva i dati");
                 erroriPost(request, response, session);
             } else {
                 er500(request, response);

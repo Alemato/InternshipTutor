@@ -24,13 +24,10 @@ public class ResetController extends baseController {
             UserDaoImp user = new  UserDaoImp();
             try {
                 String token = request.getParameter("Token");
-                System.out.println(token);
                 User users = user.getUserByToken(token);
-                System.out.println(users.getToken());
                 if (users.getToken().equals(token)){
                     datamodel.put("token", token);
                     TemplateController.process("reset-pwd.ftl", datamodel,response,getServletContext());
-                    System.out.println("token valido");
                     user.destroy();
                 } else {
                     errore.add("2");
@@ -38,14 +35,12 @@ public class ResetController extends baseController {
 
                     TemplateController.process("richiesta-reset-pwd.ftl", datamodel, response, getServletContext());
                     user.destroy();
-                    System.out.println("token non valido");
                 }
             } catch (DaoException e) {
                 e.printStackTrace();
             }
         }else {
             TemplateController.process("richiesta-reset-pwd.ftl", datamodel, response, getServletContext());
-            System.out.println("non token");
         }
 
     }
@@ -80,7 +75,6 @@ public class ResetController extends baseController {
                 }
             } catch (DaoException e) {
                 e.printStackTrace();
-                System.out.println("errore");
             }
         } else
             if (request.getParameterMap().containsKey("New_password") && request.getParameterMap().containsKey("Rep_password") && request.getParameterMap().containsKey("Token")){

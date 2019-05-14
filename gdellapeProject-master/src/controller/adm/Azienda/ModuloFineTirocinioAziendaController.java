@@ -125,10 +125,8 @@ public class ModuloFineTirocinioAziendaController extends baseController {
                     Tirocinio tirocinio = tirocinioDaoImp.getRichiestatrByID(Integer.parseInt(request.getParameter("id")));
                     tirocinioDaoImp.destroy();
                     if (tirocinio.getPdfAzienda() == null) {
-                        System.out.println(request.getParameter("id"));
                         processaRichiesta(request, response, session);
                     } else {
-                        System.out.println("rispondi con il file");
                         response.sendRedirect("/account/moduli/tirocinio?id="+tirocinio.getIDTirocinio());
                     }
                 } catch (DaoException e) {

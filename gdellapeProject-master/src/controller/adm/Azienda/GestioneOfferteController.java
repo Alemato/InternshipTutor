@@ -37,13 +37,11 @@ public class GestioneOfferteController extends baseController {
             offertaTirocinioDaoImp.destroy();
             datamodel.put("listaOfferte", listOfferte);
         } catch (DaoException e) {
-            System.out.println("non ha offerte");
         }
         TemplateController.process("GestioneOfferteAzienda.ftl", datamodel, response, getServletContext());
     }
 
     private void disattivaOfferta(Integer idOfferta) throws DaoException {
-        System.out.println("ID OFFERTA: "+ idOfferta);
         OffertaTirocinioDaoImp offertaTirocinioDaoImp = new OffertaTirocinioDaoImp();
         OffertaTirocinioDaoImp offertaTirocinioDaoImp1 = new OffertaTirocinioDaoImp();
         OffertaTirocinio offertaTirocinio = offertaTirocinioDaoImp.getOffertatrByID(idOfferta);
@@ -85,14 +83,11 @@ public class GestioneOfferteController extends baseController {
                     parametri.add(key);
                 }
             }
-            System.out.println(parametri);
             for (int i = 0; i < parametri.size(); i++) {
                 String primo = parametri.get(i);
                 String[] parts1 = primo.split("Disattiva_");
-                System.out.println(parts1[1]);
                 parametriVeri.add(parts1[1]);
             }
-            System.out.println(parametriVeri);
             disattivazione(parametriVeri, request, response);
         } else {
             er403(request, response);

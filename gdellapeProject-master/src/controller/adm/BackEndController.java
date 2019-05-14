@@ -13,7 +13,6 @@ import java.io.IOException;
 public class BackEndController extends baseController {
 
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("sto su BackEndController");
         try{  super.init(request,response);
 
             switch ((int)request.getAttribute("tipo")) {

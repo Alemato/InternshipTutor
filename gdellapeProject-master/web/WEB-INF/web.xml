@@ -65,15 +65,6 @@
     <!-- /filtri -->
 
     <!-- Servlet di home -->
-    <servlet>
-        <servlet-name>con</servlet-name>
-        <servlet-class>controller.data</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>con</servlet-name>
-        <url-pattern>/con</url-pattern>
-        <url-pattern>/Con</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>login1</servlet-name>
@@ -462,17 +453,6 @@
         <url-pattern>/Reset</url-pattern>
     </servlet-mapping>
 
-
-    <servlet>
-        <servlet-name>impostazionetr</servlet-name>
-        <servlet-class>controller.adm.Tirocinante.UpdateTirocinanteController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>impostazionetr</servlet-name>
-        <url-pattern>/impostazioneTirocinante</url-pattern>
-        <url-pattern>/impostazionetirocinante</url-pattern>
-
-    </servlet-mapping>
     <!-- TODO eliminare SETPWD-->
     <servlet>
         <servlet-name>SetPWD</servlet-name>
@@ -944,15 +924,7 @@
     <!-- end servelt account admin-->
 
 
-    <servlet>
-        <servlet-name>data</servlet-name>
-        <servlet-class>controller.data</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>data</servlet-name>
-        <url-pattern>/Data</url-pattern>
-        <url-pattern>/data</url-pattern>
-    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>Dashboard</servlet-name>

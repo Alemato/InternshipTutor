@@ -90,8 +90,6 @@ public class GestioneDettagliTirocinio extends baseController {
             tirocinio = ritornaTirocinio(idTirocinio);
             tirocinio.setStato(4);
             TirocinioDaoImp daoTirocinio = new TirocinioDaoImp();
-            System.out.println("Tirocinio votato");
-            System.out.println(tirocinio);
             daoTirocinio.updateTirocinio(tirocinio);
             daoTirocinio.destroy();
 

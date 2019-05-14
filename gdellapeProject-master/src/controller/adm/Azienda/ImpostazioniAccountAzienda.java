@@ -30,7 +30,7 @@ public class ImpostazioniAccountAzienda {
     private Boolean sessionescaduta;
     private Boolean errori;
 
-    public void finalize(){System.out.println("object is garbage collected");}
+    public void finalize(){}
 
     public ImpostazioniAccountAzienda(HttpServletRequest request, HttpServletResponse response, ServletContext context, Map<String, Object> datamodel){
         this.datamodel = datamodel;
@@ -65,8 +65,6 @@ public class ImpostazioniAccountAzienda {
         SingSessionContoller session = SingSessionContoller.getInstance();
         this.azienda = ritornaAzienda(session, request, response);
         this.user = ritornUser(azienda);
-        System.out.println("Azienda: " + azienda.toString());
-        System.out.println("User: " + user.toString());
     }
 
     private void chekErrori(){
@@ -99,27 +97,22 @@ public class ImpostazioniAccountAzienda {
 
 
     private void changeEmail(String email, String emailRipetuta){
-        System.out.println("le email inserite sono " + email + " " + emailRipetuta);
         String emailAttuleDB = user.getEmail();
         if (email.equals(emailRipetuta)){
             if(isValidEmailAddress(email)) {
                 if(!emailAttuleDB.equals(email)) {
-                    System.out.println("Modifico l' email ");
                     user.setEmail(email); // setto la nuova email
                     checkSessioneAndModifica(); // cambio le flag
                 } else{
-                    System.out.println("l'email attuale coincide con quella del DB");
                     String messaggio = HtmlEscape.escapeHtml5("l'email inserita coincide con quella del DB");
                     datamodel.put("MesWarningEmail", messaggio);
                 }
             } else{
-                System.out.println("l'email non è valida");
                 String messaggio = HtmlEscape.escapeHtml5("l'email non è valida");
                 datamodel.put("MesErrorEmailValidation", messaggio);
                 chekErrori();
             }
         } else{
-            System.out.println("l'email nuova non coincide con l'altra");
             String messaggio = HtmlEscape.escapeHtml5("l'email nuova non coincide con l'altra");
             datamodel.put("MesErrorEmail", messaggio);
             chekErrori();
@@ -127,7 +120,6 @@ public class ImpostazioniAccountAzienda {
     }
 
     private void changePassword(String password, String passwordRipetuta, String passwordAttuale){
-        System.out.println("le pwd inserite sono " + password + " " + passwordRipetuta);
 
         //String passwordAttualeDB = user.getPassword();
         //if (passwordAttualeDB.equals(passwordAttuale)){
@@ -137,22 +129,18 @@ public class ImpostazioniAccountAzienda {
                 if(!SecurityHash.equals(password, user)){
                     //user.setEmail(password); // setto la nuova password
                     user.setPassword(SecurityHash.SetHash(password));
-                    System.out.println("Modifico la pwd");
                     checkSessioneAndModifica(); // cambio le flag
                 }else {
-                    System.out.println("la password nuova è identica alla Attuale");
                     String messaggio = HtmlEscape.escapeHtml5("la password nuova è identica alla Attuale");
                     datamodel.put("MesWarningPWD", messaggio);
                 }
 
             } else {
-                System.out.println("la password nuova non coincide con l'altra");
                 String messaggio = HtmlEscape.escapeHtml5("la password nuova non coincide con l'altra");
                 datamodel.put("MesErrorValidationPWD", messaggio);
                 chekErrori();
             }
         }else {
-            System.out.println("la password attuale non coincide con quella del DB");
             String messaggio = HtmlEscape.escapeHtml5("la password attuale non coincide con quella del DB");
             datamodel.put("MesErrorPWD", messaggio);
             chekErrori();
@@ -161,14 +149,11 @@ public class ImpostazioniAccountAzienda {
 
     private void changeDescizione(String email, String password, String
                                   newDescrizione){
-        System.out.println("la descrizione inserita è: " + newDescrizione);
         newDescrizione = HtmlEscape.escapeHtml5(newDescrizione); // Html Esceping
         if(!newDescrizione.equals(azienda.getDescrizione())){
-            System.out.println("Modifico Descrizione ");
             azienda.setDescrizione(newDescrizione);
             checkModifica();
         } else {
-            System.out.println("la descrizione è uguale a prima");
             String messaggio = HtmlEscape.escapeHtml5("la descrizione è uguale a prima");
             datamodel.put("MesWarningDEC", messaggio);
             }
@@ -176,13 +161,10 @@ public class ImpostazioniAccountAzienda {
 
     private void changeLink(String email, String password, String
             newLink) {
-        System.out.println("il linck inserito è " + newLink);
         if(!newLink.equals(azienda.getLink())){
-            System.out.println("Modifico linck ");
             azienda.setLink(newLink);
             checkModifica();
         }else {
-            System.out.println("il link è uguale a prima");
             String messaggio = HtmlEscape.escapeHtml5("il link è uguale a prima");
             datamodel.put("MesWarningLink", messaggio);
         }
@@ -208,7 +190,6 @@ public class ImpostazioniAccountAzienda {
         String emailAttuale;
         // Verifico la presenza dell'email e della password Attuale che mi serve per sicurezza
         if (request.getParameter("EmailAttuale").isEmpty() || request.getParameter("PasswordAttuale").isEmpty()){
-            System.out.println("Modifiche non consentite manchano l'email o la password");
             String messaggio = HtmlEscape.escapeHtml5("Modifiche non consentite manchano l'email o la password");
             datamodel.put("MesError", messaggio);
         }else {
@@ -221,10 +202,8 @@ public class ImpostazioniAccountAzienda {
                     changeEmail(request.getParameter("Email"), request.getParameter("EmailRipetuta"));
                 }
                 else if (request.getParameter("Email").isEmpty()){
-                    System.out.println("email nuova vuota");
 
                 }else  if (request.getParameter("EmailRipetuta").isEmpty()){
-                    System.out.println("email nuova Ripetuta vuota");
                 }
 
                 // Modifico la password a cui segue l'INVALIDAZIONE DELLA SESSIONE
@@ -233,28 +212,23 @@ public class ImpostazioniAccountAzienda {
                     sendemail = true;
                 }
                 else if (request.getParameter("Password").isEmpty()){
-                    System.out.println("password nuova vuota");
 
                 }else  if (request.getParameter("PasswordRipetuta").isEmpty()){
-                    System.out.println("password nuova Ripetuta vuota");
                 }
 
                 // Modifico la descrizione
                 if (request.getParameter("Descrizione").isEmpty()){
-                    System.out.println("descrizione vuota");
                 } else {
                     changeDescizione(emailAttuale,passwordAttuale,request.getParameter("Descrizione"));
                 }
 
                 // Modifico il link
                 if (request.getParameter("Link").isEmpty()){
-                    System.out.println("link vuota");
                 }else {
                     changeLink(emailAttuale,passwordAttuale,request.getParameter("Link"));
                 }
 
                 if (modificato){
-                    System.out.println("applico le modifiche");
                     try {
                         salvaAzienda(azienda);
                         salvaUser(user);
@@ -266,7 +240,6 @@ public class ImpostazioniAccountAzienda {
                             TemplateControllerMail.process("email/modifica-password.ftl", datamodel, to, subject, request.getServletContext());
                         }
                         if(sessionescaduta){
-                            System.out.println("sessione scaduta");
                             SingSessionContoller session = SingSessionContoller.getInstance();
                             session.destroy(request);
                             response.sendRedirect("/login");
@@ -275,11 +248,9 @@ public class ImpostazioniAccountAzienda {
                         e.printStackTrace();
                     }
                 }else {
-                    System.out.println("non applico le modifiche");
                 }
 
             } else {
-                System.out.println("Modifiche non consentite non conincidono l'email o la password email: " + emailAttuale + "  " + user.getEmail()  + "  password: "+ passwordAttuale + "  " + user.getPassword() );
                 String messaggio = HtmlEscape.escapeHtml5("Modifiche non consentite non conincidono l'email o la password email");
                 datamodel.put("MesError", messaggio);
             }
@@ -289,25 +260,18 @@ public class ImpostazioniAccountAzienda {
 
     public void get() throws IOException, DaoException {
         //TODO Inserire NomeResponsabileConvenzione CognomeResponsabileConvenzione TelefonoResponsabileConvenzione EmailResponsabileConvenzione
-        System.out.println("---------------------------------------------------------");
-        System.out.println("---------------------------------------------------------");
-        System.out.println(request.getMethod() + ' ' + request.getRequestURI()+" sto in ImpostazioniAccountAzienda");
         creaOggetti();
         scaricaDatiAzinedaDB(azienda,user);
         TemplateController.process("impostazione-account-aziendale.ftl", datamodel, response, context);
     }
 
     public void post() throws IOException, DaoException {
-        System.out.println("---------------------------------------------------------");
-        System.out.println("---------------------------------------------------------");
-        System.out.println(request.getMethod() + ' ' + request.getRequestURI()+" sto in ImpostazioniAccountAzienda");
         creaOggetti();
         updateAzienda();
         if(!sessionescaduta){
             scaricaDatiAzinedaDB(azienda,user);
             TemplateController.process("impostazione-account-aziendale.ftl", datamodel, response, context);
         }else {
-            System.out.println("sessione invalidata");
         }
     }
 }

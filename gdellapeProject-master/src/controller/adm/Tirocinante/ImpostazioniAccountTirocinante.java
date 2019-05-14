@@ -122,28 +122,23 @@ public class ImpostazioniAccountTirocinante {
 //    }
 
     private void changeEmilTir(String email, String emailRipetuta) {
-        System.out.println("le email inserite sono " + email + " " + emailRipetuta);
         String emailAttuleDB = user.getEmail();
         if (email.equals(emailRipetuta)) {
             if (isValidEmailAddress(email)) {
                 if (!emailAttuleDB.equals(email)) {
-                    System.out.println("Modifico l'email ");
                     user.setEmail(email); // setto la nuova email
                     checkSessioneAndModifica(); // cambio le flag
                     checkModificaUser();
                 } else {
-                    System.out.println("l'email attuale coincide con quella del DB");
                     String messaggio = HtmlEscape.escapeHtml5("l'email inserita coincide con quella del DB");
                     datamodel.put("MesWarningEmail", messaggio);
                 }
             } else {
-                System.out.println("l'email non è valida");
                 String messaggio = HtmlEscape.escapeHtml5("l'email non è valida");
                 datamodel.put("MesErrorEmailValidation", messaggio);
                 chekErrori();
             }
         } else {
-            System.out.println("l'email nuova non coincide con l'altra");
             String messaggio = HtmlEscape.escapeHtml5("l'email nuova non coincide con l'altra");
             datamodel.put("MesErrorEmail", messaggio);
             chekErrori();
@@ -152,27 +147,22 @@ public class ImpostazioniAccountTirocinante {
 
 
     private void changePasswordTir(String password, String passwordRipetuta, String passwordAttuale) {
-        System.out.println("le pwd inserite sono " + password + " " + passwordRipetuta);
         if (SecurityHash.equals(passwordAttuale, user)) {
             if (password.equals(passwordRipetuta)) {
                 if (!SecurityHash.equals(password, user)) {
                     user.setPassword(SecurityHash.SetHash(password));
-                    System.out.println("Modifico la password");
                     checkSessioneAndModifica(); // cambio le flag
                     checkModificaUser();
                 } else {
-                    System.out.println("la password nuova è identica alla Attuale");
                     String messaggio = HtmlEscape.escapeHtml5("la password nuova è identica alla Attuale");
                     datamodel.put("MesWarningPWD", messaggio);
                 }
 
             } else {
-                System.out.println("la password nuova non coincide con l'altra");
                 String messaggio = HtmlEscape.escapeHtml5("la password nuova non coincide con l'altra");
                 datamodel.put("MesErrorValidationPWD", messaggio);
             }
         } else {
-            System.out.println("la password attuale non coincide con quella del DB");
             String messaggio = HtmlEscape.escapeHtml5("la password attuale non coincide con quella del DB");
             datamodel.put("MesErrorValidationPWD", messaggio);
         }
@@ -187,7 +177,6 @@ public class ImpostazioniAccountTirocinante {
         tirocinanteMod = tirocinante;
 
         if (request.getParameter("EmailAttuale").isEmpty() || request.getParameter("PasswordAttuale").isEmpty()) {
-            System.out.println("Modifiche non consentite, manchano l'email o la password");
             String messaggio = HtmlEscape.escapeHtml5("Modifiche non consentite manchano l'email o la password");
             datamodel.put("MesError", messaggio);
         } else {
@@ -198,20 +187,16 @@ public class ImpostazioniAccountTirocinante {
                 if (!request.getParameter("Email").isEmpty() && !request.getParameter("EmailRipetuta").isEmpty()) {
                     changeEmilTir(request.getParameter("Email"), request.getParameter("EmailRipetuta"));
                 } else if (request.getParameter("Email").isEmpty()) {
-                    System.out.println("email nuova vuota");
 
                 } else if (request.getParameter("EmailRipetuta").isEmpty()) {
-                    System.out.println("email nuova Ripetuta vuota");
                 }
 
                 if (!request.getParameter("Password").isEmpty() && !request.getParameter("PasswordRipetuta").isEmpty()) {
                     changePasswordTir(request.getParameter("Password"), request.getParameter("PasswordRipetuta"), passwordAttuale);
                     sendemail = true;
                 } else if (request.getParameter("Password").isEmpty()) {
-                    System.out.println("password nuova vuota");
 
                 } else if (request.getParameter("PasswordRipetuta").isEmpty()) {
-                    System.out.println("password nuova Ripetuta vuota");
                 }
 
 
@@ -332,8 +317,6 @@ public class ImpostazioniAccountTirocinante {
                 }
 
                 if (modificatoTir) {
-                    System.out.println(tirocinanteMod);
-                    System.out.println("applico le modifiche al tirocinante");
                     datamodel.put("ModApp", "Le modifiche sono state salvate");
                     TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
                     tirocinanteDaoImp.setUpdate(tirocinanteMod);
@@ -341,8 +324,6 @@ public class ImpostazioniAccountTirocinante {
 
                 }
                 if (modificatoUser) {
-                    System.out.println(user);
-                    System.out.println("applico le modifiche a user");
                     UserDaoImp userDaoImp = new UserDaoImp();
                     userDaoImp.update(user);
                     userDaoImp.destroy();
@@ -354,13 +335,11 @@ public class ImpostazioniAccountTirocinante {
                     }
                 }
                 if (!modificatoTir && !modificatoUser) {
-                    System.out.println("Nessuna Modifica &egrave; stata salvata");
                     datamodel.put("ModApp", "Nessuna Modifica &egrave; stata salvata");
 
                 }
 
             } else {
-                System.out.println("Modifiche non consentite non conincidono l'email o la password email: " + emailAttuale + "  " + user.getEmail() + "  password: " + passwordAttuale + "  " + user.getPassword());
                 String messaggio = HtmlEscape.escapeHtml5("Modifiche non consentite non conincidono l'email o la password");
                 datamodel.put("MesError", messaggio);
             }
@@ -368,14 +347,12 @@ public class ImpostazioniAccountTirocinante {
     }
 
     public void get() throws IOException, ServletException {
-        System.out.println(request.getMethod() + ' ' + request.getRequestURI() + " sto in ImpostazioniAccountTirocinante");
         creaOggetti();
         scaricaDatiTirocinanteDB(user, tirocinante);
         TemplateController.process("impostazione-account-tirocinante.ftl", datamodel, response, context);
     }
 
     public void post() throws IOException, ServletException {
-        System.out.println(request.getMethod() + ' ' + request.getRequestURI() + " sto in ImpostazioniAccountTirocinante");
         creaOggetti();
         try {
             updateTirocinante(tirocinante);

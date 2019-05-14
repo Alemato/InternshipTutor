@@ -28,7 +28,6 @@ public class UploadPDFTiroicinioRichiestaControler extends baseController {
         super.init(request, response);
         int id = Integer.parseInt(request.getParameter("idRichiesta"));
         Part pdfRichiesta = request.getPart("PDFRichiesta");
-        System.out.println("file : "+pdfRichiesta);
         if(pdfRichiesta!=null){
             TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
             try {

@@ -15,11 +15,8 @@ public class BackEndModuliController extends baseController {
         super.init(request,response);
         int tipo= (int)request.getAttribute("tipo");
         if (tipo == 3){
-            System.out.println("Devo entra dentro la pagina del azienda");
             GestioneModuliAzienda moduliaz = new GestioneModuliAzienda(datamodel, request, response, getServletContext());
-            System.out.println("creato");
             moduliaz.get();
-            System.out.println("getttato");
 
         }else if (tipo == 2){
             GestioneModuliTirocinante moduliTir = new GestioneModuliTirocinante(datamodel, request, response, getServletContext());
@@ -31,7 +28,6 @@ public class BackEndModuliController extends baseController {
         super.init(request,response);
         int tipo= (int)request.getAttribute("tipo");
         if (tipo == 3){
-            System.out.println("Devo entra dentro la pagina del azienda");
             GestioneModuliAzienda moduliaz = new GestioneModuliAzienda(datamodel, request, response, getServletContext());
             moduliaz.post();
 

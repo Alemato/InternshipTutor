@@ -55,19 +55,15 @@ public class ModuloRichiestaTirocinioController extends baseController {
                                 er500(request, response);
                             }
                         } else {
-                            System.out.println("Errore un parametro vuoto");
                             er500(request,response);
                         }
                     } else{
-                        System.out.println("Errore un parametro nullo");
                         er500(request,response);
                     }
                 } else{
-                    System.out.println("Errore un parametro manca");
                     er500(request,response);
                 }
             } else {
-                System.out.println("Errore un parametro richiesta assente");
                 er500(request, response);
             }
         } else {

@@ -164,7 +164,6 @@ public class RegistrationController extends HttpServlet {
                 java.util.Date parser = sdf.parse((String) request.getParameter("DataNascita"));
                 java.sql.Date sqldate = new java.sql.Date(parser.getTime());
                 tirocinante.setDataDiNascita(sqldate);
-                System.out.println(parser.toString());
 
             } catch (ParseException e) {
                 e.printStackTrace();

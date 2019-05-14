@@ -78,7 +78,6 @@ public class ViewOffertaController extends baseController {
         int idOfferta = 0;
         if (request.getParameter("id") != null) {
             idOfferta = Integer.parseInt(request.getParameter("id"));
-            System.out.println("id del offerta è : " + idOfferta);
         } else {
             errore = true;
             er500(request, response);
@@ -89,7 +88,6 @@ public class ViewOffertaController extends baseController {
             try {
                 offertaTirocinio = offertaTirocinioDaoImp.getOffertatrByID(idOfferta);
                 offertaTirocinioDaoImp.destroy();
-                System.out.println("ricavo offerta");
             } catch (DaoException e) {
                 e.printStackTrace();
                 errore = true;
@@ -101,9 +99,7 @@ public class ViewOffertaController extends baseController {
                     er403(request, response);
                 }
                 if(!errore){
-                    System.out.println("Richiedo lista oggetti");
                     List<Object> lista = creaOggetti(request, response, offertaTirocinio, false);
-                    System.out.println("Contenuto lista : " + lista.get(lista.size()-1) );
                     if(!(boolean)lista.get(lista.size()-1)){
                         List<Object> listaAll = new ArrayList<>();
                         for (int i=0; i<lista.size()-1; i++){
@@ -125,7 +121,6 @@ public class ViewOffertaController extends baseController {
                         datamodel.put("CognomeRepAz", offertaTirocinio.getCognomeTutoreAziendale());
                         datamodel.put("EmailRespAZ", offertaTirocinio.getEmailTutoreAziendale());
                         datamodel.put("TelRespAz", offertaTirocinio.getTelefonoTutoreAziendale());
-                        System.out.println("termino il datamodel");
                         TemplateController.process("view-offerta-aziendale.ftl", datamodel, response, getServletContext());
                     }
                 }
@@ -140,16 +135,12 @@ public class ViewOffertaController extends baseController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
-        System.out.println("Ricevo richiesta");
         SingSessionContoller session = SingSessionContoller.getInstance();
         if (session.isAzienda(request)){
             boolean scaduto = (boolean)request.getAttribute("Scaduto");
-            System.out.println("-----------------"+scaduto+"---------------");
             datamodel.put("Scaduto", scaduto);
             try {
-                System.out.println("invoco processoGet");
                 processaGet(request, response, session);
-                System.out.println("gettato");
             } catch (DaoException e) {
                 e.printStackTrace();
                 er404(request, response);

@@ -1,5 +1,6 @@
 package controller.adm.Tirocinante;
 
+import controller.baseController;
 import controller.sessionController.SingSessionContoller;
 import dao.exception.DaoException;
 import dao.implementation.*;
@@ -19,7 +20,7 @@ import java.util.List;
 
 import static controller.utility.Validation.isValidEmailAddress;
 
-public class InvioRichiestaTirocinioController extends BackEndTrController {
+public class InvioRichiestaTirocinioController extends baseController {
 
     private void er500(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/500");

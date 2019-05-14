@@ -26,9 +26,7 @@ public class UploadPDFTirocinioFineController extends baseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
         int id = Integer.parseInt(request.getParameter("id"));
-        System.out.println(id);
         Part pdfAzienda = request.getPart("PDFAzienda");
-        System.out.println("file : "+pdfAzienda);
         if(pdfAzienda!=null){
             TirocinioDaoImp tirocinioDaoImp = new TirocinioDaoImp();
             try {
