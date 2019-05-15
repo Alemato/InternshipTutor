@@ -5,6 +5,7 @@ import controller.utility.SecurityHash;
 import controller.utility.Validation;
 import controller.utility.Utility;
 import dao.exception.DaoException;
+import dao.implementation.AdminDaoImp;
 import dao.implementation.UserDaoImp;
 import model.Admin;
 import model.User;
@@ -77,7 +78,7 @@ public class CreateAdminController extends baseController {
     {
             User user =new User();
             user.setEmail(request.getParameter("Email"));
-            String hash = SecurityHash.SetHash(request.getParameter("Email"));
+            String hash = SecurityHash.SetHash(request.getParameter("Password"));
             user.setPassword(hash);
             user.setTipologiaAccount(1);
 
@@ -100,8 +101,8 @@ public class CreateAdminController extends baseController {
            admin.setCognome(HtmlEscape.escapeHtml5(request.getParameter("Cognome")));
            admin.setUser(user.getIDUser());
 
-           UserDaoImp dao1 = new UserDaoImp();
-           dao1.setUser(user);
+           AdminDaoImp dao1 = new AdminDaoImp();
+           dao1.setAdmin(admin, user);
            dao1.destroy();
 
 
