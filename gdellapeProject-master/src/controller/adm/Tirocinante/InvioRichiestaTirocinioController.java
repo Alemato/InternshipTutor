@@ -302,6 +302,12 @@ public class InvioRichiestaTirocinioController extends baseController {
             } else {
                 tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
             }
+            if (request.getParameter("NomeTutoreUniversitario") != null && request.getParameter("CognomeTutoreUniversitario") != null && request.getParameter("TelefonoTutoreUniversitario") != null && request.getParameter("EmailTutoreUniversitario") != null && !request.getParameter("TutoreUniversitario").equals("NEW")){
+                fillModulo(request, response, tirocinante);
+                datamodel.put("erroreTutore", "Non puoi selezionare un tutore e crearne uno nuovo");
+                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+            }
+
             if (request.getParameter("TutoreUniversitario").equals("NEW")) {
                 TutoreUniversitarioDaoImp tutoreUniversitarioDaoImpCaricato = new TutoreUniversitarioDaoImp();
                 TutoreUniversitario tutoreCaricato = new TutoreUniversitario();

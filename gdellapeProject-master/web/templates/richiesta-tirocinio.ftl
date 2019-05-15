@@ -14,7 +14,7 @@
 <div id="wrapper">
     <#include "header.ftl">
     <section class="page-header page-header-md parallax parallax-3 mt-130 d-print-none"
-             style="background-image:url('imgs/imgpattern.jpg')">
+             style="background-image:url('/imgs/imgpattern.jpg')">
         <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
         <div class="container">
@@ -246,14 +246,22 @@
                             <h4 class="col-auto col-sm-auto pr-10 fs-20">CFU</h4>
                         </#if>
                     </div>
-
+                    <#if erroreTutore??>
+                        <div class="alert alert-warning mb-20">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Chiudi</span>
+                            </button>
+                            <strong>Attenzione!</strong> ${erroreTutore}
+                        </div>
+                    </#if>
                     <div class="row">
                         <div class="col-md-auto mt-6">
                             <h4>Tutore Universitario:&nbsp;</h4>
                         </div>
                         <div class="col">
                             <div class="fancy-form fancy-form-select">
-                                <select id="TuroreUni" class="form-control select2" name="TutoreUniversitario" required>
+                                <select id="TuroreUni" class="form-control select2 <#if erroreTutore??>error</#if>" name="TutoreUniversitario" required>
                                     <#list tutoreUniversitario as tutoreUniversitario>
                                         <option value="${tutoreUniversitario.IDTutoreUni}">${tutoreUniversitario.nome} ${tutoreUniversitario.cognome}</option>
                                     </#list>

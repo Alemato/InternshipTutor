@@ -63,7 +63,7 @@
                     <tr>
                         <td>${listaConvenzione.ragioneSociale}</td>
                         <td>${listaConvenzione.indirizzoSedeLegale}</td>
-                        <td><a href="${listaConvenzione.link}">${listaConvenzione.ragioneSociale}</a></td>
+                        <td><a <#if listaConvenzione.link??>href="${listaConvenzione.link}</#if>">${listaConvenzione.ragioneSociale}</a></td>
                         <td>${listaConvenzione.dataConvenzione}</td>
                     </tr>
                     </#list>
