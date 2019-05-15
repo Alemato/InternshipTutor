@@ -188,7 +188,8 @@ public class CreaModificaModuloSegreteriaTirocinioController extends baseControl
         tirocinio.setDataColloquioSegreteria(Date.valueOf(request.getParameter("Data_colloquio")));
         tirocinio.setEsitoTirocinio(HtmlEscape.escapeHtml5(request.getParameter("Esito_tirocinio")));
         tirocinio.setCreditiRiconosciuti(Integer.parseInt(request.getParameter("Crediti_riconosciuti")));
-        tirocinio.setDataColloquioSegreteria(Date.valueOf(request.getParameter("Data_documento")));
+        tirocinio.setDataConsegnaModuloSegreteria(Date.valueOf(request.getParameter("Data_documento")));
+        tirocinio.setStato(3);
 
         TirocinioDaoImp dao1 = new TirocinioDaoImp();
         dao1.updateTirocinio(tirocinio);
