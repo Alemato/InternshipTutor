@@ -247,7 +247,7 @@
                         </#if>
                     </div>
                     <#if erroreTutore??>
-                        <div class="alert alert-warning mb-20">
+                        <div class="alert alert-danger mb-20">
                             <button type="button" class="close" data-dismiss="alert">
                                 <span aria-hidden="true">&times;</span>
                                 <span class="sr-only">Chiudi</span>
