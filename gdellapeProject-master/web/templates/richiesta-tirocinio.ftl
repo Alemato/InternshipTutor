@@ -24,8 +24,8 @@
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
                 <li><a href="/home">Home</a></li>
-                <li>Tirocini</li>
-                <li>Tirocinio Presso ${azienda.ragioneSociale}</li>
+                <li><a href="/listaofferte/tirocinio">Tirocini</a></li>
+                <li><a href="/listaofferte/tirocinio?Tirocinio=${offertatirocinio.IDOffertaTirocinio}">Tirocinio Presso ${azienda.ragioneSociale}</a></li>
                 <li>Invio Modulo</li>
             </ol><!-- /breadcrumbs -->
 
@@ -216,10 +216,10 @@
                                required>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">mesi dal</h4>
                         <input class="input-modulo col col-sm pl-0" type="date" name="Data_iniziale"
-                               value="${offertatirocinio.periodoInizio}" placeholder="Data inizio" required>
+                               value="${offertatirocinio.periodoInizio?date?iso_utc}" placeholder="Data inizio" required>
                         <h4 class="col-auto col-sm-auto pr-10 fs-20 mb-0">al</h4>
                         <input class="input-modulo col col-sm pl-0" type="date" name="Data_fine"
-                               value="${offertatirocinio.periodoFine}"
+                               value="${offertatirocinio.periodoFine?date?iso_utc}"
                                placeholder="Data fine" required>
                     </div>
                     <h4>(con possibilit&agrave; di prologa entro i limiti massimi previsti dalla normativa vigente)</h4>
@@ -272,7 +272,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="NewTuroreUni" style="display: none">
+                    <div id="NewTuroreUni" style="display: block">
                         <div class="row">
                             <div class="col-md-auto mt-6">
                                 <h4>Nome Tutore Universitario:&nbsp;</h4>
@@ -365,14 +365,27 @@
 <!-- JAVASCRIPT FILES -->
 <#include "importScript.ftl">
 <script>
-    $("#TuroreUni").change(function () {
-        console.log($("#TuroreUni").val());
-        if ($("#TuroreUni").val() == "NEW") {
+    $(document).ready(function() {
+        var tut = $("#TuroreUni");
+        var  valore = tut.children("option:selected").val();
+        console.log(tut + " "+ valore);
+        if(valore === "NEW"){
+
             $("#NewTuroreUni").fadeIn("show");
         } else {
             $("#NewTuroreUni").fadeOut();
         }
-    })
+
+
+    $("#TuroreUni").change(function () {
+        console.log($("#TuroreUni").val());
+        if ($("#TuroreUni").val() === "NEW") {
+            $("#NewTuroreUni").fadeIn("show");
+        } else {
+            $("#NewTuroreUni").fadeOut();
+        }
+    });
+    });
 </script>
 
 </body>

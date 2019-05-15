@@ -12,9 +12,12 @@ import view.TemplateController;
 import view.TemplateControllerMail;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.spi.http.HttpContext;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -145,15 +148,16 @@ public class GestioneRichiesteTirocinioController extends baseController {
                 datamodel.put("EmailRespAZ",offertaTirocinio.getEmailTutoreAziendale());
                 datamodel.put("TelRespAz",offertaTirocinio.getTelefonoTutoreAziendale());
                 datamodel.put("tirocinante",tirocinante);
-                String[] to = new String[3];
+                ServletContext context = getServletContext();
+                String[] to = new String[2];
                 to[0]= "azienda@matteifamily.net";
                 to[1]= "tutore@matteifamily.net";
                 String subject = "Notifica Declinazione richiesta di tirocinio effettuata da : "+ tirocinante.getNome()+" "+tirocinante.getCognome() +" per offerta : " +offertaTirocinio.getTitolo();
-                TemplateControllerMail.process("email/declinazione-richiesta-tirocinio-azienda-tutore.ftl", datamodel, to, subject, getServletContext());
+                TemplateControllerMail.process("email/declinazione-richiesta-tirocinio-azienda-tutore.ftl", datamodel, to, subject, context);
                 String[] toTiro = new String[1];
                 toTiro[0]= "tirocinante@matteifamily.net";
                 String subjectTiro = "Notifica Declinazione richiesta di tirocinio per offerta : " +offertaTirocinio.getTitolo();
-                TemplateControllerMail.process("email/declinazione-richiesta-tirocinio-azienda-tutore.ftl", datamodel, toTiro, subjectTiro, getServletContext());
+                TemplateControllerMail.process("email/declinazione-richiesta-tirocinio-azienda-tutore.ftl", datamodel, toTiro, subjectTiro, context);
 
             } else {
                 errore = true;
