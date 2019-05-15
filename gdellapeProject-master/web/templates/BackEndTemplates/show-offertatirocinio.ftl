@@ -22,9 +22,9 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
+    <a class="navbar-brand link-bar" href="/home">Intership Tutor </a>
     <ol class="breadcrumb">
-        <li><a href="admin.html">HOME DASHBOARD</a></li>
+        <li><a href="/admin/dashboard">HOME DASHBOARD</a></li>
         <li><a href="/admin/offertetirocinioadmin"><b>GESTIONE OFFERTE TIROCINIO</b></a></li>
         <li class="active"><a href="#"><b>OFFERTA : ${offerta.titolo}</b></a></li>
     </ol>
@@ -168,7 +168,7 @@
                         </div>
                         <div class="col-12 col-md-5 col-lg-6">
                             <h4 class="testo-scuro">
-                                ${offerta.facilitazione}
+                                ${offerta.facilitazioni}
                             </h4>
                         </div>
                     </div>

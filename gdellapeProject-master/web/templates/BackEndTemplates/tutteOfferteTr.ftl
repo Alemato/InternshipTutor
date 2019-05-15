@@ -24,7 +24,7 @@
     <a class="navbar-brand link-bar" href="/home">Intership Tutor </a>
     <ol class="breadcrumb">
         <li><a href="/admin/dashboard">HOME DASHBOARD</a></li>
-        <li class="active"><a href="/admin/show-offerta"><b>TUTTE LE OFFERTE PUBBLICATE</b></a>
+        <li class="active"><a href="/admin/offertetirocinioadmin"><b>TUTTE LE OFFERTE PUBBLICATE</b></a>
     </ol>
     <#include "small-navbar.ftl">
 
