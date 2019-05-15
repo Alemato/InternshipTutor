@@ -5,6 +5,8 @@ import controller.baseController;
 import dao.exception.DaoException;
 import dao.implementation.AziendaDaoImp;
 import model.Azienda;
+import org.unbescape.html.HtmlEscape;
+import view.TemplateControllerMail;
 
 import java.io.*;
 import javax.servlet.RequestDispatcher;
@@ -67,7 +69,11 @@ public class AdminAccettaConvenzione extends baseController{
                dao1.destroy();
                AdminFillRichiesteAndAttive page = new AdminFillRichiesteAndAttive(datamodel,getServletContext(),request,response);
                page.makegetSuccess("Azienda "+azienda.getRagioneSociale()+" ora puo operare");
-
+               datamodel.put("nomeAzineda", azienda.getRagioneSociale());
+               String[] to = new String[1];
+               to[0]= "azienda@matteifamily.net";
+               String subject = "Accettazione Convenzionamento : " + HtmlEscape.unescapeHtml( azienda.getRagioneSociale()+" id:" + azienda.getIDAzienda());
+               TemplateControllerMail.process("email/accettazione-azienda-convenzione.ftl", datamodel, to, subject, getServletContext());
            } else {
                //caso in cui admin delclina la convenzione
                azienda.setAttivo(0);
