@@ -11,6 +11,7 @@ import dao.implementation.UserDaoImp;
 import model.Azienda;
 import model.Tirocinante;
 import model.User;
+import org.unbescape.html.HtmlEscape;
 import view.TemplateController;
 import view.TemplateControllerMail;
 
@@ -578,7 +579,7 @@ public class RegistrazioneController extends baseController {
         datamodel.put("nomeAzineda", azienda.getRagioneSociale());
         String[] to = new String[1];
         to[0]= "azienda@matteifamily.net";
-        String subject = "Registrazione Azienda : " + azienda.getRagioneSociale()+" id:" + azienda.getIDAzienda();
+        String subject = "Registrazione Azienda : " + HtmlEscape.unescapeHtml( azienda.getRagioneSociale()+" id:" + azienda.getIDAzienda());
         TemplateControllerMail.process("email/registrazione-azienda.ftl", datamodel, to, subject, getServletContext());
     }
 
@@ -655,7 +656,7 @@ public class RegistrazioneController extends baseController {
         to[0]= "tirocinante@matteifamily.net";
         datamodel.put("nomeUtente", tirocinante.getNome());
         datamodel.put("cognomeUtente", tirocinante.getCognome());
-        String subject = "Registrazione Tirocinante: " + tirocinante.getNome()+" "+ tirocinante.getCognome() +" id:" + tirocinante.getIDTirocinante();
+        String subject = "Registrazione Tirocinante: " + HtmlEscape.unescapeHtml( tirocinante.getNome()+" "+ tirocinante.getCognome() +" id:" + tirocinante.getIDTirocinante());
         TemplateControllerMail.process("email/registrazione-tirocinante.ftl", datamodel, to, subject, getServletContext());
     }
 

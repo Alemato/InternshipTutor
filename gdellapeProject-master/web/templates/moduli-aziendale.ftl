@@ -74,7 +74,7 @@
                             <tr>
                                 <td>CONVENZIONE PER LO SVOLGIMENTO DI ATTIVITA&apos; DI TIROCINIO E DI ORIENTAMENTO</td>
                                 <td>CONVENZIONE</td>
-                                <td>${DataConvenzione?date?string.short}</td>
+                                <td><#if DataConvenzione??>${DataConvenzione?date?string.short}</#if></td>
                                 <#if GiorniScadenza??>
                                     <td>${GiorniScadenza}</td>
                                 </#if>

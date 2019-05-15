@@ -808,7 +808,7 @@
                                                                         </tbody>
                                                                     </table>
 
-                                                                    <h4 class="text-primary text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: #007bff; vertical-align: baseline; font-size: 24px; line-height: 28.8px;" align="center">Il modulo Covenzione è stato caricato!</h4>
+                                                                    <h4 class="text-primary text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: #007bff; vertical-align: baseline; font-size: 24px; line-height: 28.8px;" align="center">Il modulo Covenzione &egrave; stato caricato!</h4>
                                                                     <div class="hr " style="width: 100%; margin: 20px 0; border: 0;">
                                                                         <table border="0" cellpadding="0" cellspacing="0" style="font-family: Helvetica, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0px; border-collapse: collapse; width: 100%;">
                                                                             <tbody>
@@ -821,7 +821,7 @@
 
 
 
-                                                                    <h5 class="text-center " style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="center">Ti inviamo questa email per notificarti l'avvenuto caricamento del modulo di convenzionamento!</h5>
+                                                                    <h5 class="text-center " style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="center">Ti inviamo questa email per notificarti l&apos;avvenuto caricamento del modulo di convenzionamento!</h5>
                                                                     <table class="s-3 w-100" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                                                                         <tbody>
                                                                         <tr>
@@ -834,7 +834,7 @@
 
 
 
-                                                                    <h5 class="text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="center">Riceverà al più presto un email di notifica per l'accettazione del modulo caricato.</h5>
+                                                                    <h5 class="text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 20px; line-height: 24px;" align="center">Ricever&agrave; al pi&ugrave; presto un email di notifica per l'accettazione del modulo caricato.</h5>
 
 
                                                                 </div>

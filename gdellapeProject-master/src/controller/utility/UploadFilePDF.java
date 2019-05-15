@@ -70,7 +70,7 @@ public class UploadFilePDF{
             Azienda azienda = (Azienda)object;
             String[] to = new String[1];
             to[0]= "azienda@matteifamily.net";
-            String subject = HtmlEscape.escapeHtml5( "Recezzione Modulo Convenzione dell'Azienda : " + azienda.getRagioneSociale());
+            String subject = "Recezzione Modulo Convenzione dell'Azienda : " + HtmlEscape.unescapeHtml(azienda.getRagioneSociale());
             TemplateControllerMail.process("email/invio-modulo-convenzione-aziendale.ftl", datamodel, to, subject, request.getServletContext());
         } else if(tipoPdf==1){
             Tirocinio tirocinio = (Tirocinio) object;
@@ -105,7 +105,7 @@ public class UploadFilePDF{
             String[] to = new String[2];
             to[0]= "azienda@matteifamily.net";
             to[1]= "tutore@matteifamily.net";
-            String subject = HtmlEscape.escapeHtml5( "Recezzione Richesta di tirocinio da parte di : "+ tirocinante.getNome()+" "+tirocinante.getCognome() + "per l'offerta : " + offertaTirocinio.getTitolo());
+            String subject = "Recezzione Richesta di tirocinio da parte di : "+ HtmlEscape.unescapeHtml(tirocinante.getNome()+" "+tirocinante.getCognome() + "per l'offerta : " + offertaTirocinio.getTitolo());
             TemplateControllerMail.process("email/invio-richiesta-tirocinio-azienda-tutore.ftl", datamodel, to, subject, request.getServletContext());
             String[] toTirocinante = new String[1];
             toTirocinante[0]="tirocinante@matteifamily.net";
