@@ -40,6 +40,17 @@ public class AdminDaoImp extends DaoDataMySQLImpl implements dao.interfaces.Admi
             throw new DaoException("Error:PrepareStatement error ADMIN", ex);
         }
     }
+    private void setListAdmin(List<Admin> tirocinantes, ResultSet resultSet) throws DaoException {
+        try {
+            while (resultSet.next()) {
+                Admin admin = new Admin();
+                setAdminObject(resultSet, admin);
+                tirocinantes.add(admin);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Errore nel creare Lista oggetti Tirocinante", e);
+        }
+    }
 
     private void setAdminObject(ResultSet resultSet, Admin admin)throws DaoException{
         try {
@@ -124,11 +135,7 @@ public class AdminDaoImp extends DaoDataMySQLImpl implements dao.interfaces.Admi
         try {
             this.init();
             ResultSet resultSet = selectAllAdmin.executeQuery();
-            if (resultSet.next()) {
-                Admin admin = new Admin();
-                setAdminObject(resultSet, admin);
-                listadmin.add(admin);
-            }
+            setListAdmin(listadmin, resultSet);
             return listadmin;
 
         } catch (SQLException e) {
