@@ -93,10 +93,10 @@ public class ModificaTutoreController extends baseController {
            Map<String, Object> errori = new HashMap<>();
 
            if (request.getParameter("email").isEmpty()) {
-               errori.put("ErroreEmail", "Nome non presente");
+               errori.put("ErroreEmail", "Email non presente");
 
            } else if (!(Validation.isValidEmailAddress(request.getParameter("email")))) {
-               errori.put("ErroreEmail", "Nome non congrua");
+               errori.put("ErroreEmail", "Email non congrua");
 
            } else if ((Validation.isStoreThisMailTutore(request.getParameter("email"))) && !(request.getParameter("email").equals(tutore.getEmail()))) {
                errori.put("ErroreEmail", "Email gia presente");

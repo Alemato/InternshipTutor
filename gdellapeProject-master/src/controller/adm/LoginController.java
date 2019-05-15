@@ -32,20 +32,22 @@ public class LoginController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            datamodel.remove("errorePassword");
+            datamodel.remove("errore");
             this.login(request, response);
         } catch (DaoException e) {
             e.printStackTrace();
-            datamodel.put("errore", true);
-            if (datamodel.get("errorePassword")!= null){
-                datamodel.remove("errorePassword");
-            }
-            TemplateController.process("login.ftl", datamodel, response, getServletContext());
+          RequestDispatcher page = request.getRequestDispatcher("/500");
+          page.forward(request,response);
+
         }
     }
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SingSessionContoller session = SingSessionContoller.getInstance();
+        datamodel.remove("errorePassword");
+        datamodel.remove("errore");
         if(session.isTirocinante(request)||session.isAzienda(request)||session.isAdmin(request)) {
             RequestDispatcher page = request.getRequestDispatcher("/home");
             page.forward(request,response);
@@ -67,7 +69,7 @@ public class LoginController extends HttpServlet {
         return tirocinio;
     }
 
-    protected void login(HttpServletRequest request, HttpServletResponse response) throws DaoException {
+    protected void login(HttpServletRequest request, HttpServletResponse response) throws DaoException, ServletException, IOException {
         int tirocinio = 0;
         boolean richiesta = false;
         String url = "";
@@ -124,14 +126,19 @@ public class LoginController extends HttpServlet {
                     } else response.sendRedirect("/home");
                 } catch (IOException e) {
                     e.printStackTrace();
+                    RequestDispatcher page = request.getRequestDispatcher("/500");
+                    page.forward(request,response);
                 }
 
             } else {
+                datamodel.remove("errore");
                 datamodel.put("errorePassword", true);
                 TemplateController.process("login.ftl", datamodel, response, getServletContext());
             }
 
         } else {
+            datamodel.remove("errorePassword");
+            datamodel.put("errore", true);
             TemplateController.process("login.ftl", datamodel, response, getServletContext());
         }
 

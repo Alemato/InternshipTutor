@@ -61,7 +61,7 @@
                                 </#if>
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20 fw-400">Previa effetuazione di opportune verifiche e colloquio svoltosi in data </h4>
                                 <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_colloquio"
-                                       <#if ValueOfData_colloquio??> value="${ValueOfData_colloquio?date?string("yyyy-MM-dd")}" <#elseif tirocinio.dataColloquioSegreteria?has_content > value="${tirocinio.dataColloquioSegreteria?date?string("yyyy-MM-dd")}" </#if> placeholder="data">
+                                       <#if ValueOfData_colloquio??> value="${ValueOfData_colloquio}" <#elseif tirocinio.dataColloquioSegreteria?has_content > value="${tirocinio.dataColloquioSegreteria?date?string("yyyy-MM-dd")}" </#if> placeholder="data">
                             </div>
 
                             <h4 class="col-auto col-sm-auto p-0 fs-20 fw-400 mb-35">Si attesta che il </h4>
@@ -137,7 +137,7 @@
                                 </#if>
                                 <h4 class="col-auto col-sm-auto pr-10 fs-20">L&apos;Aquila il </h4>
                                 <input class="input-modulo col-3 col-sm-3 pl-0 text-center" type="date" name="Data_documento"
-                                       placeholder="Data"  <#if ValueOfData_documento?? > value="${ValueOfData_documento?date?string("yyyy-MM-dd")}" <#elseif tirocinio.dataConsegnaModuloSegreteria?has_content>  value="${tirocinio.dataConsegnaModuloSegreteria?date?string("yyyy-MM-dd")}" </#if>>
+                                       placeholder="Data"  <#if ValueOfData_documento?? > value="${ValueOfData_documento}" <#elseif tirocinio.dataConsegnaModuloSegreteria?has_content>  value="${tirocinio.dataConsegnaModuloSegreteria?date?iso_utc}" </#if>>
                             </div>
                             <footer class="d-print-none container">
                                 <button type="submit" form="modulo_segreteria" class="btn btn-success btn-lg pull-right float-right" onclick="window.print();"><i
