@@ -67,7 +67,7 @@ public class CreazioneOffertaController extends baseController {
             datamodel.put("Url",offertaTirocinios.get(offertaTirocinios.size()-1).getIDOffertaTirocinio());
             String[] to = new String[1];
             to[0]= "azienda@matteifamily.net";
-            String subject = "Registrazione Nuova Offerta di Tirocinio : "+ offertaTirocinio.getTitolo();
+            String subject = "Registrazione Nuova Offerta di Tirocinio : "+ HtmlEscape.unescapeHtml(offertaTirocinio.getTitolo());
             TemplateControllerMail.process("email/creazione-offerta.ftl", datamodel, to, subject, getServletContext());
         } catch (DaoException e) {
             e.printStackTrace();
