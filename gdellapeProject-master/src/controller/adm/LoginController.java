@@ -13,6 +13,7 @@ import model.User;
 import view.TemplateController;
 
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,8 +45,13 @@ public class LoginController extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        TemplateController.process("login.ftl", datamodel, response, getServletContext());
+        SingSessionContoller session = SingSessionContoller.getInstance();
+        if(session.isTirocinante(request)||session.isAzienda(request)||session.isAdmin(request)) {
+            RequestDispatcher page = request.getRequestDispatcher("/home");
+            page.forward(request,response);
+        }else{
+            TemplateController.process("login.ftl", datamodel, response, getServletContext());
+        }
 
 
     }
