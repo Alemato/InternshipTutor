@@ -43,20 +43,23 @@ public class ListaOfferteTutoraggiController extends baseController {
             String sAzienda = request.getParameter("azienda");
             if (sAzienda != null) {
                 if (!sAzienda.equals(""))
-                    azienda = sAzienda;
+                    azienda = validazioneStringhe(sAzienda);
 
             }
 
             String sSede = request.getParameter("sede");
+
             if (sSede != null) {
                 if (!sSede.equals(""))
-                    sede = sSede;
+                    sede = validazioneStringhe(sSede);
             }
 
             String sCerca = request.getParameter("search");
+
             if (sCerca != null) {
                 if (!sCerca.equals(""))
-                    cerca = sCerca;
+                    cerca = validazioneStringhe(sCerca);
+
             }
 
             SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
@@ -193,8 +196,17 @@ public class ListaOfferteTutoraggiController extends baseController {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private String validazioneStringhe(String stringa){
 
+        if (stringa.contains("'")) {
+            return stringa.replace("'", "&apos;");
+        }
+        else return stringa;
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        super.init(request,response);
+        request.setCharacterEncoding("UTF-8");
         RequestDispatcher page = request.getRequestDispatcher("/404");
         page.forward(request, response);
     }

@@ -34,6 +34,9 @@
 
     <section class="section-sm centrale border-top-section pl-20 pr-20">
         <div class="container">
+             <#if Message??>
+                 <#include "messaggio-errore.ftl">
+             </#if>
             <form id="modulo_richiesta_tirocinante"
                   action="/listaofferte/tirocinio/inviorichiesta?idOffertaTirocinio=${offertatirocinio.IDOffertaTirocinio}"
                   method="post" class="m-0">

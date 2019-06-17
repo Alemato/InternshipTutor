@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -303,9 +304,11 @@ public class InvioRichiestaTirocinioController extends baseController {
                 tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
             }
             if (request.getParameter("NomeTutoreUniversitario") != null && request.getParameter("CognomeTutoreUniversitario") != null && request.getParameter("TelefonoTutoreUniversitario") != null && request.getParameter("EmailTutoreUniversitario") != null && !request.getParameter("TutoreUniversitario").equals("NEW")){
-                fillModulo(request, response, tirocinante);
-                datamodel.put("erroreTutore", "Non puoi selezionare un tutore e crearne uno nuovo");
-                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+                if (!request.getParameter("NomeTutoreUniversitario").equals("") && !request.getParameter("CognomeTutoreUniversitario").equals("") && !request.getParameter("TelefonoTutoreUniversitario").equals("") && !request.getParameter("EmailTutoreUniversitario").equals("") && !request.getParameter("TutoreUniversitario").equals("NEW")) {
+                    fillModulo(request, response, tirocinante);
+                    datamodel.put("erroreTutore", "Non puoi selezionare un tutore e crearne uno nuovo");
+                    TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+                }
             }
 
             if (request.getParameter("TutoreUniversitario").equals("NEW")) {
@@ -354,6 +357,22 @@ public class InvioRichiestaTirocinioController extends baseController {
         return tutoreUniversitario;
     }
 
+    private boolean controlloTirocinio(HttpServletRequest request, HttpServletResponse response, Tirocinante tirocinante) throws DaoException {
+
+        TirocinioDaoImp tirocinioDaoImpControllo = new TirocinioDaoImp();
+        List<Tirocinio> tirociniControllo = new ArrayList<>(tirocinioDaoImpControllo.getOffertaTirByIDTirocinante(tirocinante.getIDTirocinante()));
+        for (Tirocinio tirocinio: tirociniControllo){
+            if (tirocinio.getStato() < 4)
+                return true;
+        }
+        return false;
+    }
+
+    private void tirocinando(HttpServletRequest request, HttpServletResponse response){
+        datamodel.put("Message", " hai un tirocinio pendente");
+        TemplateController.process("scheda-tirocinio.ftl", datamodel, response, getServletContext());
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.init(request, response);
         SingSessionContoller session = SingSessionContoller.getInstance();
@@ -369,12 +388,15 @@ public class InvioRichiestaTirocinioController extends baseController {
         SingSessionContoller session = SingSessionContoller.getInstance();
         Tirocinante tirocinante = session.getTirocinate(request, response);
         try {
+            if(controlloTirocinio(request, response, tirocinante)){
+               tirocinando(request, response);
+            }
             controlloCampiTirocinante(request, response, tirocinante);
             aggiornoTirocinante(request, response, tirocinante);
             creoTirocinio(request, response, tirocinante);
             response.sendRedirect("/account/moduli");
 
-        } catch (ParseException e) {
+        } catch (ParseException | DaoException e) {
             e.printStackTrace();
         }
     }
