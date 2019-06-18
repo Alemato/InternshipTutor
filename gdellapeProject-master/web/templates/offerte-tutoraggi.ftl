@@ -17,7 +17,7 @@
 
         <div class="container">
 
-            <h1>LISTA TUTOARAGGI </h1>
+            <h1>LISTA TUTORAGGI </h1>
 
             <!-- breadcrumbs -->
             <ol class="breadcrumb">
@@ -64,9 +64,12 @@
                                         <div class="fancy-form fancy-form-select">
                                             <select class="form-control select2" name="azienda">
                                                 <option value="">Tutte le Aziende</option>
-                                                <#list offerteFiltro as offerta>
-                                                <option value="${offerta.aziendaOspitante}">${offerta.aziendaOspitante}</option>
+                                                <#list aziendas as aziendas>
+                                                <option value="${aziendas.ragioneSociale}">${aziendas.ragioneSociale}</option>
                                                 </#list>
+                                                <#--<#list offerteFiltro as offerta>-->
+                                                <#--<option value="${offerta.aziendaOspitante}">${offerta.aziendaOspitante}</option>-->
+                                                <#--</#list>-->
                                             </select>
 
                                             <i class="fancy-arrow-"></i>

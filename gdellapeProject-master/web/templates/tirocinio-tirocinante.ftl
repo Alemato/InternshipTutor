@@ -46,8 +46,7 @@
                             href="/schedaazienda?ID=${azienda.IDAzienda}">${azienda.ragioneSociale}</a> per la sua
                     candidatura per il
                      <a
-                            href="/listaofferte/tirocinio?Tirocinio=${tirocinio.IDTirocinio}">"tirocinio
-                        "</a> presso ${azienda.ragioneSociale}.
+                            href="/listaofferte/tirocinio?Tirocinio=${tirocinio.offertaTirocinio}">"tirocinio"</a> presso ${azienda.ragioneSociale}.
                 </div>
             <#elseif tirocinio.stato == 1>
                 <!-- HA ACCETTATO LA CANDIDATURA -->
@@ -248,7 +247,7 @@
             <#if tirocinio.stato == 3>
                 <div class="linea-divisione mt-0"></div>
                 <form id="valutazione_finale" method="post"
-                      action="/gestioneTirocinioScelto?idTirocinio=${tirocinio.IDTirocinio}" class="col-10 pl-0 mx-auto"
+                      action="/account/moduli/gestionetirocinioscelto?idTirocinio=${tirocinio.IDTirocinio}" class="col-10 pl-0 mx-auto"
                       novalidate>
                     <fieldset>
                         <div>

@@ -258,7 +258,7 @@
                         <div class="col">
                             <label class="input">
                                 <input type="date" name="DataNascita" value="${Tirocinante.dataDiNascita}" required>
-                                <p>${Tirocinante.dataDiNascita}</p>
+                                <#--<p>${Tirocinante.dataDiNascita}</p>-->
                             </label>
                         </div>
                     </div>
@@ -394,7 +394,7 @@
 
                 <footer>
                     <button type="submit" form="form_modifica" class="btn btn-success btn-lg pull-right float-right"><i
-                            class="fa fa-check"></i> Aggiurna il tuo Account
+                            class="fa fa-check"></i> Aggiorna il tuo Account
                     </button>
                     <button type="reset" form="form_modifica" class="btn btn-red btn-lg pull-right float-left"><i
                             class="fa fa-times"></i> Annulla

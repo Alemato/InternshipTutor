@@ -32,7 +32,7 @@
 <div class="container-fluid">
     <div class="row">
        <#include "sidebar.ftl">
-        <#--TODO controlla solo le barre e gli url con il filtro-->
+
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
 

@@ -137,7 +137,7 @@
                             <td>In attesa del caricamento del modulo da parte della Segreteria</td>
                         </#if>
                         <td>
-                            <a href="/gestioneTirocinioScelto?idTirocinio=${lista.tirocinio.IDTirocinio}">
+                            <a href="/account/moduli/gestionetirocinioscelto?idTirocinio=${lista.tirocinio.IDTirocinio}">
                                 <button type="button" class="btn btn-outline-success"><i
                                             class="fa fa-plus"></i>Dettagli
                                 </button>
