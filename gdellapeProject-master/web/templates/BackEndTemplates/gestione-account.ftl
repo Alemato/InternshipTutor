@@ -22,10 +22,10 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand link-bar" href="index.html">Intership Tutor </a>
+    <a class="navbar-brand link-bar" href="/home">Intership Tutor </a>
     <ol class="breadcrumb">
-        <li><a href="admin.html">HOME DASHBOARD</a></li>
-        <li class="active"><a href="impostazione-account-admin.html"><b>IMPOSTAZIONI ACCOUNT</b></a></li>
+        <li><a href="/admin/dashboard">HOME DASHBOARD</a></li>
+        <li class="active"><a href="#"><b>IMPOSTAZIONI ACCOUNT</b></a></li>
     </ol>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
