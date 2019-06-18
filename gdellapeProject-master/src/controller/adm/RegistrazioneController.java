@@ -361,7 +361,7 @@ public class RegistrazioneController extends baseController {
         }
 
         if(ckScuolaAltro==1){
-            if(!laureaIn.isEmpty()){
+            if(!scuolaAltro.isEmpty()){
                 datamodel.put("ckScuolaAltro", ckScuolaAltro);
                 datamodel.put("scuolaAltro",scuolaAltro);
             } else {
