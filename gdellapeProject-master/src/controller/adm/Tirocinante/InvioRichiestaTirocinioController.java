@@ -161,7 +161,7 @@ public class InvioRichiestaTirocinioController extends baseController {
         if (!(request.getParameter("ProvinciaDiResidenza").equals(tirocinante.getProvinciaDiResidenza()))) {
             if (Validation.text50(request.getParameter("ProvinciaDiResidenza"), "Provincia di Nascita").get("valido").equals(true)) {
                 tirocinante.setProvinciaDiResidenza(request.getParameter("ProvinciaDiResidenza"));
-            }else{
+            } else {
                 fillModulo(request, response, tirocinante);
                 datamodel.put("erroreProvResidenza", "Valore non corretto");
                 TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
@@ -171,7 +171,7 @@ public class InvioRichiestaTirocinioController extends baseController {
         if (!(request.getParameter("CodiceFiscale").equals(tirocinante.getCodiceFiscale()))) {
             if (Validation.text100(request.getParameter("CodiceFiscale"), "Codice Fiscale").get("valido").equals(true)) {
                 tirocinante.setCodiceFiscale(request.getParameter("CodiceFiscale"));
-            }else{
+            } else {
                 fillModulo(request, response, tirocinante);
                 datamodel.put("erroreCodiceFiscale", "Valore non corretto");
                 TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
@@ -181,7 +181,7 @@ public class InvioRichiestaTirocinioController extends baseController {
         if (!(request.getParameter("NumeroTelefono").equals(tirocinante.getTelefono()))) {
             if (Validation.text100(request.getParameter("NumeroTelefono"), "Numero di Telefono").get("valido").equals(true)) {
                 tirocinante.setTelefono(request.getParameter("NumeroTelefono"));
-            }else{
+            } else {
                 fillModulo(request, response, tirocinante);
                 datamodel.put("erroreNumeroTelefono", "Valore non corretto");
                 TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
@@ -303,7 +303,7 @@ public class InvioRichiestaTirocinioController extends baseController {
             } else {
                 tirocinio.setTutoreUniversitario(Integer.parseInt(request.getParameter("TutoreUniversitario")));
             }
-            if (request.getParameter("NomeTutoreUniversitario") != null && request.getParameter("CognomeTutoreUniversitario") != null && request.getParameter("TelefonoTutoreUniversitario") != null && request.getParameter("EmailTutoreUniversitario") != null && !request.getParameter("TutoreUniversitario").equals("NEW")){
+            if (request.getParameter("NomeTutoreUniversitario") != null && request.getParameter("CognomeTutoreUniversitario") != null && request.getParameter("TelefonoTutoreUniversitario") != null && request.getParameter("EmailTutoreUniversitario") != null && !request.getParameter("TutoreUniversitario").equals("NEW")) {
                 if (!request.getParameter("NomeTutoreUniversitario").equals("") && !request.getParameter("CognomeTutoreUniversitario").equals("") && !request.getParameter("TelefonoTutoreUniversitario").equals("") && !request.getParameter("EmailTutoreUniversitario").equals("") && !request.getParameter("TutoreUniversitario").equals("NEW")) {
                     fillModulo(request, response, tirocinante);
                     datamodel.put("erroreTutore", "Non puoi selezionare un tutore e crearne uno nuovo");
@@ -346,7 +346,7 @@ public class InvioRichiestaTirocinioController extends baseController {
         tutoreUniversitario.setTelefono(request.getParameter("TelefonoTutoreUniversitario"));
         if (isValidEmailAddress(request.getParameter("EmailTutoreUniversitario"))) {
             tutoreUniversitario.setEmail(request.getParameter("EmailTutoreUniversitario"));
-        }else{
+        } else {
             fillModulo(request, response, tirocinante);
             datamodel.put("erroreEmailTutore", "Formato email Tutore non valido");
             TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
@@ -361,17 +361,14 @@ public class InvioRichiestaTirocinioController extends baseController {
 
         TirocinioDaoImp tirocinioDaoImpControllo = new TirocinioDaoImp();
         List<Tirocinio> tirociniControllo = new ArrayList<>(tirocinioDaoImpControllo.getOffertaTirByIDTirocinante(tirocinante.getIDTirocinante()));
-        for (Tirocinio tirocinio: tirociniControllo){
-            if (tirocinio.getStato() < 3)
+        for (Tirocinio tirocinio : tirociniControllo) {
+            if (tirocinio.getStato() < 3) {
+                System.out.println("stato");
+                System.out.println(tirocinio.getStato());
                 return true;
+            }
         }
         return false;
-    }
-
-    private void tirocinando(HttpServletRequest request, HttpServletResponse response){
-        datamodel.put("Message", " hai un tirocinio pendente");
-
-        TemplateController.process("scheda-tirocinio.ftl", datamodel, response, getServletContext());
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -389,13 +386,25 @@ public class InvioRichiestaTirocinioController extends baseController {
         SingSessionContoller session = SingSessionContoller.getInstance();
         Tirocinante tirocinante = session.getTirocinate(request, response);
         try {
-            if(controlloTirocinio(request, response, tirocinante)){
-               tirocinando(request, response);
+            if (controlloTirocinio(request, response, tirocinante)) {
+//                tirocinando(request, response);
+
+                System.out.println("non puoi");
+                int idOffertaTirocinio;
+                if (request.getSession().getAttribute("Tirocinio") != null) {
+                    idOffertaTirocinio = (int) request.getSession().getAttribute("Tirocinio");
+                } else {
+                    idOffertaTirocinio = Integer.parseInt(request.getParameter("idOffertaTirocinio"));
+                }
+                response.sendRedirect("/listaofferte/tirocinio?Tirocinio="+idOffertaTirocinio);
+
+
+            }else {
+                controlloCampiTirocinante(request, response, tirocinante);
+                aggiornoTirocinante(request, response, tirocinante);
+                creoTirocinio(request, response, tirocinante);
+                response.sendRedirect("/account/moduli");
             }
-            controlloCampiTirocinante(request, response, tirocinante);
-            aggiornoTirocinante(request, response, tirocinante);
-            creoTirocinio(request, response, tirocinante);
-            response.sendRedirect("/account/moduli");
 
         } catch (ParseException | DaoException e) {
             e.printStackTrace();
