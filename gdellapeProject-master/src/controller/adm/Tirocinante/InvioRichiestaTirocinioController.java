@@ -110,27 +110,27 @@ public class InvioRichiestaTirocinioController extends baseController {
 
         String[] nominativo;
         String delimiter = " ";
-        nominativo = request.getParameter("Nominativo").split(delimiter);
+        //nominativo = request.getParameter("Nominativo").split(delimiter);
 
-        if (!(nominativo[0].equals(tirocinante.getNome()))) {
-            if (Validation.text100(nominativo[0], "Nome").get("valido").equals(true)) {
-                tirocinante.setNome(nominativo[0]);
-            }else {
-                fillModulo(request, response, tirocinante);
-                datamodel.put("erroreNome", "Valore non corretto");
-                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
-            }
-        }
+//        if (!(nominativo[0].equals(tirocinante.getNome()))) {
+//            if (Validation.text100(nominativo[0], "Nome").get("valido").equals(true)) {
+//                tirocinante.setNome(nominativo[0]);
+//            }else {
+//                fillModulo(request, response, tirocinante);
+//                datamodel.put("erroreNome", "Valore non corretto");
+//                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+//            }
+//        }
 
-        if (!(nominativo[1].equals(tirocinante.getCognome()))) {
-            if (Validation.text100(nominativo[1], "Cognome").get("valido").equals(true)) {
-                tirocinante.setCognome(nominativo[1]);
-            }else {
-                fillModulo(request, response, tirocinante);
-                datamodel.put("erroreCognome", "Valore non corretto");
-                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
-            }
-        }
+//        if (!(nominativo[1].equals(tirocinante.getCognome()))) {
+//            if (Validation.text100(nominativo[1], "Cognome").get("valido").equals(true)) {
+//                tirocinante.setCognome(nominativo[1]);
+//            }else {
+//                fillModulo(request, response, tirocinante);
+//                datamodel.put("erroreCognome", "Valore non corretto");
+//                TemplateController.process("richiesta-tirocinio.ftl", datamodel, response, getServletContext());
+//            }
+//        }
 
         if (!(request.getParameter("LuogoDiNnascita").equals(tirocinante.getLuogoDiNascita())))
             tirocinante.setLuogoDiNascita(request.getParameter("LuogoDiNnascita"));
@@ -145,10 +145,10 @@ public class InvioRichiestaTirocinioController extends baseController {
             }
         }
 
-        String stringDataDiNascita = request.getParameter("GiornoDiNascita") + "-" +
+        String stringDataDiNascita = request.getParameter("AnnoDiNascita") + "-" +
                 request.getParameter("MeseDiNascita") + "-" +
-                request.getParameter("AnnoDiNascita");
-        SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
+                request.getParameter("GiornoDiNascita");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dataDiNascita = format.parse(stringDataDiNascita);
         java.sql.Date sqlDataDiNascita = new java.sql.Date(dataDiNascita.getTime());
 
@@ -234,7 +234,7 @@ public class InvioRichiestaTirocinioController extends baseController {
     private void aggiornoTirocinante(HttpServletRequest request, HttpServletResponse response, Tirocinante tirocinante) throws ServletException, IOException {
         TirocinanteDaoImp tirocinanteDaoImp = new TirocinanteDaoImp();
         try {
-            tirocinanteDaoImp.setTirocinante(tirocinante);
+            tirocinanteDaoImp.setUpdate(tirocinante);
             tirocinanteDaoImp.destroy();
         } catch (DaoException e) {
             e.printStackTrace();

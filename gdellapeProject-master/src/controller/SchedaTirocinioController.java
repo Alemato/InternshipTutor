@@ -7,6 +7,7 @@ import dao.implementation.TirocinioDaoImp;
 import model.Azienda;
 import model.OffertaTirocinio;
 import model.Tirocinante;
+import model.Tirocinio;
 import view.TemplateController;
 
 import javax.servlet.RequestDispatcher;
@@ -29,9 +30,13 @@ public class SchedaTirocinioController extends baseController {
 
     private void setpage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            int Idtrof = Integer.parseInt(request.getParameter("Tirocinio"));
+            int idtrof = Integer.parseInt(request.getParameter("Tirocinio"));
+//            Tirocinio tirocinio = new Tirocinio();
+//            TirocinioDaoImp tirocinioDaoImp1 = new TirocinioDaoImp();
+//            tirocinio = tirocinioDaoImp1.getRichiestatrByID(idtrof);
+
             OffertaTirocinioDaoImp ofdao = new OffertaTirocinioDaoImp();
-            OffertaTirocinio oftr = ofdao.getOffertatrByID(Idtrof);
+            OffertaTirocinio oftr = ofdao.getOffertatrByID(idtrof);
             ofdao.destroy();
             AziendaDaoImp aziendaDaoImp = new AziendaDaoImp();
             Azienda azienda = aziendaDaoImp.getAziendaByID(oftr.getAzienda());
