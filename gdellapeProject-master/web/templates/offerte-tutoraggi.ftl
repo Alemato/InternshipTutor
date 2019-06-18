@@ -129,8 +129,8 @@
                                     class="btn btn-blue b-blu btn-lg pull-right float-right"><i
                                         class="fa fa-check"></i> Filtra
                             </button>
-                            <button type="reset" form="querystring" class="btn btn-red btn-lg pull-right float-left"><i
-                                        class="fa fa-times"></i> Annulla
+                            <button class="btn btn-red btn-lg pull-right float-left"><a style="all: unset;" href="/listaofferte?risultati=4&azienda=&search=&sede=&datainizio=&datafine="><i
+                                        class="fa fa-times"></i> Annulla</a>
                             </button>
                         </footer>
                     </form>
