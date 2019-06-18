@@ -78,7 +78,7 @@ public class UserDaoImp extends DaoDataMySQLImpl implements dao.interfaces.UserD
                 users.add(user);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+
             throw new DaoException("Errore nel creare Lista oggetti User", e);
         }
     }
@@ -107,7 +107,7 @@ public class UserDaoImp extends DaoDataMySQLImpl implements dao.interfaces.UserD
                 throw new DaoException("Query con risultato vuoto");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+
             throw new DaoException("Errore esecuzione query", e);
         }
         return user;
@@ -201,7 +201,7 @@ public class UserDaoImp extends DaoDataMySQLImpl implements dao.interfaces.UserD
             this.setToken.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DaoException("Errore Query update user", e);
         }
     }
 
@@ -215,8 +215,7 @@ public class UserDaoImp extends DaoDataMySQLImpl implements dao.interfaces.UserD
             this.updateUser.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-
+            throw new DaoException("Errore Query update user", e);
         }
     }
 

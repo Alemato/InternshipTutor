@@ -48,7 +48,7 @@ public class ReimpostaMailUserController extends baseController {
             UserDaoImp dao1 = new UserDaoImp();
             User user = dao1.getUserByid(Integer.parseInt(request.getParameter("IDUser")));
             dao1.destroy();
-            //serve solo per attivare il link nella sidebar
+
             activepage(user);
 
             if (user.getTipologiaAccount() == 2 || user.getTipologiaAccount() == 3) {
@@ -97,7 +97,7 @@ public class ReimpostaMailUserController extends baseController {
 
     private void storeMail(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException, DaoException {
 
-        user.setEmail(request.getParameter(request.getParameter("email")));
+        user.setEmail(request.getParameter("email"));
         UserDaoImp dao =new UserDaoImp();
         dao.update(user);
         dao.destroy();

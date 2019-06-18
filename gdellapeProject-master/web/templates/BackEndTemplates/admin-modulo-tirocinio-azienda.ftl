@@ -15,7 +15,7 @@
 </head>
 <body class="smoothscroll enable-animation">
 
-<#--TODO metti a posto la stampa senno si vede male-->
+
 
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse navbar-large bg-dark d-print-none">
     <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse"
