@@ -99,42 +99,54 @@
                         <#elseif lista.tirocinio.stato == 5>
                             <td>Tirocinio Rifiutato</td>
                         </#if>
-                        <#if lista.tirocinio.pdfTirocinante?has_content>
-                            <td>
-                                <a href="/account/moduli/richiesta-tirocinio?id=${lista.tirocinio.IDTirocinio}">
-                                    <button type="button" class="btn btn-outline-success"><i
-                                                class="fa fa-print"></i>Visualizza
-                                    </button>
-                                </a>
-                            </td>
+                        <#if lista.tirocinio.stato == 5>
+                            <td>Tirocinio Rifiutato</td>
                         <#else>
-                            <#if lista.tirocinio.stato == 0>
-                                <td>In attesa di approvazione del Tirocinio</td>
+                            <#if lista.tirocinio.pdfTirocinante?has_content>
+                                <td>
+                                    <a href="/account/moduli/richiesta-tirocinio?id=${lista.tirocinio.IDTirocinio}">
+                                        <button type="button" class="btn btn-outline-success"><i
+                                                    class="fa fa-print"></i>Visualizza
+                                        </button>
+                                    </a>
+                                </td>
                             <#else>
-                                <td>In attesa del caricamento del modulo</td>
+                                <#if lista.tirocinio.stato == 0>
+                                    <td>In attesa di approvazione del Tirocinio</td>
+                                <#else>
+                                    <td>In attesa del caricamento del modulo</td>
+                                </#if>
                             </#if>
                         </#if>
-                        <#if lista.tirocinio.pdfAzienda?has_content>
-                            <td>
-                                <a href="/account/moduli/tirocinio?id=${lista.tirocinio.IDTirocinio}">
-                                    <button type="button" class="btn btn-outline-success"><i
-                                                class="fa fa-print"></i>Visualizza
-                                    </button>
-                                </a>
-                            </td>
+                        <#if lista.tirocinio.stato == 5>
+                                <td>Tirocinio Rifiutato</td>
                         <#else>
-                            <td>In attesa di caricamento del Pdf da parte dell'Azienda</td>
+                            <#if lista.tirocinio.pdfAzienda?has_content>
+                                <td>
+                                    <a href="/account/moduli/tirocinio?id=${lista.tirocinio.IDTirocinio}">
+                                        <button type="button" class="btn btn-outline-success"><i
+                                                    class="fa fa-print"></i>Visualizza
+                                        </button>
+                                    </a>
+                                </td>
+                            <#else>
+                                <td>In attesa di caricamento del Pdf da parte dell'Azienda</td>
+                            </#if>
                         </#if>
-                        <#if lista.tirocinio.pdfSegreteria?has_content>
-                            <td>
-                                <a href="/account/moduli/segreteria?id=${lista.tirocinio.IDTirocinio}">
-                                    <button type="button" class="btn btn-outline-success"><i
-                                                class="fa fa-print"></i>Visualizza
-                                    </button>
-                                </a>
-                            </td>
+                        <#if lista.tirocinio.stato == 5>
+                                <td>Tirocinio Rifiutato</td>
                         <#else>
-                            <td>In attesa del caricamento del modulo da parte della Segreteria</td>
+                            <#if lista.tirocinio.pdfSegreteria?has_content>
+                                <td>
+                                    <a href="/account/moduli/segreteria?id=${lista.tirocinio.IDTirocinio}">
+                                        <button type="button" class="btn btn-outline-success"><i
+                                                    class="fa fa-print"></i>Visualizza
+                                        </button>
+                                    </a>
+                                </td>
+                            <#else>
+                                <td>In attesa del caricamento del modulo da parte della Segreteria</td>
+                            </#if>
                         </#if>
                         <td>
                             <a href="/account/moduli/gestionetirocinioscelto?idTirocinio=${lista.tirocinio.IDTirocinio}">

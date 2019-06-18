@@ -88,6 +88,14 @@
                     </button>
                     <strong>Devi attendere che la Segreteria decreti la finde del tirocinio.</strong>
                 </div>
+            <#elseif tirocinio.stato == 5>
+                <div class="alert alert-warning mb-30"><!-- SUCCESS -->
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&ast;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong>La ua richiesta per questo tirocinio &egrave; stata rifiutata.</strong>
+                </div>
             <#else>
                 <!-- NON HAI INVIATO LA CANDIDATURA -->
                 <div class="alert alert-warning mb-30"><!-- WARNING -->
@@ -304,10 +312,10 @@
                     <strong>hai gi&agrave; votato il tirocinio svolto presso <a
                                 href="/schedaazienda?ID=${azienda.IDAzienda}">${azienda.ragioneSociale}</a></strong>
                 </div>
-            <#elseif tirocinio.stato == 1>
+            <#elseif tirocinio.stato == 1 || tirocinio.stato == 0>
                 <!-- HAI INVIATO LA CANDIDATURA MA DEVI ASP-->
 
-                <div class="alert alert-info mb-30">
+                <div class="alert alert-warning mb-30">
                     <strong>Valutazione del tutoraggio ancora non consentita devi completare il tirocinio presso <a
                                 href="/schedaazienda?ID=${azienda.IDAzienda}">${azienda.ragioneSociale}</a></strong><br>
                     La preghiamo di attende fino al termine del tirocinio
