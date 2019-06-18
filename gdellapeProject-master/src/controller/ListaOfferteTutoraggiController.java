@@ -1,6 +1,8 @@
 package controller;
 
+import dao.implementation.AziendaDaoImp;
 import dao.implementation.OffertaTirocinioDaoImp;
+import model.Azienda;
 import model.OffertaTirocinio;
 import view.TemplateController;
 
@@ -159,6 +161,16 @@ public class ListaOfferteTutoraggiController extends baseController {
                 }
             }
 
+            AziendaDaoImp aziendaDaoImp1 = new AziendaDaoImp();
+            List<Azienda> aziendas = new ArrayList<>();
+            for (OffertaTirocinio offertaTirocinio1 : offerte){
+                aziendas.add(aziendaDaoImp1.getAziendaByID(offertaTirocinio1.getAzienda()));
+            }
+            for (int j=1; j<aziendas.size(); j++){
+                if (aziendas.get(j).equals(aziendas.get(j-1)))
+                    aziendas.remove(j);
+            }
+
             offertaTirocinioDaoImp.destroy();
             List<OffertaTirocinio> offerteInpaginate = new ArrayList<>();
             int from = (pageid * elementiPerPagina);
@@ -177,6 +189,7 @@ public class ListaOfferteTutoraggiController extends baseController {
             datamodel.put("numeroPagine", Math.ceil((float) offerteFiltrate.size() / elementiPerPagina));
             datamodel.put("offerte", offerteInpaginate);
             datamodel.put("offerteFiltro", offerte);
+            datamodel.put("aziendas", aziendas);
 
             datamodel.put("risultati", elementiPerPagina);
             datamodel.put("azienda", azienda);
