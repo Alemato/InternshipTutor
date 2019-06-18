@@ -258,7 +258,7 @@
                         <div class="col">
                             <label class="input">
                                 <input type="date" name="DataNascita" value="${Tirocinante.dataDiNascita}" required>
-                                <p>${Tirocinante.dataDiNascita}</p>
+                                <#--<p>${Tirocinante.dataDiNascita}</p>-->
                             </label>
                         </div>
                     </div>

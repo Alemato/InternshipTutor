@@ -384,8 +384,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>gestioneTirocinioScelto</servlet-name>
-        <url-pattern>/gestioneTirocinioScelto</url-pattern>
-        <url-pattern>/GestioneTirocinioScelto</url-pattern>
+        <url-pattern>/account/moduli/gestionetirocinioscelto</url-pattern>
+        <url-pattern>/Gestionetirocinioscelto</url-pattern>
 
     </servlet-mapping>
 
@@ -427,7 +427,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>moduloTirocinioTirocinante</servlet-name>
-        <url-pattern>/account/moduli/moduloTirocinio</url-pattern>
+        <url-pattern>/account/moduli/modulotirocinio</url-pattern>
         <url-pattern>/account/Moduli/ModuloTirocinio</url-pattern>
 
     </servlet-mapping>
