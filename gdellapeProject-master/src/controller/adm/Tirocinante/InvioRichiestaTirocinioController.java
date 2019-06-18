@@ -362,7 +362,7 @@ public class InvioRichiestaTirocinioController extends baseController {
         TirocinioDaoImp tirocinioDaoImpControllo = new TirocinioDaoImp();
         List<Tirocinio> tirociniControllo = new ArrayList<>(tirocinioDaoImpControllo.getOffertaTirByIDTirocinante(tirocinante.getIDTirocinante()));
         for (Tirocinio tirocinio: tirociniControllo){
-            if (tirocinio.getStato() < 4)
+            if (tirocinio.getStato() < 3)
                 return true;
         }
         return false;
@@ -370,6 +370,7 @@ public class InvioRichiestaTirocinioController extends baseController {
 
     private void tirocinando(HttpServletRequest request, HttpServletResponse response){
         datamodel.put("Message", " hai un tirocinio pendente");
+
         TemplateController.process("scheda-tirocinio.ftl", datamodel, response, getServletContext());
     }
 

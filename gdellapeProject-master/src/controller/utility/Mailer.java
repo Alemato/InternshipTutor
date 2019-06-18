@@ -13,7 +13,7 @@ public class Mailer {
         final String pass = "A123456789ingweb@";
         final String mail = "internshiptutor@matteifamily.net";
         Properties props = new Properties();
-        props.put("mail.smtp.host", "matteifamily.net");//change accordingly
+        props.put("mail.smtp.host", "10.0.0.0");//change accordingly
         props.put("mail.smtp.auth", "true");
 
         Session session = Session.getDefaultInstance(props,
