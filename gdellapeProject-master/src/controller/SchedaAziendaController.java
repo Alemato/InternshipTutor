@@ -23,7 +23,7 @@ public class SchedaAziendaController extends baseController {
     }
     protected void setAzienda (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Integer IDAzienda = Integer.parseInt((String)request.getParameter("ID"));
+        Integer IDAzienda = Integer.parseInt(request.getParameter("ID"));
 
         try{
             AziendaDaoImp daoAzienda = new AziendaDaoImp();

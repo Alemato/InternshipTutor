@@ -61,7 +61,7 @@
                     <tbody>
                     <#list ListaConv as listaConvenzione>
                     <tr>
-                        <td>${listaConvenzione.ragioneSociale}</td>
+                        <td><a href="/schedaazienda?ID=${listaConvenzione.IDAzienda}">${listaConvenzione.ragioneSociale}</a></td>
                         <td>${listaConvenzione.indirizzoSedeLegale}</td>
                         <td><a <#if listaConvenzione.link??>href="${listaConvenzione.link}</#if>">${listaConvenzione.ragioneSociale}</a></td>
                         <td>${listaConvenzione.dataConvenzione}</td>
