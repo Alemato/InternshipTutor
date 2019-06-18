@@ -387,7 +387,6 @@ public class InvioRichiestaTirocinioController extends baseController {
         Tirocinante tirocinante = session.getTirocinate(request, response);
         try {
             if (controlloTirocinio(request, response, tirocinante)) {
-//                tirocinando(request, response);
 
                 System.out.println("non puoi");
                 int idOffertaTirocinio;
