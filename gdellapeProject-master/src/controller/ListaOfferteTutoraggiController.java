@@ -161,15 +161,12 @@ public class ListaOfferteTutoraggiController extends baseController {
                 }
             }
 
-            AziendaDaoImp aziendaDaoImp1 = new AziendaDaoImp();
-            List<Azienda> aziendas = new ArrayList<>();
-            for (OffertaTirocinio offertaTirocinio1 : offerte){
-                aziendas.add(aziendaDaoImp1.getAziendaByID(offertaTirocinio1.getAzienda()));
-            }
-            for (int j=1; j<aziendas.size(); j++){
-                if (aziendas.get(j).equals(aziendas.get(j-1)))
-                    aziendas.remove(j);
-            }
+
+            AziendaDaoImp aziendaDaoImp2 = new AziendaDaoImp();
+            List<Azienda> azienda2 = new ArrayList<>();
+            azienda2 = aziendaDaoImp2.getAllAziendaAttive();
+
+            aziendaDaoImp2.destroy();
 
             offertaTirocinioDaoImp.destroy();
             List<OffertaTirocinio> offerteInpaginate = new ArrayList<>();
@@ -189,7 +186,8 @@ public class ListaOfferteTutoraggiController extends baseController {
             datamodel.put("numeroPagine", Math.ceil((float) offerteFiltrate.size() / elementiPerPagina));
             datamodel.put("offerte", offerteInpaginate);
             datamodel.put("offerteFiltro", offerte);
-            datamodel.put("aziendas", aziendas);
+            datamodel.put("aziendas", azienda2);
+
 
             datamodel.put("risultati", elementiPerPagina);
             datamodel.put("azienda", azienda);
