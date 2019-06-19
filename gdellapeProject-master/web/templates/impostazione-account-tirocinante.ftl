@@ -257,8 +257,7 @@
 
                         <div class="col">
                             <label class="input">
-                                <input type="date" name="DataNascita" value="${Tirocinante.dataDiNascita}" required>
-                                <#--<p>${Tirocinante.dataDiNascita}</p>-->
+                                <input type="date" name="DataNascita" value="${dataDiNascita?string.iso}" required>
                             </label>
                         </div>
                     </div>

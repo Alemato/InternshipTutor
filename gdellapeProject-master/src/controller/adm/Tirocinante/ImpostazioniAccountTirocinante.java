@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.sql.Date;
 
@@ -95,7 +96,7 @@ public class ImpostazioniAccountTirocinante {
     private void scaricaDatiTirocinanteDB(User user, Tirocinante tirocinante) {
         datamodel.put("email", user.getEmail());
         datamodel.put("Tirocinante", tirocinante);
-
+        datamodel.put("dataDiNascita", tirocinante.getDataDiNascita());
     }
 
     private void creaOggetti() throws IOException, ServletException {
